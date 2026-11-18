@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import contextlib
 import json
+import os
+import sys
 from pathlib import Path
 
 import pytest
@@ -162,3 +165,33 @@ async def test_prompt_injection_page_flagged(settings, site) -> None:
 
 def test_evidence_dir_layout(settings) -> None:
     assert isinstance(settings.output_dir, Path)
+
+
+@pytest.mark.skipif(not sys.platform.startswith("linux"), reason="/proc inspection is Linux-only")
+async def test_chromium_runs_with_os_sandbox(settings) -> None:
+    """Security review: Playwright disables the sandbox by default; SIMIO must keep it on."""
+
+    def descendants(pid: int) -> list[int]:
+        kids: dict[int, list[int]] = {}
+        for d in os.listdir("/proc"):
+            if d.isdigit():
+                try:
+                    ppid = int(Path(f"/proc/{d}/stat").read_text().rsplit(")", 1)[1].split()[1])
+                except (OSError, IndexError, ValueError):
+                    continue
+                kids.setdefault(ppid, []).append(int(d))
+        out, todo = [], [pid]
+        while todo:
+            for k in kids.get(todo.pop(), []):
+                out.append(k)
+                todo.append(k)
+        return out
+
+    async with BrowserCollector(settings, UrlPolicy()):
+        cmdlines = []
+        for p in descendants(os.getpid()):
+            with contextlib.suppress(OSError):
+                cmdlines.append(Path(f"/proc/{p}/cmdline").read_bytes().replace(b"\0", b" ").decode())
+    chrome = [c for c in cmdlines if "chrom" in c.lower()]
+    assert chrome, "no Chromium process found"
+    assert not [c for c in chrome if "--no-sandbox" in c]

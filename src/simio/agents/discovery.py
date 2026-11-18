@@ -133,6 +133,9 @@ class DiscoveryAgent:
     policy: UrlPolicy
     max_queries: int = 40
     diagnostics: list[str] = field(default_factory=list)
+    # (connector, query) pairs already executed in an earlier (interrupted) run of the campaign:
+    # skipped on resume and counted against ``max_queries``.
+    already_done: set[tuple[str, str]] = field(default_factory=set)
 
     def plan(self, available: list[Connector]) -> list[PlannedQuery]:
         """Interleave hypotheses across connectors so a small budget still diversifies."""
@@ -152,8 +155,8 @@ class DiscoveryAgent:
             per_connector.append(plans)
         out: list[PlannedQuery] = []
         for batch in itertools.zip_longest(*per_connector):
-            out.extend(p for p in batch if p is not None)
-        return out[: self.max_queries]
+            out.extend(p for p in batch if p is not None and (p.connector, p.query) not in self.already_done)
+        return out[: max(0, self.max_queries - len(self.already_done))]
 
     async def run(self, imported: list[DiscoveryHit] | None = None, on_query=None) -> DiscoveryOutcome:  # type: ignore[no-untyped-def]
         outcome = DiscoveryOutcome()

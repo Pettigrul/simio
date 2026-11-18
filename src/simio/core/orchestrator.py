@@ -14,9 +14,14 @@ Parallelism is limited to independent candidates (``workers``).
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import logging
+import os
 import random
-from contextlib import AbstractAsyncContextManager
+import secrets
+import socket
+from collections.abc import AsyncIterator
+from contextlib import AbstractAsyncContextManager, asynccontextmanager
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Protocol
@@ -45,16 +50,15 @@ from simio.core.models import (
 from simio.core.models import (
     CandidateStatus as S,
 )
-from simio.core.storage import Storage
+from simio.core.state import InvalidTransition
+from simio.core.storage import ConcurrentModification, Storage
 from simio.providers.grounding import GroundingConnector
 from simio.providers.llm import (
     Budget,
     BudgetExceeded,
     LLMGateway,
-    LLMOutputInvalid,
     LLMProvider,
     LLMUnavailable,
-    TransientLLMError,
 )
 from simio.providers.search import BraveSearch, Connector, SerperSearch, UrlscanSearch
 from simio.providers.vertex import VertexProvider
@@ -125,6 +129,7 @@ class Orchestrator:
             max_retries=self.settings.llm_max_retries,
             base_delay_s=self.settings.retry_base_delay_s,
             concurrency=self.settings.workers,
+            max_output_tokens=self.settings.llm_max_output_tokens,
         )
 
     def _connectors(self, gateway: LLMGateway | None, brand: BrandProfile, sources: list[str]) -> list[Connector]:
@@ -168,39 +173,107 @@ class Orchestrator:
         campaign_id = self.storage.create_campaign(opts.brand, params)
         log.info("campaign %s started", campaign_id)
         self.storage.log_decision(campaign_id, None, "orchestrator", "campaign_started", params)
-        gateway = self._gateway(campaign_id)
-        await self._discover(campaign_id, brand, gateway, opts)
-        return await self._process(campaign_id, brand, gateway, opts.review_all)
+        if self.settings.unsafe_allow_hosts:
+            self.storage.log_decision(
+                campaign_id,
+                None,
+                "orchestrator",
+                "UNSAFE_ALLOW_HOSTS_ACTIVE",
+                {"hosts": self.settings.unsafe_allow_hosts, "warning": "SSRF protection bypassed for these hosts"},
+            )
+        # Imported URLs are persisted before any network work so a crash cannot lose them.
+        self.storage.set_checkpoint(campaign_id, "imported_hits", [h.model_dump(mode="json") for h in opts.imported])
+        async with self._campaign_run(campaign_id):
+            gateway = self._gateway(campaign_id)
+            await self._discover(campaign_id, brand, gateway, opts)
+            return await self._process(campaign_id, brand, gateway, opts.review_all)
 
-    async def resume(self, campaign_id: str, retry_failed: bool = False) -> RunSummary:
+    RESUMABLE_PARAMS = (
+        "offline",
+        "analysis_model",
+        "review_model",
+        "discovery_model",
+        "workers",
+        "max_llm_requests",
+        "max_llm_tokens",
+        "max_search_queries",
+    )
+
+    async def resume(
+        self, campaign_id: str, retry_failed: bool = False, overrides: dict[str, Any] | None = None
+    ) -> RunSummary:
+        """Resume with the campaign's *original* parameters (model, offline mode, budgets...);
+        only values the operator passes explicitly in ``overrides`` change them."""
         camp = self.storage.get_campaign(campaign_id)
         if camp is None:
             raise KeyError(f"campaign not found: {campaign_id}")
         params = camp["params"]
+        merged = {k: params[k] for k in self.RESUMABLE_PARAMS if params.get(k) is not None}
+        merged.update({k: v for k, v in (overrides or {}).items() if v is not None})
+        self.settings = self.settings.model_copy(update=merged)
         brand = load_brand(params["brand"], self.settings.brand_file)
-        recovered = self.storage.recover_in_flight(campaign_id)
-        self.storage.log_decision(
-            campaign_id,
-            None,
-            "orchestrator",
-            "resumed",
-            {"recovered_in_flight": recovered, "retry_failed": retry_failed},
-        )
-        if retry_failed:
-            for cand in self.storage.list_candidates(campaign_id, [S.FAILED]):
-                self.storage.reset_attempts(cand.id)
-                self.storage.transition(cand.id, S.QUEUED, note="retry requested by operator")
-        self.storage.set_campaign_status(campaign_id, "RUNNING")
-        gateway = self._gateway(campaign_id)
-        if not self.storage.get_checkpoint(campaign_id, "discovery_done", False):
-            opts = HuntOptions(
-                brand=params["brand"],
-                limit=params["limit"],
-                sources=params["sources"],
-                review_all=params.get("review_all", False),
+        async with self._campaign_run(campaign_id):
+            recovered = self.storage.recover_in_flight(campaign_id, self.settings.max_attempts)
+            self.storage.log_decision(
+                campaign_id,
+                None,
+                "orchestrator",
+                "resumed",
+                {
+                    "recovered_in_flight": recovered,
+                    "retry_failed": retry_failed,
+                    "effective_params": {k: merged.get(k) for k in self.RESUMABLE_PARAMS},
+                    "overrides": {k: v for k, v in (overrides or {}).items() if v is not None},
+                },
             )
-            await self._discover(campaign_id, brand, gateway, opts)
-        return await self._process(campaign_id, brand, gateway, params.get("review_all", False))
+            if retry_failed:
+                for cand in self.storage.list_candidates(campaign_id, [S.FAILED]):
+                    self.storage.reset_attempts(cand.id)
+                    self.storage.transition(cand.id, S.QUEUED, note="retry requested by operator")
+            gateway = self._gateway(campaign_id)
+            if not self.storage.get_checkpoint(campaign_id, "discovery_done", False):
+                imported = [
+                    DiscoveryHit.model_validate(h)
+                    for h in (self.storage.get_checkpoint(campaign_id, "imported_hits", []) or [])
+                ]
+                opts = HuntOptions(
+                    brand=params["brand"],
+                    limit=params["limit"],
+                    sources=params["sources"],
+                    review_all=params.get("review_all", False),
+                    imported=imported,
+                )
+                await self._discover(campaign_id, brand, gateway, opts)
+            return await self._process(campaign_id, brand, gateway, params.get("review_all", False))
+
+    @asynccontextmanager
+    async def _campaign_run(self, campaign_id: str) -> AsyncIterator[None]:
+        """Single-writer lease (two processes on one campaign would double-process candidates),
+        heartbeat while running, and an explicit INTERRUPTED status on Ctrl+C / crash."""
+        owner = f"{socket.gethostname()}:{os.getpid()}:{secrets.token_hex(4)}"
+        holder = self.storage.acquire_lease(campaign_id, owner)
+        if holder is not None:
+            raise CampaignBusy(f"campaign {campaign_id} is being processed by {holder}")
+        self.storage.set_campaign_status(campaign_id, "RUNNING")
+
+        async def beat() -> None:
+            while True:
+                await asyncio.sleep(30)
+                self.storage.heartbeat_lease(campaign_id, owner)
+
+        hb = asyncio.create_task(beat())
+        try:
+            yield
+        except BaseException as exc:
+            status = "INTERRUPTED" if isinstance(exc, (KeyboardInterrupt, asyncio.CancelledError)) else "FAILED"
+            with contextlib.suppress(Exception):
+                self.storage.set_campaign_status(campaign_id, status)
+                self.storage.log_error(campaign_id, None, "orchestrator", type(exc).__name__, str(exc)[:500])
+            raise
+        finally:
+            hb.cancel()
+            with contextlib.suppress(Exception):
+                self.storage.release_lease(campaign_id, owner)
 
     # ------------------------------------------------------------------ discovery
     async def _discover(
@@ -212,9 +285,21 @@ class Orchestrator:
             if self.settings.offline and self._connectors_override is None
             else self._connectors(gateway, brand, sources)
         )
-        agent = DiscoveryAgent(brand, connectors, self.policy, max_queries=self.settings.max_search_queries)
+        # Resume-safety: queries already executed (and paid for) are skipped and count against the cap;
+        # their hits were checkpointed as they arrived.
+        done = {
+            (q["source"], q["query_text"]) for q in self.storage.list_queries(campaign_id) if q["source"] in sources
+        }
+        agent = DiscoveryAgent(
+            brand, connectors, self.policy, max_queries=self.settings.max_search_queries, already_done=done
+        )
+        partial = [
+            DiscoveryHit.model_validate(h)
+            for h in (self.storage.get_checkpoint(campaign_id, "discovery_partial_hits", []) or [])
+        ]
 
-        if opts.imported:
+        if opts.imported and not self.storage.get_checkpoint(campaign_id, "imported_recorded", False):
+            self.storage.set_checkpoint(campaign_id, "imported_recorded", True)
             by_source: dict[str, list[DiscoveryHit]] = {}
             for h in opts.imported:
                 by_source.setdefault(h.source, []).append(h)
@@ -229,8 +314,12 @@ class Orchestrator:
             qid = self.storage.record_query(campaign_id, record)
             for h in hits:
                 h.metadata["query_db_id"] = qid
+            partial.extend(hits)
+            self.storage.set_checkpoint(
+                campaign_id, "discovery_partial_hits", [h.model_dump(mode="json") for h in partial]
+            )
 
-        outcome = await agent.run(opts.imported, on_query=on_query)
+        outcome = await agent.run([*opts.imported, *partial], on_query=on_query)
         if self.settings.offline:
             outcome.diagnostics.insert(
                 0, "offline mode: automatic discovery and AI analysis disabled; only imported URLs are processed"
@@ -245,7 +334,8 @@ class Orchestrator:
                 {"url": hit.original_url[:500], "source": hit.source, "reason": reason},
             )
         ordered = prioritise(groups, brand)
-        queued = 0
+        # Candidates already queued/processed (earlier interrupted run) count against --limit.
+        queued = sum(n for st, n in self.storage.status_counts(campaign_id).items() if st != S.DISCOVERED.value)
         for g in ordered:
             if g.excluded_reason:
                 self.storage.log_decision(
@@ -322,10 +412,23 @@ class Orchestrator:
 
                 async def worker(cid: str) -> None:
                     async with sem:
-                        if not self._stop.is_set():
+                        if self._stop.is_set():
+                            return
+                        try:
                             await self._run_candidate(ctx, cid)
+                        except ConcurrentModification as exc:
+                            log.warning("%s", exc)
+                        except Exception as exc:
+                            # One unexpected error must not abort sibling workers (or close the
+                            # shared browser under them): isolate it to this candidate.
+                            log.exception("unexpected error processing %s", cid)
+                            self.storage.log_error(campaign_id, cid, "orchestrator", type(exc).__name__, str(exc))
+                            self._fail_safely(cid, f"unexpected error: {type(exc).__name__}: {exc}")
 
-                await asyncio.gather(*(worker(c.id) for c in pending))
+                results = await asyncio.gather(*(worker(c.id) for c in pending), return_exceptions=True)
+                for r in results:
+                    if isinstance(r, BaseException) and not isinstance(r, Exception):
+                        raise r
 
         counts = self.storage.status_counts(campaign_id)
         remaining = counts.get(S.QUEUED.value, 0) + counts.get(S.COLLECTED.value, 0)
@@ -352,6 +455,16 @@ class Orchestrator:
         )
         return RunSummary(campaign_id, status, counts, diagnostics, req, tok)
 
+    def _fail_safely(self, cid: str, note: str) -> None:
+        cand = self.storage.get_candidate(cid)
+        if cand.status in (S.COMPLETED, S.FAILED, S.INCONCLUSIVE):
+            return
+        try:
+            if cand.status in (S.QUEUED, S.COLLECTING, S.ANALYZING, S.REVIEWING, S.COLLECTED):
+                self.storage.transition(cid, S.FAILED, note=note[:500])
+        except InvalidTransition:
+            log.error("could not mark %s FAILED from %s", cid, cand.status.value)
+
     def _backoff(self, attempt: int) -> float:
         base = self.settings.retry_base_delay_s
         return base * (2 ** max(0, attempt - 1)) + random.uniform(0, base / 2 if base else 0)  # noqa: S311
@@ -362,7 +475,7 @@ class Orchestrator:
         while not self._stop.is_set():
             cand = st.get_candidate(cid)
             if cand.status == S.QUEUED:
-                st.transition(cid, S.COLLECTING)
+                st.transition(cid, S.COLLECTING, expected=S.QUEUED)
                 attempt = st.bump(cid, "attempts")
                 ev_index = len(st.all_evidence(cid)) + 1
                 try:
@@ -375,7 +488,7 @@ class Orchestrator:
                         continue
                     st.transition(cid, S.FAILED, note=f"collector error: {exc}"[:500])
                     return
-                st.save_evidence(ev)
+                ev_id = st.save_evidence(ev)
                 st.log_decision(
                     ctx.campaign_id,
                     cid,
@@ -383,6 +496,7 @@ class Orchestrator:
                     ev.status.value,
                     {
                         "attempt": ev_index,
+                        "evidence_id": ev_id,
                         "final_url": ev.final_url,
                         "errors": ev.errors[:5],
                         "blocked_requests": len(ev.blocked_requests),
@@ -403,17 +517,28 @@ class Orchestrator:
                 return
 
     async def _analyze(self, ctx: _Ctx, cid: str) -> bool:
-        """Run identity/brand/compliance/review. Returns True when the candidate is settled."""
+        """Identity -> brand -> compliance -> review -> final. Returns True when the candidate is settled.
+
+        Every assessment is stored with the id of the evidence it was computed from, so a retry or a
+        resume after a crash/budget pause *reuses* paid LLM results for the same evidence instead of
+        buying them again. Attempts are counted *before* the stage runs, so a candidate that crashes
+        or hangs the process is eventually marked FAILED (see ``recover_in_flight``)."""
         st = self.storage
         cand = st.get_candidate(cid)
-        st.transition(cid, S.ANALYZING)
-        ev = st.latest_evidence(cid)
-        assert ev is not None
-        catalog = build_catalog(ev, ctx.brand)
-        signals = compute_signals(ev, ctx.brand, catalog)
+        st.transition(cid, S.ANALYZING, expected=S.COLLECTED)
+        attempt = st.bump(cid, "attempts")
+        stage = "prepare"
         try:
+            latest = st.latest_evidence_with_id(cid)
+            if latest is None:
+                raise RuntimeError("no evidence stored for a COLLECTED candidate")
+            ev_id, ev = latest
+            catalog = build_catalog(ev, ctx.brand)
+            signals = compute_signals(ev, ctx.brand, catalog)
+
+            stage = "identity"
             identity: IdentityAttribution = ctx.identity.attribute(cid, ev, catalog, signals)
-            st.save_assessment(cid, "identity", identity)
+            st.save_assessment(cid, "identity", identity, ev_id)
             st.upsert_entity(ctx.campaign_id, identity, identity.inferences[-1] if identity.inferences else "")
             st.log_decision(
                 ctx.campaign_id,
@@ -423,23 +548,30 @@ class Orchestrator:
                 {"entity_key": identity.entity_key, "confidence": identity.attribution_confidence.value},
             )
 
-            assessment: BrandAssessment = await ctx.analyst.analyze(ev, catalog, signals, identity)
-            st.save_assessment(cid, "brand", assessment)
-            st.log_decision(
-                ctx.campaign_id,
-                cid,
-                "brand_analyst",
-                assessment.classification.value,
-                {
-                    "case": assessment.case.value,
-                    "priority": assessment.priority.value,
-                    "analyzer": assessment.analyzer,
-                    "guardrails": assessment.guardrail_notes,
-                },
-            )
+            stage = "brand"
+            assessment = st.get_assessment(cid, "brand", BrandAssessment, evidence_id=ev_id)
+            if assessment is None or (assessment.analyzer.startswith("heuristic") and ctx.analyst.uses_llm):
+                assessment = await ctx.analyst.analyze(ev, catalog, signals, identity)
+                st.save_assessment(cid, "brand", assessment, ev_id)
+                st.log_decision(
+                    ctx.campaign_id,
+                    cid,
+                    "brand_analyst",
+                    assessment.classification.value,
+                    {
+                        "case": assessment.case.value,
+                        "priority": assessment.priority.value,
+                        "analyzer": assessment.analyzer,
+                        "guardrails": assessment.guardrail_notes,
+                        "evidence_id": ev_id,
+                    },
+                )
+            else:
+                st.log_decision(ctx.campaign_id, cid, "brand_analyst", "reused", {"evidence_id": ev_id})
 
+            stage = "compliance"
             comp: ComplianceAssessment = ctx.compliance.assess(assessment, identity, bool(signals.ouvidoria))
-            st.save_assessment(cid, "compliance", comp)
+            st.save_assessment(cid, "compliance", comp, ev_id)
             st.log_decision(
                 ctx.campaign_id,
                 cid,
@@ -450,31 +582,36 @@ class Orchestrator:
 
             review: Review | None = None
             if needs_review(assessment, ctx.review_all):
+                stage = "review"
                 st.transition(cid, S.REVIEWING)
                 can_recollect = cand.recollects < self.settings.max_recollects
-                review = await ctx.reviewer.review(assessment, ev, catalog, signals, identity, can_recollect)
-                st.save_assessment(cid, "review", review)
-                st.log_decision(
-                    ctx.campaign_id,
-                    cid,
-                    "reviewer",
-                    review.decision.value,
-                    {
-                        "revised": review.revised_classification.value,
-                        "challenges": [c.topic for c in review.challenges],
-                        "reviewer": review.reviewer,
-                    },
-                )
+                review = st.get_assessment(cid, "review", Review, evidence_id=ev_id)
+                if review is None:
+                    review = await ctx.reviewer.review(assessment, ev, catalog, signals, identity, can_recollect)
+                    st.save_assessment(cid, "review", review, ev_id)
+                    st.log_decision(
+                        ctx.campaign_id,
+                        cid,
+                        "reviewer",
+                        review.decision.value,
+                        {
+                            "revised": review.revised_classification.value,
+                            "challenges": [c.topic for c in review.challenges],
+                            "reviewer": review.reviewer,
+                            "evidence_id": ev_id,
+                        },
+                    )
                 if review.decision == ReviewDecision.RECOLLECT and can_recollect:
                     st.bump(cid, "recollects")
                     st.reset_attempts(cid)
                     st.transition(cid, S.QUEUED, note=f"reviewer requested recollection: {review.recollect_reason}")
                     return False
 
+            stage = "final"
             final = compose_final(cid, assessment, review, identity, comp, ev)
             if self._degraded_reason:
                 final.limitations.append(f"LLM indisponível nesta execução: {self._degraded_reason}")
-            st.save_assessment(cid, "final", final)
+            st.save_assessment(cid, "final", final, ev_id)
             st.log_decision(
                 ctx.campaign_id,
                 cid,
@@ -484,30 +621,39 @@ class Orchestrator:
             )
             target = S.INCONCLUSIVE if final.classification == FinalClassification.INCONCLUSIVE else S.COMPLETED
             st.transition(cid, target)
+            st.reset_attempts(cid)
             return True
         except BudgetExceeded as exc:
             self._stop_reason = str(exc)
             self._stop.set()
-            st.log_error(ctx.campaign_id, cid, "analysis", "BudgetExceeded", str(exc))
-            st.transition(cid, S.COLLECTED, note="paused: budget exhausted")
+            st.log_error(ctx.campaign_id, cid, stage, "BudgetExceeded", str(exc))
+            st.reset_attempts(cid)  # not the candidate's fault
+            st.transition(cid, S.COLLECTED, note="paused: budget exhausted (paid results kept for resume)")
             return True
         except LLMUnavailable as exc:
-            # Degrade gracefully: continue with deterministic analysts, record the limitation.
-            self._degraded_reason = str(exc)[:300]
-            st.log_error(ctx.campaign_id, cid, "analysis", "LLMUnavailable", str(exc))
-            ctx.analyst.gateway = None
-            ctx.reviewer.gateway = None
-            st.transition(cid, S.COLLECTED, note="LLM unavailable; retrying with heuristic analysis")
+            # Degrade gracefully, only the agent whose model failed; record the limitation.
+            self._degraded_reason = f"{stage}: {str(exc)[:300]}"
+            st.log_error(ctx.campaign_id, cid, stage, "LLMUnavailable", str(exc))
+            if stage == "review":
+                ctx.reviewer.gateway = None
+            else:
+                ctx.analyst.gateway = None
+                ctx.reviewer.gateway = None
+            st.reset_attempts(cid)
+            st.transition(cid, S.COLLECTED, note=f"LLM unavailable at {stage}; retrying with heuristic analysis")
             return False
-        except (LLMOutputInvalid, TransientLLMError, Exception) as exc:
-            st.log_error(ctx.campaign_id, cid, "analysis", type(exc).__name__, str(exc))
-            attempt = st.bump(cid, "attempts")
+        except Exception as exc:  # LLMOutputInvalid, TransientLLMError, unexpected bugs
+            st.log_error(ctx.campaign_id, cid, stage, type(exc).__name__, str(exc))
             if attempt < self.settings.max_attempts:
-                st.transition(cid, S.COLLECTED, note=f"analysis error, retry {attempt}: {type(exc).__name__}")
+                st.transition(cid, S.COLLECTED, note=f"{stage} error, retry {attempt}: {type(exc).__name__}")
                 await asyncio.sleep(self._backoff(attempt))
                 return False
-            st.transition(cid, S.FAILED, note=f"analysis failed: {type(exc).__name__}: {exc}"[:500])
+            st.transition(cid, S.FAILED, note=f"{stage} failed: {type(exc).__name__}: {exc}"[:500])
             return True
+
+
+class CampaignBusy(RuntimeError):
+    """Another live process holds the campaign lease."""
 
 
 @dataclass

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, TypeVar
+
+from pydantic import BaseModel
 
 from simio.agents.evidence import build_catalog
 from simio.brands import BrandProfile
@@ -21,6 +23,8 @@ from simio.core.models import (
     Review,
 )
 from simio.core.storage import Storage
+
+M = TypeVar("M", bound=BaseModel)
 
 
 @dataclass
@@ -58,7 +62,14 @@ class CandidateRecord:
 def load_records(storage: Storage, campaign_id: str, brand: BrandProfile) -> list[CandidateRecord]:
     out: list[CandidateRecord] = []
     for cand in storage.list_candidates(campaign_id):
-        ev = storage.latest_evidence(cand.id)
+        # Report one consistent round: the evidence that produced the final decision and the
+        # assessments computed from it (not, e.g., a RECOLLECT review from an earlier round).
+        ev_id = storage.assessment_evidence_id(cand.id, "final")
+        ev = storage.evidence_by_id(ev_id) if ev_id is not None else storage.latest_evidence(cand.id)
+
+        def get(kind: str, cls: type[M], ev_id: int | None = ev_id, cid: str = cand.id) -> M | None:
+            return storage.get_assessment(cid, kind, cls, evidence_id=ev_id)
+
         out.append(
             CandidateRecord(
                 candidate=cand,
@@ -66,11 +77,11 @@ def load_records(storage: Storage, campaign_id: str, brand: BrandProfile) -> lis
                 evidence=ev,
                 all_evidence=storage.all_evidence(cand.id),
                 catalog=build_catalog(ev, brand) if ev else [],
-                identity=storage.get_assessment(cand.id, "identity", IdentityAttribution),
-                brand=storage.get_assessment(cand.id, "brand", BrandAssessment),
-                compliance=storage.get_assessment(cand.id, "compliance", ComplianceAssessment),
-                review=storage.get_assessment(cand.id, "review", Review),
-                final=storage.get_assessment(cand.id, "final", FinalDecision),
+                identity=get("identity", IdentityAttribution),
+                brand=get("brand", BrandAssessment),
+                compliance=get("compliance", ComplianceAssessment),
+                review=get("review", Review),
+                final=get("final", FinalDecision),
                 transitions=storage.transitions(cand.id),
             )
         )

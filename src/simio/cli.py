@@ -118,6 +118,13 @@ def hunt(
         offline=offline or None,
     )
     setup_logging(s.log_level, s.output_dir / "logs")
+    if s.unsafe_allow_hosts:
+        typer.secho(
+            f"ATENÇÃO: SIMIO_UNSAFE_ALLOW_HOSTS={s.unsafe_allow_hosts} desativa a proteção SSRF para esses "
+            "hosts (uso exclusivo em testes). Registrado na campanha.",
+            fg="red",
+            err=True,
+        )
     src = [x.strip() for x in sources.split(",") if x.strip()]
     unknown = [x for x in src if x not in DISCOVERY_SOURCES]
     if unknown:
@@ -157,21 +164,27 @@ def resume(
     output_dir: OutputOpt = None,
 ) -> None:
     """Retoma uma campanha interrompida (falha, Ctrl+C ou orçamento esgotado)."""
-    from simio.core.orchestrator import Orchestrator
+    from simio.core.orchestrator import CampaignBusy, Orchestrator
     from simio.reporting import generate_reports
 
-    s = _settings(
-        max_llm_requests=max_llm_requests,
-        max_llm_tokens=max_tokens,
-        workers=workers,
-        output_dir=output_dir,
-        offline=offline or None,
-    )
+    s = _settings(output_dir=output_dir)
+    # The campaign's original parameters (model, offline mode, budgets) are kept; only flags given
+    # explicitly here override them.
+    overrides = {
+        "max_llm_requests": max_llm_requests,
+        "max_llm_tokens": max_tokens,
+        "workers": workers,
+        "offline": True if offline else None,
+    }
     setup_logging(s.log_level, s.output_dir / "logs")
     storage = _storage(s)
     try:
         cid = _resolve_campaign(storage, campaign)
-        summary = asyncio.run(Orchestrator(s, storage).resume(cid, retry_failed=retry_failed))
+        try:
+            summary = asyncio.run(Orchestrator(s, storage).resume(cid, retry_failed=retry_failed, overrides=overrides))
+        except CampaignBusy as exc:
+            typer.secho(str(exc), fg="red", err=True)
+            raise typer.Exit(4) from exc
         report = None if no_report else generate_reports(s, storage, cid)
         _print_summary(summary, report)
     finally:

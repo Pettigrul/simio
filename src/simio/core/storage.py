@@ -28,6 +28,7 @@ from simio.core.models import (
     QueryRecord,
 )
 from simio.core.state import IN_FLIGHT, RESUME_FROM, check_transition
+from simio.core.state import InvalidTransition as _InvalidTransition
 
 M = TypeVar("M", bound=BaseModel)
 
@@ -170,6 +171,21 @@ MIGRATIONS: list[str] = [
         at TEXT NOT NULL
     );
     """,
+    # v2: assessments tied to the evidence they were computed from (retry/resume reuse and
+    # consistent reports); idempotent discovery results; single-writer campaign lease.
+    """
+    ALTER TABLE assessments ADD COLUMN evidence_id INTEGER;
+    CREATE INDEX idx_assessments_ev ON assessments(candidate_id, kind, evidence_id);
+    DELETE FROM discovery_results WHERE id NOT IN (
+        SELECT MIN(id) FROM discovery_results GROUP BY candidate_id, source, original_url
+    );
+    CREATE UNIQUE INDEX idx_discovery_unique ON discovery_results(candidate_id, source, original_url);
+    CREATE TABLE campaign_leases (
+        campaign_id TEXT PRIMARY KEY REFERENCES campaigns(id),
+        owner TEXT NOT NULL,
+        heartbeat TEXT NOT NULL
+    );
+    """,
 ]
 
 
@@ -190,6 +206,10 @@ def candidate_id_for(campaign_id: str, normalized_url: str) -> str:
 
 def new_campaign_id() -> str:
     return datetime.now(UTC).strftime("simio-%Y%m%d-%H%M%S-") + secrets.token_hex(2)
+
+
+class ConcurrentModification(_InvalidTransition):
+    """Compare-and-set transition failed: the candidate was moved by another writer."""
 
 
 class Storage:
@@ -367,7 +387,7 @@ class Storage:
 
     def add_discovery_result(self, candidate_id: str, query_id: int | None, hit: DiscoveryHit) -> None:
         self.conn.execute(
-            "INSERT INTO discovery_results(candidate_id, query_id, source, original_url, hit_json,"
+            "INSERT OR IGNORE INTO discovery_results(candidate_id, query_id, source, original_url, hit_json,"
             " discovered_at) VALUES (?,?,?,?,?,?)",
             (
                 candidate_id,
@@ -435,12 +455,24 @@ class Storage:
         ).fetchall()
         return {r[0]: r[1] for r in rows}
 
-    def transition(self, candidate_id: str, target: CandidateStatus, note: str | None = None) -> None:
+    def transition(
+        self,
+        candidate_id: str,
+        target: CandidateStatus,
+        note: str | None = None,
+        expected: CandidateStatus | None = None,
+    ) -> None:
+        """Validated, atomic transition. With ``expected`` it is a compare-and-set: it fails if the
+        candidate is no longer in the state the caller observed (another writer moved it)."""
         with self.tx() as c:
             row = c.execute("SELECT status FROM candidates WHERE id=?", (candidate_id,)).fetchone()
             if not row:
                 raise KeyError(candidate_id)
             current = CandidateStatus(row[0])
+            if expected is not None and current != expected:
+                raise ConcurrentModification(
+                    f"{candidate_id}: expected {expected.value}, found {current.value} (another process?)"
+                )
             check_transition(current, target)
             c.execute(
                 "UPDATE candidates SET status=?, updated_at=?,"
@@ -471,13 +503,50 @@ class Storage:
     def set_last_error(self, candidate_id: str, message: str | None) -> None:
         self.conn.execute("UPDATE candidates SET last_error=? WHERE id=?", (message, candidate_id))
 
-    def recover_in_flight(self, campaign_id: str) -> int:
-        """Return interrupted in-flight candidates to their last stable state."""
+    def recover_in_flight(self, campaign_id: str, max_attempts: int | None = None) -> int:
+        """Return interrupted in-flight candidates to their last stable state. A candidate that has
+        already used ``max_attempts`` (e.g. it crashes or hangs the process every time) goes to
+        FAILED instead, so one poison candidate cannot block every resume."""
         n = 0
         for cand in self.list_candidates(campaign_id, IN_FLIGHT):
-            self.transition(cand.id, RESUME_FROM[cand.status], note="recovered after interruption")
+            if max_attempts is not None and cand.attempts >= max_attempts:
+                self.transition(
+                    cand.id,
+                    CandidateStatus.FAILED,
+                    note=f"interrupted {cand.attempts} times in {cand.status.value}; marked FAILED",
+                )
+            else:
+                self.transition(cand.id, RESUME_FROM[cand.status], note="recovered after interruption")
             n += 1
         return n
+
+    # ------------------------------------------------------------------ campaign lease
+    def acquire_lease(self, campaign_id: str, owner: str, stale_after_s: float = 120.0) -> str | None:
+        """Single writer per campaign. Returns None on success, or the current live holder."""
+        now = datetime.now(UTC)
+        with self.tx() as c:
+            row = c.execute(
+                "SELECT owner, heartbeat FROM campaign_leases WHERE campaign_id=?", (campaign_id,)
+            ).fetchone()
+            if row and row[0] != owner:
+                age = (now - datetime.fromisoformat(row[1])).total_seconds()
+                if age < stale_after_s:
+                    return str(row[0])
+            c.execute(
+                "INSERT INTO campaign_leases(campaign_id, owner, heartbeat) VALUES (?,?,?)"
+                " ON CONFLICT(campaign_id) DO UPDATE SET owner=excluded.owner, heartbeat=excluded.heartbeat",
+                (campaign_id, owner, now.isoformat()),
+            )
+        return None
+
+    def heartbeat_lease(self, campaign_id: str, owner: str) -> None:
+        self.conn.execute(
+            "UPDATE campaign_leases SET heartbeat=? WHERE campaign_id=? AND owner=?",
+            (datetime.now(UTC).isoformat(), campaign_id, owner),
+        )
+
+    def release_lease(self, campaign_id: str, owner: str) -> None:
+        self.conn.execute("DELETE FROM campaign_leases WHERE campaign_id=? AND owner=?", (campaign_id, owner))
 
     def transitions(self, candidate_id: str) -> list[dict[str, Any]]:
         rows = self.conn.execute(
@@ -486,8 +555,8 @@ class Storage:
         return [dict(r) for r in rows]
 
     # ------------------------------------------------------------------ evidence
-    def save_evidence(self, ev: Evidence) -> None:
-        self.conn.execute(
+    def save_evidence(self, ev: Evidence) -> int:
+        cur = self.conn.execute(
             "INSERT INTO evidence(candidate_id, attempt, status, final_url, manifest_path,"
             " manifest_sha256, data_json, collected_at) VALUES (?,?,?,?,?,?,?,?)",
             (
@@ -501,6 +570,18 @@ class Storage:
                 ev.collected_at.isoformat(),
             ),
         )
+        return int(cur.lastrowid or 0)
+
+    def latest_evidence_with_id(self, candidate_id: str) -> tuple[int, Evidence] | None:
+        row = self.conn.execute(
+            "SELECT id, data_json FROM evidence WHERE candidate_id=? ORDER BY id DESC LIMIT 1",
+            (candidate_id,),
+        ).fetchone()
+        return (int(row[0]), Evidence.model_validate_json(row[1])) if row else None
+
+    def evidence_by_id(self, evidence_id: int) -> Evidence | None:
+        row = self.conn.execute("SELECT data_json FROM evidence WHERE id=?", (evidence_id,)).fetchone()
+        return Evidence.model_validate_json(row[0]) if row else None
 
     def latest_evidence(self, candidate_id: str) -> Evidence | None:
         row = self.conn.execute(
@@ -516,18 +597,28 @@ class Storage:
         return [Evidence.model_validate_json(r[0]) for r in rows]
 
     # ------------------------------------------------------------------ assessments
-    def save_assessment(self, candidate_id: str, kind: str, model: BaseModel) -> None:
+    def save_assessment(self, candidate_id: str, kind: str, model: BaseModel, evidence_id: int | None = None) -> None:
         self.conn.execute(
-            "INSERT INTO assessments(candidate_id, kind, data_json, created_at) VALUES (?,?,?,?)",
-            (candidate_id, kind, model.model_dump_json(), _now()),
+            "INSERT INTO assessments(candidate_id, kind, data_json, created_at, evidence_id) VALUES (?,?,?,?,?)",
+            (candidate_id, kind, model.model_dump_json(), _now(), evidence_id),
         )
 
-    def get_assessment(self, candidate_id: str, kind: str, cls: type[M]) -> M | None:
+    def get_assessment(self, candidate_id: str, kind: str, cls: type[M], evidence_id: int | None = None) -> M | None:
+        """Latest assessment of a kind; with ``evidence_id``, only one computed from that evidence."""
+        sql = "SELECT data_json FROM assessments WHERE candidate_id=? AND kind=?"
+        args: list[Any] = [candidate_id, kind]
+        if evidence_id is not None:
+            sql += " AND evidence_id=?"
+            args.append(evidence_id)
+        row = self.conn.execute(sql + " ORDER BY id DESC LIMIT 1", args).fetchone()
+        return cls.model_validate_json(row[0]) if row else None
+
+    def assessment_evidence_id(self, candidate_id: str, kind: str) -> int | None:
         row = self.conn.execute(
-            "SELECT data_json FROM assessments WHERE candidate_id=? AND kind=? ORDER BY id DESC LIMIT 1",
+            "SELECT evidence_id FROM assessments WHERE candidate_id=? AND kind=? ORDER BY id DESC LIMIT 1",
             (candidate_id, kind),
         ).fetchone()
-        return cls.model_validate_json(row[0]) if row else None
+        return int(row[0]) if row and row[0] is not None else None
 
     # ------------------------------------------------------------------ entities
     def upsert_entity(self, campaign_id: str, attribution: IdentityAttribution, basis: str) -> int:
@@ -560,6 +651,8 @@ class Storage:
                 ),
             )
             entity_id = int(cur.lastrowid or 0)
+        # A candidate belongs to the entity of its *latest* attribution (no stale links after recollect).
+        self.conn.execute("DELETE FROM entity_links WHERE candidate_id=?", (attribution.candidate_id,))
         self.conn.execute(
             "INSERT OR REPLACE INTO entity_links(entity_id, candidate_id, basis) VALUES (?,?,?)",
             (entity_id, attribution.candidate_id, basis),

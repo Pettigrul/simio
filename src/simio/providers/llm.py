@@ -101,23 +101,31 @@ class Budget:
         self.max_requests = max_requests
         self.max_tokens = max_tokens
         self._reserved = 0
+        self._reserved_tokens = 0
         self._lock = asyncio.Lock()
 
     def used(self) -> tuple[int, int]:
         return self.storage.usage_totals(self.campaign_id)
 
-    async def reserve(self) -> None:
+    async def reserve(self, est_tokens: int = 0) -> None:
+        """Reserve one request and an *estimated* token cost before calling, so concurrent workers
+        cannot overshoot the token cap (the estimate is settled on commit/release)."""
         async with self._lock:
             requests, tokens = self.used()
             if requests + self._reserved >= self.max_requests:
                 raise BudgetExceeded(f"LLM request budget exhausted ({requests}/{self.max_requests})")
-            if tokens >= self.max_tokens:
-                raise BudgetExceeded(f"LLM token budget exhausted ({tokens}/{self.max_tokens})")
+            if tokens + self._reserved_tokens + est_tokens > self.max_tokens:
+                raise BudgetExceeded(
+                    f"LLM token budget insufficient ({tokens} used + {self._reserved_tokens} reserved + "
+                    f"~{est_tokens} estimated > {self.max_tokens})"
+                )
             self._reserved += 1
+            self._reserved_tokens += est_tokens
 
-    async def commit(self, agent: str, model: str, usage: Usage) -> None:
+    async def commit(self, agent: str, model: str, usage: Usage, est_tokens: int = 0) -> None:
         async with self._lock:
             self._reserved = max(0, self._reserved - 1)
+            self._reserved_tokens = max(0, self._reserved_tokens - est_tokens)
             self.storage.record_usage(
                 self.campaign_id,
                 agent,
@@ -127,9 +135,20 @@ class Budget:
                 usage.total_tokens or usage.prompt_tokens + usage.output_tokens,
             )
 
-    async def release(self) -> None:
+    async def release(self, est_tokens: int = 0) -> None:
         async with self._lock:
             self._reserved = max(0, self._reserved - 1)
+            self._reserved_tokens = max(0, self._reserved_tokens - est_tokens)
+
+
+def estimate_tokens(parts: list[Part] | str, max_output_tokens: int) -> int:
+    """Conservative pre-call estimate: ~3 chars/token for text, a fixed cost per image, plus the
+    maximum output allowed."""
+    if isinstance(parts, str):
+        parts = [parts]
+    text = sum(len(p) for p in parts if isinstance(p, str))
+    images = sum(1 for p in parts if not isinstance(p, str))
+    return text // 3 + images * 1800 + max_output_tokens
 
 
 class LLMGateway:
@@ -143,22 +162,24 @@ class LLMGateway:
         max_retries: int = 3,
         base_delay_s: float = 2.0,
         concurrency: int = 4,
+        max_output_tokens: int = 4096,
     ) -> None:
+        self.max_output_tokens = max_output_tokens
         self.provider = provider
         self.budget = budget
         self.max_retries = max_retries
         self.base_delay_s = base_delay_s
         self._sem = asyncio.Semaphore(concurrency)
 
-    async def _call(self, agent: str, model: str, fn):  # type: ignore[no-untyped-def]
+    async def _call(self, agent: str, model: str, fn, est: int = 0):  # type: ignore[no-untyped-def]
         attempt = 0
         while True:
-            await self.budget.reserve()
+            await self.budget.reserve(est)
             try:
                 async with self._sem:
                     result = await fn()
             except TransientLLMError as exc:
-                await self.budget.commit(agent, model, Usage())  # a failed call still counts
+                await self.budget.commit(agent, model, Usage(), est)  # a failed call still counts
                 attempt += 1
                 if attempt > self.max_retries:
                     raise
@@ -167,10 +188,10 @@ class LLMGateway:
                 await asyncio.sleep(delay)
                 continue
             except BaseException:
-                await self.budget.release()
+                await self.budget.release(est)
                 raise
             usage = result[1] if isinstance(result, tuple) else result.usage
-            await self.budget.commit(agent, model, usage)
+            await self.budget.commit(agent, model, usage, est)
             return result
 
     async def structured(self, *, agent: str, model: str, system: str, parts: list[Part], schema: type[M]) -> M:
@@ -185,7 +206,9 @@ class LLMGateway:
                 pydantic_schema=schema,
             )
 
-        text, _ = await self._call(agent, model, lambda: go(parts))
+        text, _ = await self._call(
+            agent, model, lambda: go(parts), estimate_tokens([system, *parts], self.max_output_tokens)
+        )
         try:
             return schema.model_validate_json(strip_fences(text))
         except ValidationError as exc:
@@ -196,7 +219,12 @@ class LLMGateway:
                 "Retorne SOMENTE um objeto JSON válido conforme o esquema. Resposta anterior:\n"
                 f"{text[:6000]}"
             )
-            text2, _ = await self._call(agent, model, lambda: go([*parts, repair]))
+            text2, _ = await self._call(
+                agent,
+                model,
+                lambda: go([*parts, repair]),
+                estimate_tokens([system, *parts, repair], self.max_output_tokens),
+            )
             try:
                 return schema.model_validate_json(strip_fences(text2))
             except ValidationError as exc2:
@@ -209,6 +237,7 @@ class LLMGateway:
             agent,
             model,
             lambda: self.provider.grounded_search(model=model, prompt=prompt, exclude_domains=exclude_domains),
+            estimate_tokens(prompt, self.max_output_tokens),
         )
 
 

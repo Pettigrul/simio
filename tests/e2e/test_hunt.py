@@ -227,8 +227,12 @@ async def test_budget_exhaustion_pauses_and_resume_completes(settings, storage, 
     s1 = await Orchestrator(settings, storage, provider=provider).hunt(HuntOptions(imported=urls, sources=[]))
     assert s1.status == "PAUSED_BUDGET"
     assert storage.status_counts(s1.campaign_id).get("COLLECTED", 0) >= 1
-    settings.max_llm_requests = 50
-    s2 = await Orchestrator(settings, storage, provider=provider).resume(s1.campaign_id)
+    # Resume keeps the campaign's original budget unless explicitly overridden (architecture review #3).
+    same = await Orchestrator(settings, storage, provider=provider).resume(s1.campaign_id)
+    assert same.status == "PAUSED_BUDGET"
+    s2 = await Orchestrator(settings, storage, provider=provider).resume(
+        s1.campaign_id, overrides={"max_llm_requests": 50}
+    )
     assert s2.status == "COMPLETED", s2
     assert set(s2.counts) <= {"COMPLETED", "INCONCLUSIVE"}
 
