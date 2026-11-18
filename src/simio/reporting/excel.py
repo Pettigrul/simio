@@ -79,6 +79,36 @@ def _main_evidence(rec: CandidateRecord, n: int = 6) -> str:
     return "\n".join(f"[{r}] {by_ref[r].content[:220]}" for r in rec.final.key_evidence[:n] if r in by_ref)
 
 
+GLOSSARY: list[list[str]] = [
+    ["NO_INDICATION", "Sem indício de confusão com a instituição no material coletado (não atesta conformidade)"],
+    ["REVIEW_REQUIRED", "Requer análise humana: indícios de ambiguidade ou de apresentação como canal da instituição"],
+    ["STRONG_INDICATION", "Forte indício de que o consumidor pode crer tratar diretamente com a instituição"],
+    ["INCONCLUSIVE", "Evidência insuficiente (coleta falhou, conteúdo bloqueado ou contraditório)"],
+    ["A_LEGITIMATE_COMMERCIAL_MENTION", "Cenário A — menção comercial com condição de correspondente clara"],
+    ["B_AMBIGUOUS_COMMUNICATION", "Cenário B — uso destacado da marca sem transparência suficiente"],
+    ["C_POSSIBLE_OFFICIAL_CHANNEL", "Cenário C — possível apresentação como canal oficial da instituição"],
+    ["D_STRONG_IMPERSONATION", "Cenário D — forte indício de impersonação"],
+    ["E_INSUFFICIENT_EVIDENCE", "Cenário E — evidência insuficiente para avaliar a comunicação"],
+    ["NOT_RELEVANT", "A página não usa a marca de forma relevante"],
+    ["CONFIRMED_COBAN", "CNPJ do responsável consta de cadastro autoritativo de correspondentes"],
+    ["POSSIBLE_COBAN", "Indícios de vínculo (declaração, nome) sem confirmação em cadastro autoritativo"],
+    ["OTHER_THIRD_PARTY", "Empresa identificada sem indício de relação de correspondente"],
+    ["UNKNOWN_IDENTITY", "Responsável pela página não identificado"],
+    ["HYPOTHESIS_OF_NONCONFORMITY", "Hipótese de não conformidade (correspondente confirmado) — exige revisão"],
+    ["HYPOTHESIS_CONDITIONAL_ON_LINK", "Hipótese aplicável somente se confirmado o vínculo de correspondente"],
+    ["NOT_APPLICABLE_UNLESS_COBAN", "Responsável não identificado como correspondente; possível tema de marca/fraude"],
+    ["NO_INDICATION_OBSERVED", "Nenhum indício observado para o requisito no material coletado"],
+    ["CANNOT_ASSESS", "Não avaliável com a evidência disponível"],
+    ["PENDING / NOT_REQUIRED", "Status da revisão humana (registrar a decisão da auditoria nos papéis de trabalho)"],
+    ["E-…", "Referências ao catálogo de evidências (ver aba Evidence Index e dossiês)"],
+    [
+        "Confiança",
+        "Extração = leitura das evidências; atribuição = vínculo página→responsável. Nenhuma é "
+        "probabilidade de irregularidade.",
+    ],
+]
+
+
 def write_workbook(
     path: Path, storage: Storage, campaign_id: str, records: list[CandidateRecord], dossier_paths: dict[str, str]
 ) -> Path:
@@ -135,6 +165,8 @@ def write_workbook(
         "Cenário",
         "Confiança da extração",
         "Suficiência da evidência",
+        "Encaminhamento sugerido",
+        "Mapeamento normativo (hipóteses — não conclusivo)",
         "Justificativa",
         "Principais evidências",
         "Limitações",
@@ -145,7 +177,7 @@ def write_workbook(
         "Dossiê",
         "Data da coleta",
         "Status pipeline",
-        "Score de priorização (fila)",
+        "Score pré-coleta (ordem da fila de descoberta)",
     ]
     rows = []
     for r in records:
@@ -168,6 +200,8 @@ def write_workbook(
                 f.case.value if f else "",
                 f.extraction_confidence.value if f else "",
                 f.evidence_sufficiency.value if f else "",
+                "\n".join(f.routing) if f else "",
+                "\n".join(f.compliance_summary) if f else "",
                 f.justification if f else (c.last_error or ""),
                 _main_evidence(r),
                 "\n".join(f.limitations) if f else "",
@@ -181,7 +215,7 @@ def write_workbook(
                 round(c.priority_score, 1),
             ]
         )
-    widths = {1: 13, 2: 24, 3: 40, 4: 40, 6: 40, 15: 60, 16: 60, 17: 50}
+    widths = {1: 13, 2: 24, 3: 40, 4: 40, 6: 40, 15: 34, 16: 40, 17: 60, 18: 60, 19: 50}
     _sheet(wb, "Candidates", cand_headers, rows, widths, fill_col=9)
     strong = [
         row
@@ -353,6 +387,7 @@ def write_workbook(
     for diag in disc.get("diagnostics", []):
         err_rows.append(["", "", "discovery", "DIAGNOSTIC", diag])
     _sheet(wb, "Errors and Limitations", ["Quando", "Candidato", "Etapa", "Tipo", "Mensagem"], err_rows, {5: 120})
+    _sheet(wb, "Glossário", ["Termo", "Significado"], GLOSSARY, {1: 36, 2: 120})
 
     path.parent.mkdir(parents=True, exist_ok=True)
     wb.save(path)

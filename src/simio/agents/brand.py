@@ -5,22 +5,27 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from pathlib import Path
 
 from simio.agents.evidence import PageSignals
 from simio.brands import BrandProfile
 from simio.core.decision import CASE_DEFAULTS, ScoringConfig, apply_brand_guardrails
 from simio.core.models import (
+    PRIORITY_RANK,
     BrandAnalysisOutput,
     BrandAssessment,
+    CollectionStatus,
     Dimension,
     DimensionAssessment,
     Evidence,
     EvidenceItem,
     EvidenceSufficiency,
+    FinalClassification,
     IdentityAttribution,
     Indicator,
     Level,
+    Priority,
     ScenarioCase,
     Signal,
 )
@@ -33,22 +38,33 @@ HEURISTIC_ID = "heuristic-v1"
 MAX_IMAGE_BYTES = 6_000_000
 
 
-def untrusted_block(catalog: list[EvidenceItem]) -> str:
-    payload = [item.model_dump(exclude_none=True) for item in catalog]
-    body = json.dumps(payload, ensure_ascii=False, indent=1)
-    # Neutralise attempts to close the delimiter from inside the page content.
-    body = body.replace("</conteudo_nao_confiavel>", "</conteudo_nao_confiavel_>")
+_DELIM_RE = re.compile(r"(?i)<(\s*/?\s*)(conteudo_nao_confiavel)")
+
+
+def _wrap_untrusted(body: str) -> str:
+    # Neutralise attempts (any case/spacing) to open or close the delimiter from inside the data.
+    body = _DELIM_RE.sub(lambda m: "‹" + m.group(1) + m.group(2), body)
     return f"<conteudo_nao_confiavel>\n{body}\n</conteudo_nao_confiavel>"
 
 
+def untrusted_block(catalog: list[EvidenceItem]) -> str:
+    payload = [item.model_dump(exclude_none=True) for item in catalog]
+    return _wrap_untrusted(json.dumps(payload, ensure_ascii=False, indent=1))
+
+
 def context_block(brand: BrandProfile, ev: Evidence, signals: PageSignals, identity: IdentityAttribution | None) -> str:
+    # URLs and collection errors are attacker-influenced: they go inside the untrusted delimiter.
+    collection = {
+        "url_original": ev.original_url,
+        "url_final": ev.final_url,
+        "ocorrencias_de_coleta": ev.errors,
+    }
     lines = [
         f"Marca investigada: {brand.display_name}",
         f"Domínios oficiais conhecidos da instituição: {', '.join(brand.official_domains) or '(não informados)'}",
-        f"URL original: {ev.original_url}",
-        f"URL final: {ev.final_url}",
         f"Status da coleta: {ev.status.value} (HTTP {ev.http_status})",
-        f"Ocorrências de coleta: {'; '.join(ev.errors) or 'nenhuma'}",
+        "Dados da coleta (não confiáveis):",
+        _wrap_untrusted(json.dumps(collection, ensure_ascii=False)),
         f"Conteúdo não inspecionado: {'; '.join(ev.not_inspected) or '-'}",
         "Observações determinísticas (fatos extraídos por regras, não conclusões):",
         *[f"  - {o}" for o in signals.as_observations()],
@@ -59,6 +75,35 @@ def context_block(brand: BrandProfile, ev: Evidence, signals: PageSignals, ident
             f" / confiança {identity.attribution_confidence.value} — {identity.rationale}"
         )
     return "\n".join(lines)
+
+
+_SIGNAL_CASES = (
+    ScenarioCase.B_AMBIGUOUS_COMMUNICATION,
+    ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL,
+    ScenarioCase.D_STRONG_IMPERSONATION,
+)
+
+
+def cross_check(assessment: BrandAssessment, heuristic: BrandAnalysisOutput) -> BrandAssessment:
+    """Model vs deterministic rules. Page content (or text inside screenshots) may persuade the model
+    to clear a page: when the rules see B/C/D signals and the model says NO_INDICATION, the case is
+    forced to human review instead of being silently cleared."""
+    if assessment.classification != FinalClassification.NO_INDICATION or heuristic.case not in _SIGNAL_CASES:
+        return assessment
+    note = (
+        f"divergência modelo × regras: o modelo indicou {assessment.case.value}/NO_INDICATION, mas as regras "
+        f"determinísticas indicam {heuristic.case.value}; encaminhado para revisão (possível erro ou "
+        "influência do conteúdo da página)"
+    )
+    return assessment.model_copy(
+        update={
+            "classification": FinalClassification.REVIEW_REQUIRED,
+            "priority": max(assessment.priority, Priority.MEDIUM, key=lambda p: PRIORITY_RANK[p]),
+            "requires_human_review": True,
+            "uncertainties": [*assessment.uncertainties, note],
+            "guardrail_notes": [*assessment.guardrail_notes, note],
+        }
+    )
 
 
 def load_images(ev: Evidence, campaign_dir: Path) -> list[ImagePart]:
@@ -99,6 +144,7 @@ class BrandAnalyst:
         self, ev: Evidence, catalog: list[EvidenceItem], signals: PageSignals, identity: IdentityAttribution | None
     ) -> BrandAssessment:
         valid_refs = {i.ref for i in catalog}
+        heuristic = heuristic_analysis(signals, self.scoring, ev, identity, valid_refs)
         if self.uses_llm and ev.usable:
             assert self.gateway is not None and self.model is not None
             version, system = render("brand_analyst", brand_name=self.brand.display_name)
@@ -117,9 +163,9 @@ class BrandAnalyst:
             )
             analyzer, pv = self.model, version
         else:
-            out = heuristic_analysis(signals, self.scoring, ev, identity, valid_refs)
+            out = heuristic
             analyzer, pv = HEURISTIC_ID, None
-        return apply_brand_guardrails(
+        assessment = apply_brand_guardrails(
             out,
             analyzer=analyzer,
             prompt_version=pv,
@@ -128,6 +174,7 @@ class BrandAnalyst:
             signals=signals,
             scoring=self.scoring,
         )
+        return cross_check(assessment, heuristic) if analyzer != HEURISTIC_ID else assessment
 
 
 # --------------------------------------------------------------------------------------
@@ -191,9 +238,9 @@ def heuristic_analysis(
         score_c += sc.w_brand_in_header
         confusion.append(
             Indicator(
-                dimension=Dimension.VISUAL_IDENTITY,
+                dimension=Dimension.DECLARED_COMMERCIAL_IDENTITY,
                 strength=Level.LOW,
-                description="Marca no cabeçalho/navegação",
+                description="Marca no cabeçalho/navegação fora de declaração de correspondente",
                 evidence_refs=pick("E-HDR", "E-NAV"),
             )
         )
@@ -229,7 +276,9 @@ def heuristic_analysis(
                 evidence_refs=sorted({h.ref for h in sig.official_claims})[:5],
             )
         )
-    if not sig.disclosures and sig.brand_mentions:
+    # Absence of a disclosure only matters when the brand is *used* (prominence or official claims);
+    # a plain mention in body text is not, by itself, a transparency problem.
+    if not sig.disclosures and (prominent or sig.brand_linked_claims):
         score_c += sc.w_no_disclosure
         confusion.append(
             Indicator(
@@ -251,23 +300,28 @@ def heuristic_analysis(
         )
     if sig.disclosures:
         refs = sorted({h.ref for h in sig.disclosures})[:5]
-        if sig.disclosure_above_fold:
+        names = "" if sig.disclosure_names_institution else " (sem nomear a instituição contratante)"
+        if sig.disclosure_above_fold and sig.disclosure_names_institution:
             score_l += sc.w_disclosure_prominent
             legit.append(
                 Indicator(
                     dimension=Dimension.CORRESPONDENT_TRANSPARENCY,
                     strength=Level.HIGH,
-                    description="Declaração de correspondente/independência em posição de destaque (topo/área visível)",
+                    description="Declaração de correspondente nomeando a instituição, no cabeçalho/área visível "
+                    "inicial (posição observada; tamanho, contraste e legibilidade a verificar no screenshot)",
                     evidence_refs=refs,
                 )
             )
         else:
             score_l += sc.w_disclosure_present
+            where = (
+                "na área visível inicial" if sig.disclosure_above_fold else "apenas fora da área inicial (ex.: rodapé)"
+            )
             legit.append(
                 Indicator(
                     dimension=Dimension.CORRESPONDENT_TRANSPARENCY,
                     strength=Level.LOW,
-                    description="Declaração de correspondente apenas fora da área de destaque (ex.: rodapé)",
+                    description=f"Declaração de correspondente/independência {where}{names}",
                     evidence_refs=refs,
                 )
             )
@@ -277,7 +331,7 @@ def heuristic_analysis(
             Indicator(
                 dimension=Dimension.CONTACT_CHANNELS,
                 strength=Level.LOW,
-                description="Menção a ouvidoria",
+                description="Menção a ouvidoria (não verificado se é a da instituição contratante)",
                 evidence_refs=[sig.ouvidoria[0].ref],
             )
         )
@@ -295,10 +349,23 @@ def heuristic_analysis(
     # A bare "parceiro" mention does not resolve the analysis: noted as uncertainty, not scored.
 
     net = score_c - score_l
-    relevant = sig.brand_mentions > 0 or bool(sig.brand_in_domain) or sig.brand_in_title or bool(sig.brand_images)
+    relevant = (
+        sig.brand_mentions > 0
+        or bool(sig.brand_in_domain)
+        or sig.brand_in_title
+        or sig.brand_in_header
+        or bool(sig.brand_images)
+        or bool(sig.brand_linked_claims)
+    )
+    # The page presents *itself* with the brand (vs. a news article or review that talks about it).
+    self_presented = bool(sig.brand_in_domain) or sig.brand_in_header or (sig.brand_in_title and not sig.article_page)
+    # Only a disclosure that names the institution (Art. 14, III) and is not contradicted in the same
+    # sentence counts as prominent transparency.
+    transparent = sig.disclosure_above_fold and sig.disclosure_names_institution
+    caps: list[str] = []
     if not relevant:
         case = ScenarioCase.NOT_RELEVANT
-    elif net >= sc.threshold_d and sig.brand_linked_claims and not sig.disclosure_above_fold:
+    elif net >= sc.threshold_d and sig.brand_linked_claims and self_presented and not transparent:
         case = ScenarioCase.D_STRONG_IMPERSONATION
     elif sig.brand_linked_claims or (
         net >= sc.threshold_c and sig.brand_in_domain and (sig.brand_in_title or sig.brand_in_header)
@@ -306,10 +373,21 @@ def heuristic_analysis(
         # C needs a signal of *direct service by the institution* (official language, or the brand
         # used as the site's own domain + identity); brand prominence alone is case B.
         case = ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL
-    elif net >= sc.threshold_b or (prominent and not sig.disclosure_above_fold):
+    elif net >= sc.threshold_b or (prominent and not transparent):
         case = ScenarioCase.B_AMBIGUOUS_COMMUNICATION
     else:
         case = ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    if (
+        sig.article_page
+        and not sig.brand_in_domain
+        and case
+        in (
+            ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL,
+            ScenarioCase.D_STRONG_IMPERSONATION,
+        )
+    ):
+        caps.append("página declarada como artigo/notícia (og:type): cenário limitado a B para revisão humana")
+        case = ScenarioCase.B_AMBIGUOUS_COMMUNICATION
     cls, prio = CASE_DEFAULTS[case]
 
     def dim(d: Dimension, inds_c: list[Indicator], inds_l: list[Indicator]) -> DimensionAssessment:
@@ -334,6 +412,14 @@ def heuristic_analysis(
         uncertainties.append("menção a 'parceiro' sem declaração de correspondente: não resolve a análise")
     if sig.disclosures and confusion:
         uncertainties.append("evidências contraditórias: há declaração de correspondente e indícios de confusão")
+    if sig.reported_claims:
+        uncertainties.append(
+            "expressões de oficialidade em contexto de terceiros (notícia, alerta, citação) não foram tratadas "
+            "como autoapresentação da página"
+        )
+    if sig.disclosures and not sig.disclosure_names_institution:
+        uncertainties.append("declaração de correspondente/independência sem nomear a instituição contratante")
+    uncertainties.extend(caps)
     return BrandAnalysisOutput(
         case=case,
         classification=cls,
@@ -344,13 +430,44 @@ def heuristic_analysis(
         observed_facts=sig.as_observations(),
         uncertainties=uncertainties,
         evidence_references=sorted({r for i in confusion + legit for r in i.evidence_refs}),
-        reasoning_summary=(
-            f"Triagem heurística: pontuação de confusão {score_c:.1f}, de transparência "
-            f"{score_l:.1f} (líquida {net:.1f}); cenário {case.value}."
-        ),
+        reasoning_summary=_explain(case, confusion, legit, score_c, score_l),
         requires_human_review=case != ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
         and case != ScenarioCase.NOT_RELEVANT,
         extraction_confidence=Level.MEDIUM if ev.status.value == "OK" else Level.LOW,
-        evidence_sufficiency=EvidenceSufficiency.PARTIAL if ev.not_inspected else EvidenceSufficiency.SUFFICIENT,
+        evidence_sufficiency=(
+            EvidenceSufficiency.PARTIAL
+            if ev.not_inspected or ev.status != CollectionStatus.OK
+            else EvidenceSufficiency.SUFFICIENT
+        ),
         possible_prompt_injection=bool(sig.injection_markers),
     )
+
+
+_CASE_TEXT = {
+    ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION: "menção comercial com condição de correspondente/terceiro clara",
+    ScenarioCase.B_AMBIGUOUS_COMMUNICATION: "uso destacado da marca sem transparência suficiente",
+    ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL: "elementos que sugerem atendimento direto pela instituição",
+    ScenarioCase.D_STRONG_IMPERSONATION: "apresentação consistente como a própria instituição",
+    ScenarioCase.E_INSUFFICIENT_EVIDENCE: "evidência insuficiente",
+    ScenarioCase.NOT_RELEVANT: "a marca não aparece de forma relevante",
+}
+
+
+def _explain(case: ScenarioCase, confusion: list[Indicator], legit: list[Indicator], sc: float, sl: float) -> str:
+    """Plain-language rationale: which elements could lead a consumer to believe they deal directly
+    with the institution, and which point the other way."""
+    parts = [f"Triagem heurística — cenário {case.value}: {_CASE_TEXT[case]}."]
+    if confusion:
+        parts.append(
+            "Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: "
+            + "; ".join(f"{i.description} [{', '.join(i.evidence_refs[:3])}]" for i in confusion[:5])
+            + "."
+        )
+    if legit:
+        parts.append(
+            "Elementos de transparência/identificação do terceiro: "
+            + "; ".join(f"{i.description} [{', '.join(i.evidence_refs[:3])}]" for i in legit[:4])
+            + "."
+        )
+    parts.append(f"(Pontuação de triagem: confusão {sc:.1f}, transparência {sl:.1f}; ordena casos, não prova.)")
+    return " ".join(parts)

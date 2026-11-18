@@ -21,11 +21,38 @@ def fold(text: str) -> str:
     return "".join(c for c in nfkd if not unicodedata.combining(c)).lower()
 
 
+def _fold_char(c: str) -> str:
+    low = c.lower()
+    if len(low) != 1:
+        low = c
+    base = [x for x in unicodedata.normalize("NFKD", low) if not unicodedata.combining(x)]
+    return base[0] if base else low
+
+
+def fold_aligned(text: str) -> tuple[str, str]:
+    """(NFC text, folded text) with identical lengths, so spans found in the folded text can be
+    used to quote the *verbatim* original (accents and case preserved)."""
+    t = unicodedata.normalize("NFC", text or "")
+    return t, "".join(_fold_char(c) for c in t)
+
+
+_COMPANY_SUFFIX_CONTEXT = re.compile(
+    r"\b(holding|group|groep|international|europe|nederland|netherlands|beheer|investments?)\s*$"
+)
+
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?;|•])\s+|\n+|\s+[-–—|]\s+")
+
+
+def sentences(text: str) -> list[str]:
+    return [x.strip() for x in _SENTENCE_SPLIT.split(text or "") if x.strip()]
+
+
 def _phrase_regex(phrases: list[str]) -> re.Pattern[str] | None:
     folded = sorted({fold(p) for p in phrases if p.strip()}, key=len, reverse=True)
     if not folded:
         return None
-    body = "|".join(re.escape(p).replace(r"\ ", r"\s+") for p in folded)
+    # Spaces inside a phrase also match "", "-", "_" or "." so "BancoBV" / "Banco-BV" are caught.
+    body = "|".join(re.escape(p).replace(r"\ ", r"[\s\-_.]*") for p in folded)
     return re.compile(rf"(?<![\w]){'(?:' + body + ')'}(?![\w])")
 
 
@@ -79,13 +106,28 @@ class BrandProfile(BaseModel):
     def _find(rx: re.Pattern[str] | None, text: str) -> list[str]:
         if rx is None or not text:
             return []
-        return [m.group(0) for m in rx.finditer(fold(text))]
+        orig, folded = fold_aligned(text)
+        return [orig[m.start() : m.end()] for m in rx.finditer(folded)]
 
     def strong_mentions(self, text: str) -> list[str]:
         return self._find(self._strong_re, text)
 
     def weak_mentions(self, text: str) -> list[str]:
-        return self._find(self._weak_re, text)
+        """Weak (short) terms, excluding hostnames/URLs (``bv.com.br``, ``bv.loja``) and foreign
+        company suffixes (``Example Holding BV``, ``B.V.``)."""
+        rx = self._weak_re
+        if rx is None or not text:
+            return []
+        orig, folded = fold_aligned(text)
+        out = []
+        for m in rx.finditer(folded):
+            before, after = folded[: m.start()], folded[m.end() :]
+            if re.match(r"\.[a-z0-9]", after) or re.search(r"[./@:]$", before):
+                continue  # part of a hostname / URL / e-mail
+            if _COMPANY_SUFFIX_CONTEXT.search(before[-40:]):
+                continue
+            out.append(orig[m.start() : m.end()])
+        return out
 
     def mentions(self, text: str) -> list[str]:
         return self.strong_mentions(text) + self.weak_mentions(text)
@@ -98,6 +140,36 @@ class BrandProfile(BaseModel):
 
     def partnership_mentions(self, text: str) -> list[str]:
         return self._find(self._partner_re, text)
+
+    def without_disclosures(self, text: str) -> str:
+        """Text minus the sentences that are correspondent/independence disclosures.
+
+        A disclosure such as "X Ltda é correspondente bancário do Banco BV" necessarily names the
+        institution; that mention is transparency, not brand prominence."""
+        return " ".join(s for s in sentences(text) if not self.disclosures(s))
+
+    def disclosures_naming_institution(self, text: str) -> list[str]:
+        """Disclosure sentences that also name the institution (Art. 14, III: the contracting
+        institution must be identified by its market name)."""
+        return [s for s in sentences(text) if self.disclosures(s) and self.strong_mentions(s)]
+
+    def is_institution_name(self, value: str) -> bool:
+        """True when a value is (essentially) just the institution's own name."""
+        v = re.sub(r"[^a-z0-9 ]+", " ", fold(value)).strip()
+        v = re.sub(r"\s+", " ", v)
+        if not v:
+            return False
+        names = {
+            re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]+", " ", fold(n))).strip()
+            for n in self.institution_names + self.strong_terms
+        }
+        if v in names:
+            return True
+        stripped = v
+        for n in sorted(names, key=len, reverse=True):
+            stripped = stripped.replace(n, " ")
+        rest = re.sub(r"\b(s a|sa|s\.a|ltda|oficial|site|o|a|do|da|de)\b", " ", stripped)
+        return bool(self.strong_mentions(value)) and not rest.strip()
 
     def domain_brand_match(self, hostname: str) -> str | None:
         host = hostname.lower()

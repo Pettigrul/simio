@@ -20,12 +20,14 @@ def make_evidence(
     contacts: list[tuple[str, str]] | None = None,
     status: CollectionStatus = CollectionStatus.OK,
     meta: dict[str, str] | None = None,
+    headings: list[str] | None = None,
     candidate_id: str = "Ctest",
 ) -> Evidence:
     text = "\n".join(x for x in (header, above_fold, body, footer) if x)
     page = PageData(
         title=title,
         meta=meta or {},
+        headings=headings or [],
         header_text=header,
         footer_text=footer,
         above_fold_text=" ".join(x for x in (header, above_fold) if x),

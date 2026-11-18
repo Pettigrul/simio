@@ -11,7 +11,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from simio.brands import BrandProfile, fold
+from simio.brands import BrandProfile, fold, sentences
 from simio.collectors.browser import BrowserCollector
 from simio.core.models import Evidence, EvidenceItem, ImageInfo
 from simio.core.urls import domain_matches, hostname_of
@@ -20,9 +20,26 @@ from simio.core.urls import domain_matches, hostname_of
 CNPJ_RE = re.compile(r"(?<![\w])([0-9A-Z]{2}\.?[0-9A-Z]{3}\.?[0-9A-Z]{3}/?[0-9A-Z]{4}-?\d{2})(?![\w])")
 PHONE_RE = re.compile(r"(?<!\d)(0800[\s.-]?\d{3}[\s.-]?\d{4}|\(?\d{2}\)?[\s.-]?9?\d{4}[\s.-]?\d{4})(?!\d)")
 CEP_RE = re.compile(r"(?<!\d)\d{5}-\d{3}(?!\d)")
+# A legal name = 1..8 capitalised words (connectors allowed) ending in a company-type suffix, on a
+# single line. Lower-case words and sentence-ending periods break the chain, so surrounding
+# sentences are not captured.
 LEGAL_NAME_RE = re.compile(
-    r"([A-ZÀ-Ú0-9][A-Za-zÀ-ú0-9&.,'\- ]{2,80}?\s(?:LTDA\.?|Ltda\.?|EIRELI|S\.A\.|S/A|SA|ME|EPP)\b)"
+    r"((?:[A-ZÀ-Ý0-9][\wÀ-ÿ&'\-]*(?:\.[\wÀ-ÿ]+)*[ \t]+(?:(?:de|da|do|dos|das|e|&)[ \t]+)?){1,8}"
+    r"(?:LTDA|Ltda|EIRELI|Eireli|S\.[ ]?A\.?|S/A|ME|EPP)\b\.?)"
 )
+# Third-person / reporting / warning context: a claim *about* the brand, not *by* the page.
+REPORTED_RE = re.compile(
+    r"\b(segundo|de acordo com|conforme|informou|anunciou|afirmou|divulgou|comunicado|reportagem|"
+    r"noticia|golpe|golpistas|alerta|cuidado com|falso|falsa|fraude|denuncia|procurado pela)\b"
+)
+
+# UI words that often precede a company name in flattened text (buttons, menus).
+NAME_UI_PREFIX = re.compile(
+    r"^(?:(?:WhatsApp|Whatsapp|Atendimento|Ligar|Fale|Contato|Contatos|Home|Início|Menu|Simule|Simular|"
+    r"Oficial|Agora|Sobre|Quem|Somos|Copyright|Todos|Direitos|Reservados|©)[ \t]+)+"
+)
+
+
 LABELLED_NAME_RE = re.compile(r"(?i)(raz[aã]o social|nome fantasia)\s*[:\-]\s*([^\n|;]{3,100})")
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
 INJECTION_RE = re.compile(
@@ -243,8 +260,13 @@ class PageSignals:
     brand_linked_claims: list[Hit] = field(default_factory=list)
     disclosures: list[Hit] = field(default_factory=list)
     disclosure_above_fold: bool = False
+    disclosure_names_institution: bool = False
     disclosure_locations: set[str] = field(default_factory=set)
     partnership: list[Hit] = field(default_factory=list)
+    partnership_with_brand: list[Hit] = field(default_factory=list)
+    reported_claims: list[Hit] = field(default_factory=list)  # third-person / news / warnings
+    weak_mentions: int = 0
+    article_page: bool = False
     ouvidoria: list[Hit] = field(default_factory=list)
     official_links: bool = False
     whatsapp_contacts: list[Hit] = field(default_factory=list)
@@ -269,8 +291,15 @@ class PageSignals:
             "declarações de correspondente/independência: "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.disclosures[:8]) or "nenhuma encontrada")
             + f"; locais: {', '.join(sorted(self.disclosure_locations)) or '-'}"
-            + f"; acima da dobra: {'sim' if self.disclosure_above_fold else 'não'}",
-            "menções a parceria: " + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.partnership[:5]) or "nenhuma"),
+            + f"; na área visível inicial/cabeçalho: {'sim' if self.disclosure_above_fold else 'não'}"
+            + f"; nomeia a instituição: {'sim' if self.disclosure_names_institution else 'não'}"
+            + " (tamanho, contraste e legibilidade não medidos automaticamente)",
+            "menções a parceria: "
+            + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.partnership[:5]) or "nenhuma")
+            + f" (associadas à marca: {len(self.partnership_with_brand)})",
+            "expressões de oficialidade em discurso de terceiros (notícia/alerta): "
+            + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.reported_claims[:5]) or "nenhuma"),
+            f"página do tipo artigo/notícia (og:type): {'sim' if self.article_page else 'não'}",
             f"ouvidoria mencionada: {'sim' if self.ouvidoria else 'não'}",
             f"links para domínio oficial da instituição: {'sim' if self.official_links else 'não'}",
             f"contatos WhatsApp: {len(self.whatsapp_contacts)}; telefones: {len(self.phones)}",
@@ -285,12 +314,6 @@ class PageSignals:
         return out
 
 
-def _near(
-    text: str, needle_spans: list[tuple[int, int]], other_spans: list[tuple[int, int]], window: int = 120
-) -> bool:
-    return any(abs(a0 - b0) <= window for a0, _ in needle_spans for b0, _ in other_spans)
-
-
 def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceItem]) -> PageSignals:
     sig = PageSignals(usable=ev.usable)
     url = ev.final_url or ev.original_url
@@ -299,15 +322,26 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
     if p is None:
         return sig
     sig.forms_present = p.forms_present
-    sig.brand_mentions = len(brand.mentions(p.visible_text))
-    sig.brand_in_title = bool(brand.mentions(p.title) or brand.mentions(p.meta.get("og:site_name", "")))
-    sig.brand_in_header = bool(brand.mentions(p.header_text) or any(brand.mentions(n.text) for n in p.nav_items))
-    sig.brand_above_fold = bool(brand.mentions(p.above_fold_text))
+    # Strong terms only: the weak term ("BV") is too ambiguous to count on its own in body text.
+    sig.brand_mentions = len(brand.strong_mentions(p.visible_text))
+    sig.weak_mentions = len(brand.weak_mentions(p.visible_text))
+    sig.article_page = (p.meta.get("og:type") or "").strip().lower() in ("article", "news", "noticia")
+    # Mentions *inside* a correspondent disclosure are transparency, not brand prominence. In short
+    # identity fields (title, site name, header, nav) the weak term is meaningful.
+    nd = brand.without_disclosures
+    sig.brand_in_title = bool(brand.mentions(nd(p.title)) or brand.mentions(nd(p.meta.get("og:site_name", ""))))
+    sig.brand_in_header = bool(
+        brand.mentions(nd(p.header_text)) or any(brand.mentions(nd(n.text)) for n in p.nav_items)
+    )
+    sig.brand_above_fold = bool(brand.strong_mentions(nd(p.above_fold_text)))
+    sig.disclosure_names_institution = any(
+        _real_disclosures_naming_institution(brand, t) for t in (p.visible_text, p.header_text, p.footer_text)
+    )
     sig.official_links = any(i.ref == "E-OFFICIAL-LINKS" for i in catalog)
-    strong_rx = brand._strong_re  # compiled internally
     for item in catalog:
         text = item.content
-        folded = fold(text)
+        if INJECTION_RE.search(text):  # every kind, including image alt text and metadata
+            sig.injection_markers.append(Hit(INJECTION_RE.search(text).group(0), item.ref))  # type: ignore[union-attr]
         if item.kind == "image":
             sig.brand_images.append(Hit(text[:120], item.ref))
             if item.above_fold:
@@ -315,22 +349,28 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
             continue
         if item.kind in ("screenshot", "network", "domain"):
             continue
-        claims = brand.official_claims(text)
-        for c in claims:
-            sig.official_claims.append(Hit(c, item.ref, text[:200]))
-        if claims and strong_rx is not None:
-            brand_spans = [m.span() for m in strong_rx.finditer(folded)]
-            claim_spans = [m.span() for m in (brand._claim_re.finditer(folded) if brand._claim_re else [])]
-            if _near(folded, claim_spans, brand_spans) or any(brand.strong_mentions(c) for c in claims):
+        for sentence in sentences(text):
+            claims = brand.official_claims(sentence)
+            if claims:
+                # brand-linked: the claim phrase itself names the brand ("SAC BV") or the sentence does
+                linked = any(brand.mentions(c) for c in claims) or bool(brand.mentions(sentence))
+                reported = bool(REPORTED_RE.search(fold(sentence)))
                 for c in claims:
-                    sig.brand_linked_claims.append(Hit(c, item.ref, text[:200]))
+                    sig.official_claims.append(Hit(c, item.ref, sentence[:200]))
+                    if linked and reported:
+                        sig.reported_claims.append(Hit(c, item.ref, sentence[:200]))
+                    elif linked:
+                        sig.brand_linked_claims.append(Hit(c, item.ref, sentence[:200]))
+            for pm in brand.partnership_mentions(sentence):
+                sig.partnership.append(Hit(pm, item.ref, sentence[:200]))
+                if brand.mentions(sentence):
+                    sig.partnership_with_brand.append(Hit(pm, item.ref, sentence[:200]))
         for d in brand.disclosures(text):
             sig.disclosures.append(Hit(d, item.ref, text[:200]))
             sig.disclosure_locations.add(item.location)
             if item.location in ("viewport", "header") or item.above_fold:
                 sig.disclosure_above_fold = True
-        for pm in brand.partnership_mentions(text):
-            sig.partnership.append(Hit(pm, item.ref, text[:200]))
+        folded = fold(text)
         if "ouvidoria" in folded:
             sig.ouvidoria.append(Hit("ouvidoria", item.ref, text[:200]))
         if item.kind == "contact" and ("wa.me" in folded or "whatsapp" in folded):
@@ -341,12 +381,16 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
             raw = m.group(1)
             if sum(ch.isdigit() for ch in raw) >= 8:  # avoid matching random uppercase words
                 sig.cnpjs.append(Hit(format_cnpj(raw), item.ref, text[:300]))
-        if INJECTION_RE.search(text):
-            sig.injection_markers.append(Hit(INJECTION_RE.search(text).group(0), item.ref))  # type: ignore[union-attr]
     # Disclosure in the above-fold text counts even if only the E-TXT copy matched.
     if brand.disclosures(p.above_fold_text) or brand.disclosures(p.header_text):
         sig.disclosure_above_fold = True
     return sig
+
+
+def _real_disclosures_naming_institution(brand: BrandProfile, text: str) -> list[str]:
+    """Disclosure sentences naming the institution that are not negated/contradicted in the same
+    sentence (e.g. "Não somos correspondente bancário: somos o Banco BV oficial")."""
+    return [s for s in brand.disclosures_naming_institution(text) if not brand.official_claims(s)]
 
 
 # --------------------------------------------------------------------------------- agent

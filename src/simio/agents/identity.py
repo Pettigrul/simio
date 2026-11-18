@@ -22,6 +22,7 @@ from simio.agents.evidence import (
     EMAIL_RE,
     LABELLED_NAME_RE,
     LEGAL_NAME_RE,
+    NAME_UI_PREFIX,
     PageSignals,
     cnpj_is_valid,
     format_cnpj,
@@ -54,9 +55,10 @@ class CobanRegistry:
     records: dict[str, dict[str, str]] = field(default_factory=dict)
     source: str = "none"
     authoritative: bool = False
+    reference_date: str | None = None
 
     @classmethod
-    def load(cls, path: Path | None, authoritative: bool = True) -> CobanRegistry:
+    def load(cls, path: Path | None, authoritative: bool = False, reference_date: str | None = None) -> CobanRegistry:
         if path is None:
             return cls()
         if not path.is_file():
@@ -70,7 +72,8 @@ class CobanRegistry:
             cnpj = normalize_cnpj(norm.get("cnpj", ""))
             if len(cnpj) == 14:
                 recs[cnpj] = norm
-        return cls(records=recs, source=path.name, authoritative=authoritative)
+        source = path.name + (f" (ref. {reference_date})" if reference_date else "")
+        return cls(records=recs, source=source, authoritative=authoritative, reference_date=reference_date)
 
     @property
     def loaded(self) -> bool:
@@ -101,6 +104,19 @@ class IdentityAgent:
         ctx = fold(context)
         return any(fold(n) in ctx for n in self.brand.institution_names)
 
+    def _nearest_name_is_institution(self, context: str) -> bool:
+        """True when the closest company name before a CNPJ is the institution itself
+        (e.g. "Banco BV S.A., CNPJ ..."), not another company named in between."""
+        f = fold(context)
+        inst = max((f.rfind(fold(n)) for n in self.brand.institution_names), default=-1)
+        if inst < 0:
+            return False
+        others = [m.start() for m in LEGAL_NAME_RE.finditer(context) if not self._is_institution_context(m.group(1))]
+        return inst > max(others, default=-1)
+
+    def _clean_name(self, raw: str) -> str:
+        return NAME_UI_PREFIX.sub("", raw.strip(" .,-–—")).strip(" .,-–—")
+
     def attribute(
         self, candidate_id: str, ev: Evidence, catalog: list[EvidenceItem], signals: PageSignals
     ) -> IdentityAttribution:
@@ -126,9 +142,13 @@ class IdentityAgent:
             )
 
         # ---- CNPJs: owner vs. referenced institution ---------------------------------
+        # A CNPJ is the institution's only when listed in the brand profile, or when the nearest
+        # preceding company name is the institution AND another valid CNPJ exists on the page (so
+        # the owner is not lost). Otherwise proximity to the institution's name is only flagged.
         owner_cnpjs: list[str] = []
         institution_refs: list[str] = []
         invalid: list[str] = []
+        found: list[tuple[str, bool]] = []  # (cnpj, institution-context)
         for item in catalog:
             prev_end = 0
             for m in CNPJ_RE.finditer(item.content.upper()):
@@ -144,50 +164,78 @@ class IdentityAgent:
                 if not valid:
                     invalid.append(cnpj)
                     continue
-                if normalize_cnpj(cnpj) in self._institution_cnpjs or (
-                    self._is_institution_context(ctx) and not self.registry.match_cnpj(cnpj)
-                ):
+                if normalize_cnpj(cnpj) in self._institution_cnpjs:
                     if cnpj not in institution_refs:
                         institution_refs.append(cnpj)
-                elif cnpj not in owner_cnpjs:
-                    owner_cnpjs.append(cnpj)
+                    continue
+                inst_ctx = self._nearest_name_is_institution(ctx[: len(ctx) - len(m.group(0))])
+                found.append((cnpj, inst_ctx and not self.registry.match_cnpj(cnpj)))
+        flagged: list[str] = []
+        has_plain = any(not inst for _, inst in found)
+        for cnpj, inst in found:
+            if cnpj in owner_cnpjs or cnpj in institution_refs:
+                continue
+            if inst and has_plain:
+                institution_refs.append(cnpj)
+            else:
+                owner_cnpjs.append(cnpj)
+                if inst:
+                    flagged.append(cnpj)
         if invalid:
             inferences.append(f"CNPJ(s) com dígito verificador inválido ignorados: {', '.join(invalid)}")
         if institution_refs:
             inferences.append(
-                "CNPJ(s) citados em contexto da própria instituição foram tratados como referência "
-                f"à contratante, não como titular da página: {', '.join(institution_refs)}"
+                "CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro "
+                f"CNPJ presente na página, tratados como referência à contratante: {', '.join(institution_refs)}"
+            )
+        if flagged:
+            inferences.append(
+                f"CNPJ {', '.join(flagged)} aparece logo após o nome da instituição: confirmar se pertence ao "
+                "titular da página ou à contratante (perfil da marca sem CNPJs da instituição validados)"
             )
 
         # ---- names, contacts, declarations -------------------------------------------
+        # A name that is just the institution's (e.g. og:site_name "Banco BV") is a *claimed* identity
+        # observed on the page, never the owner's name.
         legal_names: list[str] = []
+        trade_names: list[str] = []
+        claimed: list[str] = []
+
+        def add_name(kind: str, val: str, ref: str) -> None:
+            val = self._clean_name(val)
+            if len(val) < 3:
+                return
+            if self.brand.is_institution_name(val) or self._is_institution_context(val):
+                if val not in claimed:
+                    claimed.append(val)
+                    facts.append(IdentityFact(kind="institution_name_displayed", value=val, evidence_ref=ref))
+                return
+            bucket = legal_names if kind == "legal_name" else trade_names
+            if val not in bucket:
+                bucket.append(val)
+                facts.append(IdentityFact(kind=kind, value=val, evidence_ref=ref))
+
         for item in catalog:
             if item.kind in ("screenshot", "network"):
                 continue
             for m in LABELLED_NAME_RE.finditer(item.content):
-                kind = "legal_name" if "raz" in m.group(1).lower() else "trade_name"
-                val = m.group(2).strip(" .,-")
-                facts.append(IdentityFact(kind=kind, value=val, evidence_ref=item.ref))
-                if kind == "legal_name":
-                    legal_names.append(val)
+                add_name("legal_name" if "raz" in m.group(1).lower() else "trade_name", m.group(2), item.ref)
             if item.location in ("footer", "page") or item.kind == "text":
-                for m in LEGAL_NAME_RE.finditer(item.content):
-                    val = m.group(1).strip(" .,-")
-                    if not self._is_institution_context(val) and val not in legal_names:
-                        legal_names.append(val)
-                        facts.append(IdentityFact(kind="legal_name", value=val, evidence_ref=item.ref))
+                for line in item.content.splitlines():
+                    for m in LEGAL_NAME_RE.finditer(line):
+                        add_name("legal_name", m.group(1), item.ref)
             for m in EMAIL_RE.finditer(item.content):
                 facts.append(IdentityFact(kind="email", value=m.group(0), evidence_ref=item.ref))
             for m in SOCIAL_RE.finditer(item.content):
                 facts.append(IdentityFact(kind="social_profile", value=m.group(0)[:200], evidence_ref=item.ref))
         site_name = ev.page.meta.get("og:site_name") if ev.page else None
         if site_name:
-            facts.append(
-                IdentityFact(
-                    kind="trade_name",
-                    value=site_name,
-                    evidence_ref="E-META-2" if any(i.ref == "E-META-2" for i in catalog) else "E-TITLE",
-                )
+            add_name("trade_name", site_name, "E-META-2" if any(i.ref == "E-META-2" for i in catalog) else "E-TITLE")
+        if claimed:
+            inferences.append(
+                "a página se apresenta com o nome da instituição ("
+                + "; ".join(claimed[:3])
+                + "); isso é identidade declarada/visual, não a identidade do responsável"
             )
         for h in signals.phones[:10]:
             facts.append(IdentityFact(kind="phone", value=h.value, evidence_ref=h.ref))
@@ -197,7 +245,7 @@ class IdentityAgent:
             facts.append(
                 IdentityFact(kind="correspondent_declaration", value=h.value, evidence_ref=h.ref, context=h.context)
             )
-        for h in signals.partnership[:5]:
+        for h in signals.partnership_with_brand[:5]:
             facts.append(
                 IdentityFact(kind="partnership_declaration", value=h.value, evidence_ref=h.ref, context=h.context)
             )
@@ -230,7 +278,7 @@ class IdentityAgent:
 
         # ---- classification -----------------------------------------------------------
         declares_correspondent = bool(signals.disclosures)
-        mentions_partner = bool(signals.partnership)
+        mentions_partner = bool(signals.partnership_with_brand)  # "parceiro" of *this* brand
         identified = bool(owner_cnpjs or legal_names)
         if len(owner_cnpjs) > 1:
             inferences.append(
@@ -238,7 +286,19 @@ class IdentityAgent:
                 "ou grupo de empresas; associação ao responsável é incerta"
             )
 
-        if registry_match and registry_match.matched_on == "cnpj" and registry_match.authoritative:
+        if (
+            registry_match
+            and registry_match.matched_on == "cnpj"
+            and registry_match.authoritative
+            and len(owner_cnpjs) > 1
+        ):
+            cls = IdentityClass.POSSIBLE_COBAN
+            conf = Level.LOW
+            rationale = (
+                "Um dos CNPJs da página consta do cadastro autorizado, mas há outros CNPJs (diretório, "
+                "marketplace ou grupo): a titularidade da página não é inequívoca."
+            )
+        elif registry_match and registry_match.matched_on == "cnpj" and registry_match.authoritative:
             cls = IdentityClass.CONFIRMED_COBAN
             conf = Level.HIGH if len(owner_cnpjs) == 1 else Level.MEDIUM
             rationale = (
@@ -246,6 +306,10 @@ class IdentityAgent:
                 f"cadastro autorizado '{registry_match.source}'."
             )
             inferences.append("associação página→CNPJ baseada na publicação do CNPJ na própria página")
+            inferences.append(
+                "um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o "
+                "domínio é seu"
+            )
         elif registry_match:
             cls = IdentityClass.POSSIBLE_COBAN
             conf = Level.LOW
@@ -254,7 +318,7 @@ class IdentityAgent:
             )
         elif declares_correspondent and identified:
             cls = IdentityClass.POSSIBLE_COBAN
-            conf = Level.MEDIUM
+            conf = Level.LOW if flagged else Level.MEDIUM
             rationale = (
                 "A página declara atuação como correspondente/prestador e identifica a empresa, "
                 "mas não houve confirmação em cadastro autorizado."
@@ -268,7 +332,7 @@ class IdentityAgent:
             )
         elif identified:
             cls = IdentityClass.OTHER_THIRD_PARTY
-            conf = Level.MEDIUM if len(owner_cnpjs) == 1 else Level.LOW
+            conf = Level.MEDIUM if len(owner_cnpjs) == 1 and not flagged else Level.LOW
             rationale = (
                 "Empresa identificada na página sem declaração de relação de correspondente; "
                 "anunciar produtos da marca não comprova vínculo."
@@ -288,7 +352,7 @@ class IdentityAgent:
                 "entidade agrupada pelo domínio registrável; um mesmo estabelecimento "
                 "pode ter outros domínios não associados"
             )
-        display = (legal_names[0] if legal_names else None) or site_name
+        display = (legal_names[0] if legal_names else None) or (trade_names[0] if trade_names else None)
         if registry_match and not display:
             display = registry_match.record.get("nome") or registry_match.record.get("name")
         inferences.append(f"base da associação: {basis}")

@@ -340,6 +340,9 @@ class RequirementSource(StrEnum):
 
 class FindingStatus(StrEnum):
     HYPOTHESIS_OF_NONCONFORMITY = "HYPOTHESIS_OF_NONCONFORMITY"
+    # The page *declares* or suggests a correspondent link that is not confirmed in an authoritative
+    # registry: the hypothesis only applies if the link is confirmed.
+    HYPOTHESIS_CONDITIONAL_ON_LINK = "HYPOTHESIS_CONDITIONAL_ON_LINK"
     NO_INDICATION_OBSERVED = "NO_INDICATION_OBSERVED"
     CANNOT_ASSESS = "CANNOT_ASSESS"
     NOT_APPLICABLE_UNLESS_COBAN = "NOT_APPLICABLE_UNLESS_COBAN"
@@ -420,4 +423,6 @@ class FinalDecision(Strict):
     key_evidence: list[str] = Field(default_factory=list)
     limitations: list[str] = Field(default_factory=list)
     guardrail_notes: list[str] = Field(default_factory=list)
+    routing: list[str] = Field(default_factory=list)  # suggested owner(s) of the follow-up
+    compliance_summary: list[str] = Field(default_factory=list)
     decided_at: datetime = Field(default_factory=utcnow)

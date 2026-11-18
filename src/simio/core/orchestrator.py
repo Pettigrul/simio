@@ -291,7 +291,11 @@ class Orchestrator:
         s = self.settings
         cdir = self.campaign_dir(campaign_id)
         cdir.mkdir(parents=True, exist_ok=True)
-        registry = CobanRegistry.load(s.coban_registry_path)
+        registry = CobanRegistry.load(
+            s.coban_registry_path,
+            authoritative=s.coban_registry_authoritative,
+            reference_date=s.coban_registry_reference_date,
+        )
         identity_agent = IdentityAgent(brand, registry)
         scoring = ScoringConfig.load(s.output_dir / "scoring.toml")
         catalog = RequirementCatalog.load(s.contract_requirements_path)

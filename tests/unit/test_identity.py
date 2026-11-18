@@ -82,10 +82,62 @@ def test_institution_cnpj_is_not_owner() -> None:
     assert a.owner_cnpjs == [CNPJ_ALNUM]
 
 
-def test_institution_name_context_prevents_false_association() -> None:
+def test_cnpj_right_after_institution_name_with_other_cnpj_is_reference() -> None:
+    ev = make_evidence(footer=f"Loja Exemplo Ltda CNPJ {CNPJ_ALNUM}. Operação financiada pelo Banco BV, CNPJ {CNPJ_A}.")
+    a = _attr(ev)
+    assert a.owner_cnpjs == [CNPJ_ALNUM] and a.referenced_institution_cnpjs == [CNPJ_A]
+
+
+def test_sole_cnpj_near_institution_name_is_kept_but_flagged() -> None:
+    # Ambiguous: could be the institution's or the owner's CNPJ -> never silently dropped.
     ev = make_evidence(footer=f"Operação financiada pelo Banco BV, CNPJ {CNPJ_A}.")
     a = _attr(ev)
+    assert a.owner_cnpjs == [CNPJ_A] and a.referenced_institution_cnpjs == []
+    assert any("confirmar se pertence" in i for i in a.inferences)
+    assert a.attribution_confidence == Level.LOW
+
+
+def test_owner_cnpj_after_brand_banner_is_not_the_institution() -> None:
+    ev = make_evidence(footer=f"Financiamento Banco BV. Motos Exemplo Ltda, CNPJ {CNPJ_A}")
+    a = _attr(ev)
+    assert a.owner_cnpjs == [CNPJ_A] and not a.referenced_institution_cnpjs
+    assert a.display_name == "Motos Exemplo Ltda"
+
+
+def test_profile_institution_cnpj_is_always_reference() -> None:
+    brand = BRAND.model_copy(update={"institution_cnpjs": [CNPJ_A]})
+    ev = make_evidence(footer=f"CNPJ {CNPJ_A}")
+    cat = build_catalog(ev, brand)
+    a = IdentityAgent(brand, CobanRegistry()).attribute("C1", ev, cat, compute_signals(ev, brand, cat))
     assert a.owner_cnpjs == [] and a.referenced_institution_cnpjs == [CNPJ_A]
+
+
+def test_institution_name_is_never_the_owner_name() -> None:
+    ev = make_evidence(meta={"og:site_name": "Banco BV"}, footer="Nome fantasia: Banco BV S.A.")
+    a = _attr(ev)
+    assert a.display_name is None
+    assert a.classification == IdentityClass.UNKNOWN_IDENTITY
+    assert any(f.kind == "institution_name_displayed" for f in a.facts)
+    assert any("identidade declarada/visual" in i for i in a.inferences)
+
+
+def test_legal_name_extraction_does_not_capture_surrounding_text() -> None:
+    ev = make_evidence(
+        footer="Financie sua moto Condições especiais. Motos Exemplo Ltda\n"
+        "Ligar agora WhatsApp Cobranças Exemplo Assessoria Ltda"
+    )
+    names = [f.value for f in _attr(ev).facts if f.kind == "legal_name"]
+    assert "Motos Exemplo Ltda" in names and "Cobranças Exemplo Assessoria Ltda" in names
+
+
+def test_registry_is_not_authoritative_by_default(tmp_path: Path) -> None:
+    p = tmp_path / "reg.csv"
+    p.write_text(f"cnpj;nome\n{CNPJ_A};Loja Exemplo Ltda\n", encoding="utf-8")
+    reg = CobanRegistry.load(p)
+    ev = make_evidence(footer=f"Loja Exemplo Ltda — CNPJ {CNPJ_A}")
+    cat = build_catalog(ev, BRAND)
+    a = IdentityAgent(BRAND, reg).attribute("C1", ev, cat, compute_signals(ev, BRAND, cat))
+    assert a.classification == IdentityClass.POSSIBLE_COBAN
 
 
 def test_multiple_establishments_lower_confidence() -> None:

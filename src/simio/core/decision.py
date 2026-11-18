@@ -18,12 +18,15 @@ from simio.core.models import (
     PRIORITY_RANK,
     BrandAnalysisOutput,
     BrandAssessment,
+    CollectionStatus,
     ComplianceAssessment,
     Evidence,
     EvidenceSufficiency,
     FinalClassification,
     FinalDecision,
+    FindingStatus,
     IdentityAttribution,
+    IdentityClass,
     Indicator,
     Level,
     Priority,
@@ -161,7 +164,14 @@ def apply_brand_guardrails(
             cls = C.REVIEW_REQUIRED
             prio = max(prio, Priority.MEDIUM, key=lambda p: PRIORITY_RANK[p])
 
-    requires_human = cls != C.NO_INDICATION or injection or bool(out.uncertainties and cls != C.NO_INDICATION)
+    partial_clear = evidence.status == CollectionStatus.PARTIAL and cls == C.NO_INDICATION
+    if evidence.status == CollectionStatus.PARTIAL and sufficiency == EvidenceSufficiency.SUFFICIENT:
+        sufficiency = EvidenceSufficiency.PARTIAL
+    if partial_clear:
+        notes.append("coleta parcial: ausência de indícios não foi verificada em todo o conteúdo; revisão humana")
+    requires_human = (
+        cls != C.NO_INDICATION or injection or partial_clear or bool(out.uncertainties and cls != C.NO_INDICATION)
+    )
     return BrandAssessment(
         case=case,
         classification=cls,
@@ -191,6 +201,7 @@ def needs_review(assessment: BrandAssessment, review_all: bool = False) -> bool:
         assessment.classification != C.NO_INDICATION
         or assessment.extraction_confidence in (Level.LOW, Level.NONE)
         or assessment.possible_prompt_injection
+        or (assessment.classification == C.NO_INDICATION and assessment.requires_human_review)
     )
 
 
@@ -218,6 +229,29 @@ def apply_review(assessment: BrandAssessment, review: Review | None) -> tuple[C,
     if review.decision == ReviewDecision.CONFIRM:
         return cls, prio, notes
     return rc, rp, notes
+
+
+ROUTE_COBAN = "Gestão/auditoria de correspondentes (Res. 4.935)"
+ROUTE_LEGAL = "Jurídico / proteção de marca"
+ROUTE_FRAUD = "Segurança / prevenção a fraudes"
+ROUTE_RECOLLECT = "Verificação manual / nova coleta"
+ROUTE_NONE = "Sem encaminhamento (amostrar para controle de qualidade)"
+
+
+def suggest_routing(cls: C, identity: IdentityClass) -> list[str]:
+    """Suggested follow-up owner(s). Identity drives *who* acts; classification drives *whether*."""
+    if cls == C.NO_INDICATION:
+        return [ROUTE_NONE]
+    if cls == C.INCONCLUSIVE:
+        return [ROUTE_RECOLLECT]
+    out: list[str] = []
+    if identity in (IdentityClass.CONFIRMED_COBAN, IdentityClass.POSSIBLE_COBAN):
+        out.append(ROUTE_COBAN)
+    if identity != IdentityClass.CONFIRMED_COBAN:
+        out.append(ROUTE_LEGAL)
+    if cls == C.STRONG_INDICATION and identity in (IdentityClass.UNKNOWN_IDENTITY, IdentityClass.OTHER_THIRD_PARTY):
+        out.append(ROUTE_FRAUD)
+    return out
 
 
 def compose_final(
@@ -252,6 +286,12 @@ def compose_final(
     )
     return FinalDecision(
         candidate_id=candidate_id,
+        routing=suggest_routing(cls, identity.classification),
+        compliance_summary=[
+            f"{f.requirement_id}: {f.status.value}"
+            for f in compliance.findings
+            if f.status not in (FindingStatus.NO_INDICATION_OBSERVED,)
+        ],
         classification=cls,
         priority=prio,
         case=assessment.case,
