@@ -1,0 +1,36 @@
+"""Report generation entry point."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from datetime import UTC, datetime
+from pathlib import Path
+
+from simio.brands import load_brand
+from simio.config import Settings
+from simio.core.storage import Storage
+from simio.reporting.data import load_records
+from simio.reporting.dossier import write_dossiers
+from simio.reporting.excel import write_workbook
+
+
+@dataclass
+class ReportResult:
+    workbook: Path
+    dossiers: dict[str, str]
+    report_dir: Path
+
+
+def generate_reports(
+    settings: Settings, storage: Storage, campaign_id: str, all_dossiers: bool = False
+) -> ReportResult:
+    camp = storage.get_campaign(campaign_id)
+    if camp is None:
+        raise KeyError(f"campaign not found: {campaign_id}")
+    brand = load_brand(camp["brand"], settings.brand_file)
+    records = load_records(storage, campaign_id, brand)
+    report_dir = settings.output_dir / "reports" / campaign_id
+    dossiers = write_dossiers(records, settings.output_dir, report_dir, all_candidates=all_dossiers)
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    workbook = write_workbook(report_dir / f"simio-{campaign_id}-{stamp}.xlsx", storage, campaign_id, records, dossiers)
+    return ReportResult(workbook=workbook, dossiers=dossiers, report_dir=report_dir)
