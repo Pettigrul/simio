@@ -55,7 +55,7 @@ CHROMIUM_ARGS = [
 ]
 # Placeholder global proxy: every context overrides it with its own egress proxy. If a context
 # ever lacked one, traffic would fail closed instead of going direct.
-PER_CONTEXT_PROXY = {"server": "http://per-context.invalid:1", "bypass": "<-loopback>"}
+PER_CONTEXT_PROXY: Any = {"server": "http://per-context.invalid:1", "bypass": "<-loopback>"}
 
 CHALLENGE_MARKERS = (
     "captcha",

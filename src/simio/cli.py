@@ -331,22 +331,31 @@ def doctor(
 
 
 def _browser_check(s: Settings) -> tuple[bool, str]:
+    """Launch Chromium exactly as the collector does (sandbox setting included)."""
+
     async def run() -> str:
         from playwright.async_api import async_playwright
 
+        from simio.collectors.browser import CHROMIUM_ARGS, PER_CONTEXT_PROXY
+
         async with async_playwright() as p:
-            kwargs: dict = {"headless": True}
-            if s.browser_proxy:
-                kwargs["proxy"] = {"server": s.browser_proxy}
-            b = await p.chromium.launch(**kwargs)
+            b = await p.chromium.launch(
+                headless=True, args=CHROMIUM_ARGS, proxy=PER_CONTEXT_PROXY, chromium_sandbox=s.browser_sandbox
+            )
             v = b.version
             await b.close()
             return v
 
+    sandbox = "sandbox ativo" if s.browser_sandbox else "SANDBOX DESATIVADO (SIMIO_BROWSER_SANDBOX=false)"
     try:
-        return True, f"Chromium {asyncio.run(run())}"
+        return True, f"Chromium {asyncio.run(run())}; {sandbox}"
     except Exception as exc:
-        return False, f"{str(exc).splitlines()[0][:200]} — execute `python -m playwright install chromium`"
+        hint = (
+            "se o erro citar sandbox/namespaces, consulte docs/deployment.md (SIMIO_BROWSER_SANDBOX)"
+            if s.browser_sandbox
+            else "execute `python -m playwright install chromium`"
+        )
+        return False, f"{str(exc).splitlines()[0][:200]} — {hint}; ou `python -m playwright install chromium`"
 
 
 def _adc_check() -> tuple[str, bool | None, str]:
