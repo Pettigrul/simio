@@ -199,6 +199,24 @@ class _PageGuard:
             self.documents.append(response)
 
 
+async def launch_chromium(pw: Any, *, sandbox: bool) -> Any:
+    """Launch headless Chromium, falling back to full Chromium if headless-shell is absent."""
+    launch: dict[str, Any] = {
+        "headless": True,
+        "args": CHROMIUM_ARGS,
+        "proxy": PER_CONTEXT_PROXY,
+        # Playwright disables the Chromium sandbox by default; keep it ON unless explicitly
+        # disabled for an environment where it cannot start (documented risk).
+        "chromium_sandbox": sandbox,
+    }
+    try:
+        return await pw.chromium.launch(**launch)
+    except Exception as exc:
+        if "Executable doesn't exist" in str(exc):
+            return await pw.chromium.launch(**launch, channel="chromium")
+        raise
+
+
 class BrowserCollector:
     """Async context manager owning one Chromium instance; one fresh context per page."""
 
@@ -216,15 +234,7 @@ class BrowserCollector:
         return self
 
     async def _launch(self) -> None:
-        launch: dict[str, Any] = {
-            "headless": True,
-            "args": CHROMIUM_ARGS,
-            "proxy": PER_CONTEXT_PROXY,
-            # Playwright disables the Chromium sandbox by default; keep it ON unless explicitly
-            # disabled for an environment where it cannot start (documented risk).
-            "chromium_sandbox": self.settings.browser_sandbox,
-        }
-        self._browser = await self._pw.chromium.launch(**launch)
+        self._browser = await launch_chromium(self._pw, sandbox=self.settings.browser_sandbox)
 
     @property
     def connected(self) -> bool:

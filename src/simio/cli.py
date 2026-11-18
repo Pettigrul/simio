@@ -336,12 +336,10 @@ def _browser_check(s: Settings) -> tuple[bool, str]:
     async def run() -> str:
         from playwright.async_api import async_playwright
 
-        from simio.collectors.browser import CHROMIUM_ARGS, PER_CONTEXT_PROXY
+        from simio.collectors.browser import launch_chromium
 
         async with async_playwright() as p:
-            b = await p.chromium.launch(
-                headless=True, args=CHROMIUM_ARGS, proxy=PER_CONTEXT_PROXY, chromium_sandbox=s.browser_sandbox
-            )
+            b = await launch_chromium(p, sandbox=s.browser_sandbox)
             v = b.version
             await b.close()
             return v

@@ -44,16 +44,31 @@ class RedactingFormatter(logging.Formatter):
         return redact(super().format(record))
 
 
+class _BenignRuntimeFilter(logging.Filter):
+    """Filter out benign Windows Proactor socket-close noise and SDK AFC reminder."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+        if "_ProactorBasePipeTransport._call_connection_lost" in msg:
+            exc = record.exc_info[1] if record.exc_info else None
+            if isinstance(exc, ConnectionResetError):
+                return False
+        return "Direct use of automatic function calling (AFC)" not in msg
+
+
 def setup_logging(level: str, log_dir: Path | None) -> None:
     root = logging.getLogger()
     root.handlers.clear()
     root.setLevel(level.upper())
+    runtime_filter = _BenignRuntimeFilter()
     console = logging.StreamHandler()
+    console.addFilter(runtime_filter)
     console.setFormatter(RedactingFormatter("%(asctime)s %(levelname)-7s %(name)s: %(message)s", "%H:%M:%S"))
     root.addHandler(console)
     if log_dir is not None:
         log_dir.mkdir(parents=True, exist_ok=True)
         fh = logging.FileHandler(log_dir / "simio.jsonl", encoding="utf-8")
+        fh.addFilter(runtime_filter)
         fh.setFormatter(JsonFormatter())
         root.addHandler(fh)
     for noisy in ("httpx", "httpcore", "google_genai", "urllib3", "asyncio"):

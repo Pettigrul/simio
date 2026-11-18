@@ -6,10 +6,11 @@ read from environment variables or a local ``.env`` file. Nothing corporate is h
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Annotated
 
-from pydantic import Field, SecretStr, field_validator
+from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 DISCOVERY_SOURCES = ("grounding", "brave", "serper", "urlscan")
@@ -27,6 +28,11 @@ class Settings(BaseSettings):
     # ---- Vertex AI / Gemini -------------------------------------------------------------
     gcp_project: str | None = Field(default=None, description="GCP project for Vertex AI")
     gcp_location: str = Field(default="global", description="Vertex AI location/region")
+    gcp_credentials_path: Path | None = Field(
+        default=None,
+        validation_alias=AliasChoices("SIMIO_GCP_CREDENTIALS_PATH", "GOOGLE_APPLICATION_CREDENTIALS"),
+        description="Optional path to ADC credentials file (sets GOOGLE_APPLICATION_CREDENTIALS)",
+    )
     analysis_model: str | None = Field(default=None, description="Multimodal analysis model")
     review_model: str | None = Field(default=None, description="Reviewer model")
     discovery_model: str | None = Field(
@@ -99,6 +105,29 @@ class Settings(BaseSettings):
     offline: bool = False
     log_level: str = "INFO"
 
+    @field_validator(
+        "gcp_project",
+        "gcp_credentials_path",
+        "analysis_model",
+        "review_model",
+        "discovery_model",
+        "brave_api_key",
+        "serper_api_key",
+        "urlscan_api_key",
+        "browser_proxy",
+        "browser_user_agent",
+        "coban_registry_path",
+        "coban_registry_reference_date",
+        "contract_requirements_path",
+        "brand_file",
+        mode="before",
+    )
+    @classmethod
+    def _empty_str_to_none(cls, v: object) -> object:
+        if isinstance(v, str) and not v.strip():
+            return None
+        return v
+
     @field_validator("allowed_ports", "unsafe_allow_hosts", mode="before")
     @classmethod
     def _split_csv(cls, v: object) -> object:
@@ -106,6 +135,10 @@ class Settings(BaseSettings):
             items = [x.strip() for x in v.split(",") if x.strip()]
             return items
         return v
+
+    def model_post_init(self, __context: object) -> None:
+        if self.gcp_credentials_path is not None and self.gcp_credentials_path.is_file():
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(self.gcp_credentials_path)
 
     # ---- Derived -------------------------------------------------------------------------
     @property
@@ -135,6 +168,11 @@ class Settings(BaseSettings):
         return data
 
 
+_REPO_ENV = Path(__file__).resolve().parents[2] / ".env"
+
+
 def load_settings(**overrides: object) -> Settings:
-    clean = {k: v for k, v in overrides.items() if v is not None}
+    clean: dict[str, object] = {k: v for k, v in overrides.items() if v is not None}
+    if not Path(".env").is_file() and _REPO_ENV.is_file():
+        clean["_env_file"] = _REPO_ENV
     return Settings(**clean)  # type: ignore[arg-type]

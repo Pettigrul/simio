@@ -120,9 +120,11 @@ def browser_available() -> bool:
 
         from playwright.async_api import async_playwright
 
+        from simio.collectors.browser import launch_chromium
+
         async def go() -> None:
             async with async_playwright() as p:
-                b = await p.chromium.launch()
+                b = await launch_chromium(p, sandbox=True)
                 await b.close()
 
         asyncio.run(go())
