@@ -111,6 +111,18 @@ documentais). Nenhum dado real de clientes, correspondentes ou da organização 
 - O modo offline usa heurística textual: identidade visual não é avaliada por modelo.
 - A integração real com Vertex AI / Grounding foi implementada e testada com mocks; a validação
   real é pendente no ambiente corporativo (ver [docs/deployment.md](docs/deployment.md)).
+- A página inicial do domínio não é coletada automaticamente quando a URL descoberta é interna
+  (o art. 14, III, "a", menciona a página inicial): verificar manualmente.
+- Destaque da declaração de correspondente: as regras medem a posição; tamanho, contraste e
+  legibilidade dependem do modelo multimodal ou do auditor.
+- Sem consultas externas de enriquecimento (RDAP/WHOIS, idade do domínio, situação cadastral do
+  CNPJ) e sem semeadura automática a partir da relação pública de correspondentes (art. 21).
+- A decisão da revisão humana é registrada pela auditoria em seus papéis de trabalho (não há
+  comando para gravá-la no banco); dossiês são gerados para casos prioritários — use
+  `simio report --all-dossiers` para amostrar casos `NO_INDICATION`.
+- Consultas de descoberta podem trazer notícias, alertas e agregadores; são despriorizadas e,
+  quando analisadas, limitadas ao cenário B, mas consomem parte da cota de consultas.
+- Os nomes das abas do Excel seguem a especificação (inglês); a aba *Glossário* traduz os códigos.
 
 Mais em [docs/methodology.md](docs/methodology.md) e [docs/security.md](docs/security.md).
 

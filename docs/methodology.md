@@ -20,6 +20,17 @@ Regras de interpretação (também nos prompts):
   prova ausência no site. O sistema diferencia falha de coleta, ausência observada e conteúdo
   não inspecionado.
 - Confiança do modelo **não** é probabilidade estatística de irregularidade.
+- Uma declaração de correspondente que **nomeia a instituição** é transparência: menções à marca
+  dentro dela não contam como destaque da marca. Declarações genéricas ("prestador de serviços")
+  ou negadas na mesma frase ("não somos correspondente: somos o Banco BV oficial") valem menos.
+- "Destaque" (art. 14, III) envolve posição, tamanho, contraste e legibilidade: as regras observam
+  apenas a posição; o restante é verificado no screenshot (modelo multimodal ou auditor).
+- Expressões de oficialidade em discurso de terceiros (notícia, alerta de golpe, citação) não são
+  autoapresentação; páginas `og:type=article` são limitadas ao cenário B para revisão humana.
+- O termo curto ("BV") só conta em campos de identidade (título, cabeçalho, nome do site) e é
+  ignorado em hostnames/URLs e sufixos societários estrangeiros ("Holding BV"); formas
+  concatenadas ("BancoBV", "Banco-BV") são reconhecidas.
+- Menção à marca apenas no corpo do texto, sem destaque nem linguagem de oficialidade, é cenário A.
 
 ## Eixos de saída (independentes)
 
@@ -45,6 +56,9 @@ Exemplo: forte indício de confusão visual com responsável desconhecido →
   → `REVIEW_REQUIRED`.
 - Sinal de prompt injection → revisão humana obrigatória; nunca `NO_INDICATION`.
 - O revisor pode confirmar ou rebaixar; não pode elevar a `STRONG_INDICATION` sozinho.
+- Modelo × regras: se as regras veem B/C/D e o modelo responde `NO_INDICATION`, o caso vai para
+  revisão (`REVIEW_REQUIRED`).
+- Coleta parcial (`PARTIAL`) nunca resulta em `NO_INDICATION` sem revisão humana.
 
 ## Identidade
 
@@ -52,10 +66,18 @@ Exemplo: forte indício de confusão visual com responsável desconhecido →
 - CNPJ: validação de dígitos (formato numérico e alfanumérico 2026). CNPJs da própria instituição
   (perfil `institution_cnpjs`) ou citados em contexto do nome da instituição são tratados como
   referência à contratante, não como titular da página.
-- `CONFIRMED_COBAN` exige correspondência **por CNPJ** em cadastro autoritativo
-  (`SIMIO_COBAN_REGISTRY_PATH`, CSV com coluna `cnpj`). Uma fonte possível é a relação de
-  contratados que a contratante deve manter em dados abertos (Res. 4.935, art. 21), ou a base
-  interna. Correspondência só por nome → `POSSIBLE_COBAN`.
+- `CONFIRMED_COBAN` exige correspondência **por CNPJ** em cadastro **declarado autoritativo**
+  (`SIMIO_COBAN_REGISTRY_PATH` + `SIMIO_COBAN_REGISTRY_AUTHORITATIVE=true`, com
+  `SIMIO_COBAN_REGISTRY_REFERENCE_DATE`), e **um único** CNPJ de titular na página. Fontes possíveis:
+  relação de contratados em dados abertos (Res. 4.935, art. 21) ou base interna. Correspondência só
+  por nome, CSV não autoritativo ou página com vários CNPJs → `POSSIBLE_COBAN`. Um CNPJ publicado
+  pode ter sido copiado: confirmar a titularidade do domínio.
+- O nome da instituição exibido pela página (ex.: `og:site_name` "Banco BV") é registrado como
+  identidade **declarada**, nunca como nome do responsável.
+- CNPJ citado logo após o nome da instituição só é tratado como da contratante se houver outro
+  CNPJ na página (ou se constar de `institution_cnpjs`); caso contrário é mantido como titular e
+  sinalizado para confirmação.
+- "Parceiro" só sugere vínculo quando a mesma frase nomeia a instituição.
 
 ## Conformidade
 
@@ -67,9 +89,17 @@ a obrigação do correspondente decorre do contrato; o relatório explicita isso
 
 Para cada requisito o Compliance Analyst separa: requisito (normativo/contratual), evidência
 observada (refs), hipótese de não conformidade, informação faltante e necessidade de revisão
-humana. Status possíveis: `HYPOTHESIS_OF_NONCONFORMITY`, `NO_INDICATION_OBSERVED`,
-`CANNOT_ASSESS`, `NOT_APPLICABLE_UNLESS_COBAN` (responsável não identificado como correspondente:
-o caso pode ser uso indevido de marca/fraude, fora do escopo da norma).
+humana. Status possíveis: `HYPOTHESIS_OF_NONCONFORMITY` (correspondente confirmado),
+`HYPOTHESIS_CONDITIONAL_ON_LINK` (vínculo apenas declarado/possível: hipótese aplicável somente se
+confirmado), `NO_INDICATION_OBSERVED`, `CANNOT_ASSESS`, `NOT_APPLICABLE_UNLESS_COBAN` (responsável
+não identificado como correspondente: possível uso indevido de marca/fraude, fora do escopo da norma).
+O art. 14, II (logomarca) só é acionado por evidência visual/logotipo, não por texto no cabeçalho.
+O texto da hipótese do art. 14, III reflete o observado (ausência de declaração × declaração
+contradita por outros elementos).
+
+Cada decisão traz **encaminhamento sugerido** (gestão de correspondentes; jurídico/marca;
+segurança/fraude; nova coleta; sem encaminhamento — amostrar) e um resumo do mapeamento normativo,
+também nas colunas do Excel. A aba *Glossário* explica os códigos.
 
 Requisitos contratuais/internos podem ser adicionados pelo operador (não versionar o arquivo real):
 

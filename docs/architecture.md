@@ -61,9 +61,23 @@ DISCOVERED → QUEUED → COLLECTING → COLLECTED → ANALYZING → REVIEWING �
 qualquer etapa → FAILED (após SIMIO_MAX_ATTEMPTS erros internos)
 ```
 
-- Cada transição é validada (`core/state.py`) e registrada em `state_transitions`.
+- Cada transição é validada (`core/state.py`) e registrada em `state_transitions`; as transições
+  de entrada nas etapas são *compare-and-set* (falham se outro escritor moveu o candidato).
+- **Lease por campanha** (`campaign_leases`, heartbeat de 30 s, expira em 120 s): dois processos não
+  processam a mesma campanha; `resume` concorrente termina com código 4.
+- Tentativas são contadas **antes** de cada etapa; `resume` marca como FAILED o candidato que
+  interrompeu o processo `SIMIO_MAX_ATTEMPTS` vezes (sem "candidato veneno").
+- Um erro inesperado num candidato é isolado (FAILED) sem afetar os demais nem o navegador.
+- Ctrl+C/falha deixam a campanha `INTERRUPTED`/`FAILED` (não `RUNNING`).
 - `simio resume` devolve estados em voo ao último estado estável (`COLLECTING→QUEUED`,
-  `ANALYZING/REVIEWING→COLLECTED`) e continua. Descoberta concluída é marcada por checkpoint.
+  `ANALYZING/REVIEWING→COLLECTED`) e continua **com os parâmetros originais da campanha** (modelo,
+  modo offline, orçamentos); só flags explícitas (`--max-llm-requests`, `--max-tokens`,
+  `--workers`, `--offline`) os alteram.
+- Descoberta: URLs importadas e resultados de cada consulta são salvos em checkpoint à medida que
+  chegam; consultas já executadas não são repetidas e contam no limite; candidatos já na fila
+  contam no `--limit`. Conclusão marcada pelo checkpoint `discovery_done`.
+- Avaliações são gravadas com o `evidence_id` de origem: nova tentativa/retomada **reaproveita**
+  análises de LLM já pagas para a mesma evidência, e os relatórios mostram uma única rodada coerente.
 - Candidatos além de `--limit` permanecem `DISCOVERED` (backlog rastreável).
 - Deduplicação: chave única `(campanha, URL normalizada)`; domínios agrupados por domínio
   registrável; estabelecimentos agrupados por CNPJ (`entities`) — um domínio pode ter várias
@@ -71,14 +85,16 @@ qualquer etapa → FAILED (após SIMIO_MAX_ATTEMPTS erros internos)
 
 ## Orçamento e falhas
 
-- `Budget` persiste uso em `llm_usage`; requisições são reservadas antes da chamada (inclusive
-  tentativas que falham). Ao esgotar: a campanha fica `PAUSED_BUDGET`, candidatos voltam ao estado
+- `Budget` persiste uso em `llm_usage`; requisições **e uma estimativa de tokens** (texto/3 +
+  custo fixo por imagem + `max_output_tokens`) são reservadas antes da chamada, inclusive tentativas
+  que falham: o teto de tokens é rígido mesmo com vários workers. Ao esgotar: a campanha fica `PAUSED_BUDGET`, candidatos voltam ao estado
   estável e `simio resume` continua com orçamento maior.
 - Erros transitórios (429/5xx/timeout) têm retry com backoff exponencial + jitter.
 - Saída de modelo inválida: uma tentativa de reparo; depois o candidato conta tentativa e,
   esgotadas, vai a `FAILED`.
 - Vertex indisponível (auth/permissão/modelo inexistente): degrada para analistas
-  determinísticos e registra a limitação em cada decisão.
+  determinísticos apenas o agente afetado (ex.: só o revisor) e registra a limitação.
+- Navegador que cai (ex.: falta de memória) é relançado automaticamente.
 - Grounding indisponível: o conector é desativado na execução e os demais continuam (fallback).
   Sem nenhum mecanismo, `hunt` informa diagnóstico e aceita URLs importadas.
 

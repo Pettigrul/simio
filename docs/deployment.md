@@ -74,7 +74,13 @@ determinísticas, e todas as decisões registram essa limitação.
 - APIs (google-genai/httpx): `HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`; CA corporativa via
   `SSL_CERT_FILE` / `REQUESTS_CA_BUNDLE`.
 - Navegador: `SIMIO_BROWSER_PROXY=http://<proxy>:<porta>` (credenciais, se necessárias, no próprio
-  URL do proxy via `.env` local). O proxy de egress do SIMIO encadeia para ele.
+  URL do proxy via `.env` local). O proxy de egress do SIMIO encadeia para ele enviando o **IP já
+  validado** (anti DNS rebinding). Se o proxy corporativo recusar CONNECT para IP (filtragem por
+  hostname), o erro aparece como `upstream proxy refused CONNECT`; avalie com a segurança usar
+  `SIMIO_BROWSER_PROXY_PIN_IP=false` (risco residual em docs/security.md).
+- Sandbox do Chromium: ativo por padrão. Se não iniciar (ambientes Linux restritos sem user
+  namespaces), `simio doctor` mostra a falha; desative (`SIMIO_BROWSER_SANDBOX=false`) somente com
+  aprovação da segurança. No Windows o sandbox funciona sem privilégios de administrador.
 - Inspeção TLS corporativa no navegador: prefira instalar a CA no repositório do sistema; só em
   último caso use `SIMIO_IGNORE_HTTPS_ERRORS=true` e registre a decisão.
 - Erros comuns: `CERTIFICATE_VERIFY_FAILED` (CA ausente), `407` (autenticação do proxy),
@@ -87,7 +93,9 @@ local aprovado, com backup e controle de acesso definidos pela auditoria. Não s
 serviços pessoais e não copie para máquinas pessoais.
 
 Cadastro autorizado de correspondentes (opcional, habilita `CONFIRMED_COBAN`):
-`SIMIO_COBAN_REGISTRY_PATH=/caminho/relacao_correspondentes.csv` (colunas `cnpj;nome;...`).
+`SIMIO_COBAN_REGISTRY_PATH=/caminho/relacao_correspondentes.csv` (colunas `cnpj;nome;...`),
+`SIMIO_COBAN_REGISTRY_AUTHORITATIVE=true` somente se a fonte for oficial/aprovada e
+`SIMIO_COBAN_REGISTRY_REFERENCE_DATE=AAAA-MM-DD` (exibida nos relatórios).
 Antes do uso, preencha e valide em `src/simio/brands/bv.toml` os itens marcados `VALIDATE`
 (domínios oficiais completos e CNPJs da instituição).
 
@@ -102,7 +110,9 @@ Antes do uso, preencha e valide em `src/simio/brands/bv.toml` os itens marcados 
 | `SIMIO_MAX_ATTEMPTS` | 3 | Tentativas por etapa antes de FAILED |
 | `SIMIO_MAX_RECOLLECTS` | 1 | Novas coletas solicitadas pelo revisor |
 
-Ao esgotar o orçamento a campanha pausa (`PAUSED_BUDGET`); ajuste e rode `simio resume`.
+Ao esgotar o orçamento a campanha pausa (`PAUSED_BUDGET`); rode `simio resume --max-llm-requests N`
+(ou `--max-tokens N`): sem flags, a retomada mantém os parâmetros originais da campanha. Análises
+já pagas para a mesma evidência são reaproveitadas.
 Estimativa: cada candidato analisado usa ~1–3 requisições (analista, revisor, reparo eventual).
 
 ## 9. Pendências de validação corporativa
@@ -111,5 +121,7 @@ Estimativa: cada candidato analisado usa ~1–3 requisições (analista, revisor
 - [ ] `SIMIO_LIVE_TESTS=1 python -m pytest tests/live` (saída estruturada e grounding reais).
 - [ ] Compatibilidade de `response_json_schema` com o modelo aprovado (há fallback automático).
 - [ ] Resolução dos URIs de redirecionamento do grounding através do proxy corporativo.
-- [ ] Preencher/validar `bv.toml` (domínios oficiais, CNPJs) e carregar cadastro de correspondentes.
+- [ ] Preencher/validar `bv.toml` (domínios oficiais, **CNPJs da instituição**) e carregar cadastro de
+  correspondentes autoritativo com data de referência.
+- [ ] Verificar o sandbox do Chromium e o encadeamento com o proxy corporativo (CONNECT para IP).
 - [ ] Revalidar vigência da Res. CMN 4.935/2021 e calibrar a pontuação com casos reais revisados.
