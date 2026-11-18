@@ -51,6 +51,21 @@ def git(*args: str) -> str:
     return subprocess.run(["git", *args], capture_output=True, text=True, check=False).stdout
 
 
+# Obvious documentation placeholders inside *test* code (sequential digits, RFC 2606 example
+# domains, user:pass). Real secrets never look like this; anywhere else they are still reported.
+SYNTHETIC = re.compile(r"(?i)1234567890|user:pass|@(?:[\w-]+\.)*example(?:\.(?:com|org|net))?(?=[:/\s'\"]|$)")
+
+
+def _allowed(path: str, line_text: str, rx: re.Pattern[str]) -> bool:
+    """Synthetic fixture in test code: explicit pragma, or every match on the line is a placeholder."""
+    if not path.startswith(ALLOW_PRAGMA_DIRS):
+        return False
+    if ALLOW_PRAGMA in line_text:
+        return True
+    matches = [m.group(0) for m in rx.finditer(line_text)]
+    return bool(matches) and all(SYNTHETIC.search(m) for m in matches)
+
+
 def scan_text(name: str, text: str) -> list[str]:
     hits = []
     for label, rx in CONTENT_PATTERNS.items():
@@ -59,8 +74,8 @@ def scan_text(name: str, text: str) -> list[str]:
                 continue
             line = text.count("\n", 0, m.start()) + 1
             line_text = text.splitlines()[line - 1] if text else ""
-            if ALLOW_PRAGMA in line_text and name.startswith(ALLOW_PRAGMA_DIRS):
-                continue  # synthetic test fixture, explicitly marked
+            if _allowed(name, line_text, rx):
+                continue
             hits.append(f"{name}:{line}: possible {label}")
     return hits
 
@@ -103,7 +118,13 @@ def main() -> int:
                     if label in ("assigned-secret", "env-secret-value"):
                         continue  # covered by working-tree scan; regex too broad for git grep -P portability
                     out = git("grep", "-I", "-n", "-P", rx.pattern, rev, "--", ".", ":!scripts/check_secrets.py")
-                    findings += [f"[history {rev[:8]}] {line} ({label})" for line in out.splitlines() if line]
+                    for line in out.splitlines():
+                        # format: <rev>:<path>:<lineno>:<content>
+                        parts = line.split(":", 3)
+                        if len(parts) == 4 and _allowed(parts[1], parts[3], rx):
+                            continue
+                        if line:
+                            findings.append(f"[history {rev[:8]}] {line} ({label})")
     findings = sorted(set(findings))
     for f in findings:
         print(f)
