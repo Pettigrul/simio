@@ -1,0 +1,90 @@
+# Brand profile used by discovery, identity and analysis agents.
+# Values marked VALIDATE must be confirmed by the operator in the corporate environment
+# before production use (e.g. complete list of official domains and institution CNPJs).
+
+id = "bv"
+display_name = "Banco BV"
+language = "pt-BR"
+
+# Unambiguous brand expressions (case-insensitive, word-boundary matched).
+strong_terms = ["banco bv", "bv financeira", "banco votorantim", "bv financiamentos", "bv financiamento"]
+# Short/ambiguous expressions: only count with word boundaries and never alone for scoring.
+weak_terms = ["bv"]
+
+# Official institutional domains (VALIDATE: add every official domain / app link).
+official_domains = ["bv.com.br"]
+
+# Legal names / CNPJs of the institution itself. CNPJs found on third-party pages that match
+# these are treated as *references to the contracting institution*, never as the page owner.
+# VALIDATE: fill with the official CNPJs in the corporate environment.
+institution_names = ["Banco BV", "Banco Votorantim", "BV Financeira"]
+institution_cnpjs = []
+
+# Regexes applied to the registrable domain / hostname labels.
+domain_patterns = [
+  '(^|[-.])bv([-.]|$)',
+  'banco-?bv',
+  '^bv-?(financ|credit|cred|veicul|auto|emprest|consig|digital|oficial|atendiment|sac|cartao|solar)',
+  'bv-?financeira',
+  'votorantim',
+]
+
+products = [
+  "financiamento de veículos",
+  "financiamento de carro",
+  "financiamento de moto",
+  "refinanciamento de veículo",
+  "crédito pessoal",
+  "empréstimo com garantia de veículo",
+  "financiamento de energia solar",
+  "cartão de crédito",
+]
+
+establishment_types = [
+  "loja de veículos",
+  "revenda de carros seminovos",
+  "concessionária",
+  "promotora de crédito",
+  "correspondente bancário",
+  "empresa de energia solar",
+  "despachante",
+]
+
+regions = [
+  "São Paulo", "Rio de Janeiro", "Belo Horizonte", "Curitiba", "Porto Alegre", "Salvador",
+  "Recife", "Fortaleza", "Goiânia", "Brasília", "Campinas", "Manaus",
+]
+
+platforms = ["site", "WhatsApp", "Instagram", "Facebook", "Google Meu Negócio"]
+
+# Language suggesting the page *is* the institution or its official channel.
+official_claim_phrases = [
+  "canal oficial", "site oficial", "atendimento oficial", "central oficial", "página oficial",
+  "loja oficial", "representante oficial", "somos o banco bv", "aqui é o banco bv",
+  "banco bv oficial", "sac banco bv", "sac bv", "central de atendimento banco bv",
+  "central de atendimento bv", "fale com o banco bv", "agência bv", "agência banco bv",
+  "gerente do banco bv", "unidade banco bv", "unidade bv", "bv atendimento",
+]
+
+# Language that discloses a correspondent / independent relationship.
+correspondent_disclosure_phrases = [
+  "correspondente bancário", "correspondente bancario", "correspondente no país",
+  "correspondentes no país", "correspondente do banco bv", "correspondente bv",
+  "resolução cmn nº 4.935", "resolução cmn n° 4.935", "resolução 4.935", "resolução nº 4.935",
+  "atuamos como correspondente", "prestador de serviços", "prestadora de serviços",
+  "não somos o banco", "não somos uma instituição financeira", "não é uma instituição financeira",
+  "não somos instituição financeira", "empresa independente",
+]
+
+partnership_phrases = [
+  "parceiro", "parceiros", "parceira", "parceiras", "parceria", "em parceria com", "credenciado", "credenciada",
+  "autorizado", "autorizada",
+]
+
+# Domains that rarely host an establishment's own communication (news, reviews, legal
+# databases, the regulator). They are kept but de-prioritised.
+deprioritized_domains = [
+  "wikipedia.org", "reclameaqui.com.br", "jusbrasil.com.br", "gov.br", "bcb.gov.br",
+  "youtube.com", "linkedin.com", "glassdoor.com.br", "g1.globo.com", "valor.globo.com",
+  "infomoney.com.br", "exame.com", "estadao.com.br", "folha.uol.com.br",
+]
