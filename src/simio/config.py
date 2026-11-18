@@ -64,6 +64,13 @@ class Settings(BaseSettings):
     max_html_bytes: int = Field(default=2_000_000, ge=10_000)
     max_text_chars: int = Field(default=200_000, ge=1000)
     max_requests_per_page: int = Field(default=400, ge=10)
+    browser_sandbox: bool = Field(
+        default=True, description="Chromium OS sandbox; disable only where it cannot start (documented risk)"
+    )
+    browser_proxy_pin_ip: bool = Field(
+        default=True,
+        description="Send the validated IP (not the hostname) to the upstream proxy (anti DNS-rebinding)",
+    )
     browser_proxy: str | None = Field(default=None, description="e.g. http://proxy:8080")
     browser_user_agent: str | None = None
     ignore_https_errors: bool = False
@@ -75,6 +82,13 @@ class Settings(BaseSettings):
     output_dir: Path = Field(default=Path("output"))
     coban_registry_path: Path | None = Field(
         default=None, description="CSV with authorised correspondents (CNPJ,name,...)"
+    )
+    coban_registry_authoritative: bool = Field(
+        default=False,
+        description="Set true ONLY when the registry CSV is an official/approved source (enables CONFIRMED_COBAN)",
+    )
+    coban_registry_reference_date: str | None = Field(
+        default=None, description="Reference date of the registry snapshot, shown in reports"
     )
     contract_requirements_path: Path | None = Field(
         default=None, description="Optional TOML with contractual requirements"
@@ -114,6 +128,10 @@ class Settings(BaseSettings):
         data = self.model_dump(mode="json")
         for key in ("brave_api_key", "serper_api_key", "urlscan_api_key"):
             data[key] = "***set***" if getattr(self, key) else None
+        if self.browser_proxy:
+            from simio.logging_setup import redact
+
+            data["browser_proxy"] = redact(self.browser_proxy)
         return data
 
 

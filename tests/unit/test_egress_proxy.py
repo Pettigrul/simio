@@ -82,3 +82,61 @@ def test_split_hostport() -> None:
     assert _split_hostport("example.com:443", 1) == ("example.com", 443)
     assert _split_hostport("[::1]:8443", 1) == ("::1", 8443)
     assert _split_hostport("example.com", 443) == ("example.com", 443)
+
+
+async def _fake_upstream() -> tuple[asyncio.base_events.Server, int, list[bytes]]:
+    seen: list[bytes] = []
+
+    async def handle(r: asyncio.StreamReader, w: asyncio.StreamWriter) -> None:
+        head = await r.readuntil(b"\r\n\r\n")
+        seen.append(head)
+        if head.startswith(b"CONNECT"):
+            w.write(b"HTTP/1.1 200 OK\r\n\r\n")
+        else:
+            w.write(b"HTTP/1.1 200 OK\r\nConnection: keep-alive\r\nContent-Length: 2\r\n\r\nok")
+        await w.drain()
+        w.close()
+
+    srv = await asyncio.start_server(handle, "127.0.0.1", 0)
+    return srv, srv.sockets[0].getsockname()[1], seen
+
+
+async def test_upstream_receives_pinned_ip_not_hostname(monkeypatch) -> None:
+    """Security review: with a corporate upstream, DNS pinning must survive (anti-rebinding)."""
+    loop = asyncio.get_running_loop()
+
+    async def resolver(host, port, type=0):
+        return [(2, 1, 6, "", ("93.184.216.34", port))]
+
+    monkeypatch.setattr(loop, "getaddrinfo", resolver)
+    srv, port, seen = await _fake_upstream()
+    async with EgressProxy(UrlPolicy(), upstream="http://user:" + f"pa%40ss@127.0.0.1:{port}") as proxy:
+        out = await _raw(proxy.port, b"CONNECT rebind.example.com:443 HTTP/1.1\r\nHost: rebind.example.com\r\n\r\n")
+        assert out.startswith(b"HTTP/1.1 200")
+        out = await _raw(
+            proxy.port,
+            b"GET http://rebind.example.com/p HTTP/1.1\r\nHost: rebind.example.com\r\nConnection: keep-alive\r\n\r\n",
+        )
+        assert b"Connection: close" in out and b"keep-alive" not in out
+    connect, get = seen[0].decode(), seen[1].decode()
+    assert connect.startswith("CONNECT 93.184.216.34:443 ")
+    assert "Proxy-Authorization: Basic " in connect and "rebind" not in connect.split("\r\n")[0]
+    assert get.startswith("GET http://93.184.216.34:80/p ")
+    assert "Host: rebind.example.com" in get and "Proxy-Authorization: Basic " in get
+    srv.close()
+
+
+async def test_upstream_refusal_is_reported() -> None:
+    async def handle(r: asyncio.StreamReader, w: asyncio.StreamWriter) -> None:
+        await r.readuntil(b"\r\n\r\n")
+        w.write(b"HTTP/1.1 407 Proxy Authentication Required\r\n\r\n")
+        await w.drain()
+        w.close()
+
+    srv = await asyncio.start_server(handle, "127.0.0.1", 0)
+    up = srv.sockets[0].getsockname()[1]
+    policy = UrlPolicy(unsafe_allow_hosts=frozenset({"127.0.0.1"}))
+    async with EgressProxy(policy, upstream=f"http://127.0.0.1:{up}") as proxy:
+        out = await _raw(proxy.port, b"CONNECT 127.0.0.1:443 HTTP/1.1\r\n\r\n")
+        assert out.startswith(b"HTTP/1.1 502") and b"407" in out
+    srv.close()

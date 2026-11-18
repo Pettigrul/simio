@@ -9,14 +9,18 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 _SECRET_PATTERNS = [
-    re.compile(r"(?i)(api[_-]?key|token|secret|password|authorization)(\"?\s*[:=]\s*\"?)[^\s\",]+"),
+    # header-style credentials: keep the scheme word, drop the credential (Basic/Bearer + token)
+    re.compile(r"(?i)((?:proxy-)?authorization)(\"?\s*[:=]\s*\"?)(?:(?:basic|bearer|negotiate|ntlm)\s+)?[^\s\",]+"),
+    re.compile(r"(?i)([\w-]*(?:api[_-]?key|token|secret|password|passwd))(\"?\s*[:=]\s*\"?)[^\s\",]+"),
     re.compile(r"AIza[0-9A-Za-z_\-]{30,}"),
     re.compile(r"ya29\.[0-9A-Za-z_\-]{20,}"),
     re.compile(r"gh[pousr]_[0-9A-Za-z]{30,}"),
 ]
+_USERINFO = re.compile(r"(?i)\b([a-z][a-z0-9+.\-]*://)[^/\s:@]+:[^/\s@]+@")
 
 
 def redact(text: str) -> str:
+    text = _USERINFO.sub(lambda m: m.group(1) + "***:***@", text)
     for rx in _SECRET_PATTERNS:
         text = rx.sub(lambda m: (m.group(1) + m.group(2) + "***") if m.lastindex and m.lastindex >= 2 else "***", text)
     return text

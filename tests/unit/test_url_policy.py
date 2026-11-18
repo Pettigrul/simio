@@ -40,7 +40,7 @@ def policy() -> UrlPolicy:
         "http://[::ffff:127.0.0.1]/",
         "http://[fd00::1]/",
         "http://[fe80::1]/",
-        "http://user:pass@example.com/",
+        "http://user:pass@example.com/",  # pragma: allowlist secret
         "http://example.com:22/",
         "http://example.com\\@evil/",
         "https://exa\nmple.com/",

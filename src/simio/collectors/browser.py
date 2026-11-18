@@ -6,7 +6,7 @@ Safety properties (see docs/security.md):
   Playwright ``route()`` does not see, and DNS rebinding);
 * ``route()`` interception adds early blocking, a request cap and media blocking;
 * no form filling, no clicks, no login, downloads disabled, popups closed, dialogs dismissed,
-  service workers blocked, no extra permissions, Chromium sandbox kept enabled;
+  service workers blocked, no extra permissions, Chromium sandbox enabled (``SIMIO_BROWSER_SANDBOX``);
 * hard per-page time budget and request cap;
 * raw HTML is stored as ``.html.txt`` so it is never rendered by accident.
 """
@@ -17,6 +17,7 @@ import asyncio
 import hashlib
 import json
 import logging
+import shutil
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -69,7 +70,7 @@ CHALLENGE_MARKERS = (
 )
 
 EXTRACT_JS = r"""
-() => {
+(maxChars) => {
   const vh = window.innerHeight;
   const clean = s => (s || '').replace(/\s+/g, ' ').trim();
   const isVisible = el => {
@@ -139,7 +140,7 @@ EXTRACT_JS = r"""
     header_text: sectionText('header,[role=banner]'),
     footer_text: sectionText('footer,[role=contentinfo]'),
     above_fold_text: fold.join(' ').slice(0, 8000),
-    visible_text: (document.body ? document.body.innerText : '') || '',
+    visible_text: ((document.body ? document.body.innerText : '') || '').slice(0, maxChars),
     forms_present: document.forms.length
   };
 }
@@ -211,9 +212,29 @@ class BrowserCollector:
         from playwright.async_api import async_playwright
 
         self._pw = await async_playwright().start()
-        launch: dict[str, Any] = {"headless": True, "args": CHROMIUM_ARGS, "proxy": PER_CONTEXT_PROXY}
-        self._browser = await self._pw.chromium.launch(**launch)
+        await self._launch()
         return self
+
+    async def _launch(self) -> None:
+        launch: dict[str, Any] = {
+            "headless": True,
+            "args": CHROMIUM_ARGS,
+            "proxy": PER_CONTEXT_PROXY,
+            # Playwright disables the Chromium sandbox by default; keep it ON unless explicitly
+            # disabled for an environment where it cannot start (documented risk).
+            "chromium_sandbox": self.settings.browser_sandbox,
+        }
+        self._browser = await self._pw.chromium.launch(**launch)
+
+    @property
+    def connected(self) -> bool:
+        return self._browser is not None and self._browser.is_connected()
+
+    async def ensure_browser(self) -> None:
+        """Relaunch Chromium if it crashed (e.g. OOM) so one crash does not fail every later page."""
+        if not self.connected and self._pw is not None:
+            log.warning("browser disconnected; relaunching")
+            await self._launch()
 
     async def __aexit__(self, *exc: object) -> None:
         if self._browser is not None:
@@ -224,7 +245,12 @@ class BrowserCollector:
     async def collect(self, candidate_id: str, url: str, attempt: int, campaign_dir: Path) -> Evidence:
         rel_dir = Path("evidence") / candidate_id / f"attempt-{attempt}"
         out_dir = campaign_dir / rel_dir
+        if out_dir.exists():
+            # Leftovers of an interrupted attempt that never produced an evidence record must not be
+            # hashed into (or sent to the model as part of) this attempt.
+            shutil.rmtree(out_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
+        await self.ensure_browser()
         ev = Evidence(
             candidate_id=candidate_id, attempt=attempt, status=CollectionStatus.NOT_COLLECTED, original_url=url
         )
@@ -239,11 +265,19 @@ class BrowserCollector:
             await asyncio.wait_for(self._collect_page(ev, url, out_dir, rel_dir), timeout=self.settings.page_budget_s)
         except TimeoutError:
             ev.errors.append(f"page budget of {self.settings.page_budget_s}s exceeded")
+            ev.not_inspected.append("coleta interrompida por tempo: parte do conteúdo/artefatos pode faltar")
             ev.retryable = True
             if ev.status == CollectionStatus.NOT_COLLECTED:
                 ev.status = CollectionStatus.FAILED
             elif ev.status == CollectionStatus.OK:
                 ev.status = CollectionStatus.PARTIAL
+        except Exception as exc:  # Playwright errors (crashed target, destroyed context, ...)
+            if not self.connected:
+                raise  # browser died: infrastructure failure, not a property of this page
+            ev.errors.append(f"collection error: {type(exc).__name__}: {str(exc)[:300]}")
+            ev.retryable = True
+            ev.page = None
+            ev.status = CollectionStatus.FAILED
         return self._finalize(ev, out_dir, rel_dir, campaign_dir)
 
     async def _collect_page(self, ev: Evidence, url: str, out_dir: Path, rel_dir: Path) -> None:
@@ -263,7 +297,7 @@ class BrowserCollector:
         }
         if s.browser_user_agent:
             ctx_kwargs["user_agent"] = s.browser_user_agent
-        proxy = EgressProxy(self.policy, upstream=s.browser_proxy)
+        proxy = EgressProxy(self.policy, upstream=s.browser_proxy, pin_upstream=s.browser_proxy_pin_ip)
         await proxy.__aenter__()
         ctx_kwargs["proxy"] = {"server": proxy.url, "bypass": "<-loopback>"}
         guard = _PageGuard(self.policy, s.max_requests_per_page)
@@ -324,7 +358,7 @@ class BrowserCollector:
                 return
 
             ev.status = CollectionStatus.OK
-            raw = await page.evaluate(EXTRACT_JS)
+            raw = await page.evaluate(EXTRACT_JS, s.max_text_chars)  # truncated in-page (memory bound)
             raw["visible_text"] = (raw.get("visible_text") or "")[: s.max_text_chars]
             ev.page = PageData.model_validate(raw)
             if ev.http_status and ev.http_status >= 400:
@@ -346,9 +380,19 @@ class BrowserCollector:
                         " document.documentElement.scrollHeight)"
                     )
                 )
-                shot_kwargs: dict[str, Any] = {"type": "png", "full_page": True, "animations": "disabled"}
+                # Always clip: a page that grows while being captured cannot exceed the cap.
+                shot_kwargs: dict[str, Any] = {
+                    "type": "png",
+                    "full_page": True,
+                    "animations": "disabled",
+                    "clip": {
+                        "x": 0,
+                        "y": 0,
+                        "width": s.viewport_width,
+                        "height": max(1, min(height, s.max_fullpage_height)),
+                    },
+                }
                 if height > s.max_fullpage_height:
-                    shot_kwargs["clip"] = {"x": 0, "y": 0, "width": s.viewport_width, "height": s.max_fullpage_height}
                     ev.not_inspected.append(
                         f"screenshot completo limitado a {s.max_fullpage_height}px "
                         f"(página com {height}px); texto integral preservado em text.txt"
@@ -359,8 +403,13 @@ class BrowserCollector:
                 ev.not_inspected.append("screenshot da página completa indisponível")
                 if ev.status == CollectionStatus.OK:
                     ev.status = CollectionStatus.PARTIAL
-            html = (await page.content()).encode("utf-8", errors="replace")
-            if len(html) > s.max_html_bytes:
+            total, head = await page.evaluate(
+                "(n) => { const d = document.documentElement; const h = d ? d.outerHTML : '';"
+                " return [h.length, h.slice(0, n)]; }",
+                s.max_html_bytes,
+            )
+            html = str(head).encode("utf-8", errors="replace")
+            if int(total) > s.max_html_bytes or len(html) > s.max_html_bytes:
                 ev.errors.append(f"HTML truncated to {s.max_html_bytes} bytes")
                 html = html[: s.max_html_bytes]
             await self._write(out_dir / "page.html.txt", html)

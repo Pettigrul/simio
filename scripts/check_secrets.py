@@ -30,13 +30,20 @@ CONTENT_PATTERNS = {
         r"(?i)\b[\w-]*(api[_-]?key|secret|token|password|passwd)\b\s*[:=]\s*['\"][A-Za-z0-9_\-./+=]{16,}['\"]"
     ),
     "env-secret-value": re.compile(r"(?m)^\s*SIMIO_\w*(API_KEY|TOKEN|SECRET)\s*=\s*\S+"),
+    "credentialed-url": re.compile(r"(?i)\b[a-z][a-z0-9+.\-]*://[^/\s:@'\"<>]+:[^/\s@'\"<>]{3,}@[\w.\-]+"),
+    "api-key-header": re.compile(r"(?i)[\"']x-(?:api-key|subscription-token)[\"']\s*:\s*[\"'][^\"'{}\s]{8,}[\"']"),
+    "basic-auth-header": re.compile(
+        r"(?i)authorization[\"']?\s*[:=]\s*[\"']?(?:basic|bearer)\s+[A-Za-z0-9+/=._\-]{12,}"
+    ),
 }
 FORBIDDEN_NAMES = re.compile(
-    r"(?i)(^|/)(\.env(\.(?!example$)[^/]*)?|application_default_credentials\.json|adc\.json|"
+    r"(?i)(^|/)([^/]*\.env(\.(?!example$)[^/]*)?|application_default_credentials\.json|adc\.json|"
     r"[^/]*service[-_]?account[^/]*\.json|[^/]*credentials[^/]*\.json|[^/]*\.(pem|key|p12|pfx|db|sqlite3?|"
     r"xlsx|jsonl|log)|coban_registry[^/]*\.csv)$"
 )
 ALLOWED_BINARY_DIRS = ("tests/fixtures/",)
+ALLOW_PRAGMA = "pragma: allowlist secret"
+ALLOW_PRAGMA_DIRS = ("tests/",)  # the pragma is honoured only in test code
 DATA_DIRS = re.compile(r"(^|/)(output|outputs|evidence|reports|dossiers|registry)/")
 
 
@@ -51,6 +58,9 @@ def scan_text(name: str, text: str) -> list[str]:
             if name.endswith("check_secrets.py") or (name.endswith(".env.example") and label == "env-secret-value"):
                 continue
             line = text.count("\n", 0, m.start()) + 1
+            line_text = text.splitlines()[line - 1] if text else ""
+            if ALLOW_PRAGMA in line_text and name.startswith(ALLOW_PRAGMA_DIRS):
+                continue  # synthetic test fixture, explicitly marked
             hits.append(f"{name}:{line}: possible {label}")
     return hits
 

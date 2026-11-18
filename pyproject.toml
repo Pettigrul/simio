@@ -54,7 +54,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S", "PTH", "ASYNC"]
+"tests/**" = ["S", "PTH", "ASYNC", "E501"]  # long synthetic fixture lines
 "scripts/**" = ["S603", "S607"]
 
 [tool.mypy]
