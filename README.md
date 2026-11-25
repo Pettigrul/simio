@@ -102,7 +102,13 @@ A logo antiga do BV (**B vermelho sobre V azul**) não pode ser usada por tercei
 | **Gemini multimodal** | Preenche o campo `legacy_visual_identity` ao ver a logo nos prints. |
 | **Busca reversa de imagem (H12)** | Traz páginas que publicam imagem parecida com a logo antiga. |
 
-Com a logo antiga detectada, o caso fica no mínimo em `REVIEW_REQUIRED` com prioridade `HIGH`, **mesmo se o revisor sugerir descartar**. O Excel e o relatório HTML marcam "LOGO ANTIGA".
+Com a logo antiga detectada, o caso fica no mínimo em `REVIEW_REQUIRED` com prioridade `HIGH`, **mesmo se o revisor sugerir descartar**. O Excel e o relatório HTML marcam "LOGO ANTIGA", e a aba **"Logo antiga"** do Excel lista cada achado com o recorte da imagem.
+
+**Campanha focada** só nessa questão:
+```bash
+python -m simio hunt --brand bv --focus logo-antiga --limit 1000 --workers 5
+```
+Busca própria (vitrines de "bancos parceiros", páginas de financiamento, energia solar, consignado e uma busca por estado), busca reversa de imagem e os COBANs do cadastro. Só vão aos modelos as páginas em que a comparação de imagem achou a logo ou que têm imagem com o nome da marca no arquivo (ex.: `logo-bv-financeira.png`); as demais são encerradas sem custo de IA.
 
 ### <img src="assets/icones/validado.svg" width="20" height="20" valign="middle"> 3.5. Busca complementar guiada por COBANs (H9)
 Opcional e sempre **depois** da varredura aberta. Pesquisa o nome de correspondentes cadastrados junto com a marca para identificar **qual COBAN** está usando a marca de forma indevida. A seleção começa pelos cadastros mais recentes e muda a cada campanha, até percorrer toda a base. Nomes de MEI com CPF nunca são pesquisados (LGPD).

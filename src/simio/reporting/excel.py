@@ -140,8 +140,83 @@ GLOSSARY: list[list[str]] = [
 ]
 
 
+LEGACY_LOGO_SHEET = "Logo antiga"
+_CROP_ROW_HEIGHT = 64
+
+
+def _legacy_logo_sheet(
+    wb: Workbook, records: list[CandidateRecord], dossier_paths: dict[str, str], crops: dict[str, str]
+) -> None:
+    """One row per page where the discontinued logo was found (model and/or image comparison)."""
+    rows: list[list[Any]] = []
+    images: list[tuple[int, str]] = []
+    for r in records:
+        f, b, idn = r.final, r.brand, r.identity
+        if f is None or not f.legacy_visual_identity:
+            continue
+        matches = b.visual_matches if b else []
+        best = max(matches, key=lambda m: m.score) if matches else None
+        reg = idn.registry_match.record if idn and idn.registry_match else {}
+        rows.append(
+            [
+                "",
+                r.candidate.registrable_domain,
+                r.candidate.url,
+                f.classification.value,
+                f.priority.value,
+                f.legacy_visual_identity_source,
+                "sim" if b and b.legacy_logo_exempt else "não",
+                best.score if best else "",
+                (f"{best.screenshot_ref} x={best.bbox[0]} y={best.bbox[1]} {best.bbox[2]}x{best.bbox[3]}px")
+                if best
+                else "",
+                ("sim" if best.above_fold else "não") if best else "",
+                "\n".join(dict.fromkeys(m.image_src for m in matches if m.image_src)),
+                idn.classification.value if idn else "",
+                f"{reg.get('nome', '')} ({reg.get('cnpj', '')})" if reg else "",
+                crops.get(r.candidate.id, ""),
+                dossier_paths.get(r.candidate.id, ""),
+            ]
+        )
+        if r.candidate.id in crops:
+            images.append((len(rows) + 1, crops[r.candidate.id]))
+    headers = [
+        "Recorte",
+        "Domínio",
+        "URL",
+        "Classificação",
+        "Prioridade",
+        "Origem da detecção",
+        "Site de referência (não eleva)",
+        "Similaridade (comparação de imagem)",
+        "Onde (print e posição)",
+        "Acima da dobra",
+        "Imagem na página",
+        "Identidade atribuída",
+        "Cadastro de correspondentes",
+        "Arquivo do recorte",
+        "Dossiê",
+    ]
+    _sheet(wb, LEGACY_LOGO_SHEET, headers, rows, {1: 24, 3: 60, 6: 30, 9: 34, 11: 60, 13: 40, 14: 50}, fill_col=3)
+    ws = wb[LEGACY_LOGO_SHEET]
+    for row, crop in images:
+        try:
+            img = OpenpyxlImage(crop)
+            scale = min(160 / img.width, (_CROP_ROW_HEIGHT * 1.3) / img.height, 1.0)
+            img.width, img.height = int(img.width * scale), int(img.height * scale)
+            ws.row_dimensions[row].height = _CROP_ROW_HEIGHT
+            ws.add_image(img, f"A{row}")
+        except Exception:  # noqa: S112 - a missing/broken crop must not break the report
+            continue
+
+
 def write_workbook(
-    path: Path, storage: Storage, campaign_id: str, records: list[CandidateRecord], dossier_paths: dict[str, str]
+    path: Path,
+    storage: Storage,
+    campaign_id: str,
+    records: list[CandidateRecord],
+    dossier_paths: dict[str, str],
+    logo_crops: dict[str, str] | None = None,
 ) -> Path:
     camp = storage.get_campaign(campaign_id) or {}
     wb = Workbook()
@@ -268,6 +343,9 @@ def write_workbook(
         if r.final and r.final.classification.value == "STRONG_INDICATION"
     ]
     _sheet(wb, "Strong Indications", cand_headers, strong, widths, fill_col=9)
+    if any(r.final and r.final.legacy_visual_identity for r in records):
+        _legacy_logo_sheet(wb, records, dossier_paths, logo_crops or {})
+        wb.move_sheet(LEGACY_LOGO_SHEET, offset=-(len(wb.sheetnames) - 2))
 
     id_rows = []
     for r in records:

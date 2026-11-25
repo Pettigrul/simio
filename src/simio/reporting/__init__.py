@@ -6,11 +6,12 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 
+from simio.agents.visual import crop_match
 from simio.brands import load_brand
 from simio.config import Settings
 from simio.core.storage import Storage
 from simio.reporting.campaign_html import write_campaign_html
-from simio.reporting.data import load_records
+from simio.reporting.data import CandidateRecord, load_records
 from simio.reporting.dossier import write_dossiers
 from simio.reporting.excel import write_workbook
 from simio.reporting.pdf import generate_campaign_pdf
@@ -23,6 +24,27 @@ class ReportResult:
     pdf_report: Path | None
     dossiers: dict[str, str]
     report_dir: Path
+
+
+def write_legacy_logo_crops(records: list[CandidateRecord], campaign_dir: Path, report_dir: Path) -> dict[str, str]:
+    """PNG cut-outs of the best legacy-logo match of each page (``<report>/logo-antiga/``)."""
+    out: dict[str, str] = {}
+    for r in records:
+        matches = r.brand.visual_matches if r.brand else []
+        if not matches or r.evidence is None:
+            continue
+        best = max(matches, key=lambda m: m.score)
+        try:
+            crop = crop_match(r.evidence, campaign_dir, best)
+        except OSError:
+            continue
+        if crop is None:
+            continue
+        path = report_dir / "logo-antiga" / f"{r.candidate.id}-{r.candidate.registrable_domain}.png"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        crop.save(path)
+        out[r.candidate.id] = str(path)
+    return out
 
 
 def generate_reports(
@@ -39,7 +61,8 @@ def generate_reports(
 
     # 1. Excel Workbook (.xlsx)
     workbook_path = report_dir / f"simio-{campaign_id}-{stamp}.xlsx"
-    workbook = write_workbook(workbook_path, storage, campaign_id, records, dossiers)
+    crops = write_legacy_logo_crops(records, settings.output_dir / "campaigns" / campaign_id, report_dir)
+    workbook = write_workbook(workbook_path, storage, campaign_id, records, dossiers, crops)
 
     # 2. Consolidated Campaign HTML Report (.html)
     html_report_path = report_dir / f"simio-{campaign_id}-{stamp}.html"

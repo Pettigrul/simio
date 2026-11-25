@@ -28,11 +28,18 @@ from typing import Any, Protocol
 
 from simio.agents.brand import BrandAnalyst
 from simio.agents.compliance import ComplianceAnalyst, RequirementCatalog
-from simio.agents.discovery import DiscoveryAgent, coban_hypotheses, deduplicate, prioritise, summarize_queries
+from simio.agents.discovery import (
+    FOCUS_LEGACY_LOGO,
+    DiscoveryAgent,
+    coban_hypotheses,
+    deduplicate,
+    prioritise,
+    summarize_queries,
+)
 from simio.agents.evidence import EvidenceAgent, build_catalog, compute_signals
 from simio.agents.identity import CobanRegistry, IdentityAgent
 from simio.agents.reviewer import Reviewer
-from simio.agents.visual import Reference, detect_legacy_logo, load_reference
+from simio.agents.visual import Reference, detect_legacy_logo, legacy_logo_hints, load_reference
 from simio.brands import BrandProfile, load_brand
 from simio.collectors.browser import BrowserCollector
 from simio.config import DISCOVERY_SOURCES, Settings
@@ -42,11 +49,15 @@ from simio.core.models import (
     ComplianceAssessment,
     DiscoveryHit,
     Evidence,
+    EvidenceSufficiency,
     FinalClassification,
     IdentityAttribution,
+    Level,
+    Priority,
     QueryRecord,
     Review,
     ReviewDecision,
+    ScenarioCase,
     VisualMatch,
 )
 from simio.core.models import (
@@ -70,6 +81,13 @@ from simio.security.url_policy import UrlPolicy
 log = logging.getLogger(__name__)
 
 
+FOCUS_NOTE = (
+    "campanha focada na identidade visual antiga: a comparação de imagem não encontrou o logotipo antigo "
+    "e nenhuma imagem da página tem o nome da marca; a página não foi enviada aos modelos"
+)
+FOCUS_LIMITATION = "campanha focada (logo antiga): os demais aspectos de uso da marca não foram avaliados"
+
+
 class Collector(Protocol):
     async def collect(self, candidate_id: str, url: str, attempt: int, campaign_dir: Path) -> Evidence: ...
 
@@ -81,6 +99,8 @@ class HuntOptions:
     sources: list[str] = field(default_factory=lambda: list(DISCOVERY_SOURCES))
     imported: list[DiscoveryHit] = field(default_factory=list)
     review_all: bool = False
+    # Focused campaign (discovery.FOCUS_MODES), e.g. "logo-antiga": only that question is investigated.
+    focus: str | None = None
 
 
 @dataclass
@@ -177,6 +197,7 @@ class Orchestrator:
             "sources": opts.sources,
             "offline": self.settings.offline,
             "review_all": opts.review_all,
+            "focus": opts.focus,
             "analysis_model": self.settings.analysis_model,
             "review_model": self.settings.effective_review_model,
             "discovery_model": self.settings.effective_discovery_model,
@@ -202,7 +223,7 @@ class Orchestrator:
         async with self._campaign_run(campaign_id):
             gateway = self._gateway(campaign_id)
             await self._discover(campaign_id, brand, gateway, opts)
-            return await self._process(campaign_id, brand, gateway, opts.review_all)
+            return await self._process(campaign_id, brand, gateway, opts.review_all, opts.focus)
 
     RESUMABLE_PARAMS = (
         "offline",
@@ -258,9 +279,12 @@ class Orchestrator:
                     sources=params["sources"],
                     review_all=params.get("review_all", False),
                     imported=imported,
+                    focus=params.get("focus"),
                 )
                 await self._discover(campaign_id, brand, gateway, opts)
-            return await self._process(campaign_id, brand, gateway, params.get("review_all", False))
+            return await self._process(
+                campaign_id, brand, gateway, params.get("review_all", False), params.get("focus")
+            )
 
     @asynccontextmanager
     async def _campaign_run(self, campaign_id: str) -> AsyncIterator[None]:
@@ -314,6 +338,7 @@ class Orchestrator:
             max_queries=self.settings.max_search_queries,
             already_done=done,
             extra_hypotheses=coban_hyps,
+            focus=opts.focus,
         )
         partial = [
             DiscoveryHit.model_validate(h)
@@ -422,7 +447,12 @@ class Orchestrator:
 
     # ------------------------------------------------------------------ processing
     async def _process(
-        self, campaign_id: str, brand: BrandProfile, gateway: LLMGateway | None, review_all: bool
+        self,
+        campaign_id: str,
+        brand: BrandProfile,
+        gateway: LLMGateway | None,
+        review_all: bool,
+        focus: str | None = None,
     ) -> RunSummary:
         s = self.settings
         cdir = self.campaign_dir(campaign_id)
@@ -462,6 +492,7 @@ class Orchestrator:
                     compliance,
                     review_all,
                     self._legacy_logo_references(brand),
+                    focus,
                 )
 
                 async def worker(cid: str) -> None:
@@ -508,6 +539,20 @@ class Orchestrator:
             {"status": status, "counts": counts, "llm_requests": req, "llm_tokens": tok},
         )
         return RunSummary(campaign_id, status, counts, diagnostics, req, tok)
+
+    @staticmethod
+    def _focus_assessment(ev: Evidence) -> BrandAssessment:
+        usable = ev.usable
+        return BrandAssessment(
+            case=ScenarioCase.NOT_RELEVANT if usable else ScenarioCase.E_INSUFFICIENT_EVIDENCE,
+            classification=FinalClassification.NO_INDICATION if usable else FinalClassification.INCONCLUSIVE,
+            priority=Priority.LOW,
+            extraction_confidence=Level.HIGH if usable else Level.LOW,
+            evidence_sufficiency=EvidenceSufficiency.SUFFICIENT if usable else EvidenceSufficiency.INSUFFICIENT,
+            analyzer=f"focus:{FOCUS_LEGACY_LOGO}",
+            reasoning_summary=FOCUS_NOTE if usable else "coleta sem conteúdo utilizável",
+            guardrail_notes=[FOCUS_NOTE],
+        )
 
     def _fail_safely(self, cid: str, note: str) -> None:
         cand = self.storage.get_candidate(cid)
@@ -608,6 +653,24 @@ class Orchestrator:
                 identity.classification.value,
                 {"entity_key": identity.entity_key, "confidence": identity.attribution_confidence.value},
             )
+
+            if ctx.focus == FOCUS_LEGACY_LOGO and not visual and not legacy_logo_hints(ev):
+                # Focused campaign: no sign of the legacy logo, settle without spending on the models.
+                stage = "final"
+                assessment = self._focus_assessment(ev)
+                st.save_assessment(cid, "brand", assessment, ev_id)
+                comp = ctx.compliance.assess(assessment, identity, bool(signals.ouvidoria))
+                st.save_assessment(cid, "compliance", comp, ev_id)
+                final = compose_final(cid, assessment, None, identity, comp, ev)
+                final.limitations.append(FOCUS_LIMITATION)
+                st.save_assessment(cid, "final", final, ev_id)
+                st.log_decision(
+                    ctx.campaign_id, cid, "orchestrator", f"final:{final.classification.value}", {"focus": ctx.focus}
+                )
+                target = S.INCONCLUSIVE if final.classification == FinalClassification.INCONCLUSIVE else S.COMPLETED
+                st.transition(cid, target)
+                st.reset_attempts(cid)
+                return True
 
             stage = "brand"
             assessment = st.get_assessment(cid, "brand", BrandAssessment, evidence_id=ev_id)
@@ -729,3 +792,4 @@ class _Ctx:
     compliance: ComplianceAnalyst
     review_all: bool
     legacy_logos: list[Reference] = field(default_factory=list)
+    focus: str | None = None

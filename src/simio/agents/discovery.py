@@ -498,6 +498,86 @@ def build_hypotheses(brand: BrandProfile) -> list[SearchHypothesis]:
     return hs
 
 
+# Focused campaigns (``simio hunt --focus``): only one question is investigated.
+FOCUS_LEGACY_LOGO = "logo-antiga"
+FOCUS_MODES = (FOCUS_LEGACY_LOGO,)
+# Connectors used by a focused campaign when the operator does not choose them.
+FOCUS_DEFAULT_SOURCES = {FOCUS_LEGACY_LOGO: ("serper", "lens")}
+# Connectors that never contribute to a focused campaign (domain-level discovery without page content).
+_FOCUS_SKIPPED = {FOCUS_LEGACY_LOGO: {"typosquat", "crtsh", "urlscan"}}
+
+
+def build_legacy_logo_hypotheses(brand: BrandProfile) -> list[SearchHypothesis]:
+    """Focused campaign on the *legacy* logo: pages where third parties show the brand's logo as an
+    image. Search engines index text, not logos, so the queries target the text that surrounds a
+    partner-bank showcase (dealers, solar integrators, credit brokers) in every state; the reverse
+    image search (``lens``) complements them with pages that never write the brand name."""
+    name = brand.display_name
+    alt = next((t for t in brand.strong_terms if t.lower() != name.lower()), name)
+    excl = " ".join(f"-site:{d}" for d in brand.official_domains)
+    ex = f"{excl} -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br"
+    hs: list[SearchHypothesis] = []
+
+    def add_h(hid: str, desc: str, dorks: list[str]) -> None:
+        hs.append(
+            SearchHypothesis(
+                id=hid, description=desc, grounding_prompt=_dork_grounding_prompt(desc, dorks), keyword_queries=dorks
+            )
+        )
+
+    add_h(
+        "H13-legacy-focus:vitrine-multibanco",
+        "Lojas que exibem os logotipos dos bancos/financeiras parceiros (vitrine multibanco)",
+        [
+            f'"bancos parceiros" "{alt}" {ex}',
+            f'"bancos parceiros" "{name}" {ex}',
+            f'"financeiras parceiras" ("{alt}" OR "{name}") {ex}',
+            f'"trabalhamos com" ("{alt}" OR "{name}") financiamento {ex}',
+            f'"nossos parceiros" "{alt}" financiamento {ex}',
+            f'"{alt}" "Santander" "Itaú" financiamento seminovos {ex}',
+            f'"{alt}" "Banco Pan" "Bradesco" financiamento {ex}',
+            f'"{alt}" "Safra" "Santander" financiamento veículos {ex}',
+            f'"{name}" "Banco Pan" "Santander" financiamento loja {ex}',
+        ],
+    )
+    add_h(
+        "H13-legacy-focus:paginas-financiamento",
+        "Páginas de financiamento de revendas de veículos, motos e caminhões citando a marca",
+        [
+            f'inurl:financiamento "{alt}" {ex}',
+            f'inurl:financie ("{alt}" OR "BV") "Santander" {ex}',
+            f'"{alt}" financiamento seminovos "simule" loja {ex}',
+            f'"{alt}" motos financiamento revenda {ex}',
+            f'"{alt}" caminhões financiamento {ex}',
+        ],
+    )
+    add_h(
+        "H13-legacy-focus:energia-solar",
+        "Integradores de energia solar com financiamento pela marca",
+        [
+            f'"{alt}" "energia solar" financiamento parceiros {ex}',
+            f'"BV" "Solfácil" "Santander" energia solar {ex}',
+            f'"{alt}" financiamento "placas solares" {ex}',
+        ],
+    )
+    add_h(
+        "H13-legacy-focus:credito-consignado",
+        "Correspondentes e promotoras de crédito/consignado exibindo a marca",
+        [
+            f'"{alt}" consignado correspondente {ex}',
+            f'"{alt}" empréstimo "correspondente bancário" {ex}',
+            f'"{name}" refinanciamento correspondente {ex}',
+        ],
+    )
+    for region, states in BR_REGIONS.items():
+        add_h(
+            f"H13-legacy-focus:regiao-{region}",
+            f"Revendas e lojas com financiamento pela marca na região {region}",
+            [f'"{alt}" financiamento veículos "{uf}" {ex}' for uf in states],
+        )
+    return hs
+
+
 _LEGAL_SUFFIX_RE = re.compile(
     r"(?i)(?<![\w])(?:ltda|limitada|me|epp|eireli|s\s*/\s*a|s\.?\s*a\.?|sociedade an[oô]nima|"
     r"sociedade simples|ss)(?![\w])\.?|&\s*(?:cia|companhia)\.?|(?<![\w])(?:cia|companhia)\.?\s*$"
@@ -611,14 +691,21 @@ class DiscoveryAgent:
     already_done: set[tuple[str, str]] = field(default_factory=set)
     # Extra hypotheses appended after the open-web ones (e.g. H9 COBAN-seeded searches).
     extra_hypotheses: list[SearchHypothesis] = field(default_factory=list)
+    # Focused campaign (FOCUS_MODES): its own hypotheses replace the open-web sweep.
+    focus: str | None = None
 
     def plan(self, available: list[Connector]) -> list[PlannedQuery]:
         """Interleave hypotheses across connectors so a small budget still diversifies."""
-        hyps = build_hypotheses(self.brand) + list(self.extra_hypotheses)
+        focused = self.focus == FOCUS_LEGACY_LOGO
+        base = build_legacy_logo_hypotheses(self.brand) if focused else build_hypotheses(self.brand)
+        hyps = base + list(self.extra_hypotheses)
+        skipped = _FOCUS_SKIPPED.get(self.focus or "", set())
         per_connector: list[list[PlannedQuery]] = []
         for conn in available:
             plans: list[PlannedQuery] = []
-            if conn.name == "grounding":
+            if conn.name in skipped:
+                self.diagnostics.append(f"{conn.name}: not used in a focused campaign ({self.focus})")
+            elif conn.name == "grounding":
                 plans = [PlannedQuery(conn.name, h, h.grounding_prompt) for h in hyps]
             elif conn.name == "urlscan":
                 h = SearchHypothesis(
@@ -687,7 +774,9 @@ class DiscoveryAgent:
             return outcome
 
         states = {c.name: _ConnectorState(c) for c in available}
-        for planned in self.plan(available):
+        planned_queries = self.plan(available)
+        outcome.diagnostics.extend(self.diagnostics)
+        for planned in planned_queries:
             st = states[planned.connector]
             if st.disabled:
                 continue

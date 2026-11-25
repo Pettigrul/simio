@@ -226,3 +226,20 @@ def test_reference_site_records_the_logo_without_raising_the_case(tmp_path: Path
     comp = ComplianceAnalyst(RequirementCatalog.load()).assess(a, idn, False)
     f = compose_final("C1", a, None, idn, comp, ev)
     assert f.classification == C.NO_INDICATION and f.legacy_visual_identity
+
+
+def test_lens_discovery_snippet_is_not_a_page_fact() -> None:
+    from simio.core.models import DiscoveryHit
+
+    hit = DiscoveryHit(
+        source="lens",
+        original_url="https://loja.example/",
+        title="Loja",
+        snippet="Imagem visualmente semelhante ao logotipo antigo (fonte: Loja)",
+        hypothesis_id="H12-legacy-logo:lens",
+        query="https://img.example/bv.png",
+    )
+    ev = make_evidence(title="Loja")
+    cat = build_catalog(ev, BRAND, discovery_hits=[hit])
+    sig = compute_signals(ev, BRAND, cat)  # used to raise UnboundLocalError (E-DISC item first)
+    assert not sig.legacy_logo_markers

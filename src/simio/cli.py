@@ -90,8 +90,19 @@ def hunt(
     max_llm_requests: Annotated[int | None, typer.Option(min=0, help="Orçamento de requisições LLM")] = None,
     max_tokens: Annotated[int | None, typer.Option(min=0, help="Orçamento de tokens LLM")] = None,
     sources: Annotated[
-        str, typer.Option(help=f"Fontes de descoberta, separadas por vírgula ({','.join(DISCOVERY_SOURCES)})")
-    ] = ",".join(DISCOVERY_SOURCES),
+        str | None,
+        typer.Option(
+            help=f"Fontes de descoberta, separadas por vírgula ({','.join(DISCOVERY_SOURCES)}). "
+            "Padrão: todas; com --focus logo-antiga: serper,lens"
+        ),
+    ] = None,
+    focus: Annotated[
+        str | None,
+        typer.Option(
+            help="Campanha focada em uma única questão. 'logo-antiga': só a identidade visual descontinuada "
+            "(busca própria; só páginas com indício da logo vão aos modelos)"
+        ),
+    ] = None,
     urls_file: Annotated[
         Path | None, typer.Option(exists=True, dir_okay=False, help="Importar URLs de arquivo (.txt/.csv)")
     ] = None,
@@ -129,6 +140,13 @@ def hunt(
             fg="red",
             err=True,
         )
+    from simio.agents.discovery import FOCUS_DEFAULT_SOURCES, FOCUS_MODES
+
+    if focus is not None and focus not in FOCUS_MODES:
+        typer.secho(f"Foco desconhecido: {focus} (opções: {', '.join(FOCUS_MODES)})", fg="red", err=True)
+        raise typer.Exit(2)
+    if sources is None:
+        sources = ",".join(FOCUS_DEFAULT_SOURCES[focus] if focus else DISCOVERY_SOURCES)
     src = [x.strip() for x in sources.split(",") if x.strip()]
     unknown = [x for x in src if x not in DISCOVERY_SOURCES]
     if unknown:
@@ -146,7 +164,11 @@ def hunt(
     try:
         orch = Orchestrator(s, storage)
         summary = asyncio.run(
-            orch.hunt(HuntOptions(brand=brand, limit=limit, sources=src, imported=imported, review_all=review_all))
+            orch.hunt(
+                HuntOptions(
+                    brand=brand, limit=limit, sources=src, imported=imported, review_all=review_all, focus=focus
+                )
+            )
         )
         report = None if no_report else generate_reports(s, storage, summary.campaign_id)
         _print_summary(summary, report)

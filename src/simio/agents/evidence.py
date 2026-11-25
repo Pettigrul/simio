@@ -513,11 +513,11 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
             continue
         if item.kind in ("screenshot", "network", "domain"):
             continue
+        # Do not count synthetic meta-descriptions inside E-DISC snippets ("sem exibir razão social /
+        # correspondente bancário", "semelhante ao logotipo antigo") as facts observed on the page.
+        is_disc = item.ref.startswith("E-DISC-")
         if LEGACY_LOGO_RE.search(text) and not is_disc:
             sig.legacy_logo_markers.append(Hit(LEGACY_LOGO_RE.search(text).group(0), item.ref))  # type: ignore[union-attr]
-        # Do not count synthetic meta-descriptions inside E-DISC snippets ("sem exibir razão social /
-        # correspondente bancário") as actual correspondent disclosures on the page.
-        is_disc = item.ref.startswith("E-DISC-")
         for sentence in sentences(text):
             claims = brand.official_claims(sentence)
             if claims:

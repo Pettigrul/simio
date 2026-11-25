@@ -20,9 +20,11 @@ multimodal analyst sees, and a safety net when the analyst misses a small logo.
 from __future__ import annotations
 
 import math
+import re
 from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 import numpy as np
 from PIL import Image
@@ -294,3 +296,45 @@ def detect_legacy_logo(
         if len(out) >= max_matches:
             break
     return out
+
+
+# ---------------------------------------------------------------------------------------------
+# Hints and crops (focused legacy-logo campaigns and reports)
+# ---------------------------------------------------------------------------------------------
+_HINT_FILE_RE = re.compile(
+    r"(?i)(?:^|[^a-z0-9])(?:bv|bancobv|bvfinanceira|votorantim)(?:[^a-z0-9]|$)|banco[-_ ]?bv|bv[-_ ]?financeira"
+)
+_HINT_ALT_RE = re.compile(
+    r"(?i)^\s*(?:logo(?:tipo|marca)?\s*(?:do|da)?\s*)?(?:banco\s+)?(?:bv|votorantim)(?:\s+financeira)?"
+    r"(?:\s+logo(?:tipo)?)?\s*$|\blogo\w*\b.{0,25}\bbv\b|\bbv\b.{0,25}\blogo"
+)
+
+
+def legacy_logo_hints(ev: Evidence) -> list[str]:
+    """Visible ``<img>`` elements whose file name or short alt text names the brand (``logo-bv-financeira.png``,
+    ``bv.png``, alt="BV"). The brand's logo is on the page in *some* form that the colour comparison may not
+    confirm (grayscale partner carousel, logo over a crimson background), so a focused campaign still sends
+    the page to the multimodal analyst."""
+    out: list[str] = []
+    for im in ev.page.images if ev.page else []:
+        if im.width < MIN_SIDE_PX or im.height < MIN_SIDE_PX:
+            continue
+        name = unquote(urlsplit(im.src or "").path.rsplit("/", 1)[-1])
+        if _HINT_FILE_RE.search(name) or _HINT_ALT_RE.search(im.alt or ""):
+            out.append(im.src or im.alt or "")
+    return list(dict.fromkeys(out))
+
+
+def crop_match(ev: Evidence, campaign_dir: Path, match: VisualMatch, pad: float = 0.6) -> Image.Image | None:
+    """The matched region (with context around it) cut from the hashed screenshot, for reports."""
+    kind = {"E-SHOT-VIEWPORT": "screenshot_viewport", "E-SHOT-FULL": "screenshot_full"}.get(match.screenshot_ref)
+    art = ev.artifact(kind) if kind else None
+    path = campaign_dir / art.path if art else None
+    if path is None or not path.is_file():
+        return None
+    x, y, w, h = match.bbox
+    m = int(max(w, h) * pad)
+    with Image.open(path) as raw:
+        return raw.convert("RGB").crop(
+            (max(0, x - m), max(0, y - m), min(raw.width, x + w + m), min(raw.height, y + h + m))
+        )
