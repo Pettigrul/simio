@@ -13,7 +13,7 @@ from typing import Annotated
 from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
-DISCOVERY_SOURCES = ("grounding", "brave", "serper", "urlscan", "crtsh", "typosquat")
+DISCOVERY_SOURCES = ("grounding", "brave", "serper", "urlscan", "crtsh", "typosquat", "lens")
 
 
 class Settings(BaseSettings):

@@ -13,7 +13,7 @@ from pathlib import Path
 
 from simio.brands import BrandProfile, fold, sentences
 from simio.collectors.browser import BrowserCollector
-from simio.core.models import DiscoveryHit, Evidence, EvidenceItem, ImageInfo
+from simio.core.models import DiscoveryHit, Evidence, EvidenceItem, ImageInfo, VisualMatch
 from simio.core.urls import domain_matches, hostname_of
 
 # ---------------------------------------------------------------------------------- regexes
@@ -123,9 +123,25 @@ def build_catalog(
     brand: BrandProfile,
     max_text_items: int = 60,
     discovery_hits: list[DiscoveryHit] | None = None,
+    visual_matches: list[VisualMatch] | None = None,
 ) -> list[EvidenceItem]:
     items: list[EvidenceItem] = []
     add = items.append
+    for i, m in enumerate(visual_matches or [], 1):
+        x, y, w, h = m.bbox
+        add(
+            EvidenceItem(
+                ref=f"E-VIS-LEGACY-{i:03d}",
+                kind="visual",
+                location="viewport" if m.above_fold else "page",
+                above_fold=m.above_fold,
+                content=(
+                    f"Comparação de imagem (determinística, sem IA): logotipo ANTIGO de {brand.display_name} "
+                    f"(B vermelho sobre V azul) em {m.screenshot_ref}, posição x={x} y={y}, {w}x{h}px, "
+                    f"similaridade {m.score:.2f}" + (f"; imagem: {m.image_src[:200]}" if m.image_src else "")
+                ),
+            )
+        )
     url = ev.final_url or ev.original_url
     add(
         EvidenceItem(
@@ -313,6 +329,7 @@ class PageSignals:
     brand_images: list[Hit] = field(default_factory=list)
     brand_images_above_fold: int = 0
     legacy_logo_markers: list[Hit] = field(default_factory=list)
+    legacy_logo_visual: list[Hit] = field(default_factory=list)  # deterministic image matches
     official_claims: list[Hit] = field(default_factory=list)
     brand_linked_claims: list[Hit] = field(default_factory=list)
     disclosures: list[Hit] = field(default_factory=list)
@@ -350,6 +367,8 @@ class PageSignals:
             f"({self.brand_images_above_fold} acima da dobra)",
             "indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.legacy_logo_markers[:5]) or "nenhum identificado"),
+            "logotipo antigo confirmado por comparação de imagem: "
+            + (", ".join(f"[{h.ref}] {h.value}" for h in self.legacy_logo_visual[:3]) or "não"),
             "expressões de oficialidade: "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.official_claims[:8]) or "nenhuma"),
             "expressões de oficialidade próximas à marca: "
@@ -487,6 +506,10 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
                     sig.brand_images_above_fold += 1
                 if LEGACY_LOGO_RE.search(text):
                     sig.legacy_logo_markers.append(Hit(text[:120], item.ref))
+            continue
+        if item.kind == "visual":
+            sig.legacy_logo_visual.append(Hit(text[text.find("em E-SHOT") :][:120], item.ref))
+            sig.legacy_logo_markers.append(Hit("logotipo antigo (comparação de imagem)", item.ref))
             continue
         if item.kind in ("screenshot", "network", "domain"):
             continue

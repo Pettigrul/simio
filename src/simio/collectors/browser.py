@@ -149,7 +149,8 @@ EXTRACT_JS = r"""
       return {
         alt: clean(img.alt || img.getAttribute('aria-label') || img.title || '').slice(0, 200),
         src: (img.currentSrc || img.src || '').slice(0, 500), location: loc(img),
-        above_fold: r.top < vh && r.bottom > 0, width: Math.round(r.width), height: Math.round(r.height)
+        above_fold: r.top < vh && r.bottom > 0, width: Math.round(r.width), height: Math.round(r.height),
+        page_x: Math.round(r.left + window.scrollX), page_y: Math.round(r.top + window.scrollY)
       };
     });
   const sectionText = sel => [...document.querySelectorAll(sel)].filter(isVisible)

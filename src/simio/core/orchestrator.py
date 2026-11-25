@@ -32,6 +32,7 @@ from simio.agents.discovery import DiscoveryAgent, coban_hypotheses, deduplicate
 from simio.agents.evidence import EvidenceAgent, build_catalog, compute_signals
 from simio.agents.identity import CobanRegistry, IdentityAgent
 from simio.agents.reviewer import Reviewer
+from simio.agents.visual import Reference, detect_legacy_logo, load_reference
 from simio.brands import BrandProfile, load_brand
 from simio.collectors.browser import BrowserCollector
 from simio.config import DISCOVERY_SOURCES, Settings
@@ -46,6 +47,7 @@ from simio.core.models import (
     QueryRecord,
     Review,
     ReviewDecision,
+    VisualMatch,
 )
 from simio.core.models import (
     CandidateStatus as S,
@@ -60,7 +62,7 @@ from simio.providers.llm import (
     LLMProvider,
     LLMUnavailable,
 )
-from simio.providers.search import BraveSearch, Connector, CrtShSearch, SerperSearch, UrlscanSearch
+from simio.providers.search import BraveSearch, Connector, CrtShSearch, LensSearch, SerperSearch, UrlscanSearch
 from simio.providers.typosquat import TyposquatConnector
 from simio.providers.vertex import VertexProvider
 from simio.security.url_policy import UrlPolicy
@@ -112,6 +114,16 @@ class Orchestrator:
         self._degraded_reason: str | None = None
 
     # ------------------------------------------------------------------ wiring
+    @staticmethod
+    def _legacy_logo_references(brand: BrandProfile) -> list[Reference]:
+        refs: list[Reference] = []
+        for path in brand.legacy_logo_paths():
+            try:
+                refs.append(load_reference(path))
+            except (OSError, ValueError) as exc:
+                log.warning("legacy logo reference ignored (%s): %s", path, exc)
+        return refs
+
     def campaign_dir(self, campaign_id: str) -> Path:
         return self.settings.output_dir / "campaigns" / campaign_id
 
@@ -147,6 +159,7 @@ class Orchestrator:
             "urlscan": UrlscanSearch(key(s.urlscan_api_key), s.http_timeout_s),
             "crtsh": CrtShSearch(s.http_timeout_s),
             "typosquat": TyposquatConnector(brand),
+            "lens": LensSearch(key(s.serper_api_key), brand.legacy_logo_search_urls, s.http_timeout_s),
         }
         return [registry[name] for name in sources if name in registry]
 
@@ -440,7 +453,15 @@ class Orchestrator:
             async with self._collector() as collector:
                 evidence_agent = EvidenceAgent(collector, cdir)
                 ctx = _Ctx(
-                    campaign_id, brand, evidence_agent, identity_agent, analyst, reviewer, compliance, review_all
+                    campaign_id,
+                    brand,
+                    evidence_agent,
+                    identity_agent,
+                    analyst,
+                    reviewer,
+                    compliance,
+                    review_all,
+                    self._legacy_logo_references(brand),
                 )
 
                 async def worker(cid: str) -> None:
@@ -567,7 +588,13 @@ class Orchestrator:
                 raise RuntimeError("no evidence stored for a COLLECTED candidate")
             ev_id, ev = latest
             disc_hits = st.discovery_hits(cid)
-            catalog = build_catalog(ev, ctx.brand, discovery_hits=disc_hits)
+            visual: list[VisualMatch] = []
+            if ctx.legacy_logos and ev.usable:
+                cdir = self.campaign_dir(ctx.campaign_id)
+                for ref in ctx.legacy_logos:
+                    visual += await asyncio.to_thread(detect_legacy_logo, ev, cdir, ref)
+                visual = sorted(visual, key=lambda m: -m.score)[:5]
+            catalog = build_catalog(ev, ctx.brand, discovery_hits=disc_hits, visual_matches=visual)
             signals = compute_signals(ev, ctx.brand, catalog)
 
             stage = "identity"
@@ -586,6 +613,7 @@ class Orchestrator:
             assessment = st.get_assessment(cid, "brand", BrandAssessment, evidence_id=ev_id)
             if assessment is None or (assessment.analyzer.startswith("heuristic") and ctx.analyst.uses_llm):
                 assessment = await ctx.analyst.analyze(ev, catalog, signals, identity)
+                assessment = assessment.model_copy(update={"visual_matches": visual})
                 st.save_assessment(cid, "brand", assessment, ev_id)
                 st.log_decision(
                     ctx.campaign_id,
@@ -700,3 +728,4 @@ class _Ctx:
     reviewer: Reviewer
     compliance: ComplianceAnalyst
     review_all: bool
+    legacy_logos: list[Reference] = field(default_factory=list)

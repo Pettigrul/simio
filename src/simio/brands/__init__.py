@@ -84,6 +84,17 @@ class BrandProfile(BaseModel):
     typosquat_seeds: list[str] = Field(default_factory=list)
     typosquat_combo_labels: list[str] = Field(default_factory=list)
     typosquat_keywords: list[str] = Field(default_factory=list)
+    # Reference images of the discontinued (legacy) logo, relative to the brands directory, compared
+    # deterministically against the screenshots (agents/visual.py).
+    legacy_logo_references: list[str] = Field(default_factory=list)
+    # Sites where the legacy logo is merely catalogued or reported (logo repositories, image banks,
+    # encyclopedias, press): the finding is recorded but does not raise the classification.
+    legacy_logo_exempt_domains: list[str] = Field(default_factory=list)
+    # Public URLs of legacy-logo images used for reverse image search (Google Lens via Serper).
+    legacy_logo_search_urls: list[str] = Field(default_factory=list)
+
+    def legacy_logo_paths(self) -> list[Path]:
+        return [p if p.is_absolute() else BRANDS_DIR / p for p in map(Path, self.legacy_logo_references)]
 
     # ------------------------------------------------------------------ compiled matchers
     @cached_property
@@ -260,6 +271,9 @@ class BrandProfile(BaseModel):
 
     def is_deprioritized(self, hostname: str) -> bool:
         return domain_matches(hostname, self.deprioritized_domains)
+
+    def is_legacy_logo_exempt(self, hostname: str) -> bool:
+        return domain_matches(hostname, self.legacy_logo_exempt_domains)
 
     def all_terms(self) -> list[str]:
         return self.strong_terms + self.weak_terms

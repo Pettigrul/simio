@@ -48,11 +48,12 @@ src/simio/
     brand.py               BrandAnalyst (Gemini multimodal + heurística offline + cross_check)
     compliance.py          Mapeamento determinístico para a Resolução CMN nº 4.935/2021 e cláusulas contratuais
     reviewer.py            Reviewer cético (LLM + desafios determinísticos de validação)
+    visual.py              Comparação de imagem sem IA: logo antiga (B vermelho + V azul) nos screenshots
   providers/
     llm.py                 LLMGateway: reserva de orçamento, semáforo de concorrência, retry e reparo de JSON
     vertex.py              Integração oficial com google-genai (Vertex AI) e Google Search Grounding
     grounding.py           Conector de descoberta via Grounding com resolução segura de redirecionamentos
-    search.py              Conectores de busca (Serper paginado, Brave, urlscan.io, crt.sh) e importadores (.txt / .csv)
+    search.py              Conectores de busca (Serper paginado, Google Lens via Serper, Brave, urlscan.io, crt.sh) e importadores
     typosquat.py           Domínios semelhantes (typo/combosquatting/troca de TLD) resolvidos por DNS (fonte `typosquat`)
     mock.py                Provedor determinístico em memória para testes automatizados
   collectors/
@@ -70,7 +71,8 @@ src/simio/
   knowledge/
     cmn_4935.toml          Texto literal dos artigos da Resolução CMN nº 4.935/2021
   brands/
-    bv.toml                Perfil da marca Banco BV (domínios, perfis sociais, CNPJs, regexes, vocabulário e sementes de typosquatting)
+    bv.toml                Perfil da marca Banco BV (domínios, perfis sociais, CNPJs, regexes, vocabulário, typosquatting e logo antiga)
+    assets/                Imagens de referência (ex.: bv_legacy_logo.png)
 scripts/
   prepare_coban_registry.py  Limpa a exportação de COBANs ativos e gera data/coban_registry_bv.csv
   check_secrets.py           Varredura de segredos na árvore e no histórico do Git
@@ -109,6 +111,7 @@ qualquer etapa em voo ──► FAILED (após SIMIO_MAX_ATTEMPTS falhas internas
 build_hypotheses(marca)  ──►  H1–H7, H10, H11   (varredura aberta, sem depender de COBANs)
 coban_hypotheses(base)   ──►  H9               (opcional, sempre no fim da fila)
 TyposquatConnector       ──►  H8               (DNS, sem acessar páginas)
+LensSearch               ──►  H12              (busca reversa da logo antiga)
                                    │
                                    ▼
              plan(): uma lista por fonte, intercaladas (zip)
@@ -125,9 +128,11 @@ TyposquatConnector       ──►  H8               (DNS, sem acessar páginas)
 | `serper` | Um dork executado literalmente, em páginas de 10 resultados (`SIMIO_SERPER_PAGES`) | 128 + até 40 de H9 |
 | `typosquat` | Uma semente (`typo:bancobv.com.br`) ou rótulo (`combo:bv`), com cerca de 1.900 domínios no total | 7 |
 | `crtsh` | Padrão de domínio da marca | 3 |
+| `lens` | URL pública de uma imagem da logo antiga (3 créditos cada) | 1 |
 
 - **Orçamento**: `SIMIO_MAX_SEARCH_QUERIES` corta a lista intercalada; 300 cobre o plano completo (cerca de 230 consultas).
 - **Retomada**: consultas já executadas na campanha são puladas no `resume`.
+- **Logo antiga na análise**: antes do `BrandAnalyst`, `visual.detect_legacy_logo()` compara os screenshots (já com hash) com as referências do perfil. Os achados entram no catálogo como `E-VIS-LEGACY-*` e a regra `apply_legacy_logo_rule()` fixa o piso `REVIEW_REQUIRED`/`HIGH`, que `compose_final()` mantém mesmo após o revisor.
 - **Rotação de COBANs**: `Storage.searched_coban_cnpjs()` guarda quais correspondentes já foram pesquisados com sucesso; a próxima campanha começa pelos que faltam.
 
 <p align="center">

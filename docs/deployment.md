@@ -113,6 +113,7 @@ SIMIO_SERPER_PAGES=1      # páginas de 10 resultados por dork (1 crédito cada)
 - **Conta gratuita**: 2.500 créditos no cadastro e no máximo 10 resultados por página. O conector já pagina de 10 em 10 e para quando uma página volta incompleta.
 - **Consumo**: cerca de 170 créditos por rodada completa com `SIMIO_SERPER_PAGES=1`.
 - **Sem chave**: o conector fica indisponível e a rodada segue só com as outras fontes.
+- **Busca reversa de imagem (`lens`)**: usa a mesma chave. As imagens pesquisadas ficam em `legacy_logo_search_urls` no `bv.toml` (3 créditos cada). Precisam ser URLs públicas que o Google consiga abrir; a da Wikimedia, por exemplo, não retorna resultados.
 
 <p align="center">
   <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">

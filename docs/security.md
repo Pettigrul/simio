@@ -81,6 +81,8 @@ O SIMIO aplica cinco defesas em profundidade:
 ## <img src="../assets/icones/busca.svg" width="22" height="22" valign="middle"> 4. Segurança da Descoberta
 
 - **Typosquatting só resolve DNS**: o conector `typosquat` nunca acessa as páginas; apenas domínios com IP público entram na fila, e daí seguem pelo mesmo `EgressProxy`. Se o DNS responder para nomes inexistentes (*NXDOMAIN hijacking*), o conector se desativa para não gerar falsos positivos.
+- **Comparação de imagem local**: a detecção da logo antiga roda sobre os screenshots já gravados com hash, sem rede e sem IA; o resultado é reproduzível a partir das evidências.
+- **Busca reversa de imagem**: envia ao Serper apenas a URL pública de uma imagem da logo antiga (nunca screenshots ou dados coletados).
 - **Links opacos não são seguidos**: resultados `google.com/goto?...` do Serper passam por uma página anti-robô do Google; eles não viram candidatos e ficam registrados (título e trecho) para conferência manual.
 - **Dados de parceiros e LGPD**:
   - A base de COBANs fica em `data/`, que o git ignora.

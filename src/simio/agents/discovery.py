@@ -634,6 +634,13 @@ class DiscoveryAgent:
                 ] or [t.replace(" ", "") for t in self.brand.strong_terms[:2]]
                 crtsh_queries = [f"%{q.strip('.%')}%" for q in raw_queries if q.strip('.%')]
                 plans = [PlannedQuery(conn.name, h, q) for q in crtsh_queries]
+            elif conn.name == "lens":
+                h = SearchHypothesis(
+                    id="H12-legacy-logo:lens",
+                    description="Páginas com imagem semelhante ao logotipo antigo (busca reversa de imagem)",
+                    grounding_prompt="",
+                )
+                plans = [PlannedQuery(conn.name, h, q) for q in getattr(conn, "queries", list)()]
             elif conn.name == "typosquat":
                 queries = conn.queries() if hasattr(conn, "queries") else []
                 plans = [
@@ -815,6 +822,9 @@ def prioritise(groups: list[CandidateGroup], brand: BrandProfile) -> list[Candid
             reasons.append(
                 f"lookalike of {lookalike.metadata.get('lookalike_of')} ({lookalike.metadata.get('fuzzer')})"
             )
+        if any(h.source == "lens" for h in g.hits):
+            score += 2
+            reasons.append("image visually similar to the legacy logo (reverse image search)")
         sources = {h.source for h in g.hits}
         hyps = {h.hypothesis_id for h in g.hits if h.hypothesis_id}
         if len(sources) > 1 or len(hyps) > 1:

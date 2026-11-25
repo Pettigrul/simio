@@ -342,7 +342,7 @@
             <span class="badge {{ row.classification }}">{{ row.classification_label }}</span>
           </td>
           <td>
-            <strong>{{ row.domain }}</strong><br>
+            <strong>{{ row.domain }}</strong>{% if row.legacy_logo %} <span class="pill priority">LOGO ANTIGA</span>{% endif %}<br>
             <span class="mono" style="color: var(--bv-text-secondary); font-size: 10px;">{{ row.url }}</span><br>
             {% if row.summary %}
             <span style="font-size: 11px; color: #4b5563;">{{ row.summary }}</span>

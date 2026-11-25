@@ -197,6 +197,10 @@ deprioritized_domains = [
   "agenciadobanco.com.br", "guiadeagenciasbancarias.com.br", "moovitapp.com", "maptons.com",
   "shopfully.com.br", "safetymails.com", "wanderboat.ai", "brandsoftheworld.com",
   "logospng.org", "brandfetch.com", "behance.net",
+  # image banks / vector stores (frequent reverse-image-search noise)
+  "shutterstock.com", "dreamstime.com", "istockphoto.com", "stock.adobe.com", "vecteezy.com",
+  "vectorstock.com", "pngtree.com", "creativefabrica.com", "magnific.com", "toppng.com", "freepik.com",
+  "pinterest.com", "fandom.com", "seeklogo.com", "worldvectorlogo.com", "iconape.com", "commons.wikimedia.org",
   "scribd.com", "issuu.com", "evef.com.br", "globo.com", "g1.globo.com", "valor.globo.com",
   "uol.com.br", "folha.uol.com.br", "estadao.com.br", "infomoney.com.br", "exame.com",
   "istoedinheiro.com.br", "prnewswire.com", "neofeed.com.br", "canalsolar.com.br",
@@ -206,6 +210,23 @@ deprioritized_domains = [
 
 # ---- Lookalike domains (typosquatting / combosquatting) -------------------------------------
 # Seeds: official domains whose label gets typo permutations (labels < 5 chars only get TLD swaps).
+# Logotipo antigo (B vermelho sobre V azul): uso proibido para terceiros, inclusive correspondentes.
+legacy_logo_references = ["assets/bv_legacy_logo.png"]
+# Sites que apenas catalogam ou noticiam a logo (repositórios de logos, bancos de imagens,
+# enciclopédias, imprensa): o achado é registrado, mas não eleva a classificação.
+# Não inclua redes sociais nem marketplaces: ali o uso por correspondente é infração.
+legacy_logo_exempt_domains = [
+  "wikipedia.org", "commons.wikimedia.org", "wikimedia.org", "brandsoftheworld.com", "logospng.org",
+  "brandfetch.com", "behance.net", "seeklogo.com", "worldvectorlogo.com", "iconape.com", "logodownload.org",
+  "logos-world.net", "1000logos.net", "shutterstock.com", "dreamstime.com", "istockphoto.com",
+  "stock.adobe.com", "vecteezy.com", "vectorstock.com", "pngtree.com", "creativefabrica.com", "magnific.com",
+  "toppng.com", "freepik.com", "pinterest.com", "fandom.com", "globo.com", "uol.com.br", "estadao.com.br",
+  "infomoney.com.br", "exame.com", "istoedinheiro.com.br", "neofeed.com.br", "prnewswire.com",
+]
+# Cópias públicas e estáveis da logo antiga usadas na busca reversa de imagem (fonte `lens`, 3 créditos Serper cada).
+# (a URL da Wikimedia não é aceita pelo Google Lens; a do logospng retorna resultados)
+legacy_logo_search_urls = ["https://logospng.org/wp-content/uploads/bv-financeira.png"]
+
 typosquat_seeds = ["bancobv.com.br", "bvfinanceira.com.br", "napista.com.br", "bv.com.br"]
 # Brand labels combined with sector keywords (bv-financiamento, bancobvacordo, feiraobv...).
 typosquat_combo_labels = ["bv", "bancobv", "bvfinanceira"]

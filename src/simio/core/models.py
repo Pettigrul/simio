@@ -203,6 +203,19 @@ class ImageInfo(Strict):
     above_fold: bool = False
     width: int = 0
     height: int = 0
+    page_x: int | None = None  # document coordinates (match the full-page screenshot)
+    page_y: int | None = None
+
+
+class VisualMatch(Strict):
+    """A region of a hashed screenshot that matches a reference logo (deterministic, no model)."""
+
+    kind: str  # "legacy_logo"
+    screenshot_ref: str  # E-SHOT-VIEWPORT | E-SHOT-FULL
+    bbox: list[int]  # x, y, width, height in screenshot pixels
+    score: float
+    image_src: str | None = None
+    above_fold: bool = False
 
 
 class PageData(Strict):
@@ -320,10 +333,16 @@ class BrandAnalysisOutput(Strict):
     extraction_confidence: Level = Level.MEDIUM
     evidence_sufficiency: EvidenceSufficiency = EvidenceSufficiency.PARTIAL
     possible_prompt_injection: bool = False
+    # The legacy brand logo (Banco BV: red "B" over a blue "V") is visible in the screenshots.
+    legacy_visual_identity: bool = False
 
 
 class BrandAssessment(BrandAnalysisOutput):
     analyzer: str  # model id or "heuristic-v1"
+    visual_matches: list[VisualMatch] = Field(default_factory=list)  # deterministic logo matches
+    legacy_visual_identity_source: str = ""  # "modelo", "comparação de imagem" or both
+    # Logo repository / image bank / press: finding recorded without the REVIEW_REQUIRED/HIGH floor.
+    legacy_logo_exempt: bool = False
     prompt_version: str | None = None
     dropped_references: list[str] = Field(default_factory=list)
     guardrail_notes: list[str] = Field(default_factory=list)
@@ -425,4 +444,6 @@ class FinalDecision(Strict):
     guardrail_notes: list[str] = Field(default_factory=list)
     routing: list[str] = Field(default_factory=list)  # suggested owner(s) of the follow-up
     compliance_summary: list[str] = Field(default_factory=list)
+    legacy_visual_identity: bool = False
+    legacy_visual_identity_source: str = ""
     decided_at: datetime = Field(default_factory=utcnow)

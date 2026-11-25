@@ -319,6 +319,21 @@ def doctor(
     for name in ("brave", "serper", "urlscan"):
         key = getattr(s, f"{name}_api_key")
         _check(f"conector {name}", True if key else None, "configurado" if key else "não configurado (opcional)")
+    try:
+        from simio.agents.visual import load_reference
+        from simio.brands import load_brand
+
+        bv = load_brand("bv", s.brand_file)
+        refs = [load_reference(p) for p in bv.legacy_logo_paths()]
+        _check(
+            "referência da logo antiga",
+            True if refs else None,
+            f"{len(refs)} imagem(ns); busca reversa (lens): {len(bv.legacy_logo_search_urls)} URL(s)"
+            if refs
+            else "não configurada (detecção por comparação de imagem desativada)",
+        )
+    except (OSError, ValueError) as exc:
+        _check("referência da logo antiga", False, str(exc)[:200])
     if s.coban_registry_path:
         _check("cadastro de correspondentes", s.coban_registry_path.is_file(), str(s.coban_registry_path))
     else:

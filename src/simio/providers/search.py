@@ -190,6 +190,63 @@ class SerperSearch(_KeywordConnector):
         return kept, record
 
 
+class LensSearch(_KeywordConnector):
+    """Reverse image search (Google Lens via serper.dev): pages showing images visually similar to a
+    public copy of the brand's *legacy* logo. Each query is an image URL (3 credits per search).
+
+    It finds pages that never write the brand name in text. Results are only leads: every page goes
+    through the normal pipeline, where the deterministic logo comparison confirms (or not) the logo."""
+
+    name = "lens"
+    endpoint = "https://google.serper.dev/lens"
+
+    def __init__(
+        self,
+        api_key: str | None,
+        image_urls: list[str],
+        timeout: float = 60.0,
+        transport: httpx.AsyncBaseTransport | None = None,
+    ) -> None:
+        super().__init__(api_key, max(timeout, 60.0), transport)
+        self.image_urls = list(image_urls)
+
+    def available(self) -> tuple[bool, str]:
+        if not self.api_key:
+            return False, "lens: Serper API key not configured (optional)"
+        if not self.image_urls:
+            return False, "lens: no legacy_logo_search_urls in the brand profile"
+        return True, f"lens: reverse image search of {len(self.image_urls)} legacy-logo image(s)"
+
+    def queries(self) -> list[str]:
+        return list(self.image_urls)
+
+    async def _request(self, query: str) -> Any:
+        async with self._http() as c:
+            r = await c.post(
+                self.endpoint,
+                json={"url": query, "gl": "br", "hl": "pt-br"},
+                headers={"X-API-KEY": self.api_key or "", "Content-Type": "application/json"},
+            )
+            if r.status_code >= 400:
+                try:
+                    detail = r.json().get("message") or r.text[:200]
+                except ValueError:
+                    detail = r.text[:200]
+                raise httpx.HTTPStatusError(f"HTTP {r.status_code}: {detail}", request=r.request, response=r)
+            return r.json()
+
+    def _parse(self, data: Any) -> list[tuple[str, str | None, str | None, dict[str, Any]]]:
+        return [
+            (
+                r.get("link"),
+                r.get("title"),
+                f"Imagem visualmente semelhante ao logotipo antigo (fonte: {r.get('source') or '?'})",
+                {"visual_match_of_legacy_logo": True, "source_site": r.get("source"), "image_url": r.get("imageUrl")},
+            )
+            for r in (data.get("organic") or data.get("visual_matches") or [])
+        ]
+
+
 class UrlscanSearch(_KeywordConnector):
     """urlscan.io search API (Elasticsearch query-string syntax)."""
 

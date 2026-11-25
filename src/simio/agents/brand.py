@@ -7,6 +7,7 @@ import json
 import logging
 import re
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from simio.agents.evidence import PageSignals
 from simio.brands import BrandProfile
@@ -116,6 +117,72 @@ def cross_check(assessment: BrandAssessment, heuristic: BrandAnalysisOutput) -> 
     )
 
 
+LEGACY_LOGO_NOTE = (
+    "uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, "
+    "não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH"
+)
+
+
+LEGACY_LOGO_EXEMPT_NOTE = (
+    "logotipo antigo registrado em site de referência (repositório de logos, banco de imagens, "
+    "enciclopédia ou imprensa); classificação não elevada"
+)
+
+
+def apply_legacy_logo_rule(
+    assessment: BrandAssessment, catalog: list[EvidenceItem], *, exempt: bool = False
+) -> BrandAssessment:
+    """Legacy logo seen by the model and/or by the deterministic image comparison (``E-VIS-LEGACY-*``):
+    record the source, make sure a LOGO_USAGE indicator cites it and floor the result at
+    REVIEW_REQUIRED / HIGH. Clearing such a page is a human decision.
+
+    ``exempt`` (site that only catalogues or reports the logo): record the finding, keep the result."""
+    vis_refs = [i.ref for i in catalog if i.kind == "visual"]
+    by_model = assessment.legacy_visual_identity
+    if not by_model and not vis_refs:
+        return assessment
+    source = " + ".join(s for s, on in (("modelo", by_model), ("comparação de imagem", bool(vis_refs))) if on)
+    notes = list(assessment.guardrail_notes)
+    confusion = list(assessment.brand_confusion_indicators)
+    if vis_refs and not any(set(vis_refs) & set(ind.evidence_refs) for ind in confusion):
+        confusion.append(
+            Indicator(
+                dimension=Dimension.LOGO_USAGE,
+                strength=Level.HIGH,
+                description="Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação "
+                "de imagem com a referência",
+                evidence_refs=vis_refs[:3],
+            )
+        )
+        if not by_model:
+            notes.append(
+                "a comparação de imagem encontrou o logotipo antigo que a análise do modelo não registrou"
+            )
+    cls, prio = assessment.classification, assessment.priority
+    if exempt:
+        notes.append(LEGACY_LOGO_EXEMPT_NOTE)
+        source += "; site de referência"
+    else:
+        if cls == FinalClassification.NO_INDICATION:
+            cls = FinalClassification.REVIEW_REQUIRED
+        prio = max(prio, Priority.HIGH, key=lambda p: PRIORITY_RANK[p])
+        if (cls, prio) != (assessment.classification, assessment.priority):
+            notes.append(LEGACY_LOGO_NOTE)
+    return assessment.model_copy(
+        update={
+            "legacy_visual_identity": True,
+            "legacy_visual_identity_source": source,
+            "legacy_logo_exempt": exempt,
+            "classification": cls,
+            "priority": prio,
+            "brand_confusion_indicators": confusion,
+            "requires_human_review": assessment.requires_human_review or not exempt,
+            "evidence_references": sorted(set(assessment.evidence_references) | set(vis_refs)),
+            "guardrail_notes": notes,
+        }
+    )
+
+
 def load_images(ev: Evidence, campaign_dir: Path) -> list[ImagePart]:
     parts: list[ImagePart] = []
     for kind, label in (
@@ -184,7 +251,10 @@ class BrandAnalyst:
             signals=signals,
             scoring=self.scoring,
         )
-        return cross_check(assessment, heuristic) if analyzer != HEURISTIC_ID else assessment
+        if analyzer != HEURISTIC_ID:
+            assessment = cross_check(assessment, heuristic)
+        host = urlsplit(ev.final_url or ev.original_url).hostname or ""
+        return apply_legacy_logo_rule(assessment, catalog, exempt=self.brand.is_legacy_logo_exempt(host))
 
 
 # --------------------------------------------------------------------------------------
@@ -269,6 +339,17 @@ def heuristic_analysis(
                 strength=Level.MEDIUM,
                 description="Imagem possivelmente de logotipo da marca acima da dobra",
                 evidence_refs=refs,
+            )
+        )
+    if sig.legacy_logo_visual:
+        score_c += sc.w_brand_logo_above_fold
+        confusion.append(
+            Indicator(
+                dimension=Dimension.LOGO_USAGE,
+                strength=Level.HIGH,
+                description="Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação "
+                "de imagem",
+                evidence_refs=[h.ref for h in sig.legacy_logo_visual][:3],
             )
         )
     if sig.brand_linked_claims:

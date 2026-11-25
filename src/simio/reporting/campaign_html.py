@@ -77,6 +77,7 @@ def render_campaign_report(
             "brand_scenario": rec.brand.case.value if rec.brand else "",
             "review_status": review_status,
             "summary": f.justification if f else "",
+            "legacy_logo": bool(f and f.legacy_visual_identity),
             "dossier_rel": dossier_rel,
         })
 

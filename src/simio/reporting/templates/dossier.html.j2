@@ -213,6 +213,7 @@
     <div class="grid">
       <div class="kv"><b>Classificação</b>{{ f.classification.value }}</div>
       <div class="kv"><b>Prioridade</b>{{ f.priority.value }}</div>
+      <div class="kv"><b>Identidade visual antiga</b>{% if f.legacy_visual_identity %}SIM — logotipo descontinuado ({{ f.legacy_visual_identity_source }}){% else %}não identificada{% endif %}</div>
       <div class="kv"><b>Identidade (categoria)</b>{{ f.identity_class.value }}</div>
       <div class="kv"><b>Confiança da atribuição</b>{{ f.attribution_confidence.value }}</div>
       <div class="kv"><b>Confiança da extração</b>{{ f.extraction_confidence.value }}</div>
@@ -230,6 +231,21 @@
     <p>Sem decisão final (status do pipeline: {{ c.status.value }}; {{ c.last_error or '' }}).</p>
     {% endif %}
   </div>
+
+  {% if b and b.visual_matches %}
+  <div class="card">
+    <h2>Logotipo antigo — comparação de imagem</h2>
+    <p class="muted">Regiões dos screenshots comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de IA.</p>
+    <table>
+      <thead><tr><th>Screenshot</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem</th></tr></thead>
+      <tbody>
+      {% for m in b.visual_matches %}
+        <tr><td>{{ m.screenshot_ref }}</td><td>{{ m.bbox[0] }}, {{ m.bbox[1] }}</td><td>{{ m.bbox[2] }}×{{ m.bbox[3] }} px</td><td>{{ '%.2f'|format(m.score) }}</td><td class="mono">{{ m.image_src or '—' }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
 
   <div class="card">
     <h2>2. Screenshots</h2>

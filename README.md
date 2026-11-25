@@ -62,7 +62,7 @@ O sistema correlaciona cinco frentes fundamentais:
 
 A descoberta de ameaças do SIMIO não depende de buscas ingênuas ou manuais. Ele implementa uma camada de **Threat Intelligence e OSINT (Open Source Intelligence)** especializada em superfícies de ataque contra marcas e correspondentes bancários.
 
-### <img src="assets/icones/dorks.svg" width="20" height="20" valign="middle"> 3.1. Cinco fontes de descoberta, uma única fila
+### <img src="assets/icones/dorks.svg" width="20" height="20" valign="middle"> 3.1. Seis fontes de descoberta, uma única fila
 
 | Fonte | O que faz | Custo |
 |---|---|---|
@@ -70,6 +70,7 @@ A descoberta de ameaças do SIMIO não depende de buscas ingênuas ou manuais. E
 | **`serper`** | Executa cada dork **ao pé da letra** no Google e devolve até 10 resultados por página. | 1 crédito por página (2.500 grátis no cadastro) |
 | **`typosquat`** | Gera cerca de 1.900 variações dos domínios oficiais e mantém só as que **resolvem em DNS para IP público**. | Gratuito |
 | **`crtsh`** | Certificados SSL emitidos para nomes com o padrão da marca (Certificate Transparency). | Gratuito |
+| **`lens`** | Busca reversa de imagem (Google Lens via Serper) com a **logo antiga**: acha páginas que usam a imagem mesmo sem citar a marca no texto. | 3 créditos por imagem |
 | **`brave` / `urlscan`** | Conectores opcionais, ativados quando há chave no `.env`. | Conforme o provedor |
 
 Todas as fontes rodam **intercaladas**: um orçamento pequeno de consultas continua cobrindo todas as frentes.
@@ -92,10 +93,21 @@ São **38 hipóteses e 128 dorks** de *brand protection*, todos com exclusão do
 ### <img src="assets/icones/imitacao.svg" width="20" height="20" valign="middle"> 3.3. Domínios semelhantes (*typosquatting*)
 Inspirado no `dnstwist`: omissão, repetição, troca de posição, tecla vizinha, caractere parecido (`0`/`o`, `rn`/`m`), troca de vogal, hífen, troca de extensão (`.com`, `.app`, `.online`...) e **combosquatting** (`feiraobv.com.br`, `bvoficial.com.br`, `quitarbvfinanceira.com`), a forma mais abusada na prática. Antes de começar, o conector verifica se o DNS responde para nomes inexistentes; se responder, ele se desativa para não gerar falsos positivos.
 
-### <img src="assets/icones/validado.svg" width="20" height="20" valign="middle"> 3.4. Busca complementar guiada por COBANs (H9)
+### <img src="assets/icones/marca.svg" width="20" height="20" valign="middle"> 3.4. Identidade visual antiga (logo descontinuada)
+A logo antiga do BV (**B vermelho sobre V azul**) não pode ser usada por terceiros, nem por correspondentes. O logo atual tem o mesmo desenho, mas todo em azul. O SIMIO detecta a logo antiga de três formas:
+
+| Camada | Como funciona |
+|---|---|
+| **Comparação de imagem (sem IA)** | Compara regiões dos prints com a referência, **separando vermelho e azul**: o logo atual nunca casa. Cada achado vira a evidência `E-VIS-LEGACY-*`, com posição e similaridade. |
+| **Gemini multimodal** | Preenche o campo `legacy_visual_identity` ao ver a logo nos prints. |
+| **Busca reversa de imagem (H12)** | Traz páginas que publicam imagem parecida com a logo antiga. |
+
+Com a logo antiga detectada, o caso fica no mínimo em `REVIEW_REQUIRED` com prioridade `HIGH`, **mesmo se o revisor sugerir descartar**. O Excel e o relatório HTML marcam "LOGO ANTIGA".
+
+### <img src="assets/icones/validado.svg" width="20" height="20" valign="middle"> 3.5. Busca complementar guiada por COBANs (H9)
 Opcional e sempre **depois** da varredura aberta. Pesquisa o nome de correspondentes cadastrados junto com a marca para identificar **qual COBAN** está usando a marca de forma indevida. A seleção começa pelos cadastros mais recentes e muda a cada campanha, até percorrer toda a base. Nomes de MEI com CPF nunca são pesquisados (LGPD).
 
-### <img src="assets/icones/grounding.svg" width="20" height="20" valign="middle"> 3.5. Garantias contra URLs inventadas
+### <img src="assets/icones/grounding.svg" width="20" height="20" valign="middle"> 3.6. Garantias contra URLs inventadas
 1. **Só URLs de metadados de busca**: no Grounding, links citados apenas no texto do modelo são **rejeitados**; valem só os de `grounding_metadata.grounding_chunks`.
 2. **Redirecionamentos resolvidos com segurança**: links `vertexaisearch.cloud.google.com/grounding-api-redirect/...` são desfeitos sem seguir automaticamente (`follow_redirects=False`) e passam pela política anti-SSRF.
 3. **Redes sociais**: o Grounding remove Instagram e Facebook dos resultados; por isso essas plataformas vêm do Serper (com uma busca de reserva no Yahoo). Links opacos `google.com/goto?...` não viram candidatos e ficam registrados para conferência manual.
@@ -122,7 +134,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 ```
 
 ### <img src="assets/icones/busca.svg" width="18" height="18" valign="middle"> Fase 1: Descoberta de Superfície (`DiscoveryAgent`)
-- Planeja as consultas de todas as fontes a partir de 11 famílias de hipóteses:
+- Planeja as consultas de todas as fontes a partir de 12 famílias de hipóteses:
 
 | Hipótese | Foco |
 |---|---|
@@ -137,6 +149,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 | **H9** COBANs | Correspondentes cadastrados (opcional, sempre por último) |
 | **H10** Fraudes | Leilão, ágio, falso empréstimo, app falso, central falsa, vagas, investimento |
 | **H11** NaPista | Uso indevido da marca do marketplace do grupo |
+| **H12** Logo antiga | Busca reversa de imagem da identidade visual descontinuada |
 
 - **Higienização ativa**: exclui domínios e perfis oficiais do banco, joga notícias, reclamações e processos para o fim da fila e aplica decaimento a URLs repetidas do mesmo domínio.
 
@@ -161,7 +174,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 
 ### <img src="assets/icones/marca.svg" width="18" height="18" valign="middle"> Fase 4: Análise de Marca e Conformidade (`BrandAnalyst` & `ComplianceAgent`)
 - O **`BrandAnalyst`** aciona o Gemini Multimodal com o print da tela e textos dentro de tags seguras `<conteudo_nao_confiavel>` (sem ferramentas ativas, prevenindo *prompt injection*).
-  - Avalia o destaque do logotipo e cores;
+  - Avalia o destaque do logotipo e cores, distinguindo a logo atual da **logo antiga** (que também é confirmada por comparação de imagem sem IA);
   - Analisa a presença de discursos de transparência;
   - Detecta se é loja multimarca legítima (menção simultânea a múltiplos bancos concorrentes como Santander e Itaú);
   - Possui *fallback* determinístico offline caso a IA esteja indisponível.
@@ -195,6 +208,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 | **<img src="assets/icones/validado.svg" width="18" height="18" valign="middle"> Fiscalização Regulatória (COBAN)** | Auditar se correspondentes contratados exibem claramente razão social, CNPJ e a condição de prestador de serviços. |
 | **<img src="assets/icones/alerta.svg" width="18" height="18" valign="middle"> Combate a Fraudes de Boletos** | Mapear páginas que usam a marca para atrair clientes para WhatsApp falso prometendo quitação com desconto. |
 | **<img src="assets/icones/alerta.svg" width="18" height="18" valign="middle"> Golpes com a Marca** | Encontrar leilões falsos, venda de ágio, empréstimo com taxa antecipada, apps e centrais falsas. |
+| **<img src="assets/icones/marca.svg" width="18" height="18" valign="middle"> Identidade Visual Antiga** | Identificar correspondentes e terceiros que ainda usam a logo descontinuada (B vermelho + V azul). |
 | **<img src="assets/icones/web.svg" width="18" height="18" valign="middle"> Domínios Semelhantes** | Detectar domínios registrados parecidos com os oficiais antes que virem phishing. |
 | **<img src="assets/icones/evidencia.svg" width="18" height="18" valign="middle"> Instrução Pericial e Takedowns** | Produção rápida de dossiês com capturas autenticadas por hashes SHA-256 para subsidiar notificações e processos. |
 
@@ -338,6 +352,7 @@ python.exe -m simio status
 - **Perfis de Marca (`src/simio/brands/`)**: Adicione novos arquivos `.toml` para investigar outras instituições financeiras e marcas corporativas.
 - **Novos Conectores**: Plugue novos motores de busca ou feeds de ameaças em `src/simio/providers/search.py`.
 - **Novas Hipóteses e Dorks**: Adicione vetores em `build_hypotheses()` (`src/simio/agents/discovery.py`); eles passam a rodar em todas as fontes.
+- **Logo antiga**: Troque ou acrescente imagens de referência em `legacy_logo_references` e URLs públicas para a busca reversa em `legacy_logo_search_urls` no `.toml` da marca. Sites que só catalogam a logo (repositórios, bancos de imagens, imprensa) ficam em `legacy_logo_exempt_domains`.
 - **Typosquatting**: Ajuste sementes, rótulos e palavras do setor em `typosquat_seeds`, `typosquat_combo_labels` e `typosquat_keywords` no `.toml` da marca.
 - **Novas Normativas**: Estenda as regras de conformidade adicionando dispositivos regulatórios em `src/simio/knowledge/`.
 

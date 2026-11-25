@@ -49,6 +49,7 @@ Em vez de executar listas genéricas de dorks, o `DiscoveryAgent` gera consultas
 - **H9 (`H9-coban`)**, opcional: nome de correspondentes cadastrados junto com a marca, para descobrir qual COBAN usa a marca de forma indevida. Roda sempre depois da varredura aberta.
 - **H10 (`H10-fraud`)**: golpes típicos de financeira de veículos: leilão e veículos "retomados", venda de ágio e repasse, falso empréstimo com taxa antecipada, app/APK falso e phishing, central de atendimento falsa, "agência BV" em diretórios, vagas falsas, investimento e cartão falsos, "limpa nome".
 - **H11 (`H11-napista`)**: uso indevido da marca NaPista em sites e redes sociais.
+- **H12 (`H12-legacy-logo`)**: busca reversa de imagem (Google Lens) com uma cópia pública da logo antiga; encontra páginas que usam a imagem sem escrever a marca. Bancos de imagens (Shutterstock, Pinterest, etc.) vão para o fim da fila.
 
 > **Grounding × Serper.** No Grounding, os dorks orientam o Gemini, que escreve as próprias buscas e pode ignorar `inurl:` e `intitle:`. No Serper, cada dork é executado literalmente. As duas fontes rodam juntas para combinar abrangência e precisão.
 
@@ -110,7 +111,13 @@ Páginas identificadas como artigos de imprensa, blogs educativos, tutoriais de 
 3. **Alegação de canal oficial e domínios lookalike**:
    - Expressões como `"canal oficial"`, `"site oficial"`, `"central de atendimento BV"`, `"SAC BV"`, `"ambiente seguro Banco BV"` ou domínios contendo o padrão da marca (`bancobv-*`, `bvfinanon`, `bkbv`, `bvsol`) elevam diretamente o caso para revisão prioritária.
    - Domínios encontrados pelo typosquatting (`bancobva.com.br`, `feiraobv.com.br`) chegam com a técnica usada registrada (ex.: "marca combinada com palavra do setor") e recebem prioridade na fila.
-4. **Golpes que usam a marca como isca**:
+4. **Identidade visual antiga (logo descontinuada)**:
+   - A logo antiga (B vermelho/carmim sobre V azul) não pode ser usada por terceiros, nem por correspondentes contratados. O logo atual tem o mesmo desenho, em uma única cor.
+   - **Detecção em duas camadas independentes**: o Gemini preenche `legacy_visual_identity` ao ver a logo; a comparação de imagem (`agents/visual.py`) compara as regiões dos prints com a referência **separadamente nas tintas vermelha e azul** (o logo atual, só azul, nunca casa) e registra `E-VIS-LEGACY-*` com posição e similaridade.
+   - **Regra**: com qualquer uma das camadas, o caso fica no mínimo `REVIEW_REQUIRED` com prioridade `HIGH`, e o revisor não pode descartá-lo sozinho. O relatório informa a origem ("modelo", "comparação de imagem" ou ambos).
+   - **Exceção**: sites que só catalogam ou noticiam a logo (repositórios de logos, bancos de imagens, enciclopédias, imprensa), listados em `legacy_logo_exempt_domains`, registram o achado como "site de referência" sem elevar a classificação. Redes sociais e marketplaces não entram nessa lista.
+   - **Limitações**: logos exibidos em escala de cinza (ex.: carrossel de parceiros com filtro) não permitem distinguir a versão antiga da atual; logo aplicado diretamente sobre fundo vermelho pode escapar da comparação de imagem e depende do Gemini.
+5. **Golpes que usam a marca como isca**:
    - Leilão de veículos "retomados", venda de ágio, crédito "pré-aprovado" mediante taxa, aplicativo para baixar fora das lojas oficiais e vagas de "digitador/correspondente" são buscados ativamente (H10) e analisados pelo mesmo fluxo de evidências.
 
 <p align="center">

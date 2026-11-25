@@ -254,6 +254,7 @@ def apply_brand_guardrails(
         ),
         evidence_sufficiency=sufficiency,
         possible_prompt_injection=injection,
+        legacy_visual_identity=out.legacy_visual_identity,
         analyzer=analyzer,
         prompt_version=prompt_version,
         dropped_references=dropped,
@@ -343,6 +344,14 @@ def compose_final(
 ) -> FinalDecision:
     cls, prio, notes = apply_review(assessment, review)
     notes = [*assessment.guardrail_notes, *notes]
+    if assessment.legacy_visual_identity and not assessment.legacy_logo_exempt:
+        # Use of the discontinued visual identity is never cleared automatically (not even by the reviewer).
+        if cls == C.NO_INDICATION:
+            cls = C.REVIEW_REQUIRED
+            notes.append(
+                "revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana"
+            )
+        prio = max(prio, Priority.HIGH, key=lambda p: PRIORITY_RANK[p])
     limitations = [*evidence.not_inspected, *identity.limitations, *compliance.limitations]
     if assessment.analyzer.startswith("heuristic"):
         limitations.append(
@@ -373,6 +382,8 @@ def compose_final(
     return FinalDecision(
         candidate_id=candidate_id,
         routing=suggest_routing(cls, identity.classification),
+        legacy_visual_identity=assessment.legacy_visual_identity,
+        legacy_visual_identity_source=getattr(assessment, "legacy_visual_identity_source", ""),
         compliance_summary=[
             f"{f.requirement_id}: {f.status.value}"
             for f in compliance.findings
