@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C8ce9c066a7",
+  "attempt": 2,
+  "status": "FAILED",
+  "original_url": "https://www.umassmed.edu/gsn/",
+  "final_url": "https://www.umassmed.edu/gsn/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.18.38.135",
+  "collected_at": "2026-11-25T21:01:54.903514+00:00",
+  "manifest_written_at": "2026-11-25T21:02:00.481891+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C8ce9c066a7/attempt-2/viewport.png",
+      "sha256": "c6589c66e04929fcb995de8b6985f96ceedeae814ec527d246413e68fbd67e2f",
+      "size_bytes": 71242
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C8ce9c066a7/attempt-2/fullpage.png",
+      "sha256": "7ab170824bba5f70697f1d60b0ff45623d6e3627638eb6d32dd9fc7d9f254afd",
+      "size_bytes": 79491
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C8ce9c066a7/attempt-2/page.html.txt",
+      "sha256": "763df69bef53ddc144bf87a65387352eea4c141d09f3ed396fa3432f97f6410f",
+      "size_bytes": 5514
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C8ce9c066a7/attempt-2/text.txt",
+      "sha256": "8a8181e16d04f263c09d100e32249bbb23eaed1206a95a915c2e77ac26988dcb",
+      "size_bytes": 715
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C8ce9c066a7/attempt-2/page.json",
+      "sha256": "c0ab3a234d4fb189ad77062d01f55223b6f5b0a5791a178ce5302b7add1d9fc5",
+      "size_bytes": 2136
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

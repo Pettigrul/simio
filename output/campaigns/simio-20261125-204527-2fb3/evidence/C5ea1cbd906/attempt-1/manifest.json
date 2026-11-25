@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C5ea1cbd906",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.bellevuecollege.edu/",
+  "final_url": "https://www.bellevuecollege.edu/",
+  "redirect_chain": [
+    "https://www.bellevuecollege.edu/"
+  ],
+  "http_status": 403,
+  "server_ip": "162.159.135.42",
+  "collected_at": "2026-11-25T20:50:03.537984+00:00",
+  "manifest_written_at": "2026-11-25T20:50:10.265486+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C5ea1cbd906/attempt-1/viewport.png",
+      "sha256": "fab51a3711c81f32eef447027c35444860d08ee69a87c9d2d871de7b621962ac",
+      "size_bytes": 40207
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C5ea1cbd906/attempt-1/fullpage.png",
+      "sha256": "fab51a3711c81f32eef447027c35444860d08ee69a87c9d2d871de7b621962ac",
+      "size_bytes": 40207
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C5ea1cbd906/attempt-1/page.html.txt",
+      "sha256": "25dcfcfb6efc2d8a6b8bd977da5e58fc8b273f09d265d786c906a8d35bd040a4",
+      "size_bytes": 44849
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C5ea1cbd906/attempt-1/text.txt",
+      "sha256": "e504eb55b5d6fa12f8be27a21bd25b7e39ba0b9786d09a4db04b41c981df3846",
+      "size_bytes": 297
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C5ea1cbd906/attempt-1/page.json",
+      "sha256": "5127a0691cc53481c0f2bfc97993647e7553cf446e8fb55b4d869b5c2d63849f",
+      "size_bytes": 1427
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

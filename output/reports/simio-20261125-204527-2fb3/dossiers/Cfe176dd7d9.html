@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cfe176dd7d9</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-204527-2fb3</b> · Gerado em: 2026-11-25T20:58:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cfe176dd7d9 — riosulveiculos.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.riosulveiculos.com.br/solucoes-financeiras</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo)</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O portal RioSulVeiculos apresenta uma página de &#39;Soluções Financeiras&#39; com uma lista informativa/multibancos de instituições de financiamento. Embora a identidade própria do portal predomine e haja menção a diversos bancos concorrentes com link para o site oficial da instituição, foi constatada a exibição do logotipo antigo/legado da BV Financeira (B vermelho e V azul), material descontinuado cuja utilização por terceiros é irregular, somada à ausência de esclarecimento sobre eventual condição de correspondente bancário e ausência de CNPJ do portal.
+[Revisor: DOWNGRADE] A página &#39;Soluções Financeiras&#39; do portal de classificados RioSulVeiculos é estritamente informativa, listando diversos bancos e financeiras (BMG, BB, Itaú, Bradesco, Caixa, HSBC, Santander, etc.) com links diretos aos seus respectivos portais oficiais. Não se trata de uma loja de veículos, promotora ou correspondente bancário operando crédito ou captando leads em nome do Banco BV, enquadrando-se no critério de guia informativo/diretório que enseja downgrade para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-204527-2fb3/evidence/Cfe176dd7d9/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 b0eda8de813028fbec07e1125c22c37f5643aa89951d1d8d72bd9947d36946f6</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-204527-2fb3/evidence/Cfe176dd7d9/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a372fa328b40c77595fe498194427015ec6eeaaccfe5b19548aba9aac4572164</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.riosulveiculos.com.br/solucoes-financeiras (domínio: www.riosulveiculos.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Soluções Financeiras — ... Distrito Federal, atendem a todo o território nacional. BV Financeira. A BV é uma empresa do Grupo Votorantim, que atua no mercado de financiamento ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cfe176dd7d9/attempt-1/viewport.png (sha256 b0eda8de813028fb…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cfe176dd7d9/attempt-1/fullpage.png (sha256 a372fa328b40c775…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Soluções Financeiras - As melhores soluções em financiamento só aqui no RioSulVeiculos. - RioSulVeiculos</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As melhores soluções em financiamento só aqui no RioSulVeiculos!</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: RioSulVeiculos</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Soluções Financeiras - As melhores soluções em financiamento só aqui no RioSulVeiculos.</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As melhores soluções em financiamento só aqui no RioSulVeiculos!</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: RioSulVeiculos</td></tr>
+      <tr id="E-META-6"><td class="mono"><b>E-META-6</b></td><td>meta</td><td>head</td><td>application-name: RioSulVeiculos</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.riosulveiculos.com.br/solucoes-financeiras</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Soluções Financeiras</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Bancos e Financeiras</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Banco BMG</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Banco do Brasil</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Banco Itaú</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Bradesco Financiamentos</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>BV Financeira</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Caixa</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>HSBC</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Panamericano</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Santander Financiamentos</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Busca rápida</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Veja também</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Carros mais buscados</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Motos mais buscadas</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Atendimento | Revendedor Login ou Cadastre-se Buscar veículos Início Buscar por Comprar Vender Revendas Fabricantes Notícias Ferramentas Guia Contato</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Atendimento | Revendedor Login ou Cadastre-se Buscar veículos Início Buscar por Comprar Vender Revendas Fabricantes Notícias Ferramentas Guia Contato Soluções Financeiras Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As melhores soluções em financiamento só aqui no RioSulVeiculos! Consulte o valor na Tabela FIPE Consulte o valor IPVA Consulta de Veículo DETRAN / DENATRAN Bancos e Financeiras Banco BMG Se você ou sua empresa deseja adquirir um veículo ou frota, novo ou usado, o BMG realiza o financiamento de veículo através de CDC - Crédito Direto ao Consumidor ou Leasing, com rapidez e sem burocracia. Banco do Brasil No BB você não paga tarifas na contratação de operações de financiamento de veículos e ainda pode negociar a compra do seu carro à vista. Banco Itaú As certificações ISO 9001 (versão 2000) do Banco Itaú Holding são comprovações formais de que todas as atividades relacionadas à qualidade do produto ou serviço certificado foram planejadas, implantadas e controladas de acordo com norma de reconhecimento internacional. Busca rápida Tipo: Fabricante: Preço: Ano: Combustível: Cidade: Modelo: Buscar [+] Busca Avançada Veja também FORD FOR D KA FLEX 2020, 95000 KM R$ 48.950,00 FIAT ARGO FLEX AUT. 4P 2020, 60000 KM</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Carros mais buscados CHEVROLET ONIX HYUNDAI HB FIAT ARGO FIAT CRONOS RENAULT KWID FIAT MOBI VOLKSWAGEN POLO Motos mais buscadas HONDA CG YAMAHA FZ25 HONDA NXR HONDA CB YAMAHA XTZ YAMAHA YS HONDA PCX Veículos mais recentes → VOLKSWAGEN FOX → HONDA CIVIC → HYUNDAI HB → VOLKSWAGEN NIVUS → SONG PRO → PULSE FLEX → COROLLA FLEX Revendas mais acessadas → LIONS SEMINOVOS → CRISPIM VEÍCULOS → FAVORITA AUTOMÓVEIS → UNICAR AUTOMÓVEIS → VIRALIZA SEMINOVOS → TREND AUTO → LUIZ INTERMEDIAÇÕES ©2010-2026 RioSulVeiculos. Todos os direitos reservados.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>RioSulVeiculos &lt;https://www.riosulveiculos.com.br/&gt; | Atendimento &lt;https://www.riosulveiculos.com.br/contato&gt; | Revendedor &lt;https://www.riosulveiculos.com.br/anunciante/cadastro-revendedor&gt; | Login &lt;https://www.riosulveiculos.com.br/anunciante/painel-cliente&gt; | Cadastre-se &lt;https://www.riosulveiculos.com.br/anunciante/cadastro-particular&gt; | Início &lt;https://www.riosulveiculos.com.br/&gt; | Buscar por &lt;https://www.riosulveiculos.com.br/buscar-por&gt; | Comprar &lt;https://www.riosulveiculos.com.br/comprar&gt; | Vender &lt;https://www.riosulveiculos.com.br/vender&gt; | Revendas &lt;https://www.riosulveiculos.com.br/revendas&gt; | Fabricantes &lt;https://www.riosulveiculos.com.br/fabricantes&gt; | Notícias &lt;https://www.riosulveiculos.com.br/noticias&gt; | Ferramentas &lt;https://www.riosulveiculos.com.br/ferramentas&gt; | Guia &lt;https://www.riosulveiculos.com.br/guia-de-produtos-servicos&gt; | Contato &lt;https://www.riosulveiculos.com.br/contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Buscar</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>BUSCAR</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>[+] Busca Avançada</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>footer</td><td>Facebook RioSulVeiculos &lt;https://www.facebook.com/riosulveiculoss&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td>Instagram RioSulVeiculos &lt;https://www.instagram.com/riosulveiculoss&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td>WhatsApp RioSulVeiculos &lt;https://bit.ly/whatsapp-riosulveiculos&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>Telegram RioSulVeiculos &lt;https://t.me/riosulveiculos&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;RioSulVeiculos&#39; src=https://cache.vendautos.com.br/images/6/logo.png (536x89, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;BV Financeira&#39; src=https://cache.vendautos.com.br/images/financeiras/bv_financeira.gif (126x60, abaixo da dobra)</td></tr>
+      <tr id="E-OFFICIAL-LINKS"><td class="mono"><b>E-OFFICIAL-LINKS</b></td><td>link</td><td>page</td><td>BV Financeira &lt;http://www.bvfinanceira.com.br/&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Atendimento | Revendedor</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Bancos e Financeiras</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Banco BMG</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Banco do Brasil</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Banco Itaú</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>As certificações ISO 9001 (versão 2000) do Banco Itaú Holding são comprovações formais de que todas as atividades relacionadas à qualidade do produto ou serviço certificado foram planejadas, implantadas e controladas de acordo com norma de reconhecimento internacional.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>BV Financeira</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>A BV é uma empresa do Grupo Votorantim, que atua no mercado de financiamento de veículos, crédito consignado, crédito para compra de material de construção e empréstimo pessoal.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>O Financiamento de Veículos do banco HSBC oferece as melhores taxas do mercado. E permite a você, cliente, optar pelo tipo de financiamento de veículo que melhor atenda às suas necessidades.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v6)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Identificado logotipo legado/antigo da BV Financeira composto pelas letras &#39;B&#39; em vermelho e &#39;V&#39; em azul, desalinhado com a identidade corporativa atual do Banco BV.</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Exibição gráfica da marca descontinuada da BV Financeira em lista de financeiras do portal automotivo.</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O portal RioSulVeiculos estabelece sua marca própria com clareza no cabeçalho e estrutura do site, mas não fornece CNPJ ou razão social no rodapé.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Não há esclarecimento se o portal atua como correspondente bancário das instituições listadas ou se atua meramente como guia informativo, sem indicação de canais de ouvidoria.</td><td class="mono"><a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A descrição da BV Financeira é feita estritamente em terceira pessoa, sem apropriação indevida de voz institucional.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato pertencem ao próprio portal RioSulVeiculos e o link fornecido direciona para o domínio oficial da financeira.</td><td class="mono"><a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Contexto multibancos com diversas outras instituições (BMG, BB, Itaú, Bradesco, Caixa, HSBC, Panamericano, Santander) reduz o risco de personificação exclusiva, apesar do uso de logo legada.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-HEAD-6">E-HEAD-6</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-HEAD-10">E-HEAD-10</a> <a href="#E-HEAD-11">E-HEAD-11</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página oferece navegação de classificados de veículos e redirecionamento externo para o domínio da financeira.</td><td class="mono"><a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> <a href="#E-NAV">E-NAV</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Utilização de logotipo antigo/legado da BV Financeira (monograma com &#39;B&#39; vermelho e &#39;V&#39; azul) na seção de bancos e financeiras. — <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Presença de identidade visual descontinuada da instituição financeira (logo histórica com &#39;B&#39; vermelho e &#39;V&#39; azul), vedada para terceiros e correspondentes. — <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Ausência de declaração sobre a natureza da relação jurídica (se atua ou não como correspondente bancário nos termos da Resolução CMN nº 4.935/2021) ou dados cadastrais completos (CNPJ e razão social) da entidade operadora do portal. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[MEDIUM] CONTACT_CHANNELS: Inserção de link apontando diretamente para o domínio oficial da BV Financeira (bvfinanceira.com.br). — <span class="mono"><a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> </span></li><li>[HIGH] CONSUMER_CONFUSION: Apresentação em contexto multibancos com múltiplos concorrentes do setor bancário e automotivo. — <span class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-HEAD-6">E-HEAD-6</a> <a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-HEAD-10">E-HEAD-10</a> <a href="#E-HEAD-11">E-HEAD-11</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence ao portal de classificados automotivos RioSulVeiculos (riosulveiculos.com.br).</li><li>Na seção &#39;Bancos e Financeiras&#39;, a BV Financeira é listada ao lado de outras 8 instituições.</li><li>O logotipo exibido para a BV Financeira (E-IMG-2 visível em E-SHOT-FULL) corresponde à identidade visual antiga/legada (monograma com &#39;B&#39; vermelho e &#39;V&#39; azul acompanhado do texto BV Financeira).</li><li>Há um link externo direcionando para o site oficial da BV Financeira (http://www.bvfinanceira.com.br/).</li><li>Não constam CNPJ, razão social ou avisos de correspondente bancário (Resolução CMN nº 4.935/2021) no portal.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível confirmar se o portal possui contrato ativo de correspondente bancário ou se atua exclusivamente como agregador/guia de classificados automotivos.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O portal RioSulVeiculos apresenta uma página de &#39;Soluções Financeiras&#39; com uma lista informativa/multibancos de instituições de financiamento. Embora a identidade própria do portal predomine e haja menção a diversos bancos concorrentes com link para o site oficial da instituição, foi constatada a exibição do logotipo antigo/legado da BV Financeira (B vermelho e V azul), material descontinuado cuja utilização por terceiros é irregular, somada à ausência de esclarecimento sobre eventual condição de correspondente bancário e ausência de CNPJ do portal.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>RioSulVeiculos<br><span class="mono">domain:riosulveiculos.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>riosulveiculos.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/riosulveiculoss</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/riosulveiculoss</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>RioSulVeiculos</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp RioSulVeiculos &lt;https://bit.ly/whatsapp-riosulveiculos&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-008">E-TXT-008</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página &#39;Soluções Financeiras&#39; do portal de classificados RioSulVeiculos é estritamente informativa, listando diversos bancos e financeiras (BMG, BB, Itaú, Bradesco, Caixa, HSBC, Santander, etc.) com links diretos aos seus respectivos portais oficiais. Não se trata de uma loja de veículos, promotora ou correspondente bancário operando crédito ou captando leads em nome do Banco BV, enquadrando-se no critério de guia informativo/diretório que enseja downgrade para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>CLASSIFICATION</td><td>HIGH</td><td>A página em análise integra um portal de classificados automotivos agregador (RioSulVeiculos) e funciona meramente como um diretório/guia informativo multibancos (&#39;Bancos e Financeiras&#39;). Não há atuação como correspondente bancário (COBAN), captação de propostas de crédito ou intermediação financeira, limitando-se a listar opções do mercado com links externos para os canais oficiais.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-HEAD-2</li><li>E-HEAD-3</li><li>E-HEAD-4</li><li>E-HEAD-5</li><li>E-HEAD-6</li><li>E-HEAD-8</li><li>E-HEAD-9</li><li>E-HEAD-10</li><li>E-HEAD-11</li><li>E-OFFICIAL-LINKS</li><li>E-SHOT-FULL</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;bv financeira&#34; financiamento veículos &#34;Distrito Federal&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br<br><span class="muted">H13-legacy-focus:regiao-Centro-Oeste</span></td><td class="mono">https://www.riosulveiculos.com.br/solucoes-financeiras</td><td>Soluções Financeiras<br><span class="muted">... Distrito Federal, atendem a todo o território nacional. BV Financeira. A BV é uma empresa do Grupo Votorantim, que atua no mercado de financiamento ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 20:55:45.125785+00:00</div>
+      <div class="kv"><b>IP do servidor</b>69.163.182.202</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cfe176dd7d9/attempt-1/manifest.json<br>sha256 8e6532c604d15b788f54795e70b3fc4d79405096ac32ece0684eb1f1483c1304</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.riosulveiculos.com.br/solucoes-financeiras<br>Final: https://www.riosulveiculos.com.br/solucoes-financeiras</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cfe176dd7d9/attempt-1/viewport.png</td><td class="mono">b0eda8de813028fbec07e1125c22c37f5643aa89951d1d8d72bd9947d36946f6</td><td>162515</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cfe176dd7d9/attempt-1/fullpage.png</td><td class="mono">a372fa328b40c77595fe498194427015ec6eeaaccfe5b19548aba9aac4572164</td><td>380985</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cfe176dd7d9/attempt-1/page.html.txt</td><td class="mono">c206043b0f525a7eb826b4767701b0cbac95dc4621173d29527e5df83655a63a</td><td>71203</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cfe176dd7d9/attempt-1/text.txt</td><td class="mono">48dc7a92f3a37a0915d6a55bab6d9d1fd0fa7c836ce0336cc3c185743f01ec52</td><td>4655</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cfe176dd7d9/attempt-1/page.json</td><td class="mono">af7b1df829d8f20da6b766639691a5aee913b330987ddbf18b7b3d3366bdad64</td><td>31955</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T20:49:03+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T20:55:45+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T20:55:52+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T20:55:52+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:56:26+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T20:56:41+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

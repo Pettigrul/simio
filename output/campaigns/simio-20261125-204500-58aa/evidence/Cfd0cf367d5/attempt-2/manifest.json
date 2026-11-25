@@ -1,0 +1,56 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cfd0cf367d5",
+  "attempt": 2,
+  "status": "FAILED",
+  "original_url": "https://www.votebrevard.gov/",
+  "final_url": "https://www.votebrevard.gov/",
+  "redirect_chain": [
+    "https://www.votebrevard.gov/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.18.30.210",
+  "collected_at": "2026-11-25T20:59:58.969540+00:00",
+  "manifest_written_at": "2026-11-25T21:00:10.528999+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cfd0cf367d5/attempt-2/viewport.png",
+      "sha256": "72615a04466d60ad3a63d58b7da772abd6183875f7d98d192e81c55c848b442e",
+      "size_bytes": 40739
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cfd0cf367d5/attempt-2/fullpage.png",
+      "sha256": "fcd17b97ef0dc3b2f176b89e0239a2fc9e07b92c839a0a5be015b7458b86fb19",
+      "size_bytes": 40777
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cfd0cf367d5/attempt-2/page.html.txt",
+      "sha256": "a3e8cbc5f8c2aaac04fe875097aa4048fcfa8607d6866021491ef65a782e7875",
+      "size_bytes": 44833
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cfd0cf367d5/attempt-2/text.txt",
+      "sha256": "e9869759529db66bf76dbb493e59b9cd0e2294098d27c84d0cbc217f3c0b971e",
+      "size_bytes": 293
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cfd0cf367d5/attempt-2/page.json",
+      "sha256": "fe7aeba6aed7107524a4c149edd1f48440c2b577cf6b65e1c2cee96da4a2e77d",
+      "size_bytes": 1415
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "network did not become idle (continuing)",
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

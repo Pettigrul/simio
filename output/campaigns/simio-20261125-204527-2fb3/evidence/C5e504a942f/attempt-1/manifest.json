@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C5e504a942f",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://cogentbank.com/",
+  "final_url": "https://cogentbank.com/",
+  "redirect_chain": [
+    "https://cogentbank.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.21.89.204",
+  "collected_at": "2026-11-25T20:50:03.217584+00:00",
+  "manifest_written_at": "2026-11-25T20:50:09.721576+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C5e504a942f/attempt-1/viewport.png",
+      "sha256": "7791c8c1d1372914e8a297208fed9b9d0323029c0b8f289206b6aacd48d5a545",
+      "size_bytes": 39746
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C5e504a942f/attempt-1/fullpage.png",
+      "sha256": "7791c8c1d1372914e8a297208fed9b9d0323029c0b8f289206b6aacd48d5a545",
+      "size_bytes": 39746
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C5e504a942f/attempt-1/page.html.txt",
+      "sha256": "b49307e5ba3b004362a27fc3069bc45218e3f5ab5e9d912331941d38d350b155",
+      "size_bytes": 45027
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C5e504a942f/attempt-1/text.txt",
+      "sha256": "e713f5a9a3845bb773887c65932bf53e84421aa4004714068d0231743c13f8ec",
+      "size_bytes": 288
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C5e504a942f/attempt-1/page.json",
+      "sha256": "79dae5e9ba69a4e8ac7f2749a5347bdf6e993e309a5ddff6baf38ab12e28c044",
+      "size_bytes": 1400
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cc10c011b66</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-204500-58aa</b> · Gerado em: 2026-11-25T21:04:37+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cc10c011b66 — logoeps.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://logoeps.com/bv-financeira-logo-vector/33763/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo)</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada pertence ao site LogoEPS.com, uma biblioteca de vetores e logotipos para designers. Trata-se de um catálogo que oferece o download do arquivo de logotipo da BV Financeira em formatos EPS/AI/CDR. Não há qualquer intermediação financeira, oferta de crédito ou atividade de correspondente bancário, enquadrando-se expressamente na triagem como fora do escopo da investigação (NOT_RELEVANT / NO_INDICATION).
+[Revisor: DOWNGRADE] O site logoeps.com é uma biblioteca de download gratuito de arquivos vetoriais (.EPS, .AI, .CDR). Não atua como loja de veículos, instalador solar, financeira ou correspondente bancário. De acordo com as diretrizes de filtragem do SIMIO, fornecedores de insumos gráficos e repositórios não constituem alvo de investigação de correspondentes bancários, ensejando downgrade imediato para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li><li>uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-204500-58aa/evidence/Cc10c011b66/attempt-2/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 493c324e0d5ffd857fbab36eab11787930498281b8d540077db74d1978263df2</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-204500-58aa/evidence/Cc10c011b66/attempt-2/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 54ddf56327aedaf6ff1cf5c5d8405997d008cf89c863e9792e0d2ed0ff959d92</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://logoeps.com/bv-financeira-logo-vector/33763/ (domínio: logoeps.com)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (lens): BV financeira logo vector in (.EPS, .AI, .CDR) free download — Imagem visualmente semelhante ao logotipo antigo (fonte: logoEPS.com)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cc10c011b66/attempt-2/viewport.png (sha256 493c324e0d5ffd85…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cc10c011b66/attempt-2/fullpage.png (sha256 54ddf56327aedaf6…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>BV financeira logo vector in (.EPS, .AI, .CDR) free download</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: BV financeira vector logo EPS, AI, CDR. Free download logo BV financeira vector in Adobe Illustrator (EPS) file format</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: logoEPS.com</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: BV financeira logo vector in (.EPS, .AI, .CDR) free download</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: BV financeira vector logo EPS, AI, CDR. Free download logo BV financeira vector in Adobe Illustrator (EPS) file format</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: Dian N</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://logoeps.com/bv-financeira-logo-vector/33763/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>BV financeira logo vector</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>About Logoeps.com</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Recent post</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Recent downloads</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>logoEPS.com | BV financeira logo vector Business &amp; Finance - Tags: Bank logo vector</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>We value your privacy We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking &#34;Accept All&#34;, you consent to our use of cookies. Customise Reject All Accept All Vector Logos Logo Templates Logo Icons Vector Art Blog Random logoEPS.com logoEPS \ Free Vector Logo \ Business &amp; Finance \ BV financeira logo vector ← S&amp;S Moveis logo vector Peavey logo vector → BV financeira logo vector Business &amp; Finance - Tags: Bank logo vector Hot tag Football Google Google+ vector google icons vector google logos vector facebook Twitter facebook logos vector facebook vector Twitter logos vector Twitter icons vector Disney beer Banking</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>About Logoeps.com Vector logos are essential design elements used by designers every day. Logo EPS offers the most comprehensive and flexible search engine for brand identity graphics, with a complete and growing collection. It’s the world’s largest library of logo files in vector formats, available for free download. You can easily browse or search through more than 200,000 scalable logo designs. Recent post Grok Bot icon logo Copeland Logo Vector Files Wabash Logo PNG &amp; Vector Files Aetna Vector Logo + PNG Files Danosa Logo SVG, , &amp; PNG CelcomDigi Logo Vector Files Chieftec Logo Vector (SVG, ) + PNG Audi R8 Logo PNG &amp; Vector FC Seoul Logo PNG &amp; Vector Files CANMAKE Vector Logo + PNG Files Recent downloads Werder Bremen 1980 logo vector 129 times Scoop it logo 95 times SpaceXAI Logo Vector 0 times Jupiler logo vector 349 times ASUS logo vector 5,726 times ASK Koflach logo vector 114 times TSG 1899 Hoffenheim logo vector 206 times Misfits band logo vector 463 times Virtus Entella logo vector 200 times Pictify logo 42 times ABOUT ADVERTISE CONTACT ABOUT DMCA POLICY SITEMAP Disclaimer: Products, names and logo mentioned are the property of their respective owners. © 2026 LogoEPS.com</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Vector Logos &lt;https://logoeps.com/free-vector-logo/&gt; | Logo Templates &lt;https://logoeps.com/logo-templates/&gt; | Logo Icons &lt;https://logoeps.com/vector-logo-icons/&gt; | Vector Art &lt;https://logoeps.com/free-vector-art/&gt; | Blog &lt;https://logoeps.com/design-articles/&gt; | Random &lt;https://logoeps.com/random-logo-vector/&gt; | Subscribe via RSS &lt;https://feeds.feedburner.com/logoeps&gt; | Follow us on Facebook &lt;https://www.facebook.com/LogoEPS&gt; | Follow us on Twitter &lt;https://twitter.com/logoeps&gt; | logoEPS.com &lt;https://logoeps.com/&gt; | ← S&amp;S Moveis logo vector &lt;https://logoeps.com/ss-moveis-vector-logo/47194/&gt; | Peavey logo vector → &lt;https://logoeps.com/peavey-logo-vector-eps-ai-cdr/7648/&gt; | Business &amp; Finance &lt;https://logoeps.com/free-vector-logo/business-finance/&gt; | Bank logo vector &lt;https://logoeps.com/tag/bank-logo-vector/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Customise</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Reject All</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Accept All</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Follow @logoeps &lt;https://twitter.com/logoeps&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>nav</td><td>Follow us on Facebook &lt;https://www.facebook.com/LogoEPS&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;BV financeira logo vector&#39; src=https://logoeps.com/wp-content/uploads/2013/01/bv-financeira-logo-vector.png (400x400, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;SulAmerica vector logo&#39; src=https://logoeps.com/wp-content/uploads/2013/05/sulamerica-vector-logo-200x200.png (164x164, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Royal Bank of Scotland logo vector&#39; src=https://logoeps.com/wp-content/uploads/2012/12/royal-bank-of-scotland-logo-vector-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Ziraat Bankasi logo vector&#39; src=https://logoeps.com/wp-content/uploads/2012/07/ziraat-bankasi-logo-vector-01-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Standard Chartered Hong Kong logo vector&#39; src=https://logoeps.com/wp-content/uploads/2013/01/standard-chartered-hong-kong-logo-vector-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bank of America logo vector&#39; src=https://logoeps.com/wp-content/uploads/2011/06/bank-of-america-logo-vector-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bank Of China logo vector, BOC logo&#39; src=https://logoeps.com/wp-content/uploads/2011/06/bank-of-china-logo-vector-01-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Reliant Energy logo vector&#39; src=https://logoeps.com/wp-content/uploads/2012/12/reliant-energy-logo-vector-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;ICR ISO9001 vector logo&#39; src=https://logoeps.com/wp-content/uploads/2013/03/icr-iso9001-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Western Union logo&#39; src=https://logoeps.com/wp-content/uploads/2012/04/western-union-logo-vector-01-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Adelaide Bank vector logo&#39; src=https://logoeps.com/wp-content/uploads/2013/12/adelaide-bank-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page</td><td>imagem alt=&#39;A-1 Tree Service vector logo&#39; src=https://logoeps.com/wp-content/uploads/2013/07/a-1-tree-service-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Finansbank logo vector&#39; src=https://logoeps.com/wp-content/uploads/2013/02/finansbank-logo-vector-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Vitol logo vector, logo Vitol in .EPS format&#39; src=https://logoeps.com/wp-content/uploads/2012/04/vitol-vector-150x150.gif (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-15"><td class="mono"><b>E-IMG-15</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bank Austria UniCredit vector logo&#39; src=https://logoeps.com/wp-content/uploads/2014/01/bank-austria-unicredit-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-16"><td class="mono"><b>E-IMG-16</b></td><td>image</td><td>page</td><td>imagem alt=&#39;RBC - Royal Bank vector logo&#39; src=https://logoeps.com/wp-content/uploads/2013/05/rbc-royal-bank-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-17"><td class="mono"><b>E-IMG-17</b></td><td>image</td><td>page</td><td>imagem alt=&#39;LBBW vector logo&#39; src=https://logoeps.com/wp-content/uploads/2014/01/lbbw-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-18"><td class="mono"><b>E-IMG-18</b></td><td>image</td><td>page</td><td>imagem alt=&#39;IDBI Bank vector logo&#39; src=https://logoeps.com/wp-content/uploads/2014/01/idbi-bank-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-19"><td class="mono"><b>E-IMG-19</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Quick Home Delivery vector logo&#39; src=https://logoeps.com/wp-content/uploads/2013/05/quick-home-delivery-vector-logo-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-20"><td class="mono"><b>E-IMG-20</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Honeywell logo vector&#39; src=https://logoeps.com/wp-content/uploads/2012/12/honeywell-logo-vector-110x110.png (75x75, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>logoEPS \ Free Vector Logo \ Business &amp; Finance \ BV financeira logo vector</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>BV financeira logo vector</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>BV financeira logo vector preview</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v6)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site pertence ao LogoEPS.com, um repositório de download de arquivos vetoriais de logotipos para designers, sem qualquer oferta ou intermediação de crédito.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-META-2">E-META-2</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O site disponibiliza para download o arquivo vetorial do logotipo histórico da BV Financeira (B vermelho e V azul), em contexto puramente de catálogo gráfico para designers.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-1">E-HEAD-1</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NEUTRAL">NEUTRAL</td><td>Não aplicável, pois não se trata de correspondente bancário, loja de veículos ou empresa ofertando serviços financeiros regulados.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Marca no título/nome do site — <span class="mono"><a href="#E-TITLE">E-TITLE</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Marca no cabeçalho/navegação fora de declaração de correspondente — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> </span></li><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página é uma entrada de repositório de vetores do site logoeps.com disponibilizando download de arquivo vetorial (.EPS, .AI, .CDR) do logotipo da BV Financeira.</li><li>A imagem exibida corresponde à identidade visual histórica/legada da BV Financeira (B vermelho sobre V azul).</li><li>Não há prestação, intermediação, simulação ou oferta de produtos financeiros na página, tratando-se de conteúdo estritamente fora do escopo de correspondentes bancários.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada pertence ao site LogoEPS.com, uma biblioteca de vetores e logotipos para designers. Trata-se de um catálogo que oferece o download do arquivo de logotipo da BV Financeira em formatos EPS/AI/CDR. Não há qualquer intermediação financeira, oferta de crédito ou atividade de correspondente bancário, enquadrando-se expressamente na triagem como fora do escopo da investigação (NOT_RELEVANT / NO_INDICATION).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>logoEPS.com<br><span class="mono">domain:logoeps.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>logoeps.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/LogoEPS</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>logoEPS.com</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (DECLARED_COMMERCIAL_IDENTITY) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O site logoeps.com é uma biblioteca de download gratuito de arquivos vetoriais (.EPS, .AI, .CDR). Não atua como loja de veículos, instalador solar, financeira ou correspondente bancário. De acordo com as diretrizes de filtragem do SIMIO, fornecedores de insumos gráficos e repositórios não constituem alvo de investigação de correspondentes bancários, ensejando downgrade imediato para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>FORA_DO_ESCOPO_COBAN</td><td>HIGH</td><td>A página pertence ao repositório de vetores e recursos gráficos logoEPS.com, tratando-se exclusivamente de disponibilização de arquivo de logotipo para download por designers e profissionais gráficos, sem qualquer oferta de crédito, produtos bancários ou atuação como correspondente bancário (COBAN).</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-URL</li><li>E-TITLE</li><li>E-FTR</li><li>E-SHOT-VIEWPORT</li><li>E-SHOT-FULL</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>lens</td><td>https://www.nacionalenergia.solar/assets/logo-bv-BGRv-znK.png<br><span class="muted">H12-legacy-logo:lens</span></td><td class="mono">https://logoeps.com/bv-financeira-logo-vector/33763/</td><td>BV financeira logo vector in (.EPS, .AI, .CDR) free download<br><span class="muted">Imagem visualmente semelhante ao logotipo antigo (fonte: logoEPS.com)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 20:59:08.836142+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.23.125</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cc10c011b66/attempt-2/manifest.json<br>sha256 8e897fbd156b4e3f64b2f1a144c9dcaf6bb2106af8d039eee5f3eab057b38640</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://logoeps.com/bv-financeira-logo-vector/33763/<br>Final: https://logoeps.com/bv-financeira-logo-vector/33763/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cc10c011b66/attempt-2/viewport.png</td><td class="mono">493c324e0d5ffd857fbab36eab11787930498281b8d540077db74d1978263df2</td><td>644535</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cc10c011b66/attempt-2/fullpage.png</td><td class="mono">54ddf56327aedaf6ff1cf5c5d8405997d008cf89c863e9792e0d2ed0ff959d92</td><td>1197189</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cc10c011b66/attempt-2/page.html.txt</td><td class="mono">746188a364cde60d828573e407b13bf1ba51a86c388941c0c69ec0fbbc8d40c5</td><td>129813</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cc10c011b66/attempt-2/text.txt</td><td class="mono">4c9e273d654d91294abc4d9c257817398439df8f75d996d484a640fc1c5a0718</td><td>2935</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cc10c011b66/attempt-2/page.json</td><td class="mono">f0e150d8a3ffb893be8351995b304590be29753a242aec645247696ee6127585</td><td>28325</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T20:48:28+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 4.0)</td></tr>
+      <tr><td>2026-11-25T20:48:50+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T20:49:00+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T20:49:00+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:49:02+00:00</td><td>ANALYZING</td><td>COLLECTED</td><td>prepare error, retry 1: UnboundLocalError</td></tr>
+      <tr><td>2026-11-25T20:49:06+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:49:08+00:00</td><td>ANALYZING</td><td>COLLECTED</td><td>prepare error, retry 2: UnboundLocalError</td></tr>
+      <tr><td>2026-11-25T20:49:12+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:49:13+00:00</td><td>ANALYZING</td><td>FAILED</td><td>prepare failed: UnboundLocalError: cannot access local variable &#39;is_disc&#39; where it is not associated with a value</td></tr>
+      <tr><td>2026-11-25T20:58:33+00:00</td><td>FAILED</td><td>QUEUED</td><td>retry requested by operator</td></tr>
+      <tr><td>2026-11-25T20:59:08+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T20:59:18+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T20:59:18+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:59:30+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T20:59:40+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

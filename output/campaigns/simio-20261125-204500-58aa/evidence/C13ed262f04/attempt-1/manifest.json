@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C13ed262f04",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.mercedesofbuckhead.com/",
+  "final_url": "https://www.mercedesofbuckhead.com/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "74.119.99.3",
+  "collected_at": "2026-11-25T20:49:09.736571+00:00",
+  "manifest_written_at": "2026-11-25T20:49:14.063030+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C13ed262f04/attempt-1/viewport.png",
+      "sha256": "8459c18f5694a1dce5fdf678f2365f06c6e46dede82d1bfdd738aebf521184ea",
+      "size_bytes": 70077
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C13ed262f04/attempt-1/fullpage.png",
+      "sha256": "99ae3eff75ff2a0591274f1e90e17ce218295a18b423ea30118e06e0138a3861",
+      "size_bytes": 78459
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C13ed262f04/attempt-1/page.html.txt",
+      "sha256": "466af3c1c9ed2e082b30163aedfca85cc35650060923d2e21e869dd9984b48d0",
+      "size_bytes": 4280
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C13ed262f04/attempt-1/text.txt",
+      "sha256": "c087c356d9af66667009f3c79f8384934a7e92cbfc230b6a7458fc75441898ac",
+      "size_bytes": 716
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C13ed262f04/attempt-1/page.json",
+      "sha256": "a911c3cea71f0f63c5ca0e0982a9b9a1bd25b4af9da381de1373cd4186ae65e9",
+      "size_bytes": 2139
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

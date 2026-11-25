@@ -1,0 +1,56 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C66df20c3b0",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://somoscompletos.com.br/consorcios/",
+  "final_url": "https://somosopenbanking.com/consorcios/",
+  "redirect_chain": [
+    "https://somoscompletos.com.br/consorcios/"
+  ],
+  "http_status": 404,
+  "server_ip": "108.179.192.19",
+  "collected_at": "2026-11-25T20:54:45.010219+00:00",
+  "manifest_written_at": "2026-11-25T20:54:53.392411+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C66df20c3b0/attempt-1/viewport.png",
+      "sha256": "4a1a8d5518076678eb655e2727037b3d34b102a4d0caccbc418457ed10c4e0c3",
+      "size_bytes": 108209
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C66df20c3b0/attempt-1/fullpage.png",
+      "sha256": "04e035ecde8790c9e95b6d930f5bb91e78fe35267713685017f044f2c30fd183",
+      "size_bytes": 176896
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C66df20c3b0/attempt-1/page.html.txt",
+      "sha256": "0a0487a3ce58edc1680dc04ac0256b4787d10d2396bd2a8c240671ddb4b1127f",
+      "size_bytes": 27354
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C66df20c3b0/attempt-1/text.txt",
+      "sha256": "3998cae1784951aa3eb273132dd3c5ab25a625b16b12bcdde9344078b36d4242",
+      "size_bytes": 1247
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C66df20c3b0/attempt-1/page.json",
+      "sha256": "717f7213946b8d76d84faf707f2a5d2876827d3c126ebbc669e31c8cb73ec41e",
+      "size_bytes": 9817
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "network did not become idle (continuing)",
+    "HTTP 404: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

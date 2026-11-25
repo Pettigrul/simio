@@ -1,0 +1,1590 @@
+<html lang="en" class="no-touch"><head>
+    
+	<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NHRM2CK"></script><script>
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        function getDuplicatedParameters (parameterMap) {
+            var arr = parameterMap;
+            var sorted_arr = arr.slice().sort();
+            var results = [];
+            for (var i = 0; i < arr.length - 1; i++) {
+                if (sorted_arr[i + 1] == sorted_arr[i]) {
+                    results.push(sorted_arr[i]);
+                }
+            }
+            return results;
+        }
+
+        function getParameterMapName (url) {
+            var queryString = getQueryString(url);
+            var parameterMaps = queryString.split("=");
+            var paramsName = [];
+            for(var i in parameterMaps)
+            {
+                var param = parameterMaps[i];
+                var paramName;
+                if (param.indexOf('?')>= 0) {
+                    paramName = param.split('?')[1];
+                } else {
+                    paramName = param.split('&')[1];
+                }
+                paramsName[i] = paramName;
+            }
+            return paramsName;
+        }
+
+        function purgeDuplicatedParams (url) {
+            var urlResult = url;
+            var duplicatedParams = getDuplicatedParameters(getParameterMapName(url));
+            for (var i in duplicatedParams) {
+                urlResult = removeURLParameter(urlResult,duplicatedParams[i]);
+            }
+            return urlResult;
+        }
+
+        function updateQueryStringParameter(uri, key, value) {
+            if (value != null && value.length > 0) {
+                var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+                var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+                if (uri.match(re)) {
+                    return uri.replace(re, '$1' + key + "=" + value + '$2');
+                }
+                else {
+                    return uri + separator + key + "=" + value;
+                }
+            }
+            return uri;
+        }
+
+        function removeURLParameter(url, parameter) {
+            var urlparts= url.split('?');
+            if (urlparts.length>=2) {
+                var prefix= encodeURIComponent(parameter)+'=';
+                var pars= urlparts[1].split(/[&;]/g);
+                var removed = false;
+                for (var i= pars.length; i-- > 0;) {
+                    if (pars[i].lastIndexOf(prefix, 0) !== -1 && !removed) {
+                        pars.splice(i, 1);
+                        removed = true;
+                    }
+                }
+                url= urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+                return url;
+            } else {
+                return url;
+            }
+        }
+
+        function getQueryString(url, redirect) {
+            var queryString = url.split('?')[1];
+            if (typeof queryString == 'undefined') {
+                queryString = '';
+            } else {
+                if (typeof (redirect)!= 'undefined' && redirect.indexOf('?')>0) {
+                    queryString = '&' + queryString;
+                } else {
+                    queryString = '?' + queryString;
+                }
+            }
+            return queryString;
+        }
+
+        if(readCookie('langRedirect') == null){
+            document.cookie = "langRedirect=MQ==;path=/" ;
+            var langMapString = "";
+            if( langMapString != null ){
+                var browserlanguage = navigator.language;
+                browserlanguage = browserlanguage.split("-")[0];
+                var obj = JSON.parse(langMapString);
+                var redirect = obj[browserlanguage];
+                if(redirect != null){
+                    redirect = purgeDuplicatedParams (redirect + getQueryString(window.location.href, redirect));
+                    window.location.href=updateQueryStringParameter(redirect,'refred', document.referrer);
+                }
+            }
+        }
+    document.addEventListener("DOMContentLoaded", function(event) { 
+   		history.replaceState({}, 'Title', removeURLParameter(location.href, 'refred'));
+   	});
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes, initial-scale=1.0">
+    
+    <meta name="description" content="We begin to live a new era that will revolutionize the way to deliver energy in the world.">
+    
+    
+    
+<script type="text/javascript" src="/ruxitagentjs_ICA7NVfqrux_10349261020121938.js" data-dtconfig="rid=RID_1136879904|rpid=-1589453834|domain=enelamericas.com|reportUrl=/rb_a0585c7b-16a9-4040-b14e-0e26e2d473fe|app=4c4ebfbec72c1b73|cuc=bka6fatw|srtbv=4|owasp=1|mel=100000|featureHash=ICA7NVfqrux|lastModification=1795622048643|tp=500,50,0|rdnt=1|uxrgce=1|srbbv=3|agentUri=/ruxitagentjs_ICA7NVfqrux_10349261020121938.js"></script><script type="text/javascript" src="/ruxitagentjs_ICA7NVfqrux_10349261020121938.js" data-dtconfig="app=4c4ebfbec72c1b73|cuc=bka6fatw|srtbv=4|owasp=1|mel=100000|featureHash=ICA7NVfqrux|lastModification=1795622048643|tp=500,50,0|rdnt=1|uxrgce=1|srbbv=3|agentUri=/ruxitagentjs_ICA7NVfqrux_10349261020121938.js|reportUrl=/rb_a0585c7b-16a9-4040-b14e-0e26e2d473fe|rid=RID_1136879904|rpid=509692221|domain=enelamericas.com"></script><link rel="stylesheet" href="/etc.clientlibs/foundation/clientlibs/main.min.css" type="text/css">
+<script src="/etc.clientlibs/clientlibs/granite/jquery.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/utils.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/jquery/granite.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/jquery.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/shared.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/main.min.js"></script>
+
+
+
+    
+    <link href="/etc/designs/enel-americas.css" rel="stylesheet" type="text/css">
+
+    
+
+
+
+
+
+
+
+
+    
+
+    
+    
+<link rel="stylesheet" href="/etc/designs/enel-americas/clientlibs/main.min.css" type="text/css">
+
+
+
+
+    
+    <meta name="author" content="">
+
+
+
+	<meta name="robots" content="index,follow">
+
+    
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://www.enelamericas.com/content/enel-americas/en.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Home Enel Inglés - Enel Américas">
+<meta property="og:description" content="We begin to live a new era that will revolutionize the way to deliver energy in the world.">
+<meta property="og:image">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="We begin to live a new era that will revolutionize the way to deliver energy in the world.">
+<meta name="twitter:title" content="Home Enel Inglés - Enel Américas">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/etc/designs/enel-americas/favicon.ico">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/etc/designs/enel-americas/favicon.ico">
+    
+    
+     <title>Home Enel Inglés - Enel Américas - enelamericas.com</title>
+    
+ 	
+	
+     <link rel="alternate" hreflang="es" href="https://www.enelamericas.com/es.html">
+    
+     <link rel="alternate" hreflang="en" href="https://www.enelamericas.com/en.html">
+    
+
+    
+    
+     <link rel="canonical" href="https://www.enelamericas.com/en.html">
+    
+
+    <script>document.createElement( "picture" );</script>
+    <script async="async" src="/etc/designs/enel-americas/js/picturefill.min.js"></script>
+
+    <script src="//assets.adobedtm.com/8331ab45ea9046af83c9222bfd02410c9f62ef0d/satelliteLib-754eba6b494770aa96d394e8b2f0a0afb611b483.js"></script><script src="https://assets.adobedtm.com/extensions/EPbf7b42aa08bc4f10879b1484195e80d1/AppMeasurement.min.js" async=""></script><script src="https://assets.adobedtm.com/extensions/EPbf7b42aa08bc4f10879b1484195e80d1/AppMeasurement_Module_ActivityMap.min.js" async=""></script>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJ7HFTZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+   
+</head>
+    <body class="page-home">
+<script type="text/javascript"> 
+ var enel_data = {
+			investor: { 
+				time: ""
+			},
+			megamenu: { 
+				language: ""
+			},
+			hub: {
+				breadcrumb: "",
+				secondary: ""
+			},
+			footer: {
+				socialnameprofile: ""
+			},
+			maps: {
+				pin: ""
+			},
+			search: {
+				quicklinks: "",
+				key: "",
+				results: 0,
+			}
+    }; 
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NHRM2CK');</script>
+
+ 
+
+
+
+<!-- START MODULE: GLOBAL-SEARCH-->
+
+
+    <div data-module="globalSearch" class="module search-form module--initialized">
+        <!-- START MODULE: GLOBAL-SEARCH-HEADER-->
+        
+        
+  <div class="search-form__header">
+    <div itemscope="" itemtype="http://schema.org/Organization" class="search-form__logo search-form__logo_upload">
+        
+        
+        
+    	    <a itemprop="url" href="/en.html">
+        
+      		<img itemprop="logo" src="/content/dam/enel-americas/home/LogoEnel-312x114.png" alt="Enel">
+      	    </a>
+    </div>
+    <div class="search-form__btns">
+      <button class="global-header__btn search-form__btn-close"><span class="cross-icon"></span></button>
+    </div>
+  </div>
+
+        <!-- END MODULE: GLOBAL-SEARCH-HEADER-->
+        <div class="search-form__inner">
+            <div class="container">
+                <form id="global_search_form" action="/en/Search.html" method="GET" autocomplete="off" data-json-url="/en/_jcr_content.jsonsearch.html?type=keywords">
+                    <div class="search-form__input__wrap">
+                        <input type="search" name="search" placeholder="Search Enel Américas" class="search-form__input" style="">
+                    </div>
+                    <div class="search-form__submit__wrap">
+                        <button type="submit" class="search-form__submit icon-search"><span>Submit</span></button>
+                    </div>
+                </form>
+
+                
+                <span class="search-form__content">
+                    <div class="search-form__links search-form__links--quick">
+                        <span class="search-form__heading">Direct Links</span>
+                        <ul>
+                            <li>
+                                <a></a>
+                            </li>
+                        </ul>
+                    </div>
+                </span>
+
+
+            </div>
+        </div>
+    </div>
+    <script type="text/template" id="TMPL--search-form__content">
+        <div class="search-form__links search-form__links--quick search-form__suggestions">
+            <span class="search-form__heading"></span>
+            <ul>
+                <% if (results) { %>
+                <% for (var i=0; i<results.length; i++) { %>
+                <li><a href="/en/Search.html?search=<%-results[i]%>"><%-results[i]%></a></li>
+                <% } %>
+                <% } %>
+            </ul>
+        </div>
+    </script>
+
+<!-- END MODULE: GLOBAL-SEARCH-->
+
+<!-- START MODULE: GLOBAL-HEADER-->
+
+
+  <script>
+    	$(document).ready(function() {
+			var initialHeigth = 0;
+    		if ($(".global-header__links")[0].clientHeight != undefined) {
+    			initialHeigth = $(".global-header__links")[0].clientHeight;
+        	}
+            if($(".global-header__links")[0].clientHeight != 32 && window.innerWidth > 1023) {
+            	if ($(".global-header__btns") != undefined) {
+					$(".global-header__btns").css("margin-top", "-27px");
+                }
+            }
+        	$(window).resize(function() {
+				if($(".global-header__links")[0].clientHeight != 32 && window.innerWidth > 1023) {
+                    $(".global-header__btns").css("margin-top", "-27px");
+             	} else if (window.innerWidth > 1023) {
+					$(".global-header__btns").css("margin-top", "");
+                }
+        	});
+         });
+  </script>
+  <header data-module="global-header" class="module global-header module--initialized">
+    <div class="global-header__main">
+      
+
+      <style>
+        @media screen and (max-width:767px) {
+          .global-header__logo{
+            max-width: 60px !important;
+          }
+        }
+      </style>
+      <div itemscope="" itemtype="http://schema.org/Organization" class="global-header__logo" style="max-width:109px;">
+
+        
+        
+            
+            
+            
+                <a itemprop="url" href="/en.html">
+            
+
+        		<img itemprop="logo" src="/content/dam/enel-americas/home/LogoEnel-312x114.png" alt="Enel" class="global-header__logo__bw">
+        		<img itemprop="logo" src="/content/dam/enel-americas/home/LogoEnel-312x114.png" alt="Enel" class="global-header__logo__color">
+        	</a>
+        
+      </div>
+      <div class="global-header__links">
+        <ul>
+          <li>
+            <a href="/en/aboutus.html" alt="ABOUT US" target="_self">ABOUT US</a>
+          </li>
+        
+          <li>
+            <a href="/en/stories.html" alt="STORIES" target="_self">STORIES</a>
+          </li>
+        
+          <li>
+            <a href="/en/investors.html" alt="INVESTORS" target="_self">INVESTORS</a>
+          </li>
+        
+          <li>
+            <a href="/en/media.html" alt="MEDIA" target="_self">MEDIA</a>
+          </li>
+        
+          <li>
+            <a href="/en/work-with-us1.html" alt="WORK WITH US" target="_self">WORK WITH US</a>
+          </li>
+        
+          <li>
+            <a href="/es.html" target="_self">Español</a>
+          </li>
+        </ul>
+      </div>
+      <div class="global-header__btns">
+        
+        
+        <button class="global-header__btn btn-search-open"><span class="icon-search-small"></span></button>
+        
+        <button class="global-header__btn btn-menu"><span class="icon-menu"></span></button>
+
+        
+
+      </div>
+    </div>
+  </header>
+
+  
+
+<!-- END MODULE: GLOBAL-HEADER-->
+
+<!-- START MODULE: GLOBAL-SIDE-MENU-->
+
+
+    
+    <div data-module="global-megamenu" class="megamenu module module--initialized">
+
+  
+    
+    
+    <nav class="megamenu__nav">
+  <div class="megamenu__nav__header">
+    
+      <ul class="megamenu__lang-links">
+        <li class="activeLang">
+          <a alt="es" style="text-transform: uppercase;" href="https://www.enelamericas.com/es.html">Es</a>
+        </li>
+      
+        <li class="selected activeLang">
+          <a alt="en" style="text-transform: uppercase;" href="https://www.enelamericas.com/en.html">En</a>
+        </li>
+      </ul>
+    
+    <button class="btn-close"><span class="cross-icon"></span></button>
+  </div>
+  <div class="megamenu__nav__body">
+    
+
+    <div class="megamenu__accordian open primaryMenu">
+      <!--START: NAVIGATION PRIMARY-->
+
+
+
+
+
+
+<!--END: NAVIGATION PRIMARY-->
+
+
+    
+      <!--START: NAVIGATION PRIMARY-->
+
+
+
+<div class="megamenu__accordian__header open">
+    Enel Américas
+</div>
+
+<div class="megamenu__accordian__body" style="display: block;">
+    
+
+        
+            <ul class="megamenu__links">
+                <li class="selected">
+                        <a name="&amp;lid=home&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en.html">
+                         HOME
+                         
+                        </a>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=ethical--channel&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/investors/a201609-ethical-channel.html">
+                         Ethical  Channel
+                         
+                        </a>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=about-us&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/aboutus.html">
+                         About Us
+                         
+                        </a>
+                    
+                        <ul class="megamenu__submenu">
+                            
+                                <li>
+                                    <a name="&amp;lid=about-enel-amricas&amp;lpos=megamenu" target="_self" href="/en/aboutus/a201609-about-enel-americas.html">About Enel Américas</a>
+                                </li>
+                            
+                                <li>
+                                    <a name="&amp;lid=directors-&amp;lpos=megamenu" target="_self" href="/en/aboutus/a201611-board-of-directors.html">Directors </a>
+                                </li>
+                            
+                                <li>
+                                    <a name="&amp;lid=our-management-team&amp;lpos=megamenu" target="_self" href="/en/aboutus/a201611-our-management-team.html">Our Management Team</a>
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=stories&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/stories.html">
+                         Stories
+                         
+                        </a>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=sustainability-report&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/investors/a201609-sustainability-reports.html">
+                         Sustainability report
+                         
+                        </a>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=investors&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/investors.html">
+                         Investors
+                         
+                        </a>
+                    
+                        <ul class="megamenu__submenu">
+                            
+                                <li>
+                                    <a name="&amp;lid=investor-kit&amp;lpos=megamenu" target="_blank" href="/en/investors/a201810-investorkit.html">Investor Kit</a>
+                                </li>
+                            
+                                <li>
+                                    <a name="&amp;lid=shareholders-meeting&amp;lpos=megamenu" target="_self" href="/en/investors/a201609-shareholders-meeting.html">Shareholders Meeting</a>
+                                </li>
+                            
+                                <li>
+                                    <a name="&amp;lid=quarterly-results&amp;lpos=megamenu" target="_self" href="/en/investors/a201810-quarters-results.html">Quarterly Results</a>
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=-corporate-reorganization&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/corporate-reorganization.html">
+                          Corporate Reorganization
+                         
+                        </a>
+                    
+                        <ul class="megamenu__submenu">
+                            
+                                <li>
+                                    <a name="&amp;lid=significant-events&amp;lpos=megamenu" target="_self" href="/en/corporate-reorganization/a201609-significant-events.html">Significant Events</a>
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=media&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/media.html">
+                         Media
+                         
+                        </a>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+
+        
+            <ul class="megamenu__links">
+                <li>
+                        <a name="&amp;lid=work-with-us&amp;lpos=megamenu" class="megamenu__links__heading " target="_self" href="/en/work-with-us.html">
+                         Work with us
+                         
+                        </a>
+                    
+                        <ul class="megamenu__submenu">
+                            
+                                <li>
+                                    Our Signature and Values
+                                </li>
+                            
+                                <li>
+                                    Opportunities for Jobs
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            </ul>
+        
+
+        
+    
+</div>
+<!--END: NAVIGATION PRIMARY-->
+
+
+    
+      <!--START: NAVIGATION PRIMARY-->
+
+
+
+
+
+
+<!--END: NAVIGATION PRIMARY-->
+
+
+    
+      <!--START: NAVIGATION PRIMARY-->
+
+
+
+
+
+
+<!--END: NAVIGATION PRIMARY-->
+
+
+    
+    </div>
+    
+      <!--START: NAVIGATION SECONDARY-->
+
+  <div class="megamenu__accordian secondaryMenu publishmode">
+    <div class="megamenu__accordian__header  open">
+      Other Sites
+    </div>
+    <div class="megamenu__accordian__body" style="display:block;">
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-corporate&amp;lpos=megamenu" target="_blank" href="http://www.enel.com">Enel Corporate</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-argentina&amp;lpos=megamenu" target="_blank" href="https://www.enel.com.ar/Home-Enel.html">Enel Argentina</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-brasil&amp;lpos=megamenu" target="_blank" href="https://www.enel.com.br/en.html">Enel Brasil</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-colombia&amp;lpos=megamenu" target="_blank" href="https://www.enel.com.co/en">Enel Colombia</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  Enel Perú
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  Enel Green Power
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-x-corporate&amp;lpos=megamenu" target="_blank" href="https://corporate.enelx.com/en">Enel X Corporate</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=global-trading&amp;lpos=megamenu" target="_blank" href="https://globaltrading.enel.com/en.html">Global Trading</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+      
+    </div>
+  </div>
+  <div class="megamenu__accordian secondaryMenu publishmode">
+    <div class="megamenu__accordian__header " style="border-top: 0px solid">
+      Relevant
+    </div>
+    <div class="megamenu__accordian__body" style="display:block;">
+      <ul class="megamenu__links" style="display:block;">
+        <li>
+          <ul class="megamenu__submenu">
+            <li>
+              <a name="&amp;lid=ethical-channel&amp;lpos=megamenu" target="_blank" href="https://secure.ethicspoint.eu/domain/media/en/gui/102504/index.html">ETHICAL CHANNEL</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+<!--END: NAVIGATION SECONDARY-->
+
+    
+    <div class="megamenu__news__mobile" style="display: none;"><div class="swiper-container swiper-container-horizontal"><div class="swiper-wrapper" style="transition-duration: 0ms;"><div class="swiper-slide swiper-slide-active"><article class="megamenu__article megamenu__article--large">
+ <a href="/en/investors.html" target="_self" name="&amp;lid=investors&amp;lpos=megamenu">
+  
+  <div class="megamenu__article__img">
+   
+
+
+<img src="/content/enel-americas/en/megamenu/_jcr_content/news/module_content_large/image.img.jpg/1689181551454.jpg" alt="Investors" title="EA404x172V1" class="">
+
+<!--    <div class="icon-video"></div> -->
+  </div>
+  
+  <div class="megamenu__article__content">
+   <p class="megamenu__article__topic">
+    
+<!--     <span class="icon-link-external"></span> -->
+   </p>
+   <span class="megamenu__article__title">Investors</span>
+   <div class="megamenu__article__copy"> 
+    <p>Find here all the information you need to know.</p>
+   </div> 
+  </div>
+  
+ </a>
+</article></div><div class="swiper-slide swiper-slide-next"><article class="megamenu__article ">
+ <a href="/en/aboutus/a201611-board-of-directors.html" target="_self" name="&amp;lid=board-of-directors-&amp;lpos=megamenu">
+  
+  <div class="megamenu__article__img">
+   
+
+
+<img src="/content/enel-americas/en/megamenu/_jcr_content/news/module_content/image.img.jpg/1507298603140.jpg" alt="Directorio-404x172-module-single" title="Directorio-404x172-module-single" class="">
+
+<!--    <div class="icon-video"></div> -->
+  </div>
+  
+  <div class="megamenu__article__content">
+   <p class="megamenu__article__topic">
+    
+<!--     <span class="icon-link-external"></span> -->
+   </p>
+   <span class="megamenu__article__title">Board of Directors </span>
+    
+  </div>
+  
+ </a>
+</article></div></div><div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>
+  </div>
+</nav>
+
+    <div class="megamenu__main">
+        <div class="megamenu__main__inner">
+            <div class="megamenu__main__header">
+                
+    
+
+    
+
+    
+        <a href="/en.html" class="megamenu-content-header-logo">
+    
+
+
+        <img src="/content/dam/enel-americas/home/LogoEnelCOLOR-312x114.png" alt="Enel Américas">
+    </a>
+
+            </div>
+            <div class="megamenu__main__body">
+                <nav class="megamenu__navSecondary"><div class="megamenu__accordian secondaryMenu publishmode">
+    <div class="megamenu__accordian__header  open">
+      Other Sites
+    </div>
+    <div class="megamenu__accordian__body" style="display:block;">
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-corporate&amp;lpos=megamenu" target="_blank" href="http://www.enel.com">Enel Corporate</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-argentina&amp;lpos=megamenu" target="_blank" href="https://www.enel.com.ar/Home-Enel.html">Enel Argentina</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-brasil&amp;lpos=megamenu" target="_blank" href="https://www.enel.com.br/en.html">Enel Brasil</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-colombia&amp;lpos=megamenu" target="_blank" href="https://www.enel.com.co/en">Enel Colombia</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  Enel Perú
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  Enel Green Power
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=enel-x-corporate&amp;lpos=megamenu" target="_blank" href="https://corporate.enelx.com/en">Enel X Corporate</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+          <ul class="megamenu__links">
+            <li>
+              <ul class="megamenu__submenu">
+                <li>
+                  <a name="&amp;lid=global-trading&amp;lpos=megamenu" target="_blank" href="https://globaltrading.enel.com/en.html">Global Trading</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        
+      
+        
+        
+      
+    </div>
+  </div><div class="megamenu__accordian secondaryMenu publishmode">
+    <div class="megamenu__accordian__header  open" style="border-top: 0px solid">
+      Relevant
+    </div>
+    <div class="megamenu__accordian__body" style="display:block;">
+      <ul class="megamenu__links" style="display:block;">
+        <li>
+          <ul class="megamenu__submenu">
+            <li>
+              <a name="&amp;lid=ethical-channel&amp;lpos=megamenu" target="_blank" href="https://secure.ethicspoint.eu/domain/media/en/gui/102504/index.html">ETHICAL CHANNEL</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div></nav>
+                <div class="megamenu__news"><div class="megamenu__news__inner">
+ 
+
+
+
+
+    
+    
+    
+
+<article class="megamenu__article megamenu__article--large">
+ <a href="/en/investors.html" target="_self" name="&amp;lid=investors&amp;lpos=megamenu">
+  
+  <div class="megamenu__article__img">
+   
+
+
+<img src="/content/enel-americas/en/megamenu/_jcr_content/news/module_content_large/image.img.jpg/1689181551454.jpg" alt="Investors" title="EA404x172V1" class="">
+
+<!--    <div class="icon-video"></div> -->
+  </div>
+  
+  <div class="megamenu__article__content">
+   <p class="megamenu__article__topic">
+    
+<!--     <span class="icon-link-external"></span> -->
+   </p>
+   <span class="megamenu__article__title">Investors</span>
+   <div class="megamenu__article__copy"> 
+    <p>Find here all the information you need to know.</p>
+   </div> 
+  </div>
+  
+ </a>
+</article>
+
+
+    
+    
+    
+
+<article class="megamenu__article ">
+ <a href="/en/aboutus/a201611-board-of-directors.html" target="_self" name="&amp;lid=board-of-directors-&amp;lpos=megamenu">
+  
+  <div class="megamenu__article__img">
+   
+
+
+<img src="/content/enel-americas/en/megamenu/_jcr_content/news/module_content/image.img.jpg/1507298603140.jpg" alt="Directorio-404x172-module-single" title="Directorio-404x172-module-single" class="">
+
+<!--    <div class="icon-video"></div> -->
+  </div>
+  
+  <div class="megamenu__article__content">
+   <p class="megamenu__article__topic">
+    
+<!--     <span class="icon-link-external"></span> -->
+   </p>
+   <span class="megamenu__article__title">Board of Directors </span>
+    
+  </div>
+  
+ </a>
+</article>
+
+
+
+</div></div>
+            </div>
+        </div>
+    </div>
+
+  
+
+
+  
+
+  
+
+
+  
+
+  
+
+</div>
+
+<!-- END MODULE: GLOBAL-SIDE-MENU-->
+
+
+    
+
+
+
+<main id="main">
+
+	
+
+<section data-module="homeHero" class="home-hero module module--initialized" style="visibility: visible;">
+  <div class="home-hero__bg--black"></div>
+  
+    <div data-slide="0" class="home-hero__bg" style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
+
+      <div class="home-hero__bg__image zoom">
+        
+        
+        
+          <picture>
+    <source srcset="/content/enel-americas/en/jcr:content/carousel/items/item/image.img.jpg/1791920207893.jpg" media="(min-width: 768px)">
+    
+    <img src="/content/enel-americas/en/_jcr_content/carousel/items/item/image.img.jpg/1791920207893.jpg" alt="" data-emptytext="Image">
+</picture>
+
+
+
+        
+      </div>
+      
+    </div>
+
+  
+    <div data-slide="1" class="home-hero__bg">
+
+      <div class="home-hero__bg__image">
+        
+        
+        
+          <picture>
+    <source srcset="/content/enel-americas/en/jcr:content/carousel/items/item_539438779/image.img.jpg/1782832839924.jpg" media="(min-width: 768px)">
+    
+    <img src="/content/enel-americas/en/_jcr_content/carousel/items/item_539438779/image.img.jpg/1782832839924.jpg" alt="" data-emptytext="Image">
+</picture>
+
+
+
+        
+      </div>
+      
+    </div>
+
+  
+    <div data-slide="2" class="home-hero__bg">
+
+      <div class="home-hero__bg__image">
+        
+        
+        
+          <picture>
+    <source srcset="/content/enel-americas/en/jcr:content/carousel/items/item_163994610/image.img.jpg/1777555474662.jpg" media="(min-width: 768px)">
+    
+    <img src="/content/enel-americas/en/_jcr_content/carousel/items/item_163994610/image.img.jpg/1777555474662.jpg" alt="" data-emptytext="Image">
+</picture>
+
+
+
+        
+      </div>
+      
+    </div>
+
+  
+
+  <div class="swiper-container swiper-container-horizontal swiper-container-fade" style="opacity: 1;">
+    <div class="swiper-wrapper" style="transition-duration: 0ms;"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="2" style="width: 1366px; transform: translate3d(0px, 0px, 0px); opacity: 0; transition-duration: 0ms;">
+          <div data-bg-color="#ff5a0f" data-video-src="false" class="data"></div>
+          <div class="home-hero__content">
+            <div class="home-hero__content__inner">
+
+              <p data-swiper-parallax-x="-100" class="text--uppercase-heading" style="transform: translate3d(-100px, 0px, 0px); transition-duration: 0ms;"></p>
+              <div data-swiper-parallax-x="-600" style="transform: translate3d(-600px, 0px, 0px); transition-duration: 0ms;">
+                <div class="home-hero__title-container">
+                  <div class="home-hero__title-mask">
+                    <div class="home-hero__title-cursor"></div>
+                    <div class="home-hero__title-wrap">
+                      <h2 class="text--page-heading">Integrated Annual Report 2025</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-swiper-parallax-x="-400" style="transform: translate3d(-400px, 0px, 0px); transition-duration: 0ms;">
+                <a href="/en/investors/a201609-annual-reports.html" target="_self" name="&amp;lid=integrated-annual-report-2025&amp;lpos=visore" class="btn-cta btn-cta--clear">Find it here</a>
+              </div>
+
+            </div>
+            <div data-swiper-parallax-x="-400" class="home-hero__related" style="transform: translate3d(-400px, 0px, 0px); transition-duration: 0ms;">
+              
+              <div class="home-hero__related__articles">
+                
+              
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+        <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" style="width: 1366px; transform: translate3d(-1366px, 0px, 0px); opacity: 1; transition-duration: 0ms;">
+          <div data-bg-color="#0555fa" data-video-src="false" class="data"></div>
+          <div class="home-hero__content">
+            <div class="home-hero__content__inner">
+
+              <p data-swiper-parallax-x="-100" class="text--uppercase-heading" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"></p>
+              <div data-swiper-parallax-x="-600" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                <div class="home-hero__title-container">
+                  <div class="home-hero__title-mask">
+                    <div class="home-hero__title-cursor"></div>
+                    <div class="home-hero__title-wrap">
+                      <h2 class="text--page-heading">Q3 &amp; 9M 2026 Results Conference Call</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-swiper-parallax-x="-400" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                <a href="/en/investors/a202610-enel-americas-Q39M-2026-Results-Conference-Call.html" target="_self" name="&amp;lid=q3--9m-2026-results-conference-call&amp;lpos=visore" class="btn-cta btn-cta--clear">More information</a>
+              </div>
+
+            </div>
+            <div data-swiper-parallax-x="-400" class="home-hero__related" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+              
+              <div class="home-hero__related__articles">
+                
+              
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+
+        <div class="swiper-slide swiper-slide-next" data-swiper-slide-index="1" style="width: 1366px; transform: translate3d(-2732px, 0px, 0px); opacity: 0; transition-duration: 0ms;">
+          <div data-bg-color="#55bd5a" data-video-src="false" class="data"></div>
+          <div class="home-hero__content">
+            <div class="home-hero__content__inner">
+
+              <p data-swiper-parallax-x="-100" class="text--uppercase-heading" style="transform: translate3d(100px, 0px, 0px); transition-duration: 0ms;"></p>
+              <div data-swiper-parallax-x="-600" style="transform: translate3d(600px, 0px, 0px); transition-duration: 0ms;">
+                <div class="home-hero__title-container">
+                  <div class="home-hero__title-mask">
+                    <div class="home-hero__title-cursor"></div>
+                    <div class="home-hero__title-wrap">
+                      <h2 class="text--page-heading">Extraordinary Shareholder's Meeting 2026</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-swiper-parallax-x="-400" style="transform: translate3d(400px, 0px, 0px); transition-duration: 0ms;">
+                <a href="/en/investors/a202606-extraordinary-shareholders-meeting-july-2026.html" target="_self" name="&amp;lid=extraordinary-shareholders-meeting-2026&amp;lpos=visore" class="btn-cta btn-cta--clear">More information</a>
+              </div>
+
+            </div>
+            <div data-swiper-parallax-x="-400" class="home-hero__related" style="transform: translate3d(400px, 0px, 0px); transition-duration: 0ms;">
+              
+              <div class="home-hero__related__articles">
+                
+              
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+
+        <div class="swiper-slide" data-swiper-slide-index="2" style="width: 1366px; transform: translate3d(-4098px, 0px, 0px); opacity: 0; transition-duration: 0ms;">
+          <div data-bg-color="#ff5a0f" data-video-src="false" class="data"></div>
+          <div class="home-hero__content">
+            <div class="home-hero__content__inner">
+
+              <p data-swiper-parallax-x="-100" class="text--uppercase-heading" style="transform: translate3d(100px, 0px, 0px); transition-duration: 0ms;"></p>
+              <div data-swiper-parallax-x="-600" style="transform: translate3d(600px, 0px, 0px); transition-duration: 0ms;">
+                <div class="home-hero__title-container">
+                  <div class="home-hero__title-mask">
+                    <div class="home-hero__title-cursor"></div>
+                    <div class="home-hero__title-wrap">
+                      <h2 class="text--page-heading">Integrated Annual Report 2025</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-swiper-parallax-x="-400" style="transform: translate3d(400px, 0px, 0px); transition-duration: 0ms;">
+                <a href="/en/investors/a201609-annual-reports.html" target="_self" name="&amp;lid=integrated-annual-report-2025&amp;lpos=visore" class="btn-cta btn-cta--clear">Find it here</a>
+              </div>
+
+            </div>
+            <div data-swiper-parallax-x="-400" class="home-hero__related" style="transform: translate3d(400px, 0px, 0px); transition-duration: 0ms;">
+              
+              <div class="home-hero__related__articles">
+                
+              
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+    <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" style="width: 1366px; transform: translate3d(-5464px, 0px, 0px); opacity: 0; transition-duration: 0ms;">
+          <div data-bg-color="#0555fa" data-video-src="false" class="data"></div>
+          <div class="home-hero__content">
+            <div class="home-hero__content__inner">
+
+              <p data-swiper-parallax-x="-100" class="text--uppercase-heading" style="transform: translate3d(100px, 0px, 0px); transition-duration: 0ms;"></p>
+              <div data-swiper-parallax-x="-600" style="transform: translate3d(600px, 0px, 0px); transition-duration: 0ms;">
+                <div class="home-hero__title-container">
+                  <div class="home-hero__title-mask">
+                    <div class="home-hero__title-cursor"></div>
+                    <div class="home-hero__title-wrap">
+                      <h2 class="text--page-heading">Q3 &amp; 9M 2026 Results Conference Call</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-swiper-parallax-x="-400" style="transform: translate3d(400px, 0px, 0px); transition-duration: 0ms;">
+                <a href="/en/investors/a202610-enel-americas-Q39M-2026-Results-Conference-Call.html" target="_self" name="&amp;lid=q3--9m-2026-results-conference-call&amp;lpos=visore" class="btn-cta btn-cta--clear">More information</a>
+              </div>
+
+            </div>
+            <div data-swiper-parallax-x="-400" class="home-hero__related" style="transform: translate3d(400px, 0px, 0px); transition-duration: 0ms;">
+              
+              <div class="home-hero__related__articles">
+                
+              
+                
+              </div>
+            </div>
+          </div>
+        </div></div>
+    <div class="swiper-pagination swiper-pagination-bullets swiper-pagination-clickable" data-bullets-number="3"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
+  </div>
+
+  
+  
+</section>
+
+
+
+<section data-module="investorInfo" class="investor-info ii module module--initialized reveal"> 
+</section>
+
+
+
+
+
+
+<section data-module="related-content" class="related-content-sky module related-content--most-popular module--initialized">
+  <div class="related-content_inner">
+    
+    <div class="related-content__cards" id="related\u002Dcontent\u002Dwrapper_related">
+	    
+	      <p class="related-content_heading" style="color:#fff">Our Business</p>
+	      
+	      <div class="related-content_card-wrap">
+	        
+	        
+		        
+			        
+			          
+			          
+			            
+  
+  <a class="component related-content-card  component--initialized" href="/en/aboutus/a201609-generation.html">
+    <div class="related-content-card_wrap">
+      <div class="related-content-card_inner">
+        <div class="related-content-card_color"></div>
+        
+
+
+
+<div id="cq-image-jsp-/content/enel-americas/en/megamenu/aboutus/archive/2016/09/generation/jcr:content/hero/image4"><img src="/content/enel-americas/en/megamenu/aboutus/archive/2016/09/generation/_jcr_content/hero/image4.img.jpg/1689189367862.jpg" alt="Energy Generation" title="01.betaniaimg.generacion.colombia.04-340x480-related" class="cq-dd-image related-content-card_image"></div>
+<span property="jcr:description" placeholder="" tagname="small" escapexml="true">
+
+<script type="text/javascript">
+    (function() {
+        var imageDiv = document.getElementById("cq\u002Dimage\u002Djsp\u002D\/content\/enel\u002Damericas\/en\/megamenu\/aboutus\/archive\/2016\/09\/generation\/jcr:content\/hero\/image4");
+        var imageEvars = '{ imageLink: "", imageAsset: "/content/dam/enel-americas/about_us/filiales/colombia/01.betaniaimg.generacion.colombia.04-340x480-related.jpg", imageTitle: "01.betaniaimg.generacion.colombia.04\u002D340x480\u002Drelated" }';
+        var tagNodes = imageDiv.getElementsByTagName('A');
+        for (var i = 0; i < tagNodes.length; i++) {
+            var link = tagNodes.item(i); 
+            link.setAttribute('onclick', 'CQ_Analytics.record({event: "imageClick", values: ' + imageEvars + ', collect: false, options: { obj: this }, componentPath: "\/apps\/enel\u002Dcom\/components\/general\/image"})');
+        }
+        
+    })();
+</script>
+
+        <div class="related-content-card_title-wrap">
+          <p class="related-content-card_title" style="margin-bottom: -40px; bottom: 70px;">Energy Generation</p>
+          <p class="related-content-card_copy" style="margin-bottom: -40px; bottom: 70px;">
+            
+          </p>
+        </div>
+      </span></div>
+    </div>
+    
+  </a>
+
+			          
+			        
+	            
+	      
+	        
+	        
+		        
+			        
+			          
+			          
+			            
+  
+  <a class="component related-content-card  component--initialized" href="/en/aboutus/a201609-distribution.html">
+    <div class="related-content-card_wrap">
+      <div class="related-content-card_inner">
+        <div class="related-content-card_color"></div>
+        
+
+
+
+<div id="cq-image-jsp-/content/enel-americas/en/megamenu/aboutus/archive/2016/09/distribution/jcr:content/hero/image4"><img src="/content/enel-americas/en/megamenu/aboutus/archive/2016/09/distribution/_jcr_content/hero/image4.img.jpg/1689189323364.jpg" alt="Energy Distribution" title="Distribucion01.340x480-related" class="cq-dd-image related-content-card_image"></div>
+<span property="jcr:description" placeholder="" tagname="small" escapexml="true">
+
+<script type="text/javascript">
+    (function() {
+        var imageDiv = document.getElementById("cq\u002Dimage\u002Djsp\u002D\/content\/enel\u002Damericas\/en\/megamenu\/aboutus\/archive\/2016\/09\/distribution\/jcr:content\/hero\/image4");
+        var imageEvars = '{ imageLink: "", imageAsset: "/content/dam/enel-americas/home/Distribucion01.340x480-related.jpg", imageTitle: "Distribucion01.340x480\u002Drelated" }';
+        var tagNodes = imageDiv.getElementsByTagName('A');
+        for (var i = 0; i < tagNodes.length; i++) {
+            var link = tagNodes.item(i); 
+            link.setAttribute('onclick', 'CQ_Analytics.record({event: "imageClick", values: ' + imageEvars + ', collect: false, options: { obj: this }, componentPath: "\/apps\/enel\u002Dcom\/components\/general\/image"})');
+        }
+        
+    })();
+</script>
+
+        <div class="related-content-card_title-wrap">
+          <p class="related-content-card_title" style="margin-bottom: -40px; bottom: 70px;">Energy Distribution</p>
+          <p class="related-content-card_copy" style="margin-bottom: -40px; bottom: 70px;">
+            
+          </p>
+        </div>
+      </span></div>
+    </div>
+    
+  </a>
+
+			          
+			        
+	            
+	      
+	        
+	        
+		        
+			        
+	            
+	      </div>
+	      
+	    
+    </div>
+    <div class="most-popular">
+      
+  <p class="related-content_heading">
+    
+  </p>
+  
+
+    </div>
+    
+ </div>
+</section>
+
+
+</main>
+
+<footer data-module="footer" class="footer module">
+ 
+<div class="footer-container">
+  <div class="footer-content">
+    <div class="footer-section footer-social">
+      <p></p>
+      <ul>
+        
+        <!--li class="footer-social-item" data-sly-test="false"><a href="http://twitter.com" data-sly-attribute.target="" class="icon-twitter"><span>Twitter</span></a></li-->
+        
+        
+        
+        
+        <li class="footer-social-item"><a href="https://www.linkedin.com/company/enel-américas" class="icon3-linkedin"><span>LinkedIn</span></a></li>
+        
+      	
+      </ul>
+    </div>
+    <div class="footer-section footer-legal">
+      <ul class="footer-copyright">
+        
+          <li class="footer-legal-item footer-legal-text">© Enel Américas 2016</li>
+        
+        
+        
+        
+      </ul>
+      <ul class="footer-legal-links">
+        <li class="footer-legal-item">
+          <a href="/en/footer/a201611-legal-notice.html" target="_self">Legal Notice</a>
+        </li>
+      
+        <li class="footer-legal-item">
+          <a href="/en/investors/a201609-ethical-channel.html" target="_self">Ethical Channel</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<style>
+  @font-face {
+    font-family: 'icomoon4';
+    src:  url('/etc/designs/enel-com/fonts/icomoon4.eot?pwja14');
+    src:  url('/etc/designs/enel-com/fonts/icomoon4.eot?pwja14#iefix') format('embedded-opentype'),
+      url('/etc/designs/enel-com/fonts/icomoon4.ttf?pwja14') format('truetype'),
+      url('/etc/designs/enel-com/fonts/icomoon4.woff?pwja14') format('woff'),
+      url('/etc/designs/enel-com/fonts/icomoon4.svg?pwja14#icomoon4') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
+  [class^="xtwitter-icon"], [class*=" xtwitter-icon"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon4' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .xtwitter-icon-twitter:before {
+    content: "\e900";
+  }
+
+  .footer-social a.xtwitter-icon-twitter::before{
+    margin-top: 3px;
+  }
+
+  .footer-social a::before{
+    position: absolute;
+  }
+</style>
+</footer>
+
+
+
+
+
+
+
+ 
+
+ 
+    
+<script src="/etc/designs/enel-americas/clientlibs/main.min.js"></script><iframe sandbox="allow-scripts allow-same-origin" title="Adobe ID Syncing iFrame" id="destination_publishing_iframe_enelglobal_0" name="destination_publishing_iframe_enelglobal_0_name" src="https://enelglobal.demdex.net/dest5.html?d_nsid=0#https%3A%2F%2Fwww.enelamericas.com" class="aamIframeLoaded" style="display: none; width: 0px; height: 0px;"></iframe>
+
+
+
+
+
+
+
+
+    
+<script src="/etc/designs/enel-com/clientlibs/main-common.min.js"></script>
+
+
+
+ 
+ <script type="text/javascript">
+  if (window._satellite) {
+	  window._satellite.pageBottom();
+  }
+ </script>
+<script>            
+  var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+  if (!touchsupport) { // browser doesn't support touch
+      document.documentElement.className += "no-touch";
+  }
+</script>
+<script>
+if ($(".dotcom-header__btn")[0] != undefined) {
+	var main = $("#main")[0];
+	main.setAttribute("data-starting-point", "main");
+	
+	$('[data-module="global-megamenu"]').attr('data-starting-point', 'main');
+	$('[data-module="footer"]').attr('data-starting-point', 'main');
+}
+</script><script type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&amp;ns=1&amp;cb=541719470" async=""></script>
+</body></html>

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C63b0a3a1d4</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-204500-58aa</b> · Gerado em: 2026-11-25T21:04:37+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C63b0a3a1d4 — bancarios-es.org.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.bancarios-es.org.br/tag/bv-financeira/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo + comparação de imagem)</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada pertence ao Sindicato dos Bancários do Espírito Santo (Sindibancários ES) e consiste em uma compilação de notícias sobre assembleias e acordos trabalhistas envolvendo empregados do Banco Votorantim e BV Financeira. O site não comercializa nem intermedeia crédito ou produtos financeiros, enquadrando-se como fora do escopo de auditoria de COBANs e correspondentes da Resolução CMN nº 4.935/2021.
+[Revisor: DOWNGRADE] A página analisada é do Sindibancários ES (entidade sindical), reunindo notícias informativas e trabalhistas referentes aos empregados do Banco Votorantim e BV Financeira. O uso do logotipo antigo é puramente editorial e ilustrativo em matéria jornalística sobre assembleia da categoria. O domínio e a entidade estão fora do escopo de correspondentes bancários da Resolução CMN nº 4.935/2021, justificando o downgrade para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li><li>uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>Logotipo antigo — comparação de imagem</h2>
+    <p class="muted">Regiões dos screenshots comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de IA.</p>
+    <table>
+      <thead><tr><th>Screenshot</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem</th></tr></thead>
+      <tbody>
+        <tr><td>E-SHOT-VIEWPORT</td><td>122, 494</td><td>144×104 px</td><td>0.94</td><td class="mono">https://www.bancarios-es.org.br/wp-content/uploads/2020/05/BV-192x192.jpg</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-204500-58aa/evidence/C63b0a3a1d4/attempt-2/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 d48deb43e9f8c9bba9fec9472d733d10c6145cad46b13a8251e4117bfdfc7fd8</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-204500-58aa/evidence/C63b0a3a1d4/attempt-2/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 af49ec8144de13fa62b742b571709455dce487b29ff4431e8ff9d22e77740366</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-VIS-LEGACY-001"><td class="mono"><b>E-VIS-LEGACY-001</b></td><td>visual</td><td>viewport (acima da dobra)</td><td>Comparação de imagem (determinística, sem IA): logotipo ANTIGO de Banco BV (B vermelho sobre V azul) em E-SHOT-VIEWPORT, posição x=122 y=494, 144x104px, similaridade 0.94; imagem: https://www.bancarios-es.org.br/wp-content/uploads/2020/05/BV-192x192.jpg</td></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.bancarios-es.org.br/tag/bv-financeira/ (domínio: www.bancarios-es.org.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (lens): BV Financeira – Sindibancários ES — Imagem visualmente semelhante ao logotipo antigo (fonte: Sindibancários/ES)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C63b0a3a1d4/attempt-2/viewport.png (sha256 d48deb43e9f8c9bb…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C63b0a3a1d4/attempt-2/fullpage.png (sha256 af49ec8144de13fa…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>BV Financeira – Sindibancários ES</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Tag: BV Financeira</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Empregados da BV Financeira e Banco Votorantim aprovam acordos</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Empregados da BV Financeira e Banco Votorantim são convocados para assembleia</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>CONTATE-NOS</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Sindibancários ES O SindicatoSindicalizaçãoConvençõesBancosComunicaçãoConvêniosDenúnciasCOVID-19 | Tag: BV Financeira Foram encontradas 2 postagens.</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Sindibancários ES O Sindicato Sindicalização Convenções Bancos Comunicação Convênios Denúncias COVID-19 Tag: BV Financeira Foram encontradas 2 postagens. Empregados da BV Financeira e Banco Votorantim aprovam acordos Os acordos foram aprovados em assembleia virtual realizada no último dia 12 18/02/2021 15:50 Banco Votorantim , BV Financeira , Financeiras , Financiários Empregados da BV Financeira e Banco Votorantim são convocados para assembleia Votação ocorre das 10h às 20 horas por meio do sistema de votação online do Sindicato. Receba novidades</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>CONTATE-NOS Tel: (27) 3331-9999 Fax: (27) 3331-9993 Rua Wilson Freitas, 93, Centro, Vitória/ES, CEP 29016-340 secretariageral@bancarios-es.org.br 2026 . Sindibancários ES . Todos os direitos reservados</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Sindibancários ES &lt;https://www.bancarios-es.org.br/&gt; |  &lt;https://www.facebook.com/sindibancarios.es/&gt; |  &lt;http://www.youtube.com/channel/UCPrgyAURqZdxh7TbsHK8GMQ&gt; |  &lt;http://webmail.bancarios-es.org.br/&gt; |  &lt;https://twitter.com/bancariosES/&gt; | O Sindicato &lt;https://www.bancarios-es.org.br/tag/bv-financeira/#&gt; | Sindicalização &lt;https://www.bancarios-es.org.br/tag/bv-financeira/#&gt; | Convenções &lt;https://www.bancarios-es.org.br/tag/bv-financeira/#&gt; | Bancos &lt;https://www.bancarios-es.org.br/tag/bv-financeira/#&gt; | Comunicação &lt;https://www.bancarios-es.org.br/tag/bv-financeira/#&gt; | Convênios &lt;https://www.bancarios-es.org.br/convenios/&gt; | Denúncias &lt;https://www.bancarios-es.org.br/denuncias/&gt; | COVID-19 &lt;https://www.bancarios-es.org.br/coronavirus/&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td> &lt;https://www.facebook.com/sindibancarios.es/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://www.bancarios-es.org.br/wp-content/uploads/2016/12/logotipo-intersindical.jpg (347x169, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Balaio Design + Estratégia&#39; src=https://balaiodesign.com.br/assinatura-balaio/logo-balaio.png (28x28, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>O SindicatoSindicalizaçãoConvençõesBancosComunicaçãoConvêniosDenúnciasCOVID-19</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Tag: BV Financeira</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Empregados da BV Financeira e Banco Votorantim aprovam acordos</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>18/02/2021 15:50 Banco Votorantim, BV Financeira, Financeiras, Financiários</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Empregados da BV Financeira e Banco Votorantim são convocados para assembleia</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>09/02/2021 17:40 Banco Votorantim, BV Financeira, Financiários</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Rua Wilson Freitas, 93, Centro, Vitória/ES, CEP 29016-340</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v6)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site pertence ao Sindibancários ES (Sindicato dos Bancários do Espírito Santo), entidade sindical sem oferta de crédito ou atividade de correspondente bancário.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O logotipo legado da BV Financeira é utilizado unicamente como imagem ilustrativa de notícia sindical a respeito de acordos trabalhistas de empregados.</td><td class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Não aplicável, pois não se trata de correspondente bancário nem de intermediação comercial de produtos financeiros.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Marca no título/nome do site — <span class="mono"><a href="#E-TITLE">E-TITLE</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Marca no cabeçalho/navegação fora de declaração de correspondente — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> </span></li><li>[HIGH] LOGO_USAGE: Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem — <span class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Página de arquivo de notícias de entidade sindical (Sindibancários ES) tratando de temas trabalhistas da categoria bancária e financiária. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-FOLD">E-FOLD</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página é uma listagem de notícias por categoria/tag no portal oficial do Sindicato dos Bancários do Espírito Santo (Sindibancários ES).</li><li>As matérias listadas abordam exclusivamente temas sindicais e trabalhistas (&#39;Empregados da BV Financeira e Banco Votorantim aprovam acordos&#39; e convocação para assembleia).</li><li>O logotipo antigo da BV Financeira (B vermelho e V azul) está presente como thumbnail/ilustração de um post noticioso sobre a instituição (E-VIS-LEGACY-001).</li><li>Não há oferta, captação ou intermediação de serviços de crédito ou atuação como correspondente bancário (COBAN).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada pertence ao Sindicato dos Bancários do Espírito Santo (Sindibancários ES) e consiste em uma compilação de notícias sobre assembleias e acordos trabalhistas envolvendo empregados do Banco Votorantim e BV Financeira. O site não comercializa nem intermedeia crédito ou produtos financeiros, enquadrando-se como fora do escopo de auditoria de COBANs e correspondentes da Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:bancarios-es.org.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>bancarios-es.org.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>secretariageral@bancarios-es.org.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/sindibancarios.es/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>http://www.youtube.com/channel/UCPrgyAURqZdxh7TbsHK8GMQ</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>phone</td><td>(27) 3331-9999</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(27) 3331-9993</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada é do Sindibancários ES (entidade sindical), reunindo notícias informativas e trabalhistas referentes aos empregados do Banco Votorantim e BV Financeira. O uso do logotipo antigo é puramente editorial e ilustrativo em matéria jornalística sobre assembleia da categoria. O domínio e a entidade estão fora do escopo de correspondentes bancários da Resolução CMN nº 4.935/2021, justificando o downgrade para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Entidade Sindical / Conteúdo Noticioso</td><td>HIGH</td><td>A página pertence ao Sindicato dos Bancários do Espírito Santo (Sindibancários ES) e consiste em uma tag de notícias sobre acordos e assembleias trabalhistas de funcionários do Banco Votorantim e BV Financeira. Não se trata de correspondente bancário (COBAN), loja de veículos, integrador solar ou promotora de crédito comercializando produtos bancários.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-TITLE</li><li>E-HEAD-1</li><li>E-HEAD-2</li><li>E-HEAD-3</li><li>E-FOLD</li><li>E-FTR</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>lens</td><td>https://www.nacionalenergia.solar/assets/logo-bv-BGRv-znK.png<br><span class="muted">H12-legacy-logo:lens</span></td><td class="mono">https://www.bancarios-es.org.br/tag/bv-financeira/</td><td>BV Financeira – Sindibancários ES<br><span class="muted">Imagem visualmente semelhante ao logotipo antigo (fonte: Sindibancários/ES)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 20:58:35.655868+00:00</div>
+      <div class="kv"><b>IP do servidor</b>147.79.105.32</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C63b0a3a1d4/attempt-2/manifest.json<br>sha256 a3e8fe97a0dd971991a3a92e18f0ee24086869ee3356566e532aea7539c6de6d</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.bancarios-es.org.br/tag/bv-financeira/<br>Final: https://www.bancarios-es.org.br/tag/bv-financeira/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C63b0a3a1d4/attempt-2/viewport.png</td><td class="mono">d48deb43e9f8c9bba9fec9472d733d10c6145cad46b13a8251e4117bfdfc7fd8</td><td>264709</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C63b0a3a1d4/attempt-2/fullpage.png</td><td class="mono">af49ec8144de13fa62b742b571709455dce487b29ff4431e8ff9d22e77740366</td><td>472074</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C63b0a3a1d4/attempt-2/page.html.txt</td><td class="mono">a84c75533440f39514b3302034336dfc4ae728e27c628fe2de2b910f4907e062</td><td>51055</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C63b0a3a1d4/attempt-2/text.txt</td><td class="mono">e35e6a746179ad4cf18537c7ff9b4d2ade4c31af35f8e5d77cb28e71ad1eab89</td><td>873</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C63b0a3a1d4/attempt-2/page.json</td><td class="mono">2731a6d952ac27d4f92c69a270ea100ee6239c7f6f88c0f1a6cc546365e8997a</td><td>10489</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T20:48:28+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 4.0)</td></tr>
+      <tr><td>2026-11-25T20:48:35+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T20:48:42+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T20:48:42+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:48:42+00:00</td><td>ANALYZING</td><td>COLLECTED</td><td>prepare error, retry 1: UnboundLocalError</td></tr>
+      <tr><td>2026-11-25T20:48:45+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:48:45+00:00</td><td>ANALYZING</td><td>COLLECTED</td><td>prepare error, retry 2: UnboundLocalError</td></tr>
+      <tr><td>2026-11-25T20:48:49+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:48:50+00:00</td><td>ANALYZING</td><td>FAILED</td><td>prepare failed: UnboundLocalError: cannot access local variable &#39;is_disc&#39; where it is not associated with a value</td></tr>
+      <tr><td>2026-11-25T20:58:33+00:00</td><td>FAILED</td><td>QUEUED</td><td>retry requested by operator</td></tr>
+      <tr><td>2026-11-25T20:58:35+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T20:58:43+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T20:58:43+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T20:59:40+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T20:59:50+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

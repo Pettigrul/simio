@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C9093c5484f",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.hidalgocounty.us/",
+  "final_url": "https://www.hidalgocounty.us/",
+  "redirect_chain": [
+    "https://www.hidalgocounty.us/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.18.36.194",
+  "collected_at": "2026-11-25T20:50:41.515196+00:00",
+  "manifest_written_at": "2026-11-25T20:50:49.993346+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C9093c5484f/attempt-1/viewport.png",
+      "sha256": "4c70930cebb31244f2cb82dbb4aae0d9f3cc5a419fda2304e932d4cb5a031898",
+      "size_bytes": 40441
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C9093c5484f/attempt-1/fullpage.png",
+      "sha256": "5a206197989207b3748964ed412e1318cf3c0e621fa8ede4d884dc44054c97ec",
+      "size_bytes": 40597
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C9093c5484f/attempt-1/page.html.txt",
+      "sha256": "3f0529c730bcd5ddf6b5074813c0599cbdcea54230edb9ec3ce436da67ef05a1",
+      "size_bytes": 44881
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C9093c5484f/attempt-1/text.txt",
+      "sha256": "60851867b73beb41ed138fdd4129608676f04eea798aeb5b0a671122ea42c8f9",
+      "size_bytes": 294
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C9093c5484f/attempt-1/page.json",
+      "sha256": "5efa32e46146da5f659dafae93ea9df49215d90e17c47764a2d4fdfdc6343cf3",
+      "size_bytes": 1418
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

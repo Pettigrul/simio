@@ -1,0 +1,126 @@
+Ir para o conteúdo principal
+Informações Gerais
+Soluções
+Produtos
+Preços
+Recursos
+/
+Documentos
+Suporte
+Console
+Fazer login
+Entre em contato com nossa equipe
+Comece gratuitamente
+Banco BV aprimora sua plataforma de crédito com os serviços autogerenciados da nuvem
+Com a adoção de serviços nativos do Google Cloud, o banco passou a contar com uma plataforma ainda mais estável, que oferece respostas de forma mais rápida e contribui com a satisfação do cliente na ponta.
+Resultados do Google Cloud
+Garantia de escalabilidade e um salto de performance, impulsionando a melhoria da produtividade das equipes
+Aprimoramento da experiência do usuário, com menor tempo de espera para a análise de crédito
+Solução totalmente autogerenciada, o que faz com os times invistam seus esforços no core business
+Melhora significativa da disponibilidade, reduzindo o impacto no negócio
+Maior segurança para as informações trafegadas
+
+Tempo de resposta geral da aplicação melhorou em 4x.
+
+O Banco BV atua há mais de 30 anos com serviços bancários privados, corporativos e de investimentos, além de realizar gestão de ativos e financiamentos e investir no desenvolvimento de startups e fintechs. Ao dispor de soluções de créditos e outros produtos desenvolvidos para aproximar os clientes dos seus objetivos, é reconhecido como um dos maiores bancos privados do Brasil.
+
+A instituição aposta cada vez mais na inovação tecnológica dos produtos e serviços que fornece. Um grande exemplo disso é a Plataforma de Decisão de Crédito, conhecida pela sigla PDEC, que serve como o principal sistema de aprovação de crédito no Banco BV.
+
+Implantado desde 2019, o sistema é o motor de decisão automática de todas as linhas de crédito da instituição financeira, abrangendo varejo e atacado. Além disso, é por meio da PDEC que são disponibilizados os serviços de crédito pessoal e para pequenas e médias empresas, crédito consignado, cartão de crédito, crédito estudantil, financiamento de veículos, financiamento de projetos e instalação de placas para geração de energia fotovoltaica, entre outras soluções.
+
+Em sua trajetória de uso, a PDEC trouxe alguns desafios tecnológicos à tona. O sistema funcionava em um ambiente na nuvem incluindo serviços de diferentes provedores e soluções de código aberto, com a utilização de ferramentas em contêiner para atender a operacionalização dos processos de mensageria e gerar a memória temporária dos eventos.
+
+Porém as soluções utilizadas não estavam dando conta do enorme salto de aproximadamente 10.000% na quantidade de requisições, gerado pela aceleração do uso da plataforma nas iniciativas do Banco BV entre 2019 e 2022 - e este número segue crescendo em 2023. Existia uma certa demora para viabilizar as informações solicitadas, algo que, ao fim do processo, gerava a insatisfação dos clientes.
+
+Isso foi reforçado por outra questão que chamou a atenção dos times do banco: um episódio de indisponibilidade na plataforma que durou em torno de cinco horas. Para conter esse problema e alcançar escalabilidade, decidiram adotar os serviços autogerenciados do Google Cloud.
+
+Melhor aproveitamento dos recursos, com gerenciamento simplificado
+
+A mudança, que começou em setembro de 2022, viria para otimizar a operação da PDEC. Ao adotar o Pub/Sub e o Memorystore, soluções sem servidores autogerenciadas, as equipes de desenvolvimento e tecnologia do Banco BV poderiam concentrar seus esforços em atividades-chave para a empresa.
+
+O banco contou com o apoio constante dos especialistas do Google Cloud. A fase de design e implementação foi acompanhada pela equipe de arquitetos e produto. Já na implantação e pós-operação, houve o engajamento dos serviços de Gerenciamento Técnico de Contas (TAM) e Suporte, incluindo o serviço de gestão de eventos importantes.
+
+"O apoio dos times técnicos do Google Cloud foi fundamental para configurar a execução de atividades relacionadas ao Pub/Sub e ao Memorystore. Depois dos testes e da transição faseada, em apenas 18 dias úteis concluímos a jornada."
+
+—Anderson Takami, Gerente de Desenvolvimento de Sistemas do Banco BV
+
+No contexto de funcionamento da PDEC, o Pub/Sub atua com mensageria assíncrona, separando os serviços que produzem mensagens dos serviços que as processam. Este desacoplamento proporcionado pela ferramenta oferece maior resiliência na operação da plataforma.
+
+Já o Memorystore é um serviço de banco de dados totalmente gerenciado. No caso do Banco BV, ele foi essencial para a integração, autogerenciamento e melhora no desempenho do Redis, solução de armazenamento em cache de código aberto utilizada para a PDEC.
+
+As duas ferramentas trouxeram a possibilidade de escalar os produtos na plataforma PDEC sem que a equipe precise se preocupar se as soluções adjacentes vão suportar a volumetria. Agora, o risco de ocorrer um episódio crítico de indisponibilidade como o que houve antes da migração é praticamente zero.
+
+Outro resultado da adoção de ferramentas nativas do Google Cloud foi a melhoria significativa no SLA (acordo de nível de serviço) da PDEC, que apresentou 100% de SLA nos últimos meses. Além disso, por serem serviços autogerenciados, a equipe não precisa gastar muito esforço com monitoramento e manutenção do ambiente.
+
+Estabilidade, monitoramento e manutenção dos processos
+
+A adoção das soluções trouxe muitos resultados positivos. O banco não registrou mais interrupções por conta da falta de recursos na PDEC, gerando uma excelente performance do serviço em questão de escalabilidade, estabilidade e tempo de resposta - hoje, quatro vezes mais rápido -, atendendo a milhões de requisições ao dia.
+
+"Com o Pub/Sub e o Memorystore, temos a oportunidade de contar com componentes que possuem alertas configurados, a garantia de cumprir com requisitos de segurança, escalabilidade e um salto de performance, impulsionando a melhoria significativa da produtividade das equipes."
+
+—Emerson Cantalice, Tech Lead do Banco BV
+
+A maior rapidez na resposta da PDEC se refletiu na satisfação do cliente na ponta. A plataforma agora traz a estabilidade esperada pela área de negócios e propicia uma praticidade nos processos diários de tráfego de informações.
+
+A aplicação de alertas do Google Cloud integrados aos canais de sustentação é outra facilidade que serve para identificar problemas relacionados aos produtos migrados. As manutenções e backups são feitos regularmente de maneira autogerenciada pelas ferramentas da nuvem, com intervalo programado pelos especialistas do Banco BV.
+
+Ainda, enquanto o Pub/Sub permitiu uma redução na latência, o Memorystore usa controles de VPC e integração de IAM, rendendo mais segurança para as informações trafegadas.
+
+"Atualmente, a importância da plataforma para o Banco BV é exponencial. Qualquer decisão que tenha ligação com a PDEC e o Google Cloud chega a um âmbito corporativo. A ação de delegarmos a mensageria aos recursos da nuvem e focarmos, de fato, no que é o business core da PDEC traz mais confiança para o negócio."
+
+—Edson Sumensari, Coordenador de Desenvolvimento de Sistemas do Banco BV
+Conte qual é o seu desafio. Queremos ajudar você.
+Entre em contato
+Sobre Banco BV
+
+Considerado um dos maiores bancos privados do Brasil, o Banco BV provê soluções inovadoras que atendem às necessidades de clientes em todos os seus segmentos de atuação no mercado.
+
+Setores: Financial Services & Insurance
+Sede: Brasil
+Google Cloud Cloud Memorystore Cloud Pub/Sub
+Por que o Google
+Por que escolher o Google Cloud
+Confiança e segurança
+Nuvem com infraestrutura moderna
+Multicloud
+Infraestrutura global
+Clientes e estudos de caso
+Relatórios de analistas
+Artigos
+Produtos e preços
+Veja todos os produtos
+Veja todas as soluções
+Google Cloud para startups
+Google Cloud Marketplace
+Preços do Google Cloud
+Entre em contato com a equipe de vendas.
+Suporte
+Fóruns da comunidade
+Suporte
+Notas da versão
+Status do sistema
+Recursos
+GitHub
+Introdução ao Google Cloud
+Documentação do Google Cloud
+Exemplos de código
+Centro de arquitetura do Cloud
+Treinamento e certificação
+Builders Hub
+Centro para Desenvolvedores
+Envolver
+Blog
+Eventos
+X (Twitter)
+Google Cloud no YouTube
+Google Cloud Tech no YouTube
+Seja um parceiro
+Google Cloud Affiliate Program
+Área da imprensa
+Sobre o Google
+Privacidade
+Termos do site
+Termos do Google Cloud
+Essa é nossa terceira década de ação climática: participe!
+Inscreva-se para receber a newsletter do Google Cloud
+Inscrever-se
