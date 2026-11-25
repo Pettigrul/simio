@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cb3be9f18ad</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cb3be9f18ad — cotecompare.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://cotecompare.com.br/parceiro/banco-bv</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de página dedicada ao Banco BV dentro do portal comparador/correspondente CoteCompare (Cenario Capital LTDA – CNPJ 11.321.934/0001-41). Embora o rodapé identifique o CNPJ do correspondente e declare o convênio com o Banco Votorantim S.A., há pontos de atenção que exigem revisão humana à luz da Resolução CMN nº 4.935/2021: (1) uso destacado do logotipo da instituição financeira na área principal e no card de captação (&#39;Simular&#39; Empréstimo com Garantia de Veículo); (2) uso de &#39;Banco BV: Crédito e Investimentos Confiáveis&#39; no título e em og:site_name sem menção ao correspondente; e (3) ausência de divulgação dos telefones de SAC/Ouvidoria do Banco BV no aviso do rodapé.
+[Revisor: CONFIRM] Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). Embora o site CoteCompare identifique no rodapé a razão social e o CNPJ da correspondente bancária (Cenario Capital LTDA – CNPJ 11.321.934/0001-41) e declare convênio com o Banco Votorantim S.A., a página promove captação ativa de &#39;Empréstimo com Garantia de Veículo&#39; exibindo o logotipo do Banco BV em destaque na área visível inicial, utiliza metadados e título exclusivos da marca (&#39;Banco BV: Crédito e Investimentos Confiáveis&#39;) e omite os canais de SAC/Ouvidoria do Banco BV na declaração regulatória do rodapé, demandando verificação de conformidade com a Resolução CMN nº 4.935/2021.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Cb3be9f18ad/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 5c7b95885b19277ebf312669e5cb2503fb4b0bb550cf34b1188eab8f6d297c7f</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Cb3be9f18ad/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 af68a5d674e5a5ac7b08df67a83e50e84525fdc4904bb5dfbc3574ab31255cf3</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://cotecompare.com.br/parceiro/banco-bv (domínio: cotecompare.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): cotecompare.com.br — **URL:** `https://cotecompare.com.br/parceiros/banco-bv/` | **Uso da Marca:** Exibe `Logo Banco BV` em destaque sob o título &#34;BANCO BV - CONHEÇA NOSSO PARCEIRO&#34;, ofertando calculadoras financeiras próprias (Calculadora Empréstimo, Calculadora Consignado, Calculadora com Garantia) e captação para empréstimos e financiamento de veículos | **Conformidade (CNPJ / Correspondente):** Embora apresente o banco como &#34;parceiro&#34;, não exibe de forma clara no conteúdo da página a razão social da promotora, seu CNPJ ou o aviso formal da Resolução CMN nº 4.935/2021</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\Cb3be9f18ad\attempt-1\viewport.png (sha256 5c7b95885b19277e…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\Cb3be9f18ad\attempt-1\fullpage.png (sha256 af68a5d674e5a5ac…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Banco BV: Crédito e Investimentos Confiáveis</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Conheça o Banco BV, referência em crédito e investimentos confiáveis. Oferece soluções financeiras que facilitam seu acesso ao crédito com segurança.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Banco BV: Crédito e Investimentos Confiáveis</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Banco BV: Crédito e Investimentos Confiáveis</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Conheça o Banco BV, referência em crédito e investimentos confiáveis. Oferece soluções financeiras que facilitam seu acesso ao crédito com segurança.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://cotecompare.com.br/parceiro/banco-bv</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>BANCO BV - CONHEÇA NOSSO PARCEIRO</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Quais as Modalidades de Empréstimo Disponíveis?</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Empréstimo Pessoal — Banco BV</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Empréstimo Consignado — Banco BV</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Empréstimo FGTS — Banco BV</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Empréstimo Pessoal com Garantia de Veículo — Banco BV</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Empréstimo Pessoal com Garantia de Imóvel — Banco BV</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Empréstimo BV é Confiável e Seguro?</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Banco BV no Reclame Aqui</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>3 Vantagens do Empréstimo Consignado</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Produtos Banco BV</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Empréstimo</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Perguntas Frequentes sobre Banco BV</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Como faço para quitar meu financiamento?</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>O banco BV oferece atendimento ao cliente por telefone?</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Início Produtos Financeiros Parceiros Calculadoras Conteúdos Sobre Acessar</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Início produtos financeiros parceiros calculadoras conteúdos Sobre Acessar × Início Produtos Financeiros Parceiros Calculadoras Conteúdos e Suporte Sobre Área Logada Área Logada Início - Parceiros - Banco BV Banco BV BANCO BV - CONHEÇA NOSSO PARCEIRO O Banco BV é uma entidade financeira privada totalmente brasileira, oferecendo uma gama de serviços e produtos financeiros tanto para pessoas físicas quanto jurídicas. Fundado em 1988 pela Votorantim S.A. como Banco Votorantim, inicialmente uma Distribuidora de Títulos e Valores Mobiliários (DTVM), o BV abriu suas operações ao público externo em 1991, especializando-se em investimentos e financiamento de capital, tornando-se um banco múltiplo de atacado. Em 1996, surgiu a BV Financeira, marca voltada para o varejo, focando inicialmente no financiamento de veículos. A partir de 2002, expandiu-se internacionalmente, inaugurando uma agência em Nassau, capital das Bahamas. Em 2009, estabeleceu uma parceria estratégica com o Banco do Brasil, resultando em uma participação de 50% do BB no capital social do Banco BV. Inicialmente concentrado no financiamento de veículos, o Banco Votorantim ampliou sua atuação ao longo dos anos, oferecendo uma variedade de serviços, como o banco bv empréstimo consignado, crédito pessoal com garantia de veículo, crédito estudantil, seguros, cartão de crédito e outras facilidades financeiras, visando melhorar a qualidade de vida das pessoas. Quais as Modalidades de Empréstimo Disponíveis? Empréstimo Pessoal — Banco BV Uma modalidade oferecida pela BV Financeira é o crédito pessoal, onde o banco fornece um montante ao solicitante, e ao longo dos meses, o cliente reembolsa o valor em parcelas fixas, acrescidas de juros e outros encargos. Apesar de proporcionar acesso rápido a recursos, as taxas de juros são mais elevadas devido à ausência de garantias. A aprovação envolve análise do histórico financeiro, capacidade de pagamento e eventuais restrições no CPF. O pagamento pode ser iniciado após 15 a </td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>NA MÍDIA Você já deve ter lido sobre nós Empréstimo Cartão de Crédito Conta Digital Conta &amp; Pagamentos Marketplace de finanças para encontrar as melhores ofertas de crédito em instantes, conforme suas necessidades, sem afetar seu score. Conheça mais sobre nós. Acompanhe nas redes Empréstimo Pessoal Empréstimo para Negativado Empréstimo Conta de Luz Empréstimo Consignado Empréstimo Antecipação de FGTS + Ver mais Cartão para Negativado Cartão sem Anuidade Cartão Internacional Cartão Virtual Cartão Consignado + Ver mais Conta Digital Completa Conta Digital Pré-Pago Conta Limite Alto Conta sem Anuidade Conta Internacional + Ver mais Conta Corrente Maquininhas Conteúdos Blog Perguntas Frequentes Conteúdos Exclusivos Baixe agora nosso aplicativo: Termos de uso | Política de privacidade Copyright © 2026. All rights reserved. O website CoteCompare é de propriedade da Cenario Capital LTDA – CNPJ 11.321.934/0001-41, cujo objetivo é intermediar e facilitar o acesso ao processo de concessão de crédito entre correspondentes bancários, instituições financeiras, bancos e clientes. Não somos uma instituição financeira. A Cenário Capital Ltda é correspondente bancário autorizado, conveniado com as seguintes instituições financeiras: Banco BMG S.A. – CNPJ 61.186.680/0001-74 -SAC: 0800-979-90-99 - Banco Pan S.A. – CNPJ 59.285.411/0001-13 – SAC 0800-776-8000 - BANCO VOTORANTIM S.A. – inscrita no CNPJ 59.588.111/0001-03 Endereço: Avenida Jose de Sousa Campos, 243, Cambuí, Campinas-SP CEP:13.025-142. A Cenário Capital também atua como Correspondente Cambial da instituição financeira Banco Rendimento S.A., inscrita no CNPJ/ME sob o nº 68.900.810/0001-38 (Ouvidoria Rendimento 0800-722-0132). Atenção: Não solicitamos em nenhuma hipótese qualquer tipo de depósito, pagamento ou valor antecipado para análise cadastral ou aprovação de seu empréstimo. A análise de crédito, cálculo das taxas de juros, valores de parcelas e demais informações serão apresentadas com base nas informações apresentada</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://cotecompare.com.br/?aff_sub=cenario&gt; | Início &lt;https://cotecompare.com.br/?aff_sub=cenario&gt; | Sobre &lt;https://cotecompare.com.br/sobre?aff_sub=cenario&gt; | Acessar &lt;https://cotecompare.com.br/login?aff_sub=cenario&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Produtos Financeiros</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>Parceiros</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>header</td><td>Calculadoras</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>header</td><td>Conteúdos</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>×</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Produtos Financeiros &lt;https://cotecompare.com.br/parceiro/banco-bv#produtos-financeiros-6b04534b33acb&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Parceiros &lt;https://cotecompare.com.br/parceiro/banco-bv#parceiros-6b04534b33ae8&gt;</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Calculadoras &lt;https://cotecompare.com.br/parceiro/banco-bv#calculadoras-6b04534b33aea&gt;</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Conteúdos e Suporte &lt;https://cotecompare.com.br/parceiro/banco-bv#conte%C3%BAdos-e-suporte-6b04534b33af5&gt;</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Área Logada &lt;https://cotecompare.com.br/login?aff_sub=cenario&gt;</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Banco BV</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Detalhes</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Simular</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Seja parceiro</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>Enviar</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>footer</td><td>+ Ver mais</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>footer</td><td>+ Ver mais</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>footer</td><td>+ Ver mais</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/CoteCompare/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/cotecompare/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo CoteCompare&#39; src=https://cotecompare.com.br/modules/files/home2/logo_cima.webp (157x40, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logo CoteCompare&#39; src=https://cotecompare.com.br/modules/files/home2/logo_cima.webp (157x40, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logo Banco BV&#39; src=https://cotecompare.com.br/public/upload/img/parceiros_paginas/logo_interno/Banco-BV_7.webp (140x140, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logo Empréstimo com&lt;br&gt;Garantia de Veículo&#39; src=https://cotecompare.com.br/public/upload/img/parceiros/Empr%C3%A9stimo-com%3Cbr%3EGarantia-de-Ve%C3%ADculo---2499.webp (100x60, acima da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BV&#39; src=https://cotecompare.com.br/modules/files/home2/bv.webp (49x35, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BV&#39; src=https://cotecompare.com.br/modules/files/home2/bv.webp (49x35, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo terra&#39; src=https://cotecompare.com.br/modules/files/home2/terra.webp (150x44, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo ig&#39; src=https://cotecompare.com.br/modules/files/home2/ig.webp (150x44, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo estadão&#39; src=https://cotecompare.com.br/modules/files/home2/estadao.webp (150x44, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo metropolis&#39; src=https://cotecompare.com.br/modules/files/home2/metropolis.webp (150x44, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo globo&#39; src=https://cotecompare.com.br/modules/files/home2/globo.webp (150x44, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo mundo do marketing&#39; src=https://cotecompare.com.br/modules/files/home2/mundodomarketing.webp (150x44, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;CoteCompare&#39; src=https://cotecompare.com.br/modules/files/stock/pattern/logo-colored.webp (172x45, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Início - Parceiros - Banco BV</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Banco BV</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>BANCO BV - CONHEÇA NOSSO PARCEIRO</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>O Banco BV é uma entidade financeira privada totalmente brasileira, oferecendo uma gama de serviços e produtos financeiros tanto para pessoas físicas quanto jurídicas. Fundado em 1988 pela Votorantim S.A. como Banco Votorantim, inicialmente uma Distribuidora de Títulos e Valores Mobiliários (DTVM), o BV abriu suas operações ao público externo em 1991, especializando-se em investimentos e</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>financiamento de capital, tornando-se um banco múltiplo de atacado.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Em 1996, surgiu a BV Financeira, marca voltada para o varejo, focando inicialmente no financiamento de veículos. A partir de 2002, expandiu-se internacionalmente, inaugurando uma agência em Nassau, capital das Bahamas. Em 2009, estabeleceu uma parceria estratégica com o Banco do Brasil, resultando em uma participação de 50% do BB no capital social do Banco BV.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Inicialmente concentrado no financiamento de veículos, o Banco Votorantim ampliou sua atuação ao longo dos anos, oferecendo uma variedade de serviços, como o banco bv empréstimo consignado, crédito pessoal com garantia de veículo, crédito estudantil, seguros, cartão de crédito e outras facilidades financeiras, visando melhorar a qualidade de vida das pessoas.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Empréstimo Pessoal — Banco BV</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Uma modalidade oferecida pela BV Financeira é o crédito pessoal, onde o banco fornece um montante ao solicitante, e ao longo dos meses, o cliente reembolsa o valor em parcelas fixas, acrescidas de juros e outros encargos. Apesar de proporcionar acesso rápido a recursos, as taxas de juros são mais elevadas devido à ausência de garantias. A aprovação envolve análise do histórico financeiro,</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>O pagamento pode ser iniciado após 15 a 45 dias, com parcelamento entre 6 e 24 vezes, apresentando parcelas fixas. As opções de pagamento são variadas, permitindo ao cliente escolher a mais adequada às suas necessidades, incluindo o adiantamento de parcelas bv quando necessário.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Empréstimo Consignado — Banco BV</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>O banco bv empréstimo consignado é direcionado a categorias específicas, oferecendo as menores taxas de juros do mercado e condições excepcionais de parcelamento. Pessoas com nome negativado podem solicitar esse tipo de empréstimo. As parcelas são descontadas diretamente da folha salarial, holerite ou benefício do solicitante, não podendo exceder 35% dos ganhos mensais.</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Esta modalidade permite maior flexibilidade para adiantamento de parcelas BV, proporcionando ao cliente a possibilidade de quitar antecipadamente seu compromisso financeiro quando dispuser de recursos extras.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Empréstimo FGTS — Banco BV</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>O Banco BV permite a antecipação de saques-aniversário do FGTS, com taxas de juros competitivas de 1,99% ao mês. O valor é descontado diretamente do saldo FGTS, não afetando outros tipos de crédito. A antecipação pode abranger até 6 anos de parcelas do saque-aniversário, oferecendo também opções de adiantamento de parcelas BV conforme a necessidade do cliente.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Empréstimo Pessoal com Garantia de Veículo — Banco BV</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Empréstimo Pessoal com Garantia de Imóvel — Banco BV</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Empréstimo BV é Confiável e Seguro?</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>A BV Financeira é uma instituição consolidada, reconhecida pelo Banco Central, com CNPJ ativo e avaliações positivas no ReclameAqui. Não solicita depósitos antecipados e prioriza a segurança dos dados dos usuários. As taxas de juros são justas e compatíveis com os principais bancos do mercado.</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Banco BV no Reclame Aqui</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>A BV Financeira, atuando por mais de 20 anos, possui uma política sólida de segurança e controle de informações. No ReclameAqui, o Banco BV respondeu à cerca de 98,66% das 30.000 reclamações recebidas desde 2019. A taxa de solução foi de 77%, e 63% dos clientes considerariam fazer negócio novamente, resultando em uma média de nota de 7,4/10 e classificação &#34;Bom&#34;.</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Parcelas Fixas: Todas as modalidades de empréstimo garantem parcelas fixas ao longo do contrato, eliminando surpresas e taxas extras. O banco bv empréstimo consignado oferece essa previsibilidade essencial para o planejamento financeiro.</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Várias Opções de Pagamento: O Banco BV oferece diversas formas de pagamento para as parcelas do empréstimo, incluindo facilidades para adiantamento de parcelas bv, permitindo ao cliente escolher a alternativa mais conveniente para sua situação financeira.</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>Carência para Iniciar o Pagamento: O Banco BV oferece uma carência de 15 a 45 dias para o início do pagamento da primeira parcela, proporcionando um período de organização financeira ao consumidor antes do primeiro desconto em folha.</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Produtos Banco BV</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Perguntas Frequentes sobre Banco BV</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Acessando o aplicativo Banco BV, é possível simular o valor para quitação do financiamento.</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>O banco BV oferece atendimento ao cliente por telefone?</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>Sim, oferece serviço de atendimento ao cliente por telefone, disponíveis no site.</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>Quais são os benefícios dos Cartões de Crédito do Banco BV?</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>As taxas de juros podem variar segundo o tipo de empréstimo e o perfil do cliente. As informações detalhadas dos produtos ou com o atendimento para informações especificas.</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>O que é o Banco BV?</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>É uma instituição financeira brasileira, com mais de 30 anos de mercado, que oferece uma variedade de produtos e serviços, incluindo contas, cartões de crédito, investimentos e empréstimos.</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>Quais são as opções de empréstimo no Banco BV?</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>O Banco BV oferece empréstimos pessoais, consignados e com garantia, cada um com condições específicas. Verifique as opções para escolher a mais adequada.</td></tr>
+      <tr id="E-TXT-038"><td class="mono"><b>E-TXT-038</b></td><td>text</td><td>page</td><td>Quais os critérios para obter um empréstimo no Banco BV?</td></tr>
+      <tr id="E-TXT-039"><td class="mono"><b>E-TXT-039</b></td><td>text</td><td>page</td><td>Como solicitar um empréstimo no Banco BV?</td></tr>
+      <tr id="E-TXT-040"><td class="mono"><b>E-TXT-040</b></td><td>text</td><td>page</td><td>VEJA NOSSOS PARCEIROS</td></tr>
+      <tr id="E-TXT-041"><td class="mono"><b>E-TXT-041</b></td><td>text</td><td>page</td><td>Os melhores Bancos e Fintechs do Brasil em um único lugar. As melhores opções do setor financeiro na palma da sua mão. Já contribuímos com mais de 80 milhões de Brasileiros.</td></tr>
+      <tr id="E-TXT-042"><td class="mono"><b>E-TXT-042</b></td><td>text</td><td>page</td><td>Seja parceiro</td></tr>
+      <tr id="E-TXT-043"><td class="mono"><b>E-TXT-043</b></td><td>text</td><td>page</td><td>O website CoteCompare é de propriedade da Cenario Capital LTDA – CNPJ 11.321.934/0001-41, cujo objetivo é intermediar e facilitar o acesso ao processo de concessão de crédito entre correspondentes bancários, instituições financeiras, bancos e clientes. Não somos uma instituição financeira. A Cenário Capital Ltda é correspondente bancário autorizado, conveniado com as seguintes instituições</td></tr>
+      <tr id="E-TXT-044"><td class="mono"><b>E-TXT-044</b></td><td>text</td><td>page</td><td>financeiras: Banco BMG S.A. – CNPJ 61.186.680/0001-74 -SAC: 0800-979-90-99 - Banco Pan S.A. – CNPJ 59.285.411/0001-13 – SAC 0800-776-8000 - BANCO VOTORANTIM S.A. – inscrita no CNPJ 59.588.111/0001-03 Endereço: Avenida Jose de Sousa Campos, 243, Cambuí, Campinas-SP CEP:13.025-142. A Cenário Capital também atua como Correspondente Cambial da instituição financeira Banco Rendimento S.A., inscrita no</td></tr>
+      <tr id="E-TXT-045"><td class="mono"><b>E-TXT-045</b></td><td>text</td><td>page</td><td>CNPJ/ME sob o nº 68.900.810/0001-38 (Ouvidoria Rendimento 0800-722-0132). Atenção: Não solicitamos em nenhuma hipótese qualquer tipo de depósito, pagamento ou valor antecipado para análise cadastral ou aprovação de seu empréstimo. A análise de crédito, cálculo das taxas de juros, valores de parcelas e demais informações serão apresentadas com base nas informações apresentadas no preenchimento do</td></tr>
+      <tr id="E-TXT-046"><td class="mono"><b>E-TXT-046</b></td><td>text</td><td>page</td><td>fluxo de solicitação da cotação. Toda avaliação será realizada exclusivamente conforme a política de crédito e regulamento das Instituição Financeira escolhida. Serão apresentadas todas as condições e informações relativas ao empréstimo de forma transparente, incluindo todos os impostos incidentes, taxas e o custo efetivo total da operação (CET). O uso deste site está sujeito as condições e</td></tr>
+      <tr id="E-TXT-047"><td class="mono"><b>E-TXT-047</b></td><td>text</td><td>page</td><td>regimentos dos &#34;Termos de uso&#34; e da &#34;Política de Privacidade&#34;, orientados pela Lei Geral de Proteção de Dados (Lei nº 13.709/2018). O serviço de corretagem de seguros é oferecido através da Bom Cotar Corretora de Seguros LTDA – CNPJ 23.802.728/0001-32 – SUSEP 202007968</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A página apresenta o cabeçalho e o layout próprios do portal CoteCompare, mas dedica a seção principal da página exclusivamente à marca e às cores do Banco BV.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>No rodapé, o site identifica a razão social proprietária (Cenario Capital LTDA – CNPJ 11.321.934/0001-41) e sua atuação como marketplace de crédito e correspondente bancário.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-043">E-TXT-043</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>O aviso de correspondente bancário consta apenas no rodapé distante da área de simulação e, ao listar o convênio com o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03), não exibe os canais de SAC e Ouvidoria da instituição contratante.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-044">E-TXT-044</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>O elemento title e a propriedade og:site_name intitulam a página apenas como &#39;Banco BV: Crédito e Investimentos Confiáveis&#39;, enquanto o H1 apresenta o banco como &#39;nosso parceiro&#39;.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-2">E-META-2</a> <a href="#E-HEAD-1">E-HEAD-1</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso proeminente do logotipo do Banco BV acima da dobra e junto ao botão &#39;Simular&#39; para captação de Empréstimo com Garantia de Veículo, o que demanda verificação à luz do art. 14, II, da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-CTA-13">E-CTA-13</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>A página oferta diretamente a simulação de produto do Banco BV (&#39;Empréstimo com Garantia de Veículo&#39; - botão &#39;Simular&#39;) sem exibir aviso visível de correspondente bancário próximo ao componente de captação.</td><td class="mono"><a href="#E-CTA-13">E-CTA-13</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Os links de redes sociais apontam para os perfis próprios do CoteCompare, mas faltam os telefones de SAC/Ouvidoria do Banco BV na listagem de instituições conveniadas no rodapé.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>O título nos mecanismos de busca (&#39;Banco BV: Crédito e Investimentos Confiáveis&#39;) e o destaque visual do logotipo do banco no card de simulação podem levar o consumidor a acreditar que se trata de um canal endossado ou oficial antes de rolar até o rodapé.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-2">E-META-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Exibição destacada do logotipo do Banco BV na dobra inicial da página, tanto no bloco de apresentação quanto no card de oferta de &#39;Empréstimo com Garantia de Veículo&#39; com botão de simulação. — <span class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: O título da página e os metadados (incluindo og:site_name) utilizam &#39;Banco BV: Crédito e Investimentos Confiáveis&#39; sem identificar a plataforma CoteCompare no cabeçalho de metadados. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-META-2">E-META-2</a> <a href="#E-META-3">E-META-3</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora o rodapé declare a condição de correspondente bancário da Cenário Capital Ltda para o Banco Votorantim S.A., a declaração está restrita ao final da página em fonte reduzida e omite os telefones de SAC/Ouvidoria do Banco BV (informados apenas para outras instituições conveniadas). — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-043">E-TXT-043</a> <a href="#E-TXT-044">E-TXT-044</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identificação da empresa responsável pelo portal (Cenario Capital LTDA – CNPJ 11.321.934/0001-41) e declaração expressa de que não é instituição financeira e atua como correspondente bancário autorizado. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-043">E-TXT-043</a> <a href="#E-TXT-044">E-TXT-044</a> </span></li><li>[MEDIUM] VISUAL_IDENTITY: Presença de seção multibancos (&#39;VEJA NOSSOS PARCEIROS&#39;) exibindo diversas outras instituições financeiras e cabeçalho identificado com a marca CoteCompare. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-040">E-TXT-040</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A URL https://cotecompare.com.br/parceiro/banco-bv pertence ao portal CoteCompare, operado por Cenario Capital LTDA (CNPJ 11.321.934/0001-41).</li><li>O título da página (E-TITLE) e a meta tag og:site_name (E-META-2) utilizam o texto &#39;Banco BV: Crédito e Investimentos Confiáveis&#39;.</li><li>Acima da dobra, a página exibe o logotipo do Banco BV em destaque (E-IMG-3) ao lado do título &#39;BANCO BV - CONHEÇA NOSSO PARCEIRO&#39; (E-HEAD-1) e em um card de oferta de &#39;Empréstimo com Garantia de Veículo&#39; com botão &#39;Simular&#39; (E-IMG-4, E-CTA-13).</li><li>No rodapé (E-FTR), a empresa declara não ser instituição financeira e atuar como correspondente bancário autorizado do Banco Votorantim S.A. (CNPJ 59.588.111/0001-03), porém não informa o telefone de SAC ou Ouvidoria do Banco BV (diferentemente do que faz para Banco BMG, Banco Pan e Banco Rendimento).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>O fluxo subsequente ao clique no botão &#39;Simular&#39; não foi inspecionado na coleta.</li><li>Necessário validar internamente a regularidade contratual do convênio de correspondente bancário declarado pela Cenario Capital LTDA (CNPJ 11.321.934/0001-41).</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de página dedicada ao Banco BV dentro do portal comparador/correspondente CoteCompare (Cenario Capital LTDA – CNPJ 11.321.934/0001-41). Embora o rodapé identifique o CNPJ do correspondente e declare o convênio com o Banco Votorantim S.A., há pontos de atenção que exigem revisão humana à luz da Resolução CMN nº 4.935/2021: (1) uso destacado do logotipo da instituição financeira na área principal e no card de captação (&#39;Simular&#39; Empréstimo com Garantia de Veículo); (2) uso de &#39;Banco BV: Crédito e Investimentos Confiáveis&#39; no título e em og:site_name sem menção ao correspondente; e (3) ausência de divulgação dos telefones de SAC/Ouvidoria do Banco BV no aviso do rodapé.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Votorantim S.A<br><span class="mono">cnpj:11321934000141</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>cotecompare.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>11.321.934/0001-41</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>rivacidade Copyright © 2026. All rights reserved. O website CoteCompare é de propriedade da Cenario Capital LTDA – CNPJ 11.321.934/0001-41</td></tr>
+      <tr><td>cnpj</td><td>61.186.680/0001-74</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td> Ltda é correspondente bancário autorizado, conveniado com as seguintes instituições financeiras: Banco BMG S.A. – CNPJ 61.186.680/0001-74</td></tr>
+      <tr><td>cnpj</td><td>59.285.411/0001-13</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td> -SAC: 0800-979-90-99 - Banco Pan S.A. – CNPJ 59.285.411/0001-13</td></tr>
+      <tr><td>cnpj</td><td>59.588.111/0001-03</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td> – SAC 0800-776-8000 - BANCO VOTORANTIM S.A. – inscrita no CNPJ 59.588.111/0001-03</td></tr>
+      <tr><td>cnpj</td><td>68.900.810/0001-38</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>l também atua como Correspondente Cambial da instituição financeira Banco Rendimento S.A., inscrita no CNPJ/ME sob o nº 68.900.810/0001-38</td></tr>
+      <tr><td>cnpj</td><td>23.802.728/0001-32</td><td class="mono"><a href="#E-TXT-047">E-TXT-047</a></td><td>i nº 13.709/2018). O serviço de corretagem de seguros é oferecido através da Bom Cotar Corretora de Seguros LTDA – CNPJ 23.802.728/0001-32</td></tr>
+      <tr><td>legal_name</td><td>Votorantim S.A</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Cenario Capital LTDA</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>A Cenário Capital Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>BANCO VOTORANTIM S.A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/CoteCompare/</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/cotecompare/</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Bom Cotar Corretora de Seguros LTDA</td><td class="mono"><a href="#E-TXT-047">E-TXT-047</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>Banco BV: Crédito e Investimentos Confiáveis</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800-776-8000</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800-722-0132</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Não somos uma instituição financeira</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>NA MÍDIA Você já deve ter lido sobre nós Empréstimo Cartão de Crédito Conta Digital Conta &amp; Pagamentos Marketplace de finanças para encontrar as melhores ofertas de crédito em instantes, conforme suas</td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário autorizado</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>NA MÍDIA Você já deve ter lido sobre nós Empréstimo Cartão de Crédito Conta Digital Conta &amp; Pagamentos Marketplace de finanças para encontrar as melhores ofertas de crédito em instantes, conforme suas</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**URL:** `https://cotecompare.com.br/parceiros/banco-bv/`</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiro</td><td class="mono"><a href="#E-CANONICAL">E-CANONICAL</a></td><td>https://cotecompare.com.br/parceiro/banco-bv</td></tr>
+      <tr><td>partnership_declaration</td><td>parceria</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>Em 2009, estabeleceu uma parceria estratégica com o Banco do Brasil, resultando em uma participação de 50% do BB no capital social do Banco BV.</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro CNPJ presente na página, tratados como referência à contratante: 59.588.111/0001-03</li><li>a página se apresenta com o nome da instituição (BANCO VOTORANTIM S.A; Banco BV: Crédito e Investimentos Confiáveis); isso é identidade declarada/visual, não a identidade do responsável</li><li>5 CNPJs distintos na página: pode ser diretório, marketplace ou grupo de empresas; associação ao responsável é incerta</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-13">E-CTA-13</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-META-1">E-META-1</a> <a href="#E-META-2">E-META-2</a> <a href="#E-META-3">E-META-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-043">E-TXT-043</a> <a href="#E-TXT-044">E-TXT-044</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-13">E-CTA-13</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). Embora o site CoteCompare identifique no rodapé a razão social e o CNPJ da correspondente bancária (Cenario Capital LTDA – CNPJ 11.321.934/0001-41) e declare convênio com o Banco Votorantim S.A., a página promove captação ativa de &#39;Empréstimo com Garantia de Veículo&#39; exibindo o logotipo do Banco BV em destaque na área visível inicial, utiliza metadados e título exclusivos da marca (&#39;Banco BV: Crédito e Investimentos Confiáveis&#39;) e omite os canais de SAC/Ouvidoria do Banco BV na declaração regulatória do rodapé, demandando verificação de conformidade com a Resolução CMN nº 4.935/2021.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Transparência de Correspondente Bancário e Oferta de Crédito</td><td>MEDIUM</td><td>A página pertence a uma promotora/correspondente bancário (Cenario Capital LTDA - CNPJ 11.321.934/0001-41) que utiliza o logotipo do Banco BV em destaque na dobra inicial para captar propostas de &#39;Empréstimo com Garantia de Veículo&#39; (&#39;Simular&#39;), mas relega a identificação de correspondente ao rodapé em fonte reduzida e omite os telefones de SAC e Ouvidoria do Banco BV (informados apenas para outras instituições conveniadas).</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-CTA-13">E-CTA-13</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-043">E-TXT-043</a> <a href="#E-TXT-044">E-TXT-044</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-043">E-TXT-043</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-FTR</li><li>E-TXT-043</li><li>E-TXT-044</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Páginas de financiamento que expõem arquivos de logotipo da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (inurl:logo-bv OR &#34;logo-bv&#34; OR &#34;logo-bv-financeira&#34;) (financiamento OR veículos) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+  - (&#34;Logo Banco BV&#34; OR &#34;Logo bv financeira&#34; OR &#34;logo BV&#34;) financiamento veículos -site:brandsoftheworld.com -site:logospng.org -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H1-identity:logo-assets</span></td><td class="mono">https://cotecompare.com.br/parceiro/banco-bv</td><td>cotecompare.com.br<br><span class="muted">**URL:** `https://cotecompare.com.br/parceiros/banco-bv/` | **Uso da Marca:** Exibe `Logo Banco BV` em destaque sob o título &#34;BANCO BV - CONHEÇA NOSSO PARCEIRO&#34;, ofertando calculadoras financeiras próprias (Calculadora Empréstimo, Calculadora Consignado, Calculadora com Garantia) e captação para empréstimos e financiamento de veículos | **Conformidade (CNPJ / Correspondente):** Embora apresente o banco como &#34;parceiro&#34;, não exibe de forma clara no conteúdo da página a razão social da promotora, seu CNPJ ou o aviso formal da Resolução CMN nº 4.935/2021</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:52:58.307987+00:00</div>
+      <div class="kv"><b>IP do servidor</b>34.8.178.219</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\Cb3be9f18ad\attempt-1\manifest.json<br>sha256 ea340adbeeca0b551f3b06c488a302c77e97eaa51abd7edb0215a276cd159efc</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://cotecompare.com.br/parceiro/banco-bv<br>Final: https://cotecompare.com.br/parceiro/banco-bv</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\Cb3be9f18ad\attempt-1\viewport.png</td><td class="mono">5c7b95885b19277ebf312669e5cb2503fb4b0bb550cf34b1188eab8f6d297c7f</td><td>136088</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\Cb3be9f18ad\attempt-1\fullpage.png</td><td class="mono">af68a5d674e5a5ac7b08df67a83e50e84525fdc4904bb5dfbc3574ab31255cf3</td><td>402523</td></tr>
+      <tr><td>html</td><td class="mono">evidence\Cb3be9f18ad\attempt-1\page.html.txt</td><td class="mono">e45b471777793716238cf92231573b3023ae0ff0e088a0958813d81a8de10443</td><td>596915</td></tr>
+      <tr><td>text</td><td class="mono">evidence\Cb3be9f18ad\attempt-1\text.txt</td><td class="mono">2fc6d61b5b6df372671ba599d1d64a39ebc281039439bb0b84863352b1a0cde3</td><td>11070</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\Cb3be9f18ad\attempt-1\page.json</td><td class="mono">b3e9decc7dfdab6d4c55bf6f2e6f063cc3a5fb5c7024ab0dc7d2c371c7d1daac</td><td>51511</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:52:58+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:53:12+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:53:12+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:54:07+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:54:24+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

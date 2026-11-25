@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1869482585",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://jblcarros.com.br/financie/",
+  "final_url": "https://jblcarros.com.br/financie/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.94.115",
+  "collected_at": "2026-11-19T18:29:33.490890+00:00",
+  "manifest_written_at": "2026-11-19T18:29:39.100422+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C1869482585\\attempt-1\\viewport.png",
+      "sha256": "d586f3fc5f1fc03358794c163e33f96b5c30a03c5554fd72c04c9955b5bf7100",
+      "size_bytes": 46970
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C1869482585\\attempt-1\\fullpage.png",
+      "sha256": "d586f3fc5f1fc03358794c163e33f96b5c30a03c5554fd72c04c9955b5bf7100",
+      "size_bytes": 46970
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C1869482585\\attempt-1\\page.html.txt",
+      "sha256": "ebefaf01099cdfac89ef1d74b7dfc9cae4ff14d437cdc3cf1b4753645ef5864c",
+      "size_bytes": 65458
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C1869482585\\attempt-1\\text.txt",
+      "sha256": "bda37279b03a5b8b0504fe7378af0b7ef486e61ca8c2ae70c11cf84b19bc7e27",
+      "size_bytes": 789
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C1869482585\\attempt-1\\page.json",
+      "sha256": "b77754efc58797c3f20ee28cd59fedb8cd099ea4ddf69bebb40339d0dccd8ce2",
+      "size_bytes": 2742
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

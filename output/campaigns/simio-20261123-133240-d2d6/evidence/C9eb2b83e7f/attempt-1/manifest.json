@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C9eb2b83e7f",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://energypower.eng.br/energiasolar",
+  "final_url": "https://energypower.eng.br/energiasolar",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "186.202.135.240",
+  "collected_at": "2026-11-23T14:51:30.503538+00:00",
+  "manifest_written_at": "2026-11-23T14:51:35.820481+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C9eb2b83e7f\\attempt-1\\viewport.png",
+      "sha256": "a996ba712942805d04547456dc66e88e18c55a35edc49c508ed436db3ae8fd48",
+      "size_bytes": 47656
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C9eb2b83e7f\\attempt-1\\fullpage.png",
+      "sha256": "a996ba712942805d04547456dc66e88e18c55a35edc49c508ed436db3ae8fd48",
+      "size_bytes": 47656
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C9eb2b83e7f\\attempt-1\\page.html.txt",
+      "sha256": "89386081ea48661e57d119b543df1e300c274c0f2fc696f9005c45387a90a033",
+      "size_bytes": 65484
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C9eb2b83e7f\\attempt-1\\text.txt",
+      "sha256": "5b8cd0b035517f05b133cc2da2d6b40e85921a08c8459a5e4bd48aa851e9f54c",
+      "size_bytes": 796
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C9eb2b83e7f\\attempt-1\\page.json",
+      "sha256": "9a84eb75b4e767a47b13464a953580c8ab4851e47a57c34c9fbf85fecd51de02",
+      "size_bytes": 2756
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

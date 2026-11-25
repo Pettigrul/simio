@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cacbba033e9",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://creditfast.com.br/emprestimo-no-cartao-de-credito-caturai/",
+  "final_url": "https://creditfast.com.br/emprestimo-no-cartao-de-credito-caturai/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.9.43",
+  "collected_at": "2026-11-23T14:52:30.719293+00:00",
+  "manifest_written_at": "2026-11-23T14:52:36.032791+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cacbba033e9\\attempt-1\\viewport.png",
+      "sha256": "a27a2dec40d913a11804a21df828d81a9f9edf18f0361d169884e3f7b2e687bf",
+      "size_bytes": 48094
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cacbba033e9\\attempt-1\\fullpage.png",
+      "sha256": "a27a2dec40d913a11804a21df828d81a9f9edf18f0361d169884e3f7b2e687bf",
+      "size_bytes": 48094
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cacbba033e9\\attempt-1\\page.html.txt",
+      "sha256": "690aa06ffa56deb83d00e01da2f5843751614c8dcfb4588b7fdd92a97c2bc0cf",
+      "size_bytes": 65525
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cacbba033e9\\attempt-1\\text.txt",
+      "sha256": "94fad55f449a47fa65a8ba86fc80e94203a48adc54ce6310c07e08b85bb7cae7",
+      "size_bytes": 822
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cacbba033e9\\attempt-1\\page.json",
+      "sha256": "6f84fe0d2351102b32e99fb7dc21187c52de3ef254c059fd358f7bd1f26073c2",
+      "size_bytes": 2808
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

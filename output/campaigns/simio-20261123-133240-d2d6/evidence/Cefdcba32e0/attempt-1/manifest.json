@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cefdcba32e0",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://solarvalley.com.br/",
+  "final_url": "https://solarvalley.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "147.79.105.117",
+  "collected_at": "2026-11-23T14:42:16.508329+00:00",
+  "manifest_written_at": "2026-11-23T14:42:21.342862+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cefdcba32e0\\attempt-1\\viewport.png",
+      "sha256": "9a38a2ffaf279d80753c8e2bd02f39bed3bcbd640d69f8a0cd0abc63092e8619",
+      "size_bytes": 46930
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cefdcba32e0\\attempt-1\\fullpage.png",
+      "sha256": "9a38a2ffaf279d80753c8e2bd02f39bed3bcbd640d69f8a0cd0abc63092e8619",
+      "size_bytes": 46930
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cefdcba32e0\\attempt-1\\page.html.txt",
+      "sha256": "161f4d75da72cd46b3604fdee3f140302cb4476bc72ad2236308717f85ed70bf",
+      "size_bytes": 65459
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cefdcba32e0\\attempt-1\\text.txt",
+      "sha256": "67e17cfb32ee6b0fb735a957989d0cb0ce0103c51a9de6dbd9ff3525c39d4661",
+      "size_bytes": 784
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cefdcba32e0\\attempt-1\\page.json",
+      "sha256": "4a49e6f822cb5d089b8853a1fec16103d58239408d54df1892894a9a58d04e28",
+      "size_bytes": 2732
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

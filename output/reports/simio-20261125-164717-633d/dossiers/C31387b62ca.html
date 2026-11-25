@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C31387b62ca</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C31387b62ca — mellosfinanciamentos.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.mellosfinanciamentos.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página corresponde a uma intermediadora de crédito veicular legítima (Mellos Financiamentos) que divulga o Banco BV em seção multibancos com sua logomarca atualizada. Não há tentativa de se passar pelo banco nem overbranding. Todavia, como há o uso visual do logotipo em contexto comercial sem o cumprimento estrito das exigências regulatórias de transparência de correspondente bancário (Res. CMN 4.935/2021) e ouvidoria, o caso enquadra-se no cenário B_AMBIGUOUS_COMMUNICATION, requerendo revisão.
+[Revisor: CONFIRM] A hipótese do analista é confirmada. Trata-se de uma promotora e intermediadora de crédito veicular (Mellos Financiamentos) que utiliza a marca Banco BV em seção de bancos parceiros para captação de leads. Embora não haja overbranding e o uso ocorra em contexto de grade multibancos com identidade própria e CNPJ declarados, a ausência de esclarecimento formal da condição de correspondente bancário e de indicação de ouvidoria (Resolução CMN nº 4.935/2021) caracteriza vínculo comercial ambíguo, justificando a manutenção da classificação REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C31387b62ca/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 0f9f34a78f542bac0689ca3cb7c0c32cf5be6728fe6d58714b3e3d1613f221f0</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C31387b62ca/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 cde1af37c399966d00c57afff8c4f6f15b668d8c2628c3b57405dc0b60f83fd3</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.mellosfinanciamentos.com.br/ (domínio: www.mellosfinanciamentos.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): mellosfinanciamentos.com.br — **URL:** `https://mellosfinanciamentos.com.br` | **Tipo / Atividade:** Promotora/correspondente e intermediadora de financiamento automotivo (novos e seminovos) | **Uso da Marca:** Utiliza a marca **Banco BV** para atrair leads com promessa de aprovação em &#34;30 minutos e sem burocracia&#34; | Oferece formulário de simulação sem consulta prévia aparente e captação de clientes inclusive com restrição cadastral | **Conformidade (CNPJ / Correspondente):** Embora atue estritamente como intermediadora de crédito veicular, omite no cabeçalho e rodapé sua razão social, CNPJ e a identificação do contrato de correspondência bancária</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C31387b62ca/attempt-1/viewport.png (sha256 0f9f34a78f542bac…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C31387b62ca/attempt-1/fullpage.png (sha256 cde1af37c399966d…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Mellos Financiamentos</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Seu próximo veículo em apenas 30 minutos e sem burocracia</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Seu carro novo começa com uma simulação.</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Simule sua proposta</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Por que escolhar a Mellos?</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Melhores taxas do mercado</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Aprovação em até 30 minutos</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>100% digital</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Sem custo para você</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Crédito com garantia veicular</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Compramos seu veículo</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Histórias reais de quem conseguiu o melhor financiamento.</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Tira a dúvida antes de simular.</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Mais que crédito. Uma decisão melhor.</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>PARA VOCÊ VENDEDORES SOBRE DEPOIMENTOS FAQ TRABALHE CONOSCO Contato</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Condições especiais deste mês · Aprovação em até 30 minutos · Parcele em até 60x PARA VOCÊ VENDEDORES SOBRE DEPOIMENTOS FAQ TRABALHE CONOSCO Contato Seu próximo veículo em apenas 30 minutos e sem burocracia Financiamos carros, motos e utilitários, novos ou seminovos. Consultamos os melhores bancos para encontrar a oferta ideal para seu perfil. Simule Nos conheça</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Soluções de financiamento de veículos para pessoas e empresas. Atendimento humano, condições claras. Experiência 100% Online Simule em 30 minutos FAQ Empresa Sobre Trabalhe Conosco Soluções Para você Para vendedores BANCOS PARCEIROS © 2026 Mellos | CNPJ: 58.473.571/0001-23 R. das Arecas, 341, Amaral Ribeiro, Sapiranga, RS, 93821-384 Termos de Serviço Política de Privacidade</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://www.mellosfinanciamentos.com.br/#&gt; | PARA VOCÊ &lt;https://www.mellosfinanciamentos.com.br/pra-voce&gt; | VENDEDORES &lt;https://www.mellosfinanciamentos.com.br/vendedores&gt; | SOBRE &lt;https://www.mellosfinanciamentos.com.br/sobre&gt; | DEPOIMENTOS &lt;https://www.mellosfinanciamentos.com.br/depoimentos&gt; | FAQ &lt;https://www.mellosfinanciamentos.com.br/faq&gt; | TRABALHE CONOSCO &lt;https://wa.me/5551999855897?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20tenho%20interesse%20em%20fazer%20parte%20da%20equipe!&gt; | Contato &lt;https://wa.me/555130399856?text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Contato &lt;https://wa.me/555130399856?text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Simule</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Simular minha proposta</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Quero ser parceiro → &lt;https://wa.me/555130399856?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20quero%20ser%20parceiro!&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Negativados podem financiar?</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Qual a taxa mínima?</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Preciso dar entrada?</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Aceita veículo acima de 10 anos?</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>footer</td><td>Experiência</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>footer</td><td>Empresa</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>footer</td><td>Soluções</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>TRABALHE CONOSCO &lt;https://wa.me/5551999855897?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20tenho%20interesse%20em%20fazer%20parte%20da%20equipe!&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>Contato &lt;https://wa.me/555130399856?text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Quero ser parceiro → &lt;https://wa.me/555130399856?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20quero%20ser%20parceiro!&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/mellosfinanciamentos/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/profile.php?id=61579065162282&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>Trabalhe Conosco &lt;https://wa.me/5551999855897?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20tenho%20interesse%20em%20fazer%20parte%20da%20equipe!&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>Falar no WhatsApp &lt;https://wa.me/555130399856?text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Mellos&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/Logo/transparent-white-logo.png (178x75, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BV&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/banks/logo-banco-BV-2.webp (96x70, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco Safra&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/banks/logo-safra-branco.svg (190x70, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/banks/logo-banco-BV-2.webp (96x70, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/banks/logo-safra-branco.svg (190x70, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Mellos&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/Logo/transparent-white-logo.png (133x56, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Banco BV&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/banks/logo-banco-BV-2.webp (21x15, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Banco Safra&#39; src=https://www.mellosfinanciamentos.com.br/assets/images/banks/logo-safra-branco.svg (41x15, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Financiamos carros, motos e utilitários, novos ou seminovos. Consultamos os melhores bancos para encontrar a oferta ideal para seu perfil.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Preencha os dados ao lado e receba uma proposta de financiamento sob medida, sem burocracia, com os melhores bancos do mercado.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Resposta em até 1h útil no seu WhatsApp</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>12 bancos parceiros competindo pela sua taxa</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Trabalhamos com os principais bancos para garantir a menor taxa para você</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Comparamos sua proposta entre 12 bancos parceiros.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Sem filas, sem papelada. Tudo pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Atendimento de primeira, agilidade na resposta e na aprovação de financiamento de automóveis. Recomendo.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Profissionais do mais alto gabarito! Excelência no atendimento!</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Ótimo atendimento ao cliente.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Atendimento excepcional!</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Atendimento de máxima qualidade e me trouxe as melhores propostas. Recomendo muito!</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Indique o financiamento dos seus clientes e ganhe comissão. A Mellos aprova em até 12 bancos a venda que ia escapar, sem custo e sem trocar o banco que você já usa. E você ainda ganha comissão por financiamento aprovado.</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Quero ser parceiro</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>A taxa varia conforme seu perfil e o banco aprovador. Comparamos as propostas e apresentamos a mais competitiva.</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>A entrada não é obrigatória em todos os bancos. Em alguns casos financiamos até 100% do valor do veículo.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Sim, em parceiros específicos. Idade máxima varia entre 10 e 20 anos dependendo do tipo de veículo.</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>para pessoas e empresas. Atendimento</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>BANCOS PARCEIROS</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>© 2026 Mellos | CNPJ: 58.473.571/0001-23</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identidade visual própria consolidada da Mellos Financiamentos, com tipografia, cores escuras e logotipo próprio em destaque na área inicial e no rodapé.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-6">E-IMG-6</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identificação comercial expressa com nome Mellos Financiamentos, CNPJ 58.473.571/0001-23 e endereço físico em Sapiranga/RS informados no rodapé.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-021">E-TXT-021</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência da declaração explícita de correspondente bancário independente e de canais de ouvidoria das instituições representadas (Res. CMN 4.935/2021), constando apenas menção genérica a &#39;bancos parceiros&#39;.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-020">E-TXT-020</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Comunicação em primeira pessoa referente à própria empresa Mellos (&#39;Por que escolher a Mellos?&#39;, &#39;Simule sua proposta&#39;), sem simular ser o Banco BV.</td><td class="mono"><a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-014">E-TXT-014</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Uso secundário do logotipo oficial moderno do Banco BV em seção multibancos ao lado de concorrentes (Itaú, Bradesco, Safra, Santander), sem overbranding.</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Formulário de captação de leads para simulação de financiamento veicular com redirecionamento de atendimento via WhatsApp.</td><td class="mono"><a href="#E-CTA-3">E-CTA-3</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da intermediadora (WhatsApp, Instagram, Facebook).</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-5">E-CONTACT-5</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O contexto multibancos minimiza risco de personificação direta, mas a falta de menção formal à natureza de correspondente gera ambiguidade regulatória quanto ao vínculo com o Banco BV.</td><td class="mono"><a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-014">E-TXT-014</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A empresa atua como intermediadora de crédito veicular e exibe o logotipo do Banco BV entre seus parceiros, porém não apresenta a declaração formal obrigatória de correspondente bancário nem dados de ouvidoria conforme preconiza a Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-020">E-TXT-020</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Apresentação de CNPJ válido (58.473.571/0001-23) e endereço físico completo da intermediadora no rodapé da página. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-021">E-TXT-021</a> </span></li><li>[HIGH] LOGO_USAGE: Inserção do logotipo do Banco BV em contexto neutro e secundário de grade multibancos juntamente com outras instituições financeiras do mercado. — <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O site pertence à empresa Mellos Financiamentos, com CNPJ 58.473.571/0001-23 e sede em Sapiranga/RS.</li><li>A empresa atua intermediando financiamentos veiculares e captação de clientes para múltiplos bancos.</li><li>O logotipo oficial atual do Banco BV é exibido em seção de &#39;bancos parceiros&#39; ao lado de Itaú, Bradesco, Safra, Santander, Pan, Daycoval e outros.</li><li>Não foi identificado uso de logotipo antigo (B vermelho / V azul).</li><li>Não há declaração expressa da condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 nem divulgação de canais de ouvidoria.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Verificar se a empresa possui contrato ativo de correspondente bancário homologado formalmente junto ao Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página corresponde a uma intermediadora de crédito veicular legítima (Mellos Financiamentos) que divulga o Banco BV em seção multibancos com sua logomarca atualizada. Não há tentativa de se passar pelo banco nem overbranding. Todavia, como há o uso visual do logotipo em contexto comercial sem o cumprimento estrito das exigências regulatórias de transparência de correspondente bancário (Res. CMN 4.935/2021) e ouvidoria, o caso enquadra-se no cenário B_AMBIGUOUS_COMMUNICATION, requerendo revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">cnpj:58473571000123</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>mellosfinanciamentos.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>58.473.571/0001-23</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>30 minutos FAQ Empresa Sobre Trabalhe Conosco Soluções Para você Para vendedores BANCOS PARCEIROS © 2026 Mellos | CNPJ: 58.473.571/0001-23</td></tr>
+      <tr><td>cnpj</td><td>61.579.065/1622-82 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td>Facebook &lt;https://www.facebook.com/profile.php?id=61579065162282</td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/mellosfinanciamentos/</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/profile.php?id=61579065162282</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>TRABALHE CONOSCO &lt;https://wa.me/5551999855897?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20tenho%20interesse%20em%20fazer%20parte%20da%20equipe!&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Contato &lt;https://wa.me/555130399856?text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Quero ser parceiro → &lt;https://wa.me/555130399856?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20quero%20ser%20parceiro!&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar no WhatsApp &lt;https://wa.me/555130399856?text=Ol%C3%A1!%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) com dígito verificador inválido ignorados: 61.579.065/1622-82</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-020">E-TXT-020</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-5">E-CONTACT-5</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A hipótese do analista é confirmada. Trata-se de uma promotora e intermediadora de crédito veicular (Mellos Financiamentos) que utiliza a marca Banco BV em seção de bancos parceiros para captação de leads. Embora não haja overbranding e o uso ocorra em contexto de grade multibancos com identidade própria e CNPJ declarados, a ausência de esclarecimento formal da condição de correspondente bancário e de indicação de ouvidoria (Resolução CMN nº 4.935/2021) caracteriza vínculo comercial ambíguo, justificando a manutenção da classificação REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Revendas de seminovos e lojas multimarcas que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; financiamento (loja OR revenda OR seminovos OR multimarcas) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; (seminovos OR multimarcas OR revenda) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;financiamos&#34; OR &#34;trabalhamos com&#34; OR &#34;financie&#34;) (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de carro e multimarcas</span></td><td class="mono">https://www.mellosfinanciamentos.com.br/</td><td>mellosfinanciamentos.com.br<br><span class="muted">**URL:** `https://mellosfinanciamentos.com.br` | **Tipo / Atividade:** Promotora/correspondente e intermediadora de financiamento automotivo (novos e seminovos) | **Uso da Marca:** Utiliza a marca **Banco BV** para atrair leads com promessa de aprovação em &#34;30 minutos e sem burocracia&#34; | Oferece formulário de simulação sem consulta prévia aparente e captação de clientes inclusive com restrição cadastral | **Conformidade (CNPJ / Correspondente):** Embora atue estritamente como intermediadora de crédito veicular, omite no cabeçalho e rodapé sua razão social, CNPJ e a identificação do contrato de correspondência bancária</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 18:24:17.283061+00:00</div>
+      <div class="kv"><b>IP do servidor</b>45.132.157.85</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C31387b62ca/attempt-1/manifest.json<br>sha256 09dd3e927ee782b46c2f4033f33d302226a204eaf78315db966229373fc1be25</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.mellosfinanciamentos.com.br/<br>Final: https://www.mellosfinanciamentos.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C31387b62ca/attempt-1/viewport.png</td><td class="mono">0f9f34a78f542bac0689ca3cb7c0c32cf5be6728fe6d58714b3e3d1613f221f0</td><td>623954</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C31387b62ca/attempt-1/fullpage.png</td><td class="mono">cde1af37c399966d00c57afff8c4f6f15b668d8c2628c3b57405dc0b60f83fd3</td><td>4554077</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C31387b62ca/attempt-1/page.html.txt</td><td class="mono">6f63cfc657dc15eab8f73b1f97c1e8b287dc3c386a29c72da4780682d051fc64</td><td>143310</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C31387b62ca/attempt-1/text.txt</td><td class="mono">d77fac51ebccfaea02374f2dd4c67e10fd3663ad45e5fbd395b21cb7b69db01b</td><td>3815</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C31387b62ca/attempt-1/page.json</td><td class="mono">2d1fc6426471b2ba39f2e7677373843b5e94623cab3233767df6c457002a9202</td><td>23743</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:03+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.5)</td></tr>
+      <tr><td>2026-11-25T18:24:17+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:25+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:25+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:52+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T18:25:03+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cd9a6919665</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cd9a6919665 — zonneenergie.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Zonne Energie) que comercializa projetos fotovoltaicos e intermedeia financiamento bancário. Embora identifique sua razão social e utilize logotipo próprio, a criação de uma landing page dedicada com foco nominal na &#39;BV Financeira Solar&#39;, sem apresentar a declaração regulamentar de correspondente bancário ou esclarecer a relação formal com o Banco BV, caracteriza comunicação ambígua que requer revisão.
+[Revisor: CONFIRM] A página pertence a uma empresa integradora de energia solar (Zonne Energie Engenharia Solar Ltda) que comercializa sistemas fotovoltaicos e intermedeia financiamento bancário. A criação de landing page dedicada ao financiamento &#39;BV Financeira Solar&#39;, utilizando amplamente a marca do banco sem os avisos regulatórios formais de correspondente bancário (Resolução CMN nº 4.935/2021) nem contato de ouvidoria, configura uso de marca com vínculo não plenamente esclarecido ao consumidor, justificando a confirmação de REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cd9a6919665/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 d55c8c05b951fe9bdfca86dfbce826c690694acaa982e46aff39edfff5f2edda</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cd9a6919665/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 b83f2b20d09c6779067662965941c0406b8a5d1b5a60021ed44caa34475e3370</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html (domínio: zonneenergie.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): BV Financeira Solar no Rio de Janeiro: Simulação em 84x | Zonne ... — ☀️ Crédito BV Solar • Tabela Atualizada 2026. Financiamento BV ... bancos parceiros (BV Financeira, Santander ... BV Energia Solar no RJ: Crédito Aprovado para ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cd9a6919665/attempt-1/viewport.png (sha256 d55c8c05b951fe9b…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cd9a6919665/attempt-1/fullpage.png (sha256 b83f2b20d09c6779…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>BV Financeira Solar no Rio de Janeiro: Simulação em 84x | Zonne Energie</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Simule o financiamento BV Financeira Solar no RJ. Linha de crédito sustentável com carência estendida e taxa prefixada.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Financiamento BV Financeira Solar no Rio de Janeiro</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>💡 PONTOS ESSENCIAIS DESTE ESTUDO FOTOVOLTAICO:</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>📊 Resumo Técnico RJ</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Simule o Tamanho do seu Sistema e Economia</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>🎛️ Simulador Fotovoltaico Residencial &amp; Comercial</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Receber Proposta Solar Personalizada</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Tudo O Que Você Precisa Saber Sobre BV Financeira Solar no RJ</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Como Funciona a &#34;Troca de Conta&#34;: Instale sem Entrada em até 84x</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Comparativo Definitivo: Energia Solar por Assinatura vs Sistema Próprio no Telhado</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Padrão de Instalação e Normas de Segurança Rigorosas no RJ</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Valores Estimados de Investimento &amp; Financiamento</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Do Orçamento à Homologação na Light / Enel</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Estudo de Viabilidade &amp; Visita Técnica Gratuita</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Engenharia, Projeto Elétrico e ART no CREA-RJ</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Instalação Física Ágil e Segura</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>ZONNE ENERGIE COTAÇÃO &amp; DIMENSIONAMENTO SOLAR RJ Início Vantagens Simulador Projetos RJ Dúvidas Solicitar Estudo WhatsApp Plantão</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>⚡ Rua do Livreiro, 141 - Bangu, Rio de Janeiro - RJ, CEP 21862-090 • Atendimento em todo o Estado do RJ 📞 (21) 99304-1001 | 💬 Plantão WhatsApp: (21) 99304-1001 ZONNE ENERGIE Cotação &amp; Dimensionamento Solar RJ Início Vantagens Simulador Projetos RJ Dúvidas Solicitar Estudo WhatsApp Plantão Início › Cotação Solar RJ › BV Financeira Solar ☀️ Crédito BV Solar • Tabela Atualizada 2026 Financiamento BV Financeira Solar no Rio de Janeiro A solidez de um dos maiores bancos do país com taxas subsidiadas para energia limpa. 💡 Pontos Essenciais deste Estudo Fotovoltaico: ✓ Taxas prefixadas sem surpresas ✓ Débito em conta ou boleto bancário ✓ Financiamento para PF e PJ Dimensionar Meu Sistema Agora → Falar com Engenheiro no WhatsApp 📊 Resumo Técnico RJ Padrão de engenharia Zonne 2026 Finalidade Principal: bv financeira solar Público Indicado: Clientes correntistas ou não correntistas do banco BV. Prazo de Instalação: Até 30 dias com homologação Garantia Painéis: 30 Anos de Rendimento Homologação Oficial: Light S.A. e Enel Distribuição Rio 300+ usinas e sistemas conectados no RJ Até 95% economia direta na conta de luz 30 Anos garantia de rendimento linear Tier 1 30 Dias prazo médio de instalação e ligação × LUCAS · ONLINE ORÇAMENTO GRÁTIS Quer instalar Energia Solar ou Wallbox no seu imóvel? Posso simular com você! Atendimento em segundos Iniciar agora → LU FALE COM A ZONNE Falar com Lucas · Zonne Energie →</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>ZONNE ENERGIE Zonne Energie Engenharia Solar Ltda - Empresa líder em engenharia fotovoltaica, mercado livre de energia (ACL), eletromobilidade, O&amp;M e usinas solares de investimento no Rio de Janeiro. 📍 Rua do Livreiro, 141 - Bangu, Rio de Janeiro - RJ, CEP 21862-090 • Rio de Janeiro - RJ Responsabilidade Técnica: Engenharia com ART registrada no CREA-RJ • Normas NR-10 e NR-35 ATENDIMENTO TÉCNICO 📞 Telefone: (21) 99304-1001 💬 WhatsApp: (21) 99304-1001 ✉️ E-mail: contato@zonneenergie.com.br 🌐 Site Oficial: https://zonneenergie.com.br HOMOLOGAÇÕES RJ ✓ Concessionária Light S.A. (Capital e Baixada) ✓ Enel Distribuição Rio (Niterói, Lagos, Serrana) ✓ CCEE &amp; Mercado Livre de Energia Grupo A ✓ Projetos com ART CREA-RJ e NR-10/NR-35 ENERGIA SOLAR POR BAIRRO 🏠 Bangu (Base Técnica no Bairro) 📍 Campo Grande RJ 📍 Barra da Tijuca 📍 Recreio dos Bandeirantes 📍 Jacarepaguá 📍 Realengo 🌐 Ver todos os 158 bairros atendidos → © 2026 Zonne Energie Engenharia Solar Ltda. Todos os direitos reservados. Energia Solar e Eficiência Energética no Rio de Janeiro.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>ZONNE ENERGIE COTAÇÃO &amp; DIMENSIONAMENTO SOLAR RJ &lt;https://zonneenergie.com.br/&gt; | Início &lt;https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html#inicio&gt; | Vantagens &lt;https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html#vantagens&gt; | Simulador &lt;https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html#simulador&gt; | Projetos RJ &lt;https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html#projetos&gt; | Dúvidas &lt;https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html#faq&gt; | Solicitar Estudo &lt;https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html#formulario-conversao&gt; | WhatsApp Plantão &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20um%20atendimento%20e%20or%C3%A7amento%20para%20o%20Rio%20de%20Janeiro.&gt; | Início &lt;https://zonneenergie.com.br/&gt; | Cotação Solar RJ &lt;https://zonneenergie.com.br/cotacao-solar/index.html&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>RECEBER PROPOSTA NO WHATSAPP →</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>×</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>LU FALE COM A ZONNE Falar com Lucas · Zonne Energie →</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>📞 (21) 99304-1001 &lt;tel:21993041001&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>💬 Plantão WhatsApp: (21) 99304-1001 &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20um%20atendimento%20e%20or%C3%A7amento%20para%20o%20Rio%20de%20Janeiro.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>header</td><td>WhatsApp Plantão &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20um%20atendimento%20e%20or%C3%A7amento%20para%20o%20Rio%20de%20Janeiro.&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Falar com Engenheiro no WhatsApp &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20e%20dimensionamento%20solar%20para%20o%20Rio%20de%20Janeiro.%20P%C3%A1gina%3A%20Financiamento%20BV%20Financeira%20Solar%20no%20RJ%3A%20Condi%C3%A7%C3%B5es%20e%20Taxas%20Especiais&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Quero um Projeto Assim → &lt;https://wa.me/5521993041001?text=Ol%C3%A1!%20Vi%20as%20fotos%20dos%20projetos%20entregues%20da%20Zonne%20no%20RJ%20e%20quero%20uma%20proposta%20para%20meu%20im%C3%B3vel.&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>(21) 99304-1001 &lt;tel:21993041001&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>(21) 99304-1001 &lt;https://wa.me/5521993041001&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td>contato@zonneenergie.com.br &lt;mailto:contato@zonneenergie.com.br&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo Zonne Energie&#39; src= (42x42, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Logo Zonne Energie&#39; src= (36x36, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Rua do Livreiro, 141 - Bangu, Rio de Janeiro - RJ, CEP 21862-090 • Atendimento em todo o Estado do RJ</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>💬 Plantão WhatsApp: (21) 99304-1001</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>WhatsApp Plantão</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>BV Financeira Solar</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>☀️ CRÉDITO BV SOLAR • TABELA ATUALIZADA 2026</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Financiamento BV Financeira Solar no Rio de Janeiro</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A solidez de um dos maiores bancos do país com taxas subsidiadas para energia limpa.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Débito em conta ou boleto bancário</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Falar com Engenheiro no WhatsApp</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>bv financeira solar</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Clientes correntistas ou não correntistas do banco BV.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Homologação Oficial:</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>WhatsApp com DDD *</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>RECEBER PROPOSTA NO WHATSAPP →</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Tudo O Que Você Precisa Saber Sobre BV Financeira Solar no RJ</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Aprovação Ágil 100% Digital: Análise de crédito rápida através dos principais bancos parceiros (BV Financeira, Santander, Solfácil, Sicredi, Banco do Brasil).</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Propriedade: Na assinatura você continua pagando mensalidade para sempre | No sistema próprio as placas são suas e o custo zera após a quitação.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>ART (Anotação de Responsabilidade Técnica): Registro oficial emitido no CREA-RJ para cada projeto executado.</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>&#34;Excelente atendimento da Zonne. Instalaram o sistema solar na minha residência e a conta de luz caiu para a taxa mínima logo no primeiro ciclo. Equipe muito competente e ágil!&#34;</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Financiamento Solar no RJ: Condições dos Principais Bancos em até 84x</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Financiamento solar no RJ pelos bancos Santander, BV, Solfácil, Bradesco e Itaú. Simule sua parcela online pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>PARCEIRO SOLFÁCIL</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>BV SOLAR RJ</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>BV Energia Solar no RJ: Crédito Aprovado para Sua Casa ou Empresa</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Contrate energia solar financiada pelo BV no RJ com a Zonne Energie. Engenharia homologada e aprovação facilitada.</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>Posso amortizar o saldo devedor do financiamento BV com desconto de juros?</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Quanto tempo demora para recuperar o investimento em BV Financeira Solar?</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Zonne Energie Engenharia Solar Ltda - Empresa líder em engenharia fotovoltaica, mercado livre de energia (ACL), eletromobilidade, O&amp;M e usinas solares de investimento no Rio de Janeiro.</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>📍 Rua do Livreiro, 141 - Bangu, Rio de Janeiro - RJ, CEP 21862-090 • Rio de Janeiro - RJ</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>ATENDIMENTO TÉCNICO</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>📞 Telefone: (21) 99304-1001</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>💬 WhatsApp: (21) 99304-1001</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>🌐 Site Oficial: https://zonneenergie.com.br</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>© 2026 Zonne Energie Engenharia Solar Ltda. Todos os direitos reservados. Energia Solar e Eficiência Energética no Rio de Janeiro.</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>Atendimento em segundos</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O design da página adota a identidade visual da própria empresa Zonne Energie, sem uso indevido de cores exclusivas ou elementos gráficos exclusivos do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>A empresa Zonne Energie Engenharia Solar Ltda se identifica no rodapé e cabeçalho, porém utiliza a marca BV Financeira em destaque no título e cabeçalho de seção como chamariz de financiamento sem detalhar seu vínculo formal.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-028">E-TXT-028</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência da declaração explícita de correspondente bancário independente nos termos da Resolução CMN nº 4.935/2021 e ausência de indicação dos canais de ouvidoria da instituição parceira.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O texto descreve condições de crédito da BV de forma promocional (&#39;A solidez de um dos maiores bancos do país&#39;), mas não adota primeira pessoa do plural como se fosse o próprio banco.</td><td class="mono"><a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-016">E-TXT-016</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não foi identificado o uso do logotipo oficial nem do logotipo legado do Banco BV; apenas o logotipo próprio da Zonne Energie é exibido.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>A jornada de simulação e proposta capta dados do consumidor via formulário e WhatsApp da Zonne Energie para posterior intermediação de crédito com bancos parceiros.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-TXT-014">E-TXT-014</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de atendimento (telefone, WhatsApp e e-mail) estão claramente atribuídos à Zonne Energie.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-8">E-CONTACT-8</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>A segmentação da página para &#39;Financiamento BV Financeira Solar no Rio de Janeiro&#39; pode induzir o consumidor a crer que se trata de canal oficial ou credenciado exclusivo da BV para energia solar na região.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-TXT-025">E-TXT-025</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página atua como captadora de leads para financiamento solar atrelado à marca BV Financeira, mas não apresenta a declaração formal de correspondente bancário exigida pela Resolução CMN nº 4.935/2021 nem canal de ouvidoria do banco. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-016">E-TXT-016</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Criação de landing page dedicada no site comercial com slug e títulos direcionados especificamente à BV Financeira Solar, gerando ambiguidade sobre a natureza da representação comercial. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-006">E-TXT-006</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A identidade da empresa terceira (Zonne Energie Engenharia Solar Ltda) está declarada no cabeçalho e rodapé da página. — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-028">E-TXT-028</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: A página menciona a BV Financeira em contexto de bancos parceiros (ao lado de Santander, Solfácil, Sicredi, Banco do Brasil, Bradesco e Itaú). — <span class="mono"><a href="#E-TXT-016">E-TXT-016</a> <a href="#E-TXT-021">E-TXT-021</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence ao domínio zonneenergie.com.br, registrado por Zonne Energie Engenharia Solar Ltda, atuante no setor de engenharia fotovoltaica no RJ.</li><li>O título da página e o cabeçalho principal destacam &#39;Financiamento BV Financeira Solar no Rio de Janeiro&#39;.</li><li>Não foi identificada a exibição visual de logotipos do Banco BV (nem a marca moderna nem a antiga com B vermelho e V azul); apenas o logo da Zonne Energie é visível.</li><li>O texto cita a BV Financeira como banco parceiro, juntamente com outras instituições financeiras (Santander, Solfácil, Sicredi, Banco do Brasil, Bradesco e Itaú).</li><li>A página não traz a declaração formal de correspondente bancário prevista no art. 14 da Resolução CMN nº 4.935/2021 nem informações de ouvidoria do banco.</li><li>Os contatos de WhatsApp e telefone pertencem à integradora solar Zonne Energie.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não é possível determinar apenas pela página se a Zonne Energie possui contrato formal de correspondente bancário ou credenciamento ativo como parceiro de crédito solar junto ao Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Zonne Energie) que comercializa projetos fotovoltaicos e intermedeia financiamento bancário. Embora identifique sua razão social e utilize logotipo próprio, a criação de uma landing page dedicada com foco nominal na &#39;BV Financeira Solar&#39;, sem apresentar a declaração regulamentar de correspondente bancário ou esclarecer a relação formal com o Banco BV, caracteriza comunicação ambígua que requer revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Light S.A<br><span class="mono">domain:zonneenergie.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>zonneenergie.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Light S.A</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>ZONNE ENERGIE Zonne Energie Engenharia Solar Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Concessionária Light S.A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>2026 Zonne Energie Engenharia Solar Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@zonneenergie.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Zonne Energie Engenharia Solar Ltda</td><td class="mono"><a href="#E-TXT-028">E-TXT-028</a></td><td></td></tr>
+      <tr><td>phone</td><td>(21) 99304-1001</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>21993041001</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>💬 Plantão WhatsApp: (21) 99304-1001 &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20um%20atendimento%20e%20or%C3%A7amento%20para%20o%20Rio%20de%20Janeiro.&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp Plantão &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20um%20atendimento%20e%20or%C3%A7amento%20para%20o%20Rio%20de%20Janeiro.&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com Engenheiro no WhatsApp &lt;https://wa.me/5521993041001?text=Ol%C3%A1%20Zonne%20Energie!%20Gostaria%20de%20uma%20cota%C3%A7%C3%A3o%20e%20dimensionamento%20solar%20para%20o%20Rio%20de%20Janeiro.%</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Quero um Projeto Assim → &lt;https://wa.me/5521993041001?text=Ol%C3%A1!%20Vi%20as%20fotos%20dos%20projetos%20entregues%20da%20Zonne%20no%20RJ%20e%20quero%20uma%20proposta%20para%20meu%20im%C3%B3vel.&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>(21) 99304-1001 &lt;https://wa.me/5521993041001&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>bancos parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>bancos parceiros (BV Financeira, Santander ...</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-016">E-TXT-016</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-TXT-025">E-TXT-025</a> <a href="#E-TXT-028">E-TXT-028</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-TXT-014">E-TXT-014</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Zonne Energie Engenharia Solar Ltda) que comercializa sistemas fotovoltaicos e intermedeia financiamento bancário. A criação de landing page dedicada ao financiamento &#39;BV Financeira Solar&#39;, utilizando amplamente a marca do banco sem os avisos regulatórios formais de correspondente bancário (Resolução CMN nº 4.935/2021) nem contato de ouvidoria, configura uso de marca com vínculo não plenamente esclarecido ao consumidor, justificando a confirmação de REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;bancos parceiros&#34; &#34;energia solar&#34; &#34;BV&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br<br><span class="muted">H2-product:bancos-parceiros</span></td><td class="mono">https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html</td><td>BV Financeira Solar no Rio de Janeiro: Simulação em 84x | Zonne ...<br><span class="muted">☀️ Crédito BV Solar • Tabela Atualizada 2026. Financiamento BV ... bancos parceiros (BV Financeira, Santander ... BV Energia Solar no RJ: Crédito Aprovado para ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:15:55.836589+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.77.24</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cd9a6919665/attempt-1/manifest.json<br>sha256 dc2d017cef5a8b4588ef7cd38c2bd69e1625a36077a4a77da58ee06f0cda97e4</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html<br>Final: https://zonneenergie.com.br/cotacao-solar/bv-financeira-solar.html</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cd9a6919665/attempt-1/viewport.png</td><td class="mono">d55c8c05b951fe9bdfca86dfbce826c690694acaa982e46aff39edfff5f2edda</td><td>259701</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cd9a6919665/attempt-1/fullpage.png</td><td class="mono">b83f2b20d09c6779067662965941c0406b8a5d1b5a60021ed44caa34475e3370</td><td>1374869</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cd9a6919665/attempt-1/page.html.txt</td><td class="mono">467bf0a01c7e03643f7df25a6f189990ed568451287ebb59c12dada3ba781bf8</td><td>139628</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cd9a6919665/attempt-1/text.txt</td><td class="mono">938bc4e4a6f9b2efc598f3f5a664c803399b09e14342a3fde6715306693ef208</td><td>15500</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cd9a6919665/attempt-1/page.json</td><td class="mono">52dac792c38b3b4376f9b59bb0ffc1843f4a617ca796501f9f01711ffcc5e082</td><td>33904</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:08+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T19:15:55+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:16:00+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:16:00+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:16:24+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:16:42+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

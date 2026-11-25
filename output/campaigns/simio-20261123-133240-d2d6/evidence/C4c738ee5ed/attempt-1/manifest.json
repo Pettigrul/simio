@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C4c738ee5ed",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.electroneng.com.br/",
+  "final_url": "https://www.electroneng.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "162.159.143.12",
+  "collected_at": "2026-11-23T14:37:00.647036+00:00",
+  "manifest_written_at": "2026-11-23T14:37:06.688491+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C4c738ee5ed\\attempt-1\\viewport.png",
+      "sha256": "b8baa1aa3bcedbb9e9ea496987ddfa9385d80c1ed9a44751431abca50f5742a7",
+      "size_bytes": 47372
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C4c738ee5ed\\attempt-1\\fullpage.png",
+      "sha256": "b8baa1aa3bcedbb9e9ea496987ddfa9385d80c1ed9a44751431abca50f5742a7",
+      "size_bytes": 47372
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C4c738ee5ed\\attempt-1\\page.html.txt",
+      "sha256": "203cb0269f5ff090cd52ca61e5ecc1b838ad406a0a064dde230bf2706353cd58",
+      "size_bytes": 65463
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C4c738ee5ed\\attempt-1\\text.txt",
+      "sha256": "97edc0ea8b280e10b0bbf49184ad2459e7f87e1ceb124ca48d9b34c17c548654",
+      "size_bytes": 788
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C4c738ee5ed\\attempt-1\\page.json",
+      "sha256": "ddca31af7ea6b8fe2c9c35bb2899584e5ab6361cde135e69ce6334ce2d642e9d",
+      "size_bytes": 2740
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cdd45877ea7</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cdd45877ea7 — jurosbaixos.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://jurosbaixos.com.br/negociar-dividas/bv</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A Juros Baixos opera como plataforma de crédito e renegociação de dívidas. Embora identifique claramente sua razão social, CNPJ e mencione atuar como correspondente bancário sob a Resolução CMN nº 4.935/2021, a página é estruturada como landing page temática (&#39;Negocie sua dívida no BV&#39;) com o logotipo do banco em destaque e sem indicação dos canais de ouvidoria da instituição parceira, justificando revisão moderada.
+[Revisor: CONFIRM] A Juros Baixos (JB Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43) opera comercialmente como correspondente bancário e plataforma de crédito/renegociação de dívidas. A página em questão é uma landing page temática dedicada ao Banco BV (&#39;Negocie sua dívida no BV&#39;) com aplicação do logotipo do banco (E-IMG-1, E-SHOT-VIEWPORT) para captação de clientes para serviço financeiro sensível (quitação/renegociação). Embora apresente declaração de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 no rodapé (E-FTR), omite o canal de ouvidoria da instituição financeira parceira, justificando a manutenção de REVIEW_REQUIRED para conferência de conformidade regulatória e credenciamento ativo.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cdd45877ea7/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 6bbd91a3478bf746f9760194dd0bf1b613f5095d713958e9bf458f16ddc0ce07</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cdd45877ea7/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 07e400a46151fbd946c55b1b13c0b470f5736b638cb3c0e9d01c1c503c96a696</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://jurosbaixos.com.br/negociar-dividas/bv (domínio: jurosbaixos.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): jurosbaixos.com.br — Apresenta razão social, CNPJ no rodapé e qualifica a sua atuação como plataforma de negociação/correspondente bancário parceiro | **Nome do Estabelecimento / Perfil:** Juros Baixos (Juros Baixos Promotora de Serviços Financeiros Ltda.) | **URL:** `https://jurosbaixos.com.br/dividas/negociar-divida-bv/` | **Uso da Marca e Hipótese:** Seção exclusiva para renegociação e quitação de contratos em atraso do Banco BV, além de simulação de novos créditos | Cita expressamente no rodapé o enquadramento na Resolução CMN nº 4.935/2021 como correspondente bancário do Banco BV S.A. (CNPJ 59.588.111/0001-03) | Informa CNPJ (10.891.675/0001-21), porém não possui vínculo de correspondente bancário credenciado nos termos da Resolução nº 4.935/2021, atuando como assessoria privada de deságio/revisão que utiliza a marca para captação de clientes inadimplentes | O site não exibe de forma clara e visível declaração de correspondente bancário da BV e omite dados regulamentares obrigatór</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cdd45877ea7/attempt-1/viewport.png (sha256 6bbd91a3478bf746…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cdd45877ea7/attempt-1/fullpage.png (sha256 07e400a46151fbd9…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Como negociar sua dívida no BV | Juros Baixos</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Tem alguma pendência financeira com o BV que precisa resolver? Clique aqui e descubra como fazer isso no conforto da sua casa!</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Juros Baixos</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Como negociar sua dívida no BV</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Tem alguma pendência financeira com o BV que precisa resolver? Clique aqui e descubra como fazer isso no conforto da sua casa!</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://jurosbaixos.com.br/negociar-dividas/bv</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Negocie sua dívida no BV</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Negocie sua dívida no BV</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Por que negociar sua dívida por meio da Juros Baixos?</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>1. Faça seu cadastro</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>2. Compare as propostas disponíveis</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>3. Comprove seus dados cadastrais</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>4. Dívida negociada</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Quais as condições para negociar sua dívida no BV?</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Quais dívidas podem ser renegociadas com o BV?</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Quais as formas de pagamento?</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Como funcionam os prazos?</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Negocie sua dívida no BV:</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Esses são os nossos parceiros</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>A opinião de quem já conhece e confia no nosso trabalho:</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Explore mais no blog</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Empréstimo Tipos de empréstimo Cartão de crédito Negociação de dívidas A empresa Blog Acessar Criar conta</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Atenção! A Juros Baixos não cobra nenhum depósito antecipado para a liberação de empréstimos. Empréstimo Tipos de empréstimo Cartão de crédito Negociação de dívidas A empresa Blog Acessar Criar conta Negocie sua dívida no BV Pague os seus débitos com descontos de até 90% sem sair de casa Quero negociar minhas dívidas</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Para você Empréstimo pessoal Empréstimo para negativado Empréstimo com garantia de celular Empréstimo para pagar dívidas Empréstimo saque aniversário FGTS Empréstimo para MEI Empréstimo para casamento Empréstimo para assalariado Empréstimo para autônomo Outras soluções Empréstimo consignado Empréstimo consignado privado Empréstimo com moto em garantia Refinanciamento de veículo Refinanciamento de imóvel Crédito do Trabalhador Empréstimo de 500 reais Empréstimo de 10 mil reais Links úteis Blog Sobre a Juros Baixos Seja nosso parceiro Trabalhe conosco Termos de uso Políticas de privacidade Fale com nosso time de atendimento sac@jurosbaixos.com.br Atendimento humano das 9h às 18h (dias úteis) Assessoria de imprensa redacao@jurosbaixos.com.br Juros Baixos é uma marca da JB – Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43 - Endereço: Av. Paulista, 91 - Bela Vista, São Paulo - SP, CEP 01311-000 A Juros Baixos não é uma instituição financeira e não concede crédito. Atua como correspondente bancário (Resolução CMN nº 4.935/2021) de: Banco BV S.A. (CNPJ 59.588.111/0001-03), Banco PAN S.A. (CNPJ 59.285.411/0001-13), Cobuccio S/A – Sociedade de Crédito, Financiamento e Investimentos, marca Ágil (CNPJ 36.947.229/0001-85), Crefaz Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno Porte S.A. (CNPJ 18.188.384/0001-83), JBCred S/A Sociedade de Crédito, Financiamento e Investimento (CNPJ 39.625.760/0001-20) e Omni S/A Crédito, Financiamento e Investimento (CNPJ 92.228.410/0001-02). Condições: as ofertas apresentadas são simulações. A aprovação do crédito, as taxas e as condições finais dependem da análise e da política de crédito de cada instituição. Os prazos de pagamento vão de 3 a 360 meses, conforme o produto e a instituição. As taxas de juros variam de 0,89% a 19,99% ao mês (11,22% a 790,72% ao ano). O Custo Efetivo Total (CET) varia de 11,69% a 860,43% ao ano. Antes da contratação, você verá a taxa de juros, as tarifas, o IOF e o CET </td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Página principal Juros Baixos &lt;https://jurosbaixos.com.br/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Acessar</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>Criar conta</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Quero negociar minhas dívidas &lt;https://cp.jurosbaixos.com.br/criar-conta?product=debt_renegotiation&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Continuar lendo</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Continuar lendo</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Continuar lendo</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Confira todas as avaliações &lt;https://www.facebook.com/jurosbaixos/reviews/?ref=page_internal&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Confira todas as avaliações &lt;https://www.facebook.com/jurosbaixos/reviews/?ref=page_internal&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Confira todas as avaliações &lt;https://www.facebook.com/jurosbaixos/reviews/?ref=page_internal&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Confira todas as avaliações &lt;https://www.facebook.com/jurosbaixos/reviews/?ref=page_internal&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>sac@jurosbaixos.com.br &lt;mailto:sac@jurosbaixos.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>redacao@jurosbaixos.com.br &lt;mailto:redacao@jurosbaixos.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>Juros Baixos Instagram &lt;https://www.instagram.com/jurosbaixos/&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td>Juros Baixos Facebook &lt;https://www.facebook.com/jurosbaixos/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;bv&#39; src=https://jurosbaixos.com.br/assets/img/neg-dividas-logos/bank_logos/bv.svg (148x148, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;bv&#39; src=https://jurosbaixos.com.br/assets/img/neg-dividas-logos/bank_logos/bv.svg (240x240, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Acordo Certo&#39; src=https://jurosbaixos.com.br/assets/img/neg-dividas-logos/negDividas/acordocerto.svg (280x207, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;blu365&#39; src=https://jurosbaixos.com.br/assets/img/neg-dividas-logos/negDividas/blu365.svg (280x293, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>BV</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>BV</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Negocie sua dívida no BV</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Precisamos de algumas informações suas para podermos consultar nossos parceiros. Aqui os seus dados estão seguros.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Você precisará comprovar as informações cadastradas com nosso parceiro.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Quais as condições para negociar sua dívida no BV?</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Já pensou em renegociar suas dívidas com o BV sem sair de casa de forma rápida, segura e fácil? Aqui no Juros Baixos isso é possível!</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Basta clicar em “Negocie a sua Dívida” e colocar os dados que são solicitados. Após isso, vai ter acesso as pendências financeiras que pode renegociar com o BV.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Quais dívidas podem ser renegociadas com o BV?</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Por ser um processo 100% online, o BV não permite que renegocie qualquer tipo de dívida.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Dessa forma, o BV permite a renegociação das seguintes dívidas: empréstimos, cartão de crédito, financiamento de veículos, financiamento estudantil e outros.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>No Juros Baixos, o pagamento deve ser feito única e exclusivamente por boleto. Desse modo, o parcelamento da sua dívida é feito por meio de boletos que devem ser pagos mensalmente.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Todos esses boletos são emitidos pelo próprio BV e a plataforma do Juros Baixos apenas os organiza para que você tenha um acesso mais fácil e seguro. Assim, sempre que quiser consultá-los, basta acessar a sua conta no site.</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>O prazo de compensação de um boleto é de até 3 dias úteis e esta é a única forma de pagamento disponível para quitar suas dívidas com o BV.</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Ainda assim, caso não haja uma baixa no pagamento em até 5 dias úteis, basta entrar em contato pelo e-mail atendimento@jurosbaixos.com.br ou telefone (11) 97520-5864.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Negocie sua dívida no BV:</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Esses são os nossos parceiros</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Atendimento excelente, resolveram o meu problema de forma imediata e o dinheiro caiu na conta antes do prazo esperado. Super recomendo, todas as vezes que preciso, estão prontos para me ajudar. Nota 10!!</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Sim, super recomendo, me tirou do sufoco quando eu mais precisava, atendimento 100%</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Suas informações não são usadas para nada além da análise de perfil para a renegociação de dívidas. Temos privacidade total em nosso serviço! Apenas encaminhamos as informações para nossos parceiros, para que eles analisem seu perfil e encontrem a melhor proposta de negociação de dívida pra você, prezando sempre pela segurança dos seus dados.</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Seja nosso parceiro</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Fale com nosso time de atendimento</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>sac@jurosbaixos.com.br</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Atendimento humano das 9h às 18h (dias úteis)</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Juros Baixos é uma marca da JB – Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43 - Endereço: Av. Paulista, 91 - Bela Vista, São Paulo - SP, CEP 01311-000</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>A Juros Baixos não é uma instituição financeira e não concede crédito. Atua como correspondente bancário (Resolução CMN nº 4.935/2021) de: Banco BV S.A. (CNPJ 59.588.111/0001-03), Banco PAN S.A. (CNPJ 59.285.411/0001-13), Cobuccio S/A – Sociedade de Crédito, Financiamento e Investimentos, marca Ágil (CNPJ 36.947.229/0001-85), Crefaz Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Porte S.A. (CNPJ 18.188.384/0001-83), JBCred S/A Sociedade de Crédito, Financiamento e Investimento (CNPJ 39.625.760/0001-20) e Omni S/A Crédito, Financiamento e Investimento (CNPJ 92.228.410/0001-02).</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>da contratação, você verá a taxa de juros, as tarifas, o IOF e o CET da operação. A simulação é gratuita; a Juros Baixos é remunerada pelas instituições parceiras.</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Atendimento: sac@jurosbaixos.com.br | dias úteis, das 9h às 18h.</td></tr>
+      <tr id="E-NET-BLOCKED"><td class="mono"><b>E-NET-BLOCKED</b></td><td>network</td><td>collection</td><td>1 requisição(ões) bloqueadas pela política: https://region.target_domain/a?t=96&amp;type=push&amp;d=N4IgLgngDgpiBcIoCcD2AzAlgGzgGiTS1wVAGMwB9VKMVAVzAXQENsBnGAXwMwBMEIAGwAtAOoBaABwBOGRIBKAFgDsIkASgBzBAEYCLdKRDZMAI0EB3GGYns%2BAawkA3AMwA6D7o2FUdMqjYggAWYG -&gt; DNS resolution failed for region.target_domain: [Errno -2] Name or service not known</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A identidade visual própria da Juros Baixos predomina no topo e na navegação, embora utilize elementos visuais da marca BV na seção temática de renegociação.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identificação explícita da titularidade empresarial no rodapé: JB – Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-025">E-TXT-025</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>O rodapé cita a condição de correspondente bancário conforme Resolução CMN nº 4.935/2021 para o Banco BV e outros bancos, mas omite canais de ouvidoria do banco.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O site esclarece que atua como intermediário e que os boletos são emitidos pela própria instituição financeira parceira.</td><td class="mono"><a href="#E-TXT-013">E-TXT-013</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Exibição do logotipo do BV em área de destaque na chamada principal de negociação de dívidas.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Apresenta fluxo para renegociação de dívidas bancárias (&#39;Negocie sua dívida no BV&#39;) com cadastro e redirecionamento de propostas.</td><td class="mono"><a href="#E-CTA-3">E-CTA-3</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Disponibiliza canais próprios de contato e atendimento da Juros Baixos (e-mail, redes sociais e SAC próprio).</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-023">E-TXT-023</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Landing page segmentada com o título &#39;Negocie sua dívida no BV&#39; pode induzir o consumidor a crer que se trata de canal direto ou exclusivo de renegociação do banco.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Utilização do logotipo do Banco BV em destaque na dobra superior e ao longo da landing page dedicada à renegociação de dívidas. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[MEDIUM] SERVICE_JOURNEY: Captação de dados de clientes inadimplentes para renegociação de dívidas do BV com promessa de descontos de até 90%, serviço altamente sensível. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-CTA-3">E-CTA-3</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-013">E-TXT-013</a> </span></li><li>[LOW] CORRESPONDENT_TRANSPARENCY: Ausência de indicação do canal de ouvidoria da instituição financeira contratante (Banco BV), embora conste declaração de correspondente bancário no rodapé. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-026">E-TXT-026</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Declaração expressa da razão social e CNPJ próprio no rodapé (JB - Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43). — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-025">E-TXT-025</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Declaração expressa de que não é instituição financeira e atua como correspondente bancário sob a Resolução CMN nº 4.935/2021 citando o Banco BV. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-026">E-TXT-026</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página é uma landing page da plataforma Juros Baixos dedicada à renegociação de dívidas do Banco BV.</li><li>O cabeçalho e a marca própria da Juros Baixos estão visíveis no topo da página.</li><li>O logotipo do Banco BV é exibido acima da dobra e no corpo do texto em seção temática de negociação de dívida.</li><li>O texto informa que atua como intermediário e que os boletos de quitação são emitidos pelo Banco BV.</li><li>O rodapé identifica a razão social e CNPJ da empresa operadora (JB - Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43).</li><li>O rodapé declara a atuação como correspondente bancário nos termos da Resolução CMN nº 4.935/2021 do Banco BV S.A. (CNPJ 59.588.111/0001-03) e de outras instituições financeiras.</li><li>Não foi identificada menção aos canais de Ouvidoria do Banco BV na página.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Necessidade de validar se a JB Agenciamento possui contrato ativo e credenciamento regular de correspondente bancário com o Banco BV para renegociação de dívidas.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A Juros Baixos opera como plataforma de crédito e renegociação de dívidas. Embora identifique claramente sua razão social, CNPJ e mencione atuar como correspondente bancário sob a Resolução CMN nº 4.935/2021, a página é estruturada como landing page temática (&#39;Negocie sua dívida no BV&#39;) com o logotipo do banco em destaque e sem indicação dos canais de ouvidoria da instituição parceira, justificando revisão moderada.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Juros Baixos Promotora de Serviços Financeiros Ltda<br><span class="mono">cnpj:10891675000121</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>coban_registry_bv.csv (ref. 2026-10-06) (cnpj)</div>
+    </div>
+    <p style="margin-top:12px;">Um dos CNPJs da página consta do cadastro autorizado, mas há outros CNPJs (diretório, marketplace ou grupo): a titularidade da página não é inequívoca.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>jurosbaixos.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>59.588.111/0001-03</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>ressamente no rodapé o enquadramento na Resolução CMN nº 4.935/2021 como correspondente bancário do Banco BV S.A. (CNPJ 59.588.111/0001-03</td></tr>
+      <tr><td>cnpj</td><td>10.891.675/0001-21</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>) | Informa CNPJ (10.891.675/0001-21</td></tr>
+      <tr><td>cnpj</td><td>28.812.324/0001-43</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>sa redacao@jurosbaixos.com.br Juros Baixos é uma marca da JB – Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43</td></tr>
+      <tr><td>cnpj</td><td>59.285.411/0001-13</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>), Banco PAN S.A. (CNPJ 59.285.411/0001-13</td></tr>
+      <tr><td>cnpj</td><td>36.947.229/0001-85</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>), Cobuccio S/A – Sociedade de Crédito, Financiamento e Investimentos, marca Ágil (CNPJ 36.947.229/0001-85</td></tr>
+      <tr><td>cnpj</td><td>18.188.384/0001-83</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>), Crefaz Sociedade de Crédito ao Microempreendedor e à Empresa de Pequeno Porte S.A. (CNPJ 18.188.384/0001-83</td></tr>
+      <tr><td>cnpj</td><td>39.625.760/0001-20</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>), JBCred S/A Sociedade de Crédito, Financiamento e Investimento (CNPJ 39.625.760/0001-20</td></tr>
+      <tr><td>cnpj</td><td>92.228.410/0001-02</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>) e Omni S/A Crédito, Financiamento e Investimento (CNPJ 92.228.410/0001-02</td></tr>
+      <tr><td>legal_name</td><td>Juros Baixos Promotora de Serviços Financeiros Ltda</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>Banco BV S.A</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Geral Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Cobuccio S/A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Empresa de Pequeno Porte S.A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>JBCred S/A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Omni S/A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>sac@jurosbaixos.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>redacao@jurosbaixos.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/jurosbaixos/reviews/?ref=page_internal</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/jurosbaixos/</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/jurosbaixos/</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+      <tr><td>email</td><td>atendimento@jurosbaixos.com.br</td><td class="mono"><a href="#E-TXT-015">E-TXT-015</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Porte S.A</td><td class="mono"><a href="#E-TXT-027">E-TXT-027</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Juros Baixos</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 97520-5864</td><td class="mono"><a href="#E-TXT-015">E-TXT-015</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>não é uma instituição financeira</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Para você Empréstimo pessoal Empréstimo para negativado Empréstimo com garantia de celular Empréstimo para pagar dívidas Empréstimo saque aniversário FGTS Empréstimo para MEI Empréstimo para casamento</td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Para você Empréstimo pessoal Empréstimo para negativado Empréstimo com garantia de celular Empréstimo para pagar dívidas Empréstimo saque aniversário FGTS Empréstimo para MEI Empréstimo para casamento</td></tr>
+      <tr><td>correspondent_declaration</td><td>Resolução CMN nº 4.935</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Para você Empréstimo pessoal Empréstimo para negativado Empréstimo com garantia de celular Empréstimo para pagar dívidas Empréstimo saque aniversário FGTS Empréstimo para MEI Empréstimo para casamento</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro CNPJ presente na página, tratados como referência à contratante: 59.588.111/0001-03, 36.947.229/0001-85, 39.625.760/0001-20, 92.228.410/0001-02</li><li>a página se apresenta com o nome da instituição (Banco BV S.A); isso é identidade declarada/visual, não a identidade do responsável</li><li>4 CNPJs distintos na página: pode ser diretório, marketplace ou grupo de empresas; associação ao responsável é incerta</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (CONSUMER_CONFUSION) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-026">E-TXT-026</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-3">E-CTA-3</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-013">E-TXT-013</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A Juros Baixos (JB Agenciamento de Serviços e Negócios em Geral Ltda., CNPJ 28.812.324/0001-43) opera comercialmente como correspondente bancário e plataforma de crédito/renegociação de dívidas. A página em questão é uma landing page temática dedicada ao Banco BV (&#39;Negocie sua dívida no BV&#39;) com aplicação do logotipo do banco (E-IMG-1, E-SHOT-VIEWPORT) para captação de clientes para serviço financeiro sensível (quitação/renegociação). Embora apresente declaração de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 no rodapé (E-FTR), omite o canal de ouvidoria da instituição financeira parceira, justificando a manutenção de REVIEW_REQUIRED para conferência de conformidade regulatória e credenciamento ativo.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Páginas de terceiros ofertando serviços sensíveis com a marca (2ª via boleto, quitação, negociação, quitação de contrato).
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;2ª via&#34; OR &#34;segunda via&#34; OR &#34;quitação&#34; OR &#34;quitar financiamento&#34; OR &#34;acordo&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR contrato OR parcelas) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;central de atendimento&#34; OR &#34;fale com&#34; OR &#34;SAC&#34; OR &#34;0800&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR quitação OR negociação OR whatsapp) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H7-threat-intel:sensitive-services</span></td><td class="mono">https://jurosbaixos.com.br/negociar-dividas/bv</td><td>jurosbaixos.com.br<br><span class="muted">Apresenta razão social, CNPJ no rodapé e qualifica a sua atuação como plataforma de negociação/correspondente bancário parceiro | **Nome do Estabelecimento / Perfil:** Juros Baixos (Juros Baixos Promotora de Serviços Financeiros Ltda.) | **URL:** `https://jurosbaixos.com.br/dividas/negociar-divida-bv/` | **Uso da Marca e Hipótese:** Seção exclusiva para renegociação e quitação de contratos em atraso do Banco BV, além de simulação de novos créditos | Cita expressamente no rodapé o enquadramento na Resolução CMN nº 4.935/2021 como correspondente bancário do Banco BV S.A. (CNPJ 59.588.111/0001-03) | Informa CNPJ (10.891.675/0001-21), porém não possui vínculo de correspondente bancário credenciado nos termos da Resolução nº 4.935/2021, atuando como assessoria privada de deságio/revisão que utiliza a marca para captação de clientes inadimplentes | O site não exibe de forma clara e visível declaração de correspondente bancário da BV e omite dados regulamentares obrigatórios da CMN 4.935/2021</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:27:47.063769+00:00</div>
+      <div class="kv"><b>IP do servidor</b>18.67.145.36</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cdd45877ea7/attempt-1/manifest.json<br>sha256 c70599f1b4c05415c6d692283890bb60dc842678f2aa3cf90ba048098c9a9225</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://jurosbaixos.com.br/negociar-dividas/bv<br>Final: https://jurosbaixos.com.br/negociar-dividas/bv</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cdd45877ea7/attempt-1/viewport.png</td><td class="mono">6bbd91a3478bf746f9760194dd0bf1b613f5095d713958e9bf458f16ddc0ce07</td><td>47906</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cdd45877ea7/attempt-1/fullpage.png</td><td class="mono">07e400a46151fbd946c55b1b13c0b470f5736b638cb3c0e9d01c1c503c96a696</td><td>1114254</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cdd45877ea7/attempt-1/page.html.txt</td><td class="mono">6825e718b0b4104c1036cbaadb36502492afae3b790fdaa26abd98ab47dd7be1</td><td>97799</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cdd45877ea7/attempt-1/text.txt</td><td class="mono">f5f6d6b0ccbd74a11c42774cc945887cd12e6f313e6baeb80ae5ff92cf1132a1</td><td>8022</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cdd45877ea7/attempt-1/page.json</td><td class="mono">aa66ab51aa1c0ce6a19c47909d9b8f50d15cc6d06f88e6b1c39aeebe7730083f</td><td>23787</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+<h3>Requisições bloqueadas pela política de rede</h3><ul class="mono"><li>https://region.target_domain/a?t=96&amp;type=push&amp;d=N4IgLgngDgpiBcIoCcD2AzAlgGzgGiTS1wVAGMwB9VKMVAVzAXQENsBnGAXwMwBMEIAGwAtAOoBaABwBOGRIBKAFgDsIkASgBzBAEYCLdKRDZMAI0EB3GGYns%2BAawkA3AMwA6D7o2FUdMqjYggAWYG -&gt; DNS resolution failed for region.target_domain: [Errno -2] Name or service not known</li></ul>  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:10+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-25T19:27:47+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:27:52+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:27:52+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:28:15+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:28:28+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

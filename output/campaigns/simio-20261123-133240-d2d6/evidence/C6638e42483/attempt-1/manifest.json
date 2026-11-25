@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C6638e42483",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.leonnmotos.com.br/",
+  "final_url": "https://www.leonnmotos.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.12.156",
+  "collected_at": "2026-11-23T14:39:45.412708+00:00",
+  "manifest_written_at": "2026-11-23T14:39:51.504617+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C6638e42483\\attempt-1\\viewport.png",
+      "sha256": "0c3924165d10b2047e714d1aca691434737152f2b31333bcc84e1b81ee8476b5",
+      "size_bytes": 47057
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C6638e42483\\attempt-1\\fullpage.png",
+      "sha256": "0c3924165d10b2047e714d1aca691434737152f2b31333bcc84e1b81ee8476b5",
+      "size_bytes": 47057
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C6638e42483\\attempt-1\\page.html.txt",
+      "sha256": "a604a0c1f750fcb587d83e6237e8828fd867260a6e352399cae781590eab07f5",
+      "size_bytes": 65455
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C6638e42483\\attempt-1\\text.txt",
+      "sha256": "3856c9485b70d053015dc230865fd9f5fc2167eddd32792a020f314913c33d25",
+      "size_bytes": 786
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C6638e42483\\attempt-1\\page.json",
+      "sha256": "e53e4f4044c849c9ab17a42017b2b9f3c2259ac259999e37a4b0d11e68486e18",
+      "size_bytes": 2736
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

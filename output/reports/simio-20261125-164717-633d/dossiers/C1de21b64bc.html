@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C1de21b64bc</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C1de21b64bc — energyinfinity.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.energyinfinity.com.br/financiamento</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (dentro do escopo de auditoria de parceiros/correspondentes de financiamento solar). O estabelecimento divulga condições de crédito e utiliza o logotipo do Banco BV acompanhado do termo &#39;BV Financeira&#39;, afirmando financiar diretamente através da plataforma do banco. Contudo, inexiste a declaração regulatória obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021) e o CNPJ da empresa não está visível. Como a identidade própria da Energy Infinity predomina e há contexto multibanco, não se configura personificação deliberada, mas sim comunicação ambígua com pendências de transparência regulatória.
+[Revisor: CONFIRM] A página auditada pertence a um integrador de energia solar (Energy Infinity), público-alvo prioritário da investigação de correspondentes bancários. O site divulga financiamentos solares utilizando o logotipo do Banco BV e a denominação &#39;BV Financeira&#39;, alegando que &#39;financia diretamente os projetos aos nossos clientes&#39;. Entretanto, não cumpre os requisitos de transparência da Resolução CMN nº 4.935/2021 (ausência de razão social, CNPJ, enquadramento explícito como correspondente bancário e canais de ouvidoria). Dada a coexistência com outras marcas bancárias e a manutenção da identidade do integrador no topo, confirma-se o enquadramento em REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C1de21b64bc/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 50a9377a9af76f1b4a9308fbd1bd9ba6190a7f8ffe485cb400553c79f162c7c1</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C1de21b64bc/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 b9152e52571771562b4f137a6b8ff5fe9a6884a4b4b8542d56debd1dcad27edf</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.energyinfinity.com.br/financiamento (domínio: www.energyinfinity.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): energyinfinity.com.br — **URL:** `https://energyinfinity.com.br` | **Como a marca é utilizada:** Na seção de linhas de crédito, coloca a marca em destaque: *&#34;BV FINANCEIRA - A ENERGY INFINITY através da Plataforma de Financiamentos, BV Financeira, financia diretamente os projetos aos nossos clientes, simule seu financiamento solar...&#34;* | **Identificação e Conformidade (CMN nº 4.935/2021):** A expressão *&#34;financia diretamente os projetos aos nossos clientes&#34;*</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C1de21b64bc/attempt-1/viewport.png (sha256 50a9377a9af76f1b…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C1de21b64bc/attempt-1/fullpage.png (sha256 b9152e5257177156…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Financiamento - Energy Infinity</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>og:site_name: https://www.energyinfinity.com.br</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Financiamento - Energy Infinity</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description:  </td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>author: Interativacom - Agência de publicidade e propaganda e agência digital</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>FINANCIAMENTO</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>SICREDI - Crédito Energia Solar</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>BV FINANCEIRA</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>PROGER</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>ACESSE O LINK DO SEU BANCO E VEJA COMO REALIZAR O FINANCIAMENTO</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Financiamentos Bancários</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>ACESSE O LINK DO SEU BANCO E VEJA COMO REALIZAR O FINANCIAMENTO</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>ENERGIA SOB MEDIDA PARA A SUA NECESSIDADE</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>USINA SOLAR 150KWp - VENDA OU LOCAÇÃO - MERCADO LIVRE</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>USINA SOLAR 112KWp - VENDA OU LOCAÇÃO - MERCADO LIVRE</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Kit Solar Fotovoltaico 15KWp - Grid Tie</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>QUEM SOMOS EXPERTISES PRODUTOS SOLUÇÕES SIMULADOR FINANCIAMENTO CONTATO BLOG AFILIADOS FAQ</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>QUEM SOMOS EXPERTISES PRODUTOS SOLUÇÕES SIMULADOR FINANCIAMENTO CONTATO BLOG AFILIADOS FAQ FINANCIAMENTO SICREDI - Crédito Energia Solar A Sicredi já é reconhecida por seu compromisso e qualidade no atendimento. Agora você pode contar com essa mesma expertise para o crédito em energia solar. BV FINANCEIRA A ENERGY INFINITY através da Plataforma de Financiamentos, BV Financeira, financia diretamente os projetos aos nossos cliente, simule seu financiamento solar entre em contato. Investir em energia solar ficou muito mais fácil com as parcerias que a Energy Infinity firmou. Nós oferecemos uma nova forma de financiamento com taxas a partir de 0,94% a.m. fixas e em até 120 dias de carência com parazo de até 84X pagamento em Boleto Bancário, o equipamento entra como garantia de operação. Usamos cookies no nosso site para ver como você interage com ele. Ao aceitar, você concorda com o uso de cookies. Política de Privacidade ESTOU CIENTE Fale Conosco Energy Infinity Equipe Comercial Energy Infinity Ola! Podemos ajudar? Envie sua mensagem para falar com um atendente agora mesmo. Enviar Mensagem</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>QUEM SOMOS EXPERTISES PRODUTOS SOLUÇÕES SIMULADOR FINANCIAMENTO CONTATO BLOG POLÍTICA DE PRIVACIDADE 0800 672 7204 Matriz RS 122, KM 25, S/N | Centro | Bom Princí­pio - RS - CEP: 95765-000 Filial 01 - Central de Vendas Av do Parque 306 | Jardim do Vale | Bom Princípio - RS - CEP: 95765-000 Filial 02 - Central de Vendas Rua Marabá, 2733, Sala 01 | Centro | Capão da Canoa - RS - CEP: 95555-000 Associados: © Copyright Energy Infinity. Todos os direitos reservados.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://www.energyinfinity.com.br/home&gt; | QUEM SOMOS &lt;https://www.energyinfinity.com.br/quem-somos&gt; | EXPERTISES &lt;https://www.energyinfinity.com.br/expertises&gt; | PRODUTOS &lt;https://www.energyinfinity.com.br/produtos&gt; | SOLUÇÕES &lt;https://www.energyinfinity.com.br/solucoes&gt; | SIMULADOR &lt;https://www.energyinfinity.com.br/simulador&gt; | FINANCIAMENTO &lt;https://www.energyinfinity.com.br/financiamento&gt; | CONTATO &lt;https://www.energyinfinity.com.br/contato&gt; | BLOG &lt;https://www.energyinfinity.com.br/blog&gt; | AFILIADOS &lt;https://www.energyinfinity.com.br/indicacoes&gt; | FAQ &lt;https://www.energyinfinity.com.br/perguntas-frequentes&gt; |  &lt;https://api.whatsapp.com/send?phone=+5551984268647&amp;text=Oi,%20tudo%20bem?%20Na%20Energy%20Infinity,%20somos%20movidos%20pelo%20sol.%20Acreditamos%20em%20um%20futuro%20brilhante%20e%20com%20sustentabilidade.%20Mande%20sua%20mensagem,%20responderemos%20em%20breve.&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>FAÇA UMA SIMULAÇÃO &lt;https://www.energyinfinity.com.br/simulador&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>VEJA MAIS &lt;https://charge.energyinfinity.com.br/&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>VEJA MAIS &lt;https://www.energyinfinity.com.br/produtos/kit-solar-fotovoltaico-33kwp--grid-tie.html&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>VEJA MAIS &lt;https://www.energyinfinity.com.br/produtos/kit-solar-fotovoltaico-40kwp--grid-tie.html&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>VEJA MAIS &lt;https://www.energyinfinity.com.br/produtos/kit-solar-fotovoltaico-14kwp--grid-tie.html&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>ESTOU CIENTE</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Enviar Mensagem &lt;https://wa.me/5551984268647?text=Bem-vindo%20%C3%A0%20Energy%20Infinity!%20Escolha%20uma%20das%20op%C3%A7%C3%B5es%20abaixo%3A%201%20-%20Agendamento%20de%20Consulta%20T%C3%A9cnica%20%2F%202%20-%20Vendas%20(insira%20sua%20cidade)%20%2F%203%20-%20P%C3%B3s-vendas%20%2F%204%20-%20Financeiro.%20Para%20atendimento%20mais%20r%C3%A1pido%2C%20informe%20sua%20regi%C3%A3o%20ou%20cidade.%20Ou%20acesse%20nosso%20simulador%20solar%20em%3A%20https%3A%2F%2Fwww.energyinfinity.com.br%2Fsimulador%20e%20entraremos%20em%20contato%20ap%C3%B3s%20a%20simula%C3%A7%C3%A3o.%20Central%20de%20Atendimento%3A%200800.672.7204.&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td> &lt;https://api.whatsapp.com/send?phone=+5551984268647&amp;text=Oi,%20tudo%20bem?%20Na%20Energy%20Infinity,%20somos%20movidos%20pelo%20sol.%20Acreditamos%20em%20um%20futuro%20brilhante%20e%20com%20sustentabilidade.%20Mande%20sua%20mensagem,%20responderemos%20em%20breve.&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td>0800 672 7204 &lt;tel:08006727204&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/energyinfinityrs/&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/energy_infinity/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td> &lt;https://api.whatsapp.com/send?phone=5551984268647&amp;text=Oi,%20tudo%20bem?%20Na%20Energy%20Infinity,%20somos%20movidos%20pelo%20sol.%20Acreditamos%20em%20um%20futuro%20brilhante%20e%20com%20sustentabilidade.%20Mande%20sua%20mensagem,%20responderemos%20em%20breve.&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Enviar Mensagem &lt;https://wa.me/5551984268647?text=Bem-vindo%20%C3%A0%20Energy%20Infinity!%20Escolha%20uma%20das%20op%C3%A7%C3%B5es%20abaixo%3A%201%20-%20Agendamento%20de%20Consulta%20T%C3%A9cnica%20%2F%202%20-%20Vendas%20(insira%20sua%20cidade)%20%2F%203%20-%20P%C3%B3s-vendas%20%2F%204%20-%20Financeiro.%20Para%20atendimento%20mais%20r%C3%A1pido%2C%20informe%20sua%20regi%C3%A3o%20ou%20cidade.%20Ou%20acesse%20nosso%20simulador%20solar%20em%3A%20https%3A%2F%2Fwww.energyinfinity.com.br%2Fsimulador%20e%20entraremos%20em%20contato%20ap%C3%B3s%20a%20simula%C3%A7%C3%A3o.%20Central%20de%20Atendimento%3A%200800.672.7204.&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>bot.space &lt;https://bot.space/?ref=whatsappChatWidget&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://www.energyinfinity.com.br/i18/img/logo-energy-novo.png (151x34, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>A Sicredi já é reconhecida por seu compromisso e qualidade no atendimento. Agora você pode contar com essa mesma expertise para o crédito em energia solar.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>BV FINANCEIRA</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>A ENERGY INFINITY através da Plataforma de Financiamentos, BV Financeira, financia diretamente os projetos aos nossos cliente, simule seu financiamento solar entre em contato.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Investir em energia solar ficou muito mais fácil com as parcerias que a Energy Infinity firmou. Nós oferecemos uma nova forma de financiamento com taxas a partir de 0,94% a.m. fixas e em até 120 dias de carência com parazo de até 84X pagamento em Boleto Bancário, o equipamento entra como garantia de operação.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>ACESSE O LINK DO SEU BANCO E VEJA COMO REALIZAR O FINANCIAMENTO</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Banco do Brasil</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Diversas linhas de financiamento de energia solar são oferecidas, hoje, no Brasil, através de bancos públicos e privados, muitas das quais permitem pagar a parcela com a própria economia obtida na conta de luz, tornando a aquisição dos sistemas fotovoltaicos mais acessível para boa parte da população.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>ACESSE O LINK DO SEU BANCO E VEJA COMO REALIZAR O FINANCIAMENTO</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Banco do Brasil</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>RS 122, KM 25, S/N | Centro | Bom Princí­pio - RS - CEP: 95765-000</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Av do Parque 306 | Jardim do Vale | Bom Princípio - RS - CEP: 95765-000</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Rua Marabá, 2733, Sala 01 | Centro | Capão da Canoa - RS - CEP: 95555-000</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O site pertence à empresa de energia solar Energy Infinity, com endereços físicos de matriz e filiais no Rio Grande do Sul e central 0800, embora sem CNPJ explícito no rodapé.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-010">E-TXT-010</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual própria da Energy Infinity é predominante na estrutura do site, menu de navegação e rodapé, não ocorrendo overbranding da marca do banco.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>O logotipo do Banco BV (versão moderna em azul com inscrição &#39;banco&#39;) é exibido em bloco de crédito dedicado, associado à denominação histórica &#39;BV Financeira&#39;, sem aviso explicativo da relação contratual.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-002">E-TXT-002</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência da identificação mandatória de correspondente bancário e canais de ouvidoria conforme estipulado pela Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso de redação comercial indicando &#39;financia diretamente os projetos aos nossos cliente&#39; vinculada à BV Financeira, gerando ambiguidade na relação de intermediação financeira.</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Embora a redação seja ambígua, a contextualização com outras instituições bancárias (Sicredi, Banco do Brasil, Caixa, Itaú, Santander, Sicoob) atenua o risco de personificação direta do Banco BV.</td><td class="mono"><a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-HEAD-6">E-HEAD-6</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Ausência de declaração formal de correspondente bancário nos termos da Resolução CMN nº 4.935/2021, inexistindo menção explícita de intermediação, razão social com CNPJ da Energy Infinity e canais de Ouvidoria da instituição financeira. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-003">E-TXT-003</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: Texto promocional ambíguo afirmando que &#39;A ENERGY INFINITY através da Plataforma de Financiamentos, BV Financeira, financia diretamente os projetos aos nossos cliente&#39;, o que pode gerar dúvida sobre quem efetivamente concede o crédito. — <span class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] LOGO_USAGE: Exibição em destaque do logotipo do Banco BV em card de linha de crédito solar ao lado do Sicredi, sem o aviso regulatório de correspondente. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-HEAD-3">E-HEAD-3</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Empresa terceira integradora de energia solar identificada pelo nome comercial Energy Infinity, ofertando produtos próprios (kits fotovoltaicos e usinas solares). — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-HEAD-11">E-HEAD-11</a> </span></li><li>[MEDIUM] CONSUMER_CONFUSION: Contexto multibancos com listagem de diversas outras instituições financeiras e cooperativas de crédito (Sicredi, BB, Caixa, Banrisul, Itaú, Santander, Sicoob, Unicred). — <span class="mono"><a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página avaliada é a aba de &#39;Financiamento&#39; da empresa integradora de energia solar Energy Infinity.</li><li>A marca e o logotipo do Banco BV aparecem em destaque na primeira dobra em card nomeado &#39;BV FINANCEIRA&#39;, ao lado de homologação do Sicredi.</li><li>O logotipo observado no screenshot apresenta a tipografia estilizada &#39;BV&#39; em azul com &#39;banco&#39; logo abaixo em fundo circular branco.</li><li>O texto afirma que a Energy Infinity &#39;através da Plataforma de Financiamentos, BV Financeira, financia diretamente os projetos aos nossos cliente&#39;.</li><li>A página apresenta condições comerciais de financiamento (taxas a partir de 0,94% a.m., até 120 dias de carência, até 84x com garantia do equipamento).</li><li>Não consta na página declaração expressa de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 nem informação de Ouvidoria do banco contratante.</li><li>O rodapé da Energy Infinity informa endereços de matriz e filiais no Rio Grande do Sul e telefone 0800, sem exibição do número do CNPJ.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível confirmar o CNPJ e razão social da Energy Infinity a partir do conteúdo textual da página coletada.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (dentro do escopo de auditoria de parceiros/correspondentes de financiamento solar). O estabelecimento divulga condições de crédito e utiliza o logotipo do Banco BV acompanhado do termo &#39;BV Financeira&#39;, afirmando financiar diretamente através da plataforma do banco. Contudo, inexiste a declaração regulatória obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021) e o CNPJ da empresa não está visível. Como a identidade própria da Energy Infinity predomina e há contexto multibanco, não se configura personificação deliberada, mas sim comunicação ambígua com pendências de transparência regulatória.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>https://www.energyinfinity.com.br<br><span class="mono">domain:energyinfinity.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>energyinfinity.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/energyinfinityrs/</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/energy_infinity/</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>https://www.energyinfinity.com.br</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 672 7204</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>08006727204</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=+5551984268647&amp;text=Oi,%20tudo%20bem?%20Na%20Energy%20Infinity,%20somos%20movidos%20pelo%20sol.%20Acreditamos%20em%20um%20futuro%20brilhante%20e%20com%20sustentab</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=5551984268647&amp;text=Oi,%20tudo%20bem?%20Na%20Energy%20Infinity,%20somos%20movidos%20pelo%20sol.%20Acreditamos%20em%20um%20futuro%20brilhante%20e%20com%20sustentabi</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Enviar Mensagem &lt;https://wa.me/5551984268647?text=Bem-vindo%20%C3%A0%20Energy%20Infinity!%20Escolha%20uma%20das%20op%C3%A7%C3%B5es%20abaixo%3A%201%20-%20Agendamento%20de%20Consulta%20T%C3%A9cnica%20%2</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>bot.space &lt;https://bot.space/?ref=whatsappChatWidget&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TXT-002">E-TXT-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-003">E-TXT-003</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página auditada pertence a um integrador de energia solar (Energy Infinity), público-alvo prioritário da investigação de correspondentes bancários. O site divulga financiamentos solares utilizando o logotipo do Banco BV e a denominação &#39;BV Financeira&#39;, alegando que &#39;financia diretamente os projetos aos nossos clientes&#39;. Entretanto, não cumpre os requisitos de transparência da Resolução CMN nº 4.935/2021 (ausência de razão social, CNPJ, enquadramento explícito como correspondente bancário e canais de ouvidoria). Dada a coexistência com outras marcas bancárias e a manutenção da identidade do integrador no topo, confirma-se o enquadramento em REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Integradores e correspondentes de energia solar que utilizam a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) &#34;energia solar&#34; (financiamento OR integrador OR parceiro) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;financiamento solar&#34; OR &#34;Correspondente BV&#34; OR &#34;parceiro BV&#34;) (&#34;Banco BV&#34; OR &#34;energia solar&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de energia solar</span></td><td class="mono">https://www.energyinfinity.com.br/financiamento</td><td>energyinfinity.com.br<br><span class="muted">**URL:** `https://energyinfinity.com.br` | **Como a marca é utilizada:** Na seção de linhas de crédito, coloca a marca em destaque: *&#34;BV FINANCEIRA - A ENERGY INFINITY através da Plataforma de Financiamentos, BV Financeira, financia diretamente os projetos aos nossos clientes, simule seu financiamento solar...&#34;* | **Identificação e Conformidade (CMN nº 4.935/2021):** A expressão *&#34;financia diretamente os projetos aos nossos clientes&#34;*</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 18:24:10.478951+00:00</div>
+      <div class="kv"><b>IP do servidor</b>187.110.166.223</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C1de21b64bc/attempt-1/manifest.json<br>sha256 8fd0c238b719d97d514484e9d26ea6323c7b5748707f05b598d31a07c0998994</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.energyinfinity.com.br/financiamento<br>Final: https://www.energyinfinity.com.br/financiamento</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C1de21b64bc/attempt-1/viewport.png</td><td class="mono">50a9377a9af76f1b4a9308fbd1bd9ba6190a7f8ffe485cb400553c79f162c7c1</td><td>1038699</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C1de21b64bc/attempt-1/fullpage.png</td><td class="mono">b9152e52571771562b4f137a6b8ff5fe9a6884a4b4b8542d56debd1dcad27edf</td><td>2222914</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C1de21b64bc/attempt-1/page.html.txt</td><td class="mono">00ce7a0c6de31869d96e1e39a94d20ed0dc2047654e7c8efc4ec997af93930cb</td><td>73902</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C1de21b64bc/attempt-1/text.txt</td><td class="mono">9f10e90d830f7b57b793baa1c78d83cec2e023045d7ed58da1a37b67b11a5e44</td><td>3776</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C1de21b64bc/attempt-1/page.json</td><td class="mono">a75392dfbc3a2960343a294aafeeb03d18b04a781fe0e3c0dbe32993a4e51707</td><td>28006</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:03+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.5)</td></tr>
+      <tr><td>2026-11-25T18:24:10+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:17+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:17+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:42+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T18:24:50+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

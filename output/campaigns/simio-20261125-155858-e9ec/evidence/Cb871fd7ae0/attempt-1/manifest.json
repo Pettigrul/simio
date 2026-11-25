@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cb871fd7ae0",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "http://bancobva.com.br/",
+  "final_url": "https://bancobva.com.br/",
+  "redirect_chain": [
+    "http://bancobva.com.br/"
+  ],
+  "http_status": 200,
+  "server_ip": "104.21.5.101",
+  "collected_at": "2026-11-25T15:59:02.980980+00:00",
+  "manifest_written_at": "2026-11-25T15:59:11.001002+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cb871fd7ae0/attempt-1/viewport.png",
+      "sha256": "1ff285ee58bd6715488109a23d583154fe8828855f3d9a94780d00d75f501bb9",
+      "size_bytes": 540045
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cb871fd7ae0/attempt-1/fullpage.png",
+      "sha256": "5cf7fca2898c3cb50c209fc60c4f191704aee245da97ecbb05c7139595360400",
+      "size_bytes": 2333677
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cb871fd7ae0/attempt-1/page.html.txt",
+      "sha256": "f449feabc1c21c8ceb93e4b99321da122079e1fd216abff9204a4ba72e864c25",
+      "size_bytes": 52512
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cb871fd7ae0/attempt-1/text.txt",
+      "sha256": "2c265dde450d6403a659504d7747c62d3b0f82fc963bcefe957a775956358334",
+      "size_bytes": 19953
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cb871fd7ae0/attempt-1/page.json",
+      "sha256": "21f1ae97600f5ca9fb19bacdda96b263af7dfe1d08498be26a805a3bb2c68d74",
+      "size_bytes": 44978
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [],
+  "not_inspected": [
+    "screenshot completo limitado a 12000px (página com 12806px); texto integral preservado em text.txt",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

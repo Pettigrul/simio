@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C5639c2a015",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.motomotopaulinia.com.br/",
+  "final_url": "https://www.motomotopaulinia.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "66.33.60.130",
+  "collected_at": "2026-11-23T14:39:39.688211+00:00",
+  "manifest_written_at": "2026-11-23T14:39:44.531701+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C5639c2a015\\attempt-1\\viewport.png",
+      "sha256": "d1b2a0db24dc8b6f2750ddeb0567e266318d5ccb30ae7b15dcdfc6315bdbd1ca",
+      "size_bytes": 47465
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C5639c2a015\\attempt-1\\fullpage.png",
+      "sha256": "d1b2a0db24dc8b6f2750ddeb0567e266318d5ccb30ae7b15dcdfc6315bdbd1ca",
+      "size_bytes": 47465
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C5639c2a015\\attempt-1\\page.html.txt",
+      "sha256": "d1731540331afdf4cacb11234747d461481bc1ad564ca333a05983e0898e4c7a",
+      "size_bytes": 65503
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C5639c2a015\\attempt-1\\text.txt",
+      "sha256": "08beeea6e3efc1590f8fd284d1f99600d04f68f43a96b4ce9079f42224ca6c4d",
+      "size_bytes": 798
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C5639c2a015\\attempt-1\\page.json",
+      "sha256": "315f03eadf1003bc5900ae0d0500ac118003a7bd7d8b4878115feadcfe991868",
+      "size_bytes": 2760
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

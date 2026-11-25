@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C983bed13d5",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://gringo.com.vc/blog/golpe-da-cnh-suspensa-por-sms/",
+  "final_url": "https://gringo.com.vc/blog/golpe-da-cnh-suspensa-por-sms/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.26.12.187",
+  "collected_at": "2026-11-19T18:34:01.029344+00:00",
+  "manifest_written_at": "2026-11-19T18:34:15.582773+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C983bed13d5\\attempt-1\\viewport.png",
+      "sha256": "20eedfaa4b60478d7d71ded7b45fc8c2f905a6dfa1ad86e4660ee4b65813ebf4",
+      "size_bytes": 284149
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C983bed13d5\\attempt-1\\fullpage.png",
+      "sha256": "58a63071c36dce59f898bb8baccdea249339fb960b9c041c3d1ccbeb9e40ec42",
+      "size_bytes": 786254
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C983bed13d5\\attempt-1\\page.html.txt",
+      "sha256": "9f48405bd1ba5dc6ddbaac040a14016f15c2446a8357cc8aed0acfe673bdf4dc",
+      "size_bytes": 409739
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C983bed13d5\\attempt-1\\text.txt",
+      "sha256": "d4c7a47240177816aafc210d95ada71c9a4ae22765d8ba2bad6af9f23085f299",
+      "size_bytes": 6580
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C983bed13d5\\attempt-1\\page.json",
+      "sha256": "d9cd0e34c5d064bfbae38c59b8043a7243fd644a6d633ab9a7e5a042158e49a2",
+      "size_bytes": 39677
+    }
+  ],
+  "blocked_requests": [
+    "https://rating-widget.com/js/external.min.php?wp=3.2.4?ck=Y2026M11D19 -> DNS resolution failed for rating-widget.com: [Errno 11001] getaddrinfo failed"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

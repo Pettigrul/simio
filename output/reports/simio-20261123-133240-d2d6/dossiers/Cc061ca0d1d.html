@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cc061ca0d1d</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cc061ca0d1d — rasautomultimarcas.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.rasautomultimarcas.com.br/revenda-veiculo-03/proposta-financiamento</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se da página de proposta de financiamento da loja de veículos &#39;Rasauto Multimarcas&#39; (dentro do escopo de potenciais COBANs/lojistas). Embora não haja tentativa de se passar por canal oficial do Banco BV e a marca apareça em contexto multibancos (&#39;Bancos Conveniados&#39;), a página utiliza o logotipo &#39;BV Financeira&#39; (E-IMG-4, E-SHOT-FULL) junto a um formulário próprio que capta dados pessoais, bancários e patrimoniais sensíveis (E-HEAD-4, E-HEAD-7), omitindo completamente o CNPJ, a razão social da loja e a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021, art. 14, II e III). Classificado como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED / prioridade MEDIUM).
+[Revisor: CONFIRM] A página pertence a uma revenda multimarcas de veículos (&#39;Rasauto Multimarcas&#39;) que disponibiliza formulário próprio para captação de propostas de financiamento (coletando CPF, RG, dados bancários e patrimoniais) e exibe o logotipo &#39;BV Financeira&#39; na seção &#39;Bancos Conveniados&#39; (E-HEAD-9, E-IMG-4, E-SHOT-FULL), omitindo sua razão social, CNPJ, declaração de condição de correspondente bancário e telefone de ouvidoria (E-FTR, E-SHOT-FULL), em desacordo com as exigências de transparência da Resolução CMN nº 4.935/2021. Confirma-se a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Cc061ca0d1d/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 4268557433c6a8f87c05f92e6b8ce0a5cd00455749356d727f609c5f1d760b50</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Cc061ca0d1d/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 b6f37c6b909b9e3cb76de05702036da0b0223a9367e91a41de92fc27712e7752</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.rasautomultimarcas.com.br/revenda-veiculo-03/proposta-financiamento (domínio: www.rasautomultimarcas.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): rasautomultimarcas.com.br — **URL:** `https://rasautomultimarcas.com.br` | **Localização:** Butantã, São Paulo/SP (Rodovia Raposo Tavares, km 18,5) e Jundiaí/SP | **Uso da Marca:** Exibe **&#34;BV Financeira&#34;** em destaque na lista de *&#34;Bancos conveniados&#34;* junto a um extenso **formulário próprio de proposta de financiamento**, que coleta dados patrimoniais, renda mensal, cartões de crédito e referências pessoais | Ausência de razão social, CNPJ e declaração de correspondente bancário na página de coleta de dados financeiros</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\Cc061ca0d1d\attempt-1\viewport.png (sha256 4268557433c6a8f8…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\Cc061ca0d1d\attempt-1\fullpage.png (sha256 b6f37c6b909b9e3c…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Proposta de Financiamento | Rasauto Multimarcas</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>og:site_name: Rasauto Multimarcas</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Proposta de Financiamento | Rasauto Multimarcas</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>author: ItCar</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>PROPOSTA DE FINANCIAMENTO</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>FAÇA AQUI O FINANCIAMENTO DO SEU VEÍCULO</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>DADOS DO VEÍCULO</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>DADOS PESSOAIS</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>INFORMAÇÕES RESIDENCIAIS</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>DADOS PROFISSIONAIS</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>DADOS FINANCEIROS E BENS</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>REFERÊNCIAS PESSOAIS</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>BANCOS CONVENIADOS</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>(11) 4375-5966 rasautomultimarcas@gmail.com HOME A EMPRESA ESTOQUE NOSSOS SERVIÇOS CONTATO</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>(11) 4375-5966 rasautomultimarcas@gmail.com Home A Empresa Estoque Nossos Serviços Contato Proposta de financiamento Home Proposta de financiamento Faça Aqui o Financiamento do seu Veículo Para financiar um veículo Zero Km ou semi-novo aqui na é muito fácil. Basta preencher seus dados abaixo com a maior riqueza de detalhes possível e nos enviar. O Crédito será sujeito à aprovação do agente financeiro e da veracidade dos dados apresentados neste cadastro. Se você ainda tem dúvidas sobre como financiar o seu veículo entre em contato conosco . Preencha as informações abaixo para analise da sua proposta de financiamento.</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>ENTRE EM CONTATO Rasauto Multimarcas rua cica, 645 Vl Garcia, Jundiai - SP Rasauto Multimarcas 2 rodovia raposo tavares, 18,5km Butata, Sao Paulo - SP (11)4375-5966 rasautomultimarcas@gmail.com NAVEGAÇÃO RÁPIDA Home A Empresa Estoque Contato NOSSOS SERVIÇOS Venda seu Veículo Consignação de Veículos Proposta de Financiamento Trabalhe Conosco Copyright ©2014 todos os direitos reservados Criado por ItCar</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Rasauto Multimarcas &lt;https://www.rasautomultimarcas.com.br/revenda-veiculo-03/&gt; | HOME &lt;https://www.rasautomultimarcas.com.br/revenda-veiculo-03/&gt; | A EMPRESA &lt;https://www.rasautomultimarcas.com.br/revenda-veiculo-03/a-empresa&gt; | ESTOQUE &lt;https://www.rasautomultimarcas.com.br/revenda-veiculo-03/estoque&gt; | NOSSOS SERVIÇOS &lt;javascript:void(0)&gt; | CONTATO &lt;https://www.rasautomultimarcas.com.br/revenda-veiculo-03/contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>ENVIAR PROPOSTA DE FINANCIAMENTO</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=551143755966&amp;text=Ola,%20estou%20no%20seu%20site%20www.rasautomultimarcas.com.br%20e%20tenho%20uma%20duvida.%20Podemos%20conversar?&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo | Rasauto Multimarcas&#39; src=https://www.rasautomultimarcas.com.br/imagens/logotipo-rasautomultimarcas.com.br.jpg (160x80, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bradesco&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/bradesco-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Itaú&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/itau-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;BV Financeira&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/bv-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Santander&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/santander-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bradesco&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/bradesco-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Itaú&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/itau-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;BV Financeira&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/bv-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Santander&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/santander-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bradesco&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/bradesco-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Itaú&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/itau-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page</td><td>imagem alt=&#39;BV Financeira&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/bv-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Santander&#39; src=https://www.rasautomultimarcas.com.br/revenda-veiculo-03/images/bancos/santander-logo.jpg (263x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Logo | Rasauto Multimarcas&#39; src=https://www.rasautomultimarcas.com.br/imagens/logotipo-rasautomultimarcas.com.br.jpg (180x90, abaixo da dobra)</td></tr>
+      <tr id="E-OFFICIAL-LINKS"><td class="mono"><b>E-OFFICIAL-LINKS</b></td><td>link</td><td>page</td><td>BV Financeira &lt;https://www.bvfinanceira.com.br/&gt; | BV Financeira &lt;https://www.bvfinanceira.com.br/&gt; | BV Financeira &lt;https://www.bvfinanceira.com.br/&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>TELEFONE RESIDENCIAL</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>TELEFONE CELULAR</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>CEP</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>CEP</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>CNPJ DA EMPRESA</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>TELEFONE COMERCIAL</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>POSSUI CONTA EM QUAL BANCO?</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Banco Abn Amro Real S/A</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Banco Finasa S/A</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Banco Votorantim</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Banco Santander</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Banco Itaú S/A</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Banco Santander</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Banco HSBC</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Hsbc Bank Brasil S/a Banco Multiplo</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Banco Bradesco S/A</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Banco Unibanco S/A</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Banco Do Brasil S/A</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Banco Porto Seguro</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Banco Cifra S/A</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Banco Daycoval</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Banco Citibank</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Banco Panamericano</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Banco Pecunia</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Outro Banco</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>TELEFONE DA PESSOA DE CONTATO</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>BANCOS CONVENIADOS</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza identidade visual própria da loja revendedora de veículos (&#39;Rasauto Multimarcas&#39;), sem imitar o layout ou as cores institucionais do Banco BV.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Embora apresente o nome fantasia &#39;Rasauto Multimarcas&#39; e endereços físicos em Jundiaí/SP e São Paulo/SP, a página não informa o CNPJ nem a razão social do estabelecimento.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Não há aviso de atuação como correspondente bancário nem indicação da ouvidoria das instituições financeiras listadas, em desacordo com as exigências de transparência da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O texto apresenta a loja em terceira pessoa em relação aos bancos, informando que &#39;O Crédito será sujeito à aprovação do agente financeiro&#39; e listando múltiplos &#39;Bancos Conveniados&#39;.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-9">E-HEAD-9</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Exibe o logotipo da &#39;BV Financeira&#39; abaixo do formulário de financiamento na seção &#39;Bancos Conveniados&#39;, juntamente com logotipos de bancos concorrentes (Bradesco, Itaú e Santander).</td><td class="mono"><a href="#E-IMG-4">E-IMG-4</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Disponibiliza formulário próprio para captação de proposta de financiamento de veículos contendo coleta detalhada de dados pessoais, profissionais, bancários e patrimoniais sem transparência cadastral da loja.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato exibidos (telefone fixo, WhatsApp e e-mail rasautomultimarcas@gmail.com) estão claramente vinculados à própria loja de veículos.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Embora o consumidor perceba tratar-se de uma loja multimarcas, o uso do logotipo da instituição financeira aliado à ausência de CNPJ e de declaração de correspondente bancário em formulário sensível de crédito requer revisão de conformidade.</td><td class="mono"><a href="#E-IMG-4">E-IMG-4</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Exibição do logotipo &#39;BV Financeira&#39; na seção &#39;Bancos Conveniados&#39; junto ao formulário de captação de proposta de financiamento (vedado pelo art. 14, II da Resolução CMN nº 4.935/2021). — <span class="mono"><a href="#E-IMG-4">E-IMG-4</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Ausência de declaração explícita da condição de correspondente bancário e de canais de ouvidoria da instituição financeira em página de captação de proposta de financiamento de veículos. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Omissão da razão social e do CNPJ do estabelecimento comercial (&#39;Rasauto Multimarcas&#39;) no rodapé e em toda a página que coleta dados pessoais, bancários e patrimoniais. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] SERVICE_JOURNEY: Formulário extenso de proposta de financiamento coletando CPF, RG, filiação, dados bancários (agência/conta), renda mensal, patrimônio e referências pessoais sem identificação societária da loja. — <span class="mono"><a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: Contexto claro de revenda multimarcas de veículos (&#39;Rasauto Multimarcas&#39;) com listagem de múltiplos bancos concorrentes (Bradesco, Itaú, BV Financeira, Santander) e links apontando para o domínio oficial bvfinanceira.com.br. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence à revenda de veículos &#39;Rasauto Multimarcas&#39; (rasautomultimarcas.com.br), com endereços informados em Jundiaí/SP e no Butantã, São Paulo/SP (E-URL, E-FTR).</li><li>A página disponibiliza um extenso formulário de &#39;Proposta de Financiamento&#39; que coleta dados do veículo, dados pessoais (CPF, RG, filiação), dados profissionais, dados bancários (banco, agência, conta), renda mensal, patrimônio e referências pessoais (E-HEAD-1 a E-HEAD-8, E-SHOT-FULL).</li><li>Na seção &#39;Bancos Conveniados&#39;, abaixo do formulário, é exibido o logotipo da &#39;BV Financeira&#39; ao lado dos logotipos de Bradesco, Itaú e Santander (E-HEAD-9, E-IMG-2 a E-IMG-5, E-SHOT-FULL).</li><li>Não há exibição de CNPJ ou razão social do estabelecimento comercial na página, nem declaração de condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 (E-FTR, E-DISC-001, E-SHOT-FULL).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível identificar o CNPJ da loja revendedora &#39;Rasauto Multimarcas&#39; na página inspecionada para confirmar eventual vínculo formal como correspondente bancário.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se da página de proposta de financiamento da loja de veículos &#39;Rasauto Multimarcas&#39; (dentro do escopo de potenciais COBANs/lojistas). Embora não haja tentativa de se passar por canal oficial do Banco BV e a marca apareça em contexto multibancos (&#39;Bancos Conveniados&#39;), a página utiliza o logotipo &#39;BV Financeira&#39; (E-IMG-4, E-SHOT-FULL) junto a um formulário próprio que capta dados pessoais, bancários e patrimoniais sensíveis (E-HEAD-4, E-HEAD-7), omitindo completamente o CNPJ, a razão social da loja e a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021, art. 14, II e III). Classificado como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED / prioridade MEDIUM).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Rasauto Multimarcas<br><span class="mono">domain:rasautomultimarcas.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>rasautomultimarcas.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>rasautomultimarcas@gmail.com</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Rasauto Multimarcas</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 4375-5966</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11)4375-5966</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=551143755966&amp;text=Ola,%20estou%20no%20seu%20site%20www.rasautomultimarcas.com.br%20e%20tenho%20uma%20duvida.%20Podemos%20conversar?&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma revenda multimarcas de veículos (&#39;Rasauto Multimarcas&#39;) que disponibiliza formulário próprio para captação de propostas de financiamento (coletando CPF, RG, dados bancários e patrimoniais) e exibe o logotipo &#39;BV Financeira&#39; na seção &#39;Bancos Conveniados&#39; (E-HEAD-9, E-IMG-4, E-SHOT-FULL), omitindo sua razão social, CNPJ, declaração de condição de correspondente bancário e telefone de ouvidoria (E-FTR, E-SHOT-FULL), em desacordo com as exigências de transparência da Resolução CMN nº 4.935/2021. Confirma-se a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Estabelecimentos (loja de veículos em São Paulo) que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - loja de veículos &#34;São Paulo&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:loja de veículos:São Paulo</span></td><td class="mono">https://www.rasautomultimarcas.com.br/revenda-veiculo-03/proposta-financiamento</td><td>rasautomultimarcas.com.br<br><span class="muted">**URL:** `https://rasautomultimarcas.com.br` | **Localização:** Butantã, São Paulo/SP (Rodovia Raposo Tavares, km 18,5) e Jundiaí/SP | **Uso da Marca:** Exibe **&#34;BV Financeira&#34;** em destaque na lista de *&#34;Bancos conveniados&#34;* junto a um extenso **formulário próprio de proposta de financiamento**, que coleta dados patrimoniais, renda mensal, cartões de crédito e referências pessoais | Ausência de razão social, CNPJ e declaração de correspondente bancário na página de coleta de dados financeiros</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:53:41.200438+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.31.159</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\Cc061ca0d1d\attempt-1\manifest.json<br>sha256 283c75aba5a9244dccfbae8e356cfa2e4cf05962c10a203e909eebb01ae85beb</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.rasautomultimarcas.com.br/revenda-veiculo-03/proposta-financiamento<br>Final: https://www.rasautomultimarcas.com.br/revenda-veiculo-03/proposta-financiamento</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\Cc061ca0d1d\attempt-1\viewport.png</td><td class="mono">4268557433c6a8f87c05f92e6b8ce0a5cd00455749356d727f609c5f1d760b50</td><td>572305</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\Cc061ca0d1d\attempt-1\fullpage.png</td><td class="mono">b6f37c6b909b9e3cb76de05702036da0b0223a9367e91a41de92fc27712e7752</td><td>906223</td></tr>
+      <tr><td>html</td><td class="mono">evidence\Cc061ca0d1d\attempt-1\page.html.txt</td><td class="mono">3ebc9da74cda1ad33e6b667f75132f7f0315550086bb73f1d2deaf6fbb070989</td><td>136493</td></tr>
+      <tr><td>text</td><td class="mono">evidence\Cc061ca0d1d\attempt-1\text.txt</td><td class="mono">487fa3b6289e81bbea0005364771d4d5e767bb3f7fac79be69e29bfdcc3e0490</td><td>5070</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\Cc061ca0d1d\attempt-1\page.json</td><td class="mono">6966e3025f40c9d9e6bccc50615c5c21c1e07adb853b689a5e2b02ee9fe0c0c6</td><td>16669</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:53:41+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:53:57+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:53:57+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:54:44+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:54:57+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

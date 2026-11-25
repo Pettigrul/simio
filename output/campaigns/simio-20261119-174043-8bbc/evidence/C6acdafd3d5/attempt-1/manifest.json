@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C6acdafd3d5",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://ls7multimarcas.com.br/financie",
+  "final_url": "https://ls7multimarcas.com.br/financie",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.8.64",
+  "collected_at": "2026-11-19T18:32:24.895375+00:00",
+  "manifest_written_at": "2026-11-19T18:32:29.719297+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C6acdafd3d5\\attempt-1\\viewport.png",
+      "sha256": "96729f4fc8b877467555a8789c1242d8dc232c3ee4cd659292482db76b9b6aaa",
+      "size_bytes": 47348
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C6acdafd3d5\\attempt-1\\fullpage.png",
+      "sha256": "96729f4fc8b877467555a8789c1242d8dc232c3ee4cd659292482db76b9b6aaa",
+      "size_bytes": 47348
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C6acdafd3d5\\attempt-1\\page.html.txt",
+      "sha256": "437a56344fb962ec4b0b7b862217b67cfadee981c45d7a88790c9170818c3d22",
+      "size_bytes": 65500
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C6acdafd3d5\\attempt-1\\text.txt",
+      "sha256": "6aa13ae2240b852d58331318074bdc05d49be39f3dfe6893f2d2eddca363916f",
+      "size_bytes": 798
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C6acdafd3d5\\attempt-1\\page.json",
+      "sha256": "2512306840511606c8e7690866c159304e294415c74a07ae2dbcf5c3dc584801",
+      "size_bytes": 2760
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

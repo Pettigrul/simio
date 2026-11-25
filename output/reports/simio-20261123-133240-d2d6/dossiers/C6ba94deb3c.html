@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C6ba94deb3c</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C6ba94deb3c — americatelecom.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.americatelecom.com.br/instalar-placa-solar.php</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de empresa comercializadora/instaladora de energia solar (&#39;America Telecom&#39;) que oferta consultoria e intermediação de financiamento bancário (&#39;bancos parceiros&#39;). Embora apresente identidade visual própria e contexto multibancos (Caixa, Banco do Brasil, BNDES e BV Financeira), exibe o logotipo da BV Financeira (E-IMG-1) acompanhado de condições e taxas específicas de financiamento, alega possuir parceria com benefícios exclusivos e atua na submissão de propostas de crédito sem informar seu CNPJ, sem exibir declaração de correspondente bancário e sem divulgar canais de ouvidoria da instituição financeira, ensejando revisão humana (B_AMBIGUOUS_COMMUNICATION / REVIEW_REQUIRED).
+[Revisor: CONFIRM] Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). A página pertence a uma empresa integradora/instaladora de energia solar (&#39;America Telecom&#39;) que promove intermediação e consultoria de financiamento alegando parceria com instituições financeiras (&#39;bancos parceiros&#39;, E-TXT-006, E-TXT-012) e exibindo o logotipo da BV Financeira acompanhado de taxas e condições de crédito (E-IMG-1, E-SHOT-FULL, E-TXT-010, E-TXT-011), sem apresentar de forma visível sua razão social, CNPJ, declaração de condição de correspondente bancário ou canais de ouvidoria (E-FTR, E-TXT-013).</p>
+    <h3>Limitações</h3>
+    <ul><li>screenshot completo limitado a 12000px (página com 34959px); texto integral preservado em text.txt</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C6ba94deb3c/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 46851962bfaadce263f9d9f9f332c8a8e226ce78c17c617c223b86b4184d45ab</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C6ba94deb3c/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 f4a06e386ad4a3f29d05e264670216409bbe30aec9e9eaac14019982fd6b99e2</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.americatelecom.com.br/instalar-placa-solar.php (domínio: www.americatelecom.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): americatelecom.com.br — **URL:** `https://americatelecom.com.br/` (Seção de Energia Solar) | BV Financeira&#34;* | Divulga taxas e condições específicas em nome da BV Financeira sem exibir na página do produto a declaração de correspondente bancário, o Custo Efetivo Total (CET) ou o CNPJ da empresa</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C6ba94deb3c\attempt-1\viewport.png (sha256 46851962bfaadce2…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C6ba94deb3c\attempt-1\fullpage.png (sha256 f4a06e386ad4a3f2…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Instalação de Energia Solar - Perguntas Frequentes | America Telecom</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Descubra tudo sobre a instalação de energia solar com a America Telecom. Saiba como funcionam os processos, as etapas de instalação e como escolher a melhor empresa para o seu projeto.</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Soluções De Energia Solar Da America Telecom</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Na America Telecom, oferecemos soluções completas em energia solar, proporcionando economia e sustentabilidade para sua residência ou empresa. Nossos especialistas são altamente qualificados e utilizam tecnologia de ponta para garantir a máxima eficiência na instalação das placas solares.</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Instalação de Placas de Energia Solar</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Manutenção de Placas de Energia Solar</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Atualização de Sistema:</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Suporte técnico e monitoramento preventivo</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Qualidade e Certificação Técnica na America Telecom</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Facilite o Seu Investimento em Energia Solar</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Parcerias com Instituições Bancárias</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Benefícios da Nossa Consultoria em Financiamento</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Melhores Bancos Para Finaciamento</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Instalação De Placas Solares Pela America Telecom: Simples E Eficiente</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Perguntas Frequentes</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Valor de fileName: &#39;header.php&#39; (tamanho: 10) malformed-area-datebook-outspoken-marsupial-drearily NovoLocaçãode blocos IPv4 Conheça mais Soluções em IPv4 Novo Host &amp; Cloud Pro Internet Serviços ÁREA DO CLIENTE | Home Blog Área de atendimento Saiba mais sobre energia solar</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Valor de fileName: &#39;header.php&#39; (tamanho: 10) malformed-area-datebook-outspoken-marsupial-drearily Novo Locaçãode blocos IPv4 Conheça mais Soluções em IPv4 Novo Host &amp; Cloud Pro Internet Serviços Área do Cliente Soluções de Energia Solar da America Telecom Na America Telecom, oferecemos soluções completas em energia solar, proporcionando economia e sustentabilidade para sua residência ou empresa. Nossos especialistas são altamente qualificados e utilizam tecnologia de ponta para garantir a máxima eficiência na instalação das placas solares. Home Blog Área de atendimento Saiba mais sobre energia solar Instalação de Placas de Energia Solar Na America Telecom, oferecemos soluções completas em energia solar, proporcionando economia e sustentabilidade para sua residência ou empresa. Nossos especialistas são altamente qualificados e utilizam tecnologia de ponta para garantir a máxima eficiência na instalação das placas solares. Usamos cookies para garantir que oferecemos a melhor experiência em nosso site Ao continuar a usar nosso site, você aceita nossa política de cookies Terms Aceitar cookies Recusar cookies</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>A América Telecom é uma empresa inovadora e comprometida em fornecer soluções tecnológicas de qualidade PT EN AR ES Solução de IPv4 Locação de bloco IPv4 Consultoria para Retirada de ASN Vendas de bloco IPv4 Compra de bloco IPv4 Compramos internet com bloco de IPv4 Cloud Cloud Cloud VPS Consutoria para Cloud Domínios Host Hospedagem de site Revenda Hospedagem Hospedagem WordPress Domínios E-mail Profissional Internet Internet Dedicada Internet semi dedicada Internet para provedor (ISP) Jurídico para Provedores Remote Peering Colocation Colocation Angola Cables Colocation Cirion Colocation Ascenty Colocation Br Digital Colocation Equinix Colocation Host Dime Colocation Cogent Colocation V-tal PABX &amp; telefônica VoIP NOVO Tronco E1 Telefonia fixa análoga PABX Cloud Sip trunk NOVO Solução para provedor ISP Link dedicado Isp Consultoria técnica Consultoria jurídica Jurídico para Provedores Locação de bloco IPv4 Vendas de bloco IPv4 Compra de bloco IPv4 Compramos sua internet com bloco de IPv4 Energia solar Painéis solares Mercado livre energia Origo energia SD-WAM SD-WAM Fortinet SD-WAM Meraki Cisco Sonic wall Segurança Segurança de rede Segurança de dados ANTI-DDOS Monitoramento Zabbix Marketing Google Ads Anúncios da Meta (Facebook Ads) Analista de E-commerce Desenvolvimento Website Microsoft Power BI Sistemas Aplicativos E-commerce Chatboot integração com chatgpt America Telecom Tecnología ♥ by© Copyright © 2018 - 2026 | America Telecom soluções em tecnologia | Todos os direitos reservados Termos Política de privacidade Atendimento e-mail | | | A América Telecom é uma empresa inovadora e comprometida em fornecer soluções tecnológicas de qualidade PT EN AR ES Solução de IPv4 Locação de bloco IPv4 Consultoria para Retirada de ASN Vendas de bloco IPv4 Compra de bloco IPv4 Compramos internet com bloco de IPv4 Cloud Cloud Cloud VPS Consutoria para Cloud Domínios Host Hospedagem de site Revenda Hospedagem Hospedagem WordPress Domínios E-mail Profissional Internet Internet D</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Conheça mais &lt;https://www.americatelecom.com.br/aluguel-bloco-ipv4.php&gt; |  &lt;https://www.americatelecom.com.br/index.php&gt; | Soluções em IPv4 &lt;https://www.americatelecom.com.br/instalar-placa-solar.php#&gt; | Host &amp; Cloud &lt;https://www.americatelecom.com.br/instalar-placa-solar.php#&gt; | Internet &lt;https://www.americatelecom.com.br/instalar-placa-solar.php#&gt; | Serviços &lt;https://www.americatelecom.com.br/instalar-placa-solar.php#&gt; | ÁREA DO CLIENTE &lt;https://americatelecom.com.br/host/login&gt; | Home &lt;https://www.americatelecom.com.br/instalar-placa-solar.php&gt; | Blog &lt;https://www.americatelecom.com.br/blog-instalar-placa-solar.php&gt; | Área de atendimento &lt;https://www.americatelecom.com.br/area-de-atendimento-placa-solar.php&gt; | Saiba mais sobre energia solar &lt;https://www.americatelecom.com.br/saiba-mais-placa-solar.php&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Aceitar cookies</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Recusar cookies</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;tranquilidade&#39; src=https://www.americatelecom.com.br/assets/img/energia-solar/bv_financeira.png (155x123, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;logo&#39; src=https://www.americatelecom.com.br/assets/img/symbol.svg (600x608, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Área de atendimento</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Problemas podem surgir a qualquer momento, e é essencial ter um suporte técnico especializado para resolvê-los rapidamente. Na America Telecom, oferecemos atendimento especializado para diagnosticar e resolver quaisquer problemas que seu sistema possa enfrentar. Nosso suporte técnico está disponível para responder suas dúvidas, fornecer orientações e realizar reparos necessários para que seu</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Atendimento Rápido: Resolução ágil de problemas para minimizar interrupções no fornecimento de energia.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Acompanhamento do Processo: Monitoramento contínuo do status da sua solicitação junto ao banco.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Melhores Bancos Para Finaciamento</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Na America Telecom, tornamos mais fácil para você investir em energia solar ao facilitar o acesso a financiamentos através de diversos bancos parceiros. Veja como você pode financiar seu projeto de energia solar com algumas das melhores condições do mercado.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Ideal para pequenas empresas, o Banco do Brasil oferece um financiamento que cobre a maior parte do valor do projeto de energia solar.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Solicitação: Pode ser feita nas agências ou diretamente pelo aplicativo do banco.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Banco BNDES</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>BV Financeira</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>A BV Financeira oferece opções de crédito tanto para pessoas físicas quanto jurídicas, com condições flexíveis.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Oferecemos consultoria em financiamento, ajudando você a escolher a melhor opção entre nossos parceiros bancários, como Caixa Econômica Federal, Banco do Brasil, BNDES e BV Financeira.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>America Telecom Tecnología ♥ by© Copyright © 2018 - 2026 | America Telecom soluções em tecnologia | Todos os direitos reservados Termos Política de privacidade Atendimento e-mail | |</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza identidade visual própria da empresa &#39;America Telecom&#39; (domínio, cabeçalho e layout próprios), sem simular o ambiente digital do Banco BV.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-HEAD-1">E-HEAD-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Embora se identifique pelo nome fantasia &#39;America Telecom&#39;, não há indicação de CNPJ ou razão social na página de oferta de energia solar e consultoria de financiamento.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-013">E-TXT-013</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>A página anuncia &#39;Parcerias com Instituições Bancárias&#39; e intermediação do financiamento (&#39;auxiliamos na preparação e envio da documentação necessária para a aprovação do financiamento&#39;), mas omite a declaração de correspondente bancário e os dados exigidos pela Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O discurso é feito em nome da própria empresa (&#39;Na America Telecom, oferecemos...&#39;), referindo-se à BV Financeira e demais bancos em terceira pessoa como parceiros de financiamento.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso do logotipo da &#39;BV Financeira&#39; em seção dedicada aos bancos de financiamento (&#39;Melhores Bancos Para Finaciamento&#39;), junto à divulgação de taxas e limites específicos.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-010">E-TXT-010</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página descreve as etapas de consultoria e facilitação do financiamento solar, contando com botão flutuante de WhatsApp na tela, mas sem formulário de captação direta de dados bancários na URL analisada.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="CONFUSION">CONFUSION</td><td>Ausência de divulgação dos telefones da central de atendimento e da ouvidoria do Banco BV / BV Financeira.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>A afirmação de parceria sólida com condições especiais (&#39;Condições Especiais: Benefícios exclusivos para clientes da America Telecom&#39;) aliada ao uso da marca BV Financeira e divulgação de taxas específicas (0,75% a.m.) sem transparência de correspondente e sem CNPJ requer revisão.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-011">E-TXT-011</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Exibição do logotipo da BV Financeira em card informativo de financiamento de energia solar, acompanhado de condições específicas de crédito (limite de até R$ 3 milhões, taxa a partir de 0,75% a.m., 50% de entrada), o que é vedado a correspondentes bancários pelo art. 14, II da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-010">E-TXT-010</a> <a href="#E-TXT-011">E-TXT-011</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A empresa oferta consultoria e intermediação de financiamento (&#39;bancos parceiros&#39;, &#39;acompanhamento do processo junto ao banco&#39;) sem exibir declaração de correspondente bancário, Custo Efetivo Total (CET) ou canais de ouvidoria das instituições contratantes. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: O estabelecimento (&#39;America Telecom&#39;) atua na comercialização/instalação de energia solar com intermediação de financiamento, mas não informa razão social completa nem CNPJ na página. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-013">E-TXT-013</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: Contexto comercial próprio da empresa integradora (&#39;America Telecom&#39;) e apresentação multimarcas/multibancos ao lado de Caixa Econômica Federal, Banco do Brasil e BNDES. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-012">E-TXT-012</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence ao domínio www.americatelecom.com.br e oferta soluções de instalação de placas de energia solar com consultoria e intermediação de financiamento.</li><li>Na seção &#39;Melhores Bancos Para Finaciamento&#39;, a página exibe o logotipo da &#39;BV Financeira&#39; (E-IMG-1) ao lado de Caixa, Banco do Brasil e BNDES.</li><li>No card da BV Financeira visível em E-SHOT-FULL, são divulgadas condições específicas de crédito: &#39;Limite de Crédito: Até R$ 3 milhões para pessoas jurídicas&#39;, &#39;Taxa de Juros: Inicia em 0,75% ao mês&#39; e &#39;Condições: 50% de entrada e saldo remanescente em até 24 vezes&#39;.</li><li>A empresa afirma possuir &#39;parcerias com as principais instituições financeiras do país&#39; e atuar na preparação e envio de documentação para aprovação do crédito e acompanhamento junto ao banco.</li><li>Não há CNPJ da empresa, declaração formal de correspondente bancário, Custo Efetivo Total (CET) ou canais de ouvidoria do banco na página.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>O screenshot completo foi limitado a 12.000px de um total de 34.959px, embora o texto integral e o rodapé tenham sido capturados sem registro de CNPJ.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de empresa comercializadora/instaladora de energia solar (&#39;America Telecom&#39;) que oferta consultoria e intermediação de financiamento bancário (&#39;bancos parceiros&#39;). Embora apresente identidade visual própria e contexto multibancos (Caixa, Banco do Brasil, BNDES e BV Financeira), exibe o logotipo da BV Financeira (E-IMG-1) acompanhado de condições e taxas específicas de financiamento, alega possuir parceria com benefícios exclusivos e atua na submissão de propostas de crédito sem informar seu CNPJ, sem exibir declaração de correspondente bancário e sem divulgar canais de ouvidoria da instituição financeira, ensejando revisão humana (B_AMBIGUOUS_COMMUNICATION / REVIEW_REQUIRED).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:americatelecom.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>americatelecom.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>parceiros</td><td class="mono"><a href="#E-TXT-012">E-TXT-012</a></td><td>Oferecemos consultoria em financiamento, ajudando você a escolher a melhor opção entre nossos parceiros bancários, como Caixa Econômica Federal, Banco do Brasil, BNDES e BV Financeira.</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-010">E-TXT-010</a> <a href="#E-TXT-011">E-TXT-011</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-013">E-TXT-013</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). A página pertence a uma empresa integradora/instaladora de energia solar (&#39;America Telecom&#39;) que promove intermediação e consultoria de financiamento alegando parceria com instituições financeiras (&#39;bancos parceiros&#39;, E-TXT-006, E-TXT-012) e exibindo o logotipo da BV Financeira acompanhado de taxas e condições de crédito (E-IMG-1, E-SHOT-FULL, E-TXT-010, E-TXT-011), sem apresentar de forma visível sua razão social, CNPJ, declaração de condição de correspondente bancário ou canais de ouvidoria (E-FTR, E-TXT-013).</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Escopo do screenshot completo</td><td>LOW</td><td>A captura visual da página completa (E-SHOT-FULL) foi truncada em 12.000px de um total de 34.959px, mas a seção com os cartões bancários e o texto integral do rodapé (E-FTR) foram devidamente extraídos, confirmando a ausência de CNPJ e de avisos regulatórios.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-013">E-TXT-013</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-SHOT-VIEWPORT</li><li>E-TXT-012</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Estabelecimentos (concessionária em Recife) que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - concessionária &#34;Recife&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:concessionária:Recife</span></td><td class="mono">https://www.americatelecom.com.br/instalar-placa-solar.php</td><td>americatelecom.com.br<br><span class="muted">**URL:** `https://americatelecom.com.br/` (Seção de Energia Solar) | BV Financeira&#34;* | Divulga taxas e condições específicas em nome da BV Financeira sem exibir na página do produto a declaração de correspondente bancário, o Custo Efetivo Total (CET) ou o CNPJ da empresa</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:47:50.400709+00:00</div>
+      <div class="kv"><b>IP do servidor</b>187.49.176.163</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C6ba94deb3c\attempt-1\manifest.json<br>sha256 7632202c075336e9c0f381b87f7ba2124128480546ab6b3021fffe3da1661c9a</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.americatelecom.com.br/instalar-placa-solar.php<br>Final: https://www.americatelecom.com.br/instalar-placa-solar.php</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C6ba94deb3c\attempt-1\viewport.png</td><td class="mono">46851962bfaadce263f9d9f9f332c8a8e226ce78c17c617c223b86b4184d45ab</td><td>547043</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C6ba94deb3c\attempt-1\fullpage.png</td><td class="mono">f4a06e386ad4a3f29d05e264670216409bbe30aec9e9eaac14019982fd6b99e2</td><td>2084035</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C6ba94deb3c\attempt-1\page.html.txt</td><td class="mono">d879273269711deaad74613de5b703462eed77ef58b90076151442a61fa193e6</td><td>808296</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C6ba94deb3c\attempt-1\text.txt</td><td class="mono">3691f05ba98c30b0249cf3a583bb202306df1d5908178e5ee1a02740991bcdd1</td><td>34561</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C6ba94deb3c\attempt-1\page.json</td><td class="mono">234051acbcbaaef0dd68c3f82325e941bff8ab18556d9cdb537a90768645c0a9</td><td>57947</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>screenshot completo limitado a 12000px (página com 34959px); texto integral preservado em text.txt</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:47:50+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:48:14+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:48:14+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:48:52+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:49:09+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

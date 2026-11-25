@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C5d7e7be393",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.nbkveiculos.com.br/",
+  "final_url": "https://www.nbkveiculos.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "198.54.114.193",
+  "collected_at": "2026-11-23T14:29:05.558252+00:00",
+  "manifest_written_at": "2026-11-23T14:29:13.227718+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C5d7e7be393\\attempt-1\\viewport.png",
+      "sha256": "6dbac6fa5f9f0e600d0b8a78195a15cf45702927526cd0e1c63d3e42f6d54a09",
+      "size_bytes": 47431
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C5d7e7be393\\attempt-1\\fullpage.png",
+      "sha256": "6dbac6fa5f9f0e600d0b8a78195a15cf45702927526cd0e1c63d3e42f6d54a09",
+      "size_bytes": 47431
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C5d7e7be393\\attempt-1\\page.html.txt",
+      "sha256": "7c45b2714e81f6ed1e353a8ee93f9a29e36d71df73210f3f75a72b1b1ca10964",
+      "size_bytes": 65465
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C5d7e7be393\\attempt-1\\text.txt",
+      "sha256": "5267a2a449b33b40c3a91ab8eb2ba5c599e6b10afa71da18dca8157794249b92",
+      "size_bytes": 788
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C5d7e7be393\\attempt-1\\page.json",
+      "sha256": "d745af3a2405bb1610317fcdb1278dd085158ed0ba8d4beaab0798cc45ec44fc",
+      "size_bytes": 2740
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

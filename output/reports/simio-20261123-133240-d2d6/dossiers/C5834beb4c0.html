@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C5834beb4c0</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C5834beb4c0 — netinhomultimarcas.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://netinhomultimarcas.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se do site da loja de veículos Netinho Multimarcas (dentro do escopo de potenciais COBANs). Embora o estabelecimento utilize identidade visual própria e não se passe por canal oficial do Banco BV, faz uso do logotipo da instituição (E-IMG-1) na seção de bancos parceiros e oferta simulação/financiamento de veículos (E-TXT-002, E-TXT-006) sem informar seu CNPJ, razão social ou declaração de correspondente bancário (E-FTR, E-DISC-001), configurando comunicação ambígua/falha de transparência à luz da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A hipótese do analista se sustenta integralmente. O domínio pertence a uma loja multimarcas de veículos (E-URL, E-TITLE) que oferta financiamento e simulação com bancos parceiros (E-TXT-002, E-TXT-006, E-TXT-011) e exibe o logotipo do Banco BV (E-IMG-1, E-DISC-001), mas omite razão social, CNPJ, declaração de condição de correspondente bancário e canal de ouvidoria no rodapé e na página (E-FTR, E-DISC-001), exigindo revisão conforme a Resolução CMN nº 4.935/2021.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C5834beb4c0/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 087d645e7aee83b296febdcd7c587d9c111243659795e99b5333de7f72f341ac</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C5834beb4c0/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 f88cf6ffdf0a6005a7b493dd0203b8c9c735424f017623e540225737028f795a</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.netinhomultimarcas.com.br/ (domínio: www.netinhomultimarcas.com.br)</td></tr>
+      <tr id="E-REDIR"><td class="mono"><b>E-REDIR</b></td><td>network</td><td>url</td><td>Cadeia de redirecionamento: https://netinhomultimarcas.com.br/ -&gt; https://www.netinhomultimarcas.com.br/</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): netinhomultimarcas.com.br — **URL:** `https://netinhomultimarcas.com.br` | **Uso da Marca e Recursos:** Loja de veículos nacionais e importados que destaca o **Banco BV** na seção *&#34;Trabalhamos com os principais bancos&#34;* | **Conformidade (CNPJ / Razão Social / Declaração):** Não exibe declaração de correspondente bancário nem informa a Razão Social e o CNPJ no termo de autorização de envio de dados</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C5834beb4c0\attempt-1\viewport.png (sha256 087d645e7aee83b2…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C5834beb4c0\attempt-1\fullpage.png (sha256 f88cf6ffdf0a6005…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Netinho Multimarcas | Nacionais e importados desde 1975</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Netinho Multimarcas: compra, venda e intermediação de veículos em São Paulo desde 1975.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Netinho Multimarcas</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Netinho Multimarcas | Nacionais e importados desde 1975</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Compra, venda e intermediação de veículos em São Paulo desde 1975. Veja o estoque e fale com a loja pelo WhatsApp.</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Nacionais e importados com procedência e atendimento de verdade.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>MERCEDES-BENZ CLA 250</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Veículos selecionados para você</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Classe C</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Commander</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>A1</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Kait</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Novos no estoque</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>CLA 250</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Kait</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Strada</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>T-Cross</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Tudo para fechar negócio com segurança</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Comprar</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Trocar</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Aberto agora · fecha às 19h (11) 2642-3000 @netinhomultimarcas NETINHO MULTIMARCAS ESTOQUE FINANCIAMENTO TROCA SOBRE CONTATO VER ESTOQUE</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Aberto agora · fecha às 19h (11) 2642-3000 @ netinhomultimarcas NETINHO MULTIMARCAS Estoque Financiamento Troca Sobre Contato Ver estoque Desde 1975 · Compra · Venda · Intermediação Nacionais e importados com procedência e atendimento de verdade. Veículos selecionados na Avenida Cangaíba, em São Paulo. Financiamento, troca e intermediação num só lugar. Explorar estoque Visitar a loja O que você procura? Marca Ano a partir de Km até Buscar Cookies neste site O site em si não usa cookies de publicidade nem de análise de visitas. O mapa da loja é do Google e pode gravar cookies próprios. Saiba mais Entendi</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>NETINHO MULTIMARCAS Compra · Venda · Intermediação. Nacionais e importados desde 1975. Estoque Financiamento Troca Sobre Contato ABERTO AGORA · FECHA ÀS 19H Av. Cangaíba, 2030 · Cangaíba · São Paulo · SP Segunda a sexta 9h às 19h · Sábado 9h às 16h Feriados: 9h às 13h Horários sujeitos a alteração em feriados e datas comemorativas. Na dúvida, confirme pelo WhatsApp. Política de privacidade © 2026 Netinho Multimarcas. Todos os direitos reservados. Desenvolvido por @alavanzi</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>(11) 2642-3000 &lt;tel:+551126423000&gt; | @netinhomultimarcas &lt;https://www.instagram.com/netinhomultimarcas/&gt; | NETINHO MULTIMARCAS &lt;https://www.netinhomultimarcas.com.br/&gt; | ESTOQUE &lt;https://www.netinhomultimarcas.com.br/estoque&gt; | FINANCIAMENTO &lt;https://www.netinhomultimarcas.com.br/financiamento&gt; | TROCA &lt;https://www.netinhomultimarcas.com.br/troca&gt; | SOBRE &lt;https://www.netinhomultimarcas.com.br/sobre&gt; | CONTATO &lt;https://www.netinhomultimarcas.com.br/contato&gt; | VER ESTOQUE &lt;https://www.netinhomultimarcas.com.br/estoque&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>NETINHO MULTIMARCAS &lt;https://www.netinhomultimarcas.com.br/&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>VER ESTOQUE &lt;https://www.netinhomultimarcas.com.br/estoque&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Explorar estoque &lt;https://www.netinhomultimarcas.com.br/estoque&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Visitar a loja &lt;https://www.netinhomultimarcas.com.br/contato&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Buscar</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Mais detalhes &lt;https://www.netinhomultimarcas.com.br/veiculo/mercedes-benz-cla-250-sport-2-0-turbo-4x4-2015-a01&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>WhatsApp sobre Mercedes-Benz CLA 250 (abre em nova aba) &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AMercedes-Benz%20CLA%20250%20Sport%202.0%20Turbo%204x4%202015%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fmercedes-benz-cla-250-sport-2-0-turbo-4x4-2015-a01%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Foto anterior: Mercedes-Benz Classe C</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>MAIS DETALHES &lt;https://www.netinhomultimarcas.com.br/veiculo/mercedes-benz-classe-c-c250-2-0-turbo-2018-a02&gt;</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>FINANCIAMENTO</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Foto anterior: Jeep Commander</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>MAIS DETALHES &lt;https://www.netinhomultimarcas.com.br/veiculo/jeep-commander-limited-1-3-turbo-2023-a03&gt;</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>FINANCIAMENTO</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Foto anterior: Audi A1</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>MAIS DETALHES &lt;https://www.netinhomultimarcas.com.br/veiculo/audi-a1-sportback-1-4-tfsi-2016-a10&gt;</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>FINANCIAMENTO</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>Foto anterior: Nissan Kait</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>MAIS DETALHES &lt;https://www.netinhomultimarcas.com.br/veiculo/nissan-kait-sense-1-6-2026-a05&gt;</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>FINANCIAMENTO</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>Ver todo o estoque &lt;https://www.netinhomultimarcas.com.br/estoque&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>(11) 2642-3000 &lt;tel:+551126423000&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>@netinhomultimarcas &lt;https://www.instagram.com/netinhomultimarcas/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>WhatsApp sobre Mercedes-Benz CLA 250 (abre em nova aba) &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AMercedes-Benz%20CLA%20250%20Sport%202.0%20Turbo%204x4%202015%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fmercedes-benz-cla-250-sport-2-0-turbo-4x4-2015-a01%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Mercedes-Benz Classe C &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AMercedes-Benz%20Classe%20C%20C250%202.0%20Turbo%202018%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fmercedes-benz-classe-c-c250-2-0-turbo-2018-a02%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Jeep Commander &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AJeep%20Commander%20Limited%201.3%20Turbo%202023%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fjeep-commander-limited-1-3-turbo-2023-a03%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Audi A1 &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AAudi%20A1%20Sportback%201.4%20TFSI%202016%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Faudi-a1-sportback-1-4-tfsi-2016-a10%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Nissan Kait &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0ANissan%20Kait%20Sense%201.6%202026%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fnissan-kait-sense-1-6-2026-a05%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Mercedes-Benz CLA 250 &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AMercedes-Benz%20CLA%20250%20Sport%202.0%20Turbo%204x4%202015%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fmercedes-benz-cla-250-sport-2-0-turbo-4x4-2015-a01%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Nissan Kait &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0ANissan%20Kait%20Sense%201.6%202026%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fnissan-kait-sense-1-6-2026-a05%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Fiat Strada &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AFiat%20Strada%20Endurance%201.4%202026%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Ffiat-strada-endurance-1-4-2026-a06%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp sobre Volkswagen T-Cross &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AVolkswagen%20T-Cross%201.0%20Turbo%20Flex%202025%0Ahttps%3A%2F%2Fwww.netinhomultimarcas.com.br%2Fveiculo%2Fvolkswagen-t-cross-1-0-turbo-flex-2025-a07%0A%0APode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%20sobre%20ele%3F&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>page</td><td>Ligar para a loja, (11) 2642-3000 &lt;tel:+551126423000&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>page</td><td>Instagram @netinhomultimarcas SEGUIR E VER OS CARROS (ABRE EM NOVA ABA) &lt;https://www.instagram.com/netinhomultimarcas/&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>page</td><td>Facebook Netinho Multimarcas VISITAR A PÁGINA (ABRE EM NOVA ABA) &lt;https://www.facebook.com/netinhomultimarcas&gt;</td></tr>
+      <tr id="E-CONTACT-15"><td class="mono"><b>E-CONTACT-15</b></td><td>contact</td><td>footer</td><td>WhatsApp (11) 95558-2460 (abre em nova aba) &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.%0A%0APodem%20me%20atender%3F&gt;</td></tr>
+      <tr id="E-CONTACT-16"><td class="mono"><b>E-CONTACT-16</b></td><td>contact</td><td>footer</td><td>Ligar para (11) 2642-3000 &lt;tel:+551126423000&gt;</td></tr>
+      <tr id="E-CONTACT-17"><td class="mono"><b>E-CONTACT-17</b></td><td>contact</td><td>footer</td><td>Instagram @netinhomultimarcas (abre em nova aba) &lt;https://www.instagram.com/netinhomultimarcas/&gt;</td></tr>
+      <tr id="E-CONTACT-18"><td class="mono"><b>E-CONTACT-18</b></td><td>contact</td><td>footer</td><td>Facebook (abre em nova aba) &lt;https://www.facebook.com/netinhomultimarcas&gt;</td></tr>
+      <tr id="E-CONTACT-19"><td class="mono"><b>E-CONTACT-19</b></td><td>contact</td><td>footer</td><td>@alavanzi &lt;https://www.instagram.com/alavanzi/&gt;</td></tr>
+      <tr id="E-CONTACT-20"><td class="mono"><b>E-CONTACT-20</b></td><td>contact</td><td>page</td><td>Fale conosco &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.%0A%0APodem%20me%20atender%3F&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BV&#39; src=https://www.netinhomultimarcas.com.br/bancos/bv.png (77x56, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Nacionais e importados com procedência e atendimento de verdade.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Financiamento com bancos parceiros</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Cada veículo com ficha completa, fotos e atendimento direto pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Avaliação do seu veículo pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Simulação com os bancos parceiros.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Trabalhamos com os principais bancos parceiros.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Avaliamos o seu veículo na troca, direto pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Recomendo a Netinho Multimarcas , primeiramente pelo excelente atendimento e atenção do Gabriel e seu pai ,um senhorzinho muito simpático e sorridente e,ainda com veículos a venda escolhidos a dedo para satisfação total de minhas expectativas,dando toda atenção pós venda ,fiquei muito feliz com o atendimento !!!</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Muito boa . Atendimento ótimo e transparência no negócio.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Trabalhamos com os principais bancos</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Horários sujeitos a alteração em feriados e datas comemorativas. Na dúvida, confirme pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Horários sujeitos a alteração em feriados e datas comemorativas. Na dúvida, confirme pelo WhatsApp.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site utiliza identidade visual própria da loja Netinho Multimarcas (tons escuros e dourados), sem imitar a identidade visual do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Apresenta o nome fantasia &#39;Netinho Multimarcas&#39; e endereço físico em São Paulo/SP, mas omite a razão social e o CNPJ do estabelecimento.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Oferta financiamento e simulação utilizando a marca do Banco BV sem exibir aviso visível de correspondente bancário ou dados de ouvidoria da instituição financeira.</td><td class="mono"><a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A comunicação é feita em nome da loja de veículos, referindo-se às instituições financeiras como &#39;bancos parceiros&#39;, sem reivindicar ser canal oficial do banco.</td><td class="mono"><a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-007">E-TXT-007</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Presença de arquivo de imagem com o logotipo do Banco BV (bancos/bv.png) vinculado à seção &#39;Trabalhamos com os principais bancos&#39;.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Disponibiliza jornada e seção de financiamento e simulação de veículos sem as informações obrigatórias de transparência de correspondente bancário.</td><td class="mono"><a href="#E-NAV">E-NAV</a> <a href="#E-CTA-10">E-CTA-10</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato (telefone fixo, WhatsApp e redes sociais) estão claramente identificados como pertencentes à loja Netinho Multimarcas.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-15">E-CONTACT-15</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Não há tentativa de se passar pelo Banco BV, tratando-se de revenda multimarcas, porém há falhas formais de transparência na divulgação da parceria de financiamento.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: A loja de veículos exibe o logotipo do Banco BV (bancos/bv.png) na seção de bancos com os quais trabalha, conduta que exige cautela à luz do art. 14, II da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-TXT-011">E-TXT-011</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Embora oferte financiamento e simulação com bancos parceiros, a página não exibe declaração expressa de atuação como correspondente bancário nem canais de ouvidoria. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Ausência de identificação da razão social e do CNPJ do estabelecimento na página inicial e no rodapé. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] INSTITUTIONAL_LANGUAGE: A loja se apresenta claramente como revenda de veículos (&#39;Netinho Multimarcas&#39;) e menciona atuar com &#39;bancos parceiros&#39;. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-007">E-TXT-007</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio netinhomultimarcas.com.br pertence à loja de veículos Netinho Multimarcas, localizada na Av. Cangaíba, 2030, São Paulo/SP (E-URL, E-FTR).</li><li>A página oferta financiamento e simulação de veículos e contém a imagem do logotipo do Banco BV em &#39;https://www.netinhomultimarcas.com.br/bancos/bv.png&#39; (E-IMG-1, E-TXT-002, E-TXT-006).</li><li>Não há exibição de CNPJ, razão social ou declaração expressa da condição de correspondente bancário na página inspecionada (E-FTR, E-DISC-001).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>A página interna específica de financiamento (/financiamento) não foi navegada diretamente, embora o índice de busca (E-DISC-001) confirme a ausência de CNPJ e de declaração de correspondente bancário também no termo de envio de dados.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se do site da loja de veículos Netinho Multimarcas (dentro do escopo de potenciais COBANs). Embora o estabelecimento utilize identidade visual própria e não se passe por canal oficial do Banco BV, faz uso do logotipo da instituição (E-IMG-1) na seção de bancos parceiros e oferta simulação/financiamento de veículos (E-TXT-002, E-TXT-006) sem informar seu CNPJ, razão social ou declaração de correspondente bancário (E-FTR, E-DISC-001), configurando comunicação ambígua/falha de transparência à luz da Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Netinho Multimarcas<br><span class="mono">domain:netinhomultimarcas.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>netinhomultimarcas.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/netinhomultimarcas/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/netinhomultimarcas</td><td class="mono"><a href="#E-CONTACT-14">E-CONTACT-14</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/alavanzi/</td><td class="mono"><a href="#E-CONTACT-19">E-CONTACT-19</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Netinho Multimarcas</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 2642-3000</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 95558-2460</td><td class="mono"><a href="#E-CONTACT-15">E-CONTACT-15</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp sobre Mercedes-Benz CLA 250 (abre em nova aba) &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Chamar no WhatsApp sobre Mercedes-Benz Classe C &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AMerce</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Chamar no WhatsApp sobre Jeep Commander &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AJeep%20Comman</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Chamar no WhatsApp sobre Audi A1 &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0AAudi%20A1%20Sportbac</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Chamar no WhatsApp sobre Nissan Kait &lt;https://wa.me/5511955582460?text=Ol%C3%A1%2C%20Netinho%20Multimarcas!%20Visitei%20o%20site%20e%20tenho%20interesse%20neste%20ve%C3%ADculo%3A%0A%0ANissan%20Kait%20</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-011">E-TXT-011</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-006">E-TXT-006</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-10">E-CTA-10</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-NAV">E-NAV</a> <a href="#E-TXT-006">E-TXT-006</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A hipótese do analista se sustenta integralmente. O domínio pertence a uma loja multimarcas de veículos (E-URL, E-TITLE) que oferta financiamento e simulação com bancos parceiros (E-TXT-002, E-TXT-006, E-TXT-011) e exibe o logotipo do Banco BV (E-IMG-1, E-DISC-001), mas omite razão social, CNPJ, declaração de condição de correspondente bancário e canal de ouvidoria no rodapé e na página (E-FTR, E-DISC-001), exigindo revisão conforme a Resolução CMN nº 4.935/2021.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Renderização parcial da captura de tela completa</td><td>LOW</td><td>A captura de página inteira (E-SHOT-FULL) apresenta blocos escuros por carregamento assíncrono/animação de rolagem, porém o DOM capturado (E-IMG-1, E-TXT-002, E-TXT-006, E-TXT-011, E-FTR) e o índice de descoberta (E-DISC-001) comprovam de forma consistente o uso da marca Banco BV e a omissão dos dados regulatórios.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Revendas de seminovos e lojas multimarcas que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; financiamento (loja OR revenda OR seminovos OR multimarcas) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+  - &#34;bv financeira&#34; (seminovos OR multimarcas OR revenda) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+  - (&#34;financiamos&#34; OR &#34;trabalhamos com&#34; OR &#34;financie&#34;) (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de carro e multimarcas</span></td><td class="mono">https://netinhomultimarcas.com.br/</td><td>netinhomultimarcas.com.br<br><span class="muted">**URL:** `https://netinhomultimarcas.com.br` | **Uso da Marca e Recursos:** Loja de veículos nacionais e importados que destaca o **Banco BV** na seção *&#34;Trabalhamos com os principais bancos&#34;* | **Conformidade (CNPJ / Razão Social / Declaração):** Não exibe declaração de correspondente bancário nem informa a Razão Social e o CNPJ no termo de autorização de envio de dados</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:25:31.437887+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.38.253</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C5834beb4c0\attempt-1\manifest.json<br>sha256 201460c9253ed5cb440e8eb16d10dfa8fc1be7b34d5ca6b8d71394fac4e8a44c</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://netinhomultimarcas.com.br/<br>Final: https://www.netinhomultimarcas.com.br/</p>
+<p class="mono">Redirecionamentos: https://netinhomultimarcas.com.br/</p>    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C5834beb4c0\attempt-1\viewport.png</td><td class="mono">087d645e7aee83b296febdcd7c587d9c111243659795e99b5333de7f72f341ac</td><td>884722</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C5834beb4c0\attempt-1\fullpage.png</td><td class="mono">f88cf6ffdf0a6005a7b493dd0203b8c9c735424f017623e540225737028f795a</td><td>1152767</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C5834beb4c0\attempt-1\page.html.txt</td><td class="mono">b30bc259ae15cc915f4aac5b62bf683b31da35c3ca8e6f8517f7db9b18bbad0d</td><td>97809</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C5834beb4c0\attempt-1\text.txt</td><td class="mono">6298ea92a03b8af63cd6f8e833e020926f75250e499667e2200d3fbfc137c062</td><td>6538</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C5834beb4c0\attempt-1\page.json</td><td class="mono">24dd13e078a560372eaeb406d4850136f10ab556f450bfbbd8f8da800d76419c</td><td>67279</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:57+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 3.0)</td></tr>
+      <tr><td>2026-11-23T14:25:31+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:25:50+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:25:50+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:26:18+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:27:05+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

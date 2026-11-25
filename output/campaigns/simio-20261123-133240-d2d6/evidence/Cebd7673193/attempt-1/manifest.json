@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cebd7673193",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.plmseguros.com/single-post/banco-bv-corretora-ozanan-plm",
+  "final_url": "https://www.plmseguros.com/single-post/banco-bv-corretora-ozanan-plm",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "162.159.143.12",
+  "collected_at": "2026-11-23T14:30:23.946202+00:00",
+  "manifest_written_at": "2026-11-23T14:30:30.520294+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cebd7673193\\attempt-1\\viewport.png",
+      "sha256": "d8992f048a0a9e3d751650eff03c84c7350ad57d71ef75148173beb60408fc0c",
+      "size_bytes": 48686
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cebd7673193\\attempt-1\\fullpage.png",
+      "sha256": "d8992f048a0a9e3d751650eff03c84c7350ad57d71ef75148173beb60408fc0c",
+      "size_bytes": 48686
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cebd7673193\\attempt-1\\page.html.txt",
+      "sha256": "99b03dcb150aa45dcd4b334beeb2416ba266ec17e6d61142827bd9e3a745ac98",
+      "size_bytes": 65532
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cebd7673193\\attempt-1\\text.txt",
+      "sha256": "da3b41a97799c3e73cf0e146f77b80930801fe170d8cbb4104ab90bc2d5ce5a8",
+      "size_bytes": 824
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cebd7673193\\attempt-1\\page.json",
+      "sha256": "e1e7afd822633c8de59ad65e05c4b604df63ac2552e45d0d47211efe55d9f659",
+      "size_bytes": 2812
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

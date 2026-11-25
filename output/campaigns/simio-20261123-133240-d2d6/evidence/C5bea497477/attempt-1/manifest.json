@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C5bea497477",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://topcarchopinzinho.com.br/marca/13/bmw",
+  "final_url": "https://topcarchopinzinho.com.br/marca/13/bmw",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "187.1.137.113",
+  "collected_at": "2026-11-23T14:58:46.005025+00:00",
+  "manifest_written_at": "2026-11-23T14:59:04.144592+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C5bea497477\\attempt-1\\viewport.png",
+      "sha256": "bcb9931c145f0b1aa05c539365de92a70a80b87ad52cfd0eb8e7036243ce3907",
+      "size_bytes": 47984
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C5bea497477\\attempt-1\\fullpage.png",
+      "sha256": "bcb9931c145f0b1aa05c539365de92a70a80b87ad52cfd0eb8e7036243ce3907",
+      "size_bytes": 47984
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C5bea497477\\attempt-1\\page.html.txt",
+      "sha256": "4c491fd5c97bbe55ba02845ac76264e74eb6c3c295979008536a7e9d4efb80f7",
+      "size_bytes": 65532
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C5bea497477\\attempt-1\\text.txt",
+      "sha256": "4909b4151694c6078062cd5ffe957007deac7bce80c4061a135809cb1ae801a4",
+      "size_bytes": 808
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C5bea497477\\attempt-1\\page.json",
+      "sha256": "dd06c3ca83e2ed1559c3d07b350b3261b74eade13c3c04adb049bf1e30eac9bb",
+      "size_bytes": 2780
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

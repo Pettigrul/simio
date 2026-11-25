@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C8d7ad1b5c7",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://bvfinanceira.com/",
+  "final_url": "http://ww547.bvfinanceira.com/?tkn=19vnMT3S",
+  "redirect_chain": [
+    "http://bvfinanceira.com/"
+  ],
+  "http_status": 401,
+  "server_ip": "34.160.121.137",
+  "collected_at": "2026-11-25T18:12:20.456024+00:00",
+  "manifest_written_at": "2026-11-25T18:12:25.116448+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C8d7ad1b5c7/attempt-1/viewport.png",
+      "sha256": "c15f5626f8898731d9ddcd56d06fe276242dcfa10f71a6eef54d222d5da93e3c",
+      "size_bytes": 6871
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C8d7ad1b5c7/attempt-1/fullpage.png",
+      "sha256": "c15f5626f8898731d9ddcd56d06fe276242dcfa10f71a6eef54d222d5da93e3c",
+      "size_bytes": 6871
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C8d7ad1b5c7/attempt-1/page.html.txt",
+      "sha256": "843c1bd07cf21dad95d0cd0990686ec71e90c51b4e8e9f9d9d441f9e2ce5555c",
+      "size_bytes": 48
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C8d7ad1b5c7/attempt-1/text.txt",
+      "sha256": "78342a0905a72ce44da083dcb5d23b8ea0c16992ba2a82eece97e033d76ba3d3",
+      "size_bytes": 9
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C8d7ad1b5c7/attempt-1/page.json",
+      "sha256": "604d9272e7c643652080287d06bafb1ccdc1819b5245de7006d9b6558e0c1622",
+      "size_bytes": 302
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 401: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

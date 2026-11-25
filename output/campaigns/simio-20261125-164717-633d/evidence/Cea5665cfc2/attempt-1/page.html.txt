@@ -1,0 +1,347 @@
+<html lang="pt-BR" class="temjs tem-cursor"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financiamento | Pontual Multimarcas</title>
+<meta name="description" content="Simule a parcela do seu próximo carro em 30 segundos, sem CPF. Financiamento com bancos parceiros, entrada, troca e até 60 meses.">
+<link rel="canonical" href="https://pontualmultimarcas.com.br/financiamento.php">
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pontual Multimarcas">
+<meta property="og:title" content="Financiamento | Pontual Multimarcas">
+<meta property="og:description" content="Simule a parcela do seu próximo carro em 30 segundos, sem CPF. Financiamento com bancos parceiros, entrada, troca e até 60 meses.">
+<meta property="og:image" content="https://pontualmultimarcas.com.br/assets/fachada/fachada-01.jpg">
+<meta property="og:url" content="https://pontualmultimarcas.com.br/financiamento.php">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/logo.png?v=1789670506">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Jost:wght@300;400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=1790102651">
+<script>document.documentElement.classList.add('temjs')</script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap topo__in">
+    <a class="topo__logo" href="index.php" aria-label="Pontual Multimarcas — início">
+      <img src="assets/logo.png?v=1789670506" alt="Pontual Multimarcas" width="924" height="339">
+    </a>
+
+    <nav class="topo__nav" id="menu-principal" aria-label="Principal">
+      <a href="estoque.php">Estoque</a>
+      <a href="financiamento.php" aria-current="page">Financiamento</a>
+      <a href="consignacao.php">Consignação</a>
+    </nav>
+
+        <a class="btn btn--wa btn--peq topo__zap" href="https://wa.me/5561981843737?text=Oi%21%20Vim%20pelo%20site%20da%20Pontual%20Multimarcas%20e%20quero%20falar%20com%20um%20vendedor." target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-4-1L3 21l2.1-4.9A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"></path></svg>
+      <span class="topo__zap-texto">WhatsApp</span>
+    </a>
+
+    <button class="topo__menu" type="button" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir o menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+<section class="fin-topo">
+  <div class="wrap fin-topo__in">
+    <div>
+      <div class="eti"><span>Financiamento</span></div>
+      <h1>A gente corre atrás<br>da <em>aprovação</em> pra você.</h1>
+      <p class="capa__sub">
+        Trabalhamos com bancos parceiros. Você diz quanto quer dar de entrada e
+        em quantas vezes, deixa nome e contato, e a parcela estimada aparece na
+        hora. Sem CPF e sem documento.
+      </p>
+    </div>
+    <ul class="fin-topo__pontos rev vis" style="--d: 0ms;">
+      <li><b>Sem CPF</b><span>A simulação pede nome e contato. Documento só na loja, se você quiser seguir.</span></li>
+      <li><b>Entrada e troca</b><span>Seu carro usado entra como parte do pagamento.</span></li>
+      <li><b>Até 60 meses</b><span>Você escolhe o prazo que cabe na sua parcela.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="secao" id="simulador">
+  <div class="wrap fin-sim">
+
+    <form class="sim" method="post" action="simular.php" data-taxas="{&quot;faixas&quot;:[{&quot;de&quot;:2025,&quot;ate&quot;:2027,&quot;taxa&quot;:1.39},{&quot;de&quot;:2021,&quot;ate&quot;:2024,&quot;taxa&quot;:1.6},{&quot;de&quot;:2017,&quot;ate&quot;:2020,&quot;taxa&quot;:1.8},{&quot;de&quot;:2010,&quot;ate&quot;:2016,&quot;taxa&quot;:2}]}" data-ano-padrao="2026">
+      <input type="hidden" name="csrf" value="b7225af535d46586be6636fd1e02e5317f9fef7449fe5b47108e2a721b7cce0e" style="">
+      <span class="eti">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"></path></svg>
+        Simulação rápida
+      </span>
+      <h2>Quanto fica a sua parcela</h2>
+      <p class="sim__nota">
+        Escolha um carro ou digite um valor, diga como quer pagar e deixe seu
+        contato. A gente calcula e mostra aqui mesmo.
+      </p>
+
+      
+      
+      <div class="campo">
+        <label for="f-carro">Carro do estoque</label>
+        <select id="f-carro" name="carro_id" data-sim="carro">
+          <option value="">Não escolhi ainda — quero digitar um valor</option>
+                                  <option value="45" data-preco="125990" data-ano="2024">
+              BYD Dolphin GS · 2023/2024 · R$ 125.990            </option>
+                                  <option value="28" data-preco="99990" data-ano="2016">
+              BMW X1 SDRIVE 20i ACTIVE FLEX · 2016 · R$ 99.990            </option>
+                                  <option value="23" data-preco="96990" data-ano="2016">
+              MITSUBISHI OUTLANDER GT 3.0 V6 · 2015/2016 · R$ 96.990            </option>
+                                  <option value="44" data-preco="27990" data-ano="2009">
+              Fiat Uno Mille Fire economy · 2008/2009 · R$ 27.990            </option>
+                                  <option value="43" data-preco="29990" data-ano="2010">
+              FIAT SIENA EL 1.0 · 2009/2010 · R$ 29.990            </option>
+                                  <option value="42" data-preco="80990" data-ano="2026">
+              HYUNDAI HB20 COMFORT 1.0 · 2025/2026 · R$ 80.990            </option>
+                                  <option value="41" data-preco="53990" data-ano="2021">
+              RENAULT LOGAN ZEN CVT FLEX 1.6 · 2020/2021 · R$ 53.990            </option>
+                                  <option value="40" data-preco="50990" data-ano="2012">
+              HONDA CITY DX FLEX · 2012 · R$ 50.990            </option>
+                                  <option value="37" data-preco="66990" data-ano="2018">
+              CHEVROLET Onix LTZ 1.4 · 2017/2018 · R$ 66.990            </option>
+                                  <option value="34" data-preco="49990" data-ano="2021">
+              Fiat Grand Siena Attractive 1.0 · 2020/2021 · R$ 49.990            </option>
+                                  <option value="33" data-preco="38990" data-ano="2015">
+              Fiat Idea Adventure 1.8 manual · 2014/2015 · R$ 38.990            </option>
+                                  <option value="31" data-preco="49990" data-ano="2017">
+              Peugeot 2008 Griffe · 2013/2017 · R$ 49.990            </option>
+                                  <option value="27" data-preco="72990" data-ano="2025">
+              CHEVROLET Onix LT2 · 2025 · R$ 72.990            </option>
+                                  <option value="26" data-preco="91990" data-ano="2025">
+              Toyota Yaris XL Sedan 1.5 · 2024/2025 · R$ 91.990            </option>
+                                  <option value="25" data-preco="77990" data-ano="2020">
+              CAOA CHERY TIGGO 5X T 1.5 TURBO · 2019/2020 · R$ 77.990            </option>
+                                  <option value="24" data-preco="54990" data-ano="2017">
+              CHEVROLET SPIN ADVANTAGE 1.8 · 2016/2017 · R$ 54.990            </option>
+                                  <option value="14" data-preco="52990" data-ano="2012">
+              Suzuki Grand Vitara 2.0 2WD · 2011/2012 · R$ 52.990            </option>
+                                  <option value="10" data-preco="60990" data-ano="2018">
+              Toyota Etios XS 1.5 Sedan · 2018 · R$ 60.990            </option>
+                                  <option value="8" data-preco="98990" data-ano="2018">
+              Honda HR-V EXL 1.8 Flex · 2017/2018 · R$ 98.990            </option>
+                                  <option value="6" data-preco="52990" data-ano="2021">
+              Ford KA Hatch SE Plus TiVCT Flex 1.0 · 2020/2021 · R$ 52.990            </option>
+                                  <option value="4" data-preco="139990" data-ano="2015">
+              Mercedes-Benz CLA-250 Sport 4MATIC 2.0 · 2015 · R$ 139.990            </option>
+                                  <option value="2" data-preco="63990" data-ano="2022">
+              Fiat Argo 1.0 Flex · 2021/2022 · R$ 63.990            </option>
+                  </select>
+      </div>
+
+      <div class="campo">
+        <label for="f-valor">Valor do carro</label>
+        <input id="f-valor" name="valor_veiculo" type="text" inputmode="numeric" placeholder="R$ 0" data-sim="valor" value="" style="">
+      </div>
+
+      <div class="sim__dupla">
+        <div class="campo">
+          <label for="f-entrada">Entrada em dinheiro</label>
+          <input id="f-entrada" name="entrada" type="text" inputmode="numeric" placeholder="R$ 0" value="" data-sim="entrada" style="">
+        </div>
+        <div class="campo">
+          <label for="f-prazo">Prazo</label>
+          <select id="f-prazo" name="prazo" data-sim="prazo">
+                          <option value="24">24 meses</option>
+                          <option value="36">36 meses</option>
+                          <option value="48" selected="">48 meses</option>
+                          <option value="60">60 meses</option>
+                      </select>
+        </div>
+      </div>
+
+            <p class="sim__nota sim__nota--entrada">
+        Os bancos costumam pedir de <b>20% a 30%</b> do valor do carro como entrada.
+        Mas isso depende do seu CPF: conforme a análise, dá para financiar
+        <b>até 100%</b> — sem entrada nenhuma. Quem diz é a aprovação, e o
+        vendedor confirma com o banco antes de fechar.
+      </p>
+
+      <label class="sim__troca">
+        <input type="checkbox" name="tem_carro_troca" value="1" data-sim="temtroca" style="">
+        <span>Tenho um carro para dar na troca</span>
+      </label>
+
+      <div class="sim__dupla" hidden="" data-sim="blocotroca">
+        <div class="campo">
+          <label for="f-troca">Quanto vale o seu carro, mais ou menos?</label>
+          <input id="f-troca" name="valor_troca" type="text" inputmode="numeric" placeholder="R$ 0" data-sim="troca" value="" style="">
+        </div>
+                <div class="campo">
+          <label for="f-placa">Placa dele <span style="text-transform:none;letter-spacing:0">(opcional)</span></label>
+          <input id="f-placa" name="placa_troca" type="text" maxlength="8" autocomplete="off" placeholder="ABC1D23" value="" style="text-transform: uppercase;">
+        </div>
+      </div>
+
+      <p class="sim__faixa" data-sim="avisofaixa"></p>
+
+      <div class="sim__contato">
+        <p class="sim__chamada">Para onde a gente manda o resultado</p>
+
+        <div class="sim__dupla">
+          <div class="campo">
+            <label for="f-nome">Seu nome</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" required="" value="" style="">
+          </div>
+          <div class="campo">
+            <label for="f-tel">WhatsApp</label>
+            <input id="f-tel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(61) 90000-0000" required="" value="" style="">
+          </div>
+        </div>
+        <div class="campo">
+          <label for="f-email">E-mail</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required="" value="" style="">
+        </div>
+
+        <button class="btn btn--ouro" type="submit" style="width:100%">
+          Quero ver minha parcela        </button>
+
+        <p class="sim__aviso">
+          A gente só pede nome e contato. <b>CPF, RG e renda ficam para a conversa
+          com o vendedor</b>, quando a análise for acontecer de verdade.
+        </p>
+      </div>
+    </form>
+
+    <aside class="fin-lado">
+      <div class="fin-card rev vis" style="--d: 0ms;">
+        <h2>As taxas de hoje</h2>
+        <p>Quanto mais novo o carro, melhor a taxa. É o banco que define, e a loja repassa.</p>
+        <table class="fin-tabela">
+          <caption class="pular">Taxa mensal por ano do veículo</caption>
+          <thead>
+            <tr><th scope="col">Ano do carro</th><th scope="col">Taxa ao mês</th></tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>2010 a 2016</td>
+                <td><b>2,00%</b></td>
+              </tr>
+                          <tr>
+                <td>2017 a 2020</td>
+                <td><b>1,80%</b></td>
+              </tr>
+                          <tr>
+                <td>2021 a 2024</td>
+                <td><b>1,60%</b></td>
+              </tr>
+                          <tr>
+                <td>2025 a 2027</td>
+                <td><b>1,39%</b></td>
+              </tr>
+                      </tbody>
+        </table>
+        <p class="fin-card__nota">
+          Valores de referência. A taxa final sai na análise e varia conforme seu
+          perfil de crédito, a entrada e o prazo.
+        </p>
+      </div>
+
+      <div class="fin-card rev" style="--d: 70ms;">
+        <h2>Como funciona</h2>
+        <ol class="fin-passos">
+          <li><b>Você simula aqui</b><span>Nome e contato. Leva menos de um minuto.</span></li>
+          <li><b>A loja te chama</b><span>Um vendedor confirma os dados e monta a proposta com o banco.</span></li>
+          <li><b>Sai a aprovação</b><span>Com o valor final, prazo e primeira parcela definidos.</span></li>
+          <li><b>Você busca o carro</b><span>E sai daqui com o laço, como todo mundo.</span></li>
+        </ol>
+      </div>
+
+      <div class="fin-card rev" style="--d: 140ms;">
+        <h2>Bancos que a loja consulta</h2>
+        <ul class="fin-lista fin-lista--duas">
+          <li>Itaú</li>
+          <li>Santander</li>
+          <li>Bradesco</li>
+          <li>C6 Bank</li>
+          <li>BV</li>
+          <li>Mercado Livre</li>
+          <li>Banco Pan</li>
+          <li>Creditas</li>
+          <li>Safra</li>
+          <li>Omni</li>
+          <li>Daycoval</li>
+          <li>BBC</li>
+        </ul>
+        <p class="fin-card__nota">
+          A loja envia a sua proposta e fica com a melhor condição que voltar.
+          Nem todo banco aprova todo perfil — por isso ela consulta mais de um.
+        </p>
+      </div>
+
+      <div class="fin-card rev" style="--d: 210ms;">
+        <h2>O que levar na loja</h2>
+        <ul class="fin-lista">
+          <li>CNH ou RG e CPF</li>
+          <li>Comprovante de residência recente</li>
+          <li>Comprovante de renda</li>
+          <li>Se for dar carro na troca: documento do veículo</li>
+        </ul>
+        <p class="fin-card__nota">
+          Nada disso é pedido no site. É o vendedor que confere, pessoalmente ou pelo WhatsApp.
+        </p>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape" id="contato">
+  <div class="wrap">
+    <div class="rodape__in">
+      <div class="rodape__marca">
+        <img src="assets/logo.png?v=1789670506" alt="Pontual Multimarcas" width="924" height="339">
+        <p>
+          Seminovos em Ceilândia, Brasília - DF. Compra, venda, troca,
+          consignação e financiamento, com preço à mostra e a parcela
+          calculada antes de você sair de casa.
+        </p>
+      </div>
+
+      <div>
+        <h3>O site</h3>
+        <ul>
+          <li><a href="estoque.php">Estoque</a></li>
+          <li><a href="financiamento.php">Financiamento</a></li>
+          <li><a href="consignacao.php">Consignação</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Falar com a loja</h3>
+        <ul>
+          <li><a href="https://wa.me/5561981843737?text=Oi%21%20Vim%20pelo%20site%20da%20Pontual%20Multimarcas." target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://instagram.com/pontualmultimarcas_" target="_blank" rel="noopener">@pontualmultimarcas_</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Pontual%20Multimarcas%2C%20St.%20N%20QNN%2018%2C%20Ceil%C3%A2ndia%2C%20Bras%C3%ADlia%20-%20DF" target="_blank" rel="noopener">Como chegar</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rodape__fim">
+      <span>© 2026 Pontual Multimarcas</span>
+      <span>St. N QNN 18 · Ceilândia, Brasília - DF</span>
+          <span>Pontual Motors LTDA · CNPJ 45.661.513/0001-81</span>
+          <span>Criado por <a href="https://azoassessoria.com" target="_blank" rel="noopener">AZO Assessoria</a></span>
+  </div>
+  </div>
+</footer>
+
+<script src="assets/cursor.js?v=1789692103" defer=""></script>
+<script src="assets/capa.js?v=1789692739" defer=""></script>
+<script src="assets/site.js?v=1789692739" defer=""></script>
+<script src="assets/simulador.js?v=1789768184" defer=""></script>
+<script src="assets/revelar.js?v=1789674698" defer=""></script>
+
+
+<div class="cursor-anel" aria-hidden="true" style="transform: translate3d(0px, 0px, 0px);"></div><div class="cursor-ponto" aria-hidden="true"></div></body></html>

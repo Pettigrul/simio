@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C41573a88e5",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://primefinancebrasil.com.br/",
+  "final_url": "https://primefinancebrasil.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "107.161.183.85",
+  "collected_at": "2026-11-23T14:39:14.404223+00:00",
+  "manifest_written_at": "2026-11-23T14:39:24.176202+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C41573a88e5\\attempt-1\\viewport.png",
+      "sha256": "f61a576f7e5a585131411d61422ed803de1809304e01af8ba4fce5b5ddbc035f",
+      "size_bytes": 47329
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C41573a88e5\\attempt-1\\fullpage.png",
+      "sha256": "f61a576f7e5a585131411d61422ed803de1809304e01af8ba4fce5b5ddbc035f",
+      "size_bytes": 47329
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C41573a88e5\\attempt-1\\page.html.txt",
+      "sha256": "8ba921bd2aa936c32f5e88f6967168560dbd2c7e996f9612053464d7e8707c70",
+      "size_bytes": 65516
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C41573a88e5\\attempt-1\\text.txt",
+      "sha256": "b0c5b5e7ebbe6a44678b171660fedab7c8e93cea927a73412d9749117a4bd814",
+      "size_bytes": 798
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C41573a88e5\\attempt-1\\page.json",
+      "sha256": "861a4e266ef0f19739347c09cd164e0cb64a77595fdd2c834b92748f8b8763eb",
+      "size_bytes": 2760
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

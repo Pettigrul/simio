@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C6b6f15785f",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.financeirapessoal.net/bv-financeira",
+  "final_url": "https://www.financeirapessoal.net/bv-financeira",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "162.159.143.12",
+  "collected_at": "2026-11-23T14:47:47.718178+00:00",
+  "manifest_written_at": "2026-11-23T14:47:54.041040+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C6b6f15785f\\attempt-1\\viewport.png",
+      "sha256": "905aaaa1c6d1d6115beac2001f925b114c3a1d94e58b491fe3c0573d7af107ef",
+      "size_bytes": 47966
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C6b6f15785f\\attempt-1\\fullpage.png",
+      "sha256": "905aaaa1c6d1d6115beac2001f925b114c3a1d94e58b491fe3c0573d7af107ef",
+      "size_bytes": 47966
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C6b6f15785f\\attempt-1\\page.html.txt",
+      "sha256": "84aa7ac58d15e377f96c77d618c14b1060342d2969e81633162bbb1252f46d3b",
+      "size_bytes": 65533
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C6b6f15785f\\attempt-1\\text.txt",
+      "sha256": "1c326fdb2193e8655c87f5376deb26bc515c924f024435605d3249cad6e95a7c",
+      "size_bytes": 810
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C6b6f15785f\\attempt-1\\page.json",
+      "sha256": "28f845019cacac96aa12a6bd2baafd60f0928b768bf82ea7024a5670829be7a6",
+      "size_bytes": 2784
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

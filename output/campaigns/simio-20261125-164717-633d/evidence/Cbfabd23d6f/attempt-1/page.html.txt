@@ -1,0 +1,576 @@
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Financiamento de veículos em Salvador: BV e Porto Bank</title>
+<meta name="description" content="Financiamento de carro, moto, utilitário e caminhão em Salvador pela BV e pela Porto Bank. Simule parcela, juros e CET e faça a pré-análise com a CMA.">
+<link rel="canonical" href="https://cmaseguros.com.br/financiamento/financiamento-de-veiculos-salvador/">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#232323">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/img/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Blog da CMA Corretora" href="https://cmaseguros.com.br/blog/feed.xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="CMA Corretora de Seguros">
+<meta property="og:url" content="https://cmaseguros.com.br/financiamento/financiamento-de-veiculos-salvador/">
+<meta property="og:title" content="Financiamento de veículos em Salvador">
+<meta property="og:description" content="Financiamento de carro, moto, utilitário e caminhão em Salvador pela BV e pela Porto Bank. Simule parcela, juros e CET e faça a pré-análise com a CMA.">
+<meta property="og:image" content="https://cmaseguros.com.br/img/og-seg-financiamento-de-veiculos-salvador.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Financiamento de veículos em Salvador">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cmaseguros.com.br/img/og-seg-financiamento-de-veiculos-salvador.png">
+<style>
+/* simulador */
+.sim{max-width:1120px; margin:0 auto; padding-block:40px 20px}
+.simgrid{display:grid; grid-template-columns:minmax(300px,380px) 1fr; gap:22px; align-items:start}
+@media (max-width:900px){ .simgrid{grid-template-columns:1fr} }
+.pane{background:var(--card); border-radius:var(--r); padding:22px; border:1px solid var(--rule)}
+.pane h2{font-size:1.05rem; margin-bottom:14px}
+.f{display:grid; gap:6px; margin-top:14px} .f label{font-size:.82rem; font-weight:600; color:var(--ink2)}
+.f .in{display:flex; align-items:center; border:1px solid var(--rule); border-radius:10px; background:var(--card); overflow:hidden}
+.f .in span{padding:0 10px; color:var(--muted); font-size:.9rem; border-right:1px solid var(--rule); align-self:stretch; display:flex; align-items:center; background:var(--ground)}
+.f input,.f select{font:inherit; font-size:1rem; padding:11px 12px; border:0; background:transparent; color:var(--ink); width:100%; min-width:0; outline:none}
+.f .in:focus-within{border-color:var(--orange); box-shadow:0 0 0 3px rgba(255,100,0,.12)}
+.f .hint{font-size:.76rem; color:var(--muted)}
+.row2{display:grid; grid-template-columns:1fr 1fr; gap:12px} @media (max-width:420px){ .row2{grid-template-columns:1fr} }
+details.adv{margin-top:18px; border-top:1px solid var(--rule); padding-top:10px}
+details.adv summary{cursor:pointer; font-weight:600; font-size:.9rem; color:var(--orange-dk); list-style:none; display:flex; justify-content:space-between}
+details.adv summary::-webkit-details-marker{display:none} details.adv summary::after{content:"+"} details.adv[open] summary::after{content:"–"}
+.ref{font-size:.78rem; color:var(--muted); margin-top:10px; line-height:1.5}
+.verdict{background:var(--navy); color:var(--navy-ink); border-radius:var(--r); padding:20px 22px}
+.verdict .kicker{color:var(--orange)} .verdict h2{font-size:clamp(1.15rem,2.4vw,1.45rem); margin-top:6px; color:var(--navy-ink); line-height:1.25}
+.verdict p{color:var(--navy-muted); margin-top:8px; font-size:.95rem}
+.cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px}
+@media (max-width:760px){ .cards3{grid-template-columns:1fr} }
+.sc{background:var(--card); border-radius:var(--r); padding:18px; border:1px solid var(--rule); display:flex; flex-direction:column; gap:8px; min-width:0}
+.sc.best{border-color:var(--orange); box-shadow:0 0 0 3px rgba(255,100,0,.10)}
+.sc .tag{font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--orange-dk)}
+.sc h3{font-size:1rem} .sc .big{font-size:1.55rem; font-weight:700; letter-spacing:-.02em; line-height:1.1}
+.sc .big small{display:block; font-size:.74rem; font-weight:500; color:var(--muted); letter-spacing:0; margin-top:2px}
+.sc dl{display:grid; grid-template-columns:1fr auto; gap:5px 10px; margin:4px 0 0; font-size:.86rem}
+.sc dt{color:var(--muted)} .sc dd{margin:0; text-align:right; font-weight:600; color:var(--ink)}
+.sc .v{font-size:.86rem; color:var(--ink2); border-top:1px solid var(--rule); padding-top:8px; margin-top:auto}
+.sc .pill{display:inline-block; font-size:.72rem; font-weight:600; padding:2px 8px; border-radius:999px; background:var(--orange-lt); color:var(--ink)}
+.chart{background:var(--card); border-radius:var(--r); padding:18px 22px 14px; border:1px solid var(--rule); margin-top:14px}
+.chart h2{font-size:1rem} .chart .leg{display:flex; gap:16px; font-size:.78rem; color:var(--muted); margin-top:6px; flex-wrap:wrap}
+.chart .leg i{display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-2px; margin-right:5px}
+.bars{display:grid; gap:12px; margin-top:14px}
+.bar{display:grid; grid-template-columns:150px 1fr; gap:10px; align-items:center; font-size:.86rem} @media (max-width:520px){ .bar{grid-template-columns:1fr} }
+.bar .lab{color:var(--ink2); font-weight:600}
+.bar .trk{display:grid; gap:5px}
+.bar .b{height:18px; border-radius:5px; background:var(--orange); min-width:2px; position:relative; transition:width .35s ease}
+.bar .b.g{background:var(--navy-muted)} .bar .b i{position:absolute; left:calc(100% + 8px); top:50%; transform:translateY(-50%); font-style:normal; font-size:.78rem; color:var(--ink2); white-space:nowrap}
+.simnote{font-size:.8rem; color:var(--muted); margin-top:12px; line-height:1.5}
+.lead{background:var(--navy); color:var(--navy-ink); border-radius:var(--r); padding:26px; margin-top:22px; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:start}
+@media (max-width:860px){ .lead{grid-template-columns:1fr} }
+.lead h2{font-size:clamp(1.25rem,2.6vw,1.6rem); color:var(--navy-ink); line-height:1.2} .lead p{color:var(--navy-muted); margin-top:10px; font-size:.95rem}
+.lead .form{margin-top:0}
+.simfaq{max-width:1120px; margin:0 auto; padding-block:30px 10px}
+.simfaq h2{font-size:1.3rem}
+.simfaq details{background:var(--card); border-radius:14px; padding:4px 20px; margin-top:10px}
+.simfaq summary{cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.simfaq summary::-webkit-details-marker{display:none} .simfaq summary::after{content:"+"; color:var(--orange-dk); font-weight:700} .simfaq details[open] summary::after{content:"–"}
+.simfaq details p{padding:0 0 16px; color:var(--ink2); font-size:.95rem}
+.simidx{max-width:1120px; margin:0 auto; padding-block:48px 60px}
+
+.ptab{width:100%; border-collapse:collapse; font-size:.88rem; margin-top:10px}
+.ptab th,.ptab td{padding:9px 10px; text-align:right; border-bottom:1px solid var(--rule); white-space:nowrap}
+.ptab th:first-child,.ptab td:first-child{text-align:left}
+.ptab thead th{font-size:.74rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:700}
+.ptab tr.on td{background:var(--orange-lt); font-weight:700}
+.ptwrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.callout{background:var(--card); border:1px dashed var(--orange); border-radius:var(--r); padding:16px 20px; margin-top:14px; font-size:.93rem; color:var(--ink2)}
+.callout b{color:var(--ink)} .callout a{font-weight:700}
+.seg{display:flex; border:1px solid var(--rule); border-radius:10px; overflow:hidden; background:var(--ground)}
+.seg label{flex:1; text-align:center; cursor:pointer; font-size:.86rem; font-weight:600; padding:9px 6px; color:var(--ink2); margin:0}
+.seg{position:relative} .seg input{position:absolute; opacity:0; pointer-events:none; width:1px; height:1px; padding:0; margin:0}
+.seg label:has(input:checked){background:var(--orange); color:#fff}
+.stack{display:flex; height:26px; border-radius:6px; overflow:hidden; margin-top:12px}
+.stack span{display:block; height:100%; transition:width .35s ease}
+.chk{display:flex; gap:9px; align-items:flex-start; font-size:.86rem; color:var(--ink2); margin-top:14px; cursor:pointer}
+.chk input{width:18px; height:18px; accent-color:var(--orange); margin-top:1px; flex:none}
+.morsims{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:12px}
+.morsims a{display:block; background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:14px 16px; font-weight:600; color:var(--ink); text-decoration:none}
+.morsims a small{display:block; font-weight:400; color:var(--muted); margin-top:3px; font-size:.82rem}
+.morsims a:hover{border-color:var(--orange)}
+.simgrid > *{min-width:0}
+.pane .seg{display:flex !important; height:auto; align-items:stretch}
+.pane .seg label{display:block; flex:1}
+.f .in span{white-space:nowrap}
+
+.pp{max-width:1120px; margin:0 auto; padding-block:36px 10px}
+.pp h2{font-size:clamp(1.25rem,2.4vw,1.55rem); margin:34px 0 8px}
+.pp p.sub{color:var(--muted); font-size:.98rem; max-width:780px}
+.cov{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin-top:14px}
+.cov article{background:var(--card); border:1px solid var(--rule); border-radius:var(--r); padding:18px}
+.cov h3{font-size:1rem} .cov p{font-size:.9rem; color:var(--ink2); margin-top:6px}
+.pp ul.price{margin-top:10px; padding-left:20px} .pp ul.price li{margin-top:6px; color:var(--ink2)}
+.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:14px; counter-reset:st}
+.steps div{background:var(--card); border-radius:var(--r); padding:18px; border:1px solid var(--rule); counter-increment:st}
+.steps div::before{content:counter(st); display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--orange); color:#fff; font-weight:700; font-size:.9rem; margin-bottom:8px}
+.steps b{display:block} .steps span{font-size:.9rem; color:var(--ink2)}
+.toolbox{display:flex; gap:18px; align-items:center; justify-content:space-between; background:var(--navy); color:var(--navy-ink); border-radius:var(--r); padding:22px 24px; margin-top:28px; flex-wrap:wrap}
+.toolbox b{font-size:1.1rem; display:block} .toolbox span{color:var(--navy-muted); font-size:.93rem}
+.heroacts{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+.bhead .heroacts .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.35); color:#fff}
+.pp .extra{margin-top:16px; color:var(--ink2)}
+.pidx{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:24px}
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%;height:auto}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin="">
+<style>@font-face{font-family:"Outfit";font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/outfit-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face{font-family:"Outfit";font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/outfit-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face{font-family:"Outfit Fallback";src:local("Arial");font-weight:400 500;size-adjust:98.9%;ascent-override:100%;descent-override:26%;line-gap-override:0%}@font-face{font-family:"Outfit Fallback";src:local("Arial Bold"),local("Arial");font-weight:600 900;size-adjust:94.5%;ascent-override:100%;descent-override:26%;line-gap-override:0%}</style>
+<style>
+/* Sistema da rede Seguralta (Manual v2.0): Outfit, laranja #FF6400 como cor dominante,
+   tiles laranja arredondados com ícone branco, cards brancos sobre cinza claro.
+   Layout em faixas: abertura escura com seletor, grade de produtos, faixa PJ, pós-venda, FAQ. */
+:root{
+  --ground:#F0F0F0; --card:#FFFFFF; --ink:#232323; --ink2:#464646; --muted:#6F7376; --rule:#E3E3E3;
+  --orange:#FF6400; --orange-dk:#D95400; --orange-lt:#FEDB99; --orange-md:#F8B26A;
+  --navy:#1C3240; --navy-ink:#F4F6F7; --navy-muted:#A9B5BD; --navy-rule:#2C4454;
+  --font:"Outfit","Outfit Fallback",Arial,sans-serif;
+  --seg-ink:#232323; --r:18px;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#141617; --card:#1D2022; --ink:#F2F2F2; --ink2:#D4D6D7; --muted:#9A9FA2; --rule:#2C3033;
+  --orange:#FF7A24; --orange-dk:#FF8E4A; --orange-lt:#3A2412; --orange-md:#7A4A1E;
+  --navy:#0F1C25; --navy-ink:#F4F6F7; --navy-muted:#9FAAB2; --navy-rule:#24343F;
+  --seg-ink:#F2F2F2; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#141617; --card:#1D2022; --ink:#F2F2F2; --ink2:#D4D6D7; --muted:#9A9FA2; --rule:#2C3033;
+  --orange:#FF7A24; --orange-dk:#FF8E4A; --orange-lt:#3A2412; --orange-md:#7A4A1E;
+  --navy:#0F1C25; --navy-ink:#F4F6F7; --navy-muted:#9FAAB2; --navy-rule:#24343F;
+  --seg-ink:#F2F2F2; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ground); color:var(--ink); font-family:var(--font); font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased}
+p{margin:0} h1,h2,h3,h4{margin:0; font-weight:600; letter-spacing:-.015em; text-wrap:balance}
+a{color:var(--orange-dk)} img{max-width:100%; height:auto}
+:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:4px}
+.wrap{max-width:1120px; margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px))}
+.btn{display:inline-flex; align-items:center; gap:9px; background:var(--orange); color:#fff; font-weight:600; font-size:.95rem;
+  text-decoration:none; padding:13px 20px; border-radius:999px; border:0; cursor:pointer; white-space:nowrap}
+.btn:hover{background:var(--orange-dk)} .btn svg{width:18px;height:18px;fill:currentColor}
+.btn.light{background:var(--card); color:var(--ink); border:1px solid var(--rule)} .btn.light:hover{border-color:var(--orange); color:var(--orange-dk); background:var(--card)}
+.btn.onnavy{background:transparent; color:var(--navy-ink); border:1px solid var(--navy-rule)} .btn.onnavy:hover{border-color:var(--orange); color:var(--orange); background:transparent}
+.kicker{font-weight:600; font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--orange-dk)}
+.h2{font-size:clamp(1.55rem,3.4vw,2.15rem); line-height:1.15}
+.sub{margin-top:12px; color:var(--ink2); max-width:60ch}
+
+/* topo */
+.top{background:var(--card); border-bottom:1px solid var(--rule); position:sticky; top:env(safe-area-inset-top,0px); z-index:20}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:30; background:var(--card)}
+.top .wrap{display:flex; align-items:center; gap:18px; padding-block:12px; min-height:64px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink)}
+.brand img{height:44px; width:auto; display:block}
+.brand .wm{display:flex; flex-direction:column; line-height:1}
+.brand .wm b{font-size:1.5rem; font-weight:800; letter-spacing:-.025em}
+.brand .wm small{font-size:.5rem; font-weight:600; letter-spacing:.27em; text-transform:uppercase; color:var(--ink2); margin-top:3px; margin-left:.05em}
+nav.menu{display:flex; gap:18px; margin-left:14px}
+nav.menu a{font-weight:500; font-size:.9rem; color:var(--ink2); text-decoration:none; white-space:nowrap} nav.menu a:hover{color:var(--orange-dk)}
+.franqwrap{margin-left:auto; display:flex; align-items:center; gap:10px}
+.franq{font-size:.56rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); line-height:1.2; text-align:right}
+.seg{height:20px; width:auto; display:block}
+@media (max-width:1420px){ nav.menu{gap:13px; margin-left:10px} nav.menu a{font-size:.85rem} } @media (max-width:1300px){ nav.menu{gap:10px} nav.menu a{font-size:.8rem} } @media (max-width:1230px){ nav.menu{display:none} } @media (max-width:640px){ .top .btn{display:none} }
+@media (max-width:520px){ .franq{display:none} }
+
+/* abertura */
+.hero{background:var(--navy); color:var(--navy-ink)}
+.hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding-block:64px 56px}
+@media (max-width:860px){ .hero .wrap{grid-template-columns:1fr; gap:30px; padding-block:44px 40px} }
+.hero .kicker{color:var(--orange)}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.5rem); line-height:1.05; margin-top:14px; max-width:15ch}
+.hero h1 em{font-style:normal; color:var(--orange)}
+.hero .lead{margin-top:18px; color:var(--navy-muted); font-size:1.08rem; max-width:50ch}
+.hero .lead b{color:var(--navy-ink); font-weight:600}
+.hero .acts{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px}
+.nums{display:flex; gap:28px; flex-wrap:wrap; margin-top:34px; padding-top:22px; border-top:1px solid var(--navy-rule)}
+.num b{display:block; font-size:1.45rem; font-weight:700; line-height:1} .num span{font-size:.8rem; color:var(--navy-muted)}
+.picker{background:var(--card); color:var(--ink); border-radius:var(--r); padding:22px 22px 18px; box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.picker h3{font-size:1.05rem} .picker p{color:var(--muted); font-size:.9rem; margin-top:4px}
+.picker ul{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:6px}
+.picker a{display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; text-decoration:none; color:var(--ink); font-weight:500; border:1px solid var(--rule); background:var(--card)}
+.picker a:hover{border-color:var(--orange); background:var(--orange-lt)}
+.picker a svg{width:22px;height:22px;flex:none; fill:var(--orange)} .picker a i{margin-left:auto; font-style:normal; color:var(--orange-dk)}
+.picker small{display:block; margin-top:12px; color:var(--muted); font-size:.8rem}
+
+/* seguradoras */
+.logos{background:var(--card); border-bottom:1px solid var(--rule)}
+.logos .wrap{padding-block:34px 30px}
+.logos .kicker{text-align:center; display:block}
+.lgrid{display:grid; grid-template-columns:repeat(5,1fr); gap:18px 28px; align-items:center; margin-top:20px}
+@media (max-width:760px){ .lgrid{grid-template-columns:repeat(3,1fr)} } @media (max-width:460px){ .lgrid{grid-template-columns:repeat(2,1fr)} }
+.lgrid div{display:flex; align-items:center; justify-content:center; height:54px; background:#fff; border-radius:10px; padding:8px 14px}
+.lgrid img{max-height:34px; width:auto; max-width:100%}
+.more{margin-top:16px; text-align:center; font-size:.86rem; color:var(--muted); line-height:1.8}
+.more b{color:var(--ink2); font-weight:600}
+
+/* produtos */
+section.prod{padding-block:64px}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:22px}
+.tab{font-weight:600; font-size:.9rem; padding:10px 16px; border-radius:999px; border:1px solid var(--rule); background:var(--card); color:var(--ink2); cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
+.grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px}
+@media (max-width:1000px){ .grid{grid-template-columns:repeat(3,1fr)} } @media (max-width:700px){ .grid{grid-template-columns:repeat(2,1fr)} } @media (max-width:420px){ .grid{grid-template-columns:1fr} }
+.card{background:var(--card); border-radius:var(--r); padding:20px 20px 18px; display:flex; flex-direction:column; gap:10px; min-width:0; border:1px solid transparent; transition:border-color .15s, transform .15s}
+.card:hover{border-color:var(--orange-md); transform:translateY(-2px)}
+.tile{width:48px; height:48px; border-radius:13px; background:var(--orange); display:grid; place-items:center} .tile svg{width:26px;height:26px;fill:#fff}
+.card h3{font-size:1.02rem; font-weight:600} .card p{font-size:.9rem; color:var(--muted); flex:1}
+.card a{font-weight:600; font-size:.9rem; text-decoration:none; color:var(--orange-dk)} .card a:hover{text-decoration:underline}
+.panel[hidden]{display:none}
+.simlink{grid-column:1/-1; font-size:.92rem; color:var(--ink2); background:var(--card); border-radius:12px; padding:12px 16px; border-left:4px solid var(--orange)} .simlink a{font-weight:600}
+
+/* faixa PJ */
+.pj{background:var(--orange); color:#fff}
+.pj .wrap{padding-block:60px; display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start}
+@media (max-width:860px){ .pj .wrap{grid-template-columns:1fr} }
+.pj .kicker{color:rgba(255,255,255,.85)} .pj h2{font-size:clamp(1.6rem,3.6vw,2.3rem); line-height:1.12; margin-top:10px; color:#fff}
+.pj p{color:rgba(255,255,255,.93); margin-top:14px; max-width:52ch}
+.pj .cards{display:grid; gap:12px}
+.pj .cards a{display:block; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); border-radius:14px; padding:18px 20px; text-decoration:none; color:#fff}
+.pj .cards a:hover{background:rgba(255,255,255,.22)} .pj .cards b{display:block; font-weight:600; margin-bottom:4px} .pj .cards span{font-size:.9rem; opacity:.92}
+
+/* pós-venda */
+section.pos{padding-block:64px}
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px}
+@media (max-width:760px){ .steps{grid-template-columns:1fr} }
+.step{background:var(--card); border-radius:var(--r); padding:22px}
+.step b{display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--orange-lt); color:var(--orange-dk); font-weight:700; margin-bottom:12px}
+.step h3{font-size:1rem} .step p{margin-top:6px; color:var(--muted); font-size:.92rem}
+
+/* quem */
+section.quem{padding-block:64px; background:var(--card); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.quem .wrap{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center}
+@media (max-width:860px){ .quem .wrap{grid-template-columns:1fr} }
+.pessoas{display:grid; grid-template-columns:1fr 1fr; gap:14px; min-width:0}
+@media (max-width:480px){ .pessoas{grid-template-columns:1fr} }
+.quem .wrap>*{min-width:0}
+.pessoa{background:var(--ground); border-radius:var(--r); padding:20px; display:grid; gap:8px; justify-items:start}
+.avatar{width:72px; height:72px; border-radius:50%; background:var(--orange); color:#fff; display:grid; place-items:center; font-weight:700; font-size:1.3rem}
+.pessoa{min-width:0} .pessoa b{font-weight:600} .pessoa span{font-size:.86rem; color:var(--muted); overflow-wrap:anywhere}
+.end{margin-top:18px; font-size:.92rem; color:var(--ink2); line-height:1.6}
+
+/* faq */
+section.faq{padding-block:64px}
+.faq details{background:var(--card); border-radius:14px; padding:4px 20px; margin-top:10px}
+.faq summary{cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::after{content:"+"; color:var(--orange-dk); font-weight:700} .faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 16px; color:var(--ink2); font-size:.95rem}
+
+/* contato */
+.contact{background:var(--navy); color:var(--navy-ink)}
+.contact .wrap{padding-block:60px; display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:start}
+@media (max-width:860px){ .contact .wrap{grid-template-columns:1fr} }
+.contact h2{font-size:clamp(1.6rem,3.6vw,2.2rem); line-height:1.12} .contact p{color:var(--navy-muted); margin-top:12px; max-width:48ch}
+.contact .acts{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+.clist{display:grid; gap:12px} .clist div{background:rgba(255,255,255,.06); border:1px solid var(--navy-rule); border-radius:12px; padding:14px 16px}
+.clist div{min-width:0} .clist span{overflow-wrap:anywhere} .clist b{display:block; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--navy-muted); margin-bottom:4px} .clist span{font-weight:500}
+
+footer{background:var(--ground)} footer .wrap{padding-block:28px 40px; display:grid; gap:8px}
+footer p{font-size:.78rem; color:var(--muted); line-height:1.65}
+.fbrand{background:#232323; color:#F0F0F0; --seg-ink:#F2F2F2}
+.fbrand .wrap{display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:28px; padding-block:30px}
+.fbrand img{height:112px; width:auto; display:block; margin-left:-14px}
+.fseg{display:flex; align-items:center; gap:12px; padding-left:28px; border-left:1px solid rgba(255,255,255,.14)}
+.fseg span{font-size:.56rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#A9ADB0; line-height:1.2; text-align:right}
+.fseg .seg{height:22px}
+.fline{font-size:.95rem; color:#C9CDD0; max-width:40ch; justify-self:end; text-align:right; line-height:1.5}
+@media (max-width:860px){ .fbrand .wrap{grid-template-columns:auto auto; gap:18px 24px} .fline{grid-column:1/-1; justify-self:start; text-align:left} }
+@media (max-width:480px){ .fbrand img{height:84px; margin-left:-10px} .fseg{padding-left:14px; gap:8px; min-width:0} .fseg .seg{height:auto; width:100%; max-width:118px} }
+
+/* whatsapp flutuante */
+.zapfab{position:fixed; right:calc(18px + env(safe-area-inset-right,0px)); bottom:calc(18px + env(safe-area-inset-bottom,0px)); z-index:25;
+  width:58px; height:58px; border-radius:50%; background:#25D366; display:grid; place-items:center; box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.zapfab svg{width:30px;height:30px;fill:#fff}
+.status{display:inline-flex; align-items:center; gap:8px; margin-top:12px; font-size:.8rem; color:var(--muted)}
+.status i{width:9px;height:9px;border-radius:50%;background:#2BB673;display:inline-block}
+.status.off i{background:var(--orange-md)}
+.hours{margin-top:16px; display:grid; gap:4px; font-size:.92rem; color:var(--ink2)}
+.hours b{font-weight:600; color:var(--ink)}
+.cta2{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.cta2 a{font-size:.86rem; font-weight:600; color:var(--navy-ink); text-decoration:none; border:1px solid var(--navy-rule); border-radius:999px; padding:8px 14px}
+.cta2 a:hover{border-color:var(--orange); color:var(--orange)}
+.form{background:var(--card); color:var(--ink); border-radius:var(--r); padding:22px; display:grid; gap:12px; margin-top:18px}
+.form h3{font-size:1.02rem} .form p{color:var(--muted); font-size:.88rem}
+.form label{display:grid; gap:5px; font-size:.82rem; font-weight:600; color:var(--ink2)}
+.form input,.form select{font:inherit; font-size:.95rem; padding:11px 12px; border:1px solid var(--rule); border-radius:10px; background:var(--card); color:var(--ink); width:100%; min-width:0}
+.form input:focus,.form select:focus{border-color:var(--orange); outline:none}
+.form .row{display:grid; grid-template-columns:1fr 1fr; gap:10px} @media (max-width:520px){ .form .row{grid-template-columns:1fr} }
+.form .consent{display:flex; gap:12px; align-items:flex-start; font-size:.9rem; font-weight:400; color:var(--ink); line-height:1.45; border:2px solid var(--rule); border-radius:12px; padding:13px 14px; background:var(--ground); cursor:pointer; transition:border-color .15s, background .15s; scroll-margin-top:90px}
+.form .consent input{appearance:auto; -webkit-appearance:auto; width:24px; height:24px; min-width:24px; margin:0; padding:0; flex:none; border-radius:6px; accent-color:var(--orange); cursor:pointer}
+.form .consent b{display:block; font-weight:700; color:var(--ink); margin-bottom:2px}
+.form .consent small{display:block; font-size:.78rem; color:var(--muted); line-height:1.4}
+.form .optin{display:flex; gap:12px; align-items:flex-start; font-size:.86rem; font-weight:400; color:var(--ink2); line-height:1.45; padding:4px 2px; cursor:pointer}
+.form .optin input{appearance:auto; -webkit-appearance:auto; width:20px; height:20px; min-width:20px; margin:2px 0 0; padding:0; flex:none; accent-color:var(--orange); cursor:pointer}
+.form .optin b{display:block; font-weight:600; color:var(--ink)}
+.form .optin small{display:block; font-size:.76rem; color:var(--muted)}
+.form .consent:has(input:checked){border-color:var(--orange); background:var(--orange-lt)}
+.form .consent:has(input:focus-visible){outline:3px solid var(--orange-md); outline-offset:2px}
+.form .consent.err,.form input.err,.form select.err{border-color:#C8321E; box-shadow:0 0 0 3px rgba(200,50,30,.14)}
+@keyframes fshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}} .form .consent.err{animation:fshake .3s ease}
+.form .btn{justify-self:start} .form .msg{font-size:.9rem; font-weight:600; color:var(--orange-dk); min-height:1.2em} .form .msg.err{color:#C8321E}
+
+/* do blog (home) */
+.doblog .wrap{padding-block:56px 60px}
+.doblog .plist{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-top:26px}
+.pcard{background:var(--card); border-radius:var(--r); padding:22px 22px 20px; display:flex; flex-direction:column; gap:10px; border:1px solid transparent; transition:border-color .15s, transform .15s; min-width:0}
+.pcard:hover{border-color:var(--orange-md); transform:translateY(-2px)}
+.pcard .kicker{font-size:.7rem} .pcard h3{font-size:1.12rem; line-height:1.3; font-weight:600} .pcard h3 a{color:var(--ink); text-decoration:none} .pcard h3 a:hover{color:var(--orange-dk)}
+.pcard p{color:var(--muted); font-size:.92rem; flex:1} .pcard time{font-size:.8rem; color:var(--muted)}
+.pcard .more{font-weight:600; font-size:.9rem; color:var(--orange-dk); text-decoration:none} .pcard .more:hover{text-decoration:underline}
+.doblog .btn{margin-top:22px}
+.flinks{display:block; margin-top:8px} .flinks a{color:var(--orange-md); text-decoration:none; font-weight:600; font-size:.86rem; margin-right:16px} .flinks a:hover{text-decoration:underline}
+@media (prefers-reduced-motion:reduce){*{transition:none!important} html{scroll-behavior:auto}}
+</style>
+<style>
+/* formulário de lead e link de contratação direta (opcionais, por artigo) */
+.blead{margin-top:28px; background:var(--navy); color:var(--navy-ink); border-radius:var(--r); padding:26px; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:start; scroll-margin-top:90px}
+@media (max-width:860px){ .blead{grid-template-columns:1fr} }
+.blead h2{margin:0; font-size:clamp(1.25rem,2.6vw,1.6rem); color:var(--navy-ink); line-height:1.2} .blead > div > p{color:var(--navy-muted); margin-top:10px; font-size:.95rem; max-width:none}
+.post .blead h2{color:var(--navy-ink); margin-top:10px} .post .pdirect h2{margin-top:0}
+.blead .form{margin-top:0} .blead .form p{max-width:none}
+.pdirect{margin-top:28px; background:var(--card); border:1px solid var(--rule); border-left:5px solid var(--orange); border-radius:14px; padding:22px; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center}
+@media (max-width:700px){ .pdirect{grid-template-columns:1fr} }
+.pdirect .qr{display:flex; gap:12px; align-items:center; margin-top:14px} .pdirect .qr img{width:96px; height:96px; background:#fff; border-radius:8px; padding:4px; border:1px solid var(--rule)} .pdirect .qr span{font-size:.82rem; color:var(--muted); max-width:22ch}
+@media (max-width:860px){ .pdirect .qr{display:none} }
+.pdirect h2{margin:0; font-size:1.15rem} .pdirect p{font-size:.95rem; margin-top:8px; max-width:none} .pdirect small{display:block; font-size:.8rem; color:var(--muted); margin-top:8px}
+
+/* blog */
+/* calculadora embutida */
+.calc{margin:40px 0; padding:24px 22px 18px; background:var(--card); border:1px solid var(--rule); border-left:4px solid var(--orange); border-radius:var(--r)}
+.calc .kicker{color:var(--orange-dk)} .calc h2{margin-top:6px} .calc > p{margin-top:8px}
+.calcframe{display:block; width:100%; border:0; height:980px; margin-top:16px; background:transparent}
+.calcfoot{font-size:.86rem; margin-top:10px} .calcfoot a{font-weight:600}
+.chk{display:grid; gap:10px; margin-top:16px} .chk label{display:flex; gap:10px; align-items:flex-start; font-size:.95rem; cursor:pointer}
+.chk input{margin-top:4px; width:18px; height:18px; accent-color:var(--orange)}
+.calcres{margin-top:16px; padding:14px 16px; border-radius:12px; background:var(--ground); font-size:.95rem}
+.calcres b{display:block; font-size:1.02rem; margin-bottom:4px}
+.calcrow{display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin-top:16px} .calcrow label{display:grid; gap:4px; font-size:.82rem; font-weight:600}
+.calcrow input{font:inherit; padding:9px 10px; border:1px solid var(--rule); border-radius:10px; width:120px; background:var(--card); color:var(--ink)}
+
+.bhead{background:var(--navy); color:var(--navy-ink)}
+.bhead .wrap{padding-block:52px 48px; max-width:860px}
+.bhead .kicker{color:var(--orange)} .bhead .kicker a{color:inherit; text-decoration:none}
+.bhead h1{font-size:clamp(1.9rem,4.4vw,2.9rem); line-height:1.1; margin-top:14px; font-weight:700; letter-spacing:-.02em}
+.bhead .meta{margin-top:18px; display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.86rem; color:var(--navy-muted)}
+.bhead .meta b{color:var(--navy-ink); font-weight:600}
+.crumbs{font-size:.8rem; color:var(--navy-muted); display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
+.crumbs a{color:var(--navy-muted); text-decoration:none} .crumbs a:hover{color:var(--orange)}
+.post{max-width:860px; margin:0 auto; padding-block:44px 24px}
+.post .lede{font-size:1.18rem; line-height:1.6; color:var(--ink); max-width:68ch}
+.post p,.post li{font-size:1.04rem; line-height:1.72; color:var(--ink2); max-width:68ch}
+.post p+p,.post ul,.post ol{margin-top:18px}
+.post ul,.post ol{padding-left:22px} .post li+li{margin-top:8px}
+.post h2{font-size:clamp(1.35rem,2.8vw,1.75rem); line-height:1.2; margin-top:46px; color:var(--ink); scroll-margin-top:84px}
+.post h3{font-size:1.08rem; margin-top:26px; color:var(--ink)} .post h3+p{margin-top:8px}
+.post h2+p{margin-top:14px}
+.post strong{color:var(--ink); font-weight:600}
+.post a{color:var(--orange-dk); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px}
+.tldr,.box{background:var(--card); border:1px solid var(--rule); border-left:5px solid var(--orange); border-radius:14px; padding:20px 22px; margin-top:28px}
+.tldr ul{margin-top:10px; padding-left:20px} .tldr li{font-size:1rem} .tldr .kicker{margin:0}
+.box p{color:var(--ink); font-size:1rem}
+.tbl{margin-top:26px} .tscroll{overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:14px}
+.tbl table{border-collapse:collapse; width:100%; min-width:560px; background:var(--card); border-radius:14px; overflow:hidden; font-size:.95rem}
+.tbl .tcap{font-weight:600; font-size:.9rem; color:var(--ink2); padding:0 0 10px; max-width:none}
+@media (max-width:600px){ .tbl .tcap::after{content:" · deslize para ver as colunas →"; font-weight:500; color:var(--muted)} }
+.post .tbl+p,.post .tldr+p,.post .box+p,.post .box+h2{margin-top:22px}
+.tbl th,.tbl td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top}
+.tbl thead th{background:var(--orange-lt); color:var(--ink); font-weight:600; font-size:.88rem; line-height:1.25} .tbl thead th small{font-weight:500; color:var(--ink2); font-size:.78rem}
+.tbl tbody th{font-weight:600; color:var(--ink); background:color-mix(in srgb,var(--card) 70%,var(--ground))}
+.tbl tbody tr:last-child th,.tbl tbody tr:last-child td{border-bottom:0}
+.tbl .note{font-size:.82rem; color:var(--muted); margin-top:10px; max-width:none}
+.pfaq{margin-top:48px} .pfaq h2{margin-top:0}
+.pfaq details{background:var(--card); border-radius:14px; padding:4px 20px; margin-top:10px}
+.pfaq summary{cursor:pointer; font-weight:600; padding:14px 0; list-style:none; display:flex; justify-content:space-between; gap:16px; color:var(--ink)}
+.pfaq summary::-webkit-details-marker{display:none}
+.pfaq summary::after{content:"+"; color:var(--orange-dk); font-weight:700; flex:none} .pfaq details[open] summary::after{content:"–"}
+.pfaq details p{padding:0 0 16px; font-size:.97rem}
+.pcta{margin-top:48px; background:var(--navy); color:var(--navy-ink); border-radius:var(--r); padding:30px 28px; display:grid; grid-template-columns:1.3fr .9fr; gap:24px; align-items:center}
+.pcta h2{margin:0; font-size:clamp(1.3rem,2.6vw,1.65rem); color:var(--navy-ink)} .pcta p{color:var(--navy-muted); font-size:.98rem; margin-top:10px}
+.pcta .acts{display:flex; flex-direction:column; gap:10px; align-items:stretch} .pcta .acts .btn{justify-content:center}
+.post .btn{color:#fff; text-decoration:none} .post .btn.onnavy{color:var(--navy-ink)} .post .btn.onnavy:hover{color:var(--orange)}
+@media (max-width:700px){ .pcta{grid-template-columns:1fr} }
+.pautor{margin-top:40px; padding-top:22px; border-top:1px solid var(--rule); display:flex; gap:16px; align-items:center}
+.pautor img{width:56px; height:56px; border-radius:14px; background:#232323; padding:8px; flex:none}
+.pautor p{font-size:.9rem; color:var(--muted); max-width:none} .pautor b{color:var(--ink); display:block; font-size:.95rem}
+.psrc{margin-top:36px} .psrc h2{font-size:1rem; margin-top:0; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; font-weight:600}
+.psrc ol{padding-left:20px; margin-top:10px} .psrc li{font-size:.86rem; color:var(--muted); line-height:1.5} .psrc li+li{margin-top:6px}
+.psrc a{color:var(--orange-dk); text-decoration:none} .psrc a:hover{text-decoration:underline}
+/* índice */
+.bindex .wrap{padding-block:50px 60px}
+.plist{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:28px}
+.pcard{background:var(--card); border-radius:var(--r); padding:22px 22px 20px; display:flex; flex-direction:column; gap:10px; border:1px solid transparent; transition:border-color .15s, transform .15s; min-width:0}
+.pcard:hover{border-color:var(--orange-md); transform:translateY(-2px)}
+.pcard .kicker{font-size:.7rem} .pcard h2,.pcard h3{font-size:1.15rem; line-height:1.3; font-weight:600} .pcard h2 a,.pcard h3 a{color:var(--ink); text-decoration:none} .pcard h2 a:hover,.pcard h3 a:hover{color:var(--orange-dk)}
+.pcard p{color:var(--muted); font-size:.92rem; flex:1} .pcard time{font-size:.8rem; color:var(--muted)}
+.pcard .more{font-weight:600; font-size:.9rem; color:var(--orange-dk); text-decoration:none} .pcard .more:hover{text-decoration:underline}
+.bmore{margin-top:22px}
+</style>
+<script src="https://app.chatwoot.com/packs/js/sdk.js" defer="" async=""></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=AW-18556616940&amp;cx=c&amp;gtm=4e6bh1h1"></script><script src="/js/cma-track.js?v=20261122a" defer=""></script>
+<link rel="stylesheet" href="/css/cma-geral.css?v=20261121a"><link rel="stylesheet" href="/css/fundo.css?v=20261122a"><style>#cma-ck{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:560px;margin:0 auto;background:#232323;color:#F0F0F0;border-radius:16px;padding:16px 18px;box-shadow:0 10px 40px rgba(0,0,0,.35);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}#cma-ck p{margin:0 0 12px} #cma-ck a{color:#FF8A3D;font-weight:600} #cma-ck .b{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}#cma-ck button{font:inherit;font-weight:700;border-radius:999px;padding:9px 18px;cursor:pointer;border:1px solid #6b6b6b;background:transparent;color:#F0F0F0}#cma-ck button.ok{background:#FF6400;border-color:#FF6400;color:#fff}</style><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-7DZ8NPG13G"></script></head>
+<body class="fvp"><video class="fv-v fvp-bg" muted="" loop="" playsinline="" preload="none" poster="/img/fundos/ceu-laranja.jpg" data-hd="/img/fundos/ceu-laranja-1080.mp4" data-sd="/img/fundos/ceu-laranja-720.mp4" aria-hidden="true" tabindex="-1" src="/img/fundos/ceu-laranja-1080.mp4"></video>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1a2.5 2.5 0 0 1-5 0H10a2.5 2.5 0 0 1-5 0H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h1zm2.3 0h9.4l-1-2.8a.6.6 0 0 0-.6-.4H8.9a.6.6 0 0 0-.6.4L7.3 11z"></path></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v3h3.2a1 1 0 0 1 .9.5L21 13v3a1 1 0 0 1-1 1h-1a2.5 2.5 0 0 1-5 0h-4a2.5 2.5 0 0 1-5 0H3a1 1 0 0 1-1-1V6zm13 5v2h4l-1.5-2H15z"></path></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M12 3l9 8h-2.5v9h-5v-6h-3v6h-5v-9H3l9-8z"></path></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M21 15.5l-8-5V4.5a1.5 1.5 0 0 0-3 0v6l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-4l8 2.5v-2z"></path></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm1 2v15h6V4H9zm2 16.2h2v1.2h-2z"></path></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.7-8 11-8 11z"></path></symbol>
+<symbol id="i-med" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.5 5h3v3.5H17v3h-3.5V17h-3v-3.5H7v-3h3.5V7z"></path></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3zm-1.2 13.2l5.4-5.4-1.4-1.4-4 4-1.8-1.8-1.4 1.4 3.2 3.2z"></path></symbol>
+<symbol id="i-case" viewBox="0 0 24 24"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V6a2 2 0 0 1 2-2zm0 3h6V6H9v1zm2 5v2h2v-2h-2z"></path></symbol>
+<symbol id="i-bld" viewBox="0 0 24 24"><path d="M4 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v6h4a1 1 0 0 1 1 1v10h-7v-4h-3v4H4zm3-14v2h2V7H7zm4 0v2h2V7h-2zM7 11v2h2v-2H7zm4 0v2h2v-2h-2zm6 2v2h2v-2h-2z"></path></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1zm2 0h6V7a3 3 0 0 0-6 0v3zm2 5v3h2v-3h-2z"></path></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M12 2l9 4.5v11L12 22l-9-4.5v-11L12 2zm0 2.2L5.6 7.4 12 10.6l6.4-3.2L12 4.2zM5 9.1v7.2l6 3V12.1l-6-3zm8 3v7.2l6-3V9.1l-6 3z"></path></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24"><path d="M12 3c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3zM4 9c0 1.7 3.6 3 8 3s8-1.3 8-3v3c0 1.7-3.6 3-8 3s-8-1.3-8-3V9zm0 6c0 1.7 3.6 3 8 3s8-1.3 8-3v3c0 1.7-3.6 3-8 3s-8-1.3-8-3v-3z"></path></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><path d="M14.5 3a6.5 6.5 0 0 0-6.2 8.5L2 17.8V22h4.2l1.4-1.4v-2h2v-2h2l1.4-1.4A6.5 6.5 0 1 0 14.5 3zm2 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"></path></symbol>
+<symbol id="i-people" viewBox="0 0 24 24"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm8 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6zM2 19c0-3 2.7-5 6-5s6 2 6 5v1H2v-1zm12 1v-1c0-1.6-.6-3-1.6-4.1.5-.1 1-.2 1.6-.2 3.3 0 6 2 6 5v.3H14z"></path></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h8l5 5v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm7 1.5V8h4.5L13 3.5zM8 12h8v2H8v-2zm0 4h8v2H8v-2z"></path></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><path d="M10.3 2h3.4l.5 2.6c.6.2 1.2.5 1.7 1l2.5-.9 1.7 3-2 1.7a7 7 0 0 1 0 2.2l2 1.7-1.7 3-2.5-.9c-.5.4-1.1.7-1.7 1L13.7 22h-3.4l-.5-2.6a7 7 0 0 1-1.7-1l-2.5.9-1.7-3 2-1.7a7 7 0 0 1 0-2.2l-2-1.7 1.7-3 2.5.9c.5-.4 1.1-.7 1.7-1L10.3 2zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.2 14.8l-.3-.2-2.6.7.7-2.5-.2-.3A8 8 0 0 1 12 4zm-3 4.2c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a7 7 0 0 1-3.5-3c-.3-.5.3-.4.8-1.5.1-.2 0-.4 0-.5L10.2 9c-.2-.5-.4-.7-.6-.8H9z"></path></symbol>
+</svg>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="CMA Corretora — início" style="position: relative;"><img src="/img/cma-simbolo-132.webp" alt="" width="38" height="44" style="transform-origin: 50% 55%;"><span class="wm"><b>CMA</b><small>Corretora</small></span></a>
+    <nav class="menu" aria-label="Seções"><a href="/seguros/" aria-current="page">Seguros</a><a href="/#empresas">Para empresas</a><a href="/#consorcio">Consórcio e crédito</a><a href="/#quem">Quem atende</a><a href="/blog/">Blog</a><span class="mdd"><button type="button" aria-expanded="false" aria-haspopup="true">Ferramentas</button><span class="mddp"><a href="/simuladores/">Simuladores</a><a href="/indicadores/">Tabela FIPE</a></span></span></nav>
+    <span class="franqwrap"><span class="franq">Franquia<br>oficial</span><svg class="seg" viewBox="42 338 1836 345" role="img" aria-label="Seguralta" xmlns="http://www.w3.org/2000/svg"><path fill="#FF6400" fill-rule="evenodd" d="M383.32,452.58l-302.81,221.89c-6.81,4.55-4.57,8.63.7,8.39h628.99c5.27.25,7.51-3.83.7-8.39l-302.81-221.89c-7.97-5.35-16.79-5.35-24.76,0"></path><path fill="var(--seg-ink)" fill-rule="evenodd" d="M383.84,343.64L42.28,680.01l338.2-248.78c5.09-3.43,10.16-5.25,15.22-5.3,5.06.06,10.13,1.88,15.22,5.3l338.21,248.78-341.57-336.37c-3.96-3.58-7.92-5.41-11.85-5.3-3.94-.11-7.89,1.71-11.86,5.3"></path><path fill="var(--seg-ink)" fill-rule="evenodd" d="M757.88,538.14h39.26v5c0,9.41,1.18,16.05,3.57,19.91,2.36,3.83,6.37,5.76,11.98,5.76,4.5,0,8.07-1.48,10.68-4.4,2.64-2.92,3.93-6.9,3.93-11.94,0-8.31-6.37-16.24-19.16-23.9-2.07-1.33-3.65-2.33-4.75-3-.4-.22-1.06-.61-2.03-1.21-17.18-10.82-27.89-18.96-32.11-24.43-3.01-4.17-5.29-8.84-6.87-13.99-1.58-5.2-2.39-10.88-2.39-17.03,0-14.95,4.63-26.7,13.92-35.2,9.26-8.53,22.05-12.78,38.29-12.78,17.69,0,31.17,4.17,40.51,12.55,9.3,8.39,13.97,20.48,13.97,36.35,0,.68-.04,1.59-.12,2.8-.08,1.18-.12,2.09-.12,2.77h-38.41v-2.12c0-7.48-1.25-13.17-3.73-17-2.51-3.87-6.13-5.8-10.93-5.8-4.02,0-7.31,1.36-9.75,4.06-2.47,2.69-3.69,6.29-3.69,10.74,0,7.24,6.98,14.94,20.94,23.1,2.51,1.55,4.47,2.77,5.8,3.56,1.14.61,2.68,1.52,4.67,2.77,14.98,8.91,24.56,16.38,28.78,22.46,2.6,3.94,4.63,8.39,6,13.39,1.39,5,2.07,10.43,2.07,16.28,0,17.1-4.74,30.29-14.24,39.55-9.54,9.26-23.14,13.88-40.8,13.88-18.55,0-32.48-4.44-41.82-13.27-9.29-8.87-13.96-22.04-13.96-39.53,0-1.1,0-2.28.04-3.49.04-1.21.2-3.19.45-5.84M888.46,596.17h0v-171.14h99.65v33.22h-57.07v31.45h52.69v34.33h-52.69v37.36h57.07v34.79h-99.65ZM1124.29,502.38h0v93.8h-29.51l-1.91-10.65c-4.26,4.58-9.01,8-14.21,10.27-5.19,2.24-11.08,3.38-17.66,3.38-7.43,0-14.32-1.29-20.62-3.91-6.29-2.58-11.77-6.34-16.44-11.2-5.8-6.03-9.9-14.11-12.26-24.23-2.4-10.17-3.57-27.35-3.57-51.55,0-17.26.85-31.1,2.51-41.46,1.67-10.39,4.22-18.17,7.72-23.33,5.07-7.51,11.77-13.13,20.14-16.92,8.36-3.75,18.3-5.65,29.79-5.65,18.03,0,31.59,4.59,40.68,13.73,9.14,9.14,13.68,22.8,13.68,40.92,0,.68-.04,1.67-.12,3.08-.08,1.37-.12,2.47-.12,3.27h-40.68v-2.14c0-9.82-1.14-16.88-3.37-21.08-2.28-4.21-5.92-6.33-11-6.33-6.04,0-10.18,2.57-12.46,7.77-2.23,5.2-3.37,17.3-3.37,36.35v28.67c0,19.01,1.06,31.04,3.21,36,2.15,4.97,6.09,7.44,11.9,7.44s9.98-2.2,12.58-6.56c2.64-4.36,3.93-11.46,3.93-21.21,0-2.23-.03-3.94-.07-5.12s-.08-2.35-.16-3.45h-16.77v-29.89h58.18ZM1149.31,425.03h43.28v107.23c0,16.24,1.1,26.24,3.29,30.11,2.15,3.83,6.05,5.77,11.61,5.77s9.5-2.01,11.65-5.99c2.15-4.02,3.21-13.96,3.21-29.89v-107.23h42.46v109.24c0,12.36-.57,21.58-1.71,27.72-1.18,6.11-3.04,11.42-5.68,15.94-4.35,7.69-10.64,13.34-18.92,16.95-8.25,3.59-18.96,5.38-32.24,5.38-12.18,0-22.12-1.67-29.84-5.05-7.67-3.37-13.79-8.76-18.3-16.19-3.25-5.24-5.52-11.99-6.86-20.23-1.29-8.23-1.95-22.11-1.95-41.68v-92.09ZM1334.05,496.27h0c.73,0,1.66.04,2.8.11,1.13.08,1.99.12,2.56.12,8.9,0,15.18-1.67,18.88-5.01,3.69-3.34,5.52-8.95,5.52-16.88,0-7.36-1.83-12.55-5.52-15.63-3.7-3.08-9.99-4.63-18.88-4.63-.57,0-1.43.03-2.56.11-1.14.08-2.07.12-2.8.12v41.69ZM1291.7,596.17h0v-171.14h48.19c15.76,0,27.24.68,34.35,2.04,7.14,1.37,12.94,3.72,17.37,7.06,5.23,4.02,9.14,8.95,11.72,14.79,2.56,5.84,3.87,12.82,3.87,20.9,0,9.82-1.84,18.09-5.52,24.77-3.7,6.67-9.42,12.13-17.18,16.46,13.23,5.47,20.18,18.47,20.9,38.99v.57c.09,2.12.16,5.24.25,9.33.33,19.28,3.74,31.33,10.22,36.23h-50.04c-1.15-3.56-1.96-7.28-2.48-11.16-.49-3.91-.77-8.08-.77-12.52,0-2.73.07-6.06.24-9.94.16-3.91.25-6.45.25-7.62,0-10.48-1.47-17.6-4.39-21.47-2.96-3.83-8.24-5.77-15.83-5.77h-8.8v68.47h-42.35ZM1471.35,532.49h24.6l-12.26-74.69-12.34,74.69ZM1418.41,596.17h0l39.95-171.14h50.91l39.5,171.14h-42.83l-5.36-32.81h-33.65l-5.33,32.81h-43.19ZM1657.01,596.17h-94.3v-171.14h42.83v136.59h51.48v34.56ZM1675.61,596.17h42.96v-137.92h36.05v-33.22h-113.26v33.22h34.25v137.92ZM1800.31,532.49h24.6l-12.25-74.69-12.34,74.69ZM1747.37,596.17h0l39.94-171.14h50.91l39.5,171.14h-42.83l-5.35-32.81h-33.66l-5.32,32.81h-43.19Z"></path></svg></span>
+    <a class="btn" href="https://wa.me/5571991941612?text=Ol%C3%A1%21%20Vim%20do%20site%20da%20CMA%20Corretora."><svg><use href="#i-zap"></use></svg>WhatsApp</a>
+  </div>
+</header>
+<main>
+<section class="bhead">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Você está em"><a href="/">Início</a><span>›</span><a href="/simuladores/">Simuladores</a><span>›</span><span>Financiamento de veículos</span></nav>
+    <p class="kicker">Financiamento de veículos · Salvador e todo o Brasil</p>
+    <h1><b>Financiamento de carro,</b> moto e caminhão em Salvador com a BV e a Porto Bank</h1>
+    <div class="meta"><span>Para quem precisa do veículo agora, o financiamento entrega o bem na hora e divide o valor em parcelas com juros. A CMA é correspondente da BV e da Porto Bank: faz a pré-análise, compara a parcela e o Custo Efetivo Total (CET) e mostra também o caminho do consórcio, sem juros.</span></div>
+    <div class="heroacts"><a class="btn" href="https://wa.me/5571991941612?text=Ol%C3%A1%21%20Vim%20da%20p%C3%A1gina%20de%20financiamento%20de%20ve%C3%ADculos%20do%20site%20da%20CMA%20e%20quero%20uma%20cota%C3%A7%C3%A3o."><svg><use href="#i-zap"></use></svg>Cotar pelo WhatsApp</a><a class="btn ghost" href="#contato">Pedir que me chamem</a></div>
+  </div>
+</section>
+<section class="pp wrap">
+  <h2>O que a CMA financia</h2>
+  <p class="sub">A aprovação, a taxa e o prazo dependem da análise de crédito de cada financeira.</p>
+  <div class="cov"><article><h3>Carro novo ou seminovo</h3><p>Em concessionária ou de particular, conforme as regras da financeira.</p></article><article><h3>Moto</h3><p>Para trabalho ou locomoção.</p></article><article><h3>Utilitário e caminhão</h3><p>Para autônomos e empresas que precisam do veículo para trabalhar.</p></article><article><h3>No CPF ou no CNPJ</h3><p>Financiamento para pessoa física ou para empresa, conforme a análise da financeira.</p></article><article><h3>Pré-análise</h3><p>Com a sua autorização, a CMA envia a proposta às financeiras antes de você escolher o veículo.</p></article><article><h3>Seguro junto</h3><p>Cotação do seguro auto no mesmo atendimento, exigido em muitos contratos.</p></article></div>
+  <h2>O que define a parcela</h2>
+  <ul class="price"><li>Valor do veículo e da entrada.</li><li>Prazo do financiamento.</li><li>Taxa de juros, definida pela análise de crédito.</li><li>IOF, tarifas e seguros incluídos no contrato, que formam o CET.</li><li>Idade e tipo do veículo.</li></ul>
+  <div id="precos-salvador"><h2>Quanto custa financiar um veículo: exemplo com a taxa média do Banco Central</h2><p>No financiamento, o custo está nos juros e no Custo Efetivo Total (CET). A taxa de cada cliente depende do score, da entrada e do prazo.</p><ul class="price"><li>Taxa média de mercado para aquisição de veículos por pessoa física: 26,42% ao ano em agosto de 2026 (Banco Central, série 20749).</li><li>Exemplo: carro de R$ 100 mil, entrada de 20% e R$ 80 mil financiados em 48 meses na taxa média = parcelas de cerca de R$ 2.594 e custo total de cerca de R$ 144,5 mil (Garagem360).</li><li>Uma entrada maior e um prazo mais curto reduzem o total pago em juros.</li></ul><p class="sub">Exemplo baseado na taxa média do Banco Central. A taxa oferecida a você pode ser maior ou menor; confira sempre o CET da proposta.</p><h2>Bancos com que a CMA trabalha</h2><p>A CMA envia propostas de financiamento de veículos ao BV e ao Porto Bank e compara o CET de cada opção.</p></div><h2>Como a CMA conduz o seu financiamento</h2>
+  <div class="steps lnwrap"><svg class="lnsvg" aria-hidden="true" focusable="false" viewBox="0 0 1088 311"><path pathLength="1" d="M32 32L399.328125 32L766.65625 32" style="--lo: 1.000;"></path></svg><div class="lnstep"><b>Você informa o veículo e a entrada</b><span>Pelo formulário ou pelo WhatsApp.</span></div><div class="lnstep"><b>A CMA faz a pré-análise</b><span>Com a sua autorização, na BV e na Porto Bank.</span></div><div class="lnstep"><b>Você compara as condições</b><span>Parcela, prazo e CET, lado a lado com o consórcio.</span></div><div class="lnstep"><b>Contrato e seguro</b><span>A gente acompanha a assinatura e cota o seguro do veículo.</span></div></div>
+  <div class="toolbox"><div><b>Simule a parcela, os juros e o CET</b><span>Todos os prazos, com IOF e a taxa média do Banco Central como referência.</span></div><a class="btn" href="/simuladores/financiamento-de-veiculo/">Abrir</a></div>
+  <div class="extra"><p>Pode esperar alguns meses? Compare com o <a href="/consorcio/consorcio-de-carro-e-moto-salvador/">consórcio de carro e moto</a>, sem juros, no <a href="/simuladores/consorcio-ou-financiamento/">simulador lado a lado</a>.</p></div>
+</section>
+<section class="pp wrap pguias" data-rel="guias"><h2>Guias para decidir</h2><p class="sub">Respostas diretas para as dúvidas mais comuns antes de contratar.</p><div class="plist">
+<article class="pcard"><p class="kicker">Guia</p><h3><a href="/blog/consorcio-ou-financiamento-de-carro/">Consórcio ou financiamento: qual compensa para comprar um carro em 2026?</a></h3><p>Carro de R$ 100 mil em três cenários: financiamento, consórcio por sorteio e consórcio com lance. Veja juros, taxas, prazo e quando cada um compensa.</p><a class="more" href="/blog/consorcio-ou-financiamento-de-carro/">Ler o guia →</a></article>
+<article class="pcard"><p class="kicker">Guia</p><h3><a href="/blog/seguro-para-motorista-de-aplicativo/">Seguro para motorista de aplicativo (Uber, 99 e inDrive): quais seguradoras aceitam e regras</a></h3><p>Quais seguradoras aceitam carro de aplicativo? Regra do condutor principal, o que o seguro da Uber e da 99 não cobre, carro alugado e preço em 2026.</p><a class="more" href="/blog/seguro-para-motorista-de-aplicativo/">Ler o guia →</a></article>
+</div></section>
+<section class="provas" aria-label="Depoimentos de clientes"><div class="wrap"><p class="kicker">Clientes</p><h2 class="ph">Quem já é cliente <b>conta como é.</b></h2><p class="ps">Depoimentos de clientes de Salvador, publicados com autorização.</p><div class="pl"><figure class="rel"><blockquote>Já contratei consórcio de carro e consórcio de serviços, e já fui contemplado. O acompanhamento da CMA é excelente.</blockquote><figcaption><b>João Rocha</b><span>Cidade Baixa, Salvador</span><span class="prods"><i>Consórcio de carro</i><i>Consórcio de serviços</i></span></figcaption></figure><figure><blockquote>Tenho o seguro da minha van com a CMA. Me apresentaram uma excelente variedade de opções para eu escolher a mais adequada ao meu perfil.</blockquote><figcaption><b>Francisco Marcelo</b><span>Uruguai, Salvador</span><span class="prods"><i>Seguro de van</i></span></figcaption></figure><figure><blockquote>Fiz o seguro da minha moto. A quantidade de opções para comparar me encantou, e o suporte é nota 10: eles esclarecem tudo com transparência.</blockquote><figcaption><b>Amauri Vitório</b><span>Pituba, Salvador</span><span class="prods"><i>Seguro de moto</i></span></figcaption></figure></div></div></section><section class="sim wrap" style="padding-top:0"><section class="lead" id="contato" aria-label="Receber a simulação real">
+    <div>
+      <p class="kicker" style="color:var(--orange)">Cotação sem compromisso</p>
+      <h2>Quer simular o financiamento do seu veículo?</h2>
+      <p>Deixe seu nome e WhatsApp: você recebe uma mensagem nossa na hora e a Araci continua no horário de atendimento, de segunda a sexta das 9h às 19h e aos sábados das 9h às 13h.</p>
+    </div>
+    <form class="form" id="lead" data-endpoint="https://cmaj.app.n8n.cloud/webhook/lead-site-cma" novalidate="">
+      <div class="row">
+        <label>Seu nome<input type="text" id="f-nome" name="nome" autocomplete="name" required="" style=""></label>
+        <label>Seu WhatsApp<input type="tel" id="f-zap" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="(71) 9 9999-9999" required="" style=""></label>
+      </div>
+      <label class="consent" id="f-consent"><input type="checkbox" id="f-ok" required="" style=""><span><b>Autorizo o contato pelo WhatsApp informado</b>A CMA Corretora usa seu nome, número e os valores simulados só para esta cotação.<small>Não vendemos nem cedemos seus dados. Veja a <a href="/privacidade/">política de privacidade</a>.</small></span></label>
+      <label class="optin" id="f-optin"><input type="checkbox" id="f-mkt" style=""><span><b>Quero receber novidades da CMA pelo WhatsApp</b>Lembretes de renovação, dicas e ofertas de seguros, consórcio e crédito.<small>Opcional. Para sair, é só responder SAIR.</small></span></label>
+      <button class="btn" type="submit">Quero a cotação</button>
+      <div class="msg" id="f-msg" role="status" aria-live="polite"></div>
+    </form>
+  </section></section>
+<section class="simfaq wrap">
+  <h2>Perguntas frequentes sobre financiamento de veículos em Salvador</h2>
+  <details><summary>O que é o CET do financiamento?</summary><p>É o Custo Efetivo Total: a taxa que reúne juros, IOF, tarifas e seguros do contrato. É o número certo para comparar propostas, porque duas ofertas com a mesma taxa de juros podem ter CET diferente.</p></details><details><summary>Preciso de entrada para financiar?</summary><p>Depende da financeira e da análise de crédito. Uma entrada maior reduz a parcela, os juros pagos e aumenta a chance de aprovação.</p></details><details><summary>Posso quitar o financiamento antes?</summary><p>Sim. O Código de Defesa do Consumidor garante a liquidação antecipada com redução proporcional dos juros.</p></details><details><summary>Financiamento ou consórcio?</summary><p>O financiamento entrega o veículo na hora, mas cobra juros. O consórcio não tem juros, mas não tem data de contemplação. A CMA mostra os dois lado a lado.</p></details><details><summary>A CMA cobra pela pré-análise?</summary><p>Não. A pré-análise e a comparação das propostas são gratuitas para o cliente.</p></details><details><summary>Preciso dar entrada?</summary><p>Nem sempre, mas uma entrada maior reduz os juros e aumenta a chance de aprovação. O mínimo é definido pelo banco na análise.</p></details><details><summary>Posso financiar um carro usado em Salvador?</summary><p>Sim. Os bancos financiam veículos novos e usados dentro de limites de idade do veículo e de valor, que variam conforme a política de cada banco.</p></details><details><summary>Financiamento ou consórcio?</summary><p>Se precisa do carro agora, o financiamento resolve; se pode esperar, o consórcio não tem juros. Veja <a href="/blog/consorcio-ou-financiamento-de-carro/">a comparação no blog</a>.</p></details>
+  <p class="simnote" style="margin-top:16px">A CMA Corretora de Seguros é correspondente da BV Financeira e da Porto Bank para financiamento de veículos. A concessão de crédito, as taxas e os prazos dependem da análise de crédito da instituição financeira. A CMA é franquia oficial da rede Seguralta, com sede em Salvador.</p>
+  <h2 style="margin-top:26px">Outros produtos</h2><div class="morsims"><a href="/seguros/seguro-auto-salvador/">Seguro auto<small>Seguro auto em Salvador</small></a><a href="/seguros/seguro-de-vida-salvador/">Seguro de vida<small>Seguro de vida em Salvador</small></a><a href="/seguros/seguro-residencial-salvador/">Seguro residencial<small>Seguro residencial em Salvador</small></a><a href="/seguros/seguro-fianca-salvador/">Seguro fiança<small>Seguro fiança em Salvador</small></a><a href="/seguros/plano-de-saude-salvador/">Plano de saúde<small>Plano de saúde em Salvador</small></a><a href="/seguros/seguro-empresarial-salvador/">Seguro empresarial<small>Seguro empresarial em Salvador</small></a><a href="/seguros/plano-de-saude-pet-salvador/">Plano de saúde pet<small>Plano de saúde pet em Salvador</small></a><a href="/seguros/seguro-garantia-salvador/">Seguro garantia<small>Seguro garantia em Salvador</small></a><a href="/seguros/seguro-cyber-salvador/">Seguro cyber<small>Seguro cyber para empresas</small></a><a href="/seguros/responsabilidade-civil-salvador/">Seguro de responsabilidade civil<small>Seguro de responsabilidade civil em Salvador</small></a><a href="/seguros/seguro-frota-salvador/">Seguro de frota<small>Seguro de frota e caminhão em Salvador</small></a><a href="/seguros/seguro-viagem-salvador/">Seguro viagem<small>Seguro viagem em Salvador</small></a><a href="/seguros/seguro-celular-salvador/">Seguro celular<small>Seguro celular em Salvador</small></a><a href="/seguros/seguro-condominio-salvador/">Seguro condomínio<small>Seguro condomínio em Salvador</small></a><a href="/seguros/seguro-transporte-de-cargas-salvador/">Seguro de transporte de cargas<small>Seguro de transporte de cargas em Salvador</small></a><a href="/seguros/seguro-de-vida-em-grupo-salvador/">Seguro de vida em grupo<small>Seguro de vida em grupo em Salvador</small></a><a href="/seguros/previdencia-privada-salvador/">Previdência privada<small>Previdência privada em Salvador</small></a><a href="/consorcio/consorcio-de-imovel-salvador/">Consórcio de imóvel<small>Consórcio de imóvel em Salvador</small></a><a href="/consorcio/consorcio-de-carro-e-moto-salvador/">Consórcio de carro e moto<small>Consórcio de carro e moto em Salvador</small></a><a href="/consorcio/consorcio-de-servicos-salvador/">Consórcio de serviços<small>Consórcio de serviços em Salvador</small></a><a href="/consorcio/">Consórcio<small>Carro, moto, imóvel e serviços, com quatro administradoras</small></a></div>
+</section>
+</main>
+<footer>
+  <div class="fbrand">
+    <div class="wrap">
+      <img src="/img/cma-marca-escuro-260.webp" alt="CMA Corretora" width="268" height="130" loading="lazy" decoding="async">
+      <div class="fseg"><span>Franquia<br>oficial</span><svg class="seg" viewBox="42 338 1836 345" role="img" aria-label="Seguralta" xmlns="http://www.w3.org/2000/svg"><path fill="#FF6400" fill-rule="evenodd" d="M383.32,452.58l-302.81,221.89c-6.81,4.55-4.57,8.63.7,8.39h628.99c5.27.25,7.51-3.83.7-8.39l-302.81-221.89c-7.97-5.35-16.79-5.35-24.76,0"></path><path fill="var(--seg-ink)" fill-rule="evenodd" d="M383.84,343.64L42.28,680.01l338.2-248.78c5.09-3.43,10.16-5.25,15.22-5.3,5.06.06,10.13,1.88,15.22,5.3l338.21,248.78-341.57-336.37c-3.96-3.58-7.92-5.41-11.85-5.3-3.94-.11-7.89,1.71-11.86,5.3"></path><path fill="var(--seg-ink)" fill-rule="evenodd" d="M757.88,538.14h39.26v5c0,9.41,1.18,16.05,3.57,19.91,2.36,3.83,6.37,5.76,11.98,5.76,4.5,0,8.07-1.48,10.68-4.4,2.64-2.92,3.93-6.9,3.93-11.94,0-8.31-6.37-16.24-19.16-23.9-2.07-1.33-3.65-2.33-4.75-3-.4-.22-1.06-.61-2.03-1.21-17.18-10.82-27.89-18.96-32.11-24.43-3.01-4.17-5.29-8.84-6.87-13.99-1.58-5.2-2.39-10.88-2.39-17.03,0-14.95,4.63-26.7,13.92-35.2,9.26-8.53,22.05-12.78,38.29-12.78,17.69,0,31.17,4.17,40.51,12.55,9.3,8.39,13.97,20.48,13.97,36.35,0,.68-.04,1.59-.12,2.8-.08,1.18-.12,2.09-.12,2.77h-38.41v-2.12c0-7.48-1.25-13.17-3.73-17-2.51-3.87-6.13-5.8-10.93-5.8-4.02,0-7.31,1.36-9.75,4.06-2.47,2.69-3.69,6.29-3.69,10.74,0,7.24,6.98,14.94,20.94,23.1,2.51,1.55,4.47,2.77,5.8,3.56,1.14.61,2.68,1.52,4.67,2.77,14.98,8.91,24.56,16.38,28.78,22.46,2.6,3.94,4.63,8.39,6,13.39,1.39,5,2.07,10.43,2.07,16.28,0,17.1-4.74,30.29-14.24,39.55-9.54,9.26-23.14,13.88-40.8,13.88-18.55,0-32.48-4.44-41.82-13.27-9.29-8.87-13.96-22.04-13.96-39.53,0-1.1,0-2.28.04-3.49.04-1.21.2-3.19.45-5.84M888.46,596.17h0v-171.14h99.65v33.22h-57.07v31.45h52.69v34.33h-52.69v37.36h57.07v34.79h-99.65ZM1124.29,502.38h0v93.8h-29.51l-1.91-10.65c-4.26,4.58-9.01,8-14.21,10.27-5.19,2.24-11.08,3.38-17.66,3.38-7.43,0-14.32-1.29-20.62-3.91-6.29-2.58-11.77-6.34-16.44-11.2-5.8-6.03-9.9-14.11-12.26-24.23-2.4-10.17-3.57-27.35-3.57-51.55,0-17.26.85-31.1,2.51-41.46,1.67-10.39,4.22-18.17,7.72-23.33,5.07-7.51,11.77-13.13,20.14-16.92,8.36-3.75,18.3-5.65,29.79-5.65,18.03,0,31.59,4.59,40.68,13.73,9.14,9.14,13.68,22.8,13.68,40.92,0,.68-.04,1.67-.12,3.08-.08,1.37-.12,2.47-.12,3.27h-40.68v-2.14c0-9.82-1.14-16.88-3.37-21.08-2.28-4.21-5.92-6.33-11-6.33-6.04,0-10.18,2.57-12.46,7.77-2.23,5.2-3.37,17.3-3.37,36.35v28.67c0,19.01,1.06,31.04,3.21,36,2.15,4.97,6.09,7.44,11.9,7.44s9.98-2.2,12.58-6.56c2.64-4.36,3.93-11.46,3.93-21.21,0-2.23-.03-3.94-.07-5.12s-.08-2.35-.16-3.45h-16.77v-29.89h58.18ZM1149.31,425.03h43.28v107.23c0,16.24,1.1,26.24,3.29,30.11,2.15,3.83,6.05,5.77,11.61,5.77s9.5-2.01,11.65-5.99c2.15-4.02,3.21-13.96,3.21-29.89v-107.23h42.46v109.24c0,12.36-.57,21.58-1.71,27.72-1.18,6.11-3.04,11.42-5.68,15.94-4.35,7.69-10.64,13.34-18.92,16.95-8.25,3.59-18.96,5.38-32.24,5.38-12.18,0-22.12-1.67-29.84-5.05-7.67-3.37-13.79-8.76-18.3-16.19-3.25-5.24-5.52-11.99-6.86-20.23-1.29-8.23-1.95-22.11-1.95-41.68v-92.09ZM1334.05,496.27h0c.73,0,1.66.04,2.8.11,1.13.08,1.99.12,2.56.12,8.9,0,15.18-1.67,18.88-5.01,3.69-3.34,5.52-8.95,5.52-16.88,0-7.36-1.83-12.55-5.52-15.63-3.7-3.08-9.99-4.63-18.88-4.63-.57,0-1.43.03-2.56.11-1.14.08-2.07.12-2.8.12v41.69ZM1291.7,596.17h0v-171.14h48.19c15.76,0,27.24.68,34.35,2.04,7.14,1.37,12.94,3.72,17.37,7.06,5.23,4.02,9.14,8.95,11.72,14.79,2.56,5.84,3.87,12.82,3.87,20.9,0,9.82-1.84,18.09-5.52,24.77-3.7,6.67-9.42,12.13-17.18,16.46,13.23,5.47,20.18,18.47,20.9,38.99v.57c.09,2.12.16,5.24.25,9.33.33,19.28,3.74,31.33,10.22,36.23h-50.04c-1.15-3.56-1.96-7.28-2.48-11.16-.49-3.91-.77-8.08-.77-12.52,0-2.73.07-6.06.24-9.94.16-3.91.25-6.45.25-7.62,0-10.48-1.47-17.6-4.39-21.47-2.96-3.83-8.24-5.77-15.83-5.77h-8.8v68.47h-42.35ZM1471.35,532.49h24.6l-12.26-74.69-12.34,74.69ZM1418.41,596.17h0l39.95-171.14h50.91l39.5,171.14h-42.83l-5.36-32.81h-33.65l-5.33,32.81h-43.19ZM1657.01,596.17h-94.3v-171.14h42.83v136.59h51.48v34.56ZM1675.61,596.17h42.96v-137.92h36.05v-33.22h-113.26v33.22h34.25v137.92ZM1800.31,532.49h24.6l-12.25-74.69-12.34,74.69ZM1747.37,596.17h0l39.94-171.14h50.91l39.5,171.14h-42.83l-5.35-32.81h-33.66l-5.32,32.81h-43.19Z"></path></svg></div>
+      <p class="fline">Seguros, consórcio e crédito para você e para a sua empresa. Sede em Salvador, atendimento em todo o Brasil. <a href="/blog/" style="color:#F8B26A">Blog</a> · <a href="/simuladores/" style="color:#F8B26A">Simuladores</a> · <a href="/indicadores/" style="color:#F8B26A">Tabela FIPE e indicadores</a> · <a href="/cct/" style="color:#F8B26A">Convenções coletivas</a> · <a href="/consorcio/" style="color:#F8B26A">Consórcio</a></p>
+    </div>
+  </div>
+  <div class="wrap">
+    <p>CMA Corretora de Seguros — Vitória Corretora de Seguros Ltda · CNPJ 55.927.508/0001-21 · Franquia oficial da rede Seguralta · Responsabilidade técnica da franqueadora Seguralta.</p>
+    <p>Rua Alceu Amoroso Lima, 786, Edif. Tancredo Neves Trade Center, sala 311 A, Caminho das Árvores, Salvador/BA, CEP 41820-770.</p><p>Ligações: <a href="tel:+5571991942001">(71) 99194-2001</a> · WhatsApp: <a href="https://wa.me/5571991941612">(71) 99194-1612</a></p>
+    <p>O conteúdo do blog é informativo e não substitui a análise do seu caso. Valores e taxas citados são exemplos ou médias de mercado na data de publicação e podem mudar. As marcas citadas pertencem às respectivas empresas.</p>
+  </div>
+<p class="cklinks" style="text-align:center;font-size:.8rem;margin:14px 0 0;opacity:.85"><a href="/privacidade/" style="color:inherit">Política de privacidade</a> · <a href="/privacidade/#cookies" data-cookies="" style="color:inherit">Preferências de cookies</a></p></footer>
+<a class="zapfab" href="https://wa.me/5571991941612?text=Ol%C3%A1%21%20Vim%20do%20blog%20da%20CMA%20Corretora." aria-label="Chamar no WhatsApp"><svg><use href="#i-zap"></use></svg></a>
+
+<script>
+(function(){
+
+  var $=function(id){return document.getElementById(id);};
+  var brl=function(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR');};
+  var brl2=function(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var pct=function(v,d){return (v*100).toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})+'%';};
+  var num=function(s){s=String(s||'').replace(/[^\d,.-]/g,''); if(s.indexOf(',')>-1){s=s.replace(/\./g,'').replace(',','.');} else if((s.match(/\./g)||[]).length>1||/\.\d{3}$/.test(s)){s=s.replace(/\./g,'');} var n=parseFloat(s); return isNaN(n)?0:n;};
+  var fmt=function(v){var n=num(v); return n?Math.round(n).toLocaleString('pt-BR'):'0';};
+  var money=function(el){el.addEventListener('blur',function(){el.value=fmt(el.value);});};
+  var qp; try{qp=new URLSearchParams(location.search);}catch(e){qp={get:function(){return null;}};}
+
+  function detalhes(){ return 'Página de produto: Financiamento de veículos (/financiamento/financiamento-de-veiculos-salvador/).'; }
+
+  var form=$('lead');
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var fNome=$('f-nome'), fZap=$('f-zap'), fOk=$('f-ok'), consent=$('f-consent'), msg=$('f-msg'), btn=form.querySelector('button[type=submit]');
+    var nome=fNome.value.trim(), zap=fZap.value.trim(), dig=zap.replace(/\D/g,'').replace(/^0+/,'');
+    var telOk=/^(55)?[1-9][0-9][0-9]{8,9}$/.test(dig);
+    var problemas=[], primeiro=null; var marca=function(el,alvo){ el.classList.add('err'); if(!primeiro) primeiro=alvo||el; };
+    [fNome,fZap,consent].forEach(function(el){ el.classList.remove('err'); });
+    if(nome.length<2){ problemas.push('seu nome'); marca(fNome); }
+    if(!telOk){ problemas.push(zap?'um WhatsApp válido, com DDD':'seu WhatsApp com DDD'); marca(fZap); }
+    if(!fOk.checked){ problemas.push('a autorização de contato (marque a caixa acima)'); marca(consent,fOk); }
+    if(problemas.length){ msg.className='msg err'; msg.textContent=(problemas.length===1&&!fOk.checked&&nome.length>=2&&telOk)?'Falta só marcar a autorização de contato, logo acima do botão.':'Falta informar '+problemas.join(', ').replace(/, ([^,]*)$/,' e $1')+'.'; (primeiro===fOk?consent:primeiro).scrollIntoView({behavior:'smooth',block:'center'}); if(primeiro!==fOk) setTimeout(function(){ primeiro.focus({preventScroll:true}); },350); return; }
+    var det=detalhes();
+    var eid=window.cmaTrack?cmaTrack.novoId():'';
+    var payload={nome:nome,whatsapp:zap,marketing:(document.getElementById('f-mkt')?document.getElementById('f-mkt').checked:false),produto:'Financiamento de veículo',origem:'simulador',pagina:(window.CMA_ORIGEM||location.pathname),quando:new Date().toISOString(),detalhes:det,rast:window.cmaTrack?cmaTrack.dados(eid):{}};
+    var fallback=function(){ location.href='https://wa.me/5571991941612?text='+encodeURIComponent('Olá! Sou '+nome+' e quero a simulação real de financiamento de veículos. '+det); };
+    msg.className='msg'; msg.textContent='Enviando…'; btn.disabled=true;
+    fetch(form.getAttribute('data-endpoint'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error(); msg.textContent='Recebido! Em instantes você recebe uma mensagem nossa no WhatsApp informado.'; if(window.cmaTrack) cmaTrack.lead(eid,{content_name:'Financiamento de veículos'}); form.reset(); btn.disabled=false; })
+      .catch(function(){ btn.disabled=false; fallback(); });
+  });
+  var limpa=function(ev){ var t=ev.target; if(t.classList) t.classList.remove('err'); if(t.id==='f-ok'){ $('f-consent').classList.remove('err'); } };
+  form.addEventListener('input',limpa); form.addEventListener('change',limpa);
+
+})();
+</script>
+<script>
+  window.chatwootSettings = { position: 'left', type: 'standard', launcherTitle: 'Fale com a gente', locale: 'pt_BR', darkMode: 'auto' };
+  (function(d,t) {
+    var BASE_URL="https://app.chatwoot.com", feito=false;
+    function carregar(){
+      if (feito) return; feito=true;
+      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=BASE_URL+"/packs/js/sdk.js"; g.defer=true; g.async=true;
+      s.parentNode.insertBefore(g,s);
+      g.onload=function(){ window.chatwootSDK.run({ websiteToken: 'MfHvQzRv1nDgCHKdQEkqkbTM', baseUrl: BASE_URL }); };
+    }
+    // o widget de chat só entra depois que a página pintou: no 1º toque/rolagem ou 2,5 s após o load
+    var evs=['pointerdown','keydown','touchstart','scroll','wheel'];
+    function once(){ evs.forEach(function(e){ removeEventListener(e, once, true); }); carregar(); }
+    evs.forEach(function(e){ addEventListener(e, once, {capture:true, passive:true}); });
+    function depois(){ setTimeout(carregar, 2500); }
+    if (d.readyState==='complete') depois(); else addEventListener('load', depois);
+  })(document,"script");
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://cmaseguros.com.br/financiamento/financiamento-de-veiculos-salvador/#servico","name":"Financiamento de veículos em Salvador","serviceType":"Financiamento de veículos","url":"https://cmaseguros.com.br/financiamento/financiamento-de-veiculos-salvador/","description":"Financiamento de carro, moto, utilitário e caminhão em Salvador pela BV e pela Porto Bank. Simule parcela, juros e CET e faça a pré-análise com a CMA.","provider":{"@type":"InsuranceAgency","@id":"https://cmaseguros.com.br/#corretora","name":"CMA Corretora de Seguros"},"areaServed":[{"@type":"City","name":"Salvador"},{"@type":"State","name":"Bahia"}],"inLanguage":"pt-BR"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://cmaseguros.com.br/"},{"@type":"ListItem","position":2,"name":"Simuladores","item":"https://cmaseguros.com.br/simuladores/"},{"@type":"ListItem","position":3,"name":"Financiamento de veículos","item":"https://cmaseguros.com.br/financiamento/financiamento-de-veiculos-salvador/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é o CET do financiamento?","acceptedAnswer":{"@type":"Answer","text":"É o Custo Efetivo Total: a taxa que reúne juros, IOF, tarifas e seguros do contrato. É o número certo para comparar propostas, porque duas ofertas com a mesma taxa de juros podem ter CET diferente."}},{"@type":"Question","name":"Preciso de entrada para financiar?","acceptedAnswer":{"@type":"Answer","text":"Depende da financeira e da análise de crédito. Uma entrada maior reduz a parcela, os juros pagos e aumenta a chance de aprovação."}},{"@type":"Question","name":"Posso quitar o financiamento antes?","acceptedAnswer":{"@type":"Answer","text":"Sim. O Código de Defesa do Consumidor garante a liquidação antecipada com redução proporcional dos juros."}},{"@type":"Question","name":"Financiamento ou consórcio?","acceptedAnswer":{"@type":"Answer","text":"O financiamento entrega o veículo na hora, mas cobra juros. O consórcio não tem juros, mas não tem data de contemplação. A CMA mostra os dois lado a lado."}},{"@type":"Question","name":"A CMA cobra pela pré-análise?","acceptedAnswer":{"@type":"Answer","text":"Não. A pré-análise e a comparação das propostas são gratuitas para o cliente."}},{"@type":"Question","name":"Preciso dar entrada?","acceptedAnswer":{"@type":"Answer","text":"Nem sempre, mas uma entrada maior reduz os juros e aumenta a chance de aprovação. O mínimo é definido pelo banco na análise."}},{"@type":"Question","name":"Posso financiar um carro usado em Salvador?","acceptedAnswer":{"@type":"Answer","text":"Sim. Os bancos financiam veículos novos e usados dentro de limites de idade do veículo e de valor, que variam conforme a política de cada banco."}},{"@type":"Question","name":"Financiamento ou consórcio?","acceptedAnswer":{"@type":"Answer","text":"Se precisa do carro agora, o financiamento resolve; se pode esperar, o consórcio não tem juros. Veja a comparação no blog."}}]}]}</script>
+
+
+<div class="zbar" role="complementary" aria-label="Atendimento"><span>Atendimento humano em minutos</span><a class="btn" href="https://wa.me/5571991941612?text=Ol%C3%A1!%20Vim%20do%20site%20da%20CMA%20Corretora.">Falar no WhatsApp</a></div><script src="/js/cma-geral.js?v=20261121a" defer=""></script><script src="/js/fundo.js?v=20261122a" defer=""></script><div id="cma-ck" role="dialog" aria-label="Aviso de cookies"><p>Usamos cookies de medição e publicidade (Meta e Google) para entender como o site é usado e mostrar anúncios mais relevantes. Sem o seu aceite, o Google recebe apenas sinais anônimos, sem cookies. Você escolhe. <a href="/privacidade/">Política de privacidade</a>.</p><div class="b"><button type="button" class="no">Recusar</button><button type="button" class="ok">Aceitar</button></div></div><style id="cw-widget-styles" data-turbo-permanent="true">:root{--b-100: #f2f3f7;--s-700: #37546d}.woot-widget-holder{box-shadow:0 5px 40px #00000029;opacity:1;will-change:transform,opacity;transform:translateY(0);overflow:hidden!important;position:fixed!important;transition:opacity .2s linear,transform .25s linear;z-index:2147483000!important}.woot-widget-holder.woot-widget-holder--flat{box-shadow:none;border-radius:0;border:1px solid #f2f3f7;border:1px solid var(--b-100)}.woot-widget-holder iframe{border:0;color-scheme:normal;height:100%!important;width:100%!important;max-height:100vh!important}.woot-widget-holder.has-unread-view{border-radius:0!important;min-height:80px!important;height:auto;bottom:94px;box-shadow:none!important;border:0}.woot-widget-bubble{background:#1f93ff;border-radius:100px;border-width:0px;bottom:20px;box-shadow:0 8px 24px #00000029!important;cursor:pointer;height:64px;padding:0;position:fixed;-webkit-user-select:none;-moz-user-select:none;user-select:none;width:64px;z-index:2147483000!important}.woot-widget-bubble:focus-visible{outline:2px solid AccentColor!important;outline:2px solid -webkit-focus-ring-color!important;outline-offset:2px!important}.woot-widget-bubble.woot-widget-bubble--flat{border-radius:0}.woot-widget-holder.woot-widget-holder--flat{bottom:90px}.woot-widget-bubble.woot-widget-bubble--flat{height:56px;width:56px}.woot-widget-bubble.woot-widget-bubble--flat svg{margin:16px!important}.woot-widget-bubble.woot-widget-bubble--flat.woot--close:before,.woot-widget-bubble.woot-widget-bubble--flat.woot--close:after{left:28px;top:16px}.woot-widget-bubble.unread-notification:after{content:"";position:absolute;width:12px;height:12px;background:#ff4040;border-radius:100%;top:0;right:0;border:2px solid #ffffff;transition:background .2s ease}.woot-widget-bubble.woot-widget--expanded{bottom:24px;display:flex;height:48px!important;width:auto!important;align-items:center}.woot-widget-bubble.woot-widget--expanded div{align-items:center;color:#fff;display:flex;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,Arial,sans-serif;font-size:16px;font-weight:500;justify-content:center;padding-right:20px;width:auto!important}.woot-widget-bubble.woot-widget--expanded.woot-widget-bubble-color--lighter div{color:#37546d;color:var(--s-700)}.woot-widget-bubble.woot-widget--expanded svg{height:20px!important;margin:14px 8px 14px 16px!important;width:20px!important}.woot-widget-bubble.woot-elements--left{left:20px}.woot-widget-bubble.woot-elements--right{right:20px}.woot-widget-bubble:hover{background:#1f93ff;box-shadow:0 8px 32px #0006!important}.woot-widget-bubble svg{all:revert;height:24px!important;margin:20px!important;padding:0!important;width:24px!important}.woot-widget-bubble.woot-widget-bubble-color--lighter path{fill:#37546d;fill:var(--s-700)}@media only screen and (min-width:667px){.woot-widget-holder.woot-elements--left{left:20px}.woot-widget-holder.woot-elements--right{right:20px}}.woot--close:hover{opacity:1}.woot--close:before,.woot--close:after{background-color:#fff;content:" ";display:inline;height:24px;left:32px;position:absolute;top:20px;width:2px}.woot-widget-bubble-color--lighter.woot--close:before,.woot-widget-bubble-color--lighter.woot--close:after{background-color:#37546d;background-color:var(--s-700)}.woot--close:before{transform:rotate(45deg)}.woot--close:after{transform:rotate(-45deg)}.woot--hide{bottom:-100vh!important;top:auto!important;top:initial!important;opacity:0;visibility:hidden!important;z-index:-1!important}.woot-widget--without-bubble{bottom:20px!important}.woot-widget-holder.woot--hide{transform:translateY(40px)}.woot-widget-bubble.woot--close{transform:translate(0) scale(1) rotate(0);transition:transform .3s ease,opacity .1s ease,visibility 0ms linear 0ms,bottom 0ms linear 0ms}.woot-widget-bubble.woot--close.woot--hide{transform:translate(8px) scale(.75) rotate(45deg);transition:transform .3s ease,opacity .2s ease,visibility 0ms linear .5s,bottom 0ms ease .2s}.woot-widget-bubble{transform-origin:center;will-change:transform,opacity;transform:translate(0) scale(1) rotate(0);transition:transform .3s ease,opacity .1s ease,visibility 0ms linear 0ms,bottom 0ms linear 0ms}.woot-widget-bubble.woot--hide{transform:translate(8px) scale(.75) rotate(-30deg);transition:transform .3s ease,opacity .2s ease,visibility 0ms linear .5s,bottom 0ms ease .2s}.woot-widget-bubble.woot-widget--expanded{transform:translate(0);transition:transform .3s ease,opacity .1s ease,visibility 0ms linear 0ms,bottom 0ms linear 0ms}.woot-widget-bubble.woot-widget--expanded.woot--hide{transform:translate(8px);transition:transform .3s ease,opacity .2s ease,visibility 0ms linear .5s,bottom 0ms ease .2s}.woot-widget-bubble.woot-widget-bubble--flat.woot--close{transform:translate(0);transition:transform .3s ease,opacity 10ms ease,visibility 0ms linear 0ms,bottom 0ms linear 0ms}.woot-widget-bubble.woot-widget-bubble--flat.woot--close.woot--hide{transform:translate(8px);transition:transform .3s ease,opacity .2s ease,visibility 0ms linear .5s,bottom 0ms ease .2s}.woot-widget-bubble.woot-widget--expanded.woot-widget-bubble--flat{transform:translate(0);transition:transform .3s ease,opacity .2s ease,visibility 0ms linear 0ms,bottom 0ms linear 0ms}.woot-widget-bubble.woot-widget--expanded.woot-widget-bubble--flat.woot--hide{transform:translate(8px);transition:transform .3s ease,opacity .2s ease,visibility 0ms linear .5s,bottom 0ms ease .2s}@media only screen and (max-width:667px){.woot-widget-holder{height:100%;right:0;top:0;width:100%}.woot-widget-holder iframe{min-height:100%!important}.woot-widget-holder.has-unread-view{height:auto;right:0;width:auto;bottom:0;top:auto;max-height:100vh;padding:0 8px}.woot-widget-holder.has-unread-view iframe{min-height:0!important;min-height:initial!important}.woot-widget-holder.has-unread-view.woot-elements--left{left:0}.woot-widget-bubble.woot--close{bottom:60px;opacity:0;visibility:hidden!important;z-index:-1!important}}@media only screen and (min-width:667px){.woot-widget-holder{border-radius:16px;bottom:104px;height:calc(90% - 84px);max-height:640px!important;min-height:250px!important;width:400px!important}}.woot-hidden{display:none!important}</style><div class="woot-widget-holder woot--hide woot-elements--left" id="cw-widget-holder" data-turbo-permanent="true"><iframe src="https://app.chatwoot.com/widget?website_token=MfHvQzRv1nDgCHKdQEkqkbTM" allow="camera;microphone;fullscreen;display-capture;picture-in-picture;clipboard-write;" id="chatwoot_live_chat_widget" style="visibility: hidden;"></iframe></div></body></html>

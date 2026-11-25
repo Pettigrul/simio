@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C0188e2a2bf",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://csservicosrj.com.br/pagamento/",
+  "final_url": "https://csservicosrj.com.br/pagamento/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "76.13.162.72",
+  "collected_at": "2026-11-23T14:19:03.200344+00:00",
+  "manifest_written_at": "2026-11-23T14:19:15.330356+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C0188e2a2bf\\attempt-1\\viewport.png",
+      "sha256": "c01d7e7f8ae16abf31f4495c1243c8feccaa8a5ac9456927e8b6703262e4fb2b",
+      "size_bytes": 47334
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C0188e2a2bf\\attempt-1\\fullpage.png",
+      "sha256": "c01d7e7f8ae16abf31f4495c1243c8feccaa8a5ac9456927e8b6703262e4fb2b",
+      "size_bytes": 47334
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C0188e2a2bf\\attempt-1\\page.html.txt",
+      "sha256": "85abd478b1653823b1f7b78e59cbc7d6acb85a940c343b649779cbeba3cc186d",
+      "size_bytes": 65482
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C0188e2a2bf\\attempt-1\\text.txt",
+      "sha256": "c039fb65ff341eecc636bafb39c3e6862a3fa61adbf9e85cef8da62ae86c616b",
+      "size_bytes": 796
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C0188e2a2bf\\attempt-1\\page.json",
+      "sha256": "ef9feb68040b01ae483b01cbe6c73b19ec9b9d40f2925240fa5cd2519739311f",
+      "size_bytes": 2756
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C15080625b0</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C15080625b0 — magomotos.online</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.magomotos.online/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>HIGH</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento comercial é uma revenda de motocicletas que atua como correspondente bancário (CNPJ regular na base). A identidade visual da loja predomina e o logotipo do Banco BV é exibido de forma secundária em vitrine de financeiras parceiras. Todavia, a ausência dos esclarecimentos obrigatórios de correspondente bancário e canais de ouvidoria enquadra o site no cenário de comunicação ambígua / pendência regulatória formal.
+[Revisor: CONFIRM] A análise está correta e cumpre as diretrizes regulatórias e operacionais. O estabelecimento é uma revenda de motocicletas cadastrada como correspondente bancário (CNPJ 63.662.709/0001-72 validado). A loja exibe a marca do Banco BV em contexto de parcerias de crédito de forma secundária/multibancos (ao lado de FonteCred, Banco PAN e Omni), com predominância de sua própria marca comercial (&#39;Mago Motos&#39;). Contudo, há omissão das informações obrigatórias de enquadramento como correspondente bancário e canais de ouvidoria da instituição contratante (Resolução CMN 4.935/2021), justificando a manutenção de REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C15080625b0/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 a9bff21612fac7d96e8681087db5f30ca9f839b49eca661c5c5884a69302f3f3</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C15080625b0/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 7d0e22416bd775112435150af38628d63c741084bc4bf011826b7371496a53de</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.magomotos.online/ (domínio: www.magomotos.online)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): magomotos.online — **URL:** `magomotos.online` | Revenda de motocicletas anunciando parcelamento e planos de até 48x | Exibe em destaque na seção de crédito os logotipos de financeiras credenciadas, utilizando a marca visual do **Banco BV** | **Omissão total:** Ausência de CNPJ, nome empresarial registrado e cláusulas de esclarecimento de correspondente bancário exigidas pela regulamentação do CMN</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C15080625b0/attempt-1/viewport.png (sha256 a9bff21612fac7d9…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C15080625b0/attempt-1/fullpage.png (sha256 7d0e22416bd77511…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Mago Motos</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>A MAGIA DE FECHAR NEGÓCIO EM MINUTOS</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>MOTOCICLISMO, VIAGENS E CIDADE</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Motociclismo</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Viagens</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Dia a dia na cidade</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>CATÁLOGO COMPLETO</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>OS MAGOS</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>FINANCIAMENTO SEM COMPLICAÇÃO</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>FINANCIAMENTO BANCÁRIO</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>PARCELAMENTO NO CARTÃO</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>SERVIÇOS MAGO MOTOS</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>COMPRA DE MOTOS</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>VENDA DE MOTOS</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>TROCA</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>CONSIGNAÇÃO</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>MAGO MOTOS QUEM SOMOS FINANCIAMENTO SERVIÇOS CONTATO Catálogo WhatsApp</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>MAGO MOTOS Quem Somos Financiamento Serviços Contato Catálogo WhatsApp A MAGIA DE FECHAR NEGÓCIO EM MINUTOS Motos novas e usadas, revisadas e prontas para rodar. A melhor loja de motos da região — com financiamento facilitado e atendimento direto pelo WhatsApp. Falar no WhatsApp Ver financiamento 48x Financiamento 18x No cartão* Feito para quem roda Motociclismo, viagens e cidade Conheça quem está por trás da Mago Motos. Motociclismo Quem somos</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>© 2026 Mago Motos — CNPJ: 63.662.709/0001-72 (11) 93037-1000 (11) 4356-1000 *Parcelamento no cartão de crédito sujeito a taxa administrativa. Condições de financiamento sujeitas a análise de crédito. Imagens meramente ilustrativas.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>MAGO MOTOS &lt;https://www.magomotos.online/#top&gt; | QUEM SOMOS &lt;https://www.magomotos.online/#os-magos&gt; | FINANCIAMENTO &lt;https://www.magomotos.online/#financiamento&gt; | SERVIÇOS &lt;https://www.magomotos.online/#servicos&gt; | CONTATO &lt;https://www.magomotos.online/#contato&gt; | Catálogo &lt;https://wa.me/c/5511930371000&gt; | WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Falar no WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21%20Quero%20mais%20informa%C3%A7%C3%B5es.&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Ver financiamento &lt;https://www.magomotos.online/#financiamento&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Chamar no WhatsApp agora &lt;https://wa.me/5511930371000&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Ver no Google Maps &lt;https://www.google.com/maps/search/?api=1&amp;query=Avenida%20Capit%C3%A3o%20Casa%2C%201225%2C%20S%C3%A3o%20Bernardo%20do%20Campo%2C%20SP%2C%2009812-000&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>footer</td><td>Facebook da Mago Motos &lt;https://www.facebook.com/p/Mago-Motos-61588654391548/&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Catálogo &lt;https://wa.me/c/5511930371000&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Falar no WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21%20Quero%20mais%20informa%C3%A7%C3%B5es.&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>CATÁLOGO COMPLETO Veja todos os modelos disponíveis direto no nosso catálogo do WhatsApp. → &lt;https://wa.me/c/5511930371000&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Seguir &lt;https://instagram.com/magomotos.sbc&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>(11) 93037-1000 &lt;https://wa.me/5511930371000&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>(11) 4356-1000 &lt;tel:+551143561000&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp agora &lt;https://wa.me/5511930371000&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td>(11) 93037-1000 &lt;https://wa.me/5511930371000&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td>(11) 4356-1000 &lt;tel:+551143561000&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>footer</td><td>Instagram da Mago Motos &lt;https://instagram.com/magomotos.sbc&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>footer</td><td>Facebook da Mago Motos &lt;https://www.facebook.com/p/Mago-Motos-61588654391548/&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>page</td><td>Falar no WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo FonteCred&#39; src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA6IAAADwCAIAAACVNE6xAADoYElEQVR4nOz953obyZK1Da/IzLIwdFJ377n2zJ6Z5/zP6PtmtumRRMKjfJqI90cCICiREuVaputuXGwIBFEGZVZGRqwgEcHIyMjIyMjIyMjIz4X61iswMjIyMjIyMjIy8u (132x34, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo Banco BV&#39; src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATwAAADwCAIAAAASOk8qAAB+2UlEQVR4nOz913Md157vCX7WWmm2gfceoCclyh1/6piqe6uu7+menuiHeZuImZi3eZl/Z14n5mk6onui+1bfutVV91adOk7nHEmUKNEThPd228xcZh4yE9ggKXJDAghChW (45x34, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo Banco PAN&#39; src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeoAAADwCAIAAABANbAkAACQEklEQVR4nOz9Z3MjSbrnCz7uHhIaBAgQALVKUVlZVd19Zu6Mzdo1W9t386V3zebenbPndFdXV6WkJrQOiNAu9oUTSFZWCjIJMsms+FlZWZIEAh6BiL+7PxIJISAiIiIi4q (69x34, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo OMNI Financeira&#39; src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiIAAADwCAIAAACyv5hwAAC5pElEQVR4nOz993McybLnC37dIzKzBAoaoGYL9uk+Wtx7z30j3n0zs/MHrNma7X+7NrtvZq4+ojWb3dTQQAGlqzIzItz3h8wEQC2aINjd+TEYCRRQlREpwsM1qSpqampqam (77x34, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Motos novas e usadas, revisadas e prontas para rodar. A melhor loja de motos da região — com financiamento facilitado e atendimento direto pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Paixão por duas rodas em cada detalhe da loja e no atendimento.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Veja todos os modelos disponíveis direto no nosso catálogo do WhatsApp.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Parcele sua moto em até 48 vezes através dos principais bancos financiadores do mercado.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Fotos das motos, bastidores e novidades da loja — direto do Instagram oficial.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Feed atualizado automaticamente, direto do perfil oficial no Instagram.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>NOSSO ENDEREÇO</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>ENDEREÇO</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>CEP 09812-000</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>TELEFONE FIXO</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Chamar no WhatsApp agora</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>© 2026 Mago Motos — CNPJ: 63.662.709/0001-72</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identidade visual própria consolidada da loja Mago Motos (logotipo temático, cores e fotografias locais), sem mimetização da marca institucional do banco.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A empresa identifica com clareza seu nome fantasia (Mago Motos), endereço físico em São Bernardo do Campo/SP e CNPJ 63.662.709/0001-72 no rodapé.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-CTA-5">E-CTA-5</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência do aviso regulatório explícito de correspondente bancário no país e falta de indicação dos canais de atendimento e ouvidoria da instituição contratante.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Logotipo oficial atual do Banco BV inserido em contexto multibancos/multifinanceiras (junto a FonteCred, Banco PAN e Omni), com proporção secundária e discreta.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Linguagem puramente comercial voltada ao comércio de motocicletas (&#39;A magia de fechar negócio em minutos&#39;, &#39;Financiamento sem complicação&#39;), sem alegar oficialidade bancária.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-TXT-006">E-TXT-006</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Captação de leads direcionada para atendimento no WhatsApp próprio da loja para simulação e venda de motocicletas.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-2">E-CTA-2</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da concessionária (telefone fixo, WhatsApp comercial e endereço físico).</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> <a href="#E-TXT-010">E-TXT-010</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Baixo risco de confusão direta de identidade corporativa, restrito à indefinição do vínculo formal de intermediação financeira.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A loja exibe o logotipo do Banco BV entre as financeiras parceiras, mas não apresenta a declaração formal e ostensiva de correspondente bancário nem dados de ouvidoria conforme exigido pela Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FTR">E-FTR</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li><li>[LOW] LOGO_USAGE: Uso do logotipo oficial contemporâneo do Banco BV na seção &#39;Trabalhamos com as principais financeiras do país&#39; sem especificação contratual clara de atuação como COBAN. — <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: CNPJ 63.662.709/0001-72 expressamente indicado no rodapé e verificado no cadastro de correspondentes bancários autorizados. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-015">E-TXT-015</a> </span></li><li>[MEDIUM] LOGO_USAGE: Contexto multibancos legítimo, exibindo financeiras concorrentes em área dedicada a financiamento de veículos. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O site pertence ao estabelecimento comercial Mago Motos, revendedora de motocicletas em São Bernardo do Campo/SP.</li><li>O CNPJ 63.662.709/0001-72 está visível no rodapé e possui correspondência com o cadastro de correspondentes credenciados do banco.</li><li>A página apresenta o logotipo oficial contemporâneo do Banco BV na seção &#39;Trabalhamos com as principais financeiras do país&#39;, ao lado de FonteCred, Banco PAN e Omni.</li><li>Não foi identificada a declaração explícita de correspondente bancário nem menção à ouvidoria da instituição, conforme preconiza a Resolução CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>—</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento comercial é uma revenda de motocicletas que atua como correspondente bancário (CNPJ regular na base). A identidade visual da loja predomina e o logotipo do Banco BV é exibido de forma secundária em vitrine de financeiras parceiras. Todavia, a ausência dos esclarecimentos obrigatórios de correspondente bancário e canais de ouvidoria enquadra o site no cenário de comunicação ambígua / pendência regulatória formal.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Entidade</b>MAGO MOTOS COMERCIO DE MOTOCICLETAS E AC<br><span class="mono">cnpj:63662709000172</span></div>
+      <div class="kv"><b>Confiança</b>HIGH</div>
+      <div class="kv"><b>Cadastro autorizado</b>coban_registry_bv.csv (ref. 2026-10-06) (cnpj)</div>
+    </div>
+    <p style="margin-top:12px;">CNPJ 63.662.709/0001-72 observado na página consta do cadastro autorizado &#39;coban_registry_bv.csv (ref. 2026-10-06)&#39;.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>magomotos.online</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>63.662.709/0001-72</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>© 2026 Mago Motos — CNPJ: 63.662.709/0001-72</td></tr>
+      <tr><td>cnpj</td><td>61.588.654/3915-48 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-CTA-6">E-CTA-6</a></td><td>Facebook da Mago Motos &lt;https://www.facebook.com/p/Mago-Motos-61588654391548</td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/p/Mago-Motos-61588654391548/</td><td class="mono"><a href="#E-CTA-6">E-CTA-6</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://instagram.com/magomotos.sbc</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 93037-1000</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 4356-1000</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Catálogo &lt;https://wa.me/c/5511930371000&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar no WhatsApp &lt;https://wa.me/5511930371000?text=Ol%C3%A1%2C%20vim%20do%20site%20da%20Mago%20Motos%21%20Quero%20mais%20informa%C3%A7%C3%B5es.&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>CATÁLOGO COMPLETO Veja todos os modelos disponíveis direto no nosso catálogo do WhatsApp. → &lt;https://wa.me/c/5511930371000&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>(11) 93037-1000 &lt;https://wa.me/5511930371000&gt;</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) com dígito verificador inválido ignorados: 61.588.654/3915-48, 61.588.654/3915-48</li><li>associação página→CNPJ baseada na publicação do CNPJ na própria página</li><li>um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o domínio é seu</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-6">E-CONTACT-6</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-2">E-CTA-2</a> <a href="#E-TXT-010">E-TXT-010</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A análise está correta e cumpre as diretrizes regulatórias e operacionais. O estabelecimento é uma revenda de motocicletas cadastrada como correspondente bancário (CNPJ 63.662.709/0001-72 validado). A loja exibe a marca do Banco BV em contexto de parcerias de crédito de forma secundária/multibancos (ao lado de FonteCred, Banco PAN e Omni), com predominância de sua própria marca comercial (&#39;Mago Motos&#39;). Contudo, há omissão das informações obrigatórias de enquadramento como correspondente bancário e canais de ouvidoria da instituição contratante (Resolução CMN 4.935/2021), justificando a manutenção de REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Lojas de motos que oferecem financiamento usando a marca em destaque.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) motos financiamento loja -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de moto</span></td><td class="mono">https://www.magomotos.online/</td><td>magomotos.online<br><span class="muted">**URL:** `magomotos.online` | Revenda de motocicletas anunciando parcelamento e planos de até 48x | Exibe em destaque na seção de crédito os logotipos de financeiras credenciadas, utilizando a marca visual do **Banco BV** | **Omissão total:** Ausência de CNPJ, nome empresarial registrado e cláusulas de esclarecimento de correspondente bancário exigidas pela regulamentação do CMN</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:17:13.116420+00:00</div>
+      <div class="kv"><b>IP do servidor</b>192.185.211.218</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C15080625b0/attempt-1/manifest.json<br>sha256 d2ffb699a63016ef9bdb003fd8e339c856aecd87a4a85096076dcfceec8c56c6</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.magomotos.online/<br>Final: https://www.magomotos.online/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C15080625b0/attempt-1/viewport.png</td><td class="mono">a9bff21612fac7d96e8681087db5f30ca9f839b49eca661c5c5884a69302f3f3</td><td>1085943</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C15080625b0/attempt-1/fullpage.png</td><td class="mono">7d0e22416bd775112435150af38628d63c741084bc4bf011826b7371496a53de</td><td>2405569</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C15080625b0/attempt-1/page.html.txt</td><td class="mono">ed0aecce5de8ac69fcf85d32690aa0ccdb39e0321383589f83d9386356dc8756</td><td>1781590</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C15080625b0/attempt-1/text.txt</td><td class="mono">7d1ab0f8cab3516db0c3ab45ce6d0fa7892a9bc6ea727b9d26adc5e2b4d87a4f</td><td>4028</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C15080625b0/attempt-1/page.json</td><td class="mono">d588dfe467e13496b118350813e4bb7b731c8ef74c84ee34d04b0be5a99b29eb</td><td>18275</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:09+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-25T19:17:13+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:23+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:23+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:43+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:50+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

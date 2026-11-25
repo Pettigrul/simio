@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cd7459722d4</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cd7459722d4 — youtube.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.youtube.com/watch?v=gg3FG838ah8</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação em canal do YouTube atua na intermediação e captação de leads para crédito com garantia de veículo utilizando a marca e logotipo do Banco BV em destaque no título e na thumbnail. O canal direciona espectadores a um link encurtado (&#39;bit.ly/bancoBVfinancia&#39;) sob o pretexto de simulação, sem informar a razão social ou CNPJ da entidade promotora e sem prestar as declarações obrigatórias de correspondente bancário previstas na Resolução CMN nº 4.935/2021. Configura comunicação ambígua com potencial de induzir o consumidor a erro quanto à oficialidade da jornada de simulação.
+[Revisor: CONFIRM] A publicação no YouTube do canal &#39;Atualizo&#39; utiliza o logotipo e o nome do Banco BV na thumbnail e no título para promover simulação de empréstimo com garantia de veículo, redirecionando o público para captação de leads via link encurtado (&#39;bit.ly/bancoBVfinancia&#39;). Não há apresentação de razão social, CNPJ ou identificação clara sobre a condição de correspondente bancário ou independência em relação à instituição financeira (Res. CMN 4.935/2021). A hipótese de comunicação ambígua com necessidade de revisão (REVIEW_REQUIRED, prioridade MEDIUM) é procedente e confirmada.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cd7459722d4/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 ac6c991f313687a97944c08de35bf8fb3d38e7b5e77594b6067641600751a98d</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cd7459722d4/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 00d25385da1eb855ea77f8e4e2d41737b6fe00d40ef8303a5d199ea8a2c73cd1</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.youtube.com/watch?v=gg3FG838ah8 (domínio: www.youtube.com)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: HTML truncated to 2000000 bytes</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): youtube.com — `https://www.youtube.com/watch` (*&#34;EMPRÉSTIMO GARANTIA VEÍCULO Banco BV&#34;* / *&#34;Como Financiar Veículo Banco BV&#34;*) | **Plataforma:** YouTube | **Como a marca é utilizada:** Utiliza os nomes &#34;Banco BV&#34; e &#34;BV Financeira&#34; nos títulos e capas para guiar o espectador em processos de simulação online | Trata-se de canal mantido por pessoa física / promotor digital, sem disponibilizar razão social, CNPJ de empresa intermediadora ou aviso regulatório de que não se trata de canal oficial do banco | **Captação Oculta de Leads via Links Encurtados:** Identificou-se o uso recorrente de links do tipo `bit.ly` sob alegação de &#34;simulador oficial&#34;, sem apresentação da pessoa jurídica responsável pelo redirecionamento ou pelo tratamento dos dados pessoais e financeiros (em potencial desacordo com as diretrizes do Banco Central e da LGPD)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cd7459722d4/attempt-1/viewport.png (sha256 ac6c991f313687a9…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cd7459722d4/attempt-1/fullpage.png (sha256 00d25385da1eb855…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>EMPRÉSTIMO GARANTIA VEÍCULO Banco BV - YouTube</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: 👉SIMULE SEU CARRO AQUI 👉 https://bit.ly/bancoBVfinanciaEMPRÉSTIMO GARANTIA VEÍCULO Banco BVQuer saber como funciona o empréstimo com garantia de veículo do...</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: YouTube</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: EMPRÉSTIMO GARANTIA VEÍCULO Banco BV</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: 👉SIMULE SEU CARRO AQUI 👉 https://bit.ly/bancoBVfinanciaEMPRÉSTIMO GARANTIA VEÍCULO Banco BVQuer saber como funciona o empréstimo com garantia de veículo do...</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.youtube.com/watch?v=gg3FG838ah8</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>EMPRÉSTIMO GARANTIA VEÍCULO Banco BV</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Comentários</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Como funciona o empréstimo com garantia de veículo?</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Fantástico: Como funciona a Interpol, maior rede policial do mundo comandada por brasileiro</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Alugar ou comprar um imóvel: a matemática real</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>GTA 6 - Em busca de CARRO ABANDONADO na cidade!</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>PEGUEI EMPRÉSTIMO E NÃO PAGUEI! VEJA O QUE PODE ACONTECER SE EU DER CALOTE NO BANCO</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Banco do Brasil PERDEU OS FUNDAMENTOS? Veja o que os números revelam</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Escala 5x2 e jornada de 42 horas: o que muda na sua empresa até 16/12</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Top 5 Dicas para AUMENTAR suas CHANCES de Aprovação de Financiamento de Veículo!</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Consórcio ou financiamento imobiliário em 2025 - Qual a melhor opção?</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>🛻EMPRÉSTIMO COM GARANTIA DE VEÍCULO: Vantagens e Desvantagens | Não Contrate Antes de Conferir!</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Alcolumbre Põe o Senado para Defender Marcel no STF!</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Cursos bonitos no Moodle™ com o agente de IA</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>AJUSTE FISCAL APROVADO - o que muda? Corte de gastos? Benefícios fiscais? Entenda o pacote fiscal!</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>BR Pular navegação Fazer login</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>BR Fazer login 0:00 / 6:37 Início EMPRÉSTIMO GARANTIA VEÍCULO Banco BV Atualizo 272 mil inscritos Seja membro Inscrever-se 135 5,8 mil visualizações há 1 ano #Atualizo 👉SIMULE SEU CARRO AQUI 👉 https://bit.ly/bancoBVfinancia EMPRÉSTIMO GARANTIA VEÍCULO Banco BV mais Comentários 11:30 Como funciona o empréstimo com garantia de veículo? BextPlay 24 mil há 1 ano 15:32 Novidade Fantástico: Como funciona a Interpol, maior rede policial do mundo comandada por brasileiro g1 946 mil há 2 dias 17:41 Alugar ou comprar um imóvel: a matemática real Logical Money 2,2 mi há 3 meses Dublagem automática AO VIVO GTA 6 - Em busca de CARRO ABANDONADO na cidade! LipaoGamer 8,4 mil assistindo 10:14 PEGUEI EMPRÉSTIMO E NÃO PAGUEI! VEJA O QUE PODE ACONTECER SE EU DER CALOTE NO BANCO Antonio Galvão 545 mil há 1 ano 28:22 Novidade Banco do Brasil PERDEU OS FUNDAMENTOS? Veja o que os números revelam 500 Pratas 2,8 mil há 4 h Seja membro deste canal para ter acesso a benefícios exclusivos</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Página inicial do YouTube &lt;https://www.youtube.com/&gt; | Fazer login &lt;https://accounts.google.com/ServiceLogin?service=youtube&amp;uilel=3&amp;passive=true&amp;continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Dpt%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253Dgg3FG838ah8&amp;hl=pt-BR&amp;ec=65620&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Guia</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>Pular navegação</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>header</td><td>Search</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>header</td><td>Pesquisar com sua voz</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>header</td><td>Configurações</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Reproduzir</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Reproduzir (k)</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Sem áudio (m)</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Início</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>A reprodução automática está ativada</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Legendas/legendas ocultas (c)</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Detalhes</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Modo Teatro (t)</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Tela inteira (f)</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>Seja membro</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>Inscrever-se</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>135</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>Não gostei deste vídeo</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>Compartilhar</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>Salvar na playlist</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>/ card0z0 &lt;https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUlxb01IWmtWazhvUm9IRGcwbzA2cVRoQ0ZmY3xBQnJ0NjlsNU1FcWpKazFTcWZoS2JXd3FYRE5zczhMQWtCRlRmNFVFVGxQaFhSbWZYcGpjNUNJNHZ2Q2FkU2FsN29JMFZlVDZDaFg4R0h2TW1WZHNrQ0tBNEYxYktXUkJSS0pO&amp;q=https%3A%2F%2Finstagram.com%2Fcard0z0&amp;v=gg3FG838ah8&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>EMPRÉSTIMO GARANTIA VEÍCULO Banco BV</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>👉SIMULE SEU CARRO AQUI 👉 https://bit.ly/bancoBVfinancia</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>EMPRÉSTIMO GARANTIA VEÍCULO Banco BV …</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>PEGUEI EMPRÉSTIMO E NÃO PAGUEI! VEJA O QUE PODE ACONTECER SE EU DER CALOTE NO BANCO</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Banco do Brasil PERDEU OS FUNDAMENTOS? Veja o que os números revelam</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>QUAL BANCO tem a MENOR taxa de juros para empréstimo? Pega essa dica!</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>ITAÚ OU BRADESCO? Qual o melhor banco tradicional para ser sua conta principal!</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>🏆Qual o MELHOR BANCO Para EMPRÉSTIMO COM GARANTIA DE VEÍCULO 2026</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>A thumbnail do vídeo exibe mockup de smartphone com a marca e logotipo do Banco BV associado a imagens apelativas de maços de dinheiro e veículo.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O canal é denominado &#39;Atualizo&#39; (criador de conteúdo/promotor digital), porém não divulga razão social, CNPJ ou dados de contato da entidade responsável pela intermediação e envio do link de simulação.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência total de declaração de correspondente bancário independente, identificação da instituição representada ou canais de ouvidoria conforme exigido pelo art. 14 da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-META-1">E-META-1</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O conteúdo do título e descrição adota tom apelativo e promocional voltado a simulação de crédito (&#39;EMPRÉSTIMO GARANTIA VEÍCULO Banco BV&#39;, &#39;SIMULE SEU CARRO AQUI&#39;).</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Logotipo contemporâneo do Banco BV inserido na arte de capa sem indicação de parceria ou intermediação autorizada.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Captação de interessados por meio de link encurtado não oficial (bit.ly/bancoBVfinancia) que promete simulação de crédito automotivo com o Banco BV.</td><td class="mono"><a href="#E-META-1">E-META-1</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Disponibilizado apenas link para perfil pessoal de Instagram na descrição (/card0z0).</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Comentários no vídeo revelam consumidores com dúvidas diretas sobre contratação, liberação e regras do empréstimo Banco BV acreditando se tratar de atendimento/orientação direta.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Captação de leads para simulação de crédito (&#39;SIMULE SEU CARRO AQUI&#39;) através de link encurtado (bit.ly/bancoBVfinancia) sem identificar CNPJ, razão social ou declarar formalmente a condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-META-1">E-META-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] LOGO_USAGE: Utilização do logotipo atual do Banco BV (&#39;BV banco&#39;) em destaque na arte gráfica/thumbnail do vídeo, simulando interface de aplicativo de contratação de empréstimo. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] SERVICE_JOURNEY: Redirecionamento de usuários para link encurtado externo com menção à marca (&#39;bancoBVfinancia&#39;) para simulação e captação de clientes sem transparência sobre o tratamento de dados pessoais ou relação jurídica com o banco. — <span class="mono"><a href="#E-META-1">E-META-1</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Vídeo no YouTube do canal &#39;Atualizo&#39; (272 mil inscritos) intitulado &#39;EMPRÉSTIMO GARANTIA VEÍCULO Banco BV&#39;.</li><li>A capa (thumbnail) do vídeo apresenta mockup de aplicativo exibindo o logotipo oficial moderno do Banco BV (&#39;BV banco&#39;) ao lado de um veículo e maços de cédulas de R$ 100.</li><li>A descrição do vídeo e o comentário fixado contêm a chamada &#39;👉SIMULE SEU CARRO AQUI 👉 https://bit.ly/bancoBVfinancia&#39;.</li><li>Não há identificação de CNPJ, razão social ou aviso de correspondente bancário independente na página ou descrição.</li><li>O link encurtado induz o consumidor a realizar simulação de crédito associada à marca BV sob intermediação não identificada.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Destino final e operador exato do redirecionamento do link encurtado bit.ly/bancoBVfinancia (se direciona a correspondente credenciado ou página de captura independente).</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação em canal do YouTube atua na intermediação e captação de leads para crédito com garantia de veículo utilizando a marca e logotipo do Banco BV em destaque no título e na thumbnail. O canal direciona espectadores a um link encurtado (&#39;bit.ly/bancoBVfinancia&#39;) sob o pretexto de simulação, sem informar a razão social ou CNPJ da entidade promotora e sem prestar as declarações obrigatórias de correspondente bancário previstas na Resolução CMN nº 4.935/2021. Configura comunicação ambígua com potencial de induzir o consumidor a erro quanto à oficialidade da jornada de simulação.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:youtube.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>youtube.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.youtube.com/watch?v=gg3FG838ah8</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.youtube.com/watch`</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUlxb01IWmtWazhvUm9IRGcwbzA2cVRoQ0ZmY3xBQnJ0NjlsNU1FcWpKazFTcWZoS2JXd3FYRE5zczhMQWtCRlRmNFVFVGxQaFhSbWZYcGpjNUNJNHZ2Q2FkU2FsN29JMFZ</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-META-1">E-META-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-002">E-TXT-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-META-1">E-META-1</a> <a href="#E-TXT-002">E-TXT-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação no YouTube do canal &#39;Atualizo&#39; utiliza o logotipo e o nome do Banco BV na thumbnail e no título para promover simulação de empréstimo com garantia de veículo, redirecionando o público para captação de leads via link encurtado (&#39;bit.ly/bancoBVfinancia&#39;). Não há apresentação de razão social, CNPJ ou identificação clara sobre a condição de correspondente bancário ou independência em relação à instituição financeira (Res. CMN 4.935/2021). A hipótese de comunicação ambígua com necessidade de revisão (REVIEW_REQUIRED, prioridade MEDIUM) é procedente e confirmada.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Vídeos e canais (YouTube, Kwai, Threads) de lojas e promotoras usando a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - site:youtube.com (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR feirão OR loja OR consignado) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+  - site:kwai.com (&#34;Banco BV&#34; OR &#34;bv financeira&#34; OR &#34;Feirão BV&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+  - site:threads.net (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR feirão OR crédito) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H6-platform:YouTube-Kwai-Threads</span></td><td class="mono">https://www.youtube.com/watch?v=gg3FG838ah8</td><td>youtube.com<br><span class="muted">`https://www.youtube.com/watch` (*&#34;EMPRÉSTIMO GARANTIA VEÍCULO Banco BV&#34;* / *&#34;Como Financiar Veículo Banco BV&#34;*) | **Plataforma:** YouTube | **Como a marca é utilizada:** Utiliza os nomes &#34;Banco BV&#34; e &#34;BV Financeira&#34; nos títulos e capas para guiar o espectador em processos de simulação online | Trata-se de canal mantido por pessoa física / promotor digital, sem disponibilizar razão social, CNPJ de empresa intermediadora ou aviso regulatório de que não se trata de canal oficial do banco | **Captação Oculta de Leads via Links Encurtados:** Identificou-se o uso recorrente de links do tipo `bit.ly` sob alegação de &#34;simulador oficial&#34;, sem apresentação da pessoa jurídica responsável pelo redirecionamento ou pelo tratamento dos dados pessoais e financeiros (em potencial desacordo com as diretrizes do Banco Central e da LGPD)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:30:19.343744+00:00</div>
+      <div class="kv"><b>IP do servidor</b>142.251.150.4</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cd7459722d4/attempt-1/manifest.json<br>sha256 6903f681cd14a149cb4f6fae3cc713c1906c59b81df4f9b6e064dd8af5a736cc</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.youtube.com/watch?v=gg3FG838ah8<br>Final: https://www.youtube.com/watch?v=gg3FG838ah8</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cd7459722d4/attempt-1/viewport.png</td><td class="mono">ac6c991f313687a97944c08de35bf8fb3d38e7b5e77594b6067641600751a98d</td><td>1229494</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cd7459722d4/attempt-1/fullpage.png</td><td class="mono">00d25385da1eb855ea77f8e4e2d41737b6fe00d40ef8303a5d199ea8a2c73cd1</td><td>1498529</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cd7459722d4/attempt-1/page.html.txt</td><td class="mono">59d1e0e7f269e9b50f9789a960562733bf48be1da2b2a2cb2f01272033173f7a</td><td>2000000</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cd7459722d4/attempt-1/text.txt</td><td class="mono">3e061e366b39ebeb96e672a4417099403a6c6579025b4159b338430025b8fbc8</td><td>2674</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cd7459722d4/attempt-1/page.json</td><td class="mono">c40c66bfee901efb465f69d891b784098ba98821d29089ed9c08f3fdd6372eee</td><td>28022</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>HTML truncated to 2000000 bytes</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:11+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-25T19:30:19+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:30:26+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:30:26+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:30:50+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:30:58+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

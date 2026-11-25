@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Ce6eaf6b0b4",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://toncarselect.com.br/",
+  "final_url": "https://toncarselect.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "62.72.9.218",
+  "collected_at": "2026-11-23T14:42:03.910114+00:00",
+  "manifest_written_at": "2026-11-23T14:42:08.806853+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Ce6eaf6b0b4\\attempt-1\\viewport.png",
+      "sha256": "164aaf488f6466f1c11bf118eeecbe29fe934e833d7eb410602f24b2697f0345",
+      "size_bytes": 47077
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Ce6eaf6b0b4\\attempt-1\\fullpage.png",
+      "sha256": "164aaf488f6466f1c11bf118eeecbe29fe934e833d7eb410602f24b2697f0345",
+      "size_bytes": 47077
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Ce6eaf6b0b4\\attempt-1\\page.html.txt",
+      "sha256": "48327aa2e908bcd108bcff3d003f08364ebfa7df074d0cd6d340488436cd7f3c",
+      "size_bytes": 65463
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Ce6eaf6b0b4\\attempt-1\\text.txt",
+      "sha256": "13ecef7eed8c693996203feb64f4cdf3e1e7683b3aaefb0407bc02acd8201055",
+      "size_bytes": 786
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Ce6eaf6b0b4\\attempt-1\\page.json",
+      "sha256": "edb565b3d2d20d63dcefbe921927dbb61bbbf63e0e42197fb623315619484838",
+      "size_bytes": 2736
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

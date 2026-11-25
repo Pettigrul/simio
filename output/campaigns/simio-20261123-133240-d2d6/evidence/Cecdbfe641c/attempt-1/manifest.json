@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cecdbfe641c",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://fuzettoveiculos.com.br/",
+  "final_url": "https://fuzettoveiculos.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.198.79.1",
+  "collected_at": "2026-11-23T14:20:29.064521+00:00",
+  "manifest_written_at": "2026-11-23T14:21:53.762468+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cecdbfe641c\\attempt-1\\viewport.png",
+      "sha256": "0834312c55e62e47efef3fa2683fc7265b636ac10fe4a82248214a235d60aa88",
+      "size_bytes": 47211
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cecdbfe641c\\attempt-1\\fullpage.png",
+      "sha256": "0834312c55e62e47efef3fa2683fc7265b636ac10fe4a82248214a235d60aa88",
+      "size_bytes": 47211
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cecdbfe641c\\attempt-1\\page.html.txt",
+      "sha256": "5df5a8f86480b2e125a4f5d2c2d4189525157aa43ffd6b5f5e42c5485f2843ac",
+      "size_bytes": 65487
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cecdbfe641c\\attempt-1\\text.txt",
+      "sha256": "8dee3bd239c51c70f324d10df2b361ff3fcfd6b55680f8a66122ac7a8e768360",
+      "size_bytes": 792
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cecdbfe641c\\attempt-1\\page.json",
+      "sha256": "fa2f0df667512dfb5763b81b1e5ece041ea33e2da3e58551bb1522064e6a97c4",
+      "size_bytes": 2748
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C2a8e0dd607</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C2a8e0dd607 — netcarros.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://netcarros.com.br/financiamento</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se da página de financiamento da loja de veículos seminovos &#39;Netcarros&#39; (dentro do escopo de potenciais COBANs). Embora o estabelecimento utilize identidade visual própria e apresente o logotipo do Banco BV dentro de uma seção multimarcas (&#39;Parceiros&#39;), a página disponibiliza um simulador próprio de financiamento com coleta de dados pessoais (incluindo CPF) e utiliza a marca/logotipo do Banco BV sem informar a razão social e o CNPJ da loja e sem exibir a declaração obrigatória de condição de correspondente bancário, configurando comunicação ambígua/ausência de transparência à luz da Resolução CMN nº 4.935/2021 (`B_AMBIGUOUS_COMMUNICATION` / `REVIEW_REQUIRED`).
+[Revisor: CONFIRM] As evidências sustentam integralmente a avaliação do analista. Trata-se da página de financiamento da revenda de veículos &#39;Netcarros&#39; (E-URL, E-TITLE), que exibe o logotipo do Banco BV na seção &#39;Parceiros&#39; (E-HEAD-7, E-IMG-1, E-SHOT-FULL) imediatamente acima de um formulário próprio de simulação de financiamento (&#39;Simule seu Financiamento&#39;, E-HEAD-9) com coleta de dados pessoais como CPF, nome, telefone e e-mail (E-SHOT-FULL). No entanto, a página e seu rodapé (E-FTR, E-SHOT-FULL) omitem a razão social e o CNPJ da loja, a declaração expressa da condição de correspondente bancário e os dados de ouvidoria exigidos pela Resolução CMN nº 4.935/2021, justificando a manutenção de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C2a8e0dd607/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 3beea7a3cf08b8290b4ff7a5bc5ef62deefb40e031278d71e388c7a5be113a46</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C2a8e0dd607/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 5bb53d8057b3ea7bc04358b74f21ce8234dfedbf1d31e6e7a4d3d347579d0a2d</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://netcarros.com.br/financiamento (domínio: netcarros.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): netcarros.com.br — **URL:** `https://netcarros.com.br` | Marquês de São Vicente, 182) | **Uso da Marca:** Destaca o **&#34;Banco BV&#34;** na seção *&#34;Parceiros&#34;* logo acima de um **formulário/simulador próprio de financiamento** (*&#34;Simule seu Financiamento&#34;*), onde coleta Nome, Telefone, E-mail, CPF, CEP e valores pretendidos | Na landing page do simulador não constam a razão social, o CNPJ da loja ou a declaração expressa de condição de correspondente bancário</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C2a8e0dd607\attempt-1\viewport.png (sha256 3beea7a3cf08b829…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C2a8e0dd607\attempt-1\fullpage.png (sha256 5bb53d8057b3ea7b…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>NetCarros - Veículos Seminovos</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Encontre os melhores veículos seminovos e zero km com as melhores condições de pagamento. Grande variedade de marcas e modelos.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: NetCarros - Veículos Seminovos</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Encontre os melhores veículos seminovos e zero km com as melhores condições de pagamento. Grande variedade de marcas e modelos.</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>author: NetCarros</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Procurando financiamento?</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Formas de financiamento</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Sem entrada</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Entrada Flexível</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Parcelas 25% mais baixa</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Parcela Final</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Faça uma simulação agora</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Simule seu Financiamento</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Outras formas de adquirir seu seminovo</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Consórcio</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>À vista</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Destaques</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>SPIN 1.8 LT</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>HB20 1.0 LIMITED</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Comprar Vender ou Trocar Financiamento Unidades Ligar Agora Procurando financiamento? O formato da nossa parceria com bancos e financeiras são diferentes, e ajudam na análise e aprovação de financiamento. Formas de financiamento Temos melhores planos e financiamento seguros para garantir seu seminovo, com preços abaixo da tabela Fipe. Sem entrada Além do plano VW Troca Sempre, com parcelas até 25% menores, contamos com financiamento convencional em até 60 vezes e taxas de juros especiais. Entrada Flexível Dividimos sua entrada em até 21x no cartão de crédito, e aceitamos seu usado na troca. Parcelas 25% mais baixa Nossos carros são até 5% abaixo da tabela Fipe e contamos com condições realmente diferenciadas para você conquistar seu seminovo. Parcela Final Opção de utilizar a parcela final na troca por outro carro, quitação ou refinanciamento. Simular agora Parceiros</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>A experiência de comprar carro do jeito certo: simples, segura e transparente. Links Rápidos Início Comprar Vender ou Trocar Financiamento Telefones Netcarros - Bandeirantes (11) 4040-8884 Netcarros - Barra Funda 11 4040-8881 Netcarros - Campinas (19) 2045-0502 Como Chegar Netcarros - Bandeirantes Av. dos Bandeirantes, 2020 Vila Olímpia, São Paulo - SP 04553-002 Horário Seg-Sex 08:00 - 19:00 Sábado 09:00 - 15:00 Netcarros - Barra Funda Av. Marquês de São Vicente, 182 Barra Funda, São Paulo - SP 01139-000 Horário Seg-Sex 08:00 - 19:00 Sábado 09:00 - 15:00 Netcarros - Campinas Av. Carlos Grimaldi, 85 Jardim Conceição, Campinas - SP 13091-000 Horário Seg-Sex 08:00 - 18:00 Sábado 09:00 - 13:00 © 2026 Netcarros. Todos os direitos reservados. Política de Privacidade | Política de PLD/FT | Canal de Denúncias Encarregado pelo Tratamento de Dados (DPO): Felipe Ibanez E-mail: dpo@netcarros.com.br</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://netcarros.com.br/&gt; | Comprar &lt;https://netcarros.com.br/comprar&gt; | Vender ou Trocar &lt;https://netcarros.com.br/avaliacao&gt; | Financiamento &lt;https://netcarros.com.br/financiamento&gt; | Unidades &lt;https://netcarros.com.br/unidades&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>nav</td><td>Ligar Agora</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Simular agora</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>24x</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>36x</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>48x</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>60x</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>on</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Solicitar Contato</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Veículos anteriores</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Ver Parcelas</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Ver Parcelas</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Ver Parcelas</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Ver Parcelas</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Próximos veículos</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>Veículos anteriores</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>Ir para página 1</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>Ir para página 2</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>Ir para página 3</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>Ir para página 4</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>Ir para página 5</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/netcarrosoficial/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/NetCarrosOficial&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td>(11) 4040-8884 &lt;tel:+551140408884&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>11 4040-8881 &lt;tel:+551140408881&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>(19) 2045-0502 &lt;tel:+551920450502&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>dpo@netcarros.com.br &lt;mailto:dpo@netcarros.com.br&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BV&#39; src=https://netcarros.com.br/assets/banco-bv-DlHPIcKk.png (52x36, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Netcarros Logo&#39; src=https://netcarros.com.br/assets/logo_netcarros-BaOBKJw5.svg (239x48, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>O formato da nossa parceria com bancos e financeiras são diferentes, e ajudam na análise e aprovação de financiamento.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Opção de utilizar a parcela final na troca por outro carro, quitação ou refinanciamento.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Telefone *</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>CEP *</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Telefones</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza identidade visual própria da loja de seminovos &#39;Netcarros&#39; (cores roxa e amarela), sem imitar a identidade visual do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-2">E-IMG-2</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Embora apresente o nome fantasia &#39;Netcarros&#39; e endereços físicos no rodapé, a página omite completamente a razão social e o CNPJ do estabelecimento.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Não há declaração expressa da condição de correspondente bancário no país, nem divulgação dos telefones de ouvidoria das instituições financeiras parceiras, contrariando as exigências de transparência da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>A loja afirma possuir parceria com bancos e financeiras para análise e aprovação de financiamento (&#39;O formato da nossa parceria com bancos e financeiras são diferentes&#39;), sem se passar diretamente pelo Banco BV.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso do logotipo do Banco BV (&#39;E-IMG-1&#39;) na seção &#39;Parceiros&#39; juntamente com outras instituições financeiras, associado à oferta de simulação de crédito sem a devida transparência de correspondente.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Disponibiliza formulário próprio (&#39;Simule seu Financiamento&#39;) que coleta Nome, Telefone, E-mail, CPF, CEP e valores do veículo/entrada logo abaixo da vitrine de bancos parceiros, sem identificação societária (CNPJ) do captador.</td><td class="mono"><a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato informados (telefones, endereços em São Paulo e Campinas, redes sociais e e-mail de DPO) são próprios da loja Netcarros.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-6">E-CONTACT-6</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>O consumidor é convidado a inserir dados sensíveis (como CPF) em um simulador de financiamento vinculado visualmente ao logotipo do Banco BV, sem saber qual pessoa jurídica (CNPJ) está coletando os dados e intermediando a operação.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Exibição do logotipo do Banco BV na seção &#39;Parceiros&#39; logo acima de um formulário de simulação de financiamento de veículos. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Oferta de simulação de financiamento com captação de dados pessoais (CPF, Nome, Telefone, E-mail, CEP) sem declaração visível da condição de correspondente bancário e sem informar os canais de ouvidoria das instituições parceiras. — <span class="mono"><a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Ausência de razão social e CNPJ da loja (Netcarros) no rodapé e no restante da página de financiamento. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: Uso de marca e identidade visual próprias da revenda de veículos (&#39;Netcarros&#39;), apresentando o Banco BV dentro de uma grade multimarcas de bancos parceiros (junto a Bradesco, Itaú, Santander, C6 Bank, Banco Pan, etc.). — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página https://netcarros.com.br/financiamento pertence à revenda de veículos seminovos &#39;Netcarros&#39; (E-URL, E-TITLE).</li><li>Na seção &#39;Parceiros&#39;, a página exibe o logotipo do Banco BV (E-IMG-1) ao lado de logotipos de outras instituições financeiras como Bradesco, Itaú, Santander, C6 Bank e Banco Pan (E-SHOT-FULL).</li><li>Logo abaixo dos logotipos dos bancos parceiros, há um formulário intitulado &#39;Simule seu Financiamento&#39; que solicita Nome, Telefone, E-mail, CPF, CEP, Valor máximo do veículo e Valor de Entrada (E-HEAD-9, E-SHOT-FULL, E-DISC-001).</li><li>Não há menção ao CNPJ ou à razão social da Netcarros em toda a página inspecionada, nem aviso expresso de atuação como correspondente bancário (E-FTR, E-SHOT-FULL, E-DISC-001).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível identificar o CNPJ da loja Netcarros para verificar seu credenciamento formal como correspondente bancário, pois o dado foi omitido na página.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se da página de financiamento da loja de veículos seminovos &#39;Netcarros&#39; (dentro do escopo de potenciais COBANs). Embora o estabelecimento utilize identidade visual própria e apresente o logotipo do Banco BV dentro de uma seção multimarcas (&#39;Parceiros&#39;), a página disponibiliza um simulador próprio de financiamento com coleta de dados pessoais (incluindo CPF) e utiliza a marca/logotipo do Banco BV sem informar a razão social e o CNPJ da loja e sem exibir a declaração obrigatória de condição de correspondente bancário, configurando comunicação ambígua/ausência de transparência à luz da Resolução CMN nº 4.935/2021 (`B_AMBIGUOUS_COMMUNICATION` / `REVIEW_REQUIRED`).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:netcarros.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>netcarros.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>dpo@netcarros.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/netcarrosoficial/</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/NetCarrosOficial</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 4040-8884</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>11 4040-8881</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(19) 2045-0502</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>Parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Uso da Marca:** Destaca o **&#34;Banco BV&#34;** na seção *&#34;Parceiros&#34;* logo acima de um **formulário/simulador próprio de financiamento** (*&#34;Simule seu Financiamento&#34;*), onde coleta Nome, Telefone, E-mail,</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">As evidências sustentam integralmente a avaliação do analista. Trata-se da página de financiamento da revenda de veículos &#39;Netcarros&#39; (E-URL, E-TITLE), que exibe o logotipo do Banco BV na seção &#39;Parceiros&#39; (E-HEAD-7, E-IMG-1, E-SHOT-FULL) imediatamente acima de um formulário próprio de simulação de financiamento (&#39;Simule seu Financiamento&#39;, E-HEAD-9) com coleta de dados pessoais como CPF, nome, telefone e e-mail (E-SHOT-FULL). No entanto, a página e seu rodapé (E-FTR, E-SHOT-FULL) omitem a razão social e o CNPJ da loja, a declaração expressa da condição de correspondente bancário e os dados de ouvidoria exigidos pela Resolução CMN nº 4.935/2021, justificando a manutenção de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Estabelecimentos (loja de veículos em São Paulo) que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - loja de veículos &#34;São Paulo&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:loja de veículos:São Paulo</span></td><td class="mono">https://netcarros.com.br/financiamento</td><td>netcarros.com.br<br><span class="muted">**URL:** `https://netcarros.com.br` | Marquês de São Vicente, 182) | **Uso da Marca:** Destaca o **&#34;Banco BV&#34;** na seção *&#34;Parceiros&#34;* logo acima de um **formulário/simulador próprio de financiamento** (*&#34;Simule seu Financiamento&#34;*), onde coleta Nome, Telefone, E-mail, CPF, CEP e valores pretendidos | Na landing page do simulador não constam a razão social, o CNPJ da loja ou a declaração expressa de condição de correspondente bancário</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:44:28.414454+00:00</div>
+      <div class="kv"><b>IP do servidor</b>185.158.133.1</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C2a8e0dd607\attempt-1\manifest.json<br>sha256 53930645d3c5ae3878667048415c05e741fc2e430ff3f2b120d52b131148763d</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://netcarros.com.br/financiamento<br>Final: https://netcarros.com.br/financiamento</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C2a8e0dd607\attempt-1\viewport.png</td><td class="mono">3beea7a3cf08b8290b4ff7a5bc5ef62deefb40e031278d71e388c7a5be113a46</td><td>101350</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C2a8e0dd607\attempt-1\fullpage.png</td><td class="mono">5bb53d8057b3ea7bc04358b74f21ce8234dfedbf1d31e6e7a4d3d347579d0a2d</td><td>765584</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C2a8e0dd607\attempt-1\page.html.txt</td><td class="mono">4d787afac68c398c7872ede256a9d98e38dac2fe3f1d57b157aed6cf8afa5778</td><td>109181</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C2a8e0dd607\attempt-1\text.txt</td><td class="mono">cdbbec6302727b33f92b6971b9167b9775aaa7b90823ef4ca05cc0d650f48c81</td><td>2915</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C2a8e0dd607\attempt-1\page.json</td><td class="mono">f33995ec32e509224faaaaffd9ffd190cd882e885aab41f27e31307ea7c58e06</td><td>20563</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:44:28+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:44:42+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:44:42+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:45:12+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:45:26+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

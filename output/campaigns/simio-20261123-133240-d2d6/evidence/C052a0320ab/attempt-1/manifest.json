@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C052a0320ab",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://grupoassefin.com.br/",
+  "final_url": "https://grupoassefin.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "76.13.239.53",
+  "collected_at": "2026-11-23T14:38:41.163771+00:00",
+  "manifest_written_at": "2026-11-23T14:38:47.669072+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C052a0320ab\\attempt-1\\viewport.png",
+      "sha256": "1e044f905c9b78ccc201a17845d22942bafaf8eeea8e7e8baf57ea18b501096d",
+      "size_bytes": 47067
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C052a0320ab\\attempt-1\\fullpage.png",
+      "sha256": "1e044f905c9b78ccc201a17845d22942bafaf8eeea8e7e8baf57ea18b501096d",
+      "size_bytes": 47067
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C052a0320ab\\attempt-1\\page.html.txt",
+      "sha256": "deb53bc4a4192f6db778e6f53a01954877d4baff0aa198705edff8a6c8d9a53d",
+      "size_bytes": 65464
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C052a0320ab\\attempt-1\\text.txt",
+      "sha256": "50e1e5f1d3e6d825dddeb49cddf6b77004722201c47c779e59997a80f6c45b6b",
+      "size_bytes": 786
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C052a0320ab\\attempt-1\\page.json",
+      "sha256": "e424a0639950d133da5c555f42261a1f02c83a8e4a23a68bf8c76b66b3526ea1",
+      "size_bytes": 2736
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

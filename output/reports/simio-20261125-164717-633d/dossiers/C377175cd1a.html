@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C377175cd1a</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C377175cd1a — matrizcred.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.matrizcred.com.br/bancos.html</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento opera legitimamente como promotora/correspondente multibancos sob marca própria (Matrizcred). Contudo, utiliza o logotipo legado da BV Financeira no cabeçalho e omite requisitos formais de transparência (CNPJ e indicação de ouvidoria), configurando vínculo ambíguo à luz da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A página pertence a uma promotora de crédito/correspondente bancário (Matrizcred) atuando em contexto multibancos. O site utiliza o logotipo legado da BV Financeira no topo e promove produtos de crédito consignado vinculados à BV, declarando-se correspondente autorizada, porém omite a disponibilização de CNPJ próprio e os contatos de ouvidoria das instituições representadas, em desacordo com as exigências da Resolução CMN nº 4.935/2021. Configura-se adequadamente como REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C377175cd1a/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 086a6543c917d606798e85865f799d698db920800addc0105d1e07533a715f70</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C377175cd1a/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 bdd69b513e4ebc58d7f740d04244ec0cfa57389b1764d330aaf0d4b6d715e88d</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.matrizcred.com.br/bancos.html (domínio: www.matrizcred.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): matrizcred.com.br — **URL:** `https://matrizcred.com.br` | **Como utiliza a marca:** Promove linhas de crédito pessoal e consignado vinculado à BV Financeira / Banco Votorantim</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C377175cd1a/attempt-1/viewport.png (sha256 086a6543c917d606…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C377175cd1a/attempt-1/fullpage.png (sha256 bdd69b513e4ebc58…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>MatriZcred - Empréstimos para Aposentados e Pensionistas do INSS</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Correspondente autorizado</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Estamos sempre presentes para Atender Bem!!!</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Acesso rápido</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Convênios</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Informação</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Redes Sociais</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Home Empresa Produtos / Serviços Convênios Solicitar Dúvidas Parceiros Contato Correspondente autorizado A Empresa Matrizcred é correspondente autorizada nos seguintes bancos: Banco Itaú-BMG. O empréstimo consignado do BMG é uma excelente opção para ajudar você, aposentado ou pensionista do INSS e servidor público, replanejar sua vida financeira, colocar as contas em dia, fazer aquela reforma na casa, ou realizar aquele grande sonho. As taxas são pequenas e as parcelas são fixas, debitadas diretamente do seu benefício ou salário. Além disso, você, aposentado ou pensionista do INSS, tem até 60 meses ou até 84 meses para pagar, dependendo do órgão público para o qual trabalha. É mais segurança e tranquilidade para você. Banco Bradesco. O Crédito Pessoal Consignado Bradesco é uma linha de empréstimo pessoal para você usar como quiser, com taxa e prazos diferenciado. Simule e contrate uma operação! Com o Crédito Pessoal Consignado*, você ganha comodidade, pois as parcelas são descontadas diretamente do seu benefício. Banco Daycoval. O Daycoval oferece operações de empréstimos às pessoas físicas, com destaque para o empréstimo consignado com desconto em folha de pagamento aos funcionários públicos e privados Crédito para aposentados e pensionistas, com desconto no cartão do INSS, parcelado em até 60 meses. Banco Panamericano. Com o Crédito Consignado PanAmericano você pode conseguir dinheiro com juros competitivos e melhores que os oferecidos no crédito pessoal tradicional. Esse crédito pessoal vantajoso se diferencia na maneira de pagar: o desconto é feito na sua folha de pagamento ou na fonte de pagamento de sua pensão. Com isso, os bancos diminuem suas taxas, pois o risco é menor. Simples e excelente para o consumidor. BV Financeira. O Banco Votorantim tem uma linha de empréstimo exclusiva para aposentados e/ou pensionistas do INSS, comercializada pela BV Financeira. Você pode pagar em até 59 meses e o desconto das parcelas é feito diretamente do seu benefício, o que </td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://www.matrizcred.com.br/img/logo.png (240x80, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>PARCEIROS</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Correspondente autorizado</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>A Empresa Matrizcred é correspondente autorizada nos seguintes bancos:</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Banco Itaú-BMG.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Banco Bradesco.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Banco Daycoval.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Banco Panamericano.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Com o Crédito Consignado PanAmericano você pode conseguir dinheiro com juros competitivos e melhores que os oferecidos no crédito pessoal tradicional. Esse crédito pessoal vantajoso se diferencia na maneira de pagar: o desconto é feito na sua folha de pagamento ou na fonte de pagamento de sua pensão. Com isso, os bancos diminuem suas taxas, pois o risco é menor. Simples e excelente para o</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>BV Financeira.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>O Banco Votorantim tem uma linha de empréstimo exclusiva para aposentados e/ou pensionistas do INSS, comercializada pela BV Financeira.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Não precisa ter conta em banco.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Seja nosso Parceiro</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Bancos</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Atuamos desde 2007 como correspondente Bancário e consultor de Negócios! Seu principal executivo está há mais de 30 Anos no Mercado Financeiro!</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>Identidade visual própria da Matrizcred predomina no layout geral, embora exiba no cabeçalho a marca gráfica histórica da BV Financeira ao lado de outros bancos.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O site identifica-se comercialmente como Matrizcred, mas não apresenta razão social formal ou CNPJ visível na página.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Afirma ser correspondente autorizada para diversos bancos (incluindo BV Financeira), mas não atende integralmente aos requisitos de transparência e identificação societária da Resolução CMN 4.935/2021.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Comunicação em terceira pessoa ao descrever as linhas de crédito da BV Financeira e de outras instituições financeiras.</td><td class="mono"><a href="#E-TXT-010">E-TXT-010</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Exibição do logotipo legado da BV Financeira (B vermelho e V estilizado) no cabeçalho junto aos logos de outros parceiros bancários.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página funciona como catálogo informativo dos bancos conveniados e opções de crédito consignado.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Disponibiliza telefone fixo próprio no cabeçalho e links de redes sociais no rodapé.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O contexto multibancos minimiza o risco de falsa impressão de canal direto do Banco BV, mas o uso de logo defasado e a ausência de dados cadastrais geram ambiguidade regulatória.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Utilização do logotipo antigo/legado da BV Financeira (monograma com B vermelho sobreposto ao V escuro) no cabeçalho em área de parceiros, indicando material desatualizado e sem governança oficial recente da marca. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora declare atuar como correspondente autorizada, a página omite o CNPJ da empresa promotora e os canais de ouvidoria das instituições parceiras, em desacordo com as exigências da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-014">E-TXT-014</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: Contexto multibancos explícito com apresentação conjunta de múltiplos agentes financeiros (Itaú-BMG, Bradesco, Daycoval, PanAmericano e BV Financeira). — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Declaração expressa da condição de correspondente bancário/consultoria de crédito. — <span class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-014">E-TXT-014</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence à empresa Matrizcred, atuante como promotora e correspondente de crédito consignado para aposentados e pensionistas.</li><li>No cabeçalho são exibidos logotipos de vários bancos parceiros: BMG, Itaú BMG, Bradesco Promotora, Banco Daycoval, Pan Americano e BV Financeira.</li><li>A marca BV Financeira é representada visualmente pelo logotipo histórico/legado (B vermelho entrelaçado com V azul/preto).</li><li>O texto descreve a BV Financeira em terceira pessoa como parceira de crédito consignado com débito em benefício.</li><li>A página não exibe CNPJ da promotora nem contato de ouvidoria das instituições parceiras.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível verificar se a Matrizcred possui contrato ativo e regular de correspondente bancário com o Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento opera legitimamente como promotora/correspondente multibancos sob marca própria (Matrizcred). Contudo, utiliza o logotipo legado da BV Financeira no cabeçalho e omite requisitos formais de transparência (CNPJ e indicação de ouvidoria), configurando vínculo ambíguo à luz da Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:matrizcred.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>matrizcred.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Correspondente autorizado</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a></td><td>Correspondente autorizado</td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente Bancário</td><td class="mono"><a href="#E-TXT-014">E-TXT-014</a></td><td>Atuamos desde 2007 como correspondente Bancário e consultor de Negócios! Seu principal executivo está há mais de 30 Anos no Mercado Financeiro!</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (apresentação da marca) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-014">E-TXT-014</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma promotora de crédito/correspondente bancário (Matrizcred) atuando em contexto multibancos. O site utiliza o logotipo legado da BV Financeira no topo e promove produtos de crédito consignado vinculados à BV, declarando-se correspondente autorizada, porém omite a disponibilização de CNPJ próprio e os contatos de ouvidoria das instituições representadas, em desacordo com as exigências da Resolução CMN nº 4.935/2021. Configura-se adequadamente como REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-002">E-TXT-002</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Uso de expressões de oficialidade (&#39;parceiro oficial&#39;, &#39;representante&#39;, &#39;correspondente autorizado&#39;, &#39;agência BV&#39;).
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;parceiro oficial&#34; OR &#34;parceiros autorizados&#34; OR &#34;correspondente autorizado&#34; OR &#34;correspondente bancário autorizado&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;representante&#34; OR &#34;agência BV&#34; OR &#34;agência Banco BV&#34; OR &#34;canal oficial&#34; OR &#34;site oficial&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H4-official-language</span></td><td class="mono">https://www.matrizcred.com.br/bancos.html</td><td>matrizcred.com.br<br><span class="muted">**URL:** `https://matrizcred.com.br` | **Como utiliza a marca:** Promove linhas de crédito pessoal e consignado vinculado à BV Financeira / Banco Votorantim</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:04:28.220633+00:00</div>
+      <div class="kv"><b>IP do servidor</b>173.236.251.140</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C377175cd1a/attempt-1/manifest.json<br>sha256 140603839349e50a2edd96675d037ec53a2a4a2b2ee6538b9c737517ab935a27</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.matrizcred.com.br/bancos.html<br>Final: https://www.matrizcred.com.br/bancos.html</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C377175cd1a/attempt-1/viewport.png</td><td class="mono">086a6543c917d606798e85865f799d698db920800addc0105d1e07533a715f70</td><td>610519</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C377175cd1a/attempt-1/fullpage.png</td><td class="mono">bdd69b513e4ebc58d7f740d04244ec0cfa57389b1764d330aaf0d4b6d715e88d</td><td>836726</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C377175cd1a/attempt-1/page.html.txt</td><td class="mono">1e385315ce0063a872fbba12ef0a2f55dc00fa13bdbe6c879a51091c2a4aefeb</td><td>10552</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C377175cd1a/attempt-1/text.txt</td><td class="mono">05010b2775dea847b303043b61211d1ba5f2f259140bbbae5548663e4296b774</td><td>2646</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C377175cd1a/attempt-1/page.json</td><td class="mono">c0748d71824119aec87e82c865c946a6f6b1ab3b650caa83be8cc70302ac22ba</td><td>8739</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:07+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T19:04:28+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:34+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:34+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:05:12+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:07:49+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

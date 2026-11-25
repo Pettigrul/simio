@@ -1,0 +1,2940 @@
+<html lang="pt-BR" style="--automax-public-header-bottom: 172px;"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Studio Multimarcas | Seminovos Selecionados e com Garantia</title>
+  <meta name="description" content="Encontre carros revisados, com garantia e laudo cautelar aprovado na Studio Multimarcas. As melhores taxas de financiamento e supervalorização do seu usado na troca.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Montserrat:wght@500;600;700;800;900&amp;family=Open+Sans:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Omega Veículos Production CSS Stack -->
+  <link rel="stylesheet" href="/static/site/omega/app.css">
+  <link rel="stylesheet" href="/static/site/omega/home-mobile.css">
+  <link rel="stylesheet" href="/static/site/omega/ui-refinement.css">
+  <link rel="stylesheet" href="/static/site/omega/promo-bar.css">
+  <link rel="stylesheet" href="/static/site/omega/gallery360.css">
+  <link rel="stylesheet" href="/static/site/omega/whatsapp-floating.css">
+  <link rel="stylesheet" href="/static/site/omega/omega-inline.css">
+
+  <style data-store-branding="">
+    :root {
+      /* Dynamic Store Branding (#C9A84C / #111111) */
+      --store-primary: #C9A84C;
+      --store-secondary: #111111;
+      --gold-bright: #E5C158;
+      --gold-main: #C9A84C;
+      --gold-deep: #A67F21;
+      --gold-soft: rgba(201, 168, 76, 0.13);
+      --gold-border: rgba(201, 168, 76, 0.34);
+      --obsidian: #111318;
+      --obsidian-2: #191C24;
+      --primary: var(--store-primary);
+      --primary-dark: #A67F21;
+      --button-color: var(--store-primary);
+      --link-color: #B68922;
+      --accent-color: var(--store-primary);
+      --accent: var(--store-primary);
+      --dark: var(--store-secondary);
+      --footer-bg: #0D0F14;
+      --omega-promo-bg: #151821;
+      --omega-promo-bg-2: #0B0D12;
+      --automax-partner-red: var(--store-primary);
+    }
+
+    /* =====================================================================
+       HARMONIOUS BLACK & GOLD LUXURY PALETTE FOR LAYOUT 1
+       ===================================================================== */
+
+    /* 1. Top Promo Bar — Obsidian Carbon + Champagne Gold CTA */
+    .public-body .omega-top-promo-bar {
+      --omega-promo-bg: #161922 !important;
+      --omega-promo-bg-2: #0B0D12 !important;
+      --omega-promo-text: #F8FAFC !important;
+      --omega-promo-button-bg: #E5C158 !important;
+      --omega-promo-button-text: #111318 !important;
+      background: linear-gradient(105deg, #0B0D12 0%, #171B24 48%, #0B0D12 100%) !important;
+      border-bottom: 1px solid rgba(229, 193, 88, 0.28) !important;
+    }
+    .public-body .omega-top-promo-bar__icon {
+      background: rgba(229, 193, 88, 0.16) !important;
+      border-color: rgba(229, 193, 88, 0.45) !important;
+      color: #E5C158 !important;
+    }
+    .public-body .omega-top-promo-bar__badge {
+      background: rgba(229, 193, 88, 0.18) !important;
+      border-color: rgba(229, 193, 88, 0.48) !important;
+      color: #E5C158 !important;
+    }
+    .public-body .omega-top-promo-bar__copy strong {
+      color: #E5C158 !important;
+    }
+    .public-body .omega-top-promo-bar__cta {
+      background: linear-gradient(135deg, #E8C55A 0%, #C59628 100%) !important;
+      color: #111318 !important;
+      font-weight: 800 !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      box-shadow: 0 4px 14px rgba(201, 168, 76, 0.25) !important;
+    }
+    .public-body .omega-top-promo-bar__cta:hover {
+      filter: brightness(1.06) !important;
+    }
+
+    /* 2. Top Strip & Main Header — Sleek Obsidian Black so Gold Logo & Nav Shine */
+    .public-body .top-strip {
+      background: #0B0D12 !important;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.16) !important;
+      color: #D1D5DB !important;
+    }
+    .public-body .top-strip a {
+      color: #E5E7EB !important;
+    }
+    .public-body .top-strip a:hover {
+      color: #E5C158 !important;
+    }
+    .public-body .top-strip .social-dot {
+      border-color: rgba(201, 168, 76, 0.35) !important;
+      background: rgba(201, 168, 76, 0.10) !important;
+      color: #E5C158 !important;
+    }
+    .public-body .top-strip .social-dot:hover {
+      background: #C9A84C !important;
+      color: #111318 !important;
+    }
+    .public-body .site-header,
+    .public-body .site-header.menu-theme-light {
+      background: #111318 !important;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.24) !important;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28) !important;
+    }
+    .public-body .site-header .main-nav > a,
+    .public-body .site-header .main-nav > .nav-mega-item > .nav-mega-toggle {
+      color: #F1F5F9 !important;
+    }
+    .public-body .site-header .main-nav > a:hover,
+    .public-body .site-header .main-nav > a.active,
+    .public-body .site-header .main-nav > .nav-mega-item > .nav-mega-toggle:hover,
+    .public-body .site-header .main-nav > .nav-mega-item > .nav-mega-toggle.active {
+      color: #E5C158 !important;
+    }
+    .public-body .site-header .main-nav > a.active::after,
+    .public-body .site-header .main-nav > .nav-mega-item > a.active::after,
+    .public-body.sell-vehicle-design-page .main-nav a.active::after {
+      background: linear-gradient(90deg, #E5C158, #C59628) !important;
+    }
+    .public-body .site-header .round-link {
+      color: #F1F5F9 !important;
+      border-color: rgba(201, 168, 76, 0.28) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+    .public-body .site-header .round-link:hover {
+      border-color: #E5C158 !important;
+      background: rgba(201, 168, 76, 0.16) !important;
+      color: #E5C158 !important;
+    }
+    .public-body .site-header .round-link.has-dot::after,
+    .public-body.sell-vehicle-design-page .round-link.has-dot::after {
+      background: #E5C158 !important;
+    }
+    .public-body .site-header .menu-toggle {
+      color: #E5C158 !important;
+    }
+
+    /* 3. Hero Banner & Dark Showcase Overlays — Replace Red Stripes/Glows with Gold */
+    .public-body .automax-hero::after {
+      background: linear-gradient(
+        135deg,
+        transparent 12%,
+        rgba(201, 168, 76, 0.18) 13%,
+        transparent 14%,
+        transparent 42%,
+        rgba(201, 168, 76, 0.36) 43%,
+        transparent 44%,
+        transparent 72%,
+        rgba(201, 168, 76, 0.22) 73%,
+        transparent 74%
+      ) !important;
+    }
+    .public-body .hero-overlay {
+      background: radial-gradient(circle at 78% 55%, rgba(201, 168, 76, 0.24), transparent 32%),
+                  linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.18)) !important;
+    }
+    .public-body .stock-showcase::after,
+    .public-body .stock-showcase-reference::after {
+      background: linear-gradient(
+        132deg,
+        transparent 40%,
+        rgba(201, 168, 76, 0.20) 41%,
+        transparent 43%,
+        transparent 66%,
+        rgba(201, 168, 76, 0.30) 67%,
+        transparent 69%
+      ) !important;
+    }
+
+    /* 4. Primary & Outline Buttons — Metallic Gold & Obsidian Black Harmony */
+    .public-body .btn,
+    .public-body .product-primary-cta,
+    .public-body .sell-v2-hero-btn,
+    .public-body .sell-v2-actions .btn,
+    .public-body .sell-v2-actions .sell-v2-submit,
+    .public-body .about-omega-pro-red,
+    .public-body .vehicle-review-submit,
+    .public-body .work-submit {
+      background: linear-gradient(180deg, #E5C158 0%, #C59628 100%) !important;
+      border-color: #C59628 !important;
+      color: #111318 !important;
+      font-weight: 800 !important;
+    }
+    .public-body .btn:hover,
+    .public-body .product-primary-cta:hover,
+    .public-body .sell-v2-hero-btn:hover,
+    .public-body .sell-v2-actions .btn:hover,
+    .public-body .about-omega-pro-red:hover {
+      background: linear-gradient(180deg, #ECCD6B 0%, #D1A332 100%) !important;
+      border-color: #D1A332 !important;
+      color: #0B0D12 !important;
+    }
+    .public-body .hero-copy .btn.hero-btn + .btn.hero-btn,
+    .public-body .about-omega-pro-outline {
+      background: rgba(17, 19, 24, 0.72) !important;
+      border: 1px solid rgba(229, 193, 88, 0.60) !important;
+      color: #FFFFFF !important;
+    }
+    .public-body .hero-copy .btn.hero-btn + .btn.hero-btn:hover,
+    .public-body .about-omega-pro-outline:hover {
+      background: rgba(201, 168, 76, 0.20) !important;
+      border-color: #E5C158 !important;
+      color: #E5C158 !important;
+    }
+
+    /* Vehicle Card Buy Button — Sleek Obsidian Black -> Metallic Gold on Hover */
+    .public-body .vehicle-card .details-btn,
+    .public-body .vehicle-card .vehicle-buy-btn {
+      background: #111318 !important;
+      border: 1px solid rgba(201, 168, 76, 0.42) !important;
+      color: #F8FAFC !important;
+      font-weight: 800 !important;
+      transition: all 0.2s ease !important;
+    }
+    .public-body .vehicle-card .details-btn:hover,
+    .public-body .vehicle-card .vehicle-buy-btn:hover {
+      background: linear-gradient(180deg, #E5C158 0%, #C59628 100%) !important;
+      border-color: #C59628 !important;
+      color: #111318 !important;
+    }
+
+    /* Outline Buttons */
+    .public-body .outline-btn {
+      border-color: #C59628 !important;
+      color: #111318 !important;
+      font-weight: 800 !important;
+    }
+    .public-body .outline-btn:hover {
+      background: #111318 !important;
+      border-color: #111318 !important;
+      color: #E5C158 !important;
+    }
+
+    /* 5. Search Panel, Category Cards, Mega Menu & Soft Tint Containers (No Pink!) */
+    .public-body .stock-search-panel-premium .search-select-shell .field-icon {
+      color: #B8891E !important;
+    }
+    .public-body .stock-search-panel-premium .search-select-shell select:hover,
+    .public-body .stock-search-panel-premium .search-select-shell select:focus {
+      border-color: #C9A84C !important;
+    }
+    .public-body .omega-category-icon,
+    .public-body .vehicle-mega-title-icon,
+    .public-body .vehicle-single-specs i,
+    .public-body .stat-icon.gold,
+    .public-body .favorites-empty > i,
+    .public-body .automax-favorite-toast .favorite-toast-icon,
+    .public-body .stock-empty-enhanced .stock-empty-icon,
+    .public-body .sell-v2-benefit span,
+    .public-body .about-value-card > span,
+    .public-body .about-omega-pro-purpose-card > span {
+      background: rgba(201, 168, 76, 0.13) !important;
+      border-color: rgba(201, 168, 76, 0.30) !important;
+      color: #B68922 !important;
+    }
+    .public-body .omega-category-card:hover .omega-category-icon {
+      background: #111318 !important;
+      color: #E5C158 !important;
+    }
+    .public-body .vehicle-category-pill {
+      background: rgba(201, 168, 76, 0.15) !important;
+      color: #8C6612 !important;
+      border: 1px solid rgba(201, 168, 76, 0.32) !important;
+    }
+    .public-body .vehicle-rating i,
+    .public-body .client-box span {
+      color: #D4AF37 !important;
+    }
+    .public-body .product-price-box-clean strong {
+      color: #111318 !important;
+    }
+
+    /* 6. Section Headings, Partners, FAQ, Sell & About Accents */
+    .public-body .center-head span,
+    .public-body .eyebrow,
+    .public-body .automax-partners-showcase .partners-head span,
+    .public-body .automax-faq-eyebrow,
+    .public-body .automax-faq-eyebrow i,
+    .public-body .product-section-heading small,
+    .public-body .sell-v2-hero-eyebrow,
+    .public-body .sell-v2-copy .eyebrow,
+    .public-body .about-omega-pro-eyebrow,
+    .public-body .about-omega-pro-time strong,
+    .public-body .about-omega-pro-values-grid i,
+    .public-body .sell-vehicle-benefits i,
+    .public-body .sell-v2-benefit-safe span,
+    .public-body .sell-v2-benefit-safe i {
+      color: #B8891E !important;
+    }
+    .public-body .omega-sell-cta-copy span.eyebrow,
+    .public-body .about-omega-pro-hero .about-omega-pro-eyebrow,
+    .public-body .services-omega-hero-copy .eyebrow,
+    .public-body .page-hero.managed-page-hero.has-page-banner .eyebrow {
+      color: #E5C158 !important;
+    }
+    .public-body .hero-copy .eyebrow {
+      color: #111318 !important;
+      font-weight: 800 !important;
+    }
+    .public-body .center-head h2::after,
+    .public-body .automax-faq-answer::before {
+      background: linear-gradient(90deg, #D4AF37, #A67F21) !important;
+    }
+    .public-body .automax-faq-item[open] {
+      border-color: rgba(201, 168, 76, 0.45) !important;
+    }
+    .public-body .automax-faq-item[open] summary i,
+    .public-body .omega-step-badge,
+    .public-body .sell-form-section-title span.step-num,
+    .public-body .omega-page-btn.is-active,
+    .public-body .omega-term-pill.is-active {
+      background: #111318 !important;
+      border-color: #C9A84C !important;
+      color: #E5C158 !important;
+    }
+    .public-body .benefit-strip .benefit-icon {
+      background: #111318 !important;
+      color: #E5C158 !important;
+      border: 1px solid rgba(201, 168, 76, 0.35) !important;
+    }
+    .public-body .testimonial-nav:hover {
+      background: #111318 !important;
+      color: #E5C158 !important;
+      border-color: #C9A84C !important;
+    }
+    .public-body .contact-v2-whatsapp-box {
+      border-color: rgba(201, 168, 76, 0.32) !important;
+      background: linear-gradient(90deg, rgba(201, 168, 76, 0.12), rgba(201, 168, 76, 0.03)) !important;
+    }
+
+    /* Ensure .top-strip and .nav-wrap align 100% with the 1300px .container grid */
+    .public-body .top-strip {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 36px !important;
+      height: auto !important;
+      padding: 6px 0 !important;
+    }
+    .public-body .top-strip .top-strip-inner,
+    .public-body.site-menu-full .top-strip-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      flex-wrap: nowrap !important;
+      gap: 20px !important;
+      width: min(var(--site-layout-width, 1300px), calc(100% - 40px)) !important;
+      max-width: var(--site-layout-width, 1300px) !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+    }
+    .public-body .top-strip .top-strip-item {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      white-space: nowrap !important;
+      font-size: 12px !important;
+      color: #D1D5DB !important;
+    }
+    .public-body .top-strip .top-strip-item i {
+      color: #E5C158 !important;
+      font-size: 13px !important;
+    }
+    .public-body .top-strip .top-strip-center {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 24px !important;
+    }
+    .public-body .top-strip .top-strip-socials {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      flex-shrink: 0 !important;
+    }
+    @media (max-width: 980px) {
+      .public-body .top-strip .top-strip-center {
+        display: none !important;
+      }
+    }
+    .public-body.site-menu-full .nav-wrap,
+    .public-body .site-header .nav-wrap {
+      width: min(var(--site-layout-width, 1300px), calc(100% - 40px)) !important;
+      max-width: var(--site-layout-width, 1300px) !important;
+      margin-inline: auto !important;
+      padding-inline: 0 !important;
+    }
+
+    /* =====================================================================
+       STRICT GRID & CARD ALIGNMENT ("ESQUADRO") ACROSS HOME & INNER PAGES
+       ===================================================================== */
+
+    /* Remove slanted diagonal stripe overlay on Hero */
+    .public-body .automax-hero::after {
+      display: none !important;
+    }
+
+    /* Brand Grid: 6 columns x 2 rows aligned edge-to-edge with .container */
+    .public-body .brand-logo-carousel-section::before {
+      display: none !important;
+    }
+    .public-body .brand-logo-carousel {
+      padding: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+    .public-body .brand-logo-carousel-track {
+      display: grid !important;
+      grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: visible !important;
+    }
+    @media (max-width: 1024px) {
+      .public-body .brand-logo-carousel-track {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .public-body .brand-logo-carousel-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      }
+    }
+    .public-body .brand-logo-carousel-item.brand-pill-card {
+      width: 100% !important;
+      min-width: 0 !important;
+      height: 98px !important;
+      margin: 0 !important;
+      padding: 12px 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      border-radius: 16px !important;
+    }
+    .public-body .brand-logo-carousel-item.brand-pill-card img.brand-pill-logo {
+      width: auto !important;
+      max-width: 68px !important;
+      height: 36px !important;
+      object-fit: contain !important;
+      display: block !important;
+      margin: 0 auto !important;
+      filter: none !important;
+    }
+
+    /* Vehicle Card Uniform Heights & Aligned Specs/Price/Button */
+    .public-body .vehicle-grid.automax-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 22px !important;
+      align-items: stretch !important;
+    }
+    @media (max-width: 1120px) {
+      .public-body .vehicle-grid.automax-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .public-body .vehicle-grid.automax-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    .public-body .vehicle-card.vehicle-card-premium {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+    }
+    .public-body .vehicle-card-premium-info {
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+      padding: 18px !important;
+    }
+    .public-body .vehicle-card-premium-info h3 {
+      min-height: 42px !important;
+      max-height: 42px !important;
+      line-height: 1.32 !important;
+      font-size: 15.5px !important;
+      margin: 8px 0 4px !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-version {
+      min-height: 19px !important;
+      max-height: 19px !important;
+      margin: 0 0 8px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-meta.vehicle-card-specs {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 6px !important;
+      padding: 12px 0 !important;
+      margin: 8px 0 12px !important;
+      border-top: 1px solid #EEF2F6 !important;
+      border-bottom: 1px solid #EEF2F6 !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-meta.vehicle-card-specs > span {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      min-width: 0 !important;
+      padding: 0 2px !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-meta.vehicle-card-specs > span b,
+    .public-body .vehicle-card-premium-info .vehicle-meta.vehicle-card-specs > span small {
+      max-width: 100% !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      display: block !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-meta.vehicle-card-specs > span b {
+      font-size: 11.5px !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-meta.vehicle-card-specs > span small {
+      font-size: 10.5px !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-price {
+      margin-top: auto !important;
+      min-height: 60px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      margin-bottom: 14px !important;
+    }
+    .public-body .vehicle-card-premium-info .vehicle-price b {
+      color: #B68922 !important;
+      font-size: 21px !important;
+      line-height: 1.15 !important;
+    }
+
+    /* Dark CTA Banner Secondary Button Contrast */
+    .public-body .omega-sell-cta-actions .outline-btn {
+      background: rgba(255, 255, 255, 0.07) !important;
+      border: 1px solid rgba(229, 193, 88, 0.65) !important;
+      color: #FFFFFF !important;
+    }
+    .public-body .omega-sell-cta-actions .outline-btn:hover {
+      background: #E5C158 !important;
+      border-color: #E5C158 !important;
+      color: #111318 !important;
+    }
+
+    /* Benefit Strip Alignment */
+    .public-body .benefit-strip {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 20px !important;
+      padding: 28px !important;
+      border-radius: 20px !important;
+      background: #FFFFFF !important;
+      border: 1px solid #E5E7EB !important;
+    }
+    @media (max-width: 980px) {
+      .public-body .benefit-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+    @media (max-width: 600px) {
+      .public-body .benefit-strip {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Testimonials Clean Centered Alignment */
+    .public-body .testimonial-shell {
+      max-width: 960px !important;
+      margin: 0 auto !important;
+    }
+    .public-body .testimonial-card.active {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 36px 48px !important;
+      gap: 16px !important;
+      border-radius: 20px !important;
+    }
+    .public-body .testimonial-card .quote-mark {
+      position: static !important;
+      font-size: 34px !important;
+      line-height: 1 !important;
+      color: #C9A84C !important;
+      margin: 0 !important;
+      height: auto !important;
+      width: auto !important;
+    }
+    .public-body .testimonial-card p {
+      max-width: 720px !important;
+      margin: 0 auto !important;
+      font-size: 16px !important;
+      line-height: 1.65 !important;
+      color: #1E293B !important;
+    }
+    .public-body .testimonial-card .client-box {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      margin: 4px 0 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      text-align: center !important;
+    }
+    .public-body .testimonial-card .client-box b {
+      font-size: 15.5px !important;
+      font-weight: 800 !important;
+      color: #0F172A !important;
+      white-space: nowrap !important;
+    }
+    .public-body .testimonial-card .client-box small {
+      font-size: 13px !important;
+      color: #64748B !important;
+    }
+    .public-body .testimonial-card .client-box .rating-stars {
+      display: inline-flex !important;
+      gap: 4px !important;
+      color: #D4AF37 !important;
+      font-size: 14px !important;
+      margin-top: 2px !important;
+    }
+
+    /* Partners Section: 4x2 Grid Aligned to .container + Gold Icons (No Red, No Clipped Text) */
+    .public-body .automax-partners-showcase::before,
+    .public-body .automax-partners-showcase::after {
+      display: none !important;
+    }
+    .public-body .automax-partners-showcase .partners-carousel-shell {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+    .public-body .automax-partners-showcase .partners-carousel-shell .bank-strip.partner-logo-strip.automax-partner-track {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 18px !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: visible !important;
+    }
+    @media (max-width: 1024px) {
+      .public-body .automax-partners-showcase .partners-carousel-shell .bank-strip.partner-logo-strip.automax-partner-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+    @media (max-width: 600px) {
+      .public-body .automax-partners-showcase .partners-carousel-shell .bank-strip.partner-logo-strip.automax-partner-track {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    .public-body .automax-partners-showcase .partners-carousel-shell .partner-logo-item.automax-partner-card {
+      flex: none !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 18px 16px !important;
+      background: #FFFFFF !important;
+      border: 1px solid #E5E7EB !important;
+      border-radius: 18px !important;
+      box-sizing: border-box !important;
+    }
+    .public-body .automax-partners-showcase .automax-partner-logo-box {
+      height: 84px !important;
+      margin-bottom: 12px !important;
+      padding: 16px !important;
+      border: 1px solid rgba(201, 168, 76, 0.25) !important;
+      background: rgba(201, 168, 76, 0.08) !important;
+    }
+    .public-body .automax-partners-showcase .automax-partner-meta {
+      padding: 0 4px !important;
+      min-height: 0 !important;
+      text-align: center !important;
+    }
+    .public-body .automax-partners-showcase .automax-partner-name {
+      justify-content: center !important;
+    }
+    .public-body .automax-partners-showcase .automax-partner-meta small {
+      max-width: 100% !important;
+      text-align: center !important;
+    }
+    .public-body .automax-partners-showcase .automax-partner-check,
+    .public-body .automax-partners-showcase .automax-partner-check i,
+    .public-body .automax-partner-shield,
+    .public-body .automax-partner-shield i {
+      color: #C9A84C !important;
+      background: transparent !important;
+      border-color: rgba(201, 168, 76, 0.35) !important;
+    }
+
+    /* FAQ Container Aligned to .container (1300px) */
+    .public-body .automax-faq-container {
+      width: min(var(--site-layout-width, 1300px), calc(100% - 40px)) !important;
+      max-width: var(--site-layout-width, 1300px) !important;
+    }
+    .public-body .automax-faq-grid {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    /* Vehicle Detail Page — Ficha Técnica Clean Heading & Non-Overlapping Rows */
+    .public-body .product-detail-page .product-section-heading {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 4px !important;
+      margin: 0 0 20px !important;
+    }
+    .public-body .product-detail-page .product-section-heading h2 {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #0F172A !important;
+      margin: 0 !important;
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box > .product-tech-grid,
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box > div:not(.product-section-heading) {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 32px !important;
+    }
+    @media (max-width: 768px) {
+      .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box > .product-tech-grid,
+      .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box > div:not(.product-section-heading) {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+      }
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dl {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dl + dl {
+      padding-left: 32px !important;
+      border-left: 1px solid #E5E7EB !important;
+    }
+    @media (max-width: 768px) {
+      .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dl + dl {
+        padding-left: 0 !important;
+        border-left: 0 !important;
+      }
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dl > div {
+      display: grid !important;
+      grid-template-columns: auto minmax(0, 1fr) !important;
+      align-items: center !important;
+      gap: 16px !important;
+      padding: 12px 0 !important;
+      border-bottom: 1px solid #EDF1F6 !important;
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dt {
+      white-space: nowrap !important;
+      color: #0F172A !important;
+      font-weight: 700 !important;
+      font-size: 13.5px !important;
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dd {
+      margin: 0 !important;
+      text-align: right !important;
+      color: #475569 !important;
+      font-weight: 500 !important;
+      font-size: 13.5px !important;
+      overflow-wrap: break-word !important;
+      word-break: normal !important;
+    }
+    .public-body .product-detail-page .vehicle-content-main-stack > .vehicle-single-sections-classic #ficha-tecnica.product-tech-box dd .vehicle-tech-color-value {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 8px !important;
+    }
+
+    /* Footer Contact Long Email Wrap */
+    .public-body .footer-contact-item {
+      min-width: 0 !important;
+    }
+    .public-body .footer-contact-item span {
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+    }
+
+    /* Mega menu hover & open state support */
+    .public-body .nav-mega-item {
+      position: static !important;
+    }
+    .public-body .vehicle-mega-menu {
+      position: fixed !important;
+      left: 50% !important;
+      right: auto !important;
+      width: min(1320px, calc(100vw - 48px)) !important;
+      transform: translate(-50%, 10px) !important;
+      margin: 0 !important;
+      z-index: 9999 !important;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18) !important;
+    }
+    @media (min-width: 1101px) {
+      .public-body .nav-mega-item:hover .vehicle-mega-menu,
+      .public-body .nav-mega-item:focus-within .vehicle-mega-menu,
+      .public-body .nav-mega-item.is-open .vehicle-mega-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translate(-50%, 0) !important;
+      }
+    }
+
+    /* Fix Quick Search Filter Box select text & button alignment */
+    .public-body .stock-search-panel-premium {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) auto !important;
+      gap: 14px !important;
+      align-items: end !important;
+    }
+    @media (max-width: 1024px) {
+      .public-body .stock-search-panel-premium {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+      .public-body .stock-search-panel-premium .search-submit-btn {
+        grid-column: 1 / -1 !important;
+      }
+    }
+    @media (max-width: 600px) {
+      .public-body .stock-search-panel-premium {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    .public-body .stock-search-panel-premium .search-select-shell select {
+      padding: 0 36px 0 44px !important;
+      font-size: 13.5px !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+    }
+    .public-body .stock-search-panel-premium .search-select-shell .field-icon {
+      left: 16px !important;
+    }
+    .public-body .stock-search-panel-premium .search-select-shell .field-chevron {
+      right: 14px !important;
+    }
+
+    /* Brand avatar icon fallback in Mega Menu & Carousel */
+    .vehicle-mega-brand-avatar {
+      display: inline-grid !important;
+      place-items: center !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      color: var(--primary) !important;
+      font-size: 15px !important;
+      flex-shrink: 0 !important;
+    }
+    .brand-logo-carousel-item.brand-pill-card {
+      display: inline-flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      min-width: 128px !important;
+      height: 92px !important;
+      padding: 14px 18px !important;
+      border-radius: 16px !important;
+      background: #fff !important;
+      border: 1px solid #e5e7eb !important;
+      color: #0f172a !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      transition: transform .18s ease, border-color .18s ease !important;
+    }
+    .brand-logo-carousel-item.brand-pill-card i {
+      font-size: 24px !important;
+      color: var(--primary) !important;
+    }
+    .brand-logo-carousel-item.brand-pill-card:hover {
+      border-color: var(--primary) !important;
+      transform: translateY(-2px) !important;
+      color: var(--primary) !important;
+    }
+
+    /* Category Quick Cards on Home */
+    .omega-category-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+    @media (max-width: 980px) {
+      .omega-category-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .omega-category-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .omega-category-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      transition: all .2s ease;
+      text-decoration: none;
+      color: #0f172a;
+    }
+    .omega-category-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .omega-category-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(201, 168, 76, 0.14);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .omega-category-card strong {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .omega-category-card small {
+      display: block;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    /* Fullscreen Lightbox Modal */
+    .omega-lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      background: rgba(9, 13, 22, 0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .omega-lightbox-modal.is-open {
+      display: flex;
+    }
+    .omega-lightbox-top {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      z-index: 5;
+    }
+    .omega-lightbox-counter {
+      font-size: 14px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.12);
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+    .omega-lightbox-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 20px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .omega-lightbox-stage {
+      position: relative;
+      width: min(1100px, 100%);
+      max-height: 76vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .omega-lightbox-stage img {
+      max-width: 100%;
+      max-height: 76vh;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+    .omega-lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(15, 23, 42, 0.75);
+      color: #fff;
+      font-size: 22px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .omega-lightbox-arrow.prev { left: 12px; }
+    .omega-lightbox-arrow.next { right: 12px; }
+    .omega-lightbox-thumbs {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      max-width: min(1100px, 100%);
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+    .omega-lightbox-thumbs button {
+      width: 82px;
+      height: 58px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      padding: 0;
+      background: none;
+      cursor: pointer;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .omega-lightbox-thumbs button.active {
+      border-color: var(--primary);
+      opacity: 1;
+    }
+    .omega-lightbox-thumbs button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Lead Feedback Alerts */
+    .omega-form-feedback {
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: none;
+    }
+    .omega-form-feedback.is-visible { display: block; }
+    .omega-form-feedback.is-success {
+      background: #ecfdf3;
+      border: 1px solid #abefc6;
+      color: #067647;
+    }
+    .omega-form-feedback.is-error {
+      background: #fef3f2;
+      border: 1px solid #fecdca;
+      color: #b42318;
+    }
+  </style>
+  
+<style>
+  /* Hero Banner Carousel Enhancements — Fits Screen Height & Shows 100% Image Height */
+  .public-body.home-page .automax-hero.automax-hero-dynamic {
+    position: relative;
+    height: clamp(460px, calc(100vh - 156px), 620px) !important;
+    min-height: clamp(460px, calc(100vh - 156px), 620px) !important;
+    max-height: 620px !important;
+    overflow: hidden;
+    background: #090B0F !important;
+  }
+  .public-body.home-page .omega-hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: flex !important;
+    height: clamp(460px, calc(100vh - 156px), 620px) !important;
+    min-height: clamp(460px, calc(100vh - 156px), 620px) !important;
+    max-height: 620px !important;
+    width: 100%;
+    align-items: center;
+    background-color: #090B0F !important;
+    background-size: auto 100% !important;
+    background-position: right center !important;
+    background-repeat: no-repeat !important;
+    transition: opacity 0.55s ease, visibility 0.55s ease;
+  }
+  .public-body.home-page .omega-hero-slide.is-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 2;
+  }
+  .public-body.home-page .omega-hero-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #090B0F 0%, #090B0F 26%, rgba(9, 11, 15, 0.90) 38%, rgba(9, 11, 15, 0.42) 55%, rgba(9, 11, 15, 0.04) 100%);
+    z-index: 1;
+  }
+  .public-body.home-page .omega-hero-slide .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1300px, calc(100% - 40px)) !important;
+    max-width: 1300px !important;
+    height: clamp(460px, calc(100vh - 156px), 620px) !important;
+    min-height: clamp(460px, calc(100vh - 156px), 620px) !important;
+    margin-inline: auto !important;
+    padding: 40px 0 !important;
+  }
+  .public-body.home-page .search-panel-wrap {
+    margin-top: 22px !important;
+  }
+  @media (max-width: 768px) {
+    .public-body.home-page .automax-hero.automax-hero-dynamic,
+    .public-body.home-page .omega-hero-slide,
+    .public-body.home-page .omega-hero-slide .hero-inner {
+      height: auto !important;
+      max-height: none !important;
+      min-height: clamp(360px, 64vw, 460px) !important;
+      background-size: cover !important;
+      background-position: center center !important;
+    }
+  }
+  .omega-hero-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    gap: 10px;
+  }
+  .omega-hero-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: all .22s ease;
+    padding: 0;
+  }
+  .omega-hero-dot.is-active {
+    width: 30px;
+    background: var(--primary);
+  }
+
+  /* CTA Vender / Trocar Veículo Banner */
+  .omega-sell-cta-banner {
+    background: linear-gradient(110deg, #0f172a 0%, #1e293b 55%, #111827 100%);
+    border-radius: 24px;
+    padding: 42px 48px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .omega-sell-cta-banner::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .omega-sell-cta-copy {
+    max-width: 640px;
+    position: relative;
+    z-index: 2;
+  }
+  .omega-sell-cta-copy span.eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .omega-sell-cta-copy h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 900;
+    margin: 0 0 10px;
+    line-height: 1.15;
+    color: #fff;
+  }
+  .omega-sell-cta-copy p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .omega-sell-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  @media (max-width: 860px) {
+    .omega-sell-cta-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 32px 24px;
+    }
+  }
+
+  /* Store Map Section on Home */
+  .omega-home-location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 28px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+    padding: 32px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .omega-home-location-grid {
+      grid-template-columns: 1fr;
+      padding: 24px;
+    }
+  }
+  .omega-home-location-info h3 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #0f172a;
+    margin: 6px 0 12px;
+  }
+  .omega-home-location-list {
+    display: grid;
+    gap: 12px;
+    margin: 20px 0 24px;
+  }
+  .omega-home-location-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: #334155;
+  }
+  .omega-home-location-item i {
+    color: var(--primary);
+    font-size: 18px;
+    margin-top: 2px;
+  }
+  .omega-home-map-frame {
+    width: 100%;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+  .omega-home-map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+</head>
+<body class="public-body home-page site-menu-fixed site-menu-has-top-strip site-menu-full site-no-card-shadow vehicle-detail-layout-classic vehicle-detail-no-shadow omega-promo-active">
+
+  <!-- Top Promo Bar Omega -->
+  <aside id="omega-top-promo-bar" class="omega-top-promo-bar omega-top-promo-bar--gradient omega-top-promo-bar--mobile-secondary omega-top-promo-bar--mobile-cta" role="region" aria-label="Promoção em destaque" data-omega-promo-bar="">
+    <div class="omega-top-promo-bar__inner">
+      <div class="omega-top-promo-bar__message-wrap">
+        <span class="omega-top-promo-bar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M13 2 4.5 13H11l-1 9 8.5-12H12l1-8Z" fill="currentColor"></path></svg>
+        </span>
+        <span class="omega-top-promo-bar__badge">OFERTA</span>
+        <span class="omega-top-promo-bar__copy">
+          <strong>Studio Multimarcas</strong>
+          <span class="omega-top-promo-bar__secondary">Seminovos padrão 0KM, periciados com garantia e zero pressão na negociação!</span>
+        </span>
+      </div>
+      <a class="omega-top-promo-bar__cta" href="/estoque?sort=price_asc">
+        <span>Ver ofertas</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+      <button class="omega-top-promo-bar__close" type="button" aria-label="Fechar promoção" title="Fechar" data-omega-promo-close="">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Sticky Site Header -->
+  <header class="site-header menu-theme-light">
+    <div class="top-strip">
+      <div class="container top-strip-inner">
+        <span class="top-strip-item"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><span>Avenida XV de Novembro 621 - Centro - Campos dos Goytacazes, RJ</span></span>
+        <div class="top-strip-center">
+          
+          <span class="top-strip-item"><i class="bi bi-telephone-fill" aria-hidden="true"></i><a href="tel:(22) 99728-9564">(22) 99728-9564</a></span>
+          
+          <span class="top-strip-item top-right"><i class="bi bi-clock-fill" aria-hidden="true"></i><span>Seg. a Sex. das 08h às 18h | Sáb. das 08h às 13h</span></span>
+        </div>
+        <span class="top-strip-socials">
+          
+          <a class="social-dot" href="https://www.facebook.com/share/14ks1ANnCj/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+          
+          
+          <a class="social-dot" href="https://www.instagram.com/stm_studiomultimarcas" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+          
+          
+          <a class="social-dot" href="https://wa.me/555522997289564" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+          
+        </span>
+      </div>
+    </div>
+
+    <div class="container nav-wrap">
+      <a href="/" class="brand-link" aria-label="Studio Multimarcas">
+        
+        <span class="brand automax-brand has-site-logo-image">
+          <img class="site-logo-image" src="/static/site/stm_logo.png?v=3" alt="Studio Multimarcas" title="Studio Multimarcas" decoding="async" fetchpriority="high">
+        </span>
+        
+      </a>
+
+      <button class="menu-toggle" type="button" data-menu="" aria-label="Abrir menu" aria-expanded="false" aria-controls="public-mobile-menu">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
+
+      <nav class="main-nav" id="public-mobile-menu" aria-label="Navegação principal">
+        <div class="public-mobile-menu-head">
+          <strong class="public-mobile-menu-title">Menu</strong>
+          <button class="public-mobile-menu-close" type="button" data-menu-close="" aria-label="Fechar menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+        </div>
+
+        <a class="active" href="/">Início</a>
+
+        <div class="nav-mega-item nav-item-has-mega automax-vehicles-menu">
+          <a class=" nav-mega-toggle" href="/estoque" aria-haspopup="true" aria-expanded="false">
+            <span>Veículos</span><i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </a>
+          <div class="vehicle-mega-menu mega-menu automax-vehicles-mega" role="menu" aria-label="Menu de veículos">
+            <div class="vehicle-mega-shell vehicle-mega-filter-layout">
+              <section class="vehicle-mega-col vehicle-mega-categories-col" aria-labelledby="vehicle-mega-categories-title">
+                <h2 class="vehicle-mega-title" id="vehicle-mega-categories-title">
+                  <span class="vehicle-mega-title-icon"><i class="bi bi-grid-fill" aria-hidden="true"></i></span> Comprar por categoria
+                </h2>
+                <div class="vehicle-mega-list">
+                  <a class="vehicle-mega-link" href="/estoque?body_type=SUV" role="menuitem">
+                    <span class="vehicle-mega-category-icon"><i class="bi bi-truck-front-fill" aria-hidden="true"></i></span>
+                    <span><strong>SUV</strong><small>Utilitários esportivos</small></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <a class="vehicle-mega-link" href="/estoque?body_type=Sedan" role="menuitem">
+                    <span class="vehicle-mega-category-icon"><i class="bi bi-car-front-fill" aria-hidden="true"></i></span>
+                    <span><strong>Sedan</strong><small>Conforto e porta-malas</small></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <a class="vehicle-mega-link" href="/estoque?body_type=Hatch" role="menuitem">
+                    <span class="vehicle-mega-category-icon"><i class="bi bi-car-front-fill" aria-hidden="true"></i></span>
+                    <span><strong>Hatch</strong><small>Agilidade e economia</small></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <a class="vehicle-mega-link" href="/estoque?body_type=Picape" role="menuitem">
+                    <span class="vehicle-mega-category-icon"><i class="bi bi-truck" aria-hidden="true"></i></span>
+                    <span><strong>Picape</strong><small>Força e versatilidade</small></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="vehicle-mega-note">
+                  <strong>Todos os veículos revisados e com garantia</strong>
+                  <span>Estoque selecionado, procedência garantida e atendimento especializado.</span>
+                </div>
+              </section>
+
+              <section class="vehicle-mega-col vehicle-mega-brands-col" aria-labelledby="vehicle-mega-brands-title">
+                <div class="vehicle-mega-featured-head vehicle-mega-filter-head">
+                  <h2 class="vehicle-mega-title" id="vehicle-mega-brands-title">
+                    <span class="vehicle-mega-title-icon"><i class="bi bi-tags" aria-hidden="true"></i></span> Comprar por marca
+                  </h2>
+                  <a class="vehicle-mega-see-all" href="/estoque">Todas <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="vehicle-mega-list vehicle-mega-brand-list">
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Chevrolet" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/chevrolet.png" alt="Chevrolet" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Chevrolet</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Fiat" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/fiat.png" alt="Fiat" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Fiat</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Volkswagen" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/volkswagen.png" alt="Volkswagen" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Volkswagen</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Toyota" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/toyota.png" alt="Toyota" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Toyota</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Hyundai" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/hyundai.png" alt="Hyundai" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Hyundai</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Jeep" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/jeep.png" alt="Jeep" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Jeep</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Honda" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/honda.png" alt="Honda" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Honda</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Renault" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/renault.png" alt="Renault" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Renault</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Nissan" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/nissan.png" alt="Nissan" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Nissan</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=Ford" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/ford.png" alt="Ford" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>Ford</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=BYD" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/byd.png" alt="BYD" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>BYD</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                  <a class="vehicle-mega-link" href="/estoque?brand=BMW" role="menuitem">
+                    <span class="vehicle-mega-brand-avatar">
+                      
+                      <img src="/static/site/brands/bmw.png" alt="BMW" loading="lazy" decoding="async" style="width:20px;height:20px;object-fit:contain;display:block;">
+                      
+                    </span>
+                    <span><strong>BMW</strong></span>
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  
+                </div>
+              </section>
+
+              <section class="vehicle-mega-col vehicle-mega-prices-col" aria-labelledby="vehicle-mega-prices-title">
+                <h2 class="vehicle-mega-title" id="vehicle-mega-prices-title">
+                  <span class="vehicle-mega-title-icon"><i class="bi bi-tag" aria-hidden="true"></i></span> Faixa de preço
+                </h2>
+                <div class="vehicle-mega-list vehicle-mega-price-list">
+                  <a class="vehicle-mega-link" href="/estoque?price_max=50000" role="menuitem"><strong>Até R$ 50 mil</strong><i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                  <a class="vehicle-mega-link" href="/estoque?price_min=50000&amp;price_max=100000" role="menuitem"><strong>R$ 50 – 100 mil</strong><i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                  <a class="vehicle-mega-link" href="/estoque?price_min=100000&amp;price_max=150000" role="menuitem"><strong>R$ 100 – 150 mil</strong><i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                  <a class="vehicle-mega-link" href="/estoque?price_min=150000" role="menuitem"><strong>Acima de R$ 150 mil</strong><i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                <a class="vehicle-mega-special" href="/estoque?sort=price_asc">
+                  <strong>Ofertas especiais</strong>
+                  <span>Confira condições exclusivas e encontre oportunidades no estoque.</span>
+                </a>
+              </section>
+
+              <section class="vehicle-mega-col vehicle-mega-featured-col" aria-labelledby="vehicle-mega-featured-title">
+                <div class="vehicle-mega-featured-head">
+                  <h2 class="vehicle-mega-title" id="vehicle-mega-featured-title">
+                    <span class="vehicle-mega-title-icon"><i class="bi bi-star" aria-hidden="true"></i></span> Destaques
+                  </h2>
+                  <a class="vehicle-mega-see-all" href="/estoque">Ver todos os destaques <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                
+                <div class="vehicle-mega-featured-grid">
+                  
+                  <a class="vehicle-mega-card" href="/veiculo/6b04902ed118594f6f724802" role="menuitem">
+                    <span class="vehicle-mega-card-media">
+                      <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6b04902ed118594f6f724802/1795565108773_0_tempImageaYpgUCheic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=94cf8463afb81f2ca7e19d195364d98f4c7458db24808de3fc1bd15c178ae4d9" alt="Fiat Fastback Impetus 200 T. Aut (Hibrído)" loading="lazy" decoding="async">
+                    </span>
+                    <span class="vehicle-mega-card-body">
+                      <strong class="vehicle-mega-card-title">Fiat Fastback Impetus 200 T. Aut (Hibrído) </strong>
+                      <span class="vehicle-mega-card-version">SUV</span>
+                      <span class="vehicle-mega-card-meta"><span>2025</span><span>0 km</span></span>
+                      <span class="vehicle-mega-card-price">R$ 113.897,00</span>
+                      <span class="vehicle-mega-card-button">Ver oferta</span>
+                    </span>
+                  </a>
+                  
+                  <a class="vehicle-mega-card" href="/veiculo/6aff5aaff61b705d5fd469bd" role="menuitem">
+                    <span class="vehicle-mega-card-media">
+                      <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6aff5aaff61b705d5fd469bd/1795472176988_0_tempImageFKHaK6heic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d712340d004d25bdaff059b5a112e3af9b03b098a64aea67da77a1e885880053" alt="Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p" loading="lazy" decoding="async">
+                    </span>
+                    <span class="vehicle-mega-card-body">
+                      <strong class="vehicle-mega-card-title">Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p </strong>
+                      <span class="vehicle-mega-card-version">Seminovo</span>
+                      <span class="vehicle-mega-card-meta"><span>2014</span><span>157.939 km</span></span>
+                      <span class="vehicle-mega-card-price">R$ 67.897,00</span>
+                      <span class="vehicle-mega-card-button">Ver oferta</span>
+                    </span>
+                  </a>
+                  
+                  <a class="vehicle-mega-card" href="/veiculo/6aff598388fef2bfc185eb69" role="menuitem">
+                    <span class="vehicle-mega-card-media">
+                      <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6aff598388fef2bfc185eb69/1795472622988_0_tempImagezUb1w1heic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=922948cf49eb913c5f5673a901133c94ca5840f4ca952187a09a7f26d19eceb8" alt="Mini COOPER John Works 1.6 Mec." loading="lazy" decoding="async">
+                    </span>
+                    <span class="vehicle-mega-card-body">
+                      <strong class="vehicle-mega-card-title">Mini COOPER John Works 1.6 Mec. jhonn cooper works</strong>
+                      <span class="vehicle-mega-card-version">jhonn cooper works</span>
+                      <span class="vehicle-mega-card-meta"><span>2013</span><span>50.639 km</span></span>
+                      <span class="vehicle-mega-card-price">R$ 84.897,00</span>
+                      <span class="vehicle-mega-card-button">Ver oferta</span>
+                    </span>
+                  </a>
+                  
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+
+        <a class="" href="/financie">Serviços &amp; Financiamento</a>
+        <a class="" href="/venda-seu-carro">Vender seu veículo</a>
+        <a class="" href="/sobre">Sobre nós</a>
+        <a class="" href="/sobre#contato">Contato</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="round-link header-icon-link favorites-header-link" href="/estoque" aria-label="Favoritos" title="Meus Favoritos" data-favorites-link="">
+          <span class="cdn-header-icon cdn-icon-heart" aria-hidden="true"></span>
+          <span class="favorites-count-badge" data-favorites-count="" hidden="">0</span>
+        </a>
+        <a class="round-link has-dot header-icon-link" href="/estoque" aria-label="Estoque de veículos" title="Ver Estoque">
+          <span class="cdn-header-icon cdn-icon-compare" aria-hidden="true"></span>
+        </a>
+        
+        
+        <a class="whatsapp-btn header-whatsapp-cdn" href="https://wa.me/555522997289564?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Studio%20Multimarcas%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener">
+          <i class="bi bi-whatsapp" aria-hidden="true"></i><span>WhatsApp</span>
+        </a>
+        
+      </div>
+    </div>
+    <button class="public-menu-overlay" type="button" data-menu-overlay="" aria-label="Fechar menu" tabindex="-1"></button>
+  </header>
+
+  
+<main>
+  <!-- Hero Banner Carousel Omega -->
+  <section class="automax-hero automax-hero-dynamic hero-align-left hero-valign-center has-hero-content" id="top">
+    
+    <div class="omega-hero-slide" data-hero-slide="0" style="background-image: url('/static/site/stm_banner_1.jpg?v=1');">
+      <div class="container hero-inner">
+        <div class="hero-copy banner-copy-visible">
+          <span class="eyebrow" style="color:#111318 !important;background:linear-gradient(135deg,#E8C55A 0%,#C59628 100%);font-weight:800 !important;padding:5px 14px;border-radius:999px;display:inline-block;margin-bottom:12px;letter-spacing:0.06em;">Studio Multimarcas</span>
+          <h1>SEMINOVOS PADRÃO 0KM COM PROCEDÊNCIA COMPROVADA</h1>
+          <p>Aqui você sonha e realiza com segurança: 100% do estoque periciado, com garantia e zero pressão na negociação.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;">
+            <a class="btn hero-btn" href="/estoque">VER ESTOQUE COMPLETO</a>
+            <a class="btn hero-btn" style="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.35);" href="/venda-seu-carro">AVALIAR MEU USADO</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="omega-hero-slide is-active" data-hero-slide="1" style="background-image: url('/static/site/stm_banner_2.jpg?v=1');">
+      <div class="container hero-inner">
+        <div class="hero-copy banner-copy-visible">
+          <span class="eyebrow" style="color:#111318 !important;background:linear-gradient(135deg,#E8C55A 0%,#C59628 100%);font-weight:800 !important;padding:5px 14px;border-radius:999px;display:inline-block;margin-bottom:12px;letter-spacing:0.06em;">Studio Multimarcas</span>
+          <h1>SUV, SEDÃ OU PICAPE? O SEU PRÓXIMO CARRO ESTÁ NA STM</h1>
+          <p>Condições especiais e financiamento em até 60x com aprovação rápida nos melhores bancos parceiros.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;">
+            <a class="btn hero-btn" href="/financie">SIMULAR FINANCIAMENTO</a>
+            <a class="btn hero-btn" style="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.35);" href="/venda-seu-carro">AVALIAR MEU USADO</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="omega-hero-slide " data-hero-slide="2" style="background-image: url('/static/site/stm_banner_3.jpg?v=1');">
+      <div class="container hero-inner">
+        <div class="hero-copy banner-copy-visible">
+          <span class="eyebrow" style="color:#111318 !important;background:linear-gradient(135deg,#E8C55A 0%,#C59628 100%);font-weight:800 !important;padding:5px 14px;border-radius:999px;display:inline-block;margin-bottom:12px;letter-spacing:0.06em;">Studio Multimarcas</span>
+          <h1>MAIS UM STM NAS RUAS: TROQUE SEU USADO COM SUPERVALORIZAÇÃO</h1>
+          <p>Avaliação justa na hora, pagamento à vista imediato ou troco na troca para você sair de carro novo.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;">
+            <a class="btn hero-btn" href="/venda-seu-carro">AVALIAR MEU VEÍCULO</a>
+            <a class="btn hero-btn" style="background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.35);" href="/venda-seu-carro">AVALIAR MEU USADO</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    
+    <div class="omega-hero-dots" aria-label="Navegação de banners">
+      
+      <button type="button" class="omega-hero-dot" data-hero-dot="0" aria-label="Banner 1"></button>
+      
+      <button type="button" class="omega-hero-dot is-active" data-hero-dot="1" aria-label="Banner 2"></button>
+      
+      <button type="button" class="omega-hero-dot " data-hero-dot="2" aria-label="Banner 3"></button>
+      
+    </div>
+    
+  </section>
+
+  <!-- Quick Search Filter Box Omega -->
+  <section class="container search-panel-wrap">
+    <form class="stock-search-panel stock-search-panel-premium" action="/estoque" method="get" data-home-stock-search="">
+      <label class="search-field-pro search-field-brand">
+        <span>Marca</span>
+        <div class="search-select-shell">
+          <i class="bi bi-award field-icon" aria-hidden="true"></i>
+          <select name="brand" aria-label="Marca">
+            <option value="">Todas as marcas</option>
+            
+            <option value="Chevrolet">Chevrolet</option>
+            
+            <option value="Fiat">Fiat</option>
+            
+            <option value="Volkswagen">Volkswagen</option>
+            
+            <option value="Toyota">Toyota</option>
+            
+            <option value="Hyundai">Hyundai</option>
+            
+            <option value="Jeep">Jeep</option>
+            
+            <option value="Honda">Honda</option>
+            
+            <option value="Renault">Renault</option>
+            
+            <option value="Nissan">Nissan</option>
+            
+            <option value="Ford">Ford</option>
+            
+            <option value="BYD">BYD</option>
+            
+            <option value="BMW">BMW</option>
+            
+          </select>
+          <i class="bi bi-chevron-down field-chevron" aria-hidden="true"></i>
+        </div>
+      </label>
+
+      <label class="search-field-pro search-field-fuel">
+        <span>Categoria</span>
+        <div class="search-select-shell">
+          <i class="bi bi-car-front-fill field-icon" aria-hidden="true"></i>
+          <select name="body_type" aria-label="Categoria">
+            <option value="">Todas as categorias</option>
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Hatch">Hatch</option>
+            <option value="Picape">Picape</option>
+            <option value="Utilitário">Utilitário</option>
+          </select>
+          <i class="bi bi-chevron-down field-chevron" aria-hidden="true"></i>
+        </div>
+      </label>
+
+      <label class="search-field-pro search-field-model">
+        <span>Faixa de preço</span>
+        <div class="search-select-shell">
+          <i class="bi bi-cash-stack field-icon" aria-hidden="true"></i>
+          <select name="price_max" aria-label="Faixa de preço">
+            <option value="">Qualquer valor</option>
+            <option value="50000">Até R$ 50.000</option>
+            <option value="80000">Até R$ 80.000</option>
+            <option value="100000">Até R$ 100.000</option>
+            <option value="150000">Até R$ 150.000</option>
+            <option value="250000">Até R$ 250.000</option>
+          </select>
+          <i class="bi bi-chevron-down field-chevron" aria-hidden="true"></i>
+        </div>
+      </label>
+
+      <label class="search-field-pro search-field-year">
+        <span>Ano a partir de</span>
+        <div class="search-select-shell">
+          <i class="bi bi-calendar-event field-icon" aria-hidden="true"></i>
+          <select name="year_min" aria-label="Ano a partir de">
+            <option value="">Todos os anos</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2018">2018</option>
+            <option value="2015">2015</option>
+          </select>
+          <i class="bi bi-chevron-down field-chevron" aria-hidden="true"></i>
+        </div>
+      </label>
+
+      <button class="btn search-submit-btn" type="submit">
+        <i class="bi bi-search" aria-hidden="true"></i><span>Buscar veículos</span>
+      </button>
+    </form>
+
+    <!-- Category Cards Strip -->
+    <div class="omega-category-strip" aria-label="Categorias de veículos">
+      <a class="omega-category-card" href="/estoque?body_type=SUV">
+        <span class="omega-category-icon"><i class="bi bi-truck-front-fill"></i></span>
+        <div><strong>SUV</strong><small>Espaço e altura</small></div>
+      </a>
+      <a class="omega-category-card" href="/estoque?body_type=Sedan">
+        <span class="omega-category-icon"><i class="bi bi-car-front-fill"></i></span>
+        <div><strong>Sedan</strong><small>Conforto familiar</small></div>
+      </a>
+      <a class="omega-category-card" href="/estoque?body_type=Hatch">
+        <span class="omega-category-icon"><i class="bi bi-car-front"></i></span>
+        <div><strong>Hatch</strong><small>Econômicos e ágeis</small></div>
+      </a>
+      <a class="omega-category-card" href="/estoque?body_type=Picape">
+        <span class="omega-category-icon"><i class="bi bi-truck"></i></span>
+        <div><strong>Picape</strong><small>Trabalho e lazer</small></div>
+      </a>
+      <a class="omega-category-card" href="/estoque?body_type=Utilitário">
+        <span class="omega-category-icon"><i class="bi bi-box-seam"></i></span>
+        <div><strong>Utilitário</strong><small>Para sua empresa</small></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Brand Logo Carousel Omega -->
+  <section class="container brand-logo-carousel-section" aria-label="Marcas disponíveis" style="margin-top:28px;">
+    <div class="brand-logo-carousel" data-brand-logo-carousel="">
+      <div class="brand-logo-carousel-track" style="display:flex;gap:14px;overflow-x:auto;padding:8px 2px;">
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Chevrolet" title="Ver veículos Chevrolet">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/chevrolet.png" alt="Chevrolet" loading="lazy" decoding="async">
+          
+          <span>Chevrolet</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Fiat" title="Ver veículos Fiat">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/fiat.png" alt="Fiat" loading="lazy" decoding="async">
+          
+          <span>Fiat</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Volkswagen" title="Ver veículos Volkswagen">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/volkswagen.png" alt="Volkswagen" loading="lazy" decoding="async">
+          
+          <span>Volkswagen</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Toyota" title="Ver veículos Toyota">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/toyota.png" alt="Toyota" loading="lazy" decoding="async">
+          
+          <span>Toyota</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Hyundai" title="Ver veículos Hyundai">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/hyundai.png" alt="Hyundai" loading="lazy" decoding="async">
+          
+          <span>Hyundai</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Jeep" title="Ver veículos Jeep">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/jeep.png" alt="Jeep" loading="lazy" decoding="async">
+          
+          <span>Jeep</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Honda" title="Ver veículos Honda">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/honda.png" alt="Honda" loading="lazy" decoding="async">
+          
+          <span>Honda</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Renault" title="Ver veículos Renault">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/renault.png" alt="Renault" loading="lazy" decoding="async">
+          
+          <span>Renault</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Nissan" title="Ver veículos Nissan">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/nissan.png" alt="Nissan" loading="lazy" decoding="async">
+          
+          <span>Nissan</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=Ford" title="Ver veículos Ford">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/ford.png" alt="Ford" loading="lazy" decoding="async">
+          
+          <span>Ford</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=BYD" title="Ver veículos BYD">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/byd.png" alt="BYD" loading="lazy" decoding="async">
+          
+          <span>BYD</span>
+        </a>
+        
+        <a class="brand-logo-carousel-item brand-pill-card" href="/estoque?brand=BMW" title="Ver veículos BMW">
+          
+          <img class="brand-pill-logo" src="/static/site/brands/bmw.png" alt="BMW" loading="lazy" decoding="async">
+          
+          <span>BMW</span>
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Veículos em Destaque Grid -->
+  <section class="section compact-section">
+    <div class="container">
+      <div class="center-head">
+        <span>Estoque selecionado</span>
+        <h2>Veículos em destaque</h2>
+      </div>
+
+      
+      <div class="vehicle-grid automax-grid">
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6b04902ed118594f6f724802">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6b04902ed118594f6f724802">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6b04902ed118594f6f724802/1795565108773_0_tempImageaYpgUCheic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=94cf8463afb81f2ca7e19d195364d98f4c7458db24808de3fc1bd15c178ae4d9" alt="Fiat Fastback Impetus 200 T. Aut (Hibrído)" title="Fiat Fastback Impetus 200 T. Aut (Hibrído)" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2025</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6b04902ed118594f6f724802" data-favorite-title="Fiat Fastback Impetus 200 T. Aut (Hibrído)" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">SUV</span>
+    </div>
+    <h3><a href="/veiculo/6b04902ed118594f6f724802">Fiat Fastback Impetus 200 T. Aut (Hibrído) 2024/2025</a></h3>
+    <p class="vehicle-version">Fiat Fastback Impetus 200 T. Aut (Hibrído)</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.0</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>0 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2025</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <b>R$ 113.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6b04902ed118594f6f724802"><span>Comprar Fiat</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6aff5aaff61b705d5fd469bd">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6aff5aaff61b705d5fd469bd">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6aff5aaff61b705d5fd469bd/1795472176988_0_tempImageFKHaK6heic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d712340d004d25bdaff059b5a112e3af9b03b098a64aea67da77a1e885880053" alt="Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p" title="Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2014</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6aff5aaff61b705d5fd469bd" data-favorite-title="Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">Seminovo</span>
+    </div>
+    <h3><a href="/veiculo/6aff5aaff61b705d5fd469bd">Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p 2014</a></h3>
+    <p class="vehicle-version">Honda Civic Sedan LXS 1.8/1.8 Flex 16V Aut. 4p</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.8</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Manual</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>157.939 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2014</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <b>R$ 67.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6aff5aaff61b705d5fd469bd"><span>Comprar Honda</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6aff598388fef2bfc185eb69">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6aff598388fef2bfc185eb69">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6aff598388fef2bfc185eb69/1795472622988_0_tempImagezUb1w1heic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=922948cf49eb913c5f5673a901133c94ca5840f4ca952187a09a7f26d19eceb8" alt="Mini COOPER John Works 1.6 Mec. jhonn cooper works" title="Mini COOPER John Works 1.6 Mec. jhonn cooper works" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2013</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6aff598388fef2bfc185eb69" data-favorite-title="Mini COOPER John Works 1.6 Mec. jhonn cooper works" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">Seminovo</span>
+    </div>
+    <h3><a href="/veiculo/6aff598388fef2bfc185eb69">Mini COOPER John Works 1.6 Mec. jhonn cooper works 2013</a></h3>
+    <p class="vehicle-version">jhonn cooper works</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.6</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>50.639 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2013</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <b>R$ 84.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6aff598388fef2bfc185eb69"><span>Comprar Mini</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6afef32f595fdc8b2bfe1dad">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6afef32f595fdc8b2bfe1dad">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6afef32f595fdc8b2bfe1dad/1795565757629_0_tempImagegpUAsJheic.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=5bf5ccb9fa19d98d904919e48ed7eb51b83999f8ff980f52f180e41f5ec6a391" alt="Toyota Corolla Cross XRX 1.8 16V Aut. (Híbrido)" title="Toyota Corolla Cross XRX 1.8 16V Aut. (Híbrido)" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2024</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6afef32f595fdc8b2bfe1dad" data-favorite-title="Toyota Corolla Cross XRX 1.8 16V Aut. (Híbrido)" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">Seminovo</span>
+    </div>
+    <h3><a href="/veiculo/6afef32f595fdc8b2bfe1dad">Toyota Corolla Cross XRX 1.8 16V Aut. (Híbrido) 2024</a></h3>
+    <p class="vehicle-version">Toyota Corolla Cross XRX 1.8 16V Aut. (Híbrido)</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.8 16V</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Manual</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>67.974 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2024</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        <b>Sob Consulta</b>
+        <small>Consulte condições</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6afef32f595fdc8b2bfe1dad"><span>Comprar Toyota</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af36fe8035af5609d32f9b9">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af36fe8035af5609d32f9b9">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af36fe8035af5609d32f9b9/1794849760964_0_IMG_9637jpeg.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=b7d0fa60ea400ea14bcdf67259625e0b4065000791b32ee8e85f0ff4555feec2" alt="Nissan KICKS Advance 1.0 Turbo Flex Aut." title="Nissan KICKS Advance 1.0 Turbo Flex Aut." loading="lazy" decoding="async">
+    
+    <span class="year-badge">2026</span>
+    
+      
+      <span class="discount-badge">-2%</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af36fe8035af5609d32f9b9" data-favorite-title="Nissan KICKS Advance 1.0 Turbo Flex Aut." aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">SUV</span>
+    </div>
+    <h3><a href="/veiculo/6af36fe8035af5609d32f9b9">Nissan KICKS Advance 1.0 Turbo Flex Aut. 2025/2026</a></h3>
+    <p class="vehicle-version">Advance 1.0 Turbo Flex Aut.</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.0 Turbo</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>10.022 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2026</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <span class="old-price">R$ 142.270,00</span>
+        
+        <b>R$ 139.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af36fe8035af5609d32f9b9"><span>Comprar Nissan</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e46445dfb8070e0ec597">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e46445dfb8070e0ec597">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e46445dfb8070e0ec597/1794237541132_0_af2e2ac5-7560-4a2c-8933-0a0b6cdda528.jpg?response-content-type=image%2Fjpeg&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=4a0c7e4fb3ad14c75ec604fc2702255ee41e77ec8ed309402a385691464d1330" alt="Hyundai Creta Pulse 1.6 16V Flex Aut." title="Hyundai Creta Pulse 1.6 16V Flex Aut." loading="lazy" decoding="async">
+    
+    <span class="year-badge">2018</span>
+    
+      
+      <span class="discount-badge">-3%</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e46445dfb8070e0ec597" data-favorite-title="Hyundai Creta Pulse 1.6 16V Flex Aut." aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">SUV</span>
+    </div>
+    <h3><a href="/veiculo/6af1e46445dfb8070e0ec597">Hyundai Creta Pulse 1.6 16V Flex Aut. 2017/2018</a></h3>
+    <p class="vehicle-version">Pulse 1.6 16V Flex Aut.</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.6 flex</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>120.071 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2018</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <span class="old-price">R$ 81.954,00</span>
+        
+        <b>R$ 79.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e46445dfb8070e0ec597"><span>Comprar Hyundai</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e49745dfb8070e0ec598">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e49745dfb8070e0ec598">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e49745dfb8070e0ec598/1794237592823_0_c7793597-e3ff-4659-9a53-730de4bd5bb6.jpg?response-content-type=image%2Fjpeg&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=990f7ac1875ed66858eaa862bff77cd6795c4a36f1de12a980cbc2bef27c2dd9" alt="Chevrolet ONIX HATCH PREM. 1.0 12V TB Flex 5p Aut." title="Chevrolet ONIX HATCH PREM. 1.0 12V TB Flex 5p Aut." loading="lazy" decoding="async">
+    
+    <span class="year-badge">2025</span>
+    
+      
+      <span class="discount-badge">-1%</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e49745dfb8070e0ec598" data-favorite-title="Chevrolet ONIX HATCH PREM. 1.0 12V TB Flex 5p Aut." aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">Hatch</span>
+    </div>
+    <h3><a href="/veiculo/6af1e49745dfb8070e0ec598">Chevrolet ONIX HATCH PREM. 1.0 12V TB Flex 5p Aut. 2024/2025</a></h3>
+    <p class="vehicle-version">HATCH PREM. 1.0 12V TB Flex 5p Aut.</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.0 12V TB</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>39.641 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2025</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <span class="old-price">R$ 94.804,00</span>
+        
+        <b>R$ 93.900,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e49745dfb8070e0ec598"><span>Comprar Chevrolet</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e4b545dfb8070e0ec599">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e4b545dfb8070e0ec599">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e4b545dfb8070e0ec599/1794237622839_0_dcc20c14-84d5-4088-a95f-67ffffa332b5.jpg?response-content-type=image%2Fjpeg&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=cb261a8d5537dd1d89885af09582100eafbdac75db55e30c98636c45e50ff8e9" alt="Toyota Hilux SW4 Diamond 2.8 TB 4x4 Die. Aut." title="Toyota Hilux SW4 Diamond 2.8 TB 4x4 Die. Aut." loading="lazy" decoding="async">
+    
+    <span class="year-badge">2022</span>
+    
+      
+      <span class="discount-badge">-5%</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e4b545dfb8070e0ec599" data-favorite-title="Toyota Hilux SW4 Diamond 2.8 TB 4x4 Die. Aut." aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">SUV</span>
+    </div>
+    <h3><a href="/veiculo/6af1e4b545dfb8070e0ec599">Toyota Hilux SW4 Diamond 2.8 TB 4x4 Die. Aut. 2022/2022</a></h3>
+    <p class="vehicle-version">SW4 Diamond 2.8 TB 4x4 Die. Aut.</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>2.8 TB</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>75.143 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2022</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <span class="old-price">R$ 315.430,00</span>
+        
+        <b>R$ 299.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e4b545dfb8070e0ec599"><span>Comprar Toyota</span></a>
+  </div>
+</article>
+        
+      </div>
+      <div class="center-action">
+        <a class="outline-btn" href="/estoque">Ver todos os veículos (27)</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- CTA Banner: Quer vender ou trocar seu veículo? -->
+  <section class="section compact-section section-tight-top">
+    <div class="container">
+      <div class="omega-sell-cta-banner">
+        <div class="omega-sell-cta-copy">
+          <span class="eyebrow">Avaliação justa e imediata</span>
+          <h2>Quer vender ou trocar seu veículo?</h2>
+          <p>Supervalorizamos o seu seminovo na troca ou compramos com pagamento à vista rápido, seguro e sem burocracia. Solicite sua avaliação online em poucos cliques!</p>
+        </div>
+        <div class="omega-sell-cta-actions">
+          <a class="btn" href="/venda-seu-carro"><i class="bi bi-car-front-fill"></i> Avaliar meu veículo</a>
+          <a class="outline-btn" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.4);" href="/financie"><i class="bi bi-calculator"></i> Simular financiamento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Segunda vitrine: Oportunidades e Ofertas -->
+  <section class="section compact-section section-tight-top">
+    <div class="container">
+      <div class="center-head">
+        <span>Oportunidades imperdíveis</span>
+        <h2>Mais opções para você</h2>
+      </div>
+      <div class="vehicle-grid automax-grid">
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e51c45dfb8070e0ec59b">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e51c45dfb8070e0ec59b">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e51c45dfb8070e0ec59b/1794338727634_0_59a8f642-ea51-4abf-a8c8-5af009cde432.jpg?response-content-type=image%2Fjpeg&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=747e9cc213a4f0c23b3b378e68975981716f0d30f844110354f9e9afe866a110" alt="Honda CB 300F Twister Flex" title="Honda CB 300F Twister Flex" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2025</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e51c45dfb8070e0ec59b" data-favorite-title="Honda CB 300F Twister Flex" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">Moto</span>
+    </div>
+    <h3><a href="/veiculo/6af1e51c45dfb8070e0ec59b">Honda CB 300F Twister Flex 2024/2025</a></h3>
+    <p class="vehicle-version">300F Twister Flex</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>Flex</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>15.000 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2025</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <b>R$ 25.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e51c45dfb8070e0ec59b"><span>Comprar Honda</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e51c45dfb8070e0ec59c">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e51c45dfb8070e0ec59c">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e51c45dfb8070e0ec59c/1795459563271_0_WhatsApp_Image_2026_11_23_at_152825jpeg.webp?response-content-type=image%2Fwebp&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=9aeb12c91f16339ef31988ef30eb94c8f22c2961597834d779f97b32f144ae41" alt="Chevrolet EQUINOX LT 2.0 Turbo 262cv Aut." title="Chevrolet EQUINOX LT 2.0 Turbo 262cv Aut." loading="lazy" decoding="async">
+    
+    <span class="year-badge">2018</span>
+    
+      
+      <span class="discount-badge">-3%</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e51c45dfb8070e0ec59c" data-favorite-title="Chevrolet EQUINOX LT 2.0 Turbo 262cv Aut." aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">SUV</span>
+    </div>
+    <h3><a href="/veiculo/6af1e51c45dfb8070e0ec59c">Chevrolet EQUINOX LT 2.0 Turbo 262cv Aut. 2017/2018</a></h3>
+    <p class="vehicle-version">LT 2.0 Turbo 262cv Aut.</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>2.0 Turbo</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>86.347 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2018</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <span class="old-price">R$ 92.407,00</span>
+        
+        <b>R$ 89.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e51c45dfb8070e0ec59c"><span>Comprar Chevrolet</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e51c45dfb8070e0ec59d">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e51c45dfb8070e0ec59d">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e51c45dfb8070e0ec59d/1794338749353_0_9b0c3839-1635-43f1-ad66-df7d30aa1b8e.jpg?response-content-type=image%2Fjpeg&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=43e851dcac389e9a87613182e7d9b714cc6357244911ebc06a4178e9363eb1eb" alt="Audi Q3 2.0 TFSI Quat. 170/180cv S-tronic 5p" title="Audi Q3 2.0 TFSI Quat. 170/180cv S-tronic 5p" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2016</span>
+    
+      
+      <span class="discount-badge">-8%</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e51c45dfb8070e0ec59d" data-favorite-title="Audi Q3 2.0 TFSI Quat. 170/180cv S-tronic 5p" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">SUV</span>
+    </div>
+    <h3><a href="/veiculo/6af1e51c45dfb8070e0ec59d">Audi Q3 2.0 TFSI Quat. 170/180cv S-tronic 5p 2015/2016</a></h3>
+    <p class="vehicle-version">2.0 TFSI Quat. 170/180cv S-tronic 5p</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>2.0 TFSI</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Automático</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>118.303 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2016</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <span class="old-price">R$ 85.503,00</span>
+        
+        <b>R$ 78.897,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e51c45dfb8070e0ec59d"><span>Comprar Audi</span></a>
+  </div>
+</article>
+        
+          
+<article class="vehicle-card vehicle-card-premium vehicle-card-status-published" data-favorite-item="6af1e51c45dfb8070e0ec59e">
+  <a class="vehicle-image vehicle-card-premium-image" href="/veiculo/6af1e51c45dfb8070e0ec59e">
+    
+    <img src="https://d7i7.or7.idrivee2-71.com/formulaonchat/company_stm/vehicles/6af1e51c45dfb8070e0ec59e/1794338772085_0_a476cf6f-9071-4a1a-bfbf-14eea638fa82.jpg?response-content-type=image%2Fjpeg&amp;response-content-disposition=inline&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=WhE0CeZsleM6hA1GFhBX%2F20261125%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20261125T191812Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=df6d6094ef4154a4e057d31c27835c5b8716b1c84d60c592339f8173ef2c15f4" alt="Ford Ka 1.0 SE/SE Plus TiVCT Flex 5p" title="Ford Ka 1.0 SE/SE Plus TiVCT Flex 5p" loading="lazy" decoding="async">
+    
+    <span class="year-badge">2020</span>
+    
+  </a>
+  <button class="favorite-btn" type="button" data-favorite-toggle="" data-favorite-slug="6af1e51c45dfb8070e0ec59e" data-favorite-title="Ford Ka 1.0 SE/SE Plus TiVCT Flex 5p" aria-label="Adicionar aos favoritos" aria-pressed="false">
+    <i class="bi bi-heart" aria-hidden="true"></i>
+  </button>
+  <div class="vehicle-info vehicle-card-premium-info">
+    <div class="vehicle-card-topline">
+      <span class="vehicle-location"><i class="bi bi-geo-alt" aria-hidden="true"></i>Campos dos Goytacazes - RJ</span>
+      <span class="vehicle-category-pill">Hatch</span>
+    </div>
+    <h3><a href="/veiculo/6af1e51c45dfb8070e0ec59e">Ford Ka 1.0 SE/SE Plus TiVCT Flex 5p 2019/2020</a></h3>
+    <p class="vehicle-version">1.0 SE/SE Plus TiVCT Flex 5p</p>
+    <div class="vehicle-rating"><i class="bi bi-star-fill" aria-hidden="true"></i><strong>4,8</strong><span>(Laudo aprovado)</span></div>
+    <div class="vehicle-meta vehicle-card-specs">
+      <span><i class="bi bi-gear-wide-connected" aria-hidden="true"></i><b>1.0</b><small>Motor</small></span>
+      <span><i class="bi bi-diagram-3" aria-hidden="true"></i><b>Manual</b><small>Câmbio</small></span>
+      <span><i class="bi bi-speedometer2" aria-hidden="true"></i><b>89.000 km</b><small>Km</small></span>
+      <span><i class="bi bi-calendar3" aria-hidden="true"></i><b>2020</b><small>Ano</small></span>
+    </div>
+    <div class="vehicle-price">
+      
+        
+        <b>R$ 49.900,00</b>
+        <small>À vista</small>
+      
+    </div>
+    <a class="details-btn vehicle-buy-btn" href="/veiculo/6af1e51c45dfb8070e0ec59e"><span>Comprar Ford</span></a>
+  </div>
+</article>
+        
+      </div>
+      <div class="center-action">
+        <a class="outline-btn" href="/estoque?sort=price_asc">Ver ofertas por menor preço</a>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Benefit Strip Omega -->
+  <section class="container benefit-strip">
+    <article>
+      <span class="benefit-icon"><i class="bi bi-clipboard2-check" aria-hidden="true"></i></span>
+      <div><b>Veículos revisados</b><p>Todos os veículos passam por rigorosa inspeção e perícia cautelar.</p></div>
+    </article>
+    <article>
+      <span class="benefit-icon"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
+      <div><b>Garantia</b><p>Garantia de procedência mecânica e documental em todo o estoque.</p></div>
+    </article>
+    <article>
+      <span class="benefit-icon"><i class="bi bi-cash-coin" aria-hidden="true"></i></span>
+      <div><b>Financiamento fácil</b><p>As melhores taxas em até 60x com aprovação rápida.</p></div>
+    </article>
+    <article>
+      <span class="benefit-icon"><i class="bi bi-headset" aria-hidden="true"></i></span>
+      <div><b>Atendimento premium</b><p>Consultores especializados para ajudar na melhor escolha.</p></div>
+    </article>
+  </section>
+
+  <!-- Depoimentos de Clientes -->
+  
+  <section class="section compact-section testimonial-section automax-testimonials-showcase">
+    <div class="container">
+      <div class="center-head">
+        <span>Depoimentos</span>
+        <h2>O que nossos clientes dizem</h2>
+      </div>
+      <div class="testimonial-shell" data-testimonial-carousel="">
+        <button type="button" class="testimonial-nav testimonial-prev" aria-label="Depoimento anterior" data-testimonial-prev="">
+          <i class="bi bi-chevron-left" aria-hidden="true"></i>
+        </button>
+        <div class="testimonial-track" aria-live="polite">
+          
+          <article class="testimonial-card active" data-testimonial-slide="0">
+            <span class="quote-mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <p>Experiência impecável! Atendimento rápido, veículo entregue revisado, com laudo cautelar aprovado e garantia. Recomendo muito!</p>
+            <div class="client-box">
+              <b>Carlos Eduardo Silva</b>
+              <small>Campos dos Goytacazes/RJ</small>
+              <span class="rating-stars" aria-label="5 de 5 estrelas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></span>
+            </div>
+          </article>
+          
+          <article class="testimonial-card " data-testimonial-slide="1" hidden="">
+            <span class="quote-mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <p>Fiz a simulação no site, a equipe me chamou em minutos no WhatsApp e fechei meu carro com a melhor avaliação no meu usado.</p>
+            <div class="client-box">
+              <b>Mariana Fernandes Costa</b>
+              <small>Macaé/RJ</small>
+              <span class="rating-stars" aria-label="5 de 5 estrelas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></span>
+            </div>
+          </article>
+          
+          <article class="testimonial-card " data-testimonial-slide="2" hidden="">
+            <span class="quote-mark" aria-hidden="true"><i class="bi bi-quote"></i></span>
+            <p>Comprei meu SUV com eles. Transparência do início ao fim, sem enrolação. Nota 10 para o atendimento da equipe!</p>
+            <div class="client-box">
+              <b>Roberto Mendonça</b>
+              <small>Rio de Janeiro/RJ</small>
+              <span class="rating-stars" aria-label="5 de 5 estrelas"><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i><i class="bi bi-star-fill" aria-hidden="true"></i></span>
+            </div>
+          </article>
+          
+        </div>
+        <button type="button" class="testimonial-nav testimonial-next" aria-label="Próximo depoimento" data-testimonial-next="">
+          <i class="bi bi-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+      <div class="slider-dots" data-testimonial-dots="">
+        
+        <button type="button" class="active" aria-label="Abrir depoimento 1" data-testimonial-dot="0"></button>
+        
+        <button type="button" class="" aria-label="Abrir depoimento 2" data-testimonial-dot="1"></button>
+        
+        <button type="button" class="" aria-label="Abrir depoimento 3" data-testimonial-dot="2"></button>
+        
+      </div>
+      
+    </div>
+  </section>
+  
+
+  <!-- Bancos Parceiros Omega -->
+  
+  <section class="partners-showcase automax-partners-showcase" aria-labelledby="automax-partners-title">
+    <div class="container partners-showcase-inner">
+      <div class="partners-head">
+        <span>PARCEIROS</span>
+        <h2 id="automax-partners-title">Conectamos você aos melhores bancos</h2>
+        <p>Parcerias seguras e confiáveis para aprovar seu financiamento com as menores taxas.</p>
+      </div>
+      <div class="partners-carousel-shell">
+        <div class="bank-strip partner-logo-strip automax-partner-track" aria-label="Bancos e parceiros">
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>Banco Santander</strong>
+              </span>
+              <small>Santander Financiamentos</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>BV Financeira</strong>
+              </span>
+              <small>BV Mais</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>Banco Itaú</strong>
+              </span>
+              <small>Itaú Auto</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>Banco Bradesco</strong>
+              </span>
+              <small>Bradesco Financiamentos</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>Banco Pan</strong>
+              </span>
+              <small>Banco PAN</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>Banco Safra</strong>
+              </span>
+              <small>Safra Financeira</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>C6 Bank</strong>
+              </span>
+              <small>C6 Auto</small>
+            </span>
+          </span>
+          
+          <span class="partner-logo-item automax-partner-card">
+            <span class="automax-partner-logo-box" style="display:grid;place-items:center;font-size:24px;color:var(--primary);">
+              <i class="bi bi-bank2"></i>
+            </span>
+            <span class="automax-partner-meta">
+              <span class="automax-partner-name">
+                <span class="automax-partner-check" aria-hidden="true"><i class="bi bi-patch-check-fill"></i></span>
+                <strong>Porto Seguro</strong>
+              </span>
+              <small>Porto Seguro Financiamento</small>
+            </span>
+          </span>
+          
+        </div>
+      </div>
+      <div class="partners-security-note" aria-label="Segurança das informações">
+        <span aria-hidden="true"></span>
+        <p><span class="automax-partner-shield" aria-hidden="true"><i class="bi bi-shield-check"></i></span> Suas informações sempre protegidas com segurança de ponta a ponta.</p>
+        <span aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Localização da Loja + Mapa -->
+  
+  <section class="section compact-section">
+    <div class="container">
+      <div class="omega-home-location-grid">
+        <div class="omega-home-location-info">
+          <span class="eyebrow">Visite nosso showroom</span>
+          <h3>Studio Multimarcas</h3>
+          <p style="color:#64748b;font-size:14.5px;line-height:1.6;">Venha tomar um café conosco, conhecer nosso estoque pessoalmente e fazer um test-drive no seu próximo veículo.</p>
+          <div class="omega-home-location-list">
+            <div class="omega-home-location-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <div><strong>Endereço</strong><br>Avenida XV de Novembro 621 - Centro - Campos dos Goytacazes, RJ</div>
+            </div>
+            
+            <div class="omega-home-location-item">
+              <i class="bi bi-telephone-fill"></i>
+              <div><strong>Telefone / WhatsApp</strong><br>(22) 99728-9564</div>
+            </div>
+            
+            <div class="omega-home-location-item">
+              <i class="bi bi-clock-fill"></i>
+              <div><strong>Horário de Atendimento</strong><br>Seg. a Sex. das 08h às 18h | Sáb. das 08h às 13h</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Avenida%20XV%20de%20Novembro%20621%20-%20Centro%20-%20Campos%20dos%20Goytacazes%2C%20RJ" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-map"></i> Traçar rota no Google Maps
+            </a>
+            <a class="outline-btn" href="/sobre#contato">Falar conosco</a>
+          </div>
+        </div>
+        <div class="omega-home-map-frame">
+          <iframe src="https://www.google.com/maps?q=Avenida%20XV%20de%20Novembro%20621%20-%20Centro%20-%20Campos%20dos%20Goytacazes%2C%20RJ&amp;output=embed" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="Localização da loja Studio Multimarcas"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perguntas Frequentes (FAQ Omega) -->
+  <section class="section compact-section automax-faq-section" aria-labelledby="automax-faq-title">
+    <div class="container automax-faq-container">
+      <div class="automax-faq-header">
+        <span class="automax-faq-eyebrow"><i class="bi bi-chat-square-text" aria-hidden="true"></i> Perguntas frequentes</span>
+        <h2 id="automax-faq-title">Tire suas dúvidas antes de escolher seu veículo</h2>
+        <p>Reunimos as respostas mais importantes para deixar sua compra mais simples, transparente e segura.</p>
+      </div>
+      <div class="automax-faq-grid">
+        <details class="automax-faq-item">
+          <summary><span>Os veículos possuem garantia e laudo cautelar?</span><i class="bi bi-chevron-down" aria-hidden="true"></i></summary>
+          <div class="automax-faq-answer"><p>Sim. Trabalhamos exclusivamente com veículos rigorosamente inspecionados, periciados e com garantia, proporcionando total tranquilidade e segurança na sua compra.</p></div>
+        </details>
+        <details class="automax-faq-item">
+          <summary><span>Vocês aceitam meu carro usado na troca?</span><i class="bi bi-chevron-down" aria-hidden="true"></i></summary>
+          <div class="automax-faq-answer"><p>Sim! Avaliamos seu seminovo com transparência e supervalorização. Ele pode entrar como parte do pagamento ou na modalidade troco na troca.</p></div>
+        </details>
+        <details class="automax-faq-item">
+          <summary><span>Posso simular o financiamento online antes de ir à loja?</span><i class="bi bi-chevron-down" aria-hidden="true"></i></summary>
+          <div class="automax-faq-answer"><p>Claro! Acesse nossa página de Financiamento para calcular parcelas em até 60x e enviar seus dados para aprovação rápida junto aos principais bancos parceiros.</p></div>
+        </details>
+        <details class="automax-faq-item">
+          <summary><span>É possível parcelar a entrada no cartão de crédito?</span><i class="bi bi-chevron-down" aria-hidden="true"></i></summary>
+          <div class="automax-faq-answer"><p>Sim. Facilitamos a entrada no cartão de crédito em até 18x ou combinamos seu usado + financiamento bancário.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <!-- Site Footer Omega -->
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-about">
+        <a href="/" class="brand-link light footer-brand-link">
+          
+          <span class="brand automax-brand light footer-logo-brand has-footer-logo-image">
+            <img class="site-logo-image footer-logo-image-base" src="/static/site/stm_logo.png?v=3" alt="Studio Multimarcas" title="Studio Multimarcas" loading="lazy" decoding="async">
+          </span>
+          
+        </a>
+        <p>A nossa história é contada por nossos clientes! Na Studio Multimarcas você encontra seminovos com qualidade de 0KM, veículos à pronta entrega e uma opção confiável em Campos dos Goytacazes - RJ.</p>
+        <div class="footer-social">
+          
+          <a href="https://www.facebook.com/share/14ks1ANnCj/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+          
+          
+          <a href="https://www.instagram.com/stm_studiomultimarcas" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+          
+          
+          <a href="https://wa.me/555522997289564" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+          
+        </div>
+      </div>
+
+      <nav class="footer-links footer-col" aria-label="Institucional">
+        <strong class="footer-heading">Institucional</strong>
+        <div class="footer-list">
+          <a href="/">Início</a>
+          <a href="/estoque">Comprar veículos</a>
+          <a href="/financie">Serviços e Financiamento</a>
+          <a href="/venda-seu-carro">Vender seu veículo</a>
+          <a href="/sobre">Sobre nós</a>
+          <a href="/sobre#contato">Fale conosco</a>
+        </div>
+      </nav>
+
+      <address class="footer-links footer-contact footer-col" aria-label="Atendimento">
+        <strong class="footer-heading">Atendimento</strong>
+        <div class="footer-list">
+          
+          <a class="footer-contact-item" href="tel:(22) 99728-9564" title="Telefone"><i class="bi bi-telephone" aria-hidden="true"></i><span>(22) 99728-9564</span></a>
+          
+          
+          <a class="footer-contact-item" href="https://wa.me/555522997289564?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener" title="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i><span>WhatsApp Oficial</span></a>
+          
+          
+          <a class="footer-contact-item" href="mailto:consultingcamposmultimarcas@gmail.com" title="E-mail"><i class="bi bi-envelope" aria-hidden="true"></i><span>consultingcamposmultimarcas@gmail.com</span></a>
+          
+          
+          <span class="footer-contact-item"><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Avenida XV de Novembro 621 - Centro - Campos dos Goytacazes, RJ</span></span>
+          
+          <span class="footer-contact-item"><i class="bi bi-clock" aria-hidden="true"></i><span>Seg. a Sex. das 08h às 18h | Sáb. das 08h às 13h</span></span>
+        </div>
+      </address>
+
+      <nav class="footer-links footer-col" aria-label="Categorias">
+        <strong class="footer-heading">Categorias</strong>
+        <div class="footer-list">
+          <a href="/estoque?body_type=SUV">SUVs Seminovos</a>
+          <a href="/estoque?body_type=Sedan">Sedans</a>
+          <a href="/estoque?body_type=Hatch">Hatches</a>
+          <a href="/estoque?body_type=Picape">Picapes &amp; Utilitários</a>
+          <a href="/estoque?sort=price_asc">Menor Preço</a>
+        </div>
+      </nav>
+
+      <div class="footer-links footer-payment-wrap footer-col">
+        <strong class="footer-heading">Financiamento &amp; Pagamento</strong>
+        <div class="footer-list">
+          <span class="footer-contact-item"><i class="bi bi-check2-circle" aria-hidden="true"></i><span>Financiamento em até 60x</span></span>
+          <span class="footer-contact-item"><i class="bi bi-check2-circle" aria-hidden="true"></i><span>Supervalorização do usado</span></span>
+          <span class="footer-contact-item"><i class="bi bi-check2-circle" aria-hidden="true"></i><span>Entrada parcelada no cartão</span></span>
+          <span class="footer-contact-item"><i class="bi bi-shield-check" aria-hidden="true"></i><span>Laudo Cautelar 100% Aprovado</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Studio Multimarcas. Todos os direitos reservados. Endereço: Avenida XV de Novembro 621 - Centro - Campos dos Goytacazes, RJ.</span>
+    </div>
+  </footer>
+
+  
+  <a id="omegaOfficialWhatsappFloat" class="omega-official-wa-button" data-omega-official-whatsapp="1" href="https://wa.me/555522997289564?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Studio%20Multimarcas%20e%20gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" title="Falar no WhatsApp">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+  </a>
+  
+
+  <script>
+  (function() {
+    // 1. Promo bar & Header height sync for Mega Menu
+    var promoBar = document.querySelector('[data-omega-promo-bar]');
+    var promoClose = document.querySelector('[data-omega-promo-close]');
+    var siteHeader = document.querySelector('.site-header');
+    function syncHeaderBottomVar() {
+      if (!siteHeader) return;
+      var rect = siteHeader.getBoundingClientRect();
+      var bottom = Math.max(64, Math.round(rect.bottom));
+      document.documentElement.style.setProperty('--automax-public-header-bottom', bottom + 'px');
+    }
+    if (promoBar) {
+      document.body.classList.add('omega-promo-active');
+      if (promoClose) {
+        promoClose.addEventListener('click', function() {
+          promoBar.classList.add('is-closing');
+          document.body.classList.remove('omega-promo-active');
+          setTimeout(function() {
+            promoBar.style.display = 'none';
+            syncHeaderBottomVar();
+          }, 220);
+        });
+      }
+    }
+    syncHeaderBottomVar();
+    window.addEventListener('resize', syncHeaderBottomVar, { passive: true });
+    window.addEventListener('scroll', syncHeaderBottomVar, { passive: true });
+
+    // 2. Mobile menu toggle
+    var menuBtn = document.querySelector('[data-menu]');
+    var menuClose = document.querySelector('[data-menu-close]');
+    var menuOverlay = document.querySelector('[data-menu-overlay]');
+    var mainNav = document.getElementById('public-mobile-menu');
+    function setMenuOpen(open) {
+      if (!mainNav) return;
+      mainNav.classList.toggle('open', open);
+      document.body.classList.toggle('public-menu-open', open);
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    if (menuBtn) menuBtn.addEventListener('click', function() { setMenuOpen(!mainNav.classList.contains('open')); });
+    if (menuClose) menuClose.addEventListener('click', function() { setMenuOpen(false); });
+    if (menuOverlay) menuOverlay.addEventListener('click', function() { setMenuOpen(false); });
+
+    // 3. Favorites toggle in localStorage
+    var FAV_KEY = 'omega_favorites_v1';
+    function getFavs() {
+      try { return JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); } catch(e) { return []; }
+    }
+    function saveFavs(list) {
+      try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch(e) {}
+    }
+    function syncFavUI() {
+      var favs = getFavs();
+      var badge = document.querySelector('[data-favorites-count]');
+      if (badge) {
+        badge.textContent = String(favs.length);
+        badge.hidden = favs.length === 0;
+      }
+      document.querySelectorAll('[data-favorite-toggle]').forEach(function(btn) {
+        var slug = btn.getAttribute('data-favorite-slug');
+        var active = favs.indexOf(slug) !== -1;
+        btn.classList.toggle('active', active);
+        btn.classList.toggle('is-favorited', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        var icon = btn.querySelector('i.bi');
+        if (icon) {
+          icon.classList.toggle('bi-heart-fill', active);
+          icon.classList.toggle('bi-heart', !active);
+        }
+      });
+    }
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-favorite-toggle]');
+      if (!btn) return;
+      e.preventDefault();
+      var slug = btn.getAttribute('data-favorite-slug');
+      if (!slug) return;
+      var favs = getFavs();
+      var idx = favs.indexOf(slug);
+      if (idx === -1) favs.push(slug);
+      else favs.splice(idx, 1);
+      saveFavs(favs);
+      syncFavUI();
+    });
+    syncFavUI();
+  })();
+  </script>
+  
+<script>
+(function() {
+  // 1. Hero Banner Carousel
+  var slides = Array.prototype.slice.call(document.querySelectorAll('[data-hero-slide]'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('[data-hero-dot]'));
+  var currHero = 0;
+  function showHero(idx) {
+    if (!slides.length) return;
+    currHero = (idx + slides.length) % slides.length;
+    slides.forEach(function(s, i) { s.classList.toggle('is-active', i === currHero); });
+    dots.forEach(function(d, i) { d.classList.toggle('is-active', i === currHero); });
+  }
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() {
+      showHero(Number(d.getAttribute('data-hero-dot') || 0));
+    });
+  });
+  if (slides.length > 1) {
+    setInterval(function() { showHero(currHero + 1); }, 6000);
+  }
+
+  // 2. Testimonials Carousel
+  var tSlides = Array.prototype.slice.call(document.querySelectorAll('[data-testimonial-slide]'));
+  var tDots = Array.prototype.slice.call(document.querySelectorAll('[data-testimonial-dot]'));
+  var tPrev = document.querySelector('[data-testimonial-prev]');
+  var tNext = document.querySelector('[data-testimonial-next]');
+  var currT = 0;
+  function showTestimonial(idx) {
+    if (!tSlides.length) return;
+    currT = (idx + tSlides.length) % tSlides.length;
+    tSlides.forEach(function(s, i) {
+      var active = i === currT;
+      s.classList.toggle('active', active);
+      s.hidden = !active;
+    });
+    tDots.forEach(function(d, i) { d.classList.toggle('active', i === currT); });
+  }
+  if (tPrev) tPrev.addEventListener('click', function() { showTestimonial(currT - 1); });
+  if (tNext) tNext.addEventListener('click', function() { showTestimonial(currT + 1); });
+  tDots.forEach(function(d) {
+    d.addEventListener('click', function() {
+      showTestimonial(Number(d.getAttribute('data-testimonial-dot') || 0));
+    });
+  });
+})();
+</script>
+
+
+</body></html>

@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C029c53c65c",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://motorsstore.com.br/financiamento",
+  "final_url": "https://motorsstore.com.br/financiamento",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.150.1.193",
+  "collected_at": "2026-11-23T14:26:52.270139+00:00",
+  "manifest_written_at": "2026-11-23T14:26:57.363545+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C029c53c65c\\attempt-1\\viewport.png",
+      "sha256": "15d4c69bffe2bbbb28f9256271218d4eb8bd0d9ea0a13ebc908ff2e0ac904c36",
+      "size_bytes": 47189
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C029c53c65c\\attempt-1\\fullpage.png",
+      "sha256": "15d4c69bffe2bbbb28f9256271218d4eb8bd0d9ea0a13ebc908ff2e0ac904c36",
+      "size_bytes": 47189
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C029c53c65c\\attempt-1\\page.html.txt",
+      "sha256": "6dbb8d0549edb053c027924ddda3dc163469fe9742fb079582066a6663bf286c",
+      "size_bytes": 65484
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C029c53c65c\\attempt-1\\text.txt",
+      "sha256": "4f81277efe9cee695521d830f88f452b6e037a136eaaabb5cc4ebe0c9314e545",
+      "size_bytes": 797
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C029c53c65c\\attempt-1\\page.json",
+      "sha256": "64155cc4707069992a911e056d616e4c715cbb3468390911b01e6c6ca40dcf54",
+      "size_bytes": 2758
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

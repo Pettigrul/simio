@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C965be04e6f",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://bravexgroup.com.br/",
+  "final_url": "https://bravexgroup.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.16.36.105",
+  "collected_at": "2026-11-23T14:37:33.690583+00:00",
+  "manifest_written_at": "2026-11-23T14:37:38.530477+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C965be04e6f\\attempt-1\\viewport.png",
+      "sha256": "2251c4186bd459162046eccc7c3ef3d71a71f8d1f16b764aa40a599d19938858",
+      "size_bytes": 47162
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C965be04e6f\\attempt-1\\fullpage.png",
+      "sha256": "2251c4186bd459162046eccc7c3ef3d71a71f8d1f16b764aa40a599d19938858",
+      "size_bytes": 47162
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C965be04e6f\\attempt-1\\page.html.txt",
+      "sha256": "b2b6048092120420baed5eef6d8ca561b5addedb061413ec0e9ac382933946f5",
+      "size_bytes": 65458
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C965be04e6f\\attempt-1\\text.txt",
+      "sha256": "13f0eef8a21ba82c9520e2376570422553f6a88b097fcb85690861e0c738392b",
+      "size_bytes": 784
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C965be04e6f\\attempt-1\\page.json",
+      "sha256": "3882237576a68f7e4749267053a2ed9571626ffbbd91ddcd51423416d5a7196b",
+      "size_bytes": 2732
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

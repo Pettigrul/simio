@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C26376b4b21</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C26376b4b21 — instagram.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.instagram.com/reel/Dfj4msXxPPI/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação consiste em um Reel promocional de relacionamento de uma revenda de caminhões (Detroit Caminhões) celebrando visita e parceria comercial com o Banco BV. Não há tentativa de se passar pelo banco e a titularidade da loja é evidente. Entretanto, tratando-se de agente comercial do segmento automotivo que atua como parceiro/correspondente, a ausência da qualificação formal e advertências exigidas pela Resolução CMN nº 4.935/2021 classifica o caso como comunicação ambígua que requer revisão.
+[Revisor: CONFIRM] A publicação pertence a uma revenda de caminhões/veículos pesados (@detroit_caminhoes), segmento abrangido pelas regras de correspondentes bancários. O conteúdo divulga e celebra parceria comercial com o Banco BV / BV Financeira sem apresentar as divulgações regulatórias formais exigidas pela Resolução CMN nº 4.935/2021 (ausência de razão social completa/CNPJ, condição expressa de correspondente bancário e canais de ouvidoria). Conforme as diretrizes, mantém-se a classificação REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C26376b4b21/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 693fc0b95f0468055105061fc9e46ad78240efc6cc34f1ed9733192f97b54106</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C26376b4b21/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 79ad1b995b26b162ca180d3e07c41497ae85d0041365cf47dc2483988e62b3f3</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.instagram.com/reel/Dfj4msXxPPI/ (domínio: www.instagram.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Parcerias que geram bons resultados merecem ser ... — ... Banco BV pelo reconhecimento e pela parceria. Seguimos trabalhando ... Hoje recebemos a visita do nosso parceiro e amigo Renato, da BV Financeira.</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C26376b4b21/attempt-1/viewport.png (sha256 693fc0b95f046805…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C26376b4b21/attempt-1/fullpage.png (sha256 79ad1b995b26b162…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Instagram @detroit_caminhoes - detroit_caminhoes Parcerias que geram bons resultados merecem ser celebradas! Nosso agradecimento ao Banco BV pelo reconhecimento e pela parceria. Seguimos trabalhando para oferecer as melhores oportunidades e soluções para nossos clientes. **Detroit Caminhões: bons negócios começam com confiança!** 🤝 #detroitcaminhões #bancobv #caminhoes #negócios Ver todos os comentários</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>detroit_caminhoes Áudio original Ver perfil</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/stories/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>detroit_caminhoes &lt;https://www.instagram.com/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Ver perfil &lt;https://www.instagram.com/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>detroit_caminhoes 236 posts · 7K seguidores &lt;https://www.instagram.com/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Ver mais no Instagram &lt;https://www.instagram.com/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Curtir &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Comentar &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>Compartilhar &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>Salvar &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>detroit_caminhoes &lt;https://www.instagram.com/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>page</td><td>#detroitcaminhões &lt;https://www.instagram.com/explore/tags/detroitcaminh%C3%B5es/?utm_source=ig_embed&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>page</td><td>#bancobv &lt;https://www.instagram.com/explore/tags/bancobv/?utm_source=ig_embed&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>page</td><td>#caminhoes &lt;https://www.instagram.com/explore/tags/caminhoes/?utm_source=ig_embed&gt;</td></tr>
+      <tr id="E-CONTACT-15"><td class="mono"><b>E-CONTACT-15</b></td><td>contact</td><td>page</td><td>#negócios &lt;https://www.instagram.com/explore/tags/neg%C3%B3cios/?utm_source=ig_embed&gt;</td></tr>
+      <tr id="E-CONTACT-16"><td class="mono"><b>E-CONTACT-16</b></td><td>contact</td><td>page</td><td>Ver todos os comentários &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-17"><td class="mono"><b>E-CONTACT-17</b></td><td>contact</td><td>page</td><td>Adicione um comentário... &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-CONTACT-18"><td class="mono"><b>E-CONTACT-18</b></td><td>contact</td><td>page</td><td>Instagram &lt;https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Post do Instagram compartilhado por @detroit_caminhoes&#39; src=https://instagram.fcgh22-1.fna.fbcdn.net/v/t51.82787-15/902592088_18128223107512560_1867654840544308039_n.jpg?stp=dst-jpg_e15_tt6&amp;_nc_cat=101&amp;_nc_map=urlgen_bucketless&amp;ig_cache_key=NDAyNzMxMTQ0MTM4NzU (1366x1708, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Nosso agradecimento ao Banco BV pelo reconhecimento e pela parceria. Seguimos trabalhando para oferecer as melhores oportunidades e soluções para nossos clientes.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>#detroitcaminhões #bancobv #caminhoes #negócios</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O vídeo e o perfil pertencem visualmente à Detroit Caminhões. Não há apropriação indevida da identidade visual institucional do Banco BV na composição geral.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Logomarca moderna do Banco BV visível de forma incidental em uma garrafa térmica institucional (brinde) presente no ambiente do vídeo.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>Identidade comercial do estabelecimento (Detroit Caminhões) está nítida no perfil e conteúdo, mas sem CNPJ formal explicitado.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Menção explícita a parceria e reconhecimento pelo Banco BV sem a inclusão da declaração formal de correspondente bancário conforme Res. CMN nº 4.935/2021.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Linguagem em terceira pessoa reconhecendo e agradecendo a visita/parceria com a equipe do Banco BV, sem se passar pela instituição.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A publicação celebra uma parceria comercial com o Banco BV / BV Financeira, mas não apresenta as divulgações regulatórias de correspondente bancário (Resolução CMN nº 4.935/2021), nem canais de ouvidoria da instituição. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: A loja Detroit Caminhões é identificada pelo perfil de rede social, porém não informa seu CNPJ ou razão social completa na postagem. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] INSTITUTIONAL_LANGUAGE: Texto em tom de relacionamento institucional entre parceiros (&#39;Nosso agradecimento ao Banco BV pelo reconhecimento e pela parceria&#39;, &#39;Hoje recebemos a visita do nosso parceiro e amigo Renato, da BV Financeira&#39;). — <span class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A titularidade da publicação é inequivocamente da loja @detroit_caminhoes, tratando de negócios de caminhões. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Trata-se de uma publicação em formato Reel no Instagram pelo perfil @detroit_caminhoes (loja/revenda de caminhões).</li><li>A legenda cita nominalmente o Banco BV em agradecimento de parceria e reconhecimento comercial.</li><li>O índice de busca indica menção à visita de um representante comercial da BV Financeira (&#39;Renato, da BV Financeira&#39;).</li><li>No screenshot do vídeo observa-se brinde promocional (garrafa térmica) com o logotipo atual do Banco BV.</li><li>Não foi localizada declaração formal de correspondente bancário nem CNPJ da empresa no texto da postagem.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Se o perfil possui dados cadastrais completos e declaração de correspondente bancário em link na bio (Linktree/site externo).</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação consiste em um Reel promocional de relacionamento de uma revenda de caminhões (Detroit Caminhões) celebrando visita e parceria comercial com o Banco BV. Não há tentativa de se passar pelo banco e a titularidade da loja é evidente. Entretanto, tratando-se de agente comercial do segmento automotivo que atua como parceiro/correspondente, a ausência da qualificação formal e advertências exigidas pela Resolução CMN nº 4.935/2021 classifica o caso como comunicação ambígua que requer revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>@detroit_caminhoes<br><span class="mono">social:instagram.com:detroit_caminhoes</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>instagram.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/reel/Dfj4msXxPPI/</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/stories/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/detroit_caminhoes/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/reel/Dfj4msXxPPI/?utm_source=ig_embed&amp;ig_rid=AffbH3ltLgsKcMGc_W_1-Xt</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/explore/tags/detroitcaminh%C3%B5es/?utm_source=ig_embed</td><td class="mono"><a href="#E-CONTACT-12">E-CONTACT-12</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/explore/tags/bancobv/?utm_source=ig_embed</td><td class="mono"><a href="#E-CONTACT-13">E-CONTACT-13</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/explore/tags/caminhoes/?utm_source=ig_embed</td><td class="mono"><a href="#E-CONTACT-14">E-CONTACT-14</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/explore/tags/neg%C3%B3cios/?utm_source=ig_embed</td><td class="mono"><a href="#E-CONTACT-15">E-CONTACT-15</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>@detroit_caminhoes</td><td class="mono"><a href="#E-TITLE">E-TITLE</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>parceria</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Banco BV pelo reconhecimento e pela parceria.</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiro</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Hoje recebemos a visita do nosso parceiro e amigo Renato, da BV Financeira.</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: perfil em rede social</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação pertence a uma revenda de caminhões/veículos pesados (@detroit_caminhoes), segmento abrangido pelas regras de correspondentes bancários. O conteúdo divulga e celebra parceria comercial com o Banco BV / BV Financeira sem apresentar as divulgações regulatórias formais exigidas pela Resolução CMN nº 4.935/2021 (ausência de razão social completa/CNPJ, condição expressa de correspondente bancário e canais de ouvidoria). Conforme as diretrizes, mantém-se a classificação REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>(&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Piauí&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br<br><span class="muted">H5-establishment:regiao-Nordeste</span></td><td class="mono">https://www.instagram.com/reel/Dfj4msXxPPI/</td><td>Parcerias que geram bons resultados merecem ser ...<br><span class="muted">... Banco BV pelo reconhecimento e pela parceria. Seguimos trabalhando ... Hoje recebemos a visita do nosso parceiro e amigo Renato, da BV Financeira.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:03:53.101550+00:00</div>
+      <div class="kv"><b>IP do servidor</b>57.144.66.34</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C26376b4b21/attempt-1/manifest.json<br>sha256 f3d5c55a5fe0a39156f3da3c6a97632e95157f78b444ee71cdfc0fc579307742</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.instagram.com/reel/Dfj4msXxPPI/<br>Final: https://www.instagram.com/reel/Dfj4msXxPPI/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C26376b4b21/attempt-1/viewport.png</td><td class="mono">693fc0b95f0468055105061fc9e46ad78240efc6cc34f1ed9733192f97b54106</td><td>376168</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C26376b4b21/attempt-1/fullpage.png</td><td class="mono">79ad1b995b26b162ca180d3e07c41497ae85d0041365cf47dc2483988e62b3f3</td><td>1143394</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C26376b4b21/attempt-1/page.html.txt</td><td class="mono">a0544fd1049ff40b251fa4b5450975016e8145c78fa5530952d4a61f0311ee44</td><td>261276</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C26376b4b21/attempt-1/text.txt</td><td class="mono">8ecf0fe70243972c1ed91454a717068b468a8a629a201f29d5047bbd61e068d1</td><td>667</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C26376b4b21/attempt-1/page.json</td><td class="mono">d9883d5ae13fc58c03f8646edda4c1f4ba5e56b2e47931d66bb5a95a982e6324</td><td>11198</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:07+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T19:03:53+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:03:58+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:03:58+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:19+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:28+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

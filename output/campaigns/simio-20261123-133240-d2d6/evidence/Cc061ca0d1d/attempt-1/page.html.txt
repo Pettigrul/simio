@@ -1,0 +1,1752 @@
+<html lang="pt-br"><head><style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button[not:disabled]:hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel[not:disabled]:hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger[not:disabled]:hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	
+    <meta name="theme-color" content="#323232">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="resource-type" content="document">
+	<meta name="classification" content="Internet">
+	<meta name="distribution" content="Global">
+	<meta name="rating" content="General">
+	<meta name="language" content="pt-br">
+	<meta name="Robots" content="index,follow">
+	<meta name="autor" content="itCar">
+	<meta name="title" content="Proposta de Financiamento | Rasauto Multimarcas">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="ItCar">
+    
+    <title>Proposta de Financiamento | Rasauto Multimarcas</title>
+    
+    <meta property="og:title" content="Proposta de Financiamento | Rasauto Multimarcas">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://www.rasautomultimarcas.com.br/revenda-veiculo-03/">
+	<meta property="og:image" content="https://www.rasautomultimarcas.com.br/imagens/logotipo-rasautomultimarcas.com.br.jpg">
+	<meta property="og:site_name" content="Rasauto Multimarcas">
+	<meta property="og:description" content="">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/revenda-veiculo-03/images/favicon.ico">
+	
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/bootstrap.min.css">
+	
+	<!-- flaticon -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/flaticon.css">
+	
+	<!-- mega menu -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/mega-menu/mega_menu.css">
+	
+	<!-- mega menu -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/font-awesome.min.css">
+	
+	<!-- owl-carousel -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/owl-carousel/owl.carousel.css">
+	
+	<!-- slick css -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/slick.css">
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/slick-theme.css">
+	
+	<!-- jquery-ui -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/jquery-ui.css">
+	
+	<!-- revolution -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/revolution/css/settings.css">
+	
+	<!-- main style -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/style.css">
+	
+	<!-- responsive -->
+	<link rel="stylesheet" type="text/css" href="/revenda-veiculo-03/css/responsive.css">
+	
+	<style type="text/css">
+		
+	    /* Cores - Topo */
+		#header.topbar-dark .topbar { background: #2d3192 !important }
+		#header.topbar-dark .mega-menu .menu-links > li > a:hover { color: #428bca !important }
+		
+		.mega-menu .drop-down-multilevel { border-top: 5px solid #428bca !important }
+		.button { background: #2d3192 !important }*/
+		.button:before { background: #428bca !important }
+		
+	    /* Cores - Bem Vindo */
+        .custom-block-3 .title h3:before { background: #428bca !important; }
+		.feature-box-3:hover .icon,
+		.feature-box-3:hover .icon i { border-color: #428bca !important; }
+		.feature-box-3:hover .icon i { background: #428bca !important }
+		
+		/* Cores - Rodapé */
+		.footer { background: #2d3192 !important; }
+		.footer .social ul li a i:hover { background: #428bca !important }
+		.footer h6:before { background: #428bca !important }
+		footer .copyright a { color: #428bca !important; }
+		footer {color: #428bca !important;}
+		.footer .pt-0 {color: #D8D8D8 !important;}
+		.footer .pt-1 a {color: #D8D8D8 !important;}
+		
+		/* Cores - Bem Vindo */		
+		section.feature-car div.section-title div.separator:before,
+		section.feature-car div.section-title div.separator:after { background: #428bca !important }
+		
+		.car-image img { width: 100%; height: 270px; object-fit: contain; }
+		section.feature-car div.car-item div.car-overlay-banner { background-color: #428bca; opacity: 0.7 !important }
+		section.feature-car div.car-item div.car-content a { color: #428bca !important }
+        section.feature-car div.car-item div.car-content a:hover { color: #2d3192 !important }
+		section.feature-car div.car-item div.separator:before,
+		section.feature-car div.car-item div.separator:after { background: #2d3192 !important }
+		
+		.owl-carousel.owl-theme .owl-dots .owl-dot.active span { background: #2d3192 !important }
+		
+	    /* Cores - Pluguin Carousel */ 
+		.owl-carousel .owl-nav i { color: #428bca !important }
+		.owl-carousel .owl-nav i:hover { background: #428bca !important; color: #fff !important }
+		
+		/* Cores - Entre em Contato */
+		.opening-hours h6:before,
+		.contact .contact-box:hover { background: #428bca !important }
+		.contact .contact-box i { color: #428bca !important }
+		.contact .contact-box:hover i { color: #ffffff !important }
+		
+		section.nossos-servicos { background: #428bca !important }
+		
+	    /* Cores Estoque */
+		.product-listing .car-grid .price a.button,
+	    .product-listing .car-details .price+ a.button { padding: 3px 20px; position: absolute; top: 0; right: 15px; background: #428bca !important }
+		.product-listing .car-grid .car-title a:before { background: #428bca !important }
+		
+		button.btn-site,
+		.car-details-sidebar h5:before { background: #428bca !important }
+	
+	    #tabs ul.tabs li.active,
+	    #tabs ul.tabs li.active:focus,
+	    #tabs ul.tabs li:hover { 3px solid #428bca !important }
+	    #tabs ul..list-style-1 li i { color: #428bca !important; }
+
+	    /* Cores icones */
+		.feature-box i.fa.fa-map-marker:hover { background: #428bca !important }
+		.feature-box i.fa.fa-map-marker { background: #2d3192 !important }
+		.feature-box i.fa.fa-map-marker { color: white !important }
+		.feature-box i.fa.fa-envelope-o:hover { background: #428bca !important }
+		.feature-box i.fa.fa-envelope-o { background: #2d3192 !important }
+		.feature-box i.fa.fa-envelope-o { color: white !important }
+		.feature-box i.fa.fa-phone:hover { background: #428bca !important }
+		.feature-box i.fa.fa-phone { background: #2d3192 !important }
+		.feature-box i.fa.fa-phone { color: white !important }
+		.feature-box i.fa.fa-whatsapp:hover { background: #428bca !important }
+		.feature-box i.fa.fa-whatsapp { background: #2d3192 !important }
+		.feature-box i.fa.fa-whatsapp { color: white !important }
+		
+	</style>
+	
+	
+<!-- ÃNICIO Ãcone Whatsapp -->
+<style>
+.float{
+ position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    right: 15px;
+}
+
+.my-float{
+	margin-top:16px;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>.swal2-popup.swal2-toast{flex-direction:column;align-items:stretch;width:auto;padding:1.25em;overflow-y:hidden;background:#fff;box-shadow:0 0 .625em #d9d9d9}.swal2-popup.swal2-toast .swal2-header{flex-direction:row;padding:0}.swal2-popup.swal2-toast .swal2-title{flex-grow:1;justify-content:flex-start;margin:0 .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.3125em auto;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{position:static;width:.8em;height:.8em;line-height:.8}.swal2-popup.swal2-toast .swal2-content{justify-content:flex-start;margin:0 .625em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container{padding:.625em 0 0}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-icon{width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{font-size:.25em}}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{flex:1;flex-basis:auto!important;align-self:stretch;width:auto;height:2.2em;height:auto;margin:0 .3125em;margin-top:.3125em;padding:0}.swal2-popup.swal2-toast .swal2-styled{margin:.125em .3125em;padding:.3125em .625em;font-size:1em}.swal2-popup.swal2-toast .swal2-styled:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(100,150,200,.5)}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:flex;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;flex-direction:row;align-items:center;justify-content:center;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-top{align-items:flex-start}.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{align-items:flex-start;justify-content:flex-start}.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{align-items:flex-start;justify-content:flex-end}.swal2-container.swal2-center{align-items:center}.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{align-items:center;justify-content:flex-start}.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{align-items:center;justify-content:flex-end}.swal2-container.swal2-bottom{align-items:flex-end}.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{align-items:flex-end;justify-content:flex-start}.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{align-items:flex-end;justify-content:flex-end}.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{margin-top:auto}.swal2-container.swal2-grow-fullscreen>.swal2-modal{display:flex!important;flex:1;align-self:stretch;justify-content:center}.swal2-container.swal2-grow-row>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-grow-column{flex:1;flex-direction:column}.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{align-items:center}.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{align-items:flex-start}.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{align-items:flex-end}.swal2-container.swal2-grow-column>.swal2-modal{display:flex!important;flex:1;align-content:center;justify-content:center}.swal2-container.swal2-no-transition{transition:none!important}.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{margin:auto}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-container .swal2-modal{margin:0!important}}.swal2-popup{display:none;position:relative;box-sizing:border-box;flex-direction:column;justify-content:center;width:32em;max-width:100%;padding:1.25em;border:none;border-radius:5px;background:#fff;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-header{display:flex;flex-direction:column;align-items:center;padding:0 1.8em}.swal2-title{position:relative;max-width:100%;margin:0 0 .4em;padding:0;color:#595959;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:100%;margin:1.25em auto 0;padding:0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-loader{display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 transparent #2778c4 transparent}.swal2-styled{margin:.3125em;padding:.625em 1.1em;box-shadow:none;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#2778c4;color:#fff;font-size:1em}.swal2-styled.swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#d14529;color:#fff;font-size:1em}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#757575;color:#fff;font-size:1em}.swal2-styled:focus{outline:0;box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1.25em 0 0;padding:1em 0 0;border-top:1px solid #eee;color:#545454;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;height:.25em;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:1.25em auto}.swal2-close{position:absolute;z-index:2;top:0;right:0;align-items:center;justify-content:center;width:1.2em;height:1.2em;padding:0;overflow:hidden;transition:color .1s ease-out;border:none;border-radius:5px;background:0 0;color:#ccc;font-family:serif;font-size:2.5em;line-height:1.2;cursor:pointer}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close:focus{outline:0;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}.swal2-close::-moz-focus-inner{border:0}.swal2-content{z-index:1;justify-content:center;margin:0;padding:0 1.6em;color:#545454;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em auto}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:100%;transition:border-color .3s,box-shadow .3s;border:1px solid #d9d9d9;border-radius:.1875em;background:inherit;box-shadow:inset 0 1px 1px rgba(0,0,0,.06);color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em auto;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-input[type=number]{max-width:10em}.swal2-file{background:inherit;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:inherit;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{flex-shrink:0;margin:0 .4em}.swal2-input-label{display:flex;justify-content:center;margin:1em auto}.swal2-validation-message{align-items:center;justify-content:center;margin:0 -2.7em;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:1.25em auto 1.875em;border:.25em solid transparent;border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:0 0 1.25em;padding:0;background:inherit;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{right:auto;left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@supports (-ms-accelerator:true){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){.swal2-range input{width:100%!important}.swal2-range output{display:none}}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{top:auto;right:auto;bottom:auto;left:auto;max-width:calc(100% - .625em * 2);background-color:transparent!important}body.swal2-no-backdrop .swal2-container>.swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}body.swal2-no-backdrop .swal2-container.swal2-top{top:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{top:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{top:0;right:0}body.swal2-no-backdrop .swal2-container.swal2-center{top:50%;left:50%;transform:translate(-50%,-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{top:50%;left:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{top:50%;right:0;transform:translateY(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom{bottom:0;left:50%;transform:translateX(-50%)}body.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{bottom:0;left:0}body.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{right:0;bottom:0}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{background-color:transparent}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}</style></head><body><a href="https://api.whatsapp.com/send?phone=551143755966&amp;text=Ola, estou no seu site www.rasautomultimarcas.com.br e tenho uma duvida. Podemos conversar?" class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+<!-- FIM Ãcone Whatsapp -->
+
+<meta name="facebook-domain-verification" content="8p7y60ile591d37pb27xtq8jxvi97t">
+
+
+<meta name="google-site-verification" content="NTa6498cqK5TKrRyBu_kwousfX-8lG_B82i1awW3Ou8">
+
+
+<!-- Google tag (gtag.js) -->
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-143684280-1" type="text/javascript"></script>
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-143684280-1');
+</script>
+
+
+
+
+
+    
+	<!-- loading --> 
+	<div id="loading" style="display: none;">
+	    <div id="loading-center">
+	        <img src="/revenda-veiculo-03/images/loader3.gif" alt="">
+	    </div>
+	</div>
+	<!-- Fim; loading -->
+	
+	<!-- header -->
+	<header id="header" class="topbar-dark">
+	    <div class="topbar">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-6 col-md-12">
+	                    <div class="topbar-left text-lg-left text-center">
+	                        <ul class="list-inline">
+	                        										
+									<li><i class="fa fa-phone"></i> (11) 4375-5966</li>
+																		
+	                            	                            <li> <i class="fa fa-envelope-o"> </i> rasautomultimarcas@gmail.com</li>
+	                            	                        </ul>
+	                    </div>
+	                </div>
+	                <div class="col-lg-6 col-md-12">
+	                    <div class="topbar-right text-lg-right text-center">
+	                    	
+	                        <ul class="list-inline">
+	                        		                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		
+	    <!-- mega menu -->
+        <div class="menu">
+        	
+        	<!-- menu start -->
+            <nav id="menu" class="mega-menu">
+            
+                <!-- menu list items container -->
+                <div class="menu-list-items white-bg">
+                    <div class="container"> 
+                        <div class="row"> 
+                            <div class="col-md-12"> 
+        
+                                <!-- menu logo -->
+                                <ul class="menu-logo">
+                                    <li>
+                                        <a href="/revenda-veiculo-03/" title="Rasauto Multimarcas">
+                                        	<img id="logo_dark_img" src="https://www.rasautomultimarcas.com.br/imagens/logotipo-rasautomultimarcas.com.br.jpg" alt="Logo | Rasauto Multimarcas">
+                                        </a>
+                                    <div class="menu-mobile-collapse-trigger"><span></span></div></li>
+                                </ul>
+        
+                                <!-- menu links -->
+                                <ul class="menu-links" style="display: none; max-height: 400px; overflow: auto;">
+                                    
+                                    <!-- active class -->
+                                    <li>
+                                        <a href="/revenda-veiculo-03/">Home</a>
+                                    </li>
+                                    <li>
+                                    	<a href="/revenda-veiculo-03/a-empresa">A Empresa</a>
+                                    </li>
+                                    <li>
+                                    	<a href="/revenda-veiculo-03/estoque">Estoque</a>
+                                    </li>
+                                    <li class="active hoverTrigger">
+                                        <a href="javascript:void(0)">Nossos Serviços <i class="fa fa-angle-down fa-indicator"></i><div class="mobileTriggerButton"></div></a> 
+						                
+						                <!-- drop down multilevel  -->
+						                <ul class="drop-down-multilevel effect-fade" style="transition: 400ms;">
+						                    <li><a href="/revenda-veiculo-03/venda-seu-veiculo">Venda seu Veículo</a></li>
+																	                    <li class="active"><a href="/revenda-veiculo-03/proposta-financiamento">Proposta de Financiamento</a></li>
+																	                    <li><a href="/revenda-veiculo-03/trabalhe-conosco">Trabalhe Conosco</a></li>
+						                </ul>
+                                    </li>
+                                    <li>
+                                    	<a href="/revenda-veiculo-03/contato">Contato</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Fim; menu -->
+          
+	</header>
+	<!-- Fim; header -->
+    
+    <section class="inner-intro bg-financiamento">
+    <div class="container">
+        <div class="row text-center intro-title">
+            <div class="col-md-6 text-md-left d-inline-block">
+                <h1 class="text-white">Proposta de financiamento</h1>
+            </div>
+            <div class="col-md-6 text-md-right float-right">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="/revenda-veiculo-03/">
+                            <i class="fa fa-home"></i> Home
+                        </a>
+
+                        <i class="fa fa-angle-double-right"></i>
+                    </li>
+                    <li><span>Proposta de financiamento</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact page-section-ptb white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Faça Aqui o Financiamento do seu Veículo</h2>
+                    <div class="separator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 offset-0 col-sm-12 offset-sm-0 col-md-8 offset-md-2 col-lg-8 offset-lg-2">
+
+                <p class="text-center">
+                    Para financiar um veículo Zero Km ou semi-novo aqui na <b></b> é muito fácil. Basta preencher seus dados abaixo com a maior riqueza de detalhes possível e nos enviar.
+                    <br>
+                    <br>
+                    O Crédito será sujeito à aprovação do agente financeiro e da veracidade dos dados apresentados neste cadastro.
+                    <br>
+                    <br>
+                    Se você ainda tem dúvidas sobre como financiar o seu veículo <a href="/revenda-veiculo-03/contato"><b>entre em contato conosco</b></a>.
+                    <br>
+                    Preencha as informações abaixo para analise da sua proposta de financiamento.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="gray-form row">
+                    <div class="col-md-12">
+
+                        <form method="post" action="/revenda-veiculo-03/proposta-financiamento" class="form-horizontal ajax-form">
+                            <input type="hidden" name="acao" value="enviar-proposta-financiamento" style="">
+
+                            <div class="contact-form">
+
+                                <!-- Dados do Veículo -->
+                                <h3 class="text-center pt-5 pb-4">Dados do Veículo</h3>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Placa</label>
+                                        <input type="text" name="placa" maxlength="7" placeholder="Placa" class="form-control" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pl-sm-0 pr-sm-0 pr-md-0 pr-lg-0">
+                                        <label>Marca</label>
+                                        <input type="text" name="marca" maxlength="7" placeholder="Marca" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Modelo</label>
+                                        <input type="text" name="modelo" placeholder="Modelo" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pl-sm-0 pr-sm-0 pr-md-0 pr-lg-0">
+                                        <label>Valor do Veículo</label>
+                                        <input type="tel" name="valor-veiculo" placeholder="Valor do Veículo" class="form-control valor" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Ano Fabricação</label>
+                                        <input type="tel" name="ano-fabricacao" placeholder="Ano Fabricação" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pl-sm-0 pr-sm-0 pr-md-0 pr-lg-0">
+                                        <label>Ano Modelo</label>
+                                        <input type="tel" name="ano-modelo" placeholder="Ano Modelo" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Valor de Entrada</label>
+                                        <input type="tel" name="valor-entrada" placeholder="Valor de Entrada" class="form-control valor" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pl-sm-0 pr-sm-0 pr-md-0 pr-lg-0">
+                                        <label>Numero de Parcelas</label>
+                                        <select name="numero-parcelas" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="12">12 meses </option>
+                                            <option value="18">18 meses </option>
+                                            <option value="24">24 meses </option>
+                                            <option value="36">36 meses </option>
+                                            <option value="48">48 meses </option>
+                                            <option value="60">60 meses </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- Fim; Dados do Veículo -->
+
+                                <!-- Dados Pessoais -->
+                                <h3 class="text-center pt-5 pb-4">Dados Pessoais</h3>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Nome</label>
+                                        <input type="text" name="nome" placeholder="Nome" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>RG</label>
+                                        <input type="text" name="rg" placeholder="RG" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Sobrenome</label>
+                                        <input type="text" name="sobrenome" placeholder="Sobrenome" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Data de Emissão RG</label>
+                                        <input type="date" name="data-emissao-rg" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>CPF</label>
+                                        <input type="text" name="cpf" placeholder="CPF" class="form-control cpf" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Orgão Emissor RG</label>
+                                        <select name="orgao-emissor-rg" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="SSP"> SSP - Secretaria de Segurança Pública </option>
+                                            <option value="PM"> PM - Polícia Militar </option>
+                                            <option value="PC"> PC - Policia Civil </option>
+                                            <option value="CNT"> CNT - Carteira Nacional de Habilitação </option>
+                                            <option value="DIC"> DIC - Diretoria de Identificação Civil </option>
+                                            <option value="IFP"> IFP - Instituto Félix Pacheco </option>
+                                            <option value="IPF"> IPF - Instituto Pereira Faustino </option>
+                                            <option value="MMA"> MMA - Ministério da Marinha </option>
+                                            <option value="MAE"> MAE - Ministério da Aeronáutica </option>
+                                            <option value="MEX"> MEX - Ministério do Exército </option>
+                                            <option value="POF"> POF - Polícia Federal </option>
+                                            <option value="POM"> POM - Polícia Militar </option>
+                                            <option value="SES"> SES - Carteira de Estrangeiro </option>
+                                            <option value="SJS"> SJS - Secretaria da Justiça e Segurança </option>
+                                            <option value="SJTS">SJTS - Secretaria da Justiça do Trabalho e Segurança</option>
+                                            <option value="ZZZ"> ZZZ - Outros (inclusive exterior) </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Sexo</label>
+                                        <select name="sexo" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Feminino"> Feminino </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Data de Nascimento</label>
+                                        <input type="date" name="data-nascimento" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Estado Civil</label>
+                                        <select name="estado-civil" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Casado"> Casado </option>
+                                            <option value="Solteiro"> Solteiro </option>
+                                            <option value="Viúvo"> Viúvo </option>
+                                            <option value="Divorciado">Divorciado</option>
+                                            <option value="Separado"> Separado </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Naturalidade</label>
+                                        <input type="text" name="naturalidade" placeholder="Naturalidade" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Telefone Residencial</label>
+                                        <input type="tel" name="telefone-residencial" placeholder="Telefone Residencial" class="form-control telefone" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Qual Estado Você Nasceu?</label>
+                                        <select name="estado-nasceu" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="AC">AC </option>
+                                            <option value="AL">AL </option>
+                                            <option value="AM">AM </option>
+                                            <option value="AP">AP </option>
+                                            <option value="BA">BA </option>
+                                            <option value="CE">CE </option>
+                                            <option value="DF">DF </option>
+                                            <option value="ES">ES </option>
+                                            <option value="GO">GO </option>
+                                            <option value="MA">MA </option>
+                                            <option value="MG">MG </option>
+                                            <option value="ES">MS </option>
+                                            <option value="MT">MT </option>
+                                            <option value="PA">PA </option>
+                                            <option value="PB">PB </option>
+                                            <option value="PE">PE </option>
+                                            <option value="PI">PI </option>
+                                            <option value="PR">PR </option>
+                                            <option value="RJ">RJ </option>
+                                            <option value="RN">RN </option>
+                                            <option value="RO">RO </option>
+                                            <option value="RR">RR </option>
+                                            <option value="RS">RS </option>
+                                            <option value="SC">SC </option>
+                                            <option value="SE">SE </option>
+                                            <option value="SP">SP </option>
+                                            <option value="TO">TO </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Nome do Pai</label>
+                                        <input type="text" name="nome-pai" placeholder="Nome do Pai" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Nacionalidade</label>
+                                        <select name="nacionalidade" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Brasileira"> Brasileira </option>
+                                            <option value="Estrangeira">Estrangeira</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Nome da Mãe</label>
+                                        <input type="text" name="nome-mae" placeholder="Nome da Mãe" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Telefone Celular</label>
+                                        <input type="tel" name="telefone-celular" placeholder="Telefone Celular" class="form-control telefone" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Número de Dependentes</label>
+                                        <input type="tel" name="numero-dependentes" placeholder="Número de Dependentes" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>E-mail</label>
+                                        <input type="email" name="email" placeholder="E-mail" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Grau de Instrução</label>
+                                        <select name="grau-instrucao" class="form-control">
+                                            <option value=""> Selecione </option>
+                                            <option value="Primeiro Grau"> Primeiro Grau </option>
+                                            <option value="Segundo Grau"> Segundo Grau </option>
+                                            <option value="Superior Incompleto">Superior Incompleto</option>
+                                            <option value="Superior Completo"> Superior Completo </option>
+                                            <option value="Pós Graduação"> Pós Graduação </option>
+                                            <option value="Outros"> Outros </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pr-md-3 pr-lg-3">
+                                        <label>Tem Carteira de Motorista</label>
+                                        <select name="carteira-motorista" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="Sim">Sim </option>
+                                            <option value="Não">Não </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0">
+                                        <label>Número da CNH</label>
+                                        <input type="tel" name="numero-cnh" placeholder="Número da CNH" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- Fim; Dados Pessoais -->
+
+                                <!-- Informações Residenciais -->
+                                <h3 class="text-center pt-5 pb-4">Informações Residenciais</h3>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Tempo de Residencia</label>
+                                        <select name="tempo-residencia" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Menos de 1 Ano"> Menos de 1 Ano </option>
+                                            <option value="1 Ano"> 1 Ano </option>
+                                            <option value="2 Anos"> 2 Anos </option>
+                                            <option value="3 Anos"> 3 Anos </option>
+                                            <option value="4 Anos"> 4 Anos </option>
+                                            <option value="5 Anos"> 5 Anos </option>
+                                            <option value="6 Anos"> 6 Anos </option>
+                                            <option value="7 Anos"> 7 Anos </option>
+                                            <option value="8 Anos"> 8 Anos </option>
+                                            <option value="9 Anos"> 9 Anos </option>
+                                            <option value="10 Anos"> 10 Anos </option>
+                                            <option value="11 Anos"> 11 Anos </option>
+                                            <option value="12 Anos"> 12 Anos </option>
+                                            <option value="13 Anos"> 13 Anos </option>
+                                            <option value="14 Anos"> 14 Anos </option>
+                                            <option value="15 Anos"> 15 Anos </option>
+                                            <option value="16 Anos"> 16 Anos </option>
+                                            <option value="17 Anos"> 17 Anos </option>
+                                            <option value="18 Anos"> 18 Anos </option>
+                                            <option value="19 Anos"> 19 Anos </option>
+                                            <option value="20 Anos"> 20 Anos </option>
+                                            <option value="25 Anos"> 25 Anos </option>
+                                            <option value="Mais de 25 Anos">Mais de 25 Anos</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Tipo de Residência</label>
+                                        <select name="tipo-residencia" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Própria"> Própria </option>
+                                            <option value="Alugada"> Alugada </option>
+                                            <option value="Funcional"> Funcional </option>
+                                            <option value="Financiada"> Financiada </option>
+                                            <option value="De Terceiros">De Terceiros</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Qual Estado Você Mora?</label>
+                                        <select name="estado-mora" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="AC">AC </option>
+                                            <option value="AL">AL </option>
+                                            <option value="AM">AM </option>
+                                            <option value="AP">AP </option>
+                                            <option value="BA">BA </option>
+                                            <option value="CE">CE </option>
+                                            <option value="DF">DF </option>
+                                            <option value="ES">ES </option>
+                                            <option value="GO">GO </option>
+                                            <option value="MA">MA </option>
+                                            <option value="MG">MG </option>
+                                            <option value="ES">MS </option>
+                                            <option value="MT">MT </option>
+                                            <option value="PA">PA </option>
+                                            <option value="PB">PB </option>
+                                            <option value="PE">PE </option>
+                                            <option value="PI">PI </option>
+                                            <option value="PR">PR </option>
+                                            <option value="RJ">RJ </option>
+                                            <option value="RN">RN </option>
+                                            <option value="RO">RO </option>
+                                            <option value="RR">RR </option>
+                                            <option value="RS">RS </option>
+                                            <option value="SC">SC </option>
+                                            <option value="SE">SE </option>
+                                            <option value="SP">SP </option>
+                                            <option value="TO">TO </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Logradouro</label>
+                                        <input type="text" name="logradouro" placeholder="Logradouro" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>CEP</label>
+                                        <input type="tel" name="cep" placeholder="CEP" class="form-control cep" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Nº Logradouro</label>
+                                        <input type="tel" name="numero-logradouro" placeholder="Nº Logradouro" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Cidade</label>
+                                        <input type="text" name="cidade" placeholder="Cidade" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pr-md-3 pr-lg-3">
+                                        <label>Complemento Logradouro</label>
+                                        <input type="text" name="complemento-logradouro" placeholder="Complemento Logradouro" class="form-control" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0">
+                                        <label>Bairro</label>
+                                        <input type="tel" name="bairro" placeholder="Bairro" class="form-control" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- Fim; Informações Residenciais -->
+
+                                <!-- Dados Profissionais -->
+                                <h3 class="text-center pt-5 pb-4">Dados Profissionais</h3>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Tipo de Profissional</label>
+                                        <select name="tipo-profissional" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Autônomo"> Autônomo </option>
+                                            <option value="Empresário"> Empresário </option>
+                                            <option value="Profissional Liberal"> Profissional Liberal </option>
+                                            <option value="Assalariado"> Assalariado </option>
+                                            <option value="Aposentado/Pensionista">Aposentado/Pensionista</option>
+                                            <option value="Outros"> Outros </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Qual Estado da Empresa que Você Trabalha?</label>
+                                        <select name="estado-trabalha" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="AC">AC </option>
+                                            <option value="AL">AL </option>
+                                            <option value="AM">AM </option>
+                                            <option value="AP">AP </option>
+                                            <option value="BA">BA </option>
+                                            <option value="CE">CE </option>
+                                            <option value="DF">DF </option>
+                                            <option value="ES">ES </option>
+                                            <option value="GO">GO </option>
+                                            <option value="MA">MA </option>
+                                            <option value="MG">MG </option>
+                                            <option value="ES">MS </option>
+                                            <option value="MT">MT </option>
+                                            <option value="PA">PA </option>
+                                            <option value="PB">PB </option>
+                                            <option value="PE">PE </option>
+                                            <option value="PI">PI </option>
+                                            <option value="PR">PR </option>
+                                            <option value="RJ">RJ </option>
+                                            <option value="RN">RN </option>
+                                            <option value="RO">RO </option>
+                                            <option value="RR">RR </option>
+                                            <option value="RS">RS </option>
+                                            <option value="SC">SC </option>
+                                            <option value="SE">SE </option>
+                                            <option value="SP">SP </option>
+                                            <option value="TO">TO </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Empresa onde Trabalha</label>
+                                        <input type="text" name="empresa-trabalha" placeholder="Empresa onde Trabalha" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>CEP</label>
+                                        <input type="tel" name="cep-empresa" placeholder="CEP" class="form-control cep" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>CNPJ da Empresa</label>
+                                        <input type="tel" name="cnpj-empresa" placeholder="CNPJ da Empresa" class="form-control cnpj" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Logradouro</label>
+                                        <input type="text" name="logradouro-empresa" placeholder="Logradouro" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Cargo</label>
+                                        <input type="text" name="cargo-empresa" placeholder="Cargo" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Nº Logradouro</label>
+                                        <input type="text" name="numero-logradouro-empresa" placeholder="Nº Logradouro" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Tempo de Serviço</label>
+                                        <select name="tempo-servico" class="form-control" required="required">
+                                            <option value=""> Selecione</option>
+                                            <option value="Menos de 1 Ano"> Menos de 1 Ano </option>
+                                            <option value="1 Ano"> 1 Ano </option>
+                                            <option value="2 Anos"> 2 Anos </option>
+                                            <option value="3 Anos"> 3 Anos </option>
+                                            <option value="4 Anos"> 4 Anos </option>
+                                            <option value="5 Anos"> 5 Anos </option>
+                                            <option value="6 Anos"> 6 Anos </option>
+                                            <option value="7 Anos"> 7 Anos </option>
+                                            <option value="8 Anos"> 8 Anos </option>
+                                            <option value="9 Anos"> 9 Anos </option>
+                                            <option value="10 Anos"> 10 Anos </option>
+                                            <option value="11 Anos"> 11 Anos </option>
+                                            <option value="12 Anos"> 12 Anos </option>
+                                            <option value="13 Anos"> 13 Anos </option>
+                                            <option value="14 Anos"> 14 Anos </option>
+                                            <option value="15 Anos"> 15 Anos </option>
+                                            <option value="16 Anos"> 16 Anos </option>
+                                            <option value="17 Anos"> 17 Anos </option>
+                                            <option value="18 Anos"> 18 Anos </option>
+                                            <option value="19 Anos"> 19 Anos </option>
+                                            <option value="20 Anos"> 20 Anos </option>
+                                            <option value="25 Anos"> 25 Anos </option>
+                                            <option value="Mais de 25 Anos">Mais de 25 Anos</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Complemento Logradouro</label>
+                                        <input type="text" name="complemento-logradouro-empresa" placeholder="Complemento Logradouro" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Telefone Comercial</label>
+                                        <input type="tel" name="telefone-empresa" placeholder="Telefone Comercial" class="form-control telefone" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pr-md-3 pr-lg-3">
+                                        <label>Cidade</label>
+                                        <input type="text" name="cidade-empresa" placeholder="Cidade" class="form-control" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0">
+                                        <label>Bairro</label>
+                                        <input type="text" name="bairro-empresa" placeholder="Bairro" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- Fim; Dados Profissionais -->
+
+                                <!-- Dados Financeiros e Bens -->
+                                <h3 class="text-center pt-5 pb-4">Dados Financeiros e Bens</h3>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Possui Conta em qual Banco?</label>
+                                        <select name="banco-conta" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Não possuo conta bancária"> Não possuo conta bancária </option>
+                                            <option value="Banco Abn Amro Real S/A"> Banco Abn Amro Real S/A </option>
+                                            <option value="Banco Finasa S/A"> Banco Finasa S/A </option>
+                                            <option value="Banco Votorantim"> Banco Votorantim </option>
+                                            <option value="Banco Santander"> Banco Santander </option>
+                                            <option value="Banco Itaú S/A"> Banco Itaú S/A </option>
+                                            <option value="Banco Santander"> Banco Santander </option>
+                                            <option value="Banco HSBC"> Banco HSBC </option>
+                                            <option value="Hsbc Bank Brasil S/a Banco Multiplo">Hsbc Bank Brasil S/a Banco Multiplo</option>
+                                            <option value="Banco Bradesco S/A"> Banco Bradesco S/A </option>
+                                            <option value="Banco Unibanco S/A"> Banco Unibanco S/A </option>
+                                            <option value="Aymoré CFI S/A"> Aymoré Cfi S/A </option>
+                                            <option value="Real Leasing S/A Arrend. Mercantil"> Real Leasing S/A Arrend. Mercantil </option>
+                                            <option value="Banco Do Brasil S/A"> Banco Do Brasil S/A </option>
+                                            <option value="Banco Porto Seguro"> Banco Porto Seguro </option>
+                                            <option value="Banco Cifra S/A"> Banco Cifra S/A </option>
+                                            <option value="Credifibra S/A"> Credifibra S/A </option>
+                                            <option value="Banco Daycoval"> Banco Daycoval </option>
+                                            <option value="Caixa Economica Federal"> Caixa Economica Federal </option>
+                                            <option value="Banco Citibank"> Banco Citibank </option>
+                                            <option value="Banco Panamericano"> Banco Panamericano </option>
+                                            <option value="Banco Pecunia"> Banco Pecunia </option>
+                                            <option value="Outro Banco"> Outro Banco </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Agência</label>
+                                        <input type="text" name="agencia" placeholder="Agência" class="form-control" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Conta</label>
+                                        <input type="tel" name="conta" placeholder="Conta" class="form-control" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0 pb-3 pb-md-0 pb-lg-0 pl-sm-0 pr-sm-0 pr-md-3 pr-lg-3">
+                                        <label>Tempo de Conta</label>
+                                        <select name="tempo-conta" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Não possuo conta bancária">Não possuo conta bancária</option>
+                                            <option value="Menos de 1 Ano"> Menos de 1 Ano </option>
+                                            <option value="1 Ano"> 1 Ano </option>
+                                            <option value="2 Anos"> 2 Anos </option>
+                                            <option value="3 Anos"> 3 Anos </option>
+                                            <option value="4 Anos"> 4 Anos </option>
+                                            <option value="5 Anos"> 5 Anos </option>
+                                            <option value="6 Anos"> 6 Anos </option>
+                                            <option value="7 Anos"> 7 Anos </option>
+                                            <option value="8 Anos"> 8 Anos </option>
+                                            <option value="9 Anos"> 9 Anos </option>
+                                            <option value="10 Anos"> 10 Anos </option>
+                                            <option value="11 Anos"> 11 Anos </option>
+                                            <option value="12 Anos"> 12 Anos </option>
+                                            <option value="13 Anos"> 13 Anos </option>
+                                            <option value="14 Anos"> 14 Anos </option>
+                                            <option value="15 Anos"> 15 Anos </option>
+                                            <option value="16 Anos"> 16 Anos </option>
+                                            <option value="17 Anos"> 17 Anos </option>
+                                            <option value="18 Anos"> 18 Anos </option>
+                                            <option value="19 Anos"> 19 Anos </option>
+                                            <option value="20 Anos"> 20 Anos </option>
+                                            <option value="25 Anos"> 25 Anos </option>
+                                            <option value="Mais de 25 Anos"> Mais de 25 Anos </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 pl-0 pr-0">
+                                        <label>Tipo de Conta</label>
+                                        <select name="tipo-conta" class="form-control">
+                                            <option value=""> Selecione</option>
+                                            <option value="Nenhum"> Nenhum </option>
+                                            <option value="Comum"> Comum </option>
+                                            <option value="Especial">Especial </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Possuí veículos?</label>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-veiculos[]" value="1 Veículo Quitado" class="form-control d-inline-block" style="width: unset;"> 1 Veículo Quitado
+                                            </li>
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-veiculos[]" value="1 Veículo Financiado" class="form-control d-inline-block" style="width: unset;"> 1 Veículo Financiado
+                                            </li>
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-veiculos[]" value="2 Veículos Quitados" class="form-control d-inline-block" style="width: unset;"> 2 Veículos Quitados
+                                            </li>
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-veiculos[]" value="1 Veículo Quitado e Outro Financiado" class="form-control d-inline-block" style="width: unset;"> 1 Veículo Quitado e Outro Financiado
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Possuí propriedades?</label>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-propriedades[]" value="Chácara" class="form-control d-inline-block" style=""> Chácara
+                                            </li>
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-propriedades[]" value="Fazenda" class="form-control d-inline-block" style=""> Fazenda
+                                            </li>
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-propriedades[]" value="Apartamento ou Casa" class="form-control d-inline-block" style=""> Apartamento ou Casa
+                                            </li>
+                                            <li class="list-group-item border-0 pt-1 pb-0 pl-0 pr-0">
+                                                <input type="checkbox" name="possui-propriedades[]" value="Casa na Praia" class="form-control d-inline-block" style=""> Casa na Praia
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Renda Mensal / Faturamento</label>
+                                        <input type="text" name="renda-faturamento" placeholder="Renda Mensal / Faturamento" class="form-control valor" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Total de Rendimentos</label>
+                                        <input type="text" name="total-rendimentos" placeholder="Total de Rendimentos" class="form-control valor" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Possui Cartão de Crédito</label>
+                                        <select name="possui-cartao-credito" class="form-control" required="required">
+                                            <option value=""> Selecione </option>
+                                            <option value="Não possuo cartão de crédito">Não possuo cartão de crédito</option>
+                                            <option value="1 cartão de crédito"> 1 cartão de crédito </option>
+                                            <option value="2 cartões de crédito"> 2 cartões de crédito </option>
+                                            <option value="3 cartões de crédito"> 3 cartões de crédito </option>
+                                            <option value="Mais de 3 cartões de crédito">Mais de 3 cartões de crédito</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Se possui cartões, qual bandeira?</label>
+
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                <input type="checkbox" name="qual-bandeira[]" value="Visa" class="form-control d-inline-block" style=""> Visa
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <input type="checkbox" name="qual-bandeira[]" value="Mastercard" class="form-control d-inline-block" style=""> Mastercard
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <input type="checkbox" name="qual-bandeira[" value="Amex" class="form-control d-inline-block" style=""> Amex
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <input type="checkbox" name="qual-bandeira[]" value="Diners" class="form-control d-inline-block" style=""> Diners
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <input type="checkbox" name="qual-bandeira[]" value="Outros" class="form-control d-inline-block" style=""> Outros
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- Fim; Dados Financeiros e Bens -->
+
+                                <!-- Referências Pessoais -->
+                                <h3 class="text-center pt-5 pb-4">Referências Pessoais</h3>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0 pb-3 pl-sm-0 pr-sm-0 pb-sm-3 pb-md-0 pr-md-3 pr-lg-3">
+                                        <label>Indique uma Pessoa de Contato como Referência</label>
+                                        <input type="text" name="nome-referencia" placeholder="Nome Completo" class="form-control" required="required" style="">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-6 pl-0 pr-0">
+                                        <label>Telefone da Pessoa de Contato</label>
+                                        <input type="tel" name="telefone-referencia" placeholder="Telefone" class="form-control telefone" required="required" style="">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- Fim; Referências Pessoais -->
+
+                                <div class="form-group row">
+                                    <div class="col-sm-12 pl-0 pr-0">
+                                        <label>Observações</label>
+                                        <textarea rows="4" name="observacoes" class="form-control input-message" placeholder="Se necessário faça observações adicionais neste campo." style=""></textarea>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                	                            
+	                            <div class="form-group">
+                                    <div class="d-flex justify-content-center">
+										<div class="form-group">
+											<center>
+												<div id="show_captcha" style="font-size:20px; border:2px solid #000; color: #444;">Quanto é 9 + 6 ?</div>
+											</center>
+											<input id="resposta_captcha" name="resposta_captcha" type="hidden" value="15" style="">
+												<br>
+											<input name="captcha" id="captcha" class="form-control" type="number" placeholder="Resposta da pergunta" value="" required="required" style="">
+										</div>
+									</div>
+	                            </div>
+	                            
+                                <button type="submit" name="enviar" class="button red text-uppercase"><i class="fa fa-envelope pr-1" aria-hidden="true"></i> Enviar Proposta de Financiamento</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our-clients gray-bg page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <span>veja uma lista de</span>
+                    <h2>Bancos conveniados</h2>
+                    <div class="separator"></div>
+                </div>
+            </div>
+        </div>
+
+		<div class="row">
+			<div class="col-md-12">
+				
+				<div class="owl-carousel owl-theme owl-loaded owl-drag" data-items="4" data-md-items="4" data-sm-items="2" data-xs-items="1">
+					
+					
+					
+					
+				<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all; width: 3510px;"><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.bradesco.com.br" title="Bradesco" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/bradesco-logo.jpg" alt="Bradesco">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.itau.com.br" title="Itaú" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/itau-logo.jpg" alt="Itaú">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.bvfinanceira.com.br/" title="BV Financeira" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/bv-logo.jpg" alt="BV Financeira">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.santander.com.br/" title="Santander" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/santander-logo.jpg" alt="Santander">
+						</a>
+					</div></div><div class="owl-item active" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.bradesco.com.br" title="Bradesco" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/bradesco-logo.jpg" alt="Bradesco">
+						</a>
+					</div></div><div class="owl-item active" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.itau.com.br" title="Itaú" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/itau-logo.jpg" alt="Itaú">
+						</a>
+					</div></div><div class="owl-item active" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.bvfinanceira.com.br/" title="BV Financeira" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/bv-logo.jpg" alt="BV Financeira">
+						</a>
+					</div></div><div class="owl-item active" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.santander.com.br/" title="Santander" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/santander-logo.jpg" alt="Santander">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.bradesco.com.br" title="Bradesco" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/bradesco-logo.jpg" alt="Bradesco">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.itau.com.br" title="Itaú" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/itau-logo.jpg" alt="Itaú">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.bvfinanceira.com.br/" title="BV Financeira" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/bv-logo.jpg" alt="BV Financeira">
+						</a>
+					</div></div><div class="owl-item cloned" style="width: 262.5px; margin-right: 30px;"><div class="item">
+						<a href="https://www.santander.com.br/" title="Santander" target="_blank">
+							<img class="img-fluid center-block" src="images/bancos/santander-logo.jpg" alt="Santander">
+						</a>
+					</div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><i class="fa fa-angle-left fa-2x"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-right fa-2x"></i></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+			</div>
+		</div>
+
+	</div>
+</section> 
+<script src="/revenda-veiculo-03/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        GeraCaptcha();
+    });
+			
+</script>    
+    <!-- Rodapé -->
+	<footer class="footer pt-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="about-content">
+			          	<img class="img-fluid mx-auto d-block" id="logo-footer" src="https://www.rasautomultimarcas.com.br/imagens/logotipo-rasautomultimarcas.com.br.jpg" alt="Logo | Rasauto Multimarcas">
+			          	<p class="text-justify"></p>
+			        </div>
+			        <div class="social mb-0">
+						<ul>
+						    						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6" id="RodapeContato">
+					<div class="address mt-0">
+						<h6 class="text-white">Entre em Contato</h6>
+						
+												<ul style="padding-bottom:10px;">
+							<li class="pt-0 pb-1">
+								<i class="fa fa-home"></i>
+								<span>Rasauto Multimarcas</span>
+							</li>							
+							<li class="pt-0 pb-1">
+								<i class="fa fa-map-marker"></i>
+								<span>
+									rua cica, 645					                <br>
+					                Vl Garcia, Jundiai - SP								</span>
+							</li>												        
+						</ul>
+												<hr class="mt-2 mb-2">
+												<ul style="padding-bottom:10px;">
+							<li class="pt-0 pb-1">
+								<i class="fa fa-home"></i>
+								<span>Rasauto Multimarcas 2 </span>
+							</li>							
+							<li class="pt-0 pb-1">
+								<i class="fa fa-map-marker"></i>
+								<span>
+									rodovia raposo tavares, 18,5km					                <br>
+					                Butata, Sao Paulo - SP								</span>
+							</li>												        
+						</ul>
+						
+						<ul>
+														
+																	<li class="pt-0 pb-1">									
+										<i class="fa fa-phone"></i>
+										<span>	
+											(11)4375-5966										</span>
+								</li>			
+																
+							
+							<li class="pt-0 pb-1">
+								<i class="fa fa-envelope-o"></i><span>rasautomultimarcas@gmail.com</span>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6" id="RodapeNavegacao">
+					<div class="usefull-link mt-0">
+						<h6 class="text-white">Navegação Rápida</h6>
+						<ul>
+							<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/"><i class="fa fa-angle-double-right"></i> Home</a>
+							</li>
+							<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/a-empresa"><i class="fa fa-angle-double-right"></i> A Empresa</a>
+							</li>
+							<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/estoque"><i class="fa fa-angle-double-right"></i> Estoque</a>
+							</li>
+							<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/contato"><i class="fa fa-angle-double-right"></i> Contato</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6" id="RodapeServicos">
+					<div class="usefull-link mt-0">
+						<h6 class="text-white">Nossos Serviços</h6>
+						
+						<ul>
+							<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/venda-seu-veiculo"><i class="fa fa-angle-double-right"></i> Venda seu Veículo</a>
+							</li>
+							<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/venda-seu-veiculo"><i class="fa fa-angle-double-right"></i> Consignação de Veículos</a>
+							</li>
+														<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/proposta-financiamento"><i class="fa fa-angle-double-right"></i> Proposta de Financiamento</a>
+							</li>
+														<li class="pt-1 pb-1">
+								<a href="/revenda-veiculo-03/trabalhe-conosco"><i class="fa fa-angle-double-right"></i> Trabalhe Conosco</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="copyright bg-white pt-4 pb-4">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-12">
+						<div class="text-lg-left text-center">
+							<p class="mb-0">
+								Copyright ©2014 todos os direitos reservados
+							</p>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-12">
+						<ul class="list-inline text-lg-right text-center">
+							
+							<li>
+								Criado por <a href="https://www.sistemapararevendas.com.br" class="text-danger" target="_blank">ItCar</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+    <!-- Fim; Rodapé -->
+    
+        
+    <!-- jquery  -->
+    <script src="/revenda-veiculo-03/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    
+    <!-- bootstrap -->
+    <script src="/revenda-veiculo-03/js/bootstrap.min.js" type="text/javascript"></script>
+    
+    <!-- mega-menu -->
+    <script src="/revenda-veiculo-03/js/mega-menu/mega_menu.js" type="text/javascript"></script>
+    
+	<!-- revolution -->
+	<script src="/revenda-veiculo-03/js/revolution/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+	<script src="/revenda-veiculo-03/js/revolution/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+    
+    <!-- owl-carousel -->
+    <script src="/revenda-veiculo-03/js/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+    
+    <!-- slick -->
+    <script src="/revenda-veiculo-03/js/slick.min.js" type="text/javascript"></script>
+    
+    <!-- jQuery MaskedInput -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js" type="text/javascript"></script>
+    
+    <!-- jQuery Price Format -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-price-format/2.2.0/jquery.priceformat.js" type="text/javascript"></script>
+    
+    <!-- SweetAlert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer="" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js" defer="" type="text/javascript"></script>
+    
+    
+    
+		
+    <script type="text/javascript">
+    
+        var ITCAR = {};
+        
+        /* Preloader */
+        ITCAR.preloader = function () {
+            $("#load").fadeOut();
+            $('#loading').delay(0).fadeOut('slow');
+        };
+        
+        /* Menu */    
+        ITCAR.megaMenu = function () {
+            $('#menu').megaMenu({
+            
+                // DESKTOP MODE SETTINGS
+                logo_align          : 'left',       // align the logo left or right. options (left) or (right)
+                links_align         : 'left',       // align the links left or right. options (left) or (right)
+                socialBar_align     : 'left',       // align the socialBar left or right. options (left) or (right)
+                searchBar_align     : 'right',      // align the search bar left or right. options (left) or (right)
+                trigger             : 'hover',      // show drop down using click or hover. options (hover) or (click)
+                effect              : 'fade',       // drop down effects. options (fade), (scale), (expand-top), (expand-bottom), (expand-left), (expand-right)
+                effect_speed        : 400,          // drop down show speed in milliseconds
+                sibling             : true,         // hide the others showing drop downs if this option true. this option works on if the trigger option is "click". options (true) or (false)
+                outside_click_close : true,         // hide the showing drop downs when user click outside the menu. this option works if the trigger option is "click". options (true) or (false)
+                top_fixed           : false,        // fixed the menu top of the screen. options (true) or (false)
+                sticky_header       : true,         // menu fixed on top when scroll down down. options (true) or (false)
+                sticky_header_height: 250,          // sticky header height top of the screen. activate sticky header when meet the height. option change the height in px value.
+                menu_position       : 'horizontal', // change the menu position. options (horizontal), (vertical-left) or (vertical-right)
+                full_width          : false,        // make menu full width. options (true) or (false)
+          
+                // MOBILE MODE SETTINGS
+                mobile_settings     : {
+                    collapse            : true,     // collapse the menu on click. options (true) or (false)
+                    sibling             : true,     // hide the others showing drop downs when click on current drop down. options (true) or (false)
+                    scrollBar           : true,     // enable the scroll bar. options (true) or (false)
+                    scrollBar_height    : 400,      // scroll bar height in px value. this option works if the scrollBar option true.
+                    top_fixed           : false,    // fixed menu top of the screen. options (true) or (false)
+                    sticky_header       : false,    // menu fixed on top when scroll down down. options (true) or (false)
+                    sticky_header_height: 200       // sticky header height top of the screen. activate sticky header when meet the height. option change the height in px value.
+                }
+            });
+        }
+        
+        ITCAR.tabs = function () {
+            var $tabsdata    = $("#tabs li[data-tabs]"),
+                $tabscontent = $(".tabcontent"),
+                $tabsnav     = $(".tabs li");
+
+            $tabsdata.on('click', function () {
+                $(this).parent().parent().find('.active').removeClass('active');
+                $(this).parent().parent().find('.tabcontent').hide();
+                
+                var tab = $(this).data('tabs');
+                $(this).addClass('active');
+                $('#' + tab).fadeIn().show();
+            });
+            
+            $tabsnav.on('click', function () {
+                var cur = $tabsnav.index(this);
+                var elm =  $(this).parent().parent().find('.tabcontent:eq('+cur+')');
+                
+                elm.addClass("pulse");
+                
+                setTimeout(function() {
+                    elm.removeClass("pulse");
+                }, 660);
+            });
+            
+            $("li[data-tabs]").each(function() {
+                $(this).parent().parent().find('.tabcontent').hide().filter(':first').show();
+            });
+        }
+        
+        ITCAR.carousel = function () {
+	        $(".owl-carousel").each(function () {
+	            var $this = $(this),
+	            
+	            $items    = ($this.data('items')) ? $this.data('items') : 1,
+	            $loop     = ($this.data('loop')) ? $this.data('loop') : true,
+	            $navdots  = ($this.data('nav-dots')) ? $this.data('nav-dots') : true,
+	            $navarrow = ($this.data('nav-arrow')) ? $this.data('nav-arrow') : true,
+	            $autoplay = ($this.attr('data-autoplay')) ? $this.data('autoplay') : false,
+	            $space    = ($this.attr('data-space')) ? $this.data('space') : 30;
+	            
+	            $(this).owlCarousel({
+	                loop: $loop,
+	                items: $items,
+	                responsive: {
+	                    0:{items: $this.data('xx-items') ? $this.data('xx-items') : 1},
+	                    480:{items: $this.data('xs-items') ? $this.data('xs-items') : 2},
+	                    768:{items: $this.data('sm-items') ? $this.data('sm-items') : 3},
+	                    980:{items: $this.data('md-items') ? $this.data('md-items') : 4},
+	                    1200:{items: $items}
+	                },
+	                
+	                dots: $navdots,
+	                margin:$space,
+	                nav: $navarrow,
+	                navText:["<i class='fa fa-angle-left fa-2x'></i>","<i class='fa fa-angle-right fa-2x'></i>"],
+	                autoplay: $autoplay,
+	                autoplayHoverPause: true   
+	            }); 
+	        }); 
+	    }
+        
+        ITCAR.slickslider = function () {
+	        if ($(".slider-slick").length) {
+	            $('.slider-for').slick({
+	                slidesToShow: 1,
+	                slidesToScroll: 1,
+	                arrows: true,
+	                asNavFor: '.slider-nav'
+	            });
+	            
+	            $('.slider-nav').slick({
+	                slidesToShow: 5,
+	                slidesToScroll: 1,
+	                asNavFor: '.slider-for',
+	                dots: false,
+	                centerMode: true,
+	                focusOnSelect: true
+	            });
+	        }
+	    }
+        
+        /* Window load functions */
+        $(window).on("load",function(){
+            ITCAR.preloader();
+        });
+        
+        $(document).ready(function () {
+        	ITCAR.megaMenu(),
+        	ITCAR.tabs(),
+        	ITCAR.carousel();
+        	ITCAR.slickslider();
+			
+
+			$("#marca").on('change', function(){ 					
+				var marca = $(this).val();
+				
+				$.ajax({
+					type:'POST',
+					dataType:'json',
+					url: "/revenda-veiculo-03/",
+					data: { "acao": "busca-modelos", "marca": marca },
+					cache:false,
+					async:false,
+					timeout:5500,
+					
+					success:function(data){
+						var options = '<option value="">Modelo</option>';
+						
+						if(data != null){
+							$.each(data, function(a,b){
+
+								options += '<option value="' + b + '">' + b + '</option>';
+
+							});
+						}
+						
+						$("#modelo").html(options);
+					}
+				});		            
+			});
+        				
+    		$(".busca").on('change',function(){
+	            var marca         = $('#marca').val();
+				var modelo        = $('#modelo').val();
+				var ano_modelo    = $('#ano-modelo').val();
+				var quilometragem = $('#quilometragem').val();
+	            
+	            $.ajax({
+		            type:'POST',
+		            dataType:'json',
+		            url: "/revenda-veiculo-03/",
+		            data: { "acao": "busca", "marca": marca, "modelo": modelo, "ano_modelo": ano_modelo, "quilometragem": quilometragem, },
+		            async:true,
+		            
+					beforeSend: function(){
+						Swal.fire({            
+							html: '',
+							showConfirmButton: false,
+							onBeforeOpen: () => {
+								Swal.showLoading()
+							},
+
+							allowOutsideClick: () => {}
+						});
+					},		
+
+		            success:function(data){
+		            	Swal.close();
+						$('#estoque .col-12').remove();
+						var i = 0;
+
+						$.each(data, function(a,b){
+							i++;
+
+							$('#estoque').append('<div class="col-12 col-sm-6 col-md-4 col-lg-4">' +
+							                     '    <div class="car-item gray-bg text-center">' +
+												 '	      <div class="car-image">' +
+												 '		      <img class="img-fluid" src="' + b['Foto'] + '" alt="Foto ' + b['ModeloVersao'] + '" style="width: 100%; height: 370px; object-fit: cover;">' +
+												 '		      <div class="car-overlay-banner">' +
+												 '			      <ul>' +
+												 '	                  <li>' +
+												 '					      <a href="' + b['URL'] + '" title="' + b['ModeloVersao'] + '">' +
+												 '						      <i class="fa fa-link"></i>' +
+												 '					      </a>' +
+												 '				      </li>' +
+												 '			      </ul>' +
+												 '            </div>' +
+												 '        </div>' +
+												 '        <div class="car-list">' +
+												 '            <ul class="list-inline">' +
+												 '    	          <li>' +
+												 '                    <i class="fa fa-calendar"></i>  ' + b['AnoFabr'] + ' / ' + b['AnoModelo'] + 
+												 '                </li>' +
+												 '                <li>' +
+												 '                    <i class="fa fa-sitemap"></i> ' + b['Cambio'] + 
+												 '                </li>' +
+												 '                <li>' +
+												 '  	              <i class="fa fa-dashboard"></i> ' + b['KM'] +  
+												 '                </li>' +
+												 '            </ul>' +
+												 '        </div>' +
+												 '        <div class="car-content">' +
+												 '	          <a href="' + b['URL'] + '" title="' + b['ModeloVersao'] + '">'
+												              + b['ModeloVersao'] +
+												 '            </a>' +
+												 '        <div class="separator"></div>' +
+												 '            <div class="price">' +
+												 '                <span class="new-price">' + b['Preco'] + '</span>' +
+												 '            </div>' +
+												 '        </div>' +
+												 '    </div>' +
+												 '</div>');
+						});
+
+						if(i == 0){
+							$('#automoveis-encontrados').text('Nenhum Automóvel Encontrado.');
+						}
+
+						if(i == 1){
+							$('#automoveis-encontrados').text('1 Automóvel Encontrado.');
+						}
+
+						if(i > 1){
+							$('#automoveis-encontrados').text(i + ' Automóveis Encontrados.');
+						}
+		            }
+		        });
+	    	});					
+	    	
+	    	/* Form via Ajax */
+        	$('form.ajax-form').on('submit',function(){
+        		var dados = new FormData(this);
+        		
+        		$.ajax({
+		            type:'POST',
+		            dataType:'json',
+		            url:"/revenda-veiculo-03/",
+		            data: dados,
+		            cache:false,
+		            async:false,
+					timeout:5500,
+					processData: false,
+					contentType: false,
+
+		            success:function(data){
+
+                        if(data['reset-form'] == true){
+                        
+		            	    $('form.ajax-form')[0].reset();
+		            	}
+		            	
+		                swal(data['titulo-swal'], data['texto-swal'], data['retorno']);
+					},
+					error: function() {
+
+						swal("Oops", "Erro ao enviar, por favor tente novamente mais tarde. Obrigado!", "error");
+					}
+		        });
+        		
+        	    return false;
+        	});
+        	/* Fim; Form via Ajax */
+	    	
+	    	/* Mascaras para campos */
+	    	$('.valor').priceFormat({
+	            prefix: 'R$ ',
+	            centsSeparator: ',',
+	            thousandsSeparator: '.'
+	        });
+	        
+	        $(".cep").mask("99999-999");
+	        $(".cpf").mask("999.999.999-99");
+	        $(".cnpj").mask("99.999.999/9999-99");
+		    $(".telefone").focusout(function(){
+		        var phone, element;
+			        element = $(this);
+			        element.unmask();
+			        phone = element.val().replace(/\D/g, '');
+			      
+			    if(phone.length > 10) {
+			        element.mask("(99) 99999-999?9");
+			    } else {
+			        element.mask("(99) 9999-9999?9");
+			    }
+		    }).trigger('focusout'); 
+		    /* Fim; Mascaras para campos */ 
+        });
+
+		function GeraCaptcha(){
+
+		    $.ajax({
+			    method:      'POST',
+				dataType:    'json',
+				url:         '/revenda-veiculo-03/includes/captcha.php',
+				data:        "",
+				cache:       false,
+				async:       false,
+				timeout:     5500,
+				processData: false,
+				contentType: false,
+
+				success:function(data){
+
+					$('#show_captcha').text("Quanto é " + data.pergunta + " ?");
+					$('#resposta_captcha').val(data.resposta);
+					
+				},
+
+				error: function(xhr, textStatus, error) {
+				    console.log(xhr.responseText);
+					console.log(xhr.statusText);
+					console.log(textStatus);
+					console.log(error);							
+				}
+			});
+		}
+        
+        (function($){
+		    "use strict";
+
+		    var tpj = jQuery;
+		    var revapi3;
+		    
+		    tpj(document).ready(function() {
+		        if(tpj("#rev_slider_3_1").revolution == undefined){
+		            revslider_showDoubleJqueryError("#rev_slider_3_1");
+		        } else {
+		            revapi3 = tpj("#rev_slider_3_1").show().revolution({
+		                sliderType:"standard",
+		                sliderLayout:"fullwidth",
+		                dottedOverlay:"none",
+		                delay:5000, 
+		                navigation: {
+		                    keyboardNavigation:"off",
+		                    keyboard_direction: "horizontal",
+		                    mouseScrollNavigation:"off",
+		                    mouseScrollReverse:"default",
+		                    onHoverStop:"off",
+		                    arrows: {
+		                        style:"zeus",
+		                        enable:false,
+		                        hide_onmobile:false,
+		                        hide_onleave:false,
+		                        tmp: '<div class="tp-title-wrap"><div class="tp-arr-imgholder"></div></div>',
+		                        left: {
+									h_align:"left",
+									v_align:"center",
+									h_offset:20,
+									v_offset:0
+								},
+								
+		                        right: {
+									h_align:"right",
+									v_align:"center",
+									h_offset:20,
+									v_offset:0
+		                        }
+		                    }
+		                },
+						
+						visibilityLevels:[1240,1024,778,480],
+						gridwidth:1270,
+						gridheight:500,
+						lazyType:"none",
+						shadow:0,
+						spinner:"spinner3",
+						stopLoop:"off",
+						stopAfterLoops:-1,
+						stopAtSlide:-1,
+						shuffle:"off",
+						autoHeight:"off",
+						disableProgressBar:"on",
+						hideThumbsOnMobile:"off",
+						hideSliderAtLimit:0,
+						hideCaptionAtLimit:0,
+						hideAllCaptionAtLilmit:0,
+						debugMode:false,
+						fallbacks: {
+						    simplifyAll:"off",
+						    nextSlideOnWindowFocus:"off",
+						    disableFocusListener:false,
+			            }
+			        });
+			    }
+	        });
+	    })(jQuery);
+        
+    </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;60e757a00c874a9f933add7ca85f3584&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5f10147cb986d52',t:'MTc5NTQ0NTYyMw=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a5f10147cb986d52',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+</body></html>

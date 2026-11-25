@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C368c301673</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C368c301673 — socaminhoesvirtual.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.socaminhoesvirtual.com.br/financiamento-caminhao/cdc</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>HIGH</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a um correspondente bancário/portal de veículos comerciais devidamente identificado por razão social e CNPJ. Não há tentativa de se passar pelo banco nem overbranding que apague sua identidade. Contudo, ao utilizar termos como &#39;Parceiro Oficial&#39; e destacar taxas do Banco BV para captação via WhatsApp sem incluir as declarações regulatórias obrigatórias de correspondente bancário e ouvidoria (Resolução CMN nº 4.935/2021, art. 14), o canal enquadra-se no cenário B_AMBIGUOUS_COMMUNICATION, requerendo revisão de governança cadastral/comercial.
+[Revisor: CONFIRM] A página pertence a uma plataforma de revenda e intermediação de pesados com CNPJ ativo e confirmado como correspondente bancário autorizado do Banco BV. Não há tentativa de usurpação de identidade institucional nem overbranding malicioso, pois a identidade da &#39;Só Caminhões Virtual&#39; é mantida claramente. No entanto, ao utilizar a chancela &#39;Parceiro Oficial&#39; para atrair interessados em financiamento sem apresentar o disclosure regulatório mandatório (declaração de correspondente, instituição representada e canais de ouvidoria previstos no art. 14 da Res. CMN nº 4.935/2021), mantém-se a classificação de REVIEW_REQUIRED para saneamento de governança de parceiros.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C368c301673/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 e76d231e4eea8a8d3612d8aa738353df657d4d24e2d8cb649ff8ee467e084f64</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C368c301673/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 f4856c9f1433ae01c2943de7a35c78349ef9c997272644cb17ee10dac1a7f822</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.socaminhoesvirtual.com.br/financiamento-caminhao/cdc (domínio: www.socaminhoesvirtual.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): socaminhoesvirtual.com.br — **URL:** `https://socaminhoesvirtual.com.br` | **Expressão utilizada:** *&#34;Banco BV — Parceiro Oficial SCV — taxa a partir de 1,14% a.m.&#34;* | **Como utiliza a marca:** Divulga tabelas de taxas e prazos de Crédito Direto ao Consumidor (CDC Caminhão e Veículos Pesados), chancelando as ofertas sob o título de *parceiro oficial* para captação via WhatsApp e formulários</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C368c301673/attempt-1/viewport.png (sha256 e76d231e4eea8a8d…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C368c301673/attempt-1/fullpage.png (sha256 f4856c9f1433ae01…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>CDC Caminhao 2026 - Guia Completo | Credito Direto ao Consumidor | Banco BV</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: CDC para caminhao em 2026: modalidade mais utilizada. Taxa BV 1,14% a.m., aceita usado e novo, aprovacao 24-72h. Compare 6 bancos + calculadora + simulacoes.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: CDC Caminhao 2026 - Guia Completo Credito Direto ao Consumidor</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: CDC para caminhao: modalidade mais usada. Taxa BV 1,14% a.m., aceita usado e novo, aprovacao rapida.</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>author: Só Caminhões Virtual</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.socaminhoesvirtual.com.br/financiamento-caminhao/cdc</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>CDC Caminhao 2026 Credito Direto ao Consumidor</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>O Que e CDC (Credito Direto ao Consumidor)</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>CDC vs Outras Modalidades</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Vantagens do CDC</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Caminhao no seu nome desde dia 1</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Aceita NOVO e USADO</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Aprovacao rapida</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Quitacao antecipada</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Atende todos os perfis</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Varios bancos competindo</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Sem necessidade de RNTRC</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Desvantagens do CDC</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Taxa mais alta</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Sem beneficio fiscal</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>IOF mais alto</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Caminhões Revendas Financiamento Anuncie sua revenda Notícias Sobre Membros</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Caminhões Revendas Financiamento Anuncie sua revenda Notícias Sobre Membros Inicio / Financiamento / CDC MAIS USADO 2026 CDC Caminhao 2026 Credito Direto ao Consumidor A modalidade mais utilizada para financiar caminhao no Brasil. Banco BV  Parceiro Oficial SCV  taxa a partir de 1,14% a.m. Aceita novo e usado, aprovacao em 24-72h. 1,14% a.m. (BV) 24-72h aprovacao Novo+Usado aceita 60 meses max</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Só Caminhões Virtual® ESPECIALISTA EM CAMINHÕES contato@socaminhoesvirtual.com.br Goianira, GO Seg–Sex 8h–18h COMPRAR Caminhões Revendas Tabela FIPE IPVA de caminhão ANUNCIAR Anuncie sua revenda Área de membros EMPRESA Notícias Sobre Contato e ajuda Termos de uso Privacidade Só Caminhões Virtual® · 2026 SO CAMINHOES VIRTUAL LTDA · CNPJ 63.755.991/0001-32</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Só Caminhões Virtual, página inicial &lt;https://www.socaminhoesvirtual.com.br/&gt; | Caminhões &lt;https://www.socaminhoesvirtual.com.br/catalogo&gt; | Revendas &lt;https://www.socaminhoesvirtual.com.br/revendedores&gt; | Financiamento &lt;https://www.socaminhoesvirtual.com.br/financiamento-caminhao&gt; | Anuncie sua revenda &lt;https://www.socaminhoesvirtual.com.br/seja-um-revendedor&gt; | Notícias &lt;https://www.socaminhoesvirtual.com.br/noticias&gt; | Sobre &lt;https://www.socaminhoesvirtual.com.br/sobre&gt; | Favoritos &lt;https://www.socaminhoesvirtual.com.br/favoritos&gt; | Membros &lt;https://www.socaminhoesvirtual.com.br/members/login&gt; | Inicio &lt;https://www.socaminhoesvirtual.com.br/&gt; | Financiamento &lt;https://www.socaminhoesvirtual.com.br/financiamento-caminhao&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Ativar modo escuro</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>O que é CDC para caminhão?</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Quais bancos oferecem CDC para caminhão usado?</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>CDC tem IOF?</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Posso quitar CDC antecipadamente?</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>CDC ou Leasing — qual escolher para caminhão?</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Qual o melhor banco para financiar caminhão em 2026?</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Quanto preciso de entrada para financiar um caminhão usado?</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Quanto custa o IOF no financiamento de caminhão?</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Qual a taxa de juros média para caminhão em 2026?</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Falar no WhatsApp &lt;https://wa.me/5562999467920?text=Ola!%20Quero%20financiar%20um%20caminhao%20via%20CDC&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/socaminhoesvirtual/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/profile.php?id=61580979255643&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Banco BV&#39; src=https://www.socaminhoesvirtual.com.br/LOGOBV-footer.webp (24x16, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>A modalidade mais utilizada para financiar caminhao no Brasil. Banco BV  Parceiro Oficial SCV  taxa a partir de 1,14% a.m. Aceita novo e usado, aprovacao em 24-72h.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>a.m. (BV)</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>O CDC e a modalidade de financiamento MAIS UTILIZADA para caminhao no Brasil. Diferente do FINAME (so aceita novos) e do Leasing (caminhao fica no nome do banco), o CDC permite financiar tanto caminhoes NOVOS quanto USADOS, com o veiculo ja no SEU nome desde o primeiro dia.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Regulamentacao: CDC e regulado pela Resolucao BC 3.516/2007 e Lei 11.795/2008. O caminhao fica alienado fiduciariamente ao banco ate a quitacao total.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Dono do caminhao Voce (alienado) Banco Voce (alienado) Voce (alienado)</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Voce e proprietario, com alienacao fiduciaria ao banco</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Quitacao antecipada</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Varios bancos competindo</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Taxa de Abertura de Credito (R$ 500-1.500) em alguns bancos</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>6 Bancos com Melhores Taxas de CDC em 2026</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Banco Taxa (a.m.) Taxa (a.a.) Diferencial</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Banco BV (Parceiro SCV)Parceiro SCV 1,14% 14,6% Especialista em pesados, aprovacao 24h</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Banco do Brasil 1,40% 16,8% Capilaridade nacional</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Cartao CNPJ (ativo &gt; 1 ano)</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Conta salario no banco -0,1 p.p.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Comparar 4+ bancos antes de fechar -0,3 a -0,8 p.p.</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Sempre compare 3-4 bancos. Diferenca de R$ 30k e comum.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>CDC (Crédito Direto ao Consumidor) é a modalidade mais comum para financiar caminhão usado. O banco empresta o dinheiro, você compra o caminhão e o veículo fica em SEU nome desde o primeiro dia, com alienação fiduciária ao banco até a quitação total. Você paga parcelas mensais fixas (Tabela Price). Aceita PF, PJ e autônomos. Taxas em 2026: 14,6% a 28% ao ano. Prazo máximo: 60 meses.</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Banco Central</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Quais bancos oferecem CDC para caminhão usado?</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Qual o melhor banco para financiar caminhão em 2026?</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>O Banco BV  Parceiro Oficial SCV  oferece as melhores taxas do mercado (a partir de 1,14% a.m.) com aprovacao agil. Encontre seu caminhao e comece hoje.</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>SO CAMINHOES VIRTUAL LTDA · CNPJ 63.755.991/0001-32</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual própria da plataforma &#39;Só Caminhões Virtual&#39; predomina em toda a interface, cabeçalho e rodapé, não havendo mimetização ou apropriação indevida do layout do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A empresa exibe claramente sua razão social (SO CAMINHOES VIRTUAL LTDA) e CNPJ (63.755.991/0001-32) no rodapé do site.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-024">E-TXT-024</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência de menção expressa à condição de correspondente bancário contratado e ausência de indicação dos canais de ouvidoria do Banco BV.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso reiterado do termo &#39;Parceiro Oficial SCV&#39; para conferir chancela e credibilidade às taxas do Banco BV em detrimento de outros concorrentes.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-022">E-TXT-022</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Aplicação pontual de logotipo do Banco BV em dimensão reduzida no rodapé, sem evidências de uso indevido da marca antiga ou distorção visual relevante.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página atua como portal informativo de CDC e captação de leads para simulação/financiamento via WhatsApp próprio da revenda.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-TXT-023">E-TXT-023</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato disponibilizados pertencem expressamente à Só Caminhões Virtual (e-mail, redes sociais e WhatsApp com DDD 62 da sede em Goianira/GO).</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O consumidor compreende que está em um portal especializado em caminhões, mas pode ter dúvidas sobre o nível de exclusividade e vínculo institucional direto com o banco devido à expressão &#39;Parceiro Oficial&#39;.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-012">E-TXT-012</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Apesar de atuar como intermediador de financiamento e utilizar a chancela &#39;Banco BV — Parceiro Oficial SCV&#39;, a página não apresenta a declaração formal e obrigatória de correspondente bancário independente, nem disponibiliza os canais de atendimento e ouvidoria da instituição financeira, em desacordo com as exigências da Resolução CMN nº 4.935/2021 (art. 14). — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-022">E-TXT-022</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: Utilização da expressão &#39;Parceiro Oficial&#39; em destaque no banner e nas chamadas de captação comercial sem detalhar a natureza regulatória do vínculo operacional com o Banco BV. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-022">E-TXT-022</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identificação cadastral completa da empresa SO CAMINHOES VIRTUAL LTDA (CNPJ 63.755.991/0001-32) visível no rodapé. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-024">E-TXT-024</a> </span></li><li>[MEDIUM] SERVICE_JOURNEY: Contexto de classificados e comparador multimarcas/multibancos que lista outras instituições do mercado (Santander, Banco do Brasil, Caixa, Itaú, Bradesco). — <span class="mono"><a href="#E-TXT-010">E-TXT-010</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-013">E-TXT-013</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio pertence à plataforma Só Caminhões Virtual (SO CAMINHOES VIRTUAL LTDA, CNPJ 63.755.991/0001-32), com sede em Goianira/GO.</li><li>O CNPJ da empresa consta registrado na base de correspondentes bancários autorizados do Banco BV.</li><li>A página promove o CDC para caminhões e pesados, destacando &#39;Banco BV — Parceiro Oficial SCV&#39; com taxa a partir de 1,14% a.m.</li><li>O título da página associa diretamente a modalidade de crédito à marca: &#39;CDC Caminhao 2026 - Guia Completo | Credito Direto ao Consumidor | Banco BV&#39;.</li><li>Apesar da identificação da empresa e do contexto multimarcas/multibancos, não constam os avisos regulatórios formais de correspondente bancário (Res. CMN 4.935/2021) nem canal de ouvidoria da instituição.</li><li>Existe um logotipo reduzido do Banco BV no rodapé (LOGOBV-footer.webp, 24x16), sem indícios de logotipo antigo com B vermelho e V azul.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>—</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a um correspondente bancário/portal de veículos comerciais devidamente identificado por razão social e CNPJ. Não há tentativa de se passar pelo banco nem overbranding que apague sua identidade. Contudo, ao utilizar termos como &#39;Parceiro Oficial&#39; e destacar taxas do Banco BV para captação via WhatsApp sem incluir as declarações regulatórias obrigatórias de correspondente bancário e ouvidoria (Resolução CMN nº 4.935/2021, art. 14), o canal enquadra-se no cenário B_AMBIGUOUS_COMMUNICATION, requerendo revisão de governança cadastral/comercial.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Entidade</b>2026 SO CAMINHOES VIRTUAL LTDA<br><span class="mono">cnpj:63755991000132</span></div>
+      <div class="kv"><b>Confiança</b>HIGH</div>
+      <div class="kv"><b>Cadastro autorizado</b>coban_registry_bv.csv (ref. 2026-10-06) (cnpj)</div>
+    </div>
+    <p style="margin-top:12px;">CNPJ 63.755.991/0001-32 observado na página consta do cadastro autorizado &#39;coban_registry_bv.csv (ref. 2026-10-06)&#39;.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>socaminhoesvirtual.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>63.755.991/0001-32</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td> Notícias Sobre Contato e ajuda Termos de uso Privacidade Só Caminhões Virtual® · 2026 SO CAMINHOES VIRTUAL LTDA · CNPJ 63.755.991/0001-32</td></tr>
+      <tr><td>cnpj</td><td>61.580.979/2556-43 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td>Facebook &lt;https://www.facebook.com/profile.php?id=61580979255643</td></tr>
+      <tr><td>legal_name</td><td>2026 SO CAMINHOES VIRTUAL LTDA</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@socaminhoesvirtual.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/socaminhoesvirtual/</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/profile.php?id=61580979255643</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>SO CAMINHOES VIRTUAL LTDA</td><td class="mono"><a href="#E-TXT-024">E-TXT-024</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): socaminhoesvirtual.com.br — **URL:** `https://socaminhoesvirtual.com.br` | **Expressão utilizada:** *&#34;Banco BV — Parceiro Oficial SCV — taxa a partir de 1,14% a.m.&#34;* | **C</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar no WhatsApp &lt;https://wa.me/5562999467920?text=Ola!%20Quero%20financiar%20um%20caminhao%20via%20CDC&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>Parceiro Oficial</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>Banco BV  Parceiro Oficial SCV  taxa a partir de 1,14% a.m.</td></tr>
+      <tr><td>partnership_declaration</td><td>Parceiro</td><td class="mono"><a href="#E-TXT-012">E-TXT-012</a></td><td>Banco BV (Parceiro SCV)Parceiro SCV 1,14% 14,6% Especialista em pesados, aprovacao 24h</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) com dígito verificador inválido ignorados: 61.580.979/2556-43</li><li>associação página→CNPJ baseada na publicação do CNPJ na própria página</li><li>um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o domínio é seu</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-022">E-TXT-022</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma plataforma de revenda e intermediação de pesados com CNPJ ativo e confirmado como correspondente bancário autorizado do Banco BV. Não há tentativa de usurpação de identidade institucional nem overbranding malicioso, pois a identidade da &#39;Só Caminhões Virtual&#39; é mantida claramente. No entanto, ao utilizar a chancela &#39;Parceiro Oficial&#39; para atrair interessados em financiamento sem apresentar o disclosure regulatório mandatório (declaração de correspondente, instituição representada e canais de ouvidoria previstos no art. 14 da Res. CMN nº 4.935/2021), mantém-se a classificação de REVIEW_REQUIRED para saneamento de governança de parceiros.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Enquadramento regulatório vs. Blog informativo</td><td>LOW</td><td>Apesar de ter estrutura de guia/artigo comparativo sobre CDC, o portal atua diretamente na intermediação comercial de caminhões e captação de clientes para financiamento via WhatsApp chancelando o Banco BV como &#39;Parceiro Oficial SCV&#39;. Por ser um correspondente confirmado no cadastro oficial, a ausência de identificação expressa como correspondente bancário e dos canais de ouvidoria configura pendência de conformidade regulatória (Res. CMN 4.935/2021).</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-022">E-TXT-022</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Uso de expressões de oficialidade (&#39;parceiro oficial&#39;, &#39;representante&#39;, &#39;correspondente autorizado&#39;, &#39;agência BV&#39;).
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;parceiro oficial&#34; OR &#34;parceiros autorizados&#34; OR &#34;correspondente autorizado&#34; OR &#34;correspondente bancário autorizado&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;representante&#34; OR &#34;agência BV&#34; OR &#34;agência Banco BV&#34; OR &#34;canal oficial&#34; OR &#34;site oficial&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H4-official-language</span></td><td class="mono">https://www.socaminhoesvirtual.com.br/financiamento-caminhao/cdc</td><td>socaminhoesvirtual.com.br<br><span class="muted">**URL:** `https://socaminhoesvirtual.com.br` | **Expressão utilizada:** *&#34;Banco BV — Parceiro Oficial SCV — taxa a partir de 1,14% a.m.&#34;* | **Como utiliza a marca:** Divulga tabelas de taxas e prazos de Crédito Direto ao Consumidor (CDC Caminhão e Veículos Pesados), chancelando as ofertas sob o título de *parceiro oficial* para captação via WhatsApp e formulários</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:13:30.432321+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.7.158</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C368c301673/attempt-1/manifest.json<br>sha256 d9c2cd453be079e42a9143530c4f61d69ff733fabba7902486cd04636f13edaa</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.socaminhoesvirtual.com.br/financiamento-caminhao/cdc<br>Final: https://www.socaminhoesvirtual.com.br/financiamento-caminhao/cdc</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C368c301673/attempt-1/viewport.png</td><td class="mono">e76d231e4eea8a8d3612d8aa738353df657d4d24e2d8cb649ff8ee467e084f64</td><td>242830</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C368c301673/attempt-1/fullpage.png</td><td class="mono">f4856c9f1433ae01c2943de7a35c78349ef9c997272644cb17ee10dac1a7f822</td><td>1133784</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C368c301673/attempt-1/page.html.txt</td><td class="mono">8626f12fc18abcf5c165326d4675fea64211e2b6c543f16502c608b27af059c6</td><td>107456</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C368c301673/attempt-1/text.txt</td><td class="mono">a6277316c60c1b8e34baa8bd67662bc13ed87a934f0f9e6c024804a619627723</td><td>6955</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C368c301673/attempt-1/page.json</td><td class="mono">5777830d591e2b252ae7949977aead2b2f10ff5188e3dc63fb6cc023a6aca45a</td><td>20021</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:08+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T19:13:30+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:13:36+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:13:36+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:13:56+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:14:09+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

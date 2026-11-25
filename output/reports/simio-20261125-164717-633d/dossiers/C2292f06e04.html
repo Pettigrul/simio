@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C2292f06e04</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C2292f06e04 — torqueveiculosrio.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.torqueveiculosrio.com.br/Veiculo/mobi-1.0-evo-flex-like.-manual-flex-2023/826506/detalhes</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A loja de veículos promove suas ofertas acoplando a marca histórica &#39;BV Financeira&#39; à sua própria denominação comercial (&#39;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS&#39;), sugerindo parceria ou feirão conjunto. Contudo, não esclarece a natureza da relação jurídica nem apresenta a declaração formal de correspondente bancário, além de omitir o CNPJ da empresa, caracterizando comunicação ambígua com necessidade de revisão.
+[Revisor: CONFIRM] A página pertence a uma revendedora de veículos (&#39;Torque Veículos&#39;) que divulga campanha comercial acoplando seu nome à marca &#39;BV Financeira&#39; (&#39;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS&#39; em E-TXT-003). A entidade atua no segmento alvo de correspondentes bancários, mas omite CNPJ, razão social e declarações regulatórias de correspondente bancário e ouvidoria, configurando parceria com vínculo ambíguo/não esclarecido ao consumidor. A classificação REVIEW_REQUIRED com prioridade MEDIUM se sustenta.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C2292f06e04/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 feb8860d0d297de73ac8d3adee09477f9378db8eee5a2b5daf576d38d9c53eb2</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C2292f06e04/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 96941dae343f2091311383899f0505aa0119f6bd6002eb97b1475a0b801e6aef</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.torqueveiculosrio.com.br/Veiculo/mobi-1.0-evo-flex-like.-manual-flex-2023/826506/detalhes (domínio: www.torqueveiculosrio.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): torqueveiculosrio.com.br — **URL:** `https://torqueveiculosrio.com.br` | **Uso da Marca:** Utiliza no título descritivo do estoque a chamada: *&#34;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS - Ofertas e taxas imperdíveis&#34;* acoplado a simulador de proposta de financiamento online | Embora informe o nome fantasia (&#34;Torque Veículos&#34;), telefone e bairro (Irajá/RJ), a página omite a razão social completa, o CNPJ e a declaração de que atua como correspondente da instituição autorizada</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C2292f06e04/attempt-1/viewport.png (sha256 feb8860d0d297de7…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C2292f06e04/attempt-1/fullpage.png (sha256 96941dae343f2091…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Torque Veiculos: FIAT MOBI 2023 - 1.0 EVO FLEX LIKE. MANUAL - R$ 51.900,00</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Tradicional agência de revenda de veículos. Venha em nossa loja e saia de carro novo no mesmo dia</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>author: AutoCerto Tecnologia</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>FIAT MOBI 1.0 EVO FLEX LIKE. MANUAL 2023</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Telefone: (21) 96518-1439 - (21) 96422-2610 - (21) 3442-3212 INSTAGRAM FACEBOOK Home Empresa Veículos Financiamento Venda seu Carro Contato</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Telefone: (21) 96518-1439 - (21) 96422-2610 - (21) 3442-3212 Instagram Facebook Home Empresa Veículos Financiamento Venda seu Carro Contato Home Veículos FIAT MOBI 1.0 EVO FLEX LIKE. MANUAL 2023 FIAT MOBI 1.0 EVO FLEX LIKE. MANUAL 2023 próximo anterior</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>QUEM SOMOS Somos especializados na venda de veículos novos e usados, nacionais e importados. Com certeza você não só apreciará como irá comprar seu veículo conosco. Todos nossos veículos são revisados criteriosamente, possibilitando dar aos nossos clientes tranquilidade na hora da compra. Não perca tempo! Compre seu veículo com quem mais entende do assunto. Nossos vendedores terão o prazer em atendê-lo. [...] MAPA DO SITE Home Empresa Veículos Venda seu Carro Financiamento Localização Fale Conosco Politica de Privacidade CONTATO (21) 96518-1439 (21) 96422-2610 (21) 3442-3212 ENDEREÇO Av. Monsenhor Felix, nº 599 Iraja - Rio de Janeiro - RJ © Torque Veiculos - http://www.torqueveiculosrio.com.br/ Desenvolvido por</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://api.whatsapp.com/send?phone=+5521965181439&amp;text=Ola&gt; |  &lt;https://api.whatsapp.com/send?phone=+5521964222610&amp;text=Ola&gt; | INSTAGRAM &lt;https://www.instagram.com/torque_veiculosrj/&gt; | FACEBOOK &lt;https://www.facebook.com/TorqueVeiculosRio.com.br&gt; | Home &lt;https://www.torqueveiculosrio.com.br/&gt; | Empresa &lt;https://www.torqueveiculosrio.com.br/Empresa&gt; | Veículos &lt;https://www.torqueveiculosrio.com.br/Veiculos&gt; | Financiamento &lt;https://www.torqueveiculosrio.com.br/Financiamento&gt; | Venda seu Carro &lt;https://www.torqueveiculosrio.com.br/VendaSeuCarro&gt; | Contato &lt;https://www.torqueveiculosrio.com.br/Contato&gt; |  &lt;https://www.torqueveiculosrio.com.br/Veiculo/mobi-1.0-evo-flex-like.-manual-flex-2023/826506/detalhes#&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Enviar Proposta</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>×</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Fechar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td> &lt;https://api.whatsapp.com/send?phone=+5521965181439&amp;text=Ola&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td> &lt;https://api.whatsapp.com/send?phone=+5521964222610&amp;text=Ola&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>header</td><td>INSTAGRAM &lt;https://www.instagram.com/torque_veiculosrj/&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>header</td><td>FACEBOOK &lt;https://www.facebook.com/TorqueVeiculosRio.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td> &lt;https://www.facebook.com/TorqueVeiculosRio.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/torque_veiculosrj/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=5521964222610&amp;text=Ola&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td> &lt;https://www.facebook.com/TorqueVeiculosRio.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/torque_veiculosrj/&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=5521964222610&amp;text=Ola&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo&#39; src=https://www.torqueveiculosrio.com.br/Content/images/logo.png (306x109, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;whatsapp&#39; src=https://autocerto.com/client-v2/img/whatsapp-logo.png (24x24, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;whatsapp&#39; src=https://autocerto.com/client-v2/img/whatsapp-logo.png (24x24, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Logo Autocerto&#39; src=https://autocerto.com/client-v2/img/logo-AutoCerto.png (99x24, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Telefone: (21) 96518-1439 - (21) 96422-2610 - (21) 3442-3212</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Banco do motorista com ajuste de altura</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>¨GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS¨. ¨¨Ofertas e taxas imperdíveis. Estado impecável de conservação, ÚNICO DONO , todo revisado, carro impecável, nada para fazer, ótimo de andar, IPVA 2026 PAGO, lataria e tapeçaria impecáveis. Aceitamos trocas por menor valor com ótima avalição.!! Veículo com a qualidade da marca Torque Veículos que está no mesmo endereço à 20 anos e sempre buscando</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>ENDEREÇO</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>- Para cancelamento de seu cadastro no nosso banco de dados ou entrar em contato com a (o) Torque Veiculos, favor entrar em contato através do formulário principal.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Os dados solicitados neste site consideramos os dados de qualificação pessoal, como nome e sobrenome, números de identificação pessoal, seu endereço, telefone, além de endereço de e-mail e eventualmente outras necessárias para atender o propósito desta política.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Funcionários da Torque Veiculos poderão eventualmente entrar em contato via email ou telefone para tirar dúvidas ou apresentar novos produtos e serviços.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Funcionários da Torque Veiculos poderão eventualmente entrar em contato via email ou telefone para tirar dúvidas ou apresentar novos produtos e serviços.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence à Torque Veículos, loja de revenda de automóveis localizada no Rio de Janeiro/RJ, anunciando um veículo Fiat Mobi.</li><li>O texto descritivo do veículo (E-TXT-003) utiliza a chamada &#39;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS - Ofertas e taxas imperdíveis&#39;.</li><li>A identidade visual e a marca da Torque Veículos predominam no cabeçalho (E-IMG-1, E-SHOT-VIEWPORT), sem evidência de logotipo da BV aplicado na página inspecionada.</li><li>A página e o rodapé (E-FTR) omitem a razão social, o CNPJ da loja e a declaração obrigatória de atuação como correspondente bancário (Resolução CMN nº 4.935/2021).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível verificar se páginas internas ou a aba &#39;Financiamento&#39; possuem os dados cadastrais completos e declarações regulatórias.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A loja de veículos promove suas ofertas acoplando a marca histórica &#39;BV Financeira&#39; à sua própria denominação comercial (&#39;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS&#39;), sugerindo parceria ou feirão conjunto. Contudo, não esclarece a natureza da relação jurídica nem apresenta a declaração formal de correspondente bancário, além de omitir o CNPJ da empresa, caracterizando comunicação ambígua com necessidade de revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:torqueveiculosrio.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>torqueveiculosrio.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/torque_veiculosrj/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/TorqueVeiculosRio.com.br</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>phone</td><td>(21) 96518-1439</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(21) 96422-2610</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(21) 3442-3212</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=+5521965181439&amp;text=Ola&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=+5521964222610&amp;text=Ola&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=5521964222610&amp;text=Ola&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma revendedora de veículos (&#39;Torque Veículos&#39;) que divulga campanha comercial acoplando seu nome à marca &#39;BV Financeira&#39; (&#39;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS&#39; em E-TXT-003). A entidade atua no segmento alvo de correspondentes bancários, mas omite CNPJ, razão social e declarações regulatórias de correspondente bancário e ouvidoria, configurando parceria com vínculo ambíguo/não esclarecido ao consumidor. A classificação REVIEW_REQUIRED com prioridade MEDIUM se sustenta.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Lojas e multimarcas que divulgam &#39;Feirão Banco BV&#39; / &#39;Feirão BV Financeira&#39;.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;Feirão Banco BV&#34; OR &#34;Feirão bv financeira&#34; OR &#34;Feirão BV&#34;) (loja OR veículos OR seminovos OR multimarcas) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:feirao</span></td><td class="mono">https://www.torqueveiculosrio.com.br/Veiculo/mobi-1.0-evo-flex-like.-manual-flex-2023/826506/detalhes</td><td>torqueveiculosrio.com.br<br><span class="muted">**URL:** `https://torqueveiculosrio.com.br` | **Uso da Marca:** Utiliza no título descritivo do estoque a chamada: *&#34;GRANDE FEIRÃO BV FINANCEIRA E TORQUE VEÍCULOS - Ofertas e taxas imperdíveis&#34;* acoplado a simulador de proposta de financiamento online | Embora informe o nome fantasia (&#34;Torque Veículos&#34;), telefone e bairro (Irajá/RJ), a página omite a razão social completa, o CNPJ e a declaração de que atua como correspondente da instituição autorizada</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:12:16.040387+00:00</div>
+      <div class="kv"><b>IP do servidor</b>52.117.211.114</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C2292f06e04/attempt-1/manifest.json<br>sha256 e54d46ee92bb155ce69a60cdccd8b6ab5657151e909cbd32b093b83b6f29b479</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.torqueveiculosrio.com.br/Veiculo/mobi-1.0-evo-flex-like.-manual-flex-2023/826506/detalhes<br>Final: https://www.torqueveiculosrio.com.br/Veiculo/mobi-1.0-evo-flex-like.-manual-flex-2023/826506/detalhes</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C2292f06e04/attempt-1/viewport.png</td><td class="mono">feb8860d0d297de73ac8d3adee09477f9378db8eee5a2b5daf576d38d9c53eb2</td><td>56410</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C2292f06e04/attempt-1/fullpage.png</td><td class="mono">96941dae343f2091311383899f0505aa0119f6bd6002eb97b1475a0b801e6aef</td><td>255520</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C2292f06e04/attempt-1/page.html.txt</td><td class="mono">703097e532cabc97fa533e387d36f173495703a77fa573fe9539d2d8a9748f52</td><td>36855</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C2292f06e04/attempt-1/text.txt</td><td class="mono">5c9aa9e69df11f5fc177cbe4ad19f8bce1a35d446f5ab84cde2d55a77c0c95c7</td><td>7214</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C2292f06e04/attempt-1/page.json</td><td class="mono">65dd063c027b979634c08342848b636fc388744384f0dd14f3ca42625eb96b19</td><td>17453</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:08+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T19:12:16+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:12:22+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:12:22+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:12:36+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:12:50+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

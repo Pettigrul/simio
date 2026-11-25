@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C45f753b0be",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://futuraenergia.grupocanabarro.com.br/",
+  "final_url": "https://futuraenergia.grupocanabarro.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "213.199.48.194",
+  "collected_at": "2026-11-23T14:36:29.420071+00:00",
+  "manifest_written_at": "2026-11-23T14:36:34.685138+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C45f753b0be\\attempt-1\\viewport.png",
+      "sha256": "13e9f2322320dc9f1036f44448a085c429daa57f0a7d12ed3f8cb052b3aff3c5",
+      "size_bytes": 47608
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C45f753b0be\\attempt-1\\fullpage.png",
+      "sha256": "13e9f2322320dc9f1036f44448a085c429daa57f0a7d12ed3f8cb052b3aff3c5",
+      "size_bytes": 47608
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C45f753b0be\\attempt-1\\page.html.txt",
+      "sha256": "6931b2cd8a2fd57a22e27d3fab151f94f15b25ba4ad39a28ed075e41a34d11f4",
+      "size_bytes": 65512
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C45f753b0be\\attempt-1\\text.txt",
+      "sha256": "1fc4adbef7fb7fc633b5e6c103ea511445bde18cfe234eb0869e825fdeeaff88",
+      "size_bytes": 804
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C45f753b0be\\attempt-1\\page.json",
+      "sha256": "56c94912f51ed22ad460f7d392359de98164daca01193507e771534a2d73f4d8",
+      "size_bytes": 2772
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

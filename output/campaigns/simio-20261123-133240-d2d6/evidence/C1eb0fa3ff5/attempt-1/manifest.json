@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1eb0fa3ff5",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://hellosmotosbrasil.com.br/",
+  "final_url": "https://hellosmotosbrasil.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "162.215.133.247",
+  "collected_at": "2026-11-23T14:39:04.389026+00:00",
+  "manifest_written_at": "2026-11-23T14:39:12.453989+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C1eb0fa3ff5\\attempt-1\\viewport.png",
+      "sha256": "1690e927c505abed2c1121a7fe0072a6ae6609518758c304484f8dc227831065",
+      "size_bytes": 47214
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C1eb0fa3ff5\\attempt-1\\fullpage.png",
+      "sha256": "1690e927c505abed2c1121a7fe0072a6ae6609518758c304484f8dc227831065",
+      "size_bytes": 47214
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C1eb0fa3ff5\\attempt-1\\page.html.txt",
+      "sha256": "f2e698ebb880af10d5f3b2a24c11575dd86c915bdd3640ff219dc1a849d01b2f",
+      "size_bytes": 65510
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C1eb0fa3ff5\\attempt-1\\text.txt",
+      "sha256": "f669425c3617e7b89da589fac3c2cbcde71f82279335cf3ba852fa5800da7223",
+      "size_bytes": 796
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C1eb0fa3ff5\\attempt-1\\page.json",
+      "sha256": "3e1cbaccbb1c5e646b7ca041cc25b3ad8870c4b9bc872a34290df9ca25542610",
+      "size_bytes": 2756
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

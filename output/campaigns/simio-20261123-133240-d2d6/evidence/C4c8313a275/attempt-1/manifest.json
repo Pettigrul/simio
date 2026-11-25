@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C4c8313a275",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.financiamento.net/bv-financeira/",
+  "final_url": "https://www.financiamento.net/bv-financeira/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "66.253.112.200",
+  "collected_at": "2026-11-23T14:32:25.497833+00:00",
+  "manifest_written_at": "2026-11-23T14:32:35.037165+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C4c8313a275\\attempt-1\\viewport.png",
+      "sha256": "437cb9a6283e5efbcfeed8451916a6eab04f70cb94ded3301c08726a07019dd5",
+      "size_bytes": 47758
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C4c8313a275\\attempt-1\\fullpage.png",
+      "sha256": "437cb9a6283e5efbcfeed8451916a6eab04f70cb94ded3301c08726a07019dd5",
+      "size_bytes": 47758
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C4c8313a275\\attempt-1\\page.html.txt",
+      "sha256": "dbf929514d2e2bce1ec29c2246e5d7bcfcf409098678ab4033b8faba64e3fed2",
+      "size_bytes": 65499
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C4c8313a275\\attempt-1\\text.txt",
+      "sha256": "0082c0e9fdf9ce605766c9487211deb248703983810a00537d11436b5bfb35ae",
+      "size_bytes": 803
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C4c8313a275\\attempt-1\\page.json",
+      "sha256": "c3ed60f127dfa283ff674dda536a2b71c2824243ba43c31ee642e87dcf0cae1b",
+      "size_bytes": 2770
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

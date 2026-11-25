@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C9bd70f09d5",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://speedclean.shop/financiamento/",
+  "final_url": "https://speedclean.shop/financiamento/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "69.197.169.114",
+  "collected_at": "2026-11-19T18:33:09.516886+00:00",
+  "manifest_written_at": "2026-11-19T18:33:14.809768+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C9bd70f09d5\\attempt-1\\viewport.png",
+      "sha256": "258230676a715951e47030d0cade30ad79286d2ed9e56f386e444de2741686ac",
+      "size_bytes": 47277
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C9bd70f09d5\\attempt-1\\fullpage.png",
+      "sha256": "258230676a715951e47030d0cade30ad79286d2ed9e56f386e444de2741686ac",
+      "size_bytes": 47277
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C9bd70f09d5\\attempt-1\\page.html.txt",
+      "sha256": "4b148e6db53e6f0444d79a291357437e6d820bb8589d6573b1dcf03e61b76de8",
+      "size_bytes": 65472
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C9bd70f09d5\\attempt-1\\text.txt",
+      "sha256": "538cfc47a0e03ffe453253c73c99e729349def2f5b8beeda7c15750c624d10ec",
+      "size_bytes": 794
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C9bd70f09d5\\attempt-1\\page.json",
+      "sha256": "8bcd3770338a5aff12a273c120e1c6a51617e5745601b903ad5cb8a7726a41ae",
+      "size_bytes": 2752
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

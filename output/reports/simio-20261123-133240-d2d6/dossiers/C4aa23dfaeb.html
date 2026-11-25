@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C4aa23dfaeb</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C4aa23dfaeb — yangoo.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.yangoo.com.br/2022/04/financiamento-veiculos-financiar-carro-moto-itapema.html</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence à empresa Yangoo Contabilidade Digital e oferta simulação e intermediação de financiamento de veículos via WhatsApp, afirmando expressamente atuar como correspondente bancário do Banco BV, Rodobens e Porto Seguro (vinculada à Franq Open Banking). Embora não utilize logotipo do banco e deixe clara sua identidade comercial própria, a página de captação não exibe de forma visível em seu corpo ou rodapé o CNPJ/razão social do estabelecimento nem os canais de Ouvidoria da instituição financeira contratante, exigindo revisão de conformidade à luz da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A hipótese do analista se sustenta. Trata-se de página comercial de captação de clientes para financiamento de veículos operada pela Yangoo Contabilidade Digital, que afirma explicitamente ser correspondente bancário do Banco BV (vinculado à Franq Open Banking) e direciona para contratação via WhatsApp (E-FOLD, E-TXT-001, E-TXT-002). Apesar de declarar a condição de correspondente e usar identidade visual própria, a página não exibe o CNPJ, a razão social e os telefones de atendimento/ouvidoria do banco contratante no corpo da publicação ou no rodapé (E-FTR, E-SHOT-FULL), justificando a manutenção de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C4aa23dfaeb/attempt-2/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 26056331be2b51907304d28b0d000d9f807af990b8e6d76fed8850ff0a82f988</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C4aa23dfaeb/attempt-2/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a00a01ceb4a007d3f8673986f346d549f6c9f0b081c1793d20c51b15023a3495</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.yangoo.com.br/2022/04/financiamento-veiculos-financiar-carro-moto-itapema.html (domínio: www.yangoo.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): yangoo.com.br — **Estabelecimento:** Yangoo Contabilidade Digital e Soluções Financeiras (Atuação listada em Itapema, Botucatu e Brasília) | **Uso da Marca e Recursos:** Publica artigos e páginas de captação intituladas com foco em &#34;Itapema, Botucatu e Brasília&#34;, afirmando: &#34;*Somos Correspondentes Bancários do Banco BV (uma das principais Instituições Financeiras do Brasil, em se tratando de financiamentos de veículos)*&#34; | Convida o usuário a realizar simulação gratuita diretamente via WhatsApp (vinculado à plataforma Franq Open Banking) | **Conformidade (CNPJ / Razão Social / Declaração):** Informa no portal a Razão Social (`Yangoo Contabilidade e Assessoria Ltda`) e o CNPJ (`39.279.496/0001-10`), declarando atuar apenas na intermediação financeira como correspondente bancário, mas não cita o número da Resolução CMN nº 4.935/2021 na postagem de captação</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C4aa23dfaeb\attempt-2\viewport.png (sha256 26056331be2b5190…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C4aa23dfaeb\attempt-2\fullpage.png (sha256 a00a01ceb4a007d3…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Financiamento de veículos (financiar carro, moto, caminhonete, caminhão) na Meia Praia, no Morretes, em Itapema SC e região! | Yangoo Contabilidade Digital | Itapema, Botucatu e Brasília</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Em busca de Financiamento de veículos leves ou pesados na Meia Praia, no Morretes, em Itapema SC e região? Venha para a Yangoo! </td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Yangoo Contabilidade Digital</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Yangoo Contabilidade Digital | Itapema, Botucatu e Brasília: Financiamento de veículos (financiar carro, moto, caminhonete, caminhão) na Meia Praia, no Morretes, em Itapema SC e região! </td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Em busca de Financiamento de veículos leves ou pesados na Meia Praia, no Morretes, em Itapema SC e região? Venha para a Yangoo! </td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.yangoo.com.br/2022/04/financiamento-veiculos-financiar-carro-moto-itapema.html</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Financiamento de veículos (financiar carro, moto, caminhonete, caminhão) na Meia Praia, no Morretes, em Itapema SC e região!</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Páginas</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Pesquise neste blog</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Postagens populares</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Tags</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Tags</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Arquivos do blog</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Yangoo Contabilidade Digital Financiamento de veículos (financiar carro, moto, caminhonete, caminhão) na Meia Praia, no Morretes, em Itapema SC e região! Olá, clientes e amigos da Yangoo! Se você está a procura de financiamento de veículos (financiar carro, moto, caminhonete, caminhão) na Meia Praia, no Morretes, em Itapema SC e região, você pode contar com a Yangoo. Somos Correspondentes Bancários do Banco BV (uma das principais Instituições Financeiras do Brasil, em se tratando de financiamentos de veículos), e, além do Banco BV, também trabalhamos com financiamento de veículos pela Rodobens e pela Porto Seguro. Entre em contato com a nossa equipe para tirar suas dúvidas, simular e contratar. Temos escritório na Rua 300, 187, Sala 04, em Meia Praia, Itapema SC, mas atendemos digitalmente a todo o Brasil, sendo que o financiamento de veículo pode ser feito 100% de forma digital e seguro, com rápida liberação do dinheiro. Entre em contato conosco preferencialmente pelo WhatsApp 47 99651 3240 e faça a sua simulação gratuitamente. Esclarecemos que não somos loja de veículos e nem garagem, ou seja, somos correspondentes bancários e fazemos apenas a intermediação financeira entre os clientes e os Bancos. Link para nosso WhatsApp: https://wa.me/5547996513240 Páginas Página Inicial Yangoo Contabilidade Digital Yangoo - Soluções Financeiras (Personal Banker Membro da Franq Open Banking e Correspondente Bancário) Yangoo Certificado Digital (para CPF ou CNPJ) - Presencial em Itapema ou por Videoconferência (online) para todo o Brasil! Yangoo Assessoria e Consultoria Empresarial Yangoo Soluções Empresariais Yangoo Mentorias Yangoo Administração de Condomínios e Bens Pesquise neste blog Postagens populares Empréstimo Pessoal (com garantia) em Itapema, Balneário Camboriú, Itajaí, Florianópolis, Joinville, Blumenau e toda Santa Catarina Servidor Público Pode Vender na Hotmart, Kiwify, Eduzz, Monetizze? Pode Abrir Empresa? Entenda as Regras e Alternativas Legais</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>© 2026 Yangoo Contabilidade Digital | Itapema, Botucatu e Brasília. Todos os direitos reservados.</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Enviar por e-mail &lt;https://www.blogger.com/share-post/5214541543224128965/6562379238567628426?https=true&amp;target=email&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Postar no blog! &lt;https://www.blogger.com/share-post/5214541543224128965/6562379238567628426?https=true&amp;target=blog&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Compartilhar no X &lt;https://www.blogger.com/share-post/5214541543224128965/6562379238567628426?https=true&amp;target=twitter&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Compartilhar no Facebook &lt;https://www.blogger.com/share-post/5214541543224128965/6562379238567628426?https=true&amp;target=facebook&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Compartilhar com o Pinterest &lt;https://www.blogger.com/share-post/5214541543224128965/6562379238567628426?https=true&amp;target=pinterest&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Pesquisar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>https://wa.me/5547996513240 &lt;https://wa.me/5547996513240&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Falar com a Yangoo pelo WhatsApp &lt;https://wa.me/554734300123&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Somos Correspondentes Bancários do Banco BV (uma das principais Instituições Financeiras do Brasil, em se tratando de financiamentos de veículos), e, além do Banco BV, também trabalhamos com financiamento de veículos pela Rodobens e pela Porto Seguro.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Entre em contato conosco preferencialmente pelo WhatsApp 47 99651 3240 e faça a sua simulação gratuitamente.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Esclarecemos que não somos loja de veículos e nem garagem, ou seja, somos correspondentes bancários e fazemos apenas a intermediação financeira entre os clientes e os Bancos.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Link para nosso WhatsApp: https://wa.me/5547996513240</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Yangoo - Soluções Financeiras (Personal Banker Membro da Franq Open Banking e Correspondente Bancário)</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Yangoo Certificado Digital (para CPF ou CNPJ) - Presencial em Itapema ou por Videoconferência (online) para todo o Brasil!</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Yangoo Correspondente Bancário em Itapema SC</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Banco</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>cnpj</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Correspondente Bancário</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>cnpj</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Banco</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Correspondente Bancário</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Sede Virtual (Endereço Fiscal) em Itapema SC (Sant...</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza identidade visual própria da Yangoo Contabilidade Digital no cabeçalho e no layout do blog, sem imitar cores ou elementos visuais do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site identifica-se claramente como Yangoo Contabilidade Digital e informa endereço físico em Itapema/SC, embora o CNPJ (39.279.496/0001-10) e a razão social constem apenas no índice geral do portal e não no rodapé da página inspecionada.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>A empresa declara expressamente atuar como correspondente bancário na intermediação financeira para o Banco BV, Rodobens e Porto Seguro, mas omite na página de captação o número do CNPJ no rodapé, a referência à Resolução CMN nº 4.935/2021 e os telefones de SAC/Ouvidoria da instituição contratante.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A comunicação é feita em nome da própria Yangoo, esclarecendo que não é loja de veículos e que realiza apenas a intermediação financeira entre clientes e bancos.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não há uso do logotipo do Banco BV na página ou na miniatura de vídeo exibida.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>A página capta interessados em simulação e contratação de financiamento de veículos direcionando-os para atendimento via WhatsApp sem apresentar todas as informações obrigatórias de transparência de correspondente na própria página.</td><td class="mono"><a href="#E-TXT-002">E-TXT-002</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato via WhatsApp estão claramente identificados como pertencentes à equipe da Yangoo.</td><td class="mono"><a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Baixo risco de o consumidor acreditar estar falando diretamente com o Banco BV, mas há pendência formal de transparência regulatória na página de oferta de crédito.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora a página declare atuar como correspondente bancário do Banco BV e ofereça simulação de financiamento de veículos via WhatsApp, a postagem de captação não exibe de forma visível na própria página/rodapé o CNPJ e a razão social completa do estabelecimento, nem informa os canais de atendimento/ouvidoria da instituição financeira contratante conforme exigido pela Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] CORRESPONDENT_TRANSPARENCY: A empresa declara expressamente no texto principal que atua como Correspondente Bancário na intermediação financeira junto ao Banco BV, Rodobens e Porto Seguro (vinculada à plataforma Franq Open Banking). — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-005">E-TXT-005</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Uso exclusivo da marca e identidade visual própria da Yangoo Contabilidade Digital, sem utilização do logotipo do Banco BV. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence ao domínio www.yangoo.com.br, identificado como Yangoo Contabilidade Digital.</li><li>O texto visível afirma: &#39;Somos Correspondentes Bancários do Banco BV (uma das principais Instituições Financeiras do Brasil, em se tratando de financiamentos de veículos), e, além do Banco BV, também trabalhamos com financiamento de veículos pela Rodobens e pela Porto Seguro.&#39;</li><li>A página oferece simulação gratuita de financiamento de veículos direcionando o usuário para o WhatsApp (47 99651-3240).</li><li>Não há uso de logotipo ou identidade visual do Banco BV na página.</li><li>O rodapé da página inspecionada exibe apenas &#39;© 2026 Yangoo Contabilidade Digital | Itapema, Botucatu e Brasília&#39;, sem exibir o CNPJ (39.279.496/0001-10, identificado apenas no índice de busca E-DISC-001) e sem informar a Ouvidoria do Banco BV.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Confirmação cadastral do vínculo da Yangoo Contabilidade e Assessoria Ltda (CNPJ 39.279.496/0001-10) como correspondente autorizado ou membro habilitado via Franq Open Banking.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence à empresa Yangoo Contabilidade Digital e oferta simulação e intermediação de financiamento de veículos via WhatsApp, afirmando expressamente atuar como correspondente bancário do Banco BV, Rodobens e Porto Seguro (vinculada à Franq Open Banking). Embora não utilize logotipo do banco e deixe clara sua identidade comercial própria, a página de captação não exibe de forma visível em seu corpo ou rodapé o CNPJ/razão social do estabelecimento nem os canais de Ouvidoria da instituição financeira contratante, exigindo revisão de conformidade à luz da Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Yangoo Contabilidade e Assessoria Ltda<br><span class="mono">cnpj:39279496000110</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>yangoo.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>39.279.496/0001-10</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td> / Razão Social / Declaração):** Informa no portal a Razão Social (`Yangoo Contabilidade e Assessoria Ltda`) e o CNPJ (`39.279.496/0001-10</td></tr>
+      <tr><td>legal_name</td><td>Yangoo Contabilidade e Assessoria Ltda</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Yangoo Contabilidade Digital</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>47 99651 3240</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): yangoo.com.br — **Estabelecimento:** Yangoo Contabilidade Digital e Soluções Financeiras (Atuação listada em Itapema, Botucatu e Brasília) | **Uso da Marca e Recursos:** P</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>https://wa.me/5547996513240 &lt;https://wa.me/5547996513240&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com a Yangoo pelo WhatsApp &lt;https://wa.me/554734300123&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Correspondente Bancário</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>Yangoo Contabilidade Digital Financiamento de veículos (financiar carro, moto, caminhonete, caminhão) na Meia Praia, no Morretes, em Itapema SC e região! Olá, clientes e amigos da Yangoo! Se você está</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (apresentação da marca) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-002">E-TXT-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A hipótese do analista se sustenta. Trata-se de página comercial de captação de clientes para financiamento de veículos operada pela Yangoo Contabilidade Digital, que afirma explicitamente ser correspondente bancário do Banco BV (vinculado à Franq Open Banking) e direciona para contratação via WhatsApp (E-FOLD, E-TXT-001, E-TXT-002). Apesar de declarar a condição de correspondente e usar identidade visual própria, a página não exibe o CNPJ, a razão social e os telefones de atendimento/ouvidoria do banco contratante no corpo da publicação ou no rodapé (E-FTR, E-SHOT-FULL), justificando a manutenção de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Transparência regulatória na página de captação</td><td>MEDIUM</td><td>A empresa declara expressamente atuar como correspondente bancário do Banco BV e oferta simulação via WhatsApp, mas omite na página inspecionada e em seu rodapé a razão social completa, o CNPJ e os dados de ouvidoria da instituição financeira contratante exigidos pela Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-007">E-TXT-007</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-TXT-003</li><li>E-TXT-005</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Estabelecimentos (promotora de crédito em Brasília) que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - promotora de crédito &#34;Brasília&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:promotora de crédito:Brasília</span></td><td class="mono">https://www.yangoo.com.br/2022/04/financiamento-veiculos-financiar-carro-moto-itapema.html</td><td>yangoo.com.br<br><span class="muted">**Estabelecimento:** Yangoo Contabilidade Digital e Soluções Financeiras (Atuação listada em Itapema, Botucatu e Brasília) | **Uso da Marca e Recursos:** Publica artigos e páginas de captação intituladas com foco em &#34;Itapema, Botucatu e Brasília&#34;, afirmando: &#34;*Somos Correspondentes Bancários do Banco BV (uma das principais Instituições Financeiras do Brasil, em se tratando de financiamentos de veículos)*&#34; | Convida o usuário a realizar simulação gratuita diretamente via WhatsApp (vinculado à plataforma Franq Open Banking) | **Conformidade (CNPJ / Razão Social / Declaração):** Informa no portal a Razão Social (`Yangoo Contabilidade e Assessoria Ltda`) e o CNPJ (`39.279.496/0001-10`), declarando atuar apenas na intermediação financeira como correspondente bancário, mas não cita o número da Resolução CMN nº 4.935/2021 na postagem de captação</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:59:29.598956+00:00</div>
+      <div class="kv"><b>IP do servidor</b>64.233.190.121</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C4aa23dfaeb\attempt-2\manifest.json<br>sha256 4f98177da593294794bf82544876a0ca1e180440f11d9d1ab29ab46390e49083</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.yangoo.com.br/2022/04/financiamento-veiculos-financiar-carro-moto-itapema.html<br>Final: https://www.yangoo.com.br/2022/04/financiamento-veiculos-financiar-carro-moto-itapema.html</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C4aa23dfaeb\attempt-2\viewport.png</td><td class="mono">26056331be2b51907304d28b0d000d9f807af990b8e6d76fed8850ff0a82f988</td><td>243823</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C4aa23dfaeb\attempt-2\fullpage.png</td><td class="mono">a00a01ceb4a007d3f8673986f346d549f6c9f0b081c1793d20c51b15023a3495</td><td>682824</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C4aa23dfaeb\attempt-2\page.html.txt</td><td class="mono">03f4d45f9090b27305f108c837e72a62e429b7dfc4fedd8d0ee1d8bd8ae65b66</td><td>204758</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C4aa23dfaeb\attempt-2\text.txt</td><td class="mono">6e893bb38e97bb8e665bfadbe523c19f14c49f1148adbbb4a4cbbd7595af56bf</td><td>5520</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C4aa23dfaeb\attempt-2\page.json</td><td class="mono">bd0285f8a6d3b04f1458f136c97d3044eccfff7f016aec4e7356cd2b4723c035</td><td>51802</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:59+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:58:36+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:59:27+00:00</td><td>COLLECTING</td><td>QUEUED</td><td>transient collection failure, retry 1</td></tr>
+      <tr><td>2026-11-23T14:59:29+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T15:00:17+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T15:00:17+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T15:01:13+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T15:01:25+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

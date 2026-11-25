@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1392bc6553",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.fivecred.com.br/imovel-fivecred/index.html",
+  "final_url": "https://www.fivecred.com.br/imovel-fivecred/index.html",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.198.79.65",
+  "collected_at": "2026-11-23T14:42:22.847005+00:00",
+  "manifest_written_at": "2026-11-23T14:42:30.888580+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C1392bc6553\\attempt-1\\viewport.png",
+      "sha256": "6ddc84d0a4c7140c58462967639cf008d1cbc01b80a815706275c74fbaaa22a6",
+      "size_bytes": 47925
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C1392bc6553\\attempt-1\\fullpage.png",
+      "sha256": "6ddc84d0a4c7140c58462967639cf008d1cbc01b80a815706275c74fbaaa22a6",
+      "size_bytes": 47925
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C1392bc6553\\attempt-1\\page.html.txt",
+      "sha256": "c62f9421879437ab14457fb72b0ebd96fb8a60148253fce8a91dd1b4faea8165",
+      "size_bytes": 65493
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C1392bc6553\\attempt-1\\text.txt",
+      "sha256": "34d4c00de9bddfeaf8b9c74c9d1e793b6348abdb182e12f4b65fc0b007a609fc",
+      "size_bytes": 808
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C1392bc6553\\attempt-1\\page.json",
+      "sha256": "8f27d1d38cfdbe8d7fc224265be7a6e3eca5a1d78ca85a57e379bede2b13853a",
+      "size_bytes": 2780
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

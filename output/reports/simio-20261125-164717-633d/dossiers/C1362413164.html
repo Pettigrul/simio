@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C1362413164</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C1362413164 — akyveiculos.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.akyveiculos.com/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de uma revenda de veículos seminovos com identidade visual própria predominante, sem indícios de personificação do Banco BV ou uso indevido de logotipos. Contudo, ao promover intermediação de crédito automotivo e citar parceiros financeiros no rodapé, o estabelecimento omite seu CNPJ e a declaração obrigatória de correspondente bancário independente estipulada pela Resolução CMN nº 4.935/2021, configurando comunicação ambígua que requer revisão.
+[Revisor: CONFIRM] Trata-se de uma revenda de veículos seminovos que cita instituições financeiras (incluindo &#39;bv financeiro&#39;) e oferta financiamento automotivo, porém não apresenta no rodapé ou na página inicial sua inscrição de CNPJ, declaração formal de correspondente bancário independente nem canal de ouvidoria (Resolução CMN nº 4.935/2021). A identidade própria da loja é predominante e não há overbranding ou uso indevido de logotipo, justificando a confirmação como REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C1362413164/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 8abe245ec6af40960ce96ca0698a1d2f115274e2da2ee89ccf07d94d4ea841d6</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C1362413164/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 fa9cedf79e5fe66da39bcca95555a90be7640bdcb1d168a5b1ad65e6623490fd</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.akyveiculos.com/ (domínio: www.akyveiculos.com)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): akyveiculos.com — Com base nas consultas realizadas voltadas a lojas de veículos, revendas, feirões e correspondentes bancários na **região Nordeste** que divulgam financiamento das marcas **Banco BV** / **BV Financeira**, foram identificadas as seguintes páginas públicas relevantes para fins de conformidade (Resolução CMN nº 4.935/2021) e proteção de marca | **URL:** `https://akyveiculos.com/` | **Como utiliza a marca:** Revenda de seminovos que promove linhas de financiamento de até 60 meses e financiamento de particular para particular, indexando e referenciando diretamente a **BV Financeira** entre suas opções de crédito | Não exibe CNPJ nem menção obrigatória à relação contratual de correspondente bancário com a instituição</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C1362413164/attempt-1/viewport.png (sha256 8abe245ec6af4096…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C1362413164/attempt-1/fullpage.png (sha256 fa9cedf79e5fe66d…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Aky Veículos | Revenda de seminovos em Vitória da Conquista</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Aky Veículos selecionamos seminovos desde 1989 em Vitória da Conquista - Bahia.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Aky Veículos</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Aky Veículos | Revenda de seminovos em Vitória da Conquista</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Aky Veículos selecionamos seminovos desde 1989 em Vitória da Conquista - Bahia.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.akyveiculos.com/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Hyundai Creta Action</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Nissan Kicks Exclusive Pack Tech</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Hyundai Creta Limited</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Ford Ranger Limited V6</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Toyota Corolla Altis Premium Hybrid</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Hyundai Creta Platinum Safety</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Hyundai Creta Comfort</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Hyundai Creta Limited Safety</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Hyundai Creta Action</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Hyundai Creta Limited Safety</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Toyota Corolla GLI</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Hyundai Creta Comfort</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Kia Rio EX</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Chevrolet Tracker LTZ Turbo</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Hyundai Creta Limited Safety</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>INÍCIO A EMPRESA FINANCIAMENTO ESTOQUE FALE CONOSCO QUERO VENDER MEU CARRO SORRISOS CONQUISTADOS</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>INÍCIO A EMPRESA FINANCIAMENTO ESTOQUE FALE CONOSCO QUERO VENDER MEU CARRO SORRISOS CONQUISTADOS 2022/2023 Hyundai Creta Action 2022/2022 Nissan Kicks Exclusive Pack Tech 2024/2025 Hyundai Creta Limited 2024/2024 Ford Ranger Limited V6 2024/2024 Toyota Corolla Altis Premium Hybrid 2023/2024 Hyundai Creta Platinum Safety 2023/2024 Hyundai Creta Comfort 2024/2025 Hyundai Creta Limited Safety 2021/2021 Hyundai Creta Action 2023/2024 Hyundai Creta Limited Safety 2019/2020 Toyota Corolla GLI 2023/2024 Hyundai Creta Comfort 2020/2021 Kia Rio EX 2024/2025 Chevrolet Tracker LTZ Turbo 2024/2025 Hyundai Creta Limited Safety 2023/2024 Toyota Corolla Cross XRX Hybrid Aky Veículos selecionamos seminovos desde 1989 em Vitória da Conquista - Bahia.</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>loja de carros vitória da conquista seminovos vitória da conquista carros veículos aki veículos loja de carros olx webmotos mobialto concessionaria 0km icarros taxa 0 bradesco financiamentos bv financeiro santander banco toyota gm fiat vw volksvagem suv hyundai ​ Fale conosco Nome Telefone Email Insira uma mensagem Enviar HORÁRIO DE ATENDIMENTO: Segunda a Sexta das 08:00 às 18:00 - Sábado das 08:00 às 13:00 Telefone / WhatsApp: (77) 3421-9400</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>INÍCIO &lt;https://www.akyveiculos.com/&gt; | A EMPRESA &lt;https://www.akyveiculos.com/a-empresa&gt; | FINANCIAMENTO &lt;https://www.akyveiculos.com/financiamento&gt; | ESTOQUE &lt;https://www.akyveiculos.com/estoque&gt; | FALE CONOSCO &lt;https://www.akyveiculos.com/fale-conosco&gt; | QUERO VENDER MEU CARRO &lt;https://www.akyveiculos.com/quero-vender-meu-carro&gt; | SORRISOS CONQUISTADOS &lt;https://www.akyveiculos.com/sorrisos-que-conquistamos&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>VER ESTOQUE COMPLETO &lt;https://www.akyveiculos.com/estoque&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Produto Anterior</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Próximo Produto</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Falar com Roberta &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Roberta,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Falar com Fernanda &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Fernanda,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>footer</td><td>Enviar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Facebook &lt;https://www.facebook.com/AkyVeiculos&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Instagram &lt;https://www.instagram.com/akyveiculos&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td> &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Roberta,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Falar com Roberta &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Roberta,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td> &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Fernanda,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Falar com Fernanda &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Fernanda,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send/?phone=557734219400&amp;text=Ol%C3%A1+estava+navegando+pelo+site+da+Aky+Ve%C3%ADculos+e+preciso+de+mais+informa%C3%A7%C3%B5es!!%21&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>bv financeira</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>loja de carros vitória da conquista seminovos vitória da conquista carros veículos aki veículos loja de carros olx webmotos mobialto concessionaria 0km icarros taxa 0 bradesco financiamentos bv financeiro santander banco toyota gm fiat vw volksvagem suv hyundai</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Telefone</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>HORÁRIO DE ATENDIMENTO: Segunda a Sexta das 08:00 às 18:00 - Sábado das 08:00 às 13:00</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Telefone / WhatsApp: (77) 3421-9400</td></tr>
+      <tr id="E-NET-BLOCKED"><td class="mono"><b>E-NET-BLOCKED</b></td><td>network</td><td>collection</td><td>14 requisição(ões) bloqueadas pela política: https://frog.wix.com/panorama?src=11&amp;evid=114700&amp;sessionId=af00a904-b2d9-4543-b0f4-71836dc6c61d&amp;platform=viewer&amp;batchLength=43&amp;batchSize=29645&amp;batchItems=INFO%7Ccom.wixpress.html-client.wix-thunderbol -&gt; empty or oversized URL; https://frog.wix.com/pa?_msid=8f82f730-e0bb-4206-bedf-5b8500517597&amp;vsi=af00a904-b2d9-4543-b0f4-71836dc6c61d&amp;_av=thunderbolt-1.18482.0&amp;isb=true&amp;isbr=ua&amp;_brandId=wix&amp;_siteBranchId=undefined&amp;_ms=2742&amp;_is -&gt; empty or oversized URL; https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/916725950_18647263510025116_4979522422494422751_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=101&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached; https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/914937810_18646947028025116_8648154736690760151_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached; https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/893953084_18645386053025116_1416698087461881091_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=109&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identidade visual própria da revenda de veículos (Aky Veículos Seminovos), com paleta vermelha e branca, fotos da fachada física e do estoque de automóveis, sem qualquer elemento visual mimetizando o Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O nome fantasia Aky Veículos é apresentado consistentemente em títulos, cabeçalho e imagens, mas falta a identificação cadastral formal (CNPJ e razão social).</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência da identificação mandatória de correspondente bancário e de contatos de ouvidoria da instituição parceira ao ofertar intermediação de crédito/financiamento.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Comunicação estritamente comercial voltada à compra e venda de veículos seminovos em Vitória da Conquista/BA, sem assunção de postura institucional bancária.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HDR">E-HDR</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não há aplicação de logotipo (nem atual, nem antigo) do Banco BV ou da BV Financeira; a marca aparece unicamente como texto simples.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A jornada direciona o usuário para contato direto via WhatsApp e telefone com consultores da própria loja para negociação de estoque e propostas de compra/financiamento.</td><td class="mono"><a href="#E-CTA-4">E-CTA-4</a> <a href="#E-CTA-5">E-CTA-5</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da revenda (telefone fixo e WhatsApp com DDD 77 de Vitória da Conquista/BA).</td><td class="mono"><a href="#E-TXT-005">E-TXT-005</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Risco de confusão direta de identidade é baixo devido ao predomínio evidente da loja física, porém a relação contratual financeira e as condições de intermediação permanecem omissas.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página cita financiamento e faz referência textual a instituições financeiras (incluindo BV e concorrentes), mas não apresenta a declaração expressa de correspondente bancário independente, nem informa canal de ouvidoria conforme preconiza a Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Embora a marca comercial do estabelecimento (Aky Veículos) esteja clara em todo o layout, a razão social completa e o número de inscrição no CNPJ não são exibidos no rodapé ou no corpo da página inicial analisada. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: A identidade visual do estabelecimento se destaca totalmente, com fotos de fachada, estoque real e logotipo próprio de seminovos. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Menção à marca BV inserida em contexto multibancos/concorrentes (Bradesco, Santander, Toyota) em bloco de palavras-chave no rodapé. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-002">E-TXT-002</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O site pertence à Aky Veículos, revenda de seminovos localizada em Vitória da Conquista - Bahia.</li><li>A menção ao Banco BV / BV Financeira ocorre de forma estritamente textual no rodapé (&#39;bv financeiro&#39;, &#39;bv financeira&#39;), em conjunto com concorrentes como Bradesco e Santander.</li><li>Nenhum logotipo oficial atual ou logotipo antigo da BV foi detectado nas imagens ou nos elementos gráficos da página.</li><li>Não há exibição de CNPJ ou razão social da empresa na página inicial inspecionada.</li><li>Não consta aviso regulatório de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 nem informação de ouvidoria.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>O conteúdo da subpágina interna &#39;/financiamento&#39; não pôde ser examinado nesta coleta para verificar se os avisos regulatórios e dados de CNPJ estão presentes nela.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de uma revenda de veículos seminovos com identidade visual própria predominante, sem indícios de personificação do Banco BV ou uso indevido de logotipos. Contudo, ao promover intermediação de crédito automotivo e citar parceiros financeiros no rodapé, o estabelecimento omite seu CNPJ e a declaração obrigatória de correspondente bancário independente estipulada pela Resolução CMN nº 4.935/2021, configurando comunicação ambígua que requer revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Aky Veículos<br><span class="mono">domain:akyveiculos.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>akyveiculos.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/AkyVeiculos</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/akyveiculos</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Aky Veículos</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(77) 3421-9400</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Roberta,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com Roberta &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Roberta,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Fernanda,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com Fernanda &lt;https://wa.me/557734219400?text=Ol%C3%A1%20Fernanda,%20estava%20no%20site%20e%20preciso%20de%20mais%20informa%C3%A7%C3%B5es!&gt;</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send/?phone=557734219400&amp;text=Ol%C3%A1+estava+navegando+pelo+site+da+Aky+Ve%C3%ADculos+e+preciso+de+mais+informa%C3%A7%C3%B5es!!%21&amp;type=phone_number&amp;app_absent=0&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-TXT-005">E-TXT-005</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de uma revenda de veículos seminovos que cita instituições financeiras (incluindo &#39;bv financeiro&#39;) e oferta financiamento automotivo, porém não apresenta no rodapé ou na página inicial sua inscrição de CNPJ, declaração formal de correspondente bancário independente nem canal de ouvidoria (Resolução CMN nº 4.935/2021). A identidade própria da loja é predominante e não há overbranding ou uso indevido de logotipo, justificando a confirmação como REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Menção residual em SEO/palavras-chave</td><td>LOW</td><td>A menção a &#39;bv financeiro&#39; ocorre de forma secundária em um bloco de palavras-chave no rodapé junto a múltiplos concorrentes, sem logotipo do Banco BV ou destaque visual da marca.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>Ausência de inspeção da página específica de financiamento</td><td>MEDIUM</td><td>O menu possui link para a subpágina &#39;/financiamento&#39; que não foi coletada, onde poderiam constar eventuais dados regulatórios ou ofertas detalhadas.</td><td class="mono"><a href="#E-NAV">E-NAV</a> <a href="#E-HDR">E-HDR</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-SHOT-VIEWPORT</li><li>E-SHOT-FULL</li><li>E-TITLE</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Lojas, revendas e correspondentes da região Nordeste que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Alagoas&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Alagoas&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Bahia&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Bahia&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Ceará&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Ceará&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Maranhão&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Maranhão&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Paraíba&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Paraíba&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Pernambuco&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Pernambuco&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Piauí&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Piauí&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Rio Grande do Norte&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Rio Grande do Norte&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Sergipe&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Sergipe&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:regiao-Nordeste</span></td><td class="mono">https://www.akyveiculos.com/</td><td>akyveiculos.com<br><span class="muted">Com base nas consultas realizadas voltadas a lojas de veículos, revendas, feirões e correspondentes bancários na **região Nordeste** que divulgam financiamento das marcas **Banco BV** / **BV Financeira**, foram identificadas as seguintes páginas públicas relevantes para fins de conformidade (Resolução CMN nº 4.935/2021) e proteção de marca | **URL:** `https://akyveiculos.com/` | **Como utiliza a marca:** Revenda de seminovos que promove linhas de financiamento de até 60 meses e financiamento de particular para particular, indexando e referenciando diretamente a **BV Financeira** entre suas opções de crédito | Não exibe CNPJ nem menção obrigatória à relação contratual de correspondente bancário com a instituição</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:16:53.626306+00:00</div>
+      <div class="kv"><b>IP do servidor</b>162.159.143.12</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C1362413164/attempt-1/manifest.json<br>sha256 382808d0853d72f4b9fe92299e26be99957875cdfcffb10f0a41e48753691036</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.akyveiculos.com/<br>Final: https://www.akyveiculos.com/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C1362413164/attempt-1/viewport.png</td><td class="mono">8abe245ec6af40960ce96ca0698a1d2f115274e2da2ee89ccf07d94d4ea841d6</td><td>681776</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C1362413164/attempt-1/fullpage.png</td><td class="mono">fa9cedf79e5fe66da39bcca95555a90be7640bdcb1d168a5b1ad65e6623490fd</td><td>1211808</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C1362413164/attempt-1/page.html.txt</td><td class="mono">7f15098b62b0b478b2c2b46bbc03965cdce81ba79444195837af180018eedc9f</td><td>1468881</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C1362413164/attempt-1/text.txt</td><td class="mono">1887316c6f412babff0a03aa5faf65ac098f381a78f42bf895270a1672176563</td><td>1481</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C1362413164/attempt-1/page.json</td><td class="mono">a44c6ac5f7355a22c366a26d95f91eaab9fd1632c4319575fb82829385dcc9bb</td><td>30016</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+<h3>Requisições bloqueadas pela política de rede</h3><ul class="mono"><li>https://frog.wix.com/panorama?src=11&amp;evid=114700&amp;sessionId=af00a904-b2d9-4543-b0f4-71836dc6c61d&amp;platform=viewer&amp;batchLength=43&amp;batchSize=29645&amp;batchItems=INFO%7Ccom.wixpress.html-client.wix-thunderbol -&gt; empty or oversized URL</li><li>https://frog.wix.com/pa?_msid=8f82f730-e0bb-4206-bedf-5b8500517597&amp;vsi=af00a904-b2d9-4543-b0f4-71836dc6c61d&amp;_av=thunderbolt-1.18482.0&amp;isb=true&amp;isbr=ua&amp;_brandId=wix&amp;_siteBranchId=undefined&amp;_ms=2742&amp;_is -&gt; empty or oversized URL</li><li>https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/916725950_18647263510025116_4979522422494422751_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=101&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached</li><li>https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/914937810_18646947028025116_8648154736690760151_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=100&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached</li><li>https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/893953084_18645386053025116_1416698087461881091_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=109&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached</li><li>https://instafeed.codev.wixapps.net/links-api/media/count?ids=18101198072689222,18093833753509909,18121293710107488,18007069602033877,18135101014773175,18030303854946462,18132280750850597,181234827444 -&gt; request cap reached</li><li>https://panorama.wixapps.net/api/v1/bulklog -&gt; request cap reached</li><li>https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/902047743_18645339424025116_225748162850434373_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=104&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZm -&gt; request cap reached</li><li>https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/899192927_18645133567025116_7281758388461124402_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=101&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached</li><li>https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/892808600_18644800969025116_973411995098873503_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=104&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZm -&gt; request cap reached</li><li>https://scontent-iad3-2.cdninstagram.com/v/t51.82787-15/894385342_18644663926025116_4226519596555705079_n.jpg?stp=dst-jpg_e35_tt6&amp;_nc_cat=106&amp;_nc_map=urlgen_bucketless&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZ -&gt; request cap reached</li><li>https://static.parastorage.com/services/instagram-business/180529ba18aafff54dda6079f7bbb79f372129ff920e2de173f448a5/vendors~proGallery_reactPlayer.chunk.min.js -&gt; request cap reached</li><li>https://analytics.google.com/g/collect?v=2&amp;tid=G-4091GJPS7C&amp;gtm=45je6bh1v9121321024za200zb893824838zd893824838xf1&amp;_p=1795634215423&amp;gcs=G111&amp;gcd=13t3t3t3t5l1&amp;npa=0&amp;dma=0&amp;gdid=dODgyNj.dYzMzMD&amp;_eu=AAAAAG -&gt; request cap reached</li><li>https://www.google.com/g/collect?v=2&amp;tid=G-4091GJPS7C&amp;gtm=45je6bh1v9121321024za200zb893824838zd893824838xf1&amp;_p=1795634215423&amp;gcs=G111&amp;gcd=13t3t3t3t5l1&amp;npa=0&amp;dma=0&amp;gdid=dODgyNj.dYzMzMD&amp;_eu=AAAAAGQC&amp;are -&gt; request cap reached</li></ul>  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:09+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-25T19:16:53+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:02+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:02+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:51+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:18:13+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

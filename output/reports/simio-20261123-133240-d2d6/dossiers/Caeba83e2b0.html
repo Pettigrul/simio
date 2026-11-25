@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Caeba83e2b0</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Caeba83e2b0 — veloxsolucoes.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://veloxsolucoes.com.br/guarulhos/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma unidade franqueada da rede de correspondentes bancários &#39;Velox Soluções Financeiras&#39; (Unidade Guarulhos/SP), enquadrando-se no escopo de investigação de COBANs. Embora utilize identidade visual própria e deixe claro que atua como intermediador multimarcas, requer revisão humana (B_AMBIGUOUS_COMMUNICATION / REVIEW_REQUIRED) por dois pontos de atenção frente à Resolução CMN nº 4.935/2021: (1) utilização de imagem do logotipo do Banco BV (&#39;bv.png&#39; em E-IMG-9) na listagem de bancos parceiros; e (2) ausência de divulgação da Razão Social e do CNPJ específicos da unidade franqueada local de Guarulhos/SP (exibindo apenas o CNPJ 27.555.920/0001-22 da franqueadora matriz em São José do Rio Preto/SP no rodapé), além da ausência de dados de Ouvidoria das instituições parceiras.
+[Revisor: CONFIRM] Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). A página analisada pertence a uma unidade franqueada de correspondente bancário/promotora de crédito (Velox Soluções Financeiras - Unidade Guarulhos/SP, E-TITLE, E-FOLD) que exibe o logotipo do Banco BV entre suas instituições parceiras (E-IMG-9) para captação de propostas de financiamento e empréstimo via WhatsApp (E-CONTACT-3 a E-CONTACT-7). Apesar de declarar atuação como correspondente bancário e informar o CNPJ da franqueadora matriz no rodapé (E-FTR, E-TXT-023, E-TXT-024), a página omite a Razão Social e o CNPJ específicos da unidade franqueada local responsável pelo atendimento, bem como os canais de Ouvidoria das instituições financeiras contratantes, demandando revisão conforme a Resolução CMN nº 4.935/2021.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Caeba83e2b0/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 5bc48b89158725e016704f6c302080893035dec51421840dfa343c010d6fb925</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Caeba83e2b0/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 1611de9b21ae3bdae355355cac00934ccbb1b588f7546c013b981ce794e9fc75</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://veloxsolucoes.com.br/guarulhos/ (domínio: veloxsolucoes.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): veloxsolucoes.com.br — **Uso da Marca e Recursos:** A rede destaca o **Banco BV** entre suas instituições parceiras para financiamento de veículos/imóveis, crédito consignado e energia solar, com página específica de captação via WhatsApp para a &#34;Unidade Velox em Brasília/DF&#34; | Contudo, na página da unidade de Brasília, há **omissão** do CNPJ e da Razão Social específicos da franquia local do DF (o portal institucional vincula apenas o CNPJ da franqueadora matriz em São José do Rio Preto/SP: `Velox Soluções Financeiras LTDA - CNPJ 27.555.920/0001-22`)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\Caeba83e2b0\attempt-1\viewport.png (sha256 5bc48b89158725e0…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\Caeba83e2b0\attempt-1\fullpage.png (sha256 1611de9b21ae3bda…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Velox Soluções Financeiras em Guarulhos | Crédito, consórcio e seguros</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Unidade Velox em Guarulhos/SP: crédito consignado, empréstimo, financiamento, consórcio, seguros e soluções para empresas. Fale com a unidade pelo WhatsApp.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Velox Soluções Financeiras</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Velox Soluções Financeiras em Guarulhos | Crédito, consórcio e seguros</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Unidade Velox em Guarulhos/SP: crédito consignado, empréstimo, financiamento, consórcio, seguros e soluções para empresas. Fale com a unidade pelo WhatsApp.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://veloxsolucoes.com.br/guarulhos/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Soluções financeiras em Guarulhos</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>A rede Velox em números</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Soluções para cada momento da sua vida</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Crédito consignado</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>A chave da sua casa</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>O carro novo</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Empréstimo pessoal</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>O seu negócio</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Não sabe por onde começar?</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Muito mais que crédito, entregamos resultados</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Você conta o que precisa</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Comparamos mais de 100 instituições</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Mostramos cada número</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Você decide, sem pressa</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Um marketplace com as maiores instituições do país</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Para Você Sua Empresa Como funciona Parceiros Onde estamos Falar no WhatsApp ↗</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Pular para o conteúdo Para Você Sua Empresa Como funciona Parceiros Onde estamos Falar no WhatsApp ↗ Unidade Velox · Guarulhos/SP Soluções financeiras em Guarulhos Uma unidade da rede Velox, com mais de 1.200 unidades no Brasil Comparamos as condições de mais de 100 instituições e explicamos cada número antes de você assinar. Para você e sua empresa Quero crédito Consignado, empréstimo, financiamento, consórcio e soluções para empresas. → Atendimento da unidade Falar no WhatsApp (11) 99215-0677, com um consultor da Velox Guarulhos. → A rede Velox em números 1.200+ unidades em todos os estados 100+ instituições parceiras 300+ produtos e soluções 97% de satisfação no atendimento</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Franquia Associada à ABF Verificada por ReclameAQUI Unidade Guarulhos WhatsApp (11) 99215-0677 Instagram @veloxguarulhoscentro Privacidade Produtos Para você Para empresas Consórcios Rede Velox Site da Velox Quem Somos Blog Velox Seja Velox Seja um Franqueado Aviso legal Onde estamos Atendimento em Guarulhos/SP O atendimento é combinado pelo WhatsApp. WhatsApp (11) 99215-0677 Velox Soluções Financeiras · Unidade Guarulhos Unidade franqueada da rede Velox Soluções Financeiras Franqueadora: Velox Soluções Financeiras LTDA · CNPJ 27.555.920/0001-22 · São José do Rio Preto/SP A Velox atua como correspondente bancário. A análise e a aprovação de crédito, as taxas e as condições são definidas pelas instituições parceiras. © 2026 Velox Soluções Financeiras. Todos os direitos reservados. Política de Privacidade Aviso Legal</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Velox Soluções Financeiras Guarulhos &lt;https://veloxsolucoes.com.br/guarulhos/&gt; | Para Você &lt;https://veloxsolucoes.com.br/guarulhos/#para-voce&gt; | Sua Empresa &lt;https://veloxsolucoes.com.br/guarulhos/#sua-empresa&gt; | Como funciona &lt;https://veloxsolucoes.com.br/guarulhos/#como-funciona&gt; | Parceiros &lt;https://veloxsolucoes.com.br/guarulhos/#parceiros&gt; | Onde estamos &lt;https://veloxsolucoes.com.br/guarulhos/#onde-estamos&gt; | Falar no WhatsApp ↗ &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Falar no WhatsApp ↗ &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Ver todos os parceiros ↗ &lt;https://veloxsolucoesfinanceiras.com.br/HTML/PAGINAS/parceiros.html&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Imóvel</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Auto</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Contempladas</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Conheça a Velox → &lt;https://veloxsolucoesfinanceiras.com.br/HTML/PAGINAS/a-velox.html&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Falar no WhatsApp ↗ &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>ATENDIMENTO DA UNIDADE Falar no WhatsApp (11) 99215-0677, com um consultor da Velox Guarulhos. → &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>APOSENTADOS E SERVIDORES → Crédito consignado Parcelas descontadas direto no benefício do INSS ou na folha de pagamento. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20saber%20sobre%20cr%C3%A9dito%20consignado.&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>CASA PRÓPRIA → A chave da sua casa Consórcio ou financiamento de imóvel: comparamos os dois caminhos com você. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20saber%20sobre%20cons%C3%B3rcio%20ou%20financiamento%20de%20im%C3%B3vel.&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>VEÍCULOS → O carro novo Financiamento ou consórcio, com o custo total na mesa. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20saber%20sobre%20financiamento%20ou%20cons%C3%B3rcio%20de%20ve%C3%ADculo.&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>DINHEIRO NA MÃO → Empréstimo pessoal Para tirar uma dívida do caminho ou antecipar um projeto. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20saber%20sobre%20empr%C3%A9stimo%20pessoal.&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>PARA SUA EMPRESA → O seu negócio Do MEI à grande operação: capital de giro, antecipação de recebíveis, financiamento de máquinas e crédito estruturado. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20saber%20sobre%20cr%C3%A9dito%20para%20a%20minha%20empresa.&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>CONSULTORIA → Não sabe por onde começar? Conte o que precisa: explicamos cada número antes de você assinar. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20falar%20com%20um%20consultor.&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20me%20interesso%20por%20Cons%C3%B3rcio%20de%20Im%C3%B3vel&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20me%20interesso%20por%20Cons%C3%B3rcio%20de%20Autom%C3%B3vel&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.%20Quero%20saber%20sobre%20cartas%20contempladas.&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>page</td><td>toque aqui para abrir &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>footer</td><td>WhatsApp (11) 99215-0677 &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>footer</td><td>Instagram @veloxguarulhoscentro &lt;https://www.instagram.com/veloxguarulhoscentro/&gt;</td></tr>
+      <tr id="E-CONTACT-15"><td class="mono"><b>E-CONTACT-15</b></td><td>contact</td><td>footer</td><td>Velox no Facebook &lt;https://www.facebook.com/veloxsolucoesfinanceiras/&gt;</td></tr>
+      <tr id="E-CONTACT-16"><td class="mono"><b>E-CONTACT-16</b></td><td>contact</td><td>footer</td><td>Instagram da Velox Guarulhos &lt;https://www.instagram.com/veloxguarulhoscentro/&gt;</td></tr>
+      <tr id="E-CONTACT-17"><td class="mono"><b>E-CONTACT-17</b></td><td>contact</td><td>footer</td><td>WhatsApp (11) 99215-0677 &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-CONTACT-18"><td class="mono"><b>E-CONTACT-18</b></td><td>contact</td><td>page</td><td>Fale com a Velox Guarulhos no WhatsApp &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://veloxsolucoes.com.br/assets/img-logo/velox-logo-branco.png (176x52, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Itaú&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/itau.png (71x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Bradesco&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/bradesco.png (94x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Santander&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/santander.png (92x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco do Brasil&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/bb.png (103x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;C6 Consig&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/c6.png (88x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Inter&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/inter.png (106x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco PAN&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/pan.png (91x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BV&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/bv.png (73x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco Safra&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/safra.png (102x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco BMG&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/bmg.png (77x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco Daycoval&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/daycoval.png (98x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banrisul&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/banrisul.png (104x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Creditas&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/creditas.png (116x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-15"><td class="mono"><b>E-IMG-15</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Mercantil Bank&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/mercantil.png (104x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-16"><td class="mono"><b>E-IMG-16</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Cetelem&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/cetelem.png (109x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-17"><td class="mono"><b>E-IMG-17</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Olé Consignado&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/ole.png (102x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-18"><td class="mono"><b>E-IMG-18</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/itau.png (71x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-19"><td class="mono"><b>E-IMG-19</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/bradesco.png (94x46, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-20"><td class="mono"><b>E-IMG-20</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://veloxsolucoes.com.br/assets/img-logos-parceiros/santander.png (92x46, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>ATENDIMENTO DA UNIDADE</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>instituições parceiras</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>de satisfação no atendimento</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Banco vende o produto que tem. Nós comparamos as condições de mais de 100 instituições e recomendamos a que faz sentido para o seu caso.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Bancos, financeiras e administradoras lado a lado, atrás da condição que cabe no seu caso.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Bancos, financeiras, administradoras de consórcio e seguradoras: mais de 100 parceiros comparados a favor do seu caso.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Ver todos os parceiros</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Nove empresas por trás de cada atendimento</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>São mais de 1.200 unidades em todos os estados, 100 instituições parceiras e 300 soluções à disposição. Quando você fala com uma unidade Velox, é essa estrutura inteira que responde.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Ser reconhecida como a rede de soluções mais completa para pessoas físicas e jurídicas, através de um plano voltado ao sucesso de seus parceiros e clientes.</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Atendimento Velox em Guarulhos/SP</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Conte o que você precisa e um consultor da unidade Guarulhos responde pelo WhatsApp, com as condições das instituições parceiras lado a lado.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Preencha e o WhatsApp da unidade abre com a sua mensagem pronta.</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Ao enviar, o WhatsApp da unidade abre com os dados que você digitou, e eles só chegam à unidade se você enviar a mensagem. Veja como a unidade trata seus dados na Política de Privacidade.</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>WhatsApp (11) 99215-0677</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Atendimento em Guarulhos/SP</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>O atendimento é combinado pelo WhatsApp.</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>WhatsApp (11) 99215-0677</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Franqueadora: Velox Soluções Financeiras LTDA · CNPJ 27.555.920/0001-22 · São José do Rio Preto/SP</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>A Velox atua como correspondente bancário. A análise e a aprovação de crédito, as taxas e as condições são definidas pelas instituições parceiras.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza identidade visual própria da marca &#39;Velox Soluções Financeiras&#39; (cores azul escuro e laranja, logotipo próprio no topo e rodapé), sem imitar o layout do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Embora identifique a franqueadora matriz (Velox Soluções Financeiras LTDA - CNPJ 27.555.920/0001-22), a página de captação da unidade franqueada de Guarulhos/SP não informa a razão social nem o CNPJ específico da pessoa jurídica franqueada local responsável pelo atendimento.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-023">E-TXT-023</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Há declaração no rodapé de que &#39;A Velox atua como correspondente bancário&#39;, porém localizada apenas no final da página, sem identificação do CNPJ da unidade local de Guarulhos e sem divulgação dos telefones de SAC/Ouvidoria das instituições financeiras contratantes.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-024">E-TXT-024</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O discurso comercial posiciona a empresa claramente como um intermediador multimarcas (&#39;Comparamos as condições de mais de 100 instituições&#39;), sem se passar pelo próprio Banco BV.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-009">E-TXT-009</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>O código da página carrega a imagem do logotipo do Banco BV (&#39;bv.png&#39;, alt=&#39;Banco BV&#39;) juntamente com logotipos de outros bancos parceiros, prática que contraria a diretriz do art. 14, II da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-IMG-9">E-IMG-9</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-8">E-IMG-8</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A jornada de captação direciona o usuário para atendimento consultivo via WhatsApp para contratação de crédito consignado, financiamento de veículos/imóveis e empréstimos, sem oferecer serviços restritos de pós-venda bancário (como 2ª via de boleto).</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-TXT-015">E-TXT-015</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato (WhatsApp (11) 99215-0677 e Instagram @veloxguarulhoscentro) são claramente identificados como pertencentes à unidade Velox Guarulhos.</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-14">E-CONTACT-14</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="LEGITIMATE">LEGITIMATE</td><td>Baixo risco de o consumidor acreditar estar falando diretamente com o Banco BV, visto que a marca Velox predomina em toda a página; contudo, subsistem pendências de conformidade regulatória de COBAN (uso de logotipo e omissão do CNPJ da franquia local).</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-FTR">E-FTR</a> <a href="#E-IMG-9">E-IMG-9</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Uso de arquivo de logotipo do Banco BV (bv.png, alt=&#39;Banco BV&#39;) na seção de instituições parceiras do correspondente bancário, o que requer verificação à luz da vedação do art. 14, II da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-IMG-9">E-IMG-9</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página pertence a uma unidade franqueada (&#39;Unidade Velox · Guarulhos/SP&#39;), mas informa no rodapé apenas a razão social e o CNPJ da franqueadora matriz em São José do Rio Preto/SP (Velox Soluções Financeiras LTDA · CNPJ 27.555.920/0001-22), omitindo a identificação societária (Razão Social e CNPJ) específica da unidade franqueada local que realiza o atendimento, além de não exibir canais de ouvidoria das instituições contratantes. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-023">E-TXT-023</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] INSTITUTIONAL_LANGUAGE: Apresenta-se claramente como rede de soluções financeiras e correspondente bancário multimarcas que compara condições de mais de 100 instituições parceiras. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-024">E-TXT-024</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Identidade visual totalmente distinta da instituição financeira, utilizando marca e cores próprias da Velox Soluções Financeiras. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-IMG-1">E-IMG-1</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página inspecionada (https://veloxsolucoes.com.br/guarulhos/) pertence à &#39;Unidade Velox · Guarulhos/SP&#39;, integrante da rede de franquias Velox Soluções Financeiras [E-URL, E-FOLD, E-FTR].</li><li>O estabelecimento oferta intermediação de crédito consignado, financiamento de veículos e imóveis, empréstimo pessoal, consórcios e crédito empresarial via WhatsApp [E-FOLD, E-CONTACT-3 a E-CONTACT-7].</li><li>A página inclui a imagem do logotipo do Banco BV (E-IMG-9: alt=&#39;Banco BV&#39;, src=&#39;.../assets/img-logos-parceiros/bv.png&#39;) em um carrossel/lista de instituições financeiras parceiras juntamente com Itaú, Bradesco, Santander, Banco do Brasil, C6, Inter, PAN, Safra, BMG, Daycoval, etc. [E-IMG-2 a E-IMG-17].</li><li>No rodapé consta a declaração &#39;A Velox atua como correspondente bancário&#39; e a identificação apenas da franqueadora matriz: &#39;Franqueadora: Velox Soluções Financeiras LTDA · CNPJ 27.555.920/0001-22 · São José do Rio Preto/SP&#39;, sem informar a razão social e o CNPJ da unidade franqueada de Guarulhos/SP [E-FTR, E-TXT-023, E-TXT-024].</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Na captura de tela de página inteira (E-SHOT-FULL), as seções intermediárias da página aparecem em branco (provavelmente devido a animações de carregamento &#39;lazy-load&#39; baseadas em rolagem), embora os elementos de texto e imagens (incluindo E-IMG-9) tenham sido extraídos do DOM.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma unidade franqueada da rede de correspondentes bancários &#39;Velox Soluções Financeiras&#39; (Unidade Guarulhos/SP), enquadrando-se no escopo de investigação de COBANs. Embora utilize identidade visual própria e deixe claro que atua como intermediador multimarcas, requer revisão humana (B_AMBIGUOUS_COMMUNICATION / REVIEW_REQUIRED) por dois pontos de atenção frente à Resolução CMN nº 4.935/2021: (1) utilização de imagem do logotipo do Banco BV (&#39;bv.png&#39; em E-IMG-9) na listagem de bancos parceiros; e (2) ausência de divulgação da Razão Social e do CNPJ específicos da unidade franqueada local de Guarulhos/SP (exibindo apenas o CNPJ 27.555.920/0001-22 da franqueadora matriz em São José do Rio Preto/SP no rodapé), além da ausência de dados de Ouvidoria das instituições parceiras.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Velox Soluções Financeiras LTDA<br><span class="mono">cnpj:27555920000122</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>veloxsolucoes.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>27.555.920/0001-22</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>ional vincula apenas o CNPJ da franqueadora matriz em São José do Rio Preto/SP: `Velox Soluções Financeiras LTDA - CNPJ 27.555.920/0001-22</td></tr>
+      <tr><td>legal_name</td><td>Velox Soluções Financeiras LTDA</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/veloxguarulhoscentro/</td><td class="mono"><a href="#E-CONTACT-14">E-CONTACT-14</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/veloxsolucoesfinanceiras/</td><td class="mono"><a href="#E-CONTACT-15">E-CONTACT-15</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Velox Soluções Financeiras</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 99215-0677</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): veloxsolucoes.com.br — **Uso da Marca e Recursos:** A rede destaca o **Banco BV** entre suas instituições parceiras para financiamento de veículos/imóveis, crédito consign</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar no WhatsApp ↗ &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20Guarulhos.&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>ATENDIMENTO DA UNIDADE Falar no WhatsApp (11) 99215-0677, com um consultor da Velox Guarulhos. → &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Velox%20</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>APOSENTADOS E SERVIDORES → Crédito consignado Parcelas descontadas direto no benefício do INSS ou na folha de pagamento. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pel</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>CASA PRÓPRIA → A chave da sua casa Consórcio ou financiamento de imóvel: comparamos os dois caminhos com você. &lt;https://api.whatsapp.com/send?phone=5511992150677&amp;text=Ol%C3%A1%2C%20vim%20pelo%20site%2</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Franquia Associada à ABF Verificada por ReclameAQUI Unidade Guarulhos WhatsApp (11) 99215-0677 Instagram @veloxguarulhoscentro Privacidade Produtos Para você Para empresas Consórcios Rede Velox Site d</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiras</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Uso da Marca e Recursos:** A rede destaca o **Banco BV** entre suas instituições parceiras para financiamento de veículos/imóveis, crédito consignado e energia solar, com página específica de captaç</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-8">E-IMG-8</a> <a href="#E-IMG-9">E-IMG-9</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-023">E-TXT-023</a> <a href="#E-TXT-024">E-TXT-024</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-14">E-CONTACT-14</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). A página analisada pertence a uma unidade franqueada de correspondente bancário/promotora de crédito (Velox Soluções Financeiras - Unidade Guarulhos/SP, E-TITLE, E-FOLD) que exibe o logotipo do Banco BV entre suas instituições parceiras (E-IMG-9) para captação de propostas de financiamento e empréstimo via WhatsApp (E-CONTACT-3 a E-CONTACT-7). Apesar de declarar atuação como correspondente bancário e informar o CNPJ da franqueadora matriz no rodapé (E-FTR, E-TXT-023, E-TXT-024), a página omite a Razão Social e o CNPJ específicos da unidade franqueada local responsável pelo atendimento, bem como os canais de Ouvidoria das instituições financeiras contratantes, demandando revisão conforme a Resolução CMN nº 4.935/2021.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Renderização visual de elementos intermediários</td><td>LOW</td><td>As seções intermediárias da captura de página inteira não foram renderizadas visualmente (provável efeito de animação por scroll), mas a presença do arquivo de logotipo do Banco BV e dos textos foi devidamente comprovada no DOM extraído.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-9">E-IMG-9</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-024">E-TXT-024</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Estabelecimentos (promotora de crédito em Brasília) que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - promotora de crédito &#34;Brasília&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:promotora de crédito:Brasília</span></td><td class="mono">https://veloxsolucoes.com.br/guarulhos/</td><td>veloxsolucoes.com.br<br><span class="muted">**Uso da Marca e Recursos:** A rede destaca o **Banco BV** entre suas instituições parceiras para financiamento de veículos/imóveis, crédito consignado e energia solar, com página específica de captação via WhatsApp para a &#34;Unidade Velox em Brasília/DF&#34; | Contudo, na página da unidade de Brasília, há **omissão** do CNPJ e da Razão Social específicos da franquia local do DF (o portal institucional vincula apenas o CNPJ da franqueadora matriz em São José do Rio Preto/SP: `Velox Soluções Financeiras LTDA - CNPJ 27.555.920/0001-22`)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:34:38.240896+00:00</div>
+      <div class="kv"><b>IP do servidor</b>191.6.212.108</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\Caeba83e2b0\attempt-1\manifest.json<br>sha256 f711845f9806e8bf18846f75fb0aedb73b83f17a10a6e277c619ffffd9c13013</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://veloxsolucoes.com.br/guarulhos/<br>Final: https://veloxsolucoes.com.br/guarulhos/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\Caeba83e2b0\attempt-1\viewport.png</td><td class="mono">5bc48b89158725e016704f6c302080893035dec51421840dfa343c010d6fb925</td><td>748426</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\Caeba83e2b0\attempt-1\fullpage.png</td><td class="mono">1611de9b21ae3bdae355355cac00934ccbb1b588f7546c013b981ce794e9fc75</td><td>1038026</td></tr>
+      <tr><td>html</td><td class="mono">evidence\Caeba83e2b0\attempt-1\page.html.txt</td><td class="mono">74de1fb49cbf429342668a3fe5e0ada674e47ca696441f6e8aa35bd9fd9517a3</td><td>43258</td></tr>
+      <tr><td>text</td><td class="mono">evidence\Caeba83e2b0\attempt-1\text.txt</td><td class="mono">8e8b4e4b6e02fb28617f047ccc89ceceb8ba4cca3bfaae675716670738adba84</td><td>6674</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\Caeba83e2b0\attempt-1\page.json</td><td class="mono">2df61d8fe026afc773e821f20d8fa50c720450388ade3ee14cf5e8ad4809839f</td><td>39729</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:57+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-23T14:34:38+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:34:48+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:34:48+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:35:21+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:35:36+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

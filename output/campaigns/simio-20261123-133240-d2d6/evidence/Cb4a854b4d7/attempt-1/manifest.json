@@ -1,0 +1,56 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cb4a854b4d7",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://aprovabancarios.com/correspondentes/correspondente-bv/",
+  "final_url": "https://aprovabancarios.com/correspondentes/correspondente-bv/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.26.6.3",
+  "collected_at": "2026-11-23T14:19:03.213461+00:00",
+  "manifest_written_at": "2026-11-23T14:19:28.866558+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cb4a854b4d7\\attempt-1\\viewport.png",
+      "sha256": "09bc445fd49142a5b9342f55fd4762b75c8d812576c046df03f75493a73c927f",
+      "size_bytes": 134323
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cb4a854b4d7\\attempt-1\\fullpage.png",
+      "sha256": "84e31f5eaf93672591f658b4425b13cb168e177601775010c4e1aac3bbf341a6",
+      "size_bytes": 1636917
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cb4a854b4d7\\attempt-1\\page.html.txt",
+      "sha256": "52a1d6df39655c6611af73f66a67326017d562046c961da49319551a4bac8c71",
+      "size_bytes": 243053
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cb4a854b4d7\\attempt-1\\text.txt",
+      "sha256": "64a4980fad007a15dff4f7bb343bd90328931123399dcc586100d10e76286eee",
+      "size_bytes": 14739
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cb4a854b4d7\\attempt-1\\page.json",
+      "sha256": "9405f40bb3056db953434d9f0c30a01db5b044d172de5c8205fa1440c97cd860",
+      "size_bytes": 69874
+    }
+  ],
+  "blocked_requests": [
+    "https://api6.ipify.org/?format=json -> DNS resolution failed for api6.ipify.org: [Errno 11001] getaddrinfo failed"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "screenshot completo limitado a 12000px (página com 15888px); texto integral preservado em text.txt",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

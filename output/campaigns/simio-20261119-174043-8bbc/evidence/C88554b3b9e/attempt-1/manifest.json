@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C88554b3b9e",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://emprestimogarantiaveiculo.com.br/quem-somos",
+  "final_url": "https://emprestimogarantiaveiculo.com.br/quem-somos",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.27.176",
+  "collected_at": "2026-11-19T18:18:30.459019+00:00",
+  "manifest_written_at": "2026-11-19T18:18:35.138568+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C88554b3b9e\\attempt-1\\viewport.png",
+      "sha256": "f190df3d89824d3d11b4963c7940b9c101b1257d6a19b2ccef40c21fc01a3e1f",
+      "size_bytes": 48314
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C88554b3b9e\\attempt-1\\fullpage.png",
+      "sha256": "f190df3d89824d3d11b4963c7940b9c101b1257d6a19b2ccef40c21fc01a3e1f",
+      "size_bytes": 48314
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C88554b3b9e\\attempt-1\\page.html.txt",
+      "sha256": "50c06daee63328d757b0bdeef0ddcfde778c3af6c7109a65c8aaabc346919766",
+      "size_bytes": 65592
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C88554b3b9e\\attempt-1\\text.txt",
+      "sha256": "f45a64a0951e6a78ae55d38d5afc3f0839b758eb281e985201700429b5d9620c",
+      "size_bytes": 822
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C88554b3b9e\\attempt-1\\page.json",
+      "sha256": "90fa0853e7749bede1980d3d7851a5d72a0f7d27a8a259472b248436baee0639",
+      "size_bytes": 2808
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

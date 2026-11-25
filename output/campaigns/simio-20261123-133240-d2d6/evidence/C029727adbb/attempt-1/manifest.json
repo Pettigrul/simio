@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C029727adbb",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.inovaflexfinanciamentos.com.br/financiamento-de-caminhoes/",
+  "final_url": "https://www.inovaflexfinanciamentos.com.br/financiamento-de-caminhoes/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "147.79.105.19",
+  "collected_at": "2026-11-23T14:30:33.133378+00:00",
+  "manifest_written_at": "2026-11-23T14:30:38.142379+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C029727adbb\\attempt-1\\viewport.png",
+      "sha256": "ce4b356e6ba8e503f49f2b6356cefc1ecc060f52e57c7840419c6f17923b4b30",
+      "size_bytes": 48524
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C029727adbb\\attempt-1\\fullpage.png",
+      "sha256": "ce4b356e6ba8e503f49f2b6356cefc1ecc060f52e57c7840419c6f17923b4b30",
+      "size_bytes": 48524
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C029727adbb\\attempt-1\\page.html.txt",
+      "sha256": "f706d9b095a077674360b2c479c385a630b834a0dd9f31b4dc64af44fc9f8c1f",
+      "size_bytes": 65621
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C029727adbb\\attempt-1\\text.txt",
+      "sha256": "7879bcff4027fb68937f58f28fe5fc78e9dbafe085e1fc30a8cdeeda23a580f3",
+      "size_bytes": 839
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C029727adbb\\attempt-1\\page.json",
+      "sha256": "ad8c16f766a708cb8cca54077e91bc2819d55fa79a807f9d90b36e53d4de9bb9",
+      "size_bytes": 2842
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

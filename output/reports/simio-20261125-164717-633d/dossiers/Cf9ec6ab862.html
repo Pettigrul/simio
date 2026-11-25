@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cf9ec6ab862</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cf9ec6ab862 — drcred.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://drcred.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento atua no segmento de promotora de crédito e intermediação de financiamentos veiculares (dentro do escopo COBAN). Apresenta identidade comercial própria predominante (DR Cred) e inclui o Banco BV em seção legítima de parceiros comerciais multimarcas/multibancos. Contudo, enquadra-se como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED, priority MEDIUM) devido à omissão do CNPJ/razão social formal e à ausência da declaração regulatória obrigatória de correspondente bancário e canais de ouvidoria conforme a Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A DR Cred opera como promotora de crédito e financiamento veicular (entidade no escopo de apuração de COBANs). A marca Banco BV é exibida em seção de parceiros ao lado de outras instituições financeiras (Daycoval, Finamax, Rodobens), sem overbranding abusivo da marca bancária. No entanto, o site omite a razão social completa, o CNPJ, a declaração expressa e inequívoca de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 e a indicação dos canais de ouvidoria da instituição parceira. Mantém-se REVIEW_REQUIRED com prioridade MEDIUM por conformidade regulatória ambígua.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cf9ec6ab862/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 d5ad8f490f197c4d060362affbe239c81a7ff76606eed3e5fd2b99e8599b89aa</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cf9ec6ab862/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 c47714d0a7cf523a934195ae0af8b0df398b00519015e54718189d43055e7f6b</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://drcred.com.br/ (domínio: drcred.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): drcred.com.br — **URL:** `https://drcred.com.br` | **Produtos com a marca BV:** Financiamento e Refinanciamento de veículos leves, utilitários, motos e pesados | **Como utiliza a marca e elementos visuais:** Exibe em destaque na página inicial a chancela e o logotipo do Banco BV ao lado de concorrentes (Daycoval e Finamax), com chamada direta *&#34;SOLICITE AGORA&#34;* e canal para solicitação de simulação | Identifica-se comercialmente apenas como &#34;DR Cred Promotora de Crédito&#34; | Não apresenta em evidência a razão social completa, o CNPJ da promotora nem a declaração expressa de correspondente bancário nos termos da Resolução CMN nº 4.935/2021</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cf9ec6ab862/attempt-1/viewport.png (sha256 d5ad8f490f197c4d…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cf9ec6ab862/attempt-1/fullpage.png (sha256 c47714d0a7cf523a…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>DR Cred – Promotora de Crédito</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Na DR Cred, oferecemos opções personalizadas de crédito para financiamento e refinanciamento de automóveis, motos, caminhões e imóveis com transparência e compromisso.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: DR Cred</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: DR Cred – Promotora de Crédito</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Na DR Cred, oferecemos opções personalizadas de crédito para financiamento e refinanciamento de automóveis, motos, caminhões e imóveis com transparência e compromisso.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://drcred.com.br/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Encontre o crédito ideal para suas necessidades</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Nossos Parceiros e Soluções de Crédito</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Banco Daycoval</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Banco BV</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Banco Finamax</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Rodobens</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Conheça a história da DR Cred</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Financiamento acessível e confiável</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Tire seus planos do papel com nossas soluções exclusivas para financiamento de pesados.</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Por que escolher a DR Cred</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Avaliações de quem já utilizou nossos serviços</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Perguntas Frequentes sobre Financiamento e Refinanciamento</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Quais tipos de financiamento e refinanciamento a DR Cred oferece?</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Com quais bancos e instituições financeiras a DR Cred trabalha?</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Como faço para solicitar uma simulação de crédito?</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Início Serviços Quem somos Contato SOLICITE AGORA</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Início Serviços Quem somos Contato SOLICITE AGORA Sua solução financeira Encontre o crédito ideal para suas necessidades Na DR Cred, oferecemos opções personalizadas de crédito para financiamento e refinanciamento de automóveis, motos e caminhões, com transparência e compromisso com o cliente. SOLICITE AGORA Nossos Parceiros e Soluções de Crédito Banco Daycoval Financiamento e refinanciamento de veículos Leves, Utilitários e Pesados SAIBA MAIS Banco BV Financiamento e refinanciamento de veículos Leves, Utilitários, Motos e Pesados. SAIBA MAIS</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Início Serviços Quem somos Contato Perguntas Frequentes Praça Dr Botelho Egas, 38 - sl 08, Centro - Guararema, SP (11) 92476-7066 Horário de Atendimento Seg. a Sex. 09:00h - 17:00h Todos os direitos reservados à DRCRED</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>DR Cred Promotora de Crédito - Página inicial &lt;https://drcred.com.br/&gt; | Início &lt;https://drcred.com.br/&gt; | Serviços &lt;https://drcred.com.br/#servicos&gt; | Quem somos &lt;https://drcred.com.br/quem-somos&gt; | Contato &lt;https://drcred.com.br/#contato&gt; | SOLICITE AGORA &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20simula%C3%A7%C3%A3o&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Quais tipos de financiamento e refinanciamento a DR Cred oferece?</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Com quais bancos e instituições financeiras a DR Cred trabalha?</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Como faço para solicitar uma simulação de crédito?</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>A DR Cred realiza financiamento de caminhões e veículos pesados?</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Onde fica o escritório da DR Cred e qual o horário de atendimento?</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Voltar ao topo</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>SOLICITE AGORA &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20simula%C3%A7%C3%A3o&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>SOLICITE AGORA &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20simula%C3%A7%C3%A3o&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20Daycoval&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20BV&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20Finamax&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20Rodobens&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20empresa&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>SIMULE AQUI &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20simula%C3%A7%C3%A3o%20de%20pesados&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>SOLICITE AGORA &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20simula%C3%A7%C3%A3o&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td>(11) 92476-7066 &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20DRCred&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>footer</td><td>Facebook da DR Cred &lt;https://facebook.com/promotoradrcred&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>footer</td><td>WhatsApp da DR Cred &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20DRCred&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>footer</td><td>Instagram da DR Cred &lt;https://instagram.com/promotoradrcred/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;DR Cred Promotora de Crédito&#39; src=https://drcred.com.br/images/logotipo-drcred.png (201x76, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logotipo Banco Daycoval&#39; src=https://drcred.com.br/images/logo-daycoval.png (220x34, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logotipo Banco BV&#39; src=https://drcred.com.br/images/logo-banco-bv.svg (177x128, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo Banco Finamax&#39; src=https://drcred.com.br/images/logo-finamax.png (200x58, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo Rodobens&#39; src=https://drcred.com.br/images/logo-rodobens.svg (154x24, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Nossos Parceiros e Soluções de Crédito</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Banco Daycoval</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Banco BV</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Banco Finamax</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Oferecemos atendimento personalizado, soluções financeiras adaptadas e comprometimento com a transparência e a satisfação do cliente.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Atendimento personalizado sempre</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A DR Cred me ajudou a encontrar o financiamento perfeito para minha moto. Atendimento excepcional e rápido. Recomendo a todos!</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Com quais bancos e instituições financeiras a DR Cred trabalha?</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Onde fica o escritório da DR Cred e qual o horário de atendimento?</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Horário de Atendimento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O portal possui identidade visual própria e independente (DR Cred), com paleta de cores verde e azul-marinho, logotipo próprio e fotos ilustrativas que não imitam os portais oficiais do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Identifica-se como DR Cred Promotora de Crédito, mas não divulga CNPJ nem razão social societária formal.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência de explicitação do papel de correspondente bancário conforme exigido pela Resolução CMN nº 4.935/2021, sem dados de ouvidoria do Banco BV.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Comunicação redigida em terceira pessoa ou em nome da própria promotora (&#39;Nossos Parceiros e Soluções de Crédito&#39;, &#39;Por que escolher a DR Cred&#39;), sem se passar pela instituição bancária.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-HEAD-10">E-HEAD-10</a> <a href="#E-TXT-005">E-TXT-005</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Exibição do logotipo contemporâneo do Banco BV em card de parceiros comerciais, em paridade de proporção e hierarquia visual com outras instituições (Daycoval, Finamax, Rodobens).</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Jornada de captação de leads via botão que encaminha mensagem pré-formatada para o WhatsApp da DR Cred solicitando simulação junto ao Banco BV.</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-NAV">E-NAV</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios e explícitos da promotora DR Cred (WhatsApp com DDD 11, redes sociais da empresa e endereço físico em Guararema/SP).</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-10">E-CONTACT-10</a> <a href="#E-CONTACT-11">E-CONTACT-11</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> <a href="#E-CONTACT-13">E-CONTACT-13</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Embora fique claro que se trata de uma promotora intermediária, a falta de dados societários (CNPJ) e de esclarecimento formal sobre a relação jurídica de correspondente gera ambiguidade regulatória.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: O site oferta produtos de financiamento e refinanciamento de veículos em parceria com o Banco BV, mas não apresenta a declaração formal e obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021) nem os canais de ouvidoria da instituição. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Apresenta nome fantasia &#39;DR Cred Promotora de Crédito&#39; e endereço físico, porém omite a razão social completa e o número de inscrição no CNPJ na página inicial e no rodapé. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Logotipo oficial e contemporâneo do Banco BV exibido em seção contextualizada de &#39;Nossos Parceiros e Soluções de Crédito&#39; conjuntamente com outras instituições financeiras (Daycoval, Finamax, Rodobens). — <span class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[HIGH] VISUAL_IDENTITY: A identidade da própria intermediadora (&#39;DR Cred&#39;) é predominante no topo, cabeçalho, corpo e rodapé do site. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio drcred.com.br pertence à DR Cred Promotora de Crédito.</li><li>A página apresenta seção dedicada a parceiros financeiros onde consta o logotipo atualizado do Banco BV ao lado de Daycoval, Finamax e Rodobens.</li><li>O botão &#39;SAIBA MAIS&#39; associado ao Banco BV direciona o usuário para o WhatsApp comercial da DR Cred com mensagem solicitando simulação no Banco BV.</li><li>Não foi identificada menção a logotipo antigo/legado (B vermelho e V azul).</li><li>Não constam no site o CNPJ, razão social societária formal ou declaração de correspondente bancário nos termos da Resolução CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Verificar se a promotora possui contrato formal ativo de correspondente bancário vinculado ao Banco BV no sistema do Banco Central (Correspondentes no País).</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento atua no segmento de promotora de crédito e intermediação de financiamentos veiculares (dentro do escopo COBAN). Apresenta identidade comercial própria predominante (DR Cred) e inclui o Banco BV em seção legítima de parceiros comerciais multimarcas/multibancos. Contudo, enquadra-se como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED, priority MEDIUM) devido à omissão do CNPJ/razão social formal e à ausência da declaração regulatória obrigatória de correspondente bancário e canais de ouvidoria conforme a Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>DR Cred<br><span class="mono">domain:drcred.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>drcred.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://facebook.com/promotoradrcred</td><td class="mono"><a href="#E-CONTACT-11">E-CONTACT-11</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://instagram.com/promotoradrcred/</td><td class="mono"><a href="#E-CONTACT-13">E-CONTACT-13</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>DR Cred</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 92476-7066</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>SOLICITE AGORA &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20solicitar%20uma%20simula%C3%A7%C3%A3o&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20Daycoval&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20BV&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>SAIBA MAIS &lt;https://wa.me/5511924767066?text=Acessei%20o%20seu%20site%20e%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o%20no%20Banco%20Finamax&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>Parceiros</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>SOLICITE AGORA Nossos Parceiros e Soluções de Crédito Banco Daycoval Financiamento e refinanciamento de veículos Leves, Utilitários e Pesados SAIBA MAIS Banco BV Financiamento e refinanciamento de veí</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-10">E-CONTACT-10</a> <a href="#E-CONTACT-11">E-CONTACT-11</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> <a href="#E-CONTACT-13">E-CONTACT-13</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A DR Cred opera como promotora de crédito e financiamento veicular (entidade no escopo de apuração de COBANs). A marca Banco BV é exibida em seção de parceiros ao lado de outras instituições financeiras (Daycoval, Finamax, Rodobens), sem overbranding abusivo da marca bancária. No entanto, o site omite a razão social completa, o CNPJ, a declaração expressa e inequívoca de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 e a indicação dos canais de ouvidoria da instituição parceira. Mantém-se REVIEW_REQUIRED com prioridade MEDIUM por conformidade regulatória ambígua.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Promotoras, correspondentes e corretoras oferecendo refinanciamento, crédito consignado, empréstimo pessoal e garantia com a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; (&#34;crédito com garantia&#34; OR &#34;home equity&#34; OR refinanciamento) (correspondente OR promotora OR financeira) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) (&#34;crédito consignado&#34; OR &#34;empréstimo consignado&#34; OR consignado) (promotora OR correspondente OR &#34;taxas&#34; OR simulação) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;BV Financeira&#34; OR &#34;Banco BV&#34;) (&#34;Daycoval&#34; OR &#34;Pan&#34; OR &#34;Safra&#34; OR &#34;BMG&#34;) (consignado OR refinanciamento OR empréstimo OR promotora) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:refinanciamento e crédito com garantia</span></td><td class="mono">https://drcred.com.br/</td><td>drcred.com.br<br><span class="muted">**URL:** `https://drcred.com.br` | **Produtos com a marca BV:** Financiamento e Refinanciamento de veículos leves, utilitários, motos e pesados | **Como utiliza a marca e elementos visuais:** Exibe em destaque na página inicial a chancela e o logotipo do Banco BV ao lado de concorrentes (Daycoval e Finamax), com chamada direta *&#34;SOLICITE AGORA&#34;* e canal para solicitação de simulação | Identifica-se comercialmente apenas como &#34;DR Cred Promotora de Crédito&#34; | Não apresenta em evidência a razão social completa, o CNPJ da promotora nem a declaração expressa de correspondente bancário nos termos da Resolução CMN nº 4.935/2021</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:18:58.927237+00:00</div>
+      <div class="kv"><b>IP do servidor</b>216.198.79.1</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cf9ec6ab862/attempt-1/manifest.json<br>sha256 1509711a4e360dd7a8d9bd647df5e9c0f7df8d64260d9a5563f9c51cf3ce0efc</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://drcred.com.br/<br>Final: https://drcred.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cf9ec6ab862/attempt-1/viewport.png</td><td class="mono">d5ad8f490f197c4d060362affbe239c81a7ff76606eed3e5fd2b99e8599b89aa</td><td>933290</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cf9ec6ab862/attempt-1/fullpage.png</td><td class="mono">c47714d0a7cf523a934195ae0af8b0df398b00519015e54718189d43055e7f6b</td><td>2328790</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cf9ec6ab862/attempt-1/page.html.txt</td><td class="mono">2ef268cb35bd4a3004d8c560d17ac1cae82730f164fb5b0de39139c544615196</td><td>106371</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cf9ec6ab862/attempt-1/text.txt</td><td class="mono">21f9f7c604ce576e083c34aae4f5bb671d01ff3398db44ebc7e01ce22b528308</td><td>2970</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cf9ec6ab862/attempt-1/page.json</td><td class="mono">eb68d873254d0d6a2b9aa5d62cb683cf3de44b267dd9a12968a0c9cf71c6bbaa</td><td>17378</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:09+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-25T19:18:58+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:05+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:05+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:20:04+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:20:15+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

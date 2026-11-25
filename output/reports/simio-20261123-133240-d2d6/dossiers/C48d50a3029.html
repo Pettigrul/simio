@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C48d50a3029</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C48d50a3029 — unionseg.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página inspecionada pertence à Unionseg Corretora de Seguros e trata especificamente da divulgação do Plano de Saúde Prevent Senior. A única referência ao Banco BV na página é uma tag textual &#39;BV Financeira (1)&#39; localizada em uma nuvem de dezenas de assuntos/marcas no rodapé, sem uso de logotipo, sem oferta ou simulação de crédito associada ao banco nesta URL e com identidade visual totalmente distinta. Portanto, não há indício de uso indevido da marca ou confusão ao consumidor.
+[Revisor: CONFIRM] Confirma-se a classificação REVIEW_REQUIRED. Embora a postagem específica inspecionada aborde planos de saúde da Prevent Senior (E-TITLE, E-HEAD-2) e mencione &#39;BV Financeira (1)&#39; apenas na nuvem de assuntos do blog (E-TXT-011, E-SHOT-FULL), trata-se do site comercial da &#39;Unionseg Corretora de Seguros&#39;, que oferta produtos financeiros/financiamento de veículos e utiliza a marca &#39;BV Financeira&#39; para captação de clientes via WhatsApp (E-DISC-001, E-HDR, E-CONTACT-3) sem informar CNPJ, razão social ou dados de ouvidoria no rodapé (E-FTR, E-TXT-015).</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C48d50a3029/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 d788cc9ab58291ebd3d02812d2f8d536c4a0cceab65d2dd4dedd3e0db7533348</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C48d50a3029/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 f37893b5dbea69c5ca1ebfe710cd475376a8e653461b612b8972b396facfc379</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior (domínio: www.unionseg.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): unionseg.com.br — **Estabelecimento / Perfil:** Unionseg Corretora de Seguros | **URL:** `https://www.unionseg.com.br/` | **Uso da marca:** O portal mantém categorias e páginas dedicadas a *&#34;Financiamento de Veículos&#34;* e *&#34;BV Financeira&#34;*, captando clientes diretamente por meio do link `https://api.whatsapp.com/send/?phone=5511938011580` | **Transparência / CNPJ:** Exibe no rodapé aviso de que atua *&#34;como parceiro autorizado e não detemos os direitos de propriedade sobre essas marcas&#34;*</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C48d50a3029\attempt-1\viewport.png (sha256 d788cc9ab58291eb…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C48d50a3029\attempt-1\fullpage.png (sha256 f37893b5dbea69c5…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Plano de Saúde Prevent Senior | Unionseg Corretora de Seguros</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: A Prevent Senior tem o plano de saúde adequado para você, com redes hospitalares e os serviços de saúde pensados na melhor idade. Conheça e contrate com a Unionseg.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Unionseg</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Plano de Saúde Prevent Senior | Unionseg Corretora de Seguros</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: A Prevent Senior tem o plano de saúde adequado para você, com redes hospitalares e os serviços de saúde pensados na melhor idade. Conheça e contrate com a Unionseg.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Assine a Nossa Newsletter</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Plano de Saúde Prevent Senior</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Posts Relacionados</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>/ Post INÍCIO AUTO E MOTO BIKE FINANCEIROS PORTÁTEIS RESIDENCIAL SAÚDE E ODONTO VIAGEM VIDA CONTATOS BLOG | Plano de Saúde Prevent Senior Unionseg 16 de jan. de 2024 1 min de leitura Atualizado: 4 de fev. de 2025 | Posts Relacionados Ver tudo | Conheça Todos Os Benefícios Em Ter Um Plano de Saúde Amil | Plano de Saúde Amil PME com Coparticipação | Plano de Saúde Para Estudantes</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>/ Post INÍCIO AUTO E MOTO BIKE FINANCEIROS PORTÁTEIS RESIDENCIAL SAÚDE E ODONTO VIAGEM VIDA CONTATOS BLOG Bem-vindo ao Blog da Unionseg Corretora de Seguros! Assine a Nossa Newsletter Todos posts A.M.R. Admix Adplan AIG Alarme e Monitoramento Alelo Alice Saúde Aliro Seguro Allianz American Life Amil Ana Costa Saúde Argo Protector Assistência Funeral Azul Seguros Benefícios Empresariais Bio Saúde Bradesco Seguros Caixa Seguros Centauro-ON CNU Consórcio Porto Bank Datas Comemorativas Dr. Pet Financiamento Greenline Hapvida HDI Health for Pet Icatu Plano de Saúde Prevent Senior Unionseg 16 de jan. de 2024 1 min de leitura Atualizado: 4 de fev. de 2025 A Prevent Senior tem o plano de saúde adequado para você. As opções em todas as redes hospitalares e os serviços de saúde oferecidos com a marca de qualidade Prevent Senior. A única diferença são as acomodações (enfermaria e apartamento) PLANOS INDIVIDUAIS: Prevent Senior Premium 1002 Enfermaria (ANS 492.274/22-3) • Rede Própria e rede credenciada • Acomodação: Enfermaria • Abrangência geográfica: São Paulo, Santo André, São Bernardo do Campo, Santos, Rio de Janeiro e Niterói. • Sem cobertura obstétrica Prevent Senior Premium 1002 Apartamento (ANS 492.275/22-1) Utilizamos cookies e tecnologias semelhantes para permitir serviços e funcionalidades no nosso site e para compreender a sua interação com o nosso serviço. Ao clicar em Aceitar, você concorda com o uso de tais tecnologias para marketing e análise. Ver a Política de Privacidade Definições de Cookies Aceitar</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Tags: Unionseg Corretora de Seguros Plano de Saúde Convênio Médico Plano de Saúde em São Paulo Plano de Saúde Barato Plano de Saúde no ABC Plano de Saúde Individual Saúde Plano de Saúde em Santo André Plano de Saúde em São Bernardo do Campo Plano de Saúde no Rio de Janeiro Prevent Senior Operadora de Saúde Plano de Saúde para Terceira Idade plano de saúde em Santos Plano de Saúde em Niteroi Planos de Saúde Prevent Senior | Unionseg é Marca Registrada. Copyrights © 2017-2026 Todos os direitos reservados. Política de Privacidade</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>INÍCIO &lt;https://www.unionseg.com.br/&gt; | Facebook &lt;https://facebook.com/sharer/sharer.php?u=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt; | LinkedIn &lt;https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt; | WhatsApp &lt;https://api.whatsapp.com/send/?phone&amp;text=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt; | INÍCIO &lt;https://www.unionseg.com.br/&gt; | BLOG &lt;https://www.unionseg.com.br/blog-unionseg&gt; | Todos posts &lt;https://www.unionseg.com.br/blog-unionseg&gt; | A.M.R. &lt;https://www.unionseg.com.br/blog-unionseg/categories/a-m-r&gt; | Admix &lt;https://www.unionseg.com.br/blog-unionseg/categories/admix&gt; | Adplan &lt;https://www.unionseg.com.br/blog-unionseg/categories/adplan&gt; | AIG &lt;https://www.unionseg.com.br/blog-unionseg/categories/aig&gt; | Alarme e Monitoramento &lt;https://www.unionseg.com.br/blog-unionseg/categories/alarme-e-monitoramento&gt; | Alelo &lt;https://www.unionseg.com.br/blog-unionseg/categories/alelo&gt; | Alice Saúde &lt;https://www.unionseg.com.br/blog-unionseg/categories/alice-saude&gt; | Aliro Seguro &lt;https://www.unionseg.com.br/blog-unionseg/categories/aliro-seguro&gt; | Allianz &lt;https://www.unionseg.com.br/blog-unionseg/categories/allianz&gt; | American Life &lt;https://www.unionseg.com.br/blog-unionseg/categories/american-life&gt; | Amil &lt;https://www.unionseg.com.br/blog-unionseg/categories/amil&gt; | Ana Costa Saúde &lt;https://www.unionseg.com.br/blog-unionseg/categories/ana-costa-saude&gt; | Ar</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Facebook &lt;https://facebook.com/sharer/sharer.php?u=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>LinkedIn &lt;https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>header</td><td>WhatsApp &lt;https://api.whatsapp.com/send/?phone&amp;text=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>header</td><td>Copiar link</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>header</td><td>Mais páginas de AUTO E MOTO</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>header</td><td>Mais páginas de BIKE</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>header</td><td>Mais páginas de FINANCEIROS</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>header</td><td>Mais páginas de PORTÁTEIS</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>header</td><td>Mais páginas de RESIDENCIAL</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>header</td><td>Mais páginas de SAÚDE E ODONTO</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>header</td><td>Mais páginas de VIAGEM</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>header</td><td>Mais páginas de VIDA</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>header</td><td>Mais páginas de CONTATOS</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>header</td><td>Mais ações</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>footer</td><td>Compartilhar via Facebook</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>footer</td><td>Compartilhar via X (Twitter)</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>footer</td><td>Compartilhar via LinkedIn</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>footer</td><td>Compartilhar via link</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>footer</td><td>Imprimir post</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>Enviar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Facebook &lt;https://facebook.com/sharer/sharer.php?u=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>WhatsApp &lt;https://api.whatsapp.com/send/?phone&amp;text=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>https://api.whatsapp.com/send/?phone=5511938011580 &lt;https://api.whatsapp.com/send/?phone=5511938011580&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Facebook &lt;https://www.facebook.com/unionseg&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Instagram &lt;https://www.instagram.com/unionseg/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>contato@unionseg.com.br &lt;mailto:contato@unionseg.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td> &lt;https://wa.me/5511995720833&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td>Instagram Unionseg &lt;https://instagram.com/unionseg/&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td>Facebook Unionseg &lt;http://www.facebook.com/unionseg&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;WhatsApp&#39; src=https://static.wixstatic.com/media/cba4e8_bf30d703034940478ec02c807fe13fb2~mv2.png/v1/fill/w_75,h_76,al_c,q_95,enc_avif,quality_auto/whatsapp-logo-icone.png (75x76, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>• Rede Própria e rede credenciada</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>• Rede Própria e rede credenciada</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>REDE DE ATENDIMENTO:</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>A rede própria Prevent Senior, em São Paulo, é composta por Núcleos de Medicina Avançada e Núcleos Especializados, pela rede de laboratórios Prevent Senior Diagnóstico e rede hospitalar Sancta Maggiore, além da rede credenciada.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Núcleo de Medicina Avançada e Diagnóstica Prevent Senior Santo André, com atendimento de várias especialidades, exames e cirurgias.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Núcleo de Medicina Avançada e Diagnóstica Prevent Senior Santos, promove atendimento de várias especialidades, exames e cirurgias.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>No Rio de Janeiro, a rede própria Prevent Senior é composta por Núcleo de Medicina Avançada e Diagnóstica e Hospital Dia Sancta Maggiore. Oferecem, também, rede credenciada estruturada e</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Prevent Senior Premium 1002 Rede Credenciada</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Confira a rede credenciada Prevent Senior. Clique aqui.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>PREÇOS, CARÊNCIAS E DEMAIS INFORMAÇÕES NOS CONTATE ATRAVÉS DO LINK https://api.whatsapp.com/send/?phone=5511938011580</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>BV Financeira (1)</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Central de Atendimento (2)</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Rede Credenciada (11)</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>terceiros ou empresas, exceto se autorizado formalmente pelos seus proprietários. Caso você necessite de algum esclarecimento específico sobre a forma que tratamos os seus dados pessoais ou informações sensíveis, favor solicitar via e-mail para o endereço exclusivo dos assuntos da LGPD em nossa empresa - contato@unionseg.com.br .</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Todas as marcas contidas em nosso site são de propriedade de suas respectivas seguradoras e operadoras de saúde e detêm todos os direitos e privilégios associados a elas. Atuamos como parceiro autorizado e não detemos os direitos de propriedade sobre essas marcas.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual da página é própria da Unionseg Corretora de Seguros (cores laranja e branco, logotipo próprio), sem qualquer uso de cores ou layout do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A página identifica-se claramente como Unionseg Corretora de Seguros, embora não apresente CNPJ explícito na página do post.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-015">E-TXT-015</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="LEGITIMATE">LEGITIMATE</td><td>No rodapé, o site declara que atua como parceiro autorizado e que não detém os direitos de propriedade sobre as marcas citadas.</td><td class="mono"><a href="#E-TXT-015">E-TXT-015</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O conteúdo da página trata exclusivamente de planos de saúde da Prevent Senior comercializados pela corretora Unionseg, sem linguagem institucional que simule o Banco BV.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não há uso de logotipo do Banco BV na página; a única menção à marca é uma tag textual &#39;BV Financeira (1)&#39; em uma extensa nuvem de categorias/assuntos no rodapé.</td><td class="mono"><a href="#E-TXT-011">E-TXT-011</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A jornada na página refere-se à cotação de plano de saúde Prevent Senior, sem captação ou simulação de crédito vinculada ao Banco BV nesta URL.</td><td class="mono"><a href="#E-TXT-010">E-TXT-010</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato (WhatsApp, e-mail contato@unionseg.com.br e redes sociais) estão claramente vinculados à corretora Unionseg.</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-6">E-CONTACT-6</a> <a href="#E-TXT-014">E-TXT-014</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não há risco de confusão para o consumidor nesta página, visto que se trata de um post sobre plano de saúde e a menção à &#39;BV Financeira&#39; ocorre apenas como uma tag secundária entre dezenas de outras marcas e seguradoras.</td><td class="mono"><a href="#E-TXT-011">E-TXT-011</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Menção meramente textual e secundária (&#39;BV Financeira (1)&#39;) dentro de uma lista extensa de tags/assuntos do blog da corretora, sem destaque visual ou uso de logotipo. — <span class="mono"><a href="#E-TXT-011">E-TXT-011</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Aviso expresso no rodapé informando que todas as marcas pertencem às respectivas empresas e que a corretora atua apenas como parceiro autorizado, sem deter direitos de propriedade sobre as marcas. — <span class="mono"><a href="#E-TXT-015">E-TXT-015</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A URL inspecionada é um artigo de blog da Unionseg Corretora de Seguros sobre o &#39;Plano de Saúde Prevent Senior&#39;.</li><li>Não há oferta de produtos do Banco BV no corpo do artigo nem uso de logotipo do banco.</li><li>A única ocorrência relacionada à marca investigada na página é um item de menu/tag de categorias no rodapé com o texto &#39;BV Financeira (1)&#39;, listado junto a centenas de outras seguradoras, operadoras de saúde e bancos.</li><li>O rodapé apresenta declaração de isenção de propriedade sobre as marcas listadas no site.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>O CNPJ da corretora Unionseg não foi localizado no texto da página inspecionada.</li><li>divergência modelo × regras: o modelo indicou A_LEGITIMATE_COMMERCIAL_MENTION/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página inspecionada pertence à Unionseg Corretora de Seguros e trata especificamente da divulgação do Plano de Saúde Prevent Senior. A única referência ao Banco BV na página é uma tag textual &#39;BV Financeira (1)&#39; localizada em uma nuvem de dezenas de assuntos/marcas no rodapé, sem uso de logotipo, sem oferta ou simulação de crédito associada ao banco nesta URL e com identidade visual totalmente distinta. Portanto, não há indício de uso indevido da marca ou confusão ao consumidor.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Unionseg<br><span class="mono">domain:unionseg.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>unionseg.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://facebook.com/sharer/sharer.php?u=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/unionseg</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/unionseg/</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@unionseg.com.br</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://instagram.com/unionseg/</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>http://www.facebook.com/unionseg</td><td class="mono"><a href="#E-CONTACT-9">E-CONTACT-9</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Unionseg</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): unionseg.com.br — **Estabelecimento / Perfil:** Unionseg Corretora de Seguros | **URL:** `https://www.unionseg.com.br/` | **Uso da marca:** O portal mantém categorias e pá</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp &lt;https://api.whatsapp.com/send/?phone&amp;text=https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>https://api.whatsapp.com/send/?phone=5511938011580 &lt;https://api.whatsapp.com/send/?phone=5511938011580&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://wa.me/5511995720833&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (CONTACT_CHANNELS) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-DISC-001">E-DISC-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Confirma-se a classificação REVIEW_REQUIRED. Embora a postagem específica inspecionada aborde planos de saúde da Prevent Senior (E-TITLE, E-HEAD-2) e mencione &#39;BV Financeira (1)&#39; apenas na nuvem de assuntos do blog (E-TXT-011, E-SHOT-FULL), trata-se do site comercial da &#39;Unionseg Corretora de Seguros&#39;, que oferta produtos financeiros/financiamento de veículos e utiliza a marca &#39;BV Financeira&#39; para captação de clientes via WhatsApp (E-DISC-001, E-HDR, E-CONTACT-3) sem informar CNPJ, razão social ou dados de ouvidoria no rodapé (E-FTR, E-TXT-015).</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Identificação de CNPJ e Transparência Regulatória em Portal Comercial</td><td>MEDIUM</td><td>Embora a URL específica trate de plano de saúde (E-TITLE, E-HEAD-2), o portal pertence a uma corretora/intermediadora comercial que também atua com produtos financeiros e financiamento de veículos, mantendo categoria específica para &#39;BV Financeira&#39; (E-DISC-001, E-TXT-011, E-HDR) e captando clientes via WhatsApp (E-CONTACT-3) sem exibir CNPJ, razão social ou aviso de correspondente bancário nos moldes da Resolução CMN 4.935/2021 (E-FTR, E-TXT-015).</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-HDR">E-HDR</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-TITLE</li><li>E-HEAD-2</li><li>E-TXT-015</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Links e páginas de captação via WhatsApp (wa.me) utilizando a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;wa.me&#34; OR &#34;api.whatsapp.com&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente OR veículos) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H6-platform:WhatsApp</span></td><td class="mono">https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior</td><td>unionseg.com.br<br><span class="muted">**Estabelecimento / Perfil:** Unionseg Corretora de Seguros | **URL:** `https://www.unionseg.com.br/` | **Uso da marca:** O portal mantém categorias e páginas dedicadas a *&#34;Financiamento de Veículos&#34;* e *&#34;BV Financeira&#34;*, captando clientes diretamente por meio do link `https://api.whatsapp.com/send/?phone=5511938011580` | **Transparência / CNPJ:** Exibe no rodapé aviso de que atua *&#34;como parceiro autorizado e não detemos os direitos de propriedade sobre essas marcas&#34;*</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:32:02.592307+00:00</div>
+      <div class="kv"><b>IP do servidor</b>162.159.143.12</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C48d50a3029\attempt-1\manifest.json<br>sha256 9f99a66c67d70543be85436de4c80812b0576f039073d1f13db5fc78787b0bc2</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior<br>Final: https://www.unionseg.com.br/single-post/plano-de-saude-prevent-senior</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C48d50a3029\attempt-1\viewport.png</td><td class="mono">d788cc9ab58291ebd3d02812d2f8d536c4a0cceab65d2dd4dedd3e0db7533348</td><td>116094</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C48d50a3029\attempt-1\fullpage.png</td><td class="mono">f37893b5dbea69c5ca1ebfe710cd475376a8e653461b612b8972b396facfc379</td><td>850990</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C48d50a3029\attempt-1\page.html.txt</td><td class="mono">cdade2adea58916307d987575e57a86e6d415c212ef229af8b285760a583f0a9</td><td>1170428</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C48d50a3029\attempt-1\text.txt</td><td class="mono">13cbd21e30148e2e78217f08d34a03d73510c62e73388e2b4f638b9ecfba7baf</td><td>16195</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C48d50a3029\attempt-1\page.json</td><td class="mono">99b9c8e10d4e93aef233dfdcd71456083feeb739e55c4d1b1e024cfd16d52aad</td><td>106102</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:57+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-23T14:32:02+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:32:24+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:32:24+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:32:47+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:33:07+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

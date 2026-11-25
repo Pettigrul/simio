@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cb7e8d0c8ea",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.fivecred.com.br/veiculo-fivecred/index.html",
+  "final_url": "https://www.fivecred.com.br/veiculo-fivecred/index.html",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.198.79.65",
+  "collected_at": "2026-11-19T18:19:19.743984+00:00",
+  "manifest_written_at": "2026-11-19T18:19:24.584368+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cb7e8d0c8ea\\attempt-1\\viewport.png",
+      "sha256": "23ed8057e7655b8cf63b3415d8df2bdb1041a143e41f5162847d5265c4f99cce",
+      "size_bytes": 48036
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cb7e8d0c8ea\\attempt-1\\fullpage.png",
+      "sha256": "23ed8057e7655b8cf63b3415d8df2bdb1041a143e41f5162847d5265c4f99cce",
+      "size_bytes": 48036
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cb7e8d0c8ea\\attempt-1\\page.html.txt",
+      "sha256": "62e7b37bd0c4cadab86ab2ebe8287acdf00edd30744a1c38fb5e7a42075b81fc",
+      "size_bytes": 65492
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cb7e8d0c8ea\\attempt-1\\text.txt",
+      "sha256": "3f7ec170927ab89f1d479e3bdfdcb105a75bbb5356c7440813921aa8991ccf9b",
+      "size_bytes": 809
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cb7e8d0c8ea\\attempt-1\\page.json",
+      "sha256": "5138d2b9c45bcc5291ce9353256e044154e4c9c1226ef08bf6c5b6f92e1e1c14",
+      "size_bytes": 2782
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

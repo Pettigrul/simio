@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C4cdb467236</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C4cdb467236 — consorciofinanciamento.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de portal comercial de corretora/promotora de crédito e consórcios (&#39;Renova Seguros&#39; - consorciofinanciamento.com.br) que atua na captação de clientes para financiamentos e consórcios. Embora utilize identidade visual própria e apresente múltiplos bancos, exibe vitrine comercial ofertando &#39;Consórcio Banco BV&#39; (com referência à imagem &#39;Consorcio-Banco-BV.png&#39; e CTA &#39;SAIBA MAIS&#39; para simulação) sem informar seu CNPJ/razão social e sem exibir a declaração obrigatória de correspondente bancário prevista na Resolução CMN nº 4.935/2021. Classifica-se como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED, prioridade MEDIUM).
+[Revisor: CONFIRM] A hipótese do analista se sustenta. Embora o artigo principal aborde produtos da Porto Seguro (E-TITLE, E-HEAD-1), o domínio consorciofinanciamento.com.br opera como página comercial de captação de leads da corretora/promotora &#39;Renova Seguros&#39; (E-NAV, E-SHOT-VIEWPORT, E-DISC-001) e exibe, na seção comercial &#39;Melhores Consórcios&#39; (E-SHOT-FULL), oferta de &#39;Consórcio Banco BV&#39; acompanhada de botão &#39;SAIBA MAIS&#39; direcionando para simulador (#simular-consorcio-financiamento) e imagem &#39;Consorcio-Banco-BV.png&#39; (E-IMG-1, E-TXT-007, E-CTA-20). Não há identificação de CNPJ, razão social, ouvidoria ou declaração da condição de correspondente bancário na página (Res. CMN 4.935/2021). Mantém-se REVIEW_REQUIRED (prioridade MEDIUM).</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C4cdb467236/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 991b70400699743f7eb76458b0c11c2b8584ace11da01e52a9cd00ce0a1d3ec6</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C4cdb467236/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 c204d546d716d617f631d307404362d07062872cc507e3e1576db9b800006d8b</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/ (domínio: consorciofinanciamento.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): consorciofinanciamento.com.br — **URL:** `https://consorciofinanciamento.com.br/` | **Utilização da Marca:** O portal divulga modalidades de crédito, consórcios e financiamentos de veículos (destacando benefícios como *&#34;Vistoria e despachante gratuitos&#34;* em operações de crédito/garantia) | Exibe botões de chamada para ação (*&#34;SAIBA MAIS&#34;*) utilizando diretamente o nome **&#34;Banco BV&#34;** ao lado de outras instituições financeiras em sua vitrine de *&#34;Melhores Financiamentos&#34;* | **Conformidade (CNPJ / Correspondente):** O conteúdo atua como página de captação de leads para produtos financeiros mencionando a corretora/promotora, mas omite no corpo principal do anúncio a razão social completa, o CNPJ e a declaração obrigatória de correspondente bancário vinculada especificamente à oferta do Banco BV</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C4cdb467236\attempt-1\viewport.png (sha256 991b70400699743f…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C4cdb467236\attempt-1\fullpage.png (sha256 c204d546d716d617…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Financiamento Porto Seguro: crédito rápido e seguro! Conheça as opções de contratação e simule pelo site – Consórcio e Financiamento</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Financiamento Porto Seguro: crédito rápido e seguro! Conheça as opções de contratação e simule pelo site</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Empréstimo com Garantia de Veículo</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Empréstimo com Garantia de Imóvel</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Financiamento de Veículos</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Como contratar?</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Qual consórcio você deseja?</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Consórcio de Imóveis</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Consórcio de Carros</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Consórcio de Motos</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Consórcio de Caminhões</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Consórcio de Veículos Pesados</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Consórcio Sustentável</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Vantagens para Você</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Vantagens do Consórcio</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Sem juros</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>CONSÓRCIO E FINANCIAMENTO FAÇA UMA COTAÇÃO ONLINE SIMULAR CONSÓRCIO 0800 111 5000 HOME QUEM SOMOS VANTAGENS SEGURADORAS FALE CONOSCO | Financiamento Porto Seguro: crédito rápido e seguro! Conheça as opções de contratação e simule pelo site 24 abr</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>CONSÓRCIO E FINANCIAMENTO FAÇA UMA COTAÇÃO ONLINE SIMULAR CONSÓRCIO 0800 111 5000 Home Quem Somos Vantagens Seguradoras Fale Conosco Financiamento Porto Seguro: crédito rápido e seguro! Conheça as opções de contratação e simule pelo site 24 abr Resumo da página Empréstimo com Garantia de Veículo Empréstimo com Garantia de Imóvel Financiamento de Veículos Como contratar? Postagens Recentes 11 mar Protegido: matriz consorcio Digite sua senha para ver os comentários. 04 jun Consórcio de Imóveis Porto Seguro – Como Funciona, Vantagens, Dúvidas Frequentes e Simulação Online 03 jun Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp 31 maio Consórcio Bike Porto Seguro – O que é, como funciona, principais diferenciais e quanto custa – Cotação Online 27 maio Tudo que você precisa saber sobre consórcio: quais os tipos, vantagens, e como funciona – Cotação Pelo Site 24 abr Financiamento Porto Seguro: crédito rápido e seguro! Conheça as opções de contratação e simule pelo site 22 abr O que é consórcio e como funciona? Confira as principais dúvidas e faça uma simulação sem sair de casa!</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Qual consórcio você deseja? Consórcio de Imóveis O consórcio de imóveis é uma excelente forma de conquistar o sonho da casa própria ou fazer um investimento seguro. Ao participar de um grupo, você contribui mensalmente e, quando contemplado por sorteio ou lance, recebe uma carta de crédito para comprar o imóvel desejado, seja um apartamento, casa ou terreno. Sem juros, entrada ou comprovação de renda, o consórcio permite flexibilidade e parcelas ajustadas ao seu orçamento. Ele oferece uma solução econômica e planejada para quem deseja adquirir ou reformar um imóvel. SIMULE AGORA Consórcio de Carros O consórcio de carros é a forma ideal de adquirir o veículo dos seus sonhos de maneira planejada e sem juros. Ao participar de um grupo e contribuir mensalmente, você pode ser contemplado por sorteio ou lance, recebendo uma carta de crédito para comprar o carro que desejar. Sem entrada ou comprovação de renda, o consórcio oferece parcelas acessíveis e flexíveis, além de permitir a utilização do crédito para acessórios, documentação e seguros, garantindo uma compra mais econômica e sem comprometer o orçamento. SIMULE AGORA Consórcio de Motos Se o seu objetivo é comprar uma moto, o consórcio de motos é a solução ideal. Você participa de um grupo, contribui com parcelas mensais e, ao ser contemplado, recebe uma carta de crédito para escolher a moto que preferir, com total liberdade de marca e modelo. Sem entrada, juros ou burocracia, o consórcio de motos proporciona uma maneira econômica e prática de conquistar sua moto, seja para lazer, trabalho ou mobilidade no dia a dia. SIMULE AGORA Consórcio de Caminhões O consórcio de caminhões é perfeito para quem precisa renovar sua frota ou adquirir um caminhão para o trabalho. Ao contribuir com parcelas mensais, você pode ser contemplado e receber uma carta de crédito para escolher o caminhão ideal, novo ou usado. A modalidade é vantajosa para motoristas autônomos e empresas, já que oferece prazos flexíveis e a possibilidade de neg</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>FAÇA UMA COTAÇÃO ONLINE &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt; | Consórcio e Financiamento - Renova Seguros &lt;https://consorciofinanciamento.com.br/&gt; | SIMULAR CONSÓRCIO &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt; | 0800 111 5000 &lt;tel:08001115000&gt; | HOME &lt;https://consorciofinanciamento.com.br/&gt; | QUEM SOMOS &lt;https://consorciofinanciamento.com.br/#quem-somos&gt; | VANTAGENS &lt;https://consorciofinanciamento.com.br/#coberturas&gt; | SEGURADORAS &lt;https://consorciofinanciamento.com.br/#seguradoras&gt; | FALE CONOSCO &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt; |  &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/&gt; | Empréstimo com Garantia de Veículo &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#Emprestimo_com_Garantia_de_Veiculo&gt; | Empréstimo com Garantia de Imóvel &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#Emprestimo_com_Garantia_de_Imovel&gt; | Financiamento de Veículos &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#Financiamento_de_Veiculos&gt; | Como contratar? &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>SIMULAR CONSÓRCIO &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>0800 111 5000 &lt;tel:08001115000&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Alternar tabela de conteúdo &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>footer</td><td>SIMULE AGORA &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>footer</td><td>SIMULE AGORA &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>footer</td><td>SIMULE AGORA &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>footer</td><td>SIMULE AGORA &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>footer</td><td>SIMULE AGORA &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>footer</td><td>SIMULE AGORA &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/matriz-consorcio/&gt;</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/consorcio-de-imoveis-porto-seguro-como-funciona-vantagens-duvidas-frequentes-e-simulacao-online/&gt;</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/&gt;</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/consorcio-bike-porto-seguro-o-que-e-como-funciona-principais-diferenciais-e-quanto-custa-cotacao-online/&gt;</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/tudo-que-voce-precisa-saber-sobre-consorcio-quais-os-tipos-vantagens-e-como-funciona-cotacao-pelo-site/&gt;</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/&gt;</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/o-que-e-consorcio-e-como-funciona-confira-as-principais-duvidas-e-faca-uma-simulacao-sem-sair-de-casa/&gt;</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/consorcio-porto-seguro-dinheiro-na-conta-para-voce-comprar-sua-casa-carro-ou-caminhao-cotacao-online/&gt;</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>footer</td><td>SAIBA MAIS &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>footer</td><td>SAIBA MAIS &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>footer</td><td>SAIBA MAIS &lt;https://consorciofinanciamento.com.br/#simular-consorcio-financiamento&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>0800 111 5000 &lt;tel:08001115000&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Share on WhatsApp &lt;whatsapp://send?text=Financiamento%20Porto%20Seguro%3A%20cr%C3%A9dito%20r%C3%A1pido%20e%20seguro%21%20Conhe%C3%A7a%20as%20op%C3%A7%C3%B5es%20de%20contrata%C3%A7%C3%A3o%20e%20simule%20pelo%20site%20-%20https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Compartilhar no Facebook &lt;https://www.facebook.com/sharer.php?u=https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Enviar por email para um amigo &lt;mailto:?subject=Financiamento%20Porto%20Seguro%3A%20cr%C3%A9dito%20r%C3%A1pido%20e%20seguro%21%20Conhe%C3%A7a%20as%20op%C3%A7%C3%B5es%20de%20contrata%C3%A7%C3%A3o%20e%20simule%20pelo%20site&amp;body=Check%20this%20out%3A%20https%3A%2F%2Fconsorciofinanciamento.com.br%2Ffinanciamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site%2F&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td> &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/#respond&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Tipos de Consórcio – Conheça as principais opções e simule gratuitamente pelo site ou whatsapp &lt;https://consorciofinanciamento.com.br/tipos-de-consorcio-conheca-as-principais-opcoes-e-simule-gratuitamente-pelo-site-ou-whatsapp/&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td> &lt;https://consorciofinanciamento.com.br/tipos-de-consorcio-conheca-as-principais-opcoes-e-simule-gratuitamente-pelo-site-ou-whatsapp/#respond&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td>Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td>Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>footer</td><td>CONTINUE LENDO &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>footer</td><td>Follow on Facebook &lt;https://www.facebook.com/renovacorretoradeseguros&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>footer</td><td>Follow on Instagram &lt;https://www.instagram.com/segurosrenovacorretora/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;&#39; src=https://consorciofinanciamento.com.br/wp-content/uploads/2024/06/Consorcio-Banco-BV.png (330x158, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;&#39; src=https://consorciofinanciamento.com.br/wp-content/uploads/2024/06/renova-logo-novo-350350-W6WY58tj-1.png (175x58, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;&#39; src=https://consorciofinanciamento.com.br/wp-content/uploads/2024/06/selogoogle.png (150x54, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;&#39; src=https://consorciofinanciamento.com.br/wp-content/uploads/2024/06/selogoogle-1.png (150x54, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Em parceria com o Banco Bari, essa opção permite que você utilize um imóvel como garantia para conseguir taxas ainda mais atrativas, mesmo que o imóvel ainda não esteja totalmente quitado.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Tipos de Consórcio – Conheça as principais opções e simule gratuitamente pelo site ou whatsapp</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>fiscalização do Banco Central. O que é o Consórcio de Bike? O Consórcio Bike [...]</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>regulamentação do Banco Central, os grupos de consórcio oferecem segurança e credibilidade, reunindo pessoas com objetivos semelhantes. Ao pagar [...]</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Banco BV</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Banco do Brasil</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Telefones exclusivos para São Paulo</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual da página é própria da corretora &#39;Renova Seguros&#39; (tons de azul e verde), sem imitar o layout institucional do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Embora exiba a marca &#39;Renova Seguros&#39;, a página não informa o CNPJ nem a razão social do estabelecimento comercial que realiza a intermediação e captação de clientes.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência total de declaração de atuação como correspondente bancário e de indicação da ouvidoria das instituições financeiras ofertadas.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O texto não utiliza linguagem em primeira pessoa como se fosse o Banco BV; apresenta a &#39;Renova Seguros&#39; como intermediadora multimarcas.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>A seção &#39;Melhores Consórcios&#39; inclui card para &#39;Consórcio Banco BV&#39; carregando arquivo de imagem denominado &#39;Consorcio-Banco-BV.png&#39;.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>A página direciona o usuário para botões de &#39;SAIBA MAIS&#39; e &#39;SIMULAR CONSÓRCIO&#39; para captação de leads sem a devida transparência regulatória sobre o intermediador.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-18">E-CTA-18</a> <a href="#E-CTA-19">E-CTA-19</a> <a href="#E-CTA-20">E-CTA-20</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Disponibiliza telefones próprios (0800 111 5000, (11) 4006-5000, (11) 4441-1000) e botão de WhatsApp identificados como canais da Renova Seguros, mas sem informar canais oficiais ou ouvidoria dos bancos parceiros.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-TXT-009">E-TXT-009</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>A oferta comercial de &#39;Consórcio Banco BV&#39; com chamada para simulação sem identificação de CNPJ e sem aviso de correspondente bancário gera opacidade sobre o vínculo e a responsabilidade perante o consumidor.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] CORRESPONDENT_TRANSPARENCY: O site oferta consórcios e financiamentos (incluindo vitrine com chamada &#39;Consórcio Banco BV&#39; e botão &#39;SAIBA MAIS&#39; para simulação), mas omite a declaração expressa da condição de correspondente bancário e os canais de ouvidoria da instituição financeira contratante, em desacordo com a Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-CTA-20">E-CTA-20</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: O portal identifica-se apenas pelo nome fantasia &#39;Renova Seguros&#39; (&#39;Consórcio e Financiamento&#39;), sem exibir CNPJ ou razão social completa na página ou no rodapé. — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] LOGO_USAGE: Há referência a arquivo de imagem da marca (&#39;Consorcio-Banco-BV.png&#39;) associado à oferta de &#39;Consórcio Banco BV&#39; no rodapé da página. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: O site apresenta marca própria (&#39;Renova Seguros&#39;) no cabeçalho e atua em contexto multimarcas, listando diversas instituições (Porto Seguro, Bradesco, Itaú, Santander, Banco do Brasil e Banco BV). — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio consorciofinanciamento.com.br opera sob o nome comercial &#39;Renova Seguros&#39; e oferta consórcios, financiamentos de veículos e empréstimos com garantia.</li><li>O artigo principal trata de &#39;Financiamento Porto Seguro&#39;, mas no bloco inferior &#39;Melhores Consórcios&#39; há oferta destacada de &#39;Consórcio Banco BV&#39; com botão &#39;SAIBA MAIS&#39; apontando para &#39;#simular-consorcio-financiamento&#39;.</li><li>O código da página carrega a imagem &#39;Consorcio-Banco-BV.png&#39; associada à vitrine de consórcios.</li><li>Não há CNPJ, razão social nem declaração de correspondente bancário visíveis em toda a extensão da página inspecionada.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>O fluxo do formulário &#39;#simular-consorcio-financiamento&#39; e páginas internas como &#39;Quem Somos&#39; não foram expandidos além da URL coletada.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de portal comercial de corretora/promotora de crédito e consórcios (&#39;Renova Seguros&#39; - consorciofinanciamento.com.br) que atua na captação de clientes para financiamentos e consórcios. Embora utilize identidade visual própria e apresente múltiplos bancos, exibe vitrine comercial ofertando &#39;Consórcio Banco BV&#39; (com referência à imagem &#39;Consorcio-Banco-BV.png&#39; e CTA &#39;SAIBA MAIS&#39; para simulação) sem informar seu CNPJ/razão social e sem exibir a declaração obrigatória de correspondente bancário prevista na Resolução CMN nº 4.935/2021. Classifica-se como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED, prioridade MEDIUM).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:consorciofinanciamento.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>consorciofinanciamento.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/sharer.php?u=https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/renovacorretoradeseguros</td><td class="mono"><a href="#E-CONTACT-12">E-CONTACT-12</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/segurosrenovacorretora/</td><td class="mono"><a href="#E-CONTACT-13">E-CONTACT-13</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 111 5000</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>08001115000</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Share on WhatsApp &lt;whatsapp://send?text=Financiamento%20Porto%20Seguro%3A%20cr%C3%A9dito%20r%C3%A1pido%20e%20seguro%21%20Conhe%C3%A7a%20as%20op%C3%A7%C3%B5es%20de%20contrata%C3%A7%C3%A3o%20e%20simule%</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Consórcio Auto Porto Seguro: conquiste seu carro sem pagar juros – Solicite uma cotação online ou pelo whatsapp &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-s</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://consorciofinanciamento.com.br/consorcio-auto-porto-seguro-conquiste-seu-carro-sem-pagar-juros-solicite-uma-cotacao-online-ou-pelo-whatsapp/#respond&gt;</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Tipos de Consórcio – Conheça as principais opções e simule gratuitamente pelo site ou whatsapp &lt;https://consorciofinanciamento.com.br/tipos-de-consorcio-conheca-as-principais-opcoes-e-simule-gratuitam</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://consorciofinanciamento.com.br/tipos-de-consorcio-conheca-as-principais-opcoes-e-simule-gratuitamente-pelo-site-ou-whatsapp/#respond&gt;</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-007">E-TXT-007</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-20">E-CTA-20</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-NAV">E-NAV</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-007">E-TXT-007</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-18">E-CTA-18</a> <a href="#E-CTA-19">E-CTA-19</a> <a href="#E-CTA-20">E-CTA-20</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A hipótese do analista se sustenta. Embora o artigo principal aborde produtos da Porto Seguro (E-TITLE, E-HEAD-1), o domínio consorciofinanciamento.com.br opera como página comercial de captação de leads da corretora/promotora &#39;Renova Seguros&#39; (E-NAV, E-SHOT-VIEWPORT, E-DISC-001) e exibe, na seção comercial &#39;Melhores Consórcios&#39; (E-SHOT-FULL), oferta de &#39;Consórcio Banco BV&#39; acompanhada de botão &#39;SAIBA MAIS&#39; direcionando para simulador (#simular-consorcio-financiamento) e imagem &#39;Consorcio-Banco-BV.png&#39; (E-IMG-1, E-TXT-007, E-CTA-20). Não há identificação de CNPJ, razão social, ouvidoria ou declaração da condição de correspondente bancário na página (Res. CMN 4.935/2021). Mantém-se REVIEW_REQUIRED (prioridade MEDIUM).</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Escopo da página coletada vs. vitrine comercial no rodapé</td><td>LOW</td><td>O artigo principal da URL trata de &#39;Financiamento Porto Seguro&#39; (E-TITLE, E-HEAD-1), mas a página pertence a uma corretora/promotora comercial (&#39;Renova Seguros&#39; - E-NAV, E-SHOT-VIEWPORT) e incorpora uma seção comercial padronizada (&#39;Melhores Consórcios&#39;) com chamada direta &#39;Consórcio Banco BV&#39;, botão &#39;SAIBA MAIS&#39; para simulação e ativo gráfico &#39;Consorcio-Banco-BV.png&#39; (E-IMG-1, E-TXT-007, E-CTA-20, E-SHOT-FULL), sem exibir CNPJ, razão social ou declaração de correspondente bancário.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-NAV">E-NAV</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-CTA-20">E-CTA-20</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Estabelecimentos (despachante em Curitiba) que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - despachante &#34;Curitiba&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (financiamento OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:despachante:Curitiba</span></td><td class="mono">https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/</td><td>consorciofinanciamento.com.br<br><span class="muted">**URL:** `https://consorciofinanciamento.com.br/` | **Utilização da Marca:** O portal divulga modalidades de crédito, consórcios e financiamentos de veículos (destacando benefícios como *&#34;Vistoria e despachante gratuitos&#34;* em operações de crédito/garantia) | Exibe botões de chamada para ação (*&#34;SAIBA MAIS&#34;*) utilizando diretamente o nome **&#34;Banco BV&#34;** ao lado de outras instituições financeiras em sua vitrine de *&#34;Melhores Financiamentos&#34;* | **Conformidade (CNPJ / Correspondente):** O conteúdo atua como página de captação de leads para produtos financeiros mencionando a corretora/promotora, mas omite no corpo principal do anúncio a razão social completa, o CNPJ e a declaração obrigatória de correspondente bancário vinculada especificamente à oferta do Banco BV</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:46:15.999085+00:00</div>
+      <div class="kv"><b>IP do servidor</b>177.53.143.230</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C4cdb467236\attempt-1\manifest.json<br>sha256 00af3dd9473e2bfa2410b53e272b26e80cc8ce528ec398d9b0eafe4be9cf1288</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/<br>Final: https://consorciofinanciamento.com.br/financiamento-porto-seguro-credito-rapido-e-seguro-conheca-as-opcoes-de-contratacao-e-simule-pelo-site/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C4cdb467236\attempt-1\viewport.png</td><td class="mono">991b70400699743f7eb76458b0c11c2b8584ace11da01e52a9cd00ce0a1d3ec6</td><td>619223</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C4cdb467236\attempt-1\fullpage.png</td><td class="mono">c204d546d716d617f631d307404362d07062872cc507e3e1576db9b800006d8b</td><td>2566651</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C4cdb467236\attempt-1\page.html.txt</td><td class="mono">ba25b20837b8ed46bbaf7a5a0a3e4609571095ff15d0552da5655b1ed80e2a5c</td><td>487912</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C4cdb467236\attempt-1\text.txt</td><td class="mono">75f02d8ee459c32f6f905c5b5460126a1f2ff1acd789b228178d1c40dbe31332</td><td>15100</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C4cdb467236\attempt-1\page.json</td><td class="mono">f58b5bbc1bc2be6d8ebfd4c361e6f8df8394ed2cc66d5ab7287b0f69f343bd8d</td><td>60145</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:46:15+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:46:38+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:46:38+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:47:22+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:47:45+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

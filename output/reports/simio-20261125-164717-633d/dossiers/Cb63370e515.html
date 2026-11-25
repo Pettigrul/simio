@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cb63370e515</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cb63370e515 — finautofinanciamentos.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://finautofinanciamentos.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O site da Finauto Financiamentos atua no segmento de financiamento de veículos e exibe o logotipo oficial atual do Banco BV em contexto multibanco/parcerias. A identidade visual própria predomina amplamente, descartando tentativa de personificação direta. No entanto, por se tratar de atividade de intermediação de crédito sem apresentação de CNPJ e sem a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021), a comunicação permanece em conformidade ambígua, demandando revisão.
+[Revisor: CONFIRM] A Finauto Financiamentos opera como promotora/intermediadora de crédito veicular e exibe o logotipo do Banco BV em uma seção de parceiros multibanco. Embora a identidade visual própria predomine e não haja personificação direta ou overbranding exclusivo, o site omite dados regulatórios essenciais para correspondentes no país (como CNPJ, razão social formal e menção explícita à condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021). A classificação REVIEW_REQUIRED com prioridade MEDIUM é pertinente e está confirmada.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cb63370e515/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 b865946176754c0e749947e9459a864ad4afcb1a0a32d33138b80cc900e814c6</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Cb63370e515/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 79cf28f59b63e3fb42e8bce5453649ced103a0e854df24e0d88077abdba1e77a</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://finautofinanciamentos.com.br/ (domínio: finautofinanciamentos.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): finautofinanciamentos.com.br — **URL:** `https://finautofinanciamentos.com.br` | **Tipo / Atividade:** Plataforma/revenda intermediadora de venda e financiamento de veículos (de 1973 a 0 km) | **Uso da Marca:** Exibe em destaque visual o **logotipo do Banco BV** em azul, além de promover condições de &#34;feirões de veículos&#34; e captação de clientes para refinanciamento e compra direta via WhatsApp | **Conformidade (CNPJ / Correspondente):** Utiliza as marcas bancárias para transmitir credibilidade de canal de crédito, porém não apresenta as informações institucionais regulatórias exigidas pela Resolução CMN nº 4.935/2021</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cb63370e515/attempt-1/viewport.png (sha256 b865946176754c0e…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cb63370e515/attempt-1/fullpage.png (sha256 79cf28f59b63e3fb…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Finauto Financiamentos - Finauto</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>og:site_name: Finauto</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Finauto Financiamentos - Finauto</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Fale com um consultor! Finauto: uma financeira que entende você! Seja qual for seu objetivo, na Finauto você encontra crédito seguro e transparente, com condições que cabem no seu bolso. Fale com um consultor! Conheça a Finauto Parcerias para as melhores condições! Parceira das melhores instituições financeiras do país para garantir segurança e as melhores […]</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://finautofinanciamentos.com.br/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Finauto: uma financeira que entende você!</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Parceira das melhores instituições financeiras do país para garantir segurança e as melhores condições para você.</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Finauto Financiamentos, há 21 anos realizando sonhos.</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Nossos serviços</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Financiamento de veículos</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Refinanciamento de Veículos</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Venda Direta de Veículos Novos</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Capital de Giro PRONAMPE pelo BDMG</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Seu Imóvel Trabalhando por Você</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Por que escolher a Finauto é a melhor opção?</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Quer aproveitar nossas condições exclusivas?</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Perguntas Frequentes</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Quem pode solicitar um financiamento com a Finauto?</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Quais são os documentos necessários para o financiamento de veículos?</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Posso financiar veículos usados ou de modelos antigos?</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Início Quem somos? Serviços Diferenciais Condições Contato Fale com um consultor! Finauto: uma financeira que entende você! Seja qual for seu objetivo, na Finauto você encontra crédito seguro e transparente, com condições que cabem no seu bolso. Fale com um consultor! Conheça a Finauto Parcerias para as melhores condições!</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Início &lt;https://finautofinanciamentos.com.br/#inicio&gt; | Quem somos? &lt;https://finautofinanciamentos.com.br/#sobre&gt; | Serviços &lt;https://finautofinanciamentos.com.br/#servicos&gt; | Diferenciais &lt;https://finautofinanciamentos.com.br/#diferenciais&gt; | Condições &lt;https://finautofinanciamentos.com.br/#condicoes&gt; | Contato &lt;https://finautofinanciamentos.com.br/#contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Conheça a Finauto &lt;https://finautofinanciamentos.com.br/#sobre&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Whatsapp: &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Whatsapp: &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Instagram &lt;http://instagram.com.br/finautofin&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>Instagram &lt;http://instagram.com.br/finautofin&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-finauto-verde.svg (113x51, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo do Banco Itaú com o nome da marca em branco sobre fundo laranja.&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-banco-itau.svg (174x118, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo do Banco BV, com as letras BV em azul e detalhes em tons claros.&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-banco-bv.svg (173x118, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo do Banco Pan em preto com um ícone azul claro.&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-banco-pan.svg (174x118, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo do Banco Safra, com o brasão em azul escuro e o nome da instituição.&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-banco-safra.svg (174x118, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo do Banco Santander, em vermelho, com o ícone estilizado da chama.&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-banco-santander.svg (173x118, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo do Banco Bradesco em vermelho com o ícone característico da marca.&#39; src=https://finautofinanciamentos.com.br/wp-content/uploads/2024/11/logotipo-bradesco.svg (174x118, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logotipo-banco-daycoval]&#39; src=data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= (1x1, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logotipo-banco-carbank&#39; src=data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= (1x1, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logotipo da Finauto Financiamentos em branco com destaque para a letra &#34;A&#34; em amarelo.&#39; src=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDciIGhlaWdodD0iOTIiIHZpZXdCb3g9IjAgMCAyMDcgOTIiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHN0eWxlPSJmaWxsOi (207x92, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Parceira das melhores instituições financeiras do país para garantir segurança e as melhores condições para você.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Atendimento humanizado e transparente</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Whatsapp:</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Endereço:</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Rua Chagas Dória, 373, Centro, Lavras/MG, CEP: 37200-042</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>2026 – Todos os direitos reservados Finauto Financiamentos | Um site desenvolvido por Relanz LTDA</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Predomínio total da identidade visual própria da Finauto Financiamentos (cores verde e amarela), sem mimetismo visual da identidade institucional do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>Identificação comercial sob a marca Finauto Financiamentos, com endereço físico detalhado, mas sem informar CNPJ ou Razão Social.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>A empresa atua intermediando financiamentos e veicula parcerias bancárias, mas não exibe a declaração regulatória de correspondente bancário exigida pelo Banco Central (Res. CMN 4.935/2021).</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Exibição do logotipo oficial atual do Banco BV (&#39;BV banco&#39; em azul) inserido em um carrossel de parceiros bancários em conjunto com Itaú, PAN, Safra, Santander e Bradesco.</td><td class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Comunicação em terceira pessoa indicando parceria comercial (&#39;Parceira das melhores instituições financeiras do país&#39;), sem fingir ser o próprio banco.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Captação de leads via WhatsApp e simulação direta de crédito veicular com equipe de consultores da própria Finauto.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CONTACT-6">E-CONTACT-6</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O consumidor compreende que está interagindo com a Finauto, mas a ausência de dados cadastrais e de esclarecimento formal do papel de correspondente deixa a natureza da relação jurídica ambígua.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-HEAD-2">E-HEAD-2</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Ausência de menção expressa à condição de correspondente bancário, aos termos da Resolução CMN nº 4.935/2021, e ausência de CNPJ e dados formais da instituição contratante. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-006">E-TXT-006</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: A página utiliza o nome fantasia Finauto Financiamentos e indica endereço físico em Lavras/MG, porém omite a razão social e o CNPJ. — <span class="mono"><a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Uso secundário do logotipo em carrossel multibanco ao lado de concorrentes de mercado. — <span class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] VISUAL_IDENTITY: A identidade da empresa terceira é independente e prevalece claramente sobre as marcas dos parceiros. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio finautofinanciamentos.com.br pertence a uma intermediadora de financiamento automotivo sediada em Lavras/MG.</li><li>Apresenta carrossel com logotipo oficial atual do Banco BV (&#39;BV banco&#39;) ao lado de Itaú, Banco Pan, Safra, Santander e Bradesco.</li><li>Não utiliza logotipo antigo (B vermelho e V azul).</li><li>O site não apresenta CNPJ nem razão social no rodapé ou cabeçalho.</li><li>Não há declaração de correspondente bancário nem menção à Resolução CMN 4.935/2021 ou canal de ouvidoria.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Existência de contrato formal de correspondente bancário homologado entre o Banco BV e a Finauto Financiamentos.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O site da Finauto Financiamentos atua no segmento de financiamento de veículos e exibe o logotipo oficial atual do Banco BV em contexto multibanco/parcerias. A identidade visual própria predomina amplamente, descartando tentativa de personificação direta. No entanto, por se tratar de atividade de intermediação de crédito sem apresentação de CNPJ e sem a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021), a comunicação permanece em conformidade ambígua, demandando revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>Relanz LTDA<br><span class="mono">domain:finautofinanciamentos.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>finautofinanciamentos.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Relanz LTDA</td><td class="mono"><a href="#E-TXT-006">E-TXT-006</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Finauto</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): finautofinanciamentos.com.br — **URL:** `https://finautofinanciamentos.com.br` | **Tipo / Atividade:** Plataforma/revenda intermediadora de venda e financiamento de veícul</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Fale com um consultor! &lt;https://api.whatsapp.com/send?phone=5535997495097&amp;text=Ol%C3%A1%21%20Vim%20pelo%20site%2C%20gostaria%20de%20fazer%20uma%20simula%C3%A7%C3%A3o.&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A Finauto Financiamentos opera como promotora/intermediadora de crédito veicular e exibe o logotipo do Banco BV em uma seção de parceiros multibanco. Embora a identidade visual própria predomine e não haja personificação direta ou overbranding exclusivo, o site omite dados regulatórios essenciais para correspondentes no país (como CNPJ, razão social formal e menção explícita à condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021). A classificação REVIEW_REQUIRED com prioridade MEDIUM é pertinente e está confirmada.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Revendas de seminovos e lojas multimarcas que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; financiamento (loja OR revenda OR seminovos OR multimarcas) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; (seminovos OR multimarcas OR revenda) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;financiamos&#34; OR &#34;trabalhamos com&#34; OR &#34;financie&#34;) (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de carro e multimarcas</span></td><td class="mono">https://finautofinanciamentos.com.br/</td><td>finautofinanciamentos.com.br<br><span class="muted">**URL:** `https://finautofinanciamentos.com.br` | **Tipo / Atividade:** Plataforma/revenda intermediadora de venda e financiamento de veículos (de 1973 a 0 km) | **Uso da Marca:** Exibe em destaque visual o **logotipo do Banco BV** em azul, além de promover condições de &#34;feirões de veículos&#34; e captação de clientes para refinanciamento e compra direta via WhatsApp | **Conformidade (CNPJ / Correspondente):** Utiliza as marcas bancárias para transmitir credibilidade de canal de crédito, porém não apresenta as informações institucionais regulatórias exigidas pela Resolução CMN nº 4.935/2021</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:18:26.334706+00:00</div>
+      <div class="kv"><b>IP do servidor</b>187.110.162.234</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cb63370e515/attempt-1/manifest.json<br>sha256 186885513a23ac6c0ce7c7031f7d4b1b42eb144f9bc5031cda3c77ab946954eb</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://finautofinanciamentos.com.br/<br>Final: https://finautofinanciamentos.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cb63370e515/attempt-1/viewport.png</td><td class="mono">b865946176754c0e749947e9459a864ad4afcb1a0a32d33138b80cc900e814c6</td><td>439448</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cb63370e515/attempt-1/fullpage.png</td><td class="mono">79cf28f59b63e3fb42e8bce5453649ced103a0e854df24e0d88077abdba1e77a</td><td>744100</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cb63370e515/attempt-1/page.html.txt</td><td class="mono">f0dedffaa999938ea9091d72cbdf11b3180af3c4209c6cfc1ae66215a026b748</td><td>346851</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cb63370e515/attempt-1/text.txt</td><td class="mono">6f305c94d5a8865ae1ccd726a1e991efda7fea5dfb27e5dc55f43017d2b349de</td><td>3593</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cb63370e515/attempt-1/page.json</td><td class="mono">873726b72095a253ec1cdf8de11d480685d9cb77503d1f9ff1184812e00d5025</td><td>20418</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:09+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-25T19:18:26+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:18:31+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:18:31+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:07+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:55+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

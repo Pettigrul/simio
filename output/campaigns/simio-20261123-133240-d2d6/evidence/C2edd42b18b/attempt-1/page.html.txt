@@ -1,0 +1,681 @@
+<html lang="en"><head>
+    <title>Site bloqueado para seu perfil</title>
+    <meta name="referrer" content="no-referrer">
+<script>
+window.onload = function() {
+    // modal style
+var css = '\
+  .ns-template-wrap { \
+     z-index: 2; \
+     font-size: 12px; \
+     background: #ffffff; \
+     line-height: 16px; \
+     color: #646464; \
+     border-top: 8px solid transparent; \
+     padding: 24px 32px 32px; \
+     font-family: Lato, sans-serif; \
+  } \
+  .ns-template-inner-wrap { \
+     width: 100%; \
+     max-width: 600px; \
+     margin: 0 auto; \
+     overflow-x: hidden; \
+     word-wrap: break-word; \
+  } \
+  .ns-template-wrap * { \
+     box-sizing: border-box; \
+  } \
+  .ns-template-wrap h1 { \
+     margin-top: 0; \
+     color: #000000; \
+     font-size: 20px; \
+     line-height: 24px; \
+     font-weight: normal; \
+     margin-bottom: 16px; \
+  } \
+  .ns-template-wrap h2 { \
+     margin-top: 0; \
+     color: #000000; \
+     font-size: 14px; \
+     line-height: 20px; \
+     font-weight: normal; \
+     margin-bottom: 16px; \
+  } \
+  .ns-template-wrap p { \
+     color: #646464; \
+     font-size: 12px; \
+     line-height: 16px; \
+     margin-bottom: 24px; \
+  } \
+  .ns-template-wrap p.message-max-height { \
+     overflow: auto; \
+     word-wrap: break-word; \
+     margin-bottom: 20px; \
+  } \
+  .ns-template-wrap fieldset { \
+     margin: 0 0 12px 0; \
+     padding: 0; \
+     border: 0; \
+  } \
+  .ns-template-wrap fieldset label{ \
+     margin: 0 0 8px 0; \
+     padding: 0; \
+     border: 0; \
+     font-size: 14px; \
+     line-height: 20px; \
+     color: #000000; \
+  } \
+  .ns-template-wrap fieldset label::after{ \
+     content: ""; \
+     display: table; \
+     width: 100%; \
+     clear: both; \
+  } \
+  .ns-template-wrap fieldset label:last-of-type{ \
+     margin-bottom: 0; \
+  } \
+  .ns-template-wrap .custom-logo { \
+     margin-bottom: 24px; \
+  } \
+  .ns-template-wrap .custom-logo.small { \
+     max-height: 48px; \
+  } \
+  .ns-template-wrap .custom-logo.medium { \
+     max-height: 64px; \
+  } \
+  .ns-template-wrap .custom-logo.large { \
+     max-height: 128px; \
+  } \
+  .ns-template-wrap textarea { \
+     font-family: inherit; \
+     padding: 8px 12px; \
+     height: 80px; \
+     width: 100% !important; \
+     resize: none; \
+     border: 1px solid #E1E1E1; \
+     border-radius: 4px; \
+     background-color: #FFFFFF; \
+     color: #434343; \
+     font-size: 13px; \
+     line-height: 16px; \
+  } \
+  .ns-template-wrap button[disabled] { \
+     background: #EEEEEE; \
+     border-color: #E3E3E3; \
+     color: #ccc; \
+  } \
+  .ns-template-wrap button { \
+     height: auto; \
+     min-width: 88px; \
+     max-width: 160px; \
+     overflow: hidden; \
+     text-overflow: ellipsis; \
+     padding: 8px 16px; \
+     font-size: 12px; \
+     font-weight: bold; \
+     line-height: 16px; \
+     text-align: center; \
+     text-transform: uppercase; \
+  } \
+  .ns-template-wrap button.ns-btn-primary { \
+     border: 1px solid #047AB5; \
+     color: #FFFFFF; \
+     border-radius: 4px; \
+     background-color: #047AB5; \
+  } \
+  .ns-template-wrap button.ns-btn-cancel { \
+     border: 1px solid #047AB5; \
+     border-radius: 4px; \
+     background-color: #FFFFFF; \
+     color: #047AB5; \
+     margin-right: 8px; \
+  }\
+  .ns-user-justify-modal-wrap { \
+      font-size: 14px; \
+      color: #333333; \
+      text-align: center; \
+  } \
+  .ns-user-justify-modal-backdrop { \
+      position: fixed; \
+      z-index: 1; \
+      top: 0; \
+      left: 0; \
+      height: 100%; \
+      width: 100%; \
+      opacity: .6; \
+      background: #000000; \
+  } \
+  .ns-user-justify-modal-wrap .modal-header { \
+      min-height: 40px; \
+      height: auto; \
+      padding: 0; \
+      background: #FFFFFF; \
+      border-bottom: 0; \
+  } \
+  .ns-user-justify-modal-wrap .modal-header .modal-header { \
+      padding: 0 0 24px 0; \
+  } \
+  .ns-user-justify-modal-wrap textarea { \
+      font-size: inherit; \
+      font-family: inherit; \
+  } \
+  .ns-user-justify-modal-wrap * { \
+      box-sizing: border-box; \
+  } \
+  .ns-user-justify-modal { \
+      position: relative; \
+      display: inline-block; \
+      z-index: 2; \
+      padding: 72px 32px 0; \
+      width: 100%; \
+      max-width: 480px; \
+      text-align: left; \
+      border-radius: 2px; \
+      background-color: #FFFFFF; \
+      color: #242424; \
+      font-family:Lato, Arial, sans-serif; \
+      font-size: 14px; \
+      line-height: 20px; \
+  } \
+  .ns-user-justify-modal h1 { \
+      margin-top: 0; \
+      color: #000100; \
+      font-size: 20px; \
+      line-height: 24px; \
+      font-family:Lato, Arial, sans-serif; \
+  } \
+  .ns-user-justify-modal h2 { \
+      margin-top: 0; \
+      color: #000100; \
+      font-size: 18px; \
+      line-height: 24px; \
+      font-family:Lato, Arial, sans-serif; \
+  } \
+  .ns-user-justify-modal h3 { \
+      margin-top: 0; \
+      color: #000100; \
+      font-size: 16px; \
+      line-height: 24px; \
+      font-family:Lato, Arial, sans-serif; \
+  } \
+  .ns-user-justify-modal p { \
+      margin: 24px 0; \
+      color: #434343; \
+      font-size: 12px; \
+      line-height: 15px; \
+      max-height: 150px; \
+      overflow-y: auto; \
+  } \
+  .ns-user-justify-modal label { \
+      display: block; \
+      margin-right: .5em; \
+  } \
+  .ns-user-justify-modal fieldset { \
+      margin: 1em 0 0; \
+      padding: 0; \
+      border: 0; \
+  } \
+  .ns-user-justify-modal .custom-logo { \
+      position: absolute; \
+      top: 24px; \
+      left: 32px; \
+      max-height: 60px; \
+      max-width: 128px; \
+  } \
+  #ns-justify-description-box { \
+      padding: .5em; \
+      height: 7.5em; \
+      width: 100% !important; \
+      resize: none; \
+      margin-bottom: 0; \
+      border: 1px solid #E1E1E1; \
+      border-radius: 4px; \
+      background-color: #FFFFFF; \
+      color: #9B9B9B; \
+      font-size: 13px; \
+      line-height: 16px; \
+  } \
+  .ns-user-justify-modal-wrap button[disabled] { \
+      background: #EEEEEE; \
+      border-color: #E3E3E3; \
+      color: #ccc; \
+  } \
+  .ns-btn-group { \
+      margin-top: 40px; \
+      padding: 16px 0; \
+      text-align: right; \
+      position: relative; \
+  } \
+  .ns-btn-group:after { \
+      content: ""; \
+      background: #EEEEEE; \
+      height: 1px; \
+      width: calc(100% + 64px); \
+      position: absolute; \
+      top: 0; \
+      left: -32px; \
+  } \
+  .ns-btn-group button { \
+      height: auto; \
+      min-width: 88px; \
+      max-width: 160px; \
+      overflow: hidden; \
+      text-overflow: ellipsis; \
+      padding: 8px 16px; \
+      font-size: 12px; \
+      font-weight: bold; \
+      line-height: 16px; \
+      text-align: center; \
+      text-transform: uppercase; \
+  } \
+  .ns-btn-cancel { \
+      border: 1px solid #1BB7DF; \
+      border-radius: 4px; \
+      background-color: #FFFFFF; \
+      color: #1BB7DF; \
+      float: left; \
+  } \
+  .ns-btn-primary { \
+      color: #FFFFFF; \
+      border-radius: 4px; \
+      background-color: #1BB7DF; \
+      border: 1px solid #1BB7DF; \
+  } \
+  .ns-btn-group.ns-no-border { \
+      text-align: left; \
+      padding: 0; \
+      margin-top: 32px; \
+  } \
+  .ns-btn-group.ns-no-border:after { \
+      background: transparent; \
+  } \
+  .ns-btn-group.ns-no-border .ns-btn-cancel { \
+      margin-right: 8px; \
+  } \
+  .ns-user-justify-modal h4 { \
+      margin-top:0; \
+      margin-bottom:0; \
+      color: #000100; \
+      font-size: 20px; \
+      line-height: 24px; \
+      font-family:Lato, Arial, sans-serif; \
+      font-weight:normal; \
+  } \
+  .ns-user-justify-modal h5 { \
+      margin-top: 0; \
+      margin-bottom: 0; \
+      color: #434343; \
+      font-size: 12px; \
+      line-height: 16px; \
+      font-family:Lato, Arial, sans-serif; \
+      font-weight: normal; \
+  } \
+  .ns-form-input { \
+      width: 280px; \
+      border: 1px solid #E1E1E1; \
+      border-radius: 4px; \
+      background-color: #FFFFFF; \
+      color: #9B9B9B; \
+      font-family:Lato, Arial, sans-serif; \
+      font-size: 13px; \
+      line-height: 16px; \
+      padding:8px 12px; \
+      margin-top: 16px; \
+      margin-bottom:0; \
+  } \
+  .ns-padding-none { \
+      padding: 0 !important; \
+  } \
+  .ns-margin-none { \
+      margin: 0 !important; \
+  } \
+  .ns-success-msg { \
+      margin-top: 0; \
+      color: #000100; \
+      font-size: 14px; \
+      line-height: 24px; \
+      font-family: Lato, Arial, sans-serif; \
+      font-weight: normal; \
+      float: left; \
+      margin-left: 15px; \
+      margin-bottom: 0; \
+  }';
+
+var notify_css = document.createElement('style');
+notify_css.innerHTML = css;
+document.getElementsByTagName("head")[0].appendChild(notify_css);
+
+ns_debug = function(log_txt) {
+  if (typeof window.console != 'undefined') {
+    console.log(log_txt);
+  }
+};
+
+var ackMessages = {
+    'en': {
+        'block_message': 'You can close this page',
+        'justification_message': 'Justification sent, you can close this page'
+    },
+    'de': {
+        'block_message': 'Sie können diese Seite schließen.',
+        'justification_message': 'Die Begründung wurde gesendet, Sie können diese Seite schließen.'
+    },
+    'es': {
+        'block_message': 'Puedes cerrar esta página.',
+        'justification_message': 'Justificación enviada, ya puedes cerrar esta página.'
+    },
+    'fr': {
+        'block_message': 'Vous pouvez fermer cette page',
+        'justification_message': 'Justificatif envoyé, vous pouvez fermer cette page.'
+    },
+    'it': {
+        'block_message': 'Puoi chiudere questa pagina.',
+        'justification_message': 'La giustificazione è stata inviata, potete chiudere questa pagina.'
+    },
+    'ja': {
+        'block_message': 'このページを閉じることができます。',
+        'justification_message': '正当化理由を送信しました。このページを閉じても構いません。'
+    },
+    'zh': {
+        'block_message': '您可以关闭此页面。',
+        'justification_message': '理由已发送，您可以关闭此页面。'
+    },
+    'ko': {
+        'block_message': '이 페이지를 닫으셔도 됩니다.',
+        'justification_message': '소명 자료가 제출되었습니다. 이 페이지를 닫으셔도 됩니다.'
+    },
+    'pt': {
+        'block_message': 'Você pode fechar esta página.',
+        'justification_message': 'Justificativa enviada, você pode fechar esta página.'
+    },
+    'br': {
+        'block_message': 'Você pode fechar esta página.',
+        'justification_message': 'Justificativa enviada, você pode fechar esta página.'
+    }
+};
+
+function renderMessage(params) {
+    /*
+    // params comes from server
+    // The top format is for rendering the justification html
+    // and the bottom format is for rendering the block html.
+    @params = {
+    msg: (string),
+    justify: (htmlString)
+    } or
+    @params = {
+    rawmsg: (htmlString)
+    }
+     */
+    var notify_modal_container = document.createElement('div');
+    if (document.body) {
+        document.body.appendChild(notify_modal_container);
+    }
+    // Display justification pages
+    doc = window.document;
+    if (params.msg) {
+        doc.title = params.msg;
+    }
+
+    var language = "en";
+    if (language.indexOf("NS_LANGUAGE") > -1) {
+        // no substitution done, set to default
+        ns_debug("language is set to default language en");
+        doc.documentElement.lang = 'en';
+    } else {
+        ns_debug("language is set to:" + language);
+        doc.documentElement.lang = language;
+    }
+
+    notify_css = doc.createElement('style');
+    notify_css.innerHTML = css;
+    doc.getElementsByTagName("head")[0].appendChild(notify_css);
+
+    doc.body.innerHTML = params.justify;
+    var btnGroupLive = doc.querySelector('.ns-btn-group');
+    if (btnGroupLive) { btnGroupLive.setAttribute('aria-live', 'polite'); }
+    doc.querySelector('.msg').innerHTML = params.msg;
+
+    formData = {};
+    var justifyForm = doc.querySelector('.ns-template-inner-wrap form');
+    var descriptionField = doc.querySelector('#ns-justify-description');
+    var descriptionFieldBox = doc.querySelector('#ns-justify-description-box');
+    var justifySubmitBtns = justifyForm.querySelectorAll('.ns-submit');
+    var justifyRadio = justifyForm.querySelector('#justify-usage-radio');
+    var falsePositiveRadio = justifyForm.querySelector('#false-positive-radio');
+
+    var justification_req = 1;
+    _ns_justify_message_ = 1;
+    _ns_url_ = justifyForm.getAttribute('action');
+
+    var justifyFields = justifyForm.querySelectorAll('[name]');
+    for (var i=0; i<justifyFields.length; i++) {
+        var field = justifyFields[i];
+        var key = field.getAttribute('name');
+        if(key == 'msuid') {
+            _ns_msuid_ = field.value;
+            break;
+        }
+    }
+
+    function disableSubmitBtns() {
+        if (justifySubmitBtns.length == 2) {
+            justifySubmitBtns[1].setAttribute('disabled', 'disabled');
+        } else if (justifySubmitBtns.length == 1) {
+            justifySubmitBtns[0].setAttribute('disabled', 'disabled');
+        }
+    }
+
+    function enableSubmitBtns() {
+        if (justifySubmitBtns.length == 2) {
+            justifySubmitBtns[1].removeAttribute('disabled');
+        } else if (justifySubmitBtns.length == 1) {
+            justifySubmitBtns[0].removeAttribute('disabled');
+        }
+    }
+
+    function validateForm() {
+        if(params.force_justify == "false")
+            return;
+
+        if (!descriptionFieldBox || !justifySubmitBtns) {
+            return;
+        }
+        if (justification_req == 1 && !descriptionFieldBox.value.length) {
+            disableSubmitBtns();
+        } else {
+            if (justification_req == 1 &&
+                descriptionFieldBox.value.length &&
+                !descriptionFieldBox.value.match(/([^\u0000-\u007F]|\w)+/)) {
+                disableSubmitBtns();
+            } else {
+                enableSubmitBtns();
+            }
+        }
+    }
+
+    function submitModal() {
+        var justifyFields = justifyForm.querySelectorAll('[name]');
+        var url = justifyForm.getAttribute('action');
+
+        var cancel_button = 0;
+        if(this.value == 'cancel')
+            cancel_button = 1;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 2) {
+                if(!cancel_button) {
+                    document.location.reload();
+                } else {
+                    var referrer = "/";
+                    if (referrer != "/")
+                        window.location = "/";
+                }
+            }
+        }
+
+        formData["justification_type"] = "justification";
+        formData["_uj_category_id"] = "10054";
+	    var appCategory = "";
+	    if (appCategory.indexOf("NS_APP_CATEGORY") === -1) {
+	        formData["_uj_app_category"] = appCategory;
+	    }
+        formData["_uj_other_categories"] = "TodasCategorias;DLP-Apresentacao-Maior-3MB;DLP-Informacoes-Seguranca;Todas_Categorias_Protection;DLP-Dados-Juridicos;DLP-Base64;DLP-Transcricao-Reunioes;DLP-Altamente-Confidencial-Senha;DLP-Label-Interna;DLP-Info-Confidenciais-Gerais;DLP-Dados-Funcionarios;DLP-Normativas;Uncategorized;Acesso_Threat-Intel;DLP-Arquivos-Protegidos-Senha;DLP-PCI-Geral;DLP-Dados-Analiticos;DLP-Infra-Geral;DLP-Apontamentos;DLP-Informacoes-PEP;DLP-PFI-Geral;DLP-PII-Geral;DLP-Arquivos-Maiores-128MB;DLP-Base-Contribuicao-Sindical;DLP-Source-Code;Bloqueio-Upload;DLP-Label-Publica-Info-Sensivel;Acesso-VIPs";
+        formData["web_category"] = "10054";
+        formData["policy"] = "[WEB] - Bloqueio Padrao";
+        formData["_uj_dest_ip"] = "50.116.87.49";
+        formData["uj_response_file_name"] = "";
+        formData["app"] = "a3energiasolarrj";
+        formData["appsessiondata"] = "eyJhcHAiOiJhM2VuZXJnaWFzb2xhcnJqIiwiY29udGVudFZlcnNpb24iOjE3OTQ5NzY1MjR9";
+        formData["from_user"] = "";
+        formData["instance_id"] = "";
+        formData["suppress_interval"] = "1800";
+        formData["suppress_data"] = "";
+        formData["no_alert"] = "false";
+        for (var i=0; i<justifyFields.length; i++) {
+            var field = justifyFields[i];
+            var key = field.getAttribute('name');
+            var value = field.value;
+            if ((key == "justification_type") && (!field.checked)) {
+                continue;
+            }
+            formData[key] = value;
+        }
+
+        if (this.value) {
+            formData.submitId = this.value;
+        } else {
+            formData.submitId = 'cancel';
+        }
+        xhr.send(JSON.stringify(formData));
+
+        // Modified logic for ok (cancel) button
+        if(cancel_button) {
+            handleSubmissionComplete();
+        }
+    }
+
+    function handleSubmissionComplete() {
+        // 1. Disable all submit buttons and make them grey
+        for (var j=0; j<justifySubmitBtns.length; j++) {
+            justifySubmitBtns[j].setAttribute('disabled', 'disabled');
+            justifySubmitBtns[j].style.background = '#EEEEEE';
+            justifySubmitBtns[j].style.borderColor = '#E3E3E3';
+            justifySubmitBtns[j].style.color = '#ccc';
+        }
+
+        // 2. Disable the Text Box and make it grey
+        var textBox = doc.querySelector('#ns-justify-description-box');
+        if(textBox) {
+            textBox.setAttribute('disabled', 'disabled');
+            textBox.style.backgroundColor = '#EEEEEE';
+            textBox.style.borderColor = '#E3E3E3';
+            textBox.style.color = '#ccc';
+        }
+
+        // 3. Disable any other submit buttons found
+        var proceedBtn = doc.querySelector('#ns-justify-submit');
+        if(proceedBtn) {
+            proceedBtn.setAttribute('disabled', 'disabled');
+        }
+
+        // 4. Disable radio buttons
+        if(justifyRadio) {
+            justifyRadio.setAttribute('disabled', 'disabled');
+        }
+        if(falsePositiveRadio) {
+            falsePositiveRadio.setAttribute('disabled', 'disabled');
+        }
+
+        // 5. Show the message only if referrer is '/'
+        var referrer = "/";
+        if (referrer == "/") {
+            var btnGroup = doc.querySelector('.ns-btn-group');
+            if (btnGroup) {
+                // Check if message already exists to prevent duplicate insertion
+                if (!doc.querySelector('.ns-success-msg')) {
+                    var msgSpan = doc.createElement('div');
+                    msgSpan.className = 'ns-success-msg';
+
+                    var currentLang = language.indexOf("NS_LANGUAGE") > -1 ? 'en' : language;
+                    var langData = ackMessages[currentLang] || ackMessages['en'];
+
+                    // Visibility detection for UI elements to determine appropriate message
+                    // Check if description box is present and visible in DOM:
+                    // - Element exists (descriptionFieldBox)
+                    // - Element is rendered in layout (offsetParent !== null)
+                    // - Element is not explicitly hidden (computed display !== 'none')
+                    var hasDescriptionBox = Boolean(
+                        descriptionFieldBox &&
+                        descriptionFieldBox.offsetParent !== null &&
+                        window.getComputedStyle(descriptionFieldBox).display !== 'none'
+                    );
+                    
+                    // Check if either justification radio button is present and visible in DOM:
+                    // - justifyRadio exists and is rendered (offsetParent !== null)
+                    // - OR falsePositiveRadio exists and is rendered (offsetParent !== null)
+                    var hasRadioButtons = Boolean((justifyRadio && justifyRadio.offsetParent !== null) ||
+                                                   (falsePositiveRadio && falsePositiveRadio.offsetParent !== null));
+                    
+                    var message = (hasDescriptionBox || hasRadioButtons) ? langData.justification_message : langData.block_message;
+
+                    msgSpan.innerHTML = message;
+                    btnGroup.appendChild(msgSpan);
+                }
+            }
+        }
+    }
+
+    validateForm();
+    // add events
+    if (descriptionField) {
+        descriptionField.addEventListener('input', validateForm);
+    }
+
+    if(justifyRadio) {
+        justifyRadio.addEventListener('click', function() {
+            descriptionField.style.display = 'block';
+            justification_req = 1;
+            validateForm();
+        });
+    }
+
+    if(falsePositiveRadio) {
+        falsePositiveRadio.addEventListener('click', function() {
+            descriptionField.style.display = 'none';
+            descriptionField.value = '';
+            justification_req = 0;
+            validateForm();
+        });
+    }
+
+    for (var i=0; i<justifySubmitBtns.length; i++) {
+        justifySubmitBtns[i].addEventListener('click', submitModal);
+    }
+
+    if (doc.querySelector('#ns-justify-description-box')) {
+        var keydownfunc = function(e) {
+            e.stopPropagation();
+        }
+        doc.querySelector('#ns-justify-description-box').addEventListener("keydown", keydownfunc, false);
+
+        var keypressfunc = function(e) {
+            e.stopPropagation();
+        }
+        doc.querySelector('#ns-justify-description-box').addEventListener("keypress", keypressfunc, false);
+    }
+}
+
+renderMessage({
+    "msg" : "Site bloqueado para seu perfil",
+    "expire" : 600000,
+    "justify" : "<div class='ns-template-outer-wrap'><div class='ns-template-wrap ns-stripe-color-border' style='border-color: #1f2eff;'><div class='ns-template-inner-wrap'><img class='custom-logo medium' alt='Company Logo' src='data:image/png;base64,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'><header><h1 id='preview-title-box' class='msg'>Site bloqueado para seu perfil</h1></header><main><p id='preview-information-box' class='message-max-height'>O acesso ao site foi bloqueado devido as políticas de acesso do Banco BV.<br/><br/>Usuário: pedro.felicio@bv.com.br<br/>URL: a3energiasolarrj.com.br/financiamento-energia-solar-bv/<br/>Categoria: TodasCategorias, Uncategorized<br/>Atividade: Browse<br/>Instância: <br/>Aplicação: a3energiasolarrj<br/>Regra de Bloqueio: [WEB] - Bloqueio Padrao<br/> <br/>Se você tinha acesso a esta página e o perdeu, favor abrir um chamado no ConecTI utilizando o menu:<br/>Catálogo de serviço > Categoria: Aplicativos & Sistemas > Incidentes, Erros e Falhas em Sistemas/Siglas. <br/>Informar o sistema \"Netskope - ZTNA\"<br/> <br/>Para solicitar um novo acesso, consulte no documento abaixo o grupo correspondente ao acesso desejado e peça sua inclusão: https://banco-bv.atlassian.net/wiki/spaces/SQDSDSI/pages/1845431724/Grupos+de+acessos+internet+Proxy</p><form action=/09212c857e56314f2f36ed3b00bfe63c8f14d82b6d53abe4df7c4059cce96586/s><input type='hidden' name='msuid' value='2472211369857261244' /><input type='hidden' name='referer' value='/'/><input type='hidden' name='policy_name' value='[WEB] - Bloqueio Padrao'/><input type='hidden' name='app' value='a3energiasolarrj'/><input type='hidden' name='activity' value='Browse'/><input type='hidden' name='filename' value=''/><p id='preview-footer-box'></p><div class='ns-btn-group'><button class='ns-btn-cancel ns-submit' type='button' value='cancel' id='ns-justify-cancel'>OK</button></div></form></main></div></div></div>",
+    "force_justify" : "false"
+});
+}
+</script><style>  .ns-template-wrap {      z-index: 2;      font-size: 12px;      background: #ffffff;      line-height: 16px;      color: #646464;      border-top: 8px solid transparent;      padding: 24px 32px 32px;      font-family: Lato, sans-serif;   }   .ns-template-inner-wrap {      width: 100%;      max-width: 600px;      margin: 0 auto;      overflow-x: hidden;      word-wrap: break-word;   }   .ns-template-wrap * {      box-sizing: border-box;   }   .ns-template-wrap h1 {      margin-top: 0;      color: #000000;      font-size: 20px;      line-height: 24px;      font-weight: normal;      margin-bottom: 16px;   }   .ns-template-wrap h2 {      margin-top: 0;      color: #000000;      font-size: 14px;      line-height: 20px;      font-weight: normal;      margin-bottom: 16px;   }   .ns-template-wrap p {      color: #646464;      font-size: 12px;      line-height: 16px;      margin-bottom: 24px;   }   .ns-template-wrap p.message-max-height {      overflow: auto;      word-wrap: break-word;      margin-bottom: 20px;   }   .ns-template-wrap fieldset {      margin: 0 0 12px 0;      padding: 0;      border: 0;   }   .ns-template-wrap fieldset label{      margin: 0 0 8px 0;      padding: 0;      border: 0;      font-size: 14px;      line-height: 20px;      color: #000000;   }   .ns-template-wrap fieldset label::after{      content: "";      display: table;      width: 100%;      clear: both;   }   .ns-template-wrap fieldset label:last-of-type{      margin-bottom: 0;   }   .ns-template-wrap .custom-logo {      margin-bottom: 24px;   }   .ns-template-wrap .custom-logo.small {      max-height: 48px;   }   .ns-template-wrap .custom-logo.medium {      max-height: 64px;   }   .ns-template-wrap .custom-logo.large {      max-height: 128px;   }   .ns-template-wrap textarea {      font-family: inherit;      padding: 8px 12px;      height: 80px;      width: 100% !important;      resize: none;      border: 1px solid #E1E1E1;      border-radius: 4px;      background-color: #FFFFFF;      color: #434343;      font-size: 13px;      line-height: 16px;   }   .ns-template-wrap button[disabled] {      background: #EEEEEE;      border-color: #E3E3E3;      color: #ccc;   }   .ns-template-wrap button {      height: auto;      min-width: 88px;      max-width: 160px;      overflow: hidden;      text-overflow: ellipsis;      padding: 8px 16px;      font-size: 12px;      font-weight: bold;      line-height: 16px;      text-align: center;      text-transform: uppercase;   }   .ns-template-wrap button.ns-btn-primary {      border: 1px solid #047AB5;      color: #FFFFFF;      border-radius: 4px;      background-color: #047AB5;   }   .ns-template-wrap button.ns-btn-cancel {      border: 1px solid #047AB5;      border-radius: 4px;      background-color: #FFFFFF;      color: #047AB5;      margin-right: 8px;   }  .ns-user-justify-modal-wrap {       font-size: 14px;       color: #333333;       text-align: center;   }   .ns-user-justify-modal-backdrop {       position: fixed;       z-index: 1;       top: 0;       left: 0;       height: 100%;       width: 100%;       opacity: .6;       background: #000000;   }   .ns-user-justify-modal-wrap .modal-header {       min-height: 40px;       height: auto;       padding: 0;       background: #FFFFFF;       border-bottom: 0;   }   .ns-user-justify-modal-wrap .modal-header .modal-header {       padding: 0 0 24px 0;   }   .ns-user-justify-modal-wrap textarea {       font-size: inherit;       font-family: inherit;   }   .ns-user-justify-modal-wrap * {       box-sizing: border-box;   }   .ns-user-justify-modal {       position: relative;       display: inline-block;       z-index: 2;       padding: 72px 32px 0;       width: 100%;       max-width: 480px;       text-align: left;       border-radius: 2px;       background-color: #FFFFFF;       color: #242424;       font-family:Lato, Arial, sans-serif;       font-size: 14px;       line-height: 20px;   }   .ns-user-justify-modal h1 {       margin-top: 0;       color: #000100;       font-size: 20px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;   }   .ns-user-justify-modal h2 {       margin-top: 0;       color: #000100;       font-size: 18px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;   }   .ns-user-justify-modal h3 {       margin-top: 0;       color: #000100;       font-size: 16px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;   }   .ns-user-justify-modal p {       margin: 24px 0;       color: #434343;       font-size: 12px;       line-height: 15px;       max-height: 150px;       overflow-y: auto;   }   .ns-user-justify-modal label {       display: block;       margin-right: .5em;   }   .ns-user-justify-modal fieldset {       margin: 1em 0 0;       padding: 0;       border: 0;   }   .ns-user-justify-modal .custom-logo {       position: absolute;       top: 24px;       left: 32px;       max-height: 60px;       max-width: 128px;   }   #ns-justify-description-box {       padding: .5em;       height: 7.5em;       width: 100% !important;       resize: none;       margin-bottom: 0;       border: 1px solid #E1E1E1;       border-radius: 4px;       background-color: #FFFFFF;       color: #9B9B9B;       font-size: 13px;       line-height: 16px;   }   .ns-user-justify-modal-wrap button[disabled] {       background: #EEEEEE;       border-color: #E3E3E3;       color: #ccc;   }   .ns-btn-group {       margin-top: 40px;       padding: 16px 0;       text-align: right;       position: relative;   }   .ns-btn-group:after {       content: "";       background: #EEEEEE;       height: 1px;       width: calc(100% + 64px);       position: absolute;       top: 0;       left: -32px;   }   .ns-btn-group button {       height: auto;       min-width: 88px;       max-width: 160px;       overflow: hidden;       text-overflow: ellipsis;       padding: 8px 16px;       font-size: 12px;       font-weight: bold;       line-height: 16px;       text-align: center;       text-transform: uppercase;   }   .ns-btn-cancel {       border: 1px solid #1BB7DF;       border-radius: 4px;       background-color: #FFFFFF;       color: #1BB7DF;       float: left;   }   .ns-btn-primary {       color: #FFFFFF;       border-radius: 4px;       background-color: #1BB7DF;       border: 1px solid #1BB7DF;   }   .ns-btn-group.ns-no-border {       text-align: left;       padding: 0;       margin-top: 32px;   }   .ns-btn-group.ns-no-border:after {       background: transparent;   }   .ns-btn-group.ns-no-border .ns-btn-cancel {       margin-right: 8px;   }   .ns-user-justify-modal h4 {       margin-top:0;       margin-bottom:0;       color: #000100;       font-size: 20px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;       font-weight:normal;   }   .ns-user-justify-modal h5 {       margin-top: 0;       margin-bottom: 0;       color: #434343;       font-size: 12px;       line-height: 16px;       font-family:Lato, Arial, sans-serif;       font-weight: normal;   }   .ns-form-input {       width: 280px;       border: 1px solid #E1E1E1;       border-radius: 4px;       background-color: #FFFFFF;       color: #9B9B9B;       font-family:Lato, Arial, sans-serif;       font-size: 13px;       line-height: 16px;       padding:8px 12px;       margin-top: 16px;       margin-bottom:0;   }   .ns-padding-none {       padding: 0 !important;   }   .ns-margin-none {       margin: 0 !important;   }   .ns-success-msg {       margin-top: 0;       color: #000100;       font-size: 14px;       line-height: 24px;       font-family: Lato, Arial, sans-serif;       font-weight: normal;       float: left;       margin-left: 15px;       margin-bottom: 0;   }</style><style>  .ns-template-wrap {      z-index: 2;      font-size: 12px;      background: #ffffff;      line-height: 16px;      color: #646464;      border-top: 8px solid transparent;      padding: 24px 32px 32px;      font-family: Lato, sans-serif;   }   .ns-template-inner-wrap {      width: 100%;      max-width: 600px;      margin: 0 auto;      overflow-x: hidden;      word-wrap: break-word;   }   .ns-template-wrap * {      box-sizing: border-box;   }   .ns-template-wrap h1 {      margin-top: 0;      color: #000000;      font-size: 20px;      line-height: 24px;      font-weight: normal;      margin-bottom: 16px;   }   .ns-template-wrap h2 {      margin-top: 0;      color: #000000;      font-size: 14px;      line-height: 20px;      font-weight: normal;      margin-bottom: 16px;   }   .ns-template-wrap p {      color: #646464;      font-size: 12px;      line-height: 16px;      margin-bottom: 24px;   }   .ns-template-wrap p.message-max-height {      overflow: auto;      word-wrap: break-word;      margin-bottom: 20px;   }   .ns-template-wrap fieldset {      margin: 0 0 12px 0;      padding: 0;      border: 0;   }   .ns-template-wrap fieldset label{      margin: 0 0 8px 0;      padding: 0;      border: 0;      font-size: 14px;      line-height: 20px;      color: #000000;   }   .ns-template-wrap fieldset label::after{      content: "";      display: table;      width: 100%;      clear: both;   }   .ns-template-wrap fieldset label:last-of-type{      margin-bottom: 0;   }   .ns-template-wrap .custom-logo {      margin-bottom: 24px;   }   .ns-template-wrap .custom-logo.small {      max-height: 48px;   }   .ns-template-wrap .custom-logo.medium {      max-height: 64px;   }   .ns-template-wrap .custom-logo.large {      max-height: 128px;   }   .ns-template-wrap textarea {      font-family: inherit;      padding: 8px 12px;      height: 80px;      width: 100% !important;      resize: none;      border: 1px solid #E1E1E1;      border-radius: 4px;      background-color: #FFFFFF;      color: #434343;      font-size: 13px;      line-height: 16px;   }   .ns-template-wrap button[disabled] {      background: #EEEEEE;      border-color: #E3E3E3;      color: #ccc;   }   .ns-template-wrap button {      height: auto;      min-width: 88px;      max-width: 160px;      overflow: hidden;      text-overflow: ellipsis;      padding: 8px 16px;      font-size: 12px;      font-weight: bold;      line-height: 16px;      text-align: center;      text-transform: uppercase;   }   .ns-template-wrap button.ns-btn-primary {      border: 1px solid #047AB5;      color: #FFFFFF;      border-radius: 4px;      background-color: #047AB5;   }   .ns-template-wrap button.ns-btn-cancel {      border: 1px solid #047AB5;      border-radius: 4px;      background-color: #FFFFFF;      color: #047AB5;      margin-right: 8px;   }  .ns-user-justify-modal-wrap {       font-size: 14px;       color: #333333;       text-align: center;   }   .ns-user-justify-modal-backdrop {       position: fixed;       z-index: 1;       top: 0;       left: 0;       height: 100%;       width: 100%;       opacity: .6;       background: #000000;   }   .ns-user-justify-modal-wrap .modal-header {       min-height: 40px;       height: auto;       padding: 0;       background: #FFFFFF;       border-bottom: 0;   }   .ns-user-justify-modal-wrap .modal-header .modal-header {       padding: 0 0 24px 0;   }   .ns-user-justify-modal-wrap textarea {       font-size: inherit;       font-family: inherit;   }   .ns-user-justify-modal-wrap * {       box-sizing: border-box;   }   .ns-user-justify-modal {       position: relative;       display: inline-block;       z-index: 2;       padding: 72px 32px 0;       width: 100%;       max-width: 480px;       text-align: left;       border-radius: 2px;       background-color: #FFFFFF;       color: #242424;       font-family:Lato, Arial, sans-serif;       font-size: 14px;       line-height: 20px;   }   .ns-user-justify-modal h1 {       margin-top: 0;       color: #000100;       font-size: 20px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;   }   .ns-user-justify-modal h2 {       margin-top: 0;       color: #000100;       font-size: 18px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;   }   .ns-user-justify-modal h3 {       margin-top: 0;       color: #000100;       font-size: 16px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;   }   .ns-user-justify-modal p {       margin: 24px 0;       color: #434343;       font-size: 12px;       line-height: 15px;       max-height: 150px;       overflow-y: auto;   }   .ns-user-justify-modal label {       display: block;       margin-right: .5em;   }   .ns-user-justify-modal fieldset {       margin: 1em 0 0;       padding: 0;       border: 0;   }   .ns-user-justify-modal .custom-logo {       position: absolute;       top: 24px;       left: 32px;       max-height: 60px;       max-width: 128px;   }   #ns-justify-description-box {       padding: .5em;       height: 7.5em;       width: 100% !important;       resize: none;       margin-bottom: 0;       border: 1px solid #E1E1E1;       border-radius: 4px;       background-color: #FFFFFF;       color: #9B9B9B;       font-size: 13px;       line-height: 16px;   }   .ns-user-justify-modal-wrap button[disabled] {       background: #EEEEEE;       border-color: #E3E3E3;       color: #ccc;   }   .ns-btn-group {       margin-top: 40px;       padding: 16px 0;       text-align: right;       position: relative;   }   .ns-btn-group:after {       content: "";       background: #EEEEEE;       height: 1px;       width: calc(100% + 64px);       position: absolute;       top: 0;       left: -32px;   }   .ns-btn-group button {       height: auto;       min-width: 88px;       max-width: 160px;       overflow: hidden;       text-overflow: ellipsis;       padding: 8px 16px;       font-size: 12px;       font-weight: bold;       line-height: 16px;       text-align: center;       text-transform: uppercase;   }   .ns-btn-cancel {       border: 1px solid #1BB7DF;       border-radius: 4px;       background-color: #FFFFFF;       color: #1BB7DF;       float: left;   }   .ns-btn-primary {       color: #FFFFFF;       border-radius: 4px;       background-color: #1BB7DF;       border: 1px solid #1BB7DF;   }   .ns-btn-group.ns-no-border {       text-align: left;       padding: 0;       margin-top: 32px;   }   .ns-btn-group.ns-no-border:after {       background: transparent;   }   .ns-btn-group.ns-no-border .ns-btn-cancel {       margin-right: 8px;   }   .ns-user-justify-modal h4 {       margin-top:0;       margin-bottom:0;       color: #000100;       font-size: 20px;       line-height: 24px;       font-family:Lato, Arial, sans-serif;       font-weight:normal;   }   .ns-user-justify-modal h5 {       margin-top: 0;       margin-bottom: 0;       color: #434343;       font-size: 12px;       line-height: 16px;       font-family:Lato, Arial, sans-serif;       font-weight: normal;   }   .ns-form-input {       width: 280px;       border: 1px solid #E1E1E1;       border-radius: 4px;       background-color: #FFFFFF;       color: #9B9B9B;       font-family:Lato, Arial, sans-serif;       font-size: 13px;       line-height: 16px;       padding:8px 12px;       margin-top: 16px;       margin-bottom:0;   }   .ns-padding-none {       padding: 0 !important;   }   .ns-margin-none {       margin: 0 !important;   }   .ns-success-msg {       margin-top: 0;       color: #000100;       font-size: 14px;       line-height: 24px;       font-family: Lato, Arial, sans-serif;       font-weight: normal;       float: left;       margin-left: 15px;       margin-bottom: 0;   }</style></head>
+
+<body><div class="ns-template-outer-wrap"><div class="ns-template-wrap ns-stripe-color-border" style="border-color: #1f2eff;"><div class="ns-template-inner-wrap"><img class="custom-logo medium" alt="Company Logo" src="data:image/png;base64,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"><header><h1 id="preview-title-box" class="msg">Site bloqueado para seu perfil</h1></header><main><p id="preview-information-box" class="message-max-height">O acesso ao site foi bloqueado devido as políticas de acesso do Banco BV.<br><br>Usuário: pedro.felicio@bv.com.br<br>URL: a3energiasolarrj.com.br/financiamento-energia-solar-bv/<br>Categoria: TodasCategorias, Uncategorized<br>Atividade: Browse<br>Instância: <br>Aplicação: a3energiasolarrj<br>Regra de Bloqueio: [WEB] - Bloqueio Padrao<br> <br>Se você tinha acesso a esta página e o perdeu, favor abrir um chamado no ConecTI utilizando o menu:<br>Catálogo de serviço &gt; Categoria: Aplicativos &amp; Sistemas &gt; Incidentes, Erros e Falhas em Sistemas/Siglas. <br>Informar o sistema "Netskope - ZTNA"<br> <br>Para solicitar um novo acesso, consulte no documento abaixo o grupo correspondente ao acesso desejado e peça sua inclusão: https://banco-bv.atlassian.net/wiki/spaces/SQDSDSI/pages/1845431724/Grupos+de+acessos+internet+Proxy</p><form action="/09212c857e56314f2f36ed3b00bfe63c8f14d82b6d53abe4df7c4059cce96586/s"><input type="hidden" name="msuid" value="2472211369857261244" style=""><input type="hidden" name="referer" value="/" style=""><input type="hidden" name="policy_name" value="[WEB] - Bloqueio Padrao" style=""><input type="hidden" name="app" value="a3energiasolarrj" style=""><input type="hidden" name="activity" value="Browse" style=""><input type="hidden" name="filename" value="" style=""><p id="preview-footer-box"></p><div class="ns-btn-group" aria-live="polite"><button class="ns-btn-cancel ns-submit" type="button" value="cancel" id="ns-justify-cancel">OK</button></div></form></main></div></div></div></body></html>

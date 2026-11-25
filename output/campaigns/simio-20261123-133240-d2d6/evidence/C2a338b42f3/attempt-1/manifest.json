@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C2a338b42f3",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.feramotosnaweb.com.br/financiamento",
+  "final_url": "https://www.feramotosnaweb.com.br/financiamento",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.198.79.65",
+  "collected_at": "2026-11-23T14:44:22.415936+00:00",
+  "manifest_written_at": "2026-11-23T14:44:27.445725+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C2a338b42f3\\attempt-1\\viewport.png",
+      "sha256": "34d4a4f7f5715c0277a8bce7701777c70bdc278b54cb3c10f665dd43ff48072b",
+      "size_bytes": 47872
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C2a338b42f3\\attempt-1\\fullpage.png",
+      "sha256": "34d4a4f7f5715c0277a8bce7701777c70bdc278b54cb3c10f665dd43ff48072b",
+      "size_bytes": 47872
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C2a338b42f3\\attempt-1\\page.html.txt",
+      "sha256": "8021b4e6a6dd419fa1774bba32afc2f98841b46d3c4b289ea04ba1329168df1c",
+      "size_bytes": 65516
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C2a338b42f3\\attempt-1\\text.txt",
+      "sha256": "e20166a5196af3fc86ec1248ca8cc614b066f3fe20e62cc7e7fb9dc08dbd14ad",
+      "size_bytes": 807
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C2a338b42f3\\attempt-1\\page.json",
+      "sha256": "d57e3aea05160c037cc865e3ef0c25bb41088bffeb8841513795ced6b61da0c1",
+      "size_bytes": 2778
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

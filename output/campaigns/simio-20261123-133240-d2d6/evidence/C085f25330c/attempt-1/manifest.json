@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C085f25330c",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.newalliancemultimarcas.com/",
+  "final_url": "https://www.newalliancemultimarcas.com/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "147.79.105.32",
+  "collected_at": "2026-11-23T14:27:26.456989+00:00",
+  "manifest_written_at": "2026-11-23T14:27:32.916447+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C085f25330c\\attempt-1\\viewport.png",
+      "sha256": "5955955fb5be8dfab1efd9c04f9d9c8b25823cb064c8ea0c558c80ed7d34fc75",
+      "size_bytes": 47924
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C085f25330c\\attempt-1\\fullpage.png",
+      "sha256": "5955955fb5be8dfab1efd9c04f9d9c8b25823cb064c8ea0c558c80ed7d34fc75",
+      "size_bytes": 47924
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C085f25330c\\attempt-1\\page.html.txt",
+      "sha256": "9cbeec4f714dfc1d21db1ab996ff1fd40f07e7f5f346388d10b94dc7c045c06f",
+      "size_bytes": 65548
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C085f25330c\\attempt-1\\text.txt",
+      "sha256": "bb9a24d87862919ca135f17c5f83ef75764b0fea4161aa077f395570cb327c8e",
+      "size_bytes": 807
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C085f25330c\\attempt-1\\page.json",
+      "sha256": "134f70a4e9b83065c49354174ec2c22074be1243ff440f57c1c86006d7a7c638",
+      "size_bytes": 2778
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

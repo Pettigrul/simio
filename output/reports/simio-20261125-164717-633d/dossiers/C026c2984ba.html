@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C026c2984ba</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C026c2984ba — jairautomoveis.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>HIGH</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">[Revisor: CONFIRM] A página pertence a uma revenda multimarcas de veículos com identificação cadastral própria visível e CNPJ confirmado como COBAN BV. Não há apropriação indevida ou overbranding da marca BV, que é citada textualmente ao lado de outros bancos. Contudo, por atuar na captação de clientes para financiamento, refinanciamento e quitação contratual sem a inserção dos disclaimers regulatórios de correspondente bancário e ouvidoria da instituição contratante, mantém-se a classificação em REVIEW_REQUIRED.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou A_LEGITIMATE_COMMERCIAL_MENTION/NO_INDICATION, mas as regras determinísticas indicam C_POSSIBLE_OFFICIAL_CHANNEL; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C026c2984ba/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 8ccf2d5d006b63ca1177e2432e0074aa7350308e2d4b0939716ba6cb1c2373e0</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C026c2984ba/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 4883fdac1a8a99f107ce1b76a0b5dbeb2f3caef6577d477ea8b26ccf17ac56bd</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/ (domínio: jairautomoveis.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): jairautomoveis.com — **URL:** `https://jairautomoveis.com/` | **Uso da Marca:** Divulga parceria expressa com **&#34;BV Financeira / BV&#34;** | **Uso da Marca:** Divulga parceria expressa com **&#34;BV Financeira / BV&#34;**, anunciando planos com aprovação em até 15 minutos, prazos de até 60 meses e operações de portabilidade de crédito | Oferece canal direto de simulação | Cita o nome do agente de crédito responsável pela operação, mas não disponibiliza o texto regulatório de advertência de correspondente bancário e a identificação cadastral completa (CNPJ/Razão Social) no rodapé do portal</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C026c2984ba/attempt-1/viewport.png (sha256 8ccf2d5d006b63ca…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C026c2984ba/attempt-1/fullpage.png (sha256 4883fdac1a8a99f1…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Veículos Seminovos em Santa Rosa de Viterbo - SP</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Compre veículo seminovo certificado em Santa Rosa de Viterbo com laudo pericial cautelar 100% aprovado e procedência na Jair.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Jair Automóveis</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Veículos Seminovos em Santa Rosa de Viterbo - SP</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Compre veículo seminovo certificado em Santa Rosa de Viterbo com laudo pericial cautelar 100% aprovado e procedência na Jair.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Veículos Seminovos em Santa Rosa de Viterbo - SP: Procedência e Laudo Aprovado pela Jair Automóveis</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Garantia Total e Procedência Auditada de Seminovos em Santa Rosa de Viterbo na Jair Automóveis</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Perícia Cautelar de 110 Itens e Procedência Certificada em Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Inspeção Mecânica Preventiva de Motor, Câmbio e Trem de Força para Rodar em Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Retirada Imediata no Showroom ou Entrega Segura na Porta em Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Financiamento Facilitado e Menor Custo Efetivo em Santa Rosa de Viterbo com a Jair Automóveis</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Aprovação de Crédito em 15 Minutos nos 6 Maiores Bancos do País para Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Planos com Entrada Flexível, FGTS e Menor Taxa de Juros Efetiva em Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Troca com Troco Imediata com Diferença Depositada via PIX no Mesmo Dia em Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Dúvidas Práticas e Respostas Conversacionais com a Jair Automóveis em Santa Rosa de Viterbo</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>1. O que é exatamente um seminovo certificado na Jair Automóveis para entrega em Santa Rosa de Viterbo?</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>2. Por que comprar na Jair Automóveis é mais seguro para quem mora em Santa Rosa de Viterbo?</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>3. Onde fica a loja matriz e como funciona a entrega domiciliar em Santa Rosa de Viterbo?</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>4. Quando o veículo é liberado e em quanto tempo o crédito bancário é aprovado para Santa Rosa de Viterbo?</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>5. Quem realiza a vistoria cautelar e quem cuidará do meu atendimento em Santa Rosa de Viterbo?</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Jair Automóveis ▾ Quem somos Comprar Favoritos Blog ▾ Cidades Atendidas ▾ Contato | Início / Seminovos em São Paulo / Santa Rosa de Viterbo POLO REGIONAL REGIÃO DE RIBEIRÃO PRETO • CONEXÃO VIA SP-340 E SP-351 Veículos Seminovos em Santa Rosa de Viterbo - SP: Procedência e Laudo Aprovado pela Jair Automóveis Comprar um veículo seminovo com procedência atestada para rodar em Santa Rosa de Viterbo (São Paulo) exige máxima confiança, transparência e segurança documental. Na Jair Automóveis, oferecemos uma experiência de compra totalmente diferenciada para você e sua família, eliminando intermediários duvidosos, riscos de golpes na internet e surpresas com histórico veicular. Cada automóvel presente em nosso showroom passa por uma vistoria pericial cautelar de mais de 110 itens, incluindo alinh</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Jair Automóveis ▾ Quem somos Comprar Favoritos Blog ▾ Cidades Atendidas ▾ Contato Início / Seminovos em São Paulo / Santa Rosa de Viterbo Polo Regional Região de Ribeirão Preto • Conexão via SP-340 e SP-351 Veículos Seminovos em Santa Rosa de Viterbo - SP: Procedência e Laudo Aprovado pela Jair Automóveis Comprar um veículo seminovo com procedência atestada para rodar em Santa Rosa de Viterbo (São Paulo) exige máxima confiança, transparência e segurança documental. Na Jair Automóveis, oferecemos uma experiência de compra totalmente diferenciada para você e sua família, eliminando intermediários duvidosos, riscos de golpes na internet e surpresas com histórico veicular. Cada automóvel presente em nosso showroom passa por uma vistoria pericial cautelar de mais de 110 itens, incluindo alinhamento de chassi, originalidade de pintura, integridade mecânica de motor e câmbio, além de verificação cadastral completa para certificar procedência documental e ausência de pendências financeiras. Moradores de Santa Rosa de Viterbo contam com aprovação de crédito ágil em até 15 minutos, flexibilidade no valor de entrada, acolhimento de veículo usado na troca com a melhor valorização da região e opção de entrega técnica domiciliar em caminhão guincho próprio com seguro total pela SP-340. 🔒 Compra Segura &amp; Sem Sinal Antecipado: Nós nunca exigimos taxa prévia, depósito de cartório ou adiantamento financeiro para liberar refinanciamento ou avaliar veículos. Atendimento transparente, formalizado por contrato bancário homologado pelo Banco Central. Atendimento Dedicado: Laudo Pericial Cautelar 100% Aprovado Aprovação de Crédito em 15 Minutos WhatsApp • Santa Rosa de Viterbo WhatsApp Andréa • Entrega em Santa Rosa de Viterbo Simular parcelas e entrega com laudo? ✕ 👋 Olá! 🚗 Buscando um seminovo periciado? Mais de 15 veículos com Laudo Cautelar 100% aprovado e garantia de 90 dias para motor e câmbio. Estoque × Utilizamos cookies essenciais para garantir o funcionamento seguro do site e mel</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Jair Automóveis Veículos e Seminovos Ltda. CNPJ Ativo: 04.143.630/0001-76 Estacionamento especialista em veículos seminovos periciados, laudo cautelar 100% aprovado e procedência garantida em contrato. SIGA NOSSAS REDES SOCIAIS HUBS PRINCIPAIS Estoque de Seminovos Certificados Simulação de Financiamento Venda ou Troque Seu Veículo Refinanciamento de Veículos Blog &amp; Guias de Seminovos INSTITUCIONAL Quem Somos - Jair Automóveis Depoimentos &amp; Entregas Reais Central de Atendimento e Mapa Regiões e Bairros Atendidos Política de Privacidade LGPD Termos de Uso Disclaimer Financeiro ENDEREÇO E CONTATO 📍 Avenida Senador José Ermírio de Moraes, 371 - Jardim Lavínia, Mococa - SP, 13738-300 📞 Central: (19) 99159-1558 📱 WhatsApp: (19) 99159-1558 🕒 Segunda a sexta-feira: 08:00 HS às 18:00 HS 🕒 Sábado: 08:00 HS às 13:00 HS CENTRAL EDITORIAL &amp; ENCICLOPÉDIA AUTOMOTIVA Guias e Artigos do Blog por Categoria (113 Artigos Técnicos) 📚 Ver Todos os 113 Artigos do Blog ➔ 🏦 FINANCIAMENTO 18 artigos ▼ 💳 CRÉDITO ESPECIAL 17 artigos ▼ 🔍 GUIAS DE COMPRA 24 artigos ▼ ⚖️ COMPARATIVOS 18 artigos ▼ 📋 DOCUMENTAÇÃO 19 artigos ▼ 🔄 TROCA E AVALIAÇÃO 17 artigos ▼ LOCALIZADOR DE SEMINOVOS NA SUA REGIÃO Encontre Carros com Entrega e Laudo na sua Cidade Atendimento especializado para mais de 50 cidades em São Paulo e Minas Gerais Buscar cidade ou região de atendimento 🔎 REDE DE ATENDIMENTO &amp; SILOS REGIONAIS Polos Regionais e Cidades em Escadinha 🏙️ Bairros Atendidos 📍 Polo Minas Gerais (MG) 📍 Polo São Paulo (SP) ⛰️ Minas Gerais (MG) • Polo Estadual de Seminovos Acessar Hub de Minas Gerais ➔ Atendimento com entrega em domicílio e garantia em todo o estado de Minas Gerais (Clique para recolher/expandir) 295 Cidades em MG ▼ 🚗 São Paulo (SP) • Polo Estadual de Seminovos Acessar Hub de São Paulo ➔ Atendimento direto no showroom e entrega técnica para todas as cidades paulistas (Clique para recolher/expandir) 277 Cidades em SP ▼ © 2026 Jair Automóveis Veículos e Seminovos Ltda.. Todos os direitos reservados. Ter</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://jairautomoveis.com/&gt; | Quem somos &lt;https://jairautomoveis.com/quem-somos/&gt; | Comprar &lt;https://jairautomoveis.com/estoque/&gt; | Favoritos &lt;https://jairautomoveis.com/estoque/&gt; | Blog ▾ &lt;https://jairautomoveis.com/blog/&gt; | Cidades Atendidas ▾ &lt;https://jairautomoveis.com/cidades-atendidas/&gt; | Contato &lt;https://jairautomoveis.com/contato/&gt; | Início &lt;https://jairautomoveis.com/&gt; | Seminovos em São Paulo &lt;https://jairautomoveis.com/cidades-atendidas/#sao-paulo&gt; | Falar com Consultor de Santa Rosa de Viterbo &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria%20de%20ver%20op%C3%A7%C3%B5es%20de%20seminovos%20dispon%C3%ADveis%20e%20simular%20o%20financiamento.&gt; | 💳 Simular Financiamento ou Troca &lt;https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/#simular-proposta&gt; | 🚗 Ver Estoque Completo &lt;https://jairautomoveis.com/estoque/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Jair Automóveis ▾</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>ENVIAR PROPOSTA PARA SANTA ROSA DE VITERBO</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>✕</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>👋 Olá!</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>×</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>CONCORDAR E FECHAR</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Falar com Consultor de Santa Rosa de Viterbo &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria%20de%20ver%20op%C3%A7%C3%B5es%20de%20seminovos%20dispon%C3%ADveis%20e%20simular%20o%20financiamento.&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Chevrolet%20Prisma%20LT%201.4%20Flex%202013%20no%20site%20por%20R%24%C2%A047.990%2C00.%20Gostaria%20de%20simular%20as%20parcelas%20com%20entrega%20aqui%20na%20cidade!&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Fiat%20Fiorino%20Endurance%201.4%20Flex%202024%20no%20site%20por%20R%24%C2%A093.900%2C00.%20Gostaria%20de%20simular%20as%20parcelas%20com%20entrega%20aqui%20na%20cidade!&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Fiat%20Palio%20Fire%201.0%20Flex%203P%202015%20no%20site%20por%20R%24%C2%A029.990%2C00.%20Gostaria%20de%20simular%20as%20parcelas%20com%20entrega%20aqui%20na%20cidade!&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Fiat%20Uno%20Sporting%201.4%20Flex%202013%20no%20site%20por%20R%24%C2%A042.990%2C00.%20Gostaria%20de%20simular%20as%20parcelas%20com%20entrega%20aqui%20na%20cidade!&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>💬 FALAR NO WHATSAPP &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria%20de%20ver%20op%C3%A7%C3%B5es%20de%20seminovos%20dispon%C3%ADveis%20e%20simular%20o%20financiamento.&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>SIMULAR REFINANCIAMENTO ➔ &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20gostaria%20de%20simular%20o%20refinanciamento%20do%20meu%20carro%20pela%20FIPE%20para%20liberar%20dinheiro%20na%20conta.&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>AVALIAR TROCA COM TROCO ➔ &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Moro%20em%20Santa%20Rosa%20de%20Viterbo%20e%20quero%20avaliar%20meu%20carro%20na%20Troca%20com%20Troco%20para%20receber%20troco%20no%20PIX%20na%20Jair%20Autom%C3%B3veis.&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>SIMULAR PORTABILIDADE ➔ &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20tenho%20um%20carro%20financiado%20em%20outro%20banco.%20Gostaria%20de%20simular%20a%20quita%C3%A7%C3%A3o%20e%20libera%C3%A7%C3%A3o%20de%20troco%20na%20Jair%20Autom%C3%B3veis.&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>💬 SIMULAR NO WHATSAPP &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria%20de%20ver%20op%C3%A7%C3%B5es%20de%20seminovos%20dispon%C3%ADveis%20e%20simular%20o%20financiamento.&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>💬Falar no WhatsApp da Loja &lt;https://wa.me/5519991591558?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>page</td><td>WhatsApp • Santa Rosa de Viterbo &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria%20de%20ver%20op%C3%A7%C3%B5es%20de%20seminovos%20dispon%C3%ADveis%20e%20simular%20o%20financiamento.&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>footer</td><td>Instagram Oficial Jair Automóveis &lt;https://www.instagram.com/jairautomoveismococa/&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>footer</td><td>Facebook Oficial Jair Automóveis &lt;https://www.facebook.com/jairautomoveismococa&gt;</td></tr>
+      <tr id="E-CONTACT-15"><td class="mono"><b>E-CONTACT-15</b></td><td>contact</td><td>footer</td><td>(19) 99159-1558 &lt;https://wa.me/5519991591558?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es&gt;</td></tr>
+      <tr id="E-CONTACT-16"><td class="mono"><b>E-CONTACT-16</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/jairautomoveismococa/&gt;</td></tr>
+      <tr id="E-CONTACT-17"><td class="mono"><b>E-CONTACT-17</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/jairautomoveismococa&gt;</td></tr>
+      <tr id="E-CONTACT-18"><td class="mono"><b>E-CONTACT-18</b></td><td>contact</td><td>page</td><td>Abrir conversa no WhatsApp da Jair Automóveis &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Estou%20no%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria%20de%20falar%20com%20um%20consultor%20sobre%20op%C3%A7%C3%B5es%20de%20ve%C3%ADculos%20e%20simula%C3%A7%C3%A3o.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Jair Automóveis - Compra Vende Troca&#39; src=https://jairautomoveis.com/images/logo-site-jairautomoveisoficial.png (205x64, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Jair Automóveis - Compra Vende Troca&#39; src=https://jairautomoveis.com/images/logo-site-jairautomoveis.png (179x56, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Compra Segura &amp; Sem Sinal Antecipado: Nós nunca exigimos taxa prévia, depósito de cartório ou adiantamento financeiro para liberar refinanciamento ou avaliar veículos. Atendimento transparente, formalizado por contrato bancário homologado pelo Banco Central.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Atendimento Dedicado:</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Parceria com 6 maiores bancos com as menores taxas do mercado.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>comercializado pela Jair Automóveis recebe um laudo cautelar técnico emitido por empresa credenciada ao Detran, assegurando procedência comprovada e proteção patrimonial definitiva.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Para que você conquiste seu seminovo dos sonhos sem descapitalizar suas economias, a Jair Automóveis mantém convênio direto com mais de 10 das principais instituições bancárias do Brasil (Santander, Itaú, Bradesco, BV Financeira, Safra e Pan). Essa forte parceria nos permite negociar condições exclusivas para moradores de Santa Rosa de Viterbo, viabilizando planos sem entrada, prazos estendidos</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Aprovação de Crédito em 15 Minutos nos 6 Maiores Bancos do País para Santa Rosa de Viterbo</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Em nosso canal direto no WhatsApp, moradores de Santa Rosa de Viterbo enviam dados cadastrais com total privacidade e recebem o resultado da análise de crédito nos maiores bancos em menos de 15 minutos.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>PILAR IR / AGIR (ATENDIMENTO)</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>✓ Comodidade total no seu endereço</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>💬 FALAR NO WHATSAPP</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>APROVAÇÃO EM 15 MINUTOS • PARCERIA COM 6 MAIORES BANCOS</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Consulte planos com ou sem entrada nos 6 maiores bancos do país. Avaliamos seu veículo usado na troca com troco direto no PIX.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Avaliação rápida por fotos no WhatsApp</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Quitação de débitos pendentes do seu veículo</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>As menores taxas de juros nominais negociadas com nossos 6 bancos parceiros.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Parceria Santander, BV, Itaú, Bradesco e Safra</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>💬 SIMULAR NO WHATSAPP</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>5. Quem realiza a vistoria cautelar e quem cuidará do meu atendimento em Santa Rosa de Viterbo?</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Atendimento abrangente para moradores de Centro, Bairro Alto, Parque São Jorge e acessos pela Avenida Brasil.</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Contratos bancários auditados pelas normas do Banco Central, sem cobrança prévia de taxas ou depósitos de sinal.</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Avaliar meu carro usado WhatsApp ou Formulário 15 a 30 minutos Simulação nos 6 maiores bancos parceiros Liberação de até 90% da FIPE em dinheiro</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Troca com Troco via PIX WhatsApp Direto Mesmo dia útil Avaliação do seu seminovo com laudo justo Dinheiro direto na conta e carro novo na garagem</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Quitação de contrato antigo Setor Financeiro Até 24 horas Cálculo de deságio de juros futuros Parcelas menores e saldo extra no bolso</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>COMO FUNCIONA NOSSO ATENDIMENTO</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Você chama a gente no WhatsApp ou visita nossa loja. A gente conversa sobre o carro ideal para rodar em Santa Rosa de Viterbo (SP) e tira todas as suas dúvidas.</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>REDE REGIONAL DE ATENDIMENTO &amp; SILO</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Além de Santa Rosa de Viterbo, a Jair Automóveis atende moradores, famílias, comerciantes e produtores rurais de todos os municípios vizinhos de Região de Ribeirão Preto com assessoria financeira ágil, laudo pericial cautelar 100% aprovado e atendimento digital:</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Preencha seus dados abaixo e nossa equipe enviará as melhores propostas de financiamento e entrega para Santa Rosa de Viterbo direto no seu WhatsApp.</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>SEU WHATSAPP COM DDD *</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>Autônomo / Empresário (CNPJ)</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>WhatsApp • Santa Rosa de Viterbo</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>Jair Automóveis Veículos e Seminovos Ltda.</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>CNPJ Ativo: 04.143.630/0001-76</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>Central de Atendimento e Mapa</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>ENDEREÇO E CONTATO</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>📱 WhatsApp: (19) 99159-1558</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>Atendimento especializado para mais de 50 cidades em São Paulo e Minas Gerais</td></tr>
+      <tr id="E-TXT-038"><td class="mono"><b>E-TXT-038</b></td><td>text</td><td>page</td><td>Buscar cidade ou região de atendimento</td></tr>
+      <tr id="E-TXT-039"><td class="mono"><b>E-TXT-039</b></td><td>text</td><td>page</td><td>REDE DE ATENDIMENTO &amp; SILOS REGIONAIS</td></tr>
+      <tr id="E-TXT-040"><td class="mono"><b>E-TXT-040</b></td><td>text</td><td>page</td><td>Atendimento com entrega em domicílio e garantia em todo o estado de Minas Gerais (Clique para recolher/expandir)</td></tr>
+      <tr id="E-TXT-041"><td class="mono"><b>E-TXT-041</b></td><td>text</td><td>page</td><td>Atendimento direto no showroom e entrega técnica para todas as cidades paulistas (Clique para recolher/expandir)</td></tr>
+      <tr id="E-TXT-042"><td class="mono"><b>E-TXT-042</b></td><td>text</td><td>page</td><td>© 2026 Jair Automóveis Veículos e Seminovos Ltda.. Todos os direitos reservados.</td></tr>
+      <tr id="E-TXT-043"><td class="mono"><b>E-TXT-043</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: Quitação de contrato — <span class="mono"><a href="#E-TXT-023">E-TXT-023</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: O estabelecimento identifica com clareza sua razão social (Jair Automóveis Veículos e Seminovos Ltda.), CNPJ ativo (04.143.630/0001-76), endereço físico completo e canais de contato próprios no rodapé. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-032">E-TXT-032</a> <a href="#E-TXT-033">E-TXT-033</a> <a href="#E-TXT-035">E-TXT-035</a> </span></li><li>[HIGH] VISUAL_IDENTITY: A identidade visual do site pertence inteiramente à loja Jair Automóveis (logotipo próprio, paleta preta/vermelha), sem qualquer apropriação dos elementos visuais institucionais do Banco BV. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] LOGO_USAGE: Não há exibição gráfica ou isolada de logotipo do Banco BV; a citação à instituição é exclusivamente textual em contexto de múltiplos bancos parceiros. — <span class="mono"><a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-016">E-TXT-016</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] INSTITUTIONAL_LANGUAGE: A comunicação é feita em terceira pessoa pela revenda de veículos seminovos, informando parceria comercial/convênio de financiamento ao lado de outros bancos concorrentes (Santander, Itaú, Bradesco, Safra e Pan). — <span class="mono"><a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-016">E-TXT-016</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence à empresa Jair Automóveis Veículos e Seminovos Ltda. (CNPJ 04.143.630/0001-76), correspondente bancário cadastrado.</li><li>A menção ao Banco BV / BV Financeira ocorre estritamente de forma textual em listas multibacterianas de parceiros de financiamento (Santander, Itaú, Bradesco, BV Financeira, Safra e Pan).</li><li>Não foi identificado uso de logotipo (atual ou antigo) do Banco BV no cabeçalho, nas artes gráficas ou no corpo da página.</li><li>O domínio, títulos e metadados referem-se unicamente ao estoque e serviços da Jair Automóveis em Santa Rosa de Viterbo - SP.</li><li>Todos os canais de contato (WhatsApp, telefone, endereço em Mococa-SP) pertencem à própria concessionária/revendedora.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Ausência de texto regulatório padrão da Resolução CMN nº 4.935/2021 no rodapé, suprida pela contextualização multibacteriana legítima e identificação cadastral completa.</li><li>divergência modelo × regras: o modelo indicou A_LEGITIMATE_COMMERCIAL_MENTION/NO_INDICATION, mas as regras determinísticas indicam C_POSSIBLE_OFFICIAL_CHANNEL; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);"></p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Entidade</b>Jair Automóveis Veículos e Seminovos Ltda<br><span class="mono">cnpj:04143630000176</span></div>
+      <div class="kv"><b>Confiança</b>HIGH</div>
+      <div class="kv"><b>Cadastro autorizado</b>coban_registry_bv.csv (ref. 2026-10-06) (cnpj)</div>
+    </div>
+    <p style="margin-top:12px;">CNPJ 04.143.630/0001-76 observado na página consta do cadastro autorizado &#39;coban_registry_bv.csv (ref. 2026-10-06)&#39;.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>jairautomoveis.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>04.143.630/0001-76</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Jair Automóveis Veículos e Seminovos Ltda. CNPJ Ativo: 04.143.630/0001-76</td></tr>
+      <tr><td>legal_name</td><td>Jair Automóveis Veículos e Seminovos Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>2026 Jair Automóveis Veículos e Seminovos Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/jairautomoveismococa/</td><td class="mono"><a href="#E-CONTACT-13">E-CONTACT-13</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/jairautomoveismococa</td><td class="mono"><a href="#E-CONTACT-14">E-CONTACT-14</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Jair Automóveis</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(19) 99159-1558</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com Consultor de Santa Rosa de Viterbo &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Jair%20Autom%C3%B3veis%20e%20sou%20de%20Santa%20Rosa%20de%20Viterbo%20-%20SP.%20Gostaria</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Chevrolet%20Prisma%20LT%201.4%20Flex%202013%20no%20site%20por%20R%2</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Fiat%20Fiorino%20Endurance%201.4%20Flex%202024%20no%20site%20por%20</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Fiat%20Palio%20Fire%201.0%20Flex%203P%202015%20no%20site%20por%20R%</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>💬 QUERO EM SANTA ROSA DE VITERBO &lt;https://wa.me/5519991591558?text=Ol%C3%A1!%20Sou%20de%20Santa%20Rosa%20de%20Viterbo%20e%20vi%20o%20Fiat%20Uno%20Sporting%201.4%20Flex%202013%20no%20site%20por%20R%24%</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>parceria</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Uso da Marca:** Divulga parceria expressa com **&#34;BV Financeira / BV&#34;**</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>associação página→CNPJ baseada na publicação do CNPJ na própria página</li><li>um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o domínio é seu</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-TXT-023">E-TXT-023</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma revenda multimarcas de veículos com identificação cadastral própria visível e CNPJ confirmado como COBAN BV. Não há apropriação indevida ou overbranding da marca BV, que é citada textualmente ao lado de outros bancos. Contudo, por atuar na captação de clientes para financiamento, refinanciamento e quitação contratual sem a inserção dos disclaimers regulatórios de correspondente bancário e ouvidoria da instituição contratante, mantém-se a classificação em REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>LOGO_USAGE</td><td>LOW</td><td>As imagens E-IMG-1 e E-IMG-2 correspondem exclusivamente ao logotipo comercial próprio da Jair Automóveis, e não a logotipos do Banco BV. A menção à marca é estritamente textual.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-016">E-TXT-016</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td>MEDIUM</td><td>Trata-se de COBAN confirmado no cadastro da instituição (CNPJ 04.143.630/0001-76) que divulga serviços de intermediação financeira, refinanciamento e quitação de contratos sem apresentar os avisos regulatórios obrigatórios de correspondente bancário e canais de ouvidoria (Res. CMN 4.935/2021).</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-023">E-TXT-023</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Lojas, revendas e correspondentes da região Sudeste que divulgam financiamento da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Espírito Santo&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Espírito Santo&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Minas Gerais&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Minas Gerais&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Rio de Janeiro&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;Rio de Janeiro&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;São Paulo&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento (loja OR revenda OR correspondente OR promotora) &#34;São Paulo&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H5-establishment:regiao-Sudeste</span></td><td class="mono">https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/</td><td>jairautomoveis.com<br><span class="muted">**URL:** `https://jairautomoveis.com/` | **Uso da Marca:** Divulga parceria expressa com **&#34;BV Financeira / BV&#34;** | **Uso da Marca:** Divulga parceria expressa com **&#34;BV Financeira / BV&#34;**, anunciando planos com aprovação em até 15 minutos, prazos de até 60 meses e operações de portabilidade de crédito | Oferece canal direto de simulação | Cita o nome do agente de crédito responsável pela operação, mas não disponibiliza o texto regulatório de advertência de correspondente bancário e a identificação cadastral completa (CNPJ/Razão Social) no rodapé do portal</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:23:06.140553+00:00</div>
+      <div class="kv"><b>IP do servidor</b>177.136.251.242</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C026c2984ba/attempt-1/manifest.json<br>sha256 d8ae86e20745ae94b9e0f2dc2835a6703f27855b06bc3d25ece60df8394e9717</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/<br>Final: https://jairautomoveis.com/veiculos-seminovos-em-santa-rosa-viterbo/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C026c2984ba/attempt-1/viewport.png</td><td class="mono">8ccf2d5d006b63ca1177e2432e0074aa7350308e2d4b0939716ba6cb1c2373e0</td><td>221445</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C026c2984ba/attempt-1/fullpage.png</td><td class="mono">4883fdac1a8a99f107ce1b76a0b5dbeb2f3caef6577d477ea8b26ccf17ac56bd</td><td>1882496</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C026c2984ba/attempt-1/page.html.txt</td><td class="mono">3d472a87fc151d7bafa47735dd8eeefba592dd63b27377acd6c5a0178d617308</td><td>722845</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C026c2984ba/attempt-1/text.txt</td><td class="mono">496ce9b3dd0c2ad313998e732f65715b3de1eab4032d8274cde52d8b58394294</td><td>18344</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C026c2984ba/attempt-1/page.json</td><td class="mono">43b50cc11e12e7828355eb79135309dd205c85309c12f5b33f26b280b2b3f666</td><td>98092</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:10+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-25T19:23:06+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:23:11+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:23:11+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:23:33+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:24:16+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

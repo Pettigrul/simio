@@ -1,0 +1,3276 @@
+<html lang="pt-BR" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+
+    
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-HXJ35RV7BZ&amp;cx=c&amp;gtm=4e6bh1h1"></script><script>
+      try {
+        if (sessionStorage.getItem('classito_scroll_top')) {
+          sessionStorage.removeItem('classito_scroll_top');
+          if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    </script>
+
+    
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-18475107463"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      // gtag() continua definido no staging (só não envia nada), porque o
+      // login e o cadastro chamam gtag('event', ...) direto.
+      function gtag(){dataLayer.push(arguments);}
+      // Modo de consentimento do Google (LGPD, dono 22/11/2026): sem "Aceitar" no aviso de
+      // cookies, o Google não grava cookies (só sinais anônimos). Quem já aceitou continua.
+      (function () {
+        var ok = false;
+        try { ok = localStorage.getItem('cookies_decision') === 'accepted'; } catch (e) {}
+        var v = ok ? 'granted' : 'denied';
+        gtag('consent', 'default', {ad_storage: v, analytics_storage: v, ad_user_data: v, ad_personalization: v, wait_for_update: 500});
+      })();
+      gtag('js', new Date());
+      gtag('config', 'AW-18475107463');
+      gtag('config', 'G-HXJ35RV7BZ');  // Google Analytics 4 (tráfego geral)
+
+      // Cadastro concluído via Google OAuth (redirect server-side, ver
+      // app/api/auth.py::google_callback) — dispara o mesmo evento de
+      // conversão do cadastro por e-mail (register.html/login.html), só que
+      // via parâmetro na URL em vez de callback direto de sucesso. Limpa o
+      // parâmetro da URL visível logo depois, pra um F5 não disparar de novo.
+      if (new URLSearchParams(window.location.search).get('novo_cadastro') === '1') {
+          gtag('event', 'conversion', {'send_to': 'AW-18475107463/mnnLCPn3zIUdEIeJz-lE'});
+          const url = new URL(window.location);
+          url.searchParams.delete('novo_cadastro');
+          window.history.replaceState({}, '', url);
+      }
+    </script>
+
+    
+    <script>
+      (function () {
+          var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+              || window.navigator.standalone === true;
+          if (isStandalone) {
+              document.cookie = 'classito_pwa=1; max-age=' + (60 * 60 * 24 * 365) + '; path=/; samesite=lax';
+
+              // Ping de atividade real do app instalado (ver PwaDevice em
+              // app/models.py) — device_id gerado SÓ aqui, dentro do
+              // isStandalone, de propósito: localStorage não é exclusivo do
+              // modo instalado (é compartilhado com o navegador normal no
+              // mesmo site), então só gerar/enviar isso quando já se sabe
+              // que é o app instalado evita misturar os dois tipos de uso.
+              // Throttle de 1h evita mandar um ping a cada navegação interna.
+              try {
+                  var deviceId = localStorage.getItem('classito_pwa_device_id');
+                  if (!deviceId) {
+                      deviceId = (crypto.randomUUID ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+                      localStorage.setItem('classito_pwa_device_id', deviceId);
+                  }
+                  var lastPing = parseInt(localStorage.getItem('classito_pwa_last_ping') || '0', 10);
+                  if (Date.now() - lastPing > 60 * 60 * 1000) {
+                      var payload = new Blob([JSON.stringify({device_id: deviceId})], {type: 'application/json'});
+                      navigator.sendBeacon('/api/pwa-ping', payload);
+                      localStorage.setItem('classito_pwa_last_ping', String(Date.now()));
+                  }
+              } catch (e) {}
+          }
+      })();
+
+      // Momento exato de uma instalação NOVA do PWA (diferente da checagem
+      // acima, que só vê quem JÁ está usando o app instalado) — base pra
+      // métrica "instalações por dia" em /admin/leads.
+      window.addEventListener('appinstalled', function () {
+          try { navigator.sendBeacon('/api/pwa-install'); } catch (e) {}
+      });
+    </script>
+    <title>Financiamento de veículos BV com taxa especial | Classi-to</title>
+    <meta name="description" content="Financiamento de veículos com taxas reduzidas para carros, motos e pesados. Atendimento personalizado em Palmas. Fale direto com o vendedor.">
+    
+
+    
+    
+    <link rel="icon" type="image/png" sizes="48x48" href="/static/favicon-48.png?v=3d">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/icon-192.png?v=3d">
+    <link rel="apple-touch-icon" href="/static/icon-192.png?v=3d">
+    
+    <link rel="manifest" href="/static/manifest.json">
+
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').catch(function () {});
+            });
+        }
+    </script>
+
+    
+    <link rel="canonical" href="https://www.classi-to.com.br/ads/193/financiamento-veiculos-bv-taxa-especial">
+
+    
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="Classi-to">
+    <meta property="og:title" content="Financiamento de veículos BV com taxa especial">
+    <meta property="og:description" content="Sou parceiro do banco BV e ofereço financiamento de veículos com taxas reduzidas.">
+    <meta property="og:image" content="https://www.classi-to.com.br/static/uploads/og/card_193_6426531230a4.jpg?v=749fe74690c1">
+    <meta property="og:url" content="https://www.classi-to.com.br/ads/193/financiamento-veiculos-bv-taxa-especial">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Financiamento de veículos BV com taxa especial">
+    <meta name="twitter:description" content="Sou parceiro do banco BV e ofereço financiamento de veículos com taxas reduzidas.">
+    <meta name="twitter:image" content="https://www.classi-to.com.br/static/uploads/og/card_193_6426531230a4.jpg?v=749fe74690c1">
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://www.classi-to.com.br/#site",
+                "name": "Classi-to",
+                "url": "https://www.classi-to.com.br/",
+                "inLanguage": "pt-BR",
+                "publisher": {"@id": "https://www.classi-to.com.br/#organizacao"}
+            },
+            {
+                "@type": "Organization",
+                "@id": "https://www.classi-to.com.br/#organizacao",
+                "name": "Classi-to",
+                "legalName": "Classi-To Serviços de Informação na Internet LTDA",
+                "taxID": "54.019.884/0001-55",
+                "url": "https://www.classi-to.com.br/",
+                "logo": "https://www.classi-to.com.br/static/logo.png",
+                "description": "Site de classificados do Tocantins: imóveis, carros, motos, serviços, empregos e mais, com contato direto pelo WhatsApp.",
+                "areaServed": {"@type": "State", "name": "Tocantins"},
+                "sameAs": ["https://www.instagram.com/classitoclassificados/"],
+                "address": {"@type": "PostalAddress", "addressLocality": "Palmas", "addressRegion": "TO", "addressCountry": "BR"},
+                "contactPoint": {"@type": "ContactPoint", "contactType": "customer support", "telephone": "+55-63-99285-8104", "availableLanguage": "Portuguese"}
+            }
+        ]
+    }
+    </script>
+
+    
+    <link rel="preload" href="/static/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('/static/fonts/inter-var-latin.woff2') format('woff2');
+        }
+    </style>
+
+    
+    <script>
+        // O servidor às vezes devolve uma lista de erros de campo (422): vira frase, nunca "[object Object]".
+        window.apiErrorText = function (detail, fallback) {
+            if (typeof detail === 'string' && detail) return detail;
+            var first = Array.isArray(detail) ? detail[0] : null;
+            if (!first) return fallback;
+            var field = (first.loc || [])[(first.loc || []).length - 1];
+            if (field === 'email') return 'Esse e-mail não é válido. Confira se digitou certo, sem espaços e sem acento.';
+            if (field === 'phone' || field === 'whatsapp') return 'WhatsApp inválido. Informe DDD + número, ex: (63) 99999-9999.';
+            if (field === 'password' || field === 'new_password') return 'A senha precisa ter pelo menos 6 caracteres.';
+            return fallback;
+        };
+    </script>
+    <script src="/static/theme.js"></script>
+
+    
+    <link rel="stylesheet" href="/static/css/styles.css?v=1795604059">
+    <script>
+        const theme = window.classitoTheme || {};
+
+        // CSS Variables for dynamic theme (admin panel)
+        const style = document.createElement('style');
+        const brandColors = theme?.colors?.brand || {};
+        const surfaceColors = theme?.colors?.surface || {};
+        style.innerHTML = `
+            :root {
+                --color-content-base: ${theme?.colors?.content?.mobile?.base || '#374151'};
+                --color-content-strong: ${theme?.colors?.content?.mobile?.strong || '#111827'};
+
+                --form-bg: ${theme?.forms?.bg || '#f9fafb'};
+                --form-border: ${theme?.forms?.borderWidth || '1px'} solid ${theme?.forms?.borderColor || '#e5e7eb'};
+                --form-radius: ${theme?.forms?.radius || '0.75rem'};
+
+                --header-bg: ${theme?.layout?.headerStyle === 'glass' ? 'rgba(255, 255, 255, 0.85)' : '#ffffff'};
+                --header-blur: ${theme?.layout?.headerStyle === 'glass' ? '12px' : '0px'};
+                --footer-bg: ${theme?.layout?.footerStyle === 'gray' ? '#f9fafb' : '#ffffff'};
+
+                ${brandColors['50']  ? '--brand-50: '  + brandColors['50']  + ';' : ''}
+                ${brandColors['100'] ? '--brand-100: ' + brandColors['100'] + ';' : ''}
+                ${brandColors['200'] ? '--brand-200: ' + brandColors['200'] + ';' : ''}
+                ${brandColors['300'] ? '--brand-300: ' + brandColors['300'] + ';' : ''}
+                ${brandColors['400'] ? '--brand-400: ' + brandColors['400'] + ';' : ''}
+                ${brandColors['500'] ? '--brand-500: ' + brandColors['500'] + ';' : ''}
+                ${brandColors['600'] ? '--brand-600: ' + brandColors['600'] + ';' : ''}
+                ${brandColors['700'] ? '--brand-700: ' + brandColors['700'] + ';' : ''}
+                ${brandColors['800'] ? '--brand-800: ' + brandColors['800'] + ';' : ''}
+                ${brandColors['900'] ? '--brand-900: ' + brandColors['900'] + ';' : ''}
+                ${surfaceColors['light']  ? '--surface-light: '  + surfaceColors['light']  + ';' : ''}
+                ${surfaceColors['muted']  ? '--surface-muted: '  + surfaceColors['muted']  + ';' : ''}
+                ${surfaceColors['border'] ? '--surface-border: ' + surfaceColors['border'] + ';' : ''}
+            }
+            @media (min-width: 768px) {
+                :root {
+                    --color-content-base: ${theme?.colors?.content?.desktop?.base || '#374151'};
+                    --color-content-strong: ${theme?.colors?.content?.desktop?.strong || '#111827'};
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script><style>
+            :root {
+                --color-content-base: #374151;
+                --color-content-strong: #111827;
+
+                --form-bg: #f9fafb;
+                --form-border: 1px solid #e5e7eb;
+                --form-radius: 0.75rem;
+
+                --header-bg: #ffffff;
+                --header-blur: 0px;
+                --footer-bg: #ffffff;
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            }
+            @media (min-width: 768px) {
+                :root {
+                    --color-content-base: #374151;
+                    --color-content-strong: #111827;
+                }
+            }
+        </style>
+
+    
+    
+    <script defer="" src="/static/js/htmx-2.0.4.min.js"></script>
+    
+    <meta name="htmx-config" content="{&quot;refreshOnHistoryMiss&quot;:true}">
+
+    
+    <script defer="" src="/static/js/alpine-3.14.8.min.js"></script>
+
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @media (max-width: 767px) {
+            html { font-size: 20px; }
+            .text-gray-400 { color: #6b7280 !important; }
+            .text-gray-500 { color: #4b5563 !important; }
+        }
+
+        /* Acessibilidade: garante focus ring visível para navegação por teclado */
+        *:focus-visible {
+            outline: 2px solid #3A56C5 !important;
+            outline-offset: 2px !important;
+        }
+        input:focus-visible, textarea:focus-visible, select:focus-visible {
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(58, 86, 197, 0.3) !important;
+        }
+
+        .htmx-indicator { opacity: 0; transition: opacity 300ms ease-in; }
+        .htmx-request .htmx-indicator, .htmx-request.htmx-indicator { opacity: 1; }
+
+        .ad-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .ad-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px -8px rgba(0,0,0,0.12);
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* No celular a barra fina de 6px é difícil de pegar com o dedo —
+           deixa mais grossa só em telas pequenas, sem mudar o visual no
+           desktop (onde dá pra usar o mouse com precisão). */
+        @media (max-width: 640px) {
+            ::-webkit-scrollbar { width: 12px; height: 12px; }
+            ::-webkit-scrollbar-thumb { border-radius: 6px; }
+        }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        [x-cloak] { display: none !important; }
+    </style>
+    
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.classi-to.com.br/ads/193/financiamento-veiculos-bv-taxa-especial",
+    "name": "Financiamento de ve\u00edculos BV com taxa especial",
+    "inLanguage": "pt-BR",
+    "isPartOf": {"@id": "https://www.classi-to.com.br/#site"},
+    "publisher": {"@id": "https://www.classi-to.com.br/#organizacao"}
+    ,"datePublished": "2026-10-15T13:18:10+00:00"
+    ,"dateModified": "2026-10-15T13:18:10+00:00"
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Classi-to", "item": "https://www.classi-to.com.br/"}
+        
+        ,{"@type": "ListItem", "position": 2, "name": "Servi\u00e7os", "item": "https://www.classi-to.com.br/?category=servicos"}
+        ,{"@type": "ListItem", "position": 3, "name": "Financiamento de ve\u00edculos BV com taxa especial", "item": "https://www.classi-to.com.br/ads/193/financiamento-veiculos-bv-taxa-especial"}
+        
+    ]
+}
+</script>
+
+<style>      .htmx-indicator{opacity:0}      .htmx-request .htmx-indicator{opacity:1; transition: opacity 200ms ease-in;}      .htmx-request.htmx-indicator{opacity:1; transition: opacity 200ms ease-in;}      </style></head>
+<body class="bg-surface-muted text-content-base min-h-screen flex flex-col" x-data="{ mobileMenu: false, chatActive: false }" hx-history="false">
+
+    
+    <div id="seasonal-banner" style="display:none" class="w-full text-center text-sm font-bold text-white py-2 px-4"></div>
+    <script>
+        (function(){
+            const meta = (window.classitoTheme || {})._meta || {};
+            if (meta.banner_text) {
+                const b = document.getElementById('seasonal-banner');
+                b.textContent = meta.banner_text;
+                const primary = (window.classitoTheme?.colors?.brand?.['500']) || '#3A56C5';
+                b.style.background = primary;
+                b.style.display = 'block';
+            }
+        })();
+    </script>
+
+    
+    
+    <nav class="sticky top-0 z-50 border-b shadow-sm transition-colors duration-300 relative border-gray-200" style="background-color: var(--header-bg); backdrop-filter: blur(var(--header-blur)); -webkit-backdrop-filter: blur(var(--header-blur));">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between gap-2 h-16">
+                
+                <a href="/" class="flex items-center gap-1.5 group min-w-0">
+                    <img src="/static/logo-112.webp?v=3d" alt="Classi-to" class="w-7 h-7 sm:w-9 sm:h-9 shrink-0 object-contain group-hover:scale-105 transition-transform">
+                    <img src="/static/logo-texto.png" alt="classi-to" width="235" height="46" class="h-5 sm:h-7 w-auto min-w-0 max-w-full object-contain object-left group-hover:scale-105 transition-transform">
+                </a>
+
+                
+
+                
+                <div class="hidden md:flex items-center gap-3">
+                    
+                        <a href="/planos" class="px-4 py-2 rounded-xl text-gray-500 hover:text-brand-600 hover:bg-brand-50 transition-all text-sm font-medium">
+                            Planos
+                        </a>
+                        <a href="/login" class="px-4 py-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all text-sm font-medium">
+                            Entrar
+                        </a>
+                        <a href="/register" class="px-4 py-2 rounded-xl bg-brand-500 text-white font-semibold text-sm hover:bg-brand-400 transition-all shadow shadow-brand-500/25">
+                            Anunciar
+                        </a>
+                    
+                </div>
+
+                
+                <div class="flex md:hidden items-center gap-2 shrink-0">
+                    
+                    <a href="/register" class="px-3 py-1.5 rounded-lg bg-brand-500 text-white font-bold text-xs hover:bg-brand-400 transition-all shadow shadow-brand-500/25 whitespace-nowrap">
+                        Anunciar
+                    </a>
+                    
+
+                    
+                    <button @click="mobileMenu = !mobileMenu" class="p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition" aria-label="Menu de navegação" :aria-expanded="mobileMenu.toString()" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path x-show="!mobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path x-show="mobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display: none;"></path>
+                    </svg>
+                </button>
+                </div>
+
+            
+            
+            <div x-show="mobileMenu" x-effect="if (mobileMenu) $el._abriuEm = window.scrollY" @click.outside="mobileMenu = false" @click="if ($event.target.closest('a, button[type=submit]')) mobileMenu = false" @scroll.window.passive="if (mobileMenu &amp;&amp; Math.abs(window.scrollY - ($el._abriuEm || 0)) &gt; 40) mobileMenu = false" @pageshow.window="mobileMenu = false" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden absolute left-0 right-0 top-full bg-white border-t border-gray-100 shadow-xl shadow-gray-200/80 pb-4 pt-3 px-4 space-y-1 z-50" style="display: none;">
+                <button type="button" onclick="pwaManualInstall()" id="pwa-menu-install-btn" class="hidden w-full items-center gap-2 px-4 py-2 text-gray-600 hover:text-brand-600 text-sm font-medium text-left">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Instalar App
+                </button>
+                
+                    <a href="/login" class="block px-4 py-2 text-gray-600 hover:text-gray-900 text-sm">Entrar</a>
+                    <a href="/planos" class="block px-4 py-2 text-gray-600 hover:text-brand-600 text-sm font-medium">Planos</a>
+                    <a href="/contato" class="block px-4 py-2 text-gray-600 hover:text-brand-600 text-sm font-medium">Fale conosco</a>
+                    <a href="/register" class="block px-4 py-2 rounded-xl bg-brand-500 text-white font-semibold text-sm text-center">Anunciar</a>
+                
+            </div>
+        </div>
+    </div></nav>
+
+    
+    <div class="h-1 w-full bg-brand-500"></div>
+
+    
+    <main class="flex-1">
+        
+
+
+
+
+
+
+
+
+
+<div class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-8">
+    
+    <nav class="hidden sm:flex items-center gap-2 text-sm text-gray-400 mb-6">
+        <a href="/" class="hover:text-gray-700 transition">Início</a>
+        <span>/</span>
+        <a href="/?category=servicos" class="hover:text-gray-700 transition">Serviços</a>
+        <span>/</span>
+        <span class="text-gray-600 truncate">Financiamento de veículos BV com taxa especial</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+        
+        <div class="lg:col-span-3 space-y-6">
+            
+            
+            
+            
+            
+            <script src="/static/js/ad-gallery.js?v=1795604059"></script>
+            <div data-video-url="" x-data="adGallery({ total: 3, videoPresent: 0, videoIndex: -1, videoUrl: $el.dataset.videoUrl })" @popstate.window="onPopState()" class="space-y-3">
+                <div class="relative -mx-3 sm:mx-0 overflow-hidden bg-gray-900 sm:rounded-3xl sm:border sm:border-gray-200 sm:shadow-md aspect-[4/5] max-h-[70vh] sm:aspect-[4/3] lg:aspect-[16/11]">
+                    
+
+                    <div x-ref="scroller" @scroll.passive="onScroll()" class="flex w-full h-full overflow-x-auto overflow-y-hidden overscroll-x-contain snap-x snap-mandatory [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+
+                        
+                        
+                        <div class="relative shrink-0 w-full h-full snap-center snap-always overflow-hidden">
+                            <img src="/static/uploads/8143762eaa3d4573b0f3b05ba539bc2c_thumb.webp" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70" onerror="this.remove()">
+                            <img src="/static/uploads/8143762eaa3d4573b0f3b05ba539bc2c.webp" alt="Financiamento de veículos BV com taxa especial" @click="openViewer(0)" class="relative w-full h-full object-contain cursor-zoom-in">
+                        </div>
+                        
+                        
+                        <div class="relative shrink-0 w-full h-full snap-center snap-always overflow-hidden">
+                            <img src="/static/uploads/7348331e8dc8418db00a01fc6dc45006_thumb.webp" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70" onerror="this.remove()">
+                            <img src="/static/uploads/7348331e8dc8418db00a01fc6dc45006.webp" alt="Financiamento de veículos BV com taxa especial" @click="openViewer(1)" class="relative w-full h-full object-contain cursor-zoom-in" loading="lazy">
+                        </div>
+                        
+                        
+                        <div class="relative shrink-0 w-full h-full snap-center snap-always overflow-hidden">
+                            <img src="/static/uploads/41192ea56ea147889c0b30211fd07f96_thumb.webp" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70" onerror="this.remove()">
+                            <img src="/static/uploads/41192ea56ea147889c0b30211fd07f96.webp" alt="Financiamento de veículos BV com taxa especial" @click="openViewer(2)" class="relative w-full h-full object-contain cursor-zoom-in" loading="lazy">
+                        </div>
+                        
+                        
+
+                        
+                    </div>
+
+                    
+                    
+                    
+                    <button type="button" @click="prev()" aria-label="Foto anterior" class="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 shadow items-center justify-center text-gray-700 hover:bg-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button type="button" @click="next()" aria-label="Próxima foto" class="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 shadow items-center justify-center text-gray-700 hover:bg-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-black/60 text-xs font-bold text-white z-10 pointer-events-none">
+                        <span x-text="active + 1">1</span> / 3
+                    </div>
+                    
+                </div>
+
+                
+                <div class="flex gap-2 overflow-x-auto pb-1">
+
+                    
+                    
+                    
+                    <button type="button" @click="goTo(0)" data-thumb="0" aria-label="Ver foto 1" :class="active === 0 ? 'ring-2 ring-brand-500 opacity-100' : 'opacity-50 hover:opacity-80'" class="shrink-0 w-16 h-16 rounded-xl overflow-hidden transition-all border border-gray-200 ring-2 ring-brand-500 opacity-100">
+                        <img src="/static/uploads/8143762eaa3d4573b0f3b05ba539bc2c_thumb.webp" alt="Financiamento de veículos BV com taxa especial - foto 1" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/static/uploads/8143762eaa3d4573b0f3b05ba539bc2c.webp'">
+                    </button>
+                    
+                    
+                    
+                    <button type="button" @click="goTo(1)" data-thumb="1" aria-label="Ver foto 2" :class="active === 1 ? 'ring-2 ring-brand-500 opacity-100' : 'opacity-50 hover:opacity-80'" class="shrink-0 w-16 h-16 rounded-xl overflow-hidden transition-all border border-gray-200 opacity-50 hover:opacity-80">
+                        <img src="/static/uploads/7348331e8dc8418db00a01fc6dc45006_thumb.webp" alt="Financiamento de veículos BV com taxa especial - foto 2" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/static/uploads/7348331e8dc8418db00a01fc6dc45006.webp'">
+                    </button>
+                    
+                    
+                    
+                    <button type="button" @click="goTo(2)" data-thumb="2" aria-label="Ver foto 3" :class="active === 2 ? 'ring-2 ring-brand-500 opacity-100' : 'opacity-50 hover:opacity-80'" class="shrink-0 w-16 h-16 rounded-xl overflow-hidden transition-all border border-gray-200 opacity-50 hover:opacity-80">
+                        <img src="/static/uploads/41192ea56ea147889c0b30211fd07f96_thumb.webp" alt="Financiamento de veículos BV com taxa especial - foto 3" loading="lazy" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='/static/uploads/41192ea56ea147889c0b30211fd07f96.webp'">
+                    </button>
+                    
+                    
+                </div>
+                
+
+                
+                <template x-teleport="body" data-teleport-template="true">
+                    <div x-show="viewerOpen" x-cloak="" role="dialog" aria-modal="true" aria-label="Fotos do anúncio" @keydown.escape.window="closeViewer()" @keydown.arrow-left.window="viewerOpen &amp;&amp; viewerStep(-1)" @keydown.arrow-right.window="viewerOpen &amp;&amp; viewerStep(1)" class="fixed inset-0 z-[100] bg-black select-none">
+                        <div x-ref="viewerScroller" @scroll.passive="onViewerScroll()" @touchstart.passive="onTouchStart($event)" @touchmove="onTouchMove($event)" @touchend.passive="onTouchEnd($event)" @click="onViewerClick($event)" :class="zoomed ? 'overflow-hidden cursor-zoom-out' : 'overflow-x-auto snap-x snap-mandatory cursor-zoom-in'" :style="zoomed ? 'touch-action:none' : 'touch-action:pan-x'" class="flex w-full h-full overflow-y-hidden overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+                            
+                            <div class="shrink-0 w-full h-full snap-center snap-always flex items-center justify-center overflow-hidden">
+                                <img src="/static/uploads/8143762eaa3d4573b0f3b05ba539bc2c.webp" alt="Financiamento de veículos BV com taxa especial - foto 1" loading="lazy" draggable="false" :style="zoomStyle(0)" class="max-w-full max-h-full object-contain">
+                            </div>
+                            
+                            <div class="shrink-0 w-full h-full snap-center snap-always flex items-center justify-center overflow-hidden">
+                                <img src="/static/uploads/7348331e8dc8418db00a01fc6dc45006.webp" alt="Financiamento de veículos BV com taxa especial - foto 2" loading="lazy" draggable="false" :style="zoomStyle(1)" class="max-w-full max-h-full object-contain">
+                            </div>
+                            
+                            <div class="shrink-0 w-full h-full snap-center snap-always flex items-center justify-center overflow-hidden">
+                                <img src="/static/uploads/41192ea56ea147889c0b30211fd07f96.webp" alt="Financiamento de veículos BV com taxa especial - foto 3" loading="lazy" draggable="false" :style="zoomStyle(2)" class="max-w-full max-h-full object-contain">
+                            </div>
+                            
+                        </div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-lg bg-black/60 text-sm font-bold text-white pointer-events-none">
+                            <span x-text="viewerIndex + 1"></span> / 3
+                        </div>
+                        <button type="button" @click="closeViewer()" aria-label="Fechar" class="absolute top-3 right-3 w-11 h-11 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                        
+                        <button type="button" @click="viewerStep(-1)" x-show="!zoomed" aria-label="Foto anterior" class="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button type="button" @click="viewerStep(1)" x-show="!zoomed" aria-label="Próxima foto" class="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                        
+                    </div>
+                </template>
+                
+            </div>
+
+                        
+            
+
+            
+            
+
+            
+            <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Descrição</h2>
+                
+                <div class="text-gray-700 text-sm leading-relaxed text-justify space-y-1">
+                    
+                    <p>Sou parceiro do banco BV e ofereço financiamento de veículos com taxas reduzidas. Atendimento personalizado pra carros, motos e veículos pesados, com condições especiais. Fale comigo pelo (63) 99969-2723 e simule agora mesmo.</p>
+                    
+                    
+                </div>
+            </div>
+
+            
+        </div>
+
+        
+        <div class="lg:col-span-2 lg:sticky lg:top-24 self-start space-y-4">
+            
+            <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-brand-50 text-brand-600 text-[10px] font-bold uppercase border border-brand-100 italic">
+                        Serviços
+                    </span>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900 mt-3 mb-2">Financiamento de veículos BV com taxa especial</h1>
+                
+                
+                
+                
+                
+                
+                
+                
+                <p class="text-xs text-gray-500 mb-3 flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg> 22 visualizações · publicado em 15/10/2026</p>
+                
+                
+                <p class="text-lg text-gray-400 italic">Valor a consultar</p>
+                
+                <div class="flex items-start gap-1.5 mt-3 pt-3 border-t border-gray-50 text-sm text-gray-600">
+                    <svg class="w-4 h-4 mt-0.5 text-brand-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    
+                    <p><span class="font-medium">Palmas - TO</span></p>
+                </div>
+                
+                
+                
+            </div>
+
+            
+            
+            
+            
+            <button @click="shareAd(null, '193', 'Financiamento de veículos BV com taxa especial', '')" class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl border border-gray-100 bg-white shadow-sm hover:border-brand-200 hover:bg-brand-50 transition-all group">
+                <svg class="w-6 h-6 text-gray-500 group-hover:text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                </svg>
+                <span class="text-base font-bold text-gray-600 group-hover:text-brand-700">Compartilhar</span>
+            </button>
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="https://wa.me/5563999692723?text=Ol%C3%A1%21%20Vi%20seu%20an%C3%BAncio%20%27Financiamento%20de%20ve%C3%ADculos%20BV%20com%20taxa%20especial%27%20no%20Classi-to%20e%20tenho%20interesse%3A%20https%3A//www.classi-to.com.br/ads/193" target="_blank" rel="noopener" onclick="try{navigator.sendBeacon('/api/ia/busca/interacao', new Blob([JSON.stringify({ad_id: 193, tipo: 'contato'})], {type:'application/json'}))}catch(e){}try{registrarIntencao(&quot;servicos&quot;, &quot;Servi\u00e7os&quot;, 5)}catch(e){}" class="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-green-500 text-white font-bold text-base hover:bg-green-400 transition-colors shadow-lg shadow-green-500/25">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.386 0-4.592-.82-6.336-2.197l-.444-.354-2.637.884.884-2.637-.354-.444A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path></svg>
+                Chamar no WhatsApp
+            </a>
+            
+            
+
+            
+            
+
+            
+            
+            <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm space-y-4">
+                <a href="/perfil/89" class="flex items-center gap-4 hover:opacity-80 transition">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 overflow-hidden
+                                bg-gray-100">
+                        
+                        <img src="/static/uploads/avatar_89_1792067991.jpeg" alt="BZ CORRETORA DE SEGUROS" class="w-full h-full object-cover">
+                        
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <p class="text-gray-900 font-bold truncate">BZ CORRETORA DE SEGUROS</p>
+                        </div>
+                        
+                        
+                        <p class="text-sm text-brand-600 font-black uppercase tracking-wide mt-0.5">
+                            SUSEP
+                        </p>
+                        
+                        
+                        <p class="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
+                            <svg class="w-3 h-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Plano Diretor Sul,
+                            Palmas/TO
+                        </p>
+                        
+                        
+                        
+                        <p class="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
+                            <svg class="w-3 h-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path stroke-linecap="round" d="M3 10h18M8 3v4M16 3v4"></path></svg>
+                            
+                            <span class="truncate" title="No Classi-to desde outubro de 2026">No Classi-to desde out/2026</span>
+                        </p>
+                        
+                        
+                        <p class="text-[10px] text-brand-500 mt-1">ver perfil completo →</p>
+                    </div>
+                </a>
+
+                
+                
+                
+                
+                <div class="flex gap-2 pt-2 border-t border-gray-50">
+                    
+                    <a href="https://instagram.com/bzseguros_palmas" target="_blank" rel="noopener" title="Instagram" class="p-2 rounded-xl bg-gray-50 text-gray-400 hover:text-pink-500 border border-gray-100 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect><path stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>
+                    </a>
+                    
+                    
+                    
+                    
+                    <a href="https://www.bzcorretora.com.br/" target="_blank" rel="noopener" title="Site" class="p-2 rounded-xl bg-gray-50 text-gray-400 hover:text-brand-500 border border-gray-100 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    </a>
+                    
+                </div>
+                
+                
+            </div>
+
+            
+            
+            
+            <div>
+                <div class="flex items-baseline justify-between gap-3 mb-2 px-1">
+                    <h2 class="text-base font-bold text-gray-900 min-w-0 truncate">Mais anúncios de BZ CORRETORA DE SEGUROS</h2>
+                    
+                    <a href="/perfil/89" class="shrink-0 text-sm font-semibold text-brand-600 hover:underline">Ver todos (16) →</a>
+                    
+                </div>
+                <div class="grid grid-cols-3 gap-1 sm:gap-2">
+                    
+                    
+                    
+
+<a href="/ads/278/plano-saude-best-saude-servidor-publico-tocantins" data-vitrine="278" class="ad-card group bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:border-gray-200">
+    
+    <div class="relative aspect-[4/6.08] bg-gray-100 overflow-hidden rounded-lg">
+        
+        
+        
+        <img src="/static/uploads/7c7b853f66044ff6953a9d05bea42497_thumb.webp" alt="Plano de Saúde Best Saúde para Servidor Público do Tocantins" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/uploads/7c7b853f66044ff6953a9d05bea42497.webp'">
+        
+
+        
+
+        
+        
+        
+
+        
+    </div>
+
+    
+    <div class="p-2">
+        
+        <h3 class="font-semibold text-gray-900 text-xs line-clamp-3 mb-1.5 group-hover:text-brand-600 transition-colors">
+            Plano de Saúde Best Saúde para Servidor Público do Tocantins
+        </h3>
+        
+        
+        
+        
+        
+        <span class="text-xs font-bold text-brand-500 leading-tight block whitespace-nowrap tracking-tight"><span class="whitespace-nowrap">R$</span> <span class="whitespace-nowrap">280</span></span>
+        
+        
+        
+        <div class="flex items-center gap-1 mt-1.5 text-gray-400 text-xs">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="truncate">Palmas</span>
+        </div>
+    </div>
+</a>
+                    
+                    
+                    
+
+<a href="/ads/277/plano-saude-best-saude-farmaceuticos-partir-r-287" data-vitrine="277" class="ad-card group bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:border-gray-200">
+    
+    <div class="relative aspect-[4/6.08] bg-gray-100 overflow-hidden rounded-lg">
+        
+        
+        
+        <img src="/static/uploads/741253f5c2094c89a8045b83475623d0_thumb.webp" alt="Plano de saúde Best Saúde para farmacêuticos a partir de R$ 287" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/uploads/741253f5c2094c89a8045b83475623d0.webp'">
+        
+
+        
+
+        
+        
+        
+
+        
+    </div>
+
+    
+    <div class="p-2">
+        
+        <h3 class="font-semibold text-gray-900 text-xs line-clamp-3 mb-1.5 group-hover:text-brand-600 transition-colors">
+            Plano de saúde Best Saúde para farmacêuticos a partir de R$ 287
+        </h3>
+        
+        
+        
+        
+        
+        <span class="text-xs font-bold text-brand-500 leading-tight block whitespace-nowrap tracking-tight"><span class="whitespace-nowrap">R$</span> <span class="whitespace-nowrap">287</span></span>
+        
+        
+        
+        <div class="flex items-center gap-1 mt-1.5 text-gray-400 text-xs">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="truncate">Palmas</span>
+        </div>
+    </div>
+</a>
+                    
+                    
+                    
+
+<a href="/ads/275/plano-saude-bradesco-pj-cobertura-nacional" data-vitrine="275" class="ad-card group bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:border-gray-200">
+    
+    <div class="relative aspect-[4/6.08] bg-gray-100 overflow-hidden rounded-lg">
+        
+        
+        
+        <img src="/static/uploads/e308732f7712445e8c75240ff6b4bcac_thumb.webp" alt="Plano de Saúde Bradesco PJ com cobertura nacional" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/uploads/e308732f7712445e8c75240ff6b4bcac.webp'">
+        
+
+        
+
+        
+        
+        
+
+        
+    </div>
+
+    
+    <div class="p-2">
+        
+        <h3 class="font-semibold text-gray-900 text-xs line-clamp-3 mb-1.5 group-hover:text-brand-600 transition-colors">
+            Plano de Saúde Bradesco PJ com cobertura nacional
+        </h3>
+        
+        
+        
+        
+        
+        <span class="text-xs text-gray-400 italic">Consulte</span>
+        
+        
+        <div class="flex items-center gap-1 mt-1.5 text-gray-400 text-xs">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="truncate">Palmas</span>
+        </div>
+    </div>
+</a>
+                    
+                    
+                    <div class="hidden lg:grid">
+
+<a href="/ads/273/consorcio-auto-porto-bank-partir-r-40-mil" data-vitrine="273" class="ad-card group bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:border-gray-200">
+    
+    <div class="relative aspect-[4/6.08] bg-gray-100 overflow-hidden rounded-lg">
+        
+        
+        
+        <img src="/static/uploads/20bfa12fbf5846f1ade1e973b6cdc474_thumb.webp" alt="Consórcio Auto Porto Bank a partir de R$ 40 mil" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/uploads/20bfa12fbf5846f1ade1e973b6cdc474.webp'">
+        
+
+        
+
+        
+        
+        
+
+        
+    </div>
+
+    
+    <div class="p-2">
+        
+        <h3 class="font-semibold text-gray-900 text-xs line-clamp-3 mb-1.5 group-hover:text-brand-600 transition-colors">
+            Consórcio Auto Porto Bank a partir de R$ 40 mil
+        </h3>
+        
+        
+        
+        
+        
+        <span class="text-xs font-bold text-brand-500 leading-tight block whitespace-nowrap tracking-tight"><span class="whitespace-nowrap">R$</span> <span class="whitespace-nowrap">40.<wbr>000</span></span>
+        
+        
+        
+        <div class="flex items-center gap-1 mt-1.5 text-gray-400 text-xs">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="truncate">Palmas</span>
+        </div>
+    </div>
+</a></div>
+                    
+                    
+                    <div class="hidden lg:grid">
+
+<a href="/ads/272/plano-saude-best-saude-advogados" data-vitrine="272" class="ad-card group bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:border-gray-200">
+    
+    <div class="relative aspect-[4/6.08] bg-gray-100 overflow-hidden rounded-lg">
+        
+        
+        
+        <img src="/static/uploads/c6aaad557d8a4a89bfc24ea2c84bc3c4_thumb.webp" alt="Plano de Saúde Best Saúde para Advogados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/uploads/c6aaad557d8a4a89bfc24ea2c84bc3c4.webp'">
+        
+
+        
+
+        
+        
+        
+
+        
+    </div>
+
+    
+    <div class="p-2">
+        
+        <h3 class="font-semibold text-gray-900 text-xs line-clamp-3 mb-1.5 group-hover:text-brand-600 transition-colors">
+            Plano de Saúde Best Saúde para Advogados
+        </h3>
+        
+        
+        
+        
+        
+        <span class="text-xs text-gray-400 italic">Consulte</span>
+        
+        
+        <div class="flex items-center gap-1 mt-1.5 text-gray-400 text-xs">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="truncate">Palmas</span>
+        </div>
+    </div>
+</a></div>
+                    
+                    
+                    <div class="hidden lg:grid">
+
+<a href="/ads/244/seguro-vida-empresarial-palmas-tocantins" data-vitrine="244" class="ad-card group bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:border-gray-200">
+    
+    <div class="relative aspect-[4/6.08] bg-gray-100 overflow-hidden rounded-lg">
+        
+        
+        
+        <img src="/static/uploads/ef38ee51b2e94bc7be1c4179352f5271_thumb.webp" alt="Seguro de Vida Empresarial em Palmas e Tocantins" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/static/uploads/ef38ee51b2e94bc7be1c4179352f5271.webp'">
+        
+
+        
+
+        
+        
+        
+
+        
+    </div>
+
+    
+    <div class="p-2">
+        
+        <h3 class="font-semibold text-gray-900 text-xs line-clamp-3 mb-1.5 group-hover:text-brand-600 transition-colors">
+            Seguro de Vida Empresarial em Palmas e Tocantins
+        </h3>
+        
+        
+        
+        
+        
+        <span class="text-xs text-gray-400 italic">Consulte</span>
+        
+        
+        <div class="flex items-center gap-1 mt-1.5 text-gray-400 text-xs">
+            <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="truncate">Palmas • Plano Diretor Sul</span>
+        </div>
+    </div>
+</a></div>
+                    
+                </div>
+            </div>
+            
+
+            
+            <div class="flex gap-3">
+                
+                
+                
+                
+            </div>
+
+            
+            
+
+            
+            
+
+            
+            
+            
+            
+            
+
+            
+            
+            <div class="text-center">
+                <button onclick="window.location.href='/login'" class="text-xs text-red-400 hover:text-red-600 transition-colors font-medium">
+                    Denunciar Anúncio
+                </button>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+    </main>
+
+    
+    <div x-data="{ show: false, message: '', type: 'success' }" @toast.window="message = $event.detail.message; type = $event.detail.type; show = true; setTimeout(() =&gt; show = false, 3000)" x-show="show" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-2xl bg-gray-900/90 backdrop-blur text-white text-sm font-medium shadow-2xl flex items-center gap-2" style="display: none;">
+        <template x-if="type === 'error'">
+            <svg class="w-5 h-5 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </template>
+        <template x-if="type !== 'error'">
+            <svg class="w-5 h-5 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </template><svg class="w-5 h-5 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        <span x-text="message"></span>
+    </div>
+
+
+    
+    <div x-data="cookieBanner()" x-show="show" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-8" class="fixed bottom-0 left-0 right-0 z-40 p-3 sm:p-5">
+        <div class="max-w-4xl mx-auto bg-gray-900 text-white rounded-2xl shadow-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="flex-1 text-sm text-gray-300 leading-relaxed">
+                Usamos <strong class="text-white">cookies essenciais</strong> para o site funcionar e, se você aceitar, cookies de medição e de personalização.
+                Saiba mais na nossa
+                <a href="/privacidade" class="text-blue-400 hover:text-blue-300 underline">Política de Privacidade</a>
+                e nossos
+                <a href="/termos" class="text-blue-400 hover:text-blue-300 underline">Termos de Uso</a>.
+            </div>
+            <div class="flex gap-3 shrink-0 w-full sm:w-auto">
+                <button @click="reject()" class="flex-1 sm:flex-none px-4 py-2 rounded-xl border border-gray-600 text-gray-300 hover:border-gray-400 hover:text-white text-sm font-medium transition-all cursor-pointer">
+                    Rejeitar
+                </button>
+                <button @click="accept()" class="flex-1 sm:flex-none px-5 py-2 rounded-xl bg-brand-500 hover:bg-brand-400 text-white text-sm font-semibold transition-all cursor-pointer">
+                    Aceitar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <footer x-show="!chatActive" class="border-t border-gray-200 mt-auto transition-colors duration-300" style="background-color: var(--footer-bg);">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 md:gap-8 mb-8">
+                
+                <div class="mb-4 md:mb-0">
+                    <a href="/" class="flex items-center gap-2 mb-3">
+                        <img src="/static/logo-112.webp?v=3d" alt="Classi-to" class="w-7 h-7 object-contain">
+                        <img src="/static/logo-texto.png" alt="classi-to" width="235" height="46" class="h-5 w-auto object-contain">
+                    </a>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-3">Classificados do Tocantins.<br>Compre, venda e anuncie grátis.</p>
+                    <a href="https://www.instagram.com/classitoclassificados/" target="_blank" rel="noopener" class="flex items-center gap-2 py-1 text-sm text-gray-600 hover:text-brand-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"></circle></svg>
+                        Instagram
+                    </a>
+                    <a href="https://wa.me/5563992858104" target="_blank" rel="noopener" class="flex items-center gap-2 py-1 text-sm text-gray-600 hover:text-brand-600 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.4a8.5 8.5 0 1 1 3.3 3.2z"></path><path d="M9 8.6c-.5.4-.8 1-.6 1.8.5 2 2.5 4 4.6 4.6.8.2 1.4-.1 1.8-.6l.4-.7-2-1.1-.7.7c-.9-.4-1.5-1-1.9-1.9l.7-.7-1.1-2z"></path></svg>
+                        (63) 99285-8104
+                    </a>
+                </div>
+
+                <div x-data="{ open: false }" class="border-b border-gray-200 md:border-0">
+                    <h3>
+                        <button type="button" @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between py-3 md:py-0 md:mb-3 md:cursor-default text-sm font-bold text-gray-700 text-left" aria-expanded="false">
+                            Categorias
+                            <span class="md:hidden text-gray-400" x-text="open ? '−' : '+'">+</span>
+                        </button>
+                    </h3>
+                    <ul class="space-y-2.5 pb-4 md:pb-0 md:!block hidden" :class="open ? 'block' : 'hidden'">
+                        
+                        <li><a href="/?category=carros" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Carros</a></li>
+                        
+                        <li><a href="/?category=imoveis-residenciais" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Imóveis Residenciais</a></li>
+                        
+                        <li><a href="/?category=servicos" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Serviços</a></li>
+                        
+                        <li><a href="/?category=divulgacoes" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Divulgações</a></li>
+                        
+                        <li><a href="/?category=moda-e-beleza" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Moda e Beleza</a></li>
+                        
+                        <li><a href="/?category=imoveis-comerciais" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Imóveis Comerciais</a></li>
+                        
+                    </ul>
+                </div>
+
+
+                <div x-data="{ open: false }" class="border-b border-gray-200 md:border-0">
+                    <h3>
+                        <button type="button" @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between py-3 md:py-0 md:mb-3 md:cursor-default text-sm font-bold text-gray-700 text-left" aria-expanded="false">
+                            Mais buscados
+                            <span class="md:hidden text-gray-400" x-text="open ? '−' : '+'">+</span>
+                        </button>
+                    </h3>
+                    <ul class="space-y-2.5 pb-4 md:pb-0 md:!block hidden" :class="open ? 'block' : 'hidden'">
+                        
+                        <li><a href="/busca/carros-automaticos-a-venda-em-palmas" title="Carros automáticos à venda em Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Carros automáticos</a></li>
+                        
+                        <li><a href="/busca/imoveis-em-palmas" title="Imóveis em Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Imóveis</a></li>
+                        
+                        <li><a href="/busca/moda-fitness-em-palmas" title="Moda fitness em Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Moda fitness</a></li>
+                        
+                        <li><a href="/busca/salas-comerciais-em-palmas" title="Salas comerciais em Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Salas comerciais</a></li>
+                        
+                        <li><a href="/busca/motos-a-venda-em-palmas" title="Motos à venda em Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Motos</a></li>
+                        
+                        <li><a href="/busca/pecas-e-acessorios-de-carro-em-palmas" title="Peças e acessórios de carro em Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Peças e acessórios de carro</a></li>
+                        
+                    </ul>
+                </div>
+
+
+                <div x-data="{ open: false }" class="border-b border-gray-200 md:border-0">
+                    <h3>
+                        <button type="button" @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between py-3 md:py-0 md:mb-3 md:cursor-default text-sm font-bold text-gray-700 text-left" aria-expanded="false">
+                            Cidades
+                            <span class="md:hidden text-gray-400" x-text="open ? '−' : '+'">+</span>
+                        </button>
+                    </h3>
+                    <ul class="space-y-2.5 pb-4 md:pb-0 md:!block hidden" :class="open ? 'block' : 'hidden'">
+                        
+                        <li><a href="/?city=Palmas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Palmas</a></li>
+                        
+                        <li><a href="/?city=Porto%20Nacional" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Porto Nacional</a></li>
+                        
+                        <li><a href="/?city=Gurupi" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Gurupi</a></li>
+                        
+                        <li><a href="/?city=Aragua%C3%ADna" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Araguaína</a></li>
+                        
+                        <li><a href="/?city=Mateiros" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Mateiros</a></li>
+                        
+                    </ul>
+                </div>
+
+                <div x-data="{ open: false }" class="border-b border-gray-200 md:border-0">
+                    <h3>
+                        <button type="button" @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between py-3 md:py-0 md:mb-3 md:cursor-default text-sm font-bold text-gray-700 text-left" aria-expanded="false">
+                            Minha conta
+                            <span class="md:hidden text-gray-400" x-text="open ? '−' : '+'">+</span>
+                        </button>
+                    </h3>
+                    <ul class="space-y-2.5 pb-4 md:pb-0 md:!block hidden" :class="open ? 'block' : 'hidden'">
+                        <li><a href="/ads/new?plan=default" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Criar anúncio</a></li>
+                        <li><a href="/planos" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Ver planos</a></li>
+                        <li><a href="/dashboard" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Meus anúncios</a></li>
+                        <li><a href="/favoritos" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Favoritos</a></li>
+                        <li><a href="/app" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Instalar app</a></li>
+                    </ul>
+                </div>
+                <div x-data="{ open: false }" class="border-b border-gray-200 md:border-0">
+                    <h3>
+                        <button type="button" @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between py-3 md:py-0 md:mb-3 md:cursor-default text-sm font-bold text-gray-700 text-left" aria-expanded="false">
+                            Ajuda
+                            <span class="md:hidden text-gray-400" x-text="open ? '−' : '+'">+</span>
+                        </button>
+                    </h3>
+                    <ul class="space-y-2.5 pb-4 md:pb-0 md:!block hidden" :class="open ? 'block' : 'hidden'">
+                        <li><a href="/sobre" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Sobre o Classi-to</a></li>
+                        <li><a href="/anunciar" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Como anunciar</a></li>
+                        <li><a href="/contato" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Fale conosco</a></li>
+                        <li><a href="/anuncios" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Todos os anúncios</a></li>
+                        <li><a href="/carro-de-patrao-palmas-to" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Carro de patrão</a></li>
+                        <li><a href="/carro-esportivo-palmas-to" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Carro esportivo</a></li>
+                        <li><a href="/carros/marcas" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Carros por marca</a></li>
+                        <li><a href="/motos-usadas-palmas-to" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Motos usadas</a></li>
+                        <li><a href="/lojas-de-carros-usados-palmas-to" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Lojas de carros usados</a></li>
+                        <li><a href="/guia/faixa-placa-venda-palmas-multa" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Faixas e placas em Palmas</a></li>
+                        <li><a href="/seguranca" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Dicas de segurança</a></li>
+                        <li><a href="/denuncia" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Denúncia</a></li>
+                        <li><a href="/privacidade" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Política de Privacidade</a></li>
+                        <li><a href="/termos" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Termos de Uso</a></li>
+                        <li><a href="/excluir-conta" class="text-sm text-gray-600 hover:text-brand-600 transition-colors">Excluir conta</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-6 text-center">
+                <p class="text-gray-500 text-xs">© 2026 Classi-to. Todos os direitos reservados.</p>
+                <p class="text-gray-500 text-xs mt-1">Classi-To Serviços de Informação na Internet LTDA · CNPJ 54.019.884/0001-55 · Palmas, Tocantins</p>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script src="/static/cities.js"></script>
+    <script>
+    function searchAuto(initial) {
+        return {
+            q: initial || '',
+            open: false,
+            results: [],
+            _timer: null,
+            fetchResults() {
+                clearTimeout(this._timer);
+                const term = this.q.trim();
+                if (term.length < 2) { this.results = []; this.open = false; return; }
+                this._timer = setTimeout(async () => {
+                    try {
+                        const res = await fetch(`/api/ads/suggestions?q=${encodeURIComponent(term)}`);
+                        this.results = res.ok ? await res.json() : [];
+                        this.open = this.results.length > 0;
+                    } catch (e) {
+                        this.results = [];
+                    }
+                }, 250);
+            },
+            pick(title) {
+                this.q = title;
+                this.open = false;
+            }
+        }
+    }
+
+    function cityAuto(initial) {
+        return {
+            q: initial || '',
+            val: initial || '',
+            open: false,
+            get results() {
+                const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+                if (!this.q) return TO_CITIES.slice(0, 8);
+                return TO_CITIES.filter(c => norm(c).includes(norm(this.q))).slice(0, 12);
+            },
+            pick(city) {
+                this.q = city;
+                this.val = city;
+                this.open = false;
+                // carrega bairros se houver #neighborhood-wrap na página
+                const wrap = document.getElementById('neighborhood-wrap');
+                if (wrap) {
+                    fetch(`/partials/neighborhoods?city=${encodeURIComponent(city)}`)
+                        .then(r => r.text())
+                        .then(html => { wrap.innerHTML = html; });
+                }
+            }
+        }
+    }
+
+    // "Visto"/"não visto" dos stories de categoria — mesmo padrão de
+    // localStorage já usado pro flag de PWA instalado. Compara o id do
+    // anúncio mais recente da categoria (vindo do servidor) com o que foi
+    // visto da última vez; muda sozinho quando a categoria ganha anúncio novo.
+    function categoryStorySeen(catId, latestAdId) {
+        try {
+            return localStorage.getItem('classito_seen_cat_' + catId) === String(latestAdId);
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function markCategoryStorySeen(catId, latestAdId) {
+        try { localStorage.setItem('classito_seen_cat_' + catId, String(latestAdId)); } catch (e) {}
+        // Avisa a bolinha da categoria para trocar o anel colorido pelo cinza.
+        window.dispatchEvent(new CustomEvent('story-cat-seen', { detail: { catId } }));
+    }
+
+    // Empurrãozinho sutil na fileira de stories ao carregar a página, só pra
+    // sinalizar que dá pra arrastar. Recebe o elemento como argumento (em vez
+    // de usar $el dentro do setTimeout do x-init) porque o magic $el do
+    // Alpine não fica estável dentro de closures assíncronas.
+    // Oscilação contínua e bem leve (0 a ~14px, vaivém suave) — só pra
+    // sinalizar "isso é arrastável", sem nunca brigar com o toque de
+    // verdade: para pra sempre no primeiro toque/arraste da pessoa.
+    // Também na linha 3 dos filtros da home (dono, 23/11/2026: "mesmo movimento
+    // dos Stories, fica padrão"), com `area` = a própria linha.
+    function nudgeScrollRow(el, area) {
+        if (!el) return;
+        let stopped = false;
+        const stop = () => { stopped = true; };
+        // A área toda (fileira + setas ‹ › do computador): clicar numa seta
+        // também para o balanço — antes ele puxava a fileira de volta e as
+        // setas pareciam não funcionar (achado em 15/11/2026).
+        area = area || el.closest('section') || el;
+        area.addEventListener('pointerdown', stop, { once: true });
+        area.addEventListener('touchstart', stop, { once: true, passive: true });
+        area.addEventListener('wheel', stop, { once: true, passive: true });
+
+        const amplitude = 14;
+        const periodMs = 3400;
+        let start = null;
+        let base = null;  // balança a partir de onde a fileira abriu (no computador, o meio)
+        function tick(now) {
+            if (stopped || !el.isConnected) return;  // a grade trocou (htmx): para
+            if (start === null) { start = now; base = el.scrollLeft; }
+            const phase = ((now - start) % periodMs) / periodMs * Math.PI * 2;
+            el.scrollLeft = base + (Math.sin(phase - Math.PI / 2) + 1) / 2 * amplitude;
+            requestAnimationFrame(tick);
+        }
+        setTimeout(() => { if (!stopped) requestAnimationFrame(tick); }, 700);
+    }
+
+    // Fileira dos Stories infinita para os dois lados (dono, 15/11/2026). O
+    // template desenha a fileira 3 vezes (data-copia 0, 1, 2); ela abre na cópia
+    // do meio — no celular com o bloco principal no começo da tela, no
+    // computador com ele no centro — e, quando a rolagem chega perto de uma
+    // ponta, pula uma cópia inteira para o lado de lá, no mesmo ponto: para
+    // quem usa, é uma fita sem fim.
+    function infiniteStoryRow(el) {
+        if (!el) return;
+        const inicioDa = copia => Math.min(...[...el.querySelectorAll(`.story-item[data-copia="${copia}"]`)].map(a => a.offsetLeft));
+        let largura = 0, meio = 0;
+        function mede() {
+            const c0 = inicioDa(0), c1 = inicioDa(1);
+            if (!isFinite(c0) || !isFinite(c1)) return false;
+            largura = c1 - c0;
+            meio = c1;
+            return largura > 0;
+        }
+        requestAnimationFrame(() => {
+            if (!mede()) return;
+            const desktop = window.innerWidth >= 640;
+            // As duas maiores categorias (data-centro) abrem no centro da tela,
+            // no computador e no celular (dono, 20/11/2026).
+            const centro = [...el.querySelectorAll('.story-item[data-copia="1"][data-centro]')];
+            if (centro.length) {
+                const caixa = el.getBoundingClientRect();
+                const rs = centro.map(a => a.getBoundingClientRect());
+                const meioPar = (Math.min(...rs.map(r => r.left)) + Math.max(...rs.map(r => r.right))) / 2;
+                // - 7: o balanço de convite (amplitude 14) oscila em volta do centro.
+                el.scrollLeft += meioPar - (caixa.left + el.clientWidth / 2) - 7;
+            } else {
+                el.scrollLeft = desktop ? meio + largura / 2 - el.clientWidth / 2 : meio - 8;
+            }
+            let pendente = false;
+            el.addEventListener('scroll', () => {
+                if (pendente) return;
+                pendente = true;
+                requestAnimationFrame(() => {
+                    pendente = false;
+                    let pulo = 0;
+                    if (el.scrollLeft < meio - largura / 2) pulo = largura;
+                    else if (el.scrollLeft > meio + largura / 2) pulo = -largura;
+                    if (!pulo) return;
+                    el.scrollLeft += pulo;
+                    if (arrasto) arrasto.inicio += pulo;  // arrastando com o mouse: segue do ponto novo
+                });
+            }, { passive: true });
+            window.addEventListener('resize', mede, { passive: true });
+        });
+
+        // Computador: arrastar com o mouse (clicar e puxar), como o dedo no
+        // celular. Se arrastou, o clique que termina o arraste não abre o Stories.
+        let arrasto = null, arrastou = false;
+        el.addEventListener('pointerdown', e => {
+            if (e.pointerType !== 'mouse' || e.button !== 0) return;
+            arrasto = { x: e.clientX, inicio: el.scrollLeft };
+            arrastou = false;
+        });
+        window.addEventListener('pointermove', e => {
+            if (!arrasto) return;
+            const dx = e.clientX - arrasto.x;
+            if (Math.abs(dx) > 5) arrastou = true;
+            if (arrastou) { el.scrollLeft = arrasto.inicio - dx; e.preventDefault(); }
+        });
+        window.addEventListener('pointerup', () => { arrasto = null; });
+        el.addEventListener('click', e => {
+            if (arrastou) { e.preventDefault(); e.stopPropagation(); arrastou = false; }
+        }, true);
+        el.addEventListener('dragstart', e => e.preventDefault());
+    }
+
+    // Visualizador de stories por categoria (estilo WhatsApp Status /
+    // Instagram Stories): abre no carretel de uma categoria e, ao acabar,
+    // avança sozinho pra próxima categoria da lista — sessão contínua, só
+    // fecha no fim da última ou quando a pessoa fecha manualmente.
+    // ── Preferências de quem visita (12/11/2026, ver app/services/user_prefs.py) ──
+    // O celular aprende com 3 frentes: Stories (tocar em "Ver anúncio" e assistir),
+    // abrir anúncio (mais se ficar 20 s ou tocar no WhatsApp) e busca ("moto
+    // amarela" = Motos + "amarela"). O peso cai pela metade a cada 7 dias. Só com
+    // os cookies aceitos. Um resumo vai no cookie classito_pref para a página
+    // principal; logado, também fica na conta (vale em outro aparelho).
+    const CLASSITO_LOGGED = false;
+    const PREF_KEY = 'classito_pref_v1';
+    const PREF_HALF_LIFE = 7 * 86400000;
+    function prefsConsent() {
+        try { return localStorage.getItem('cookies_decision') === 'accepted'; } catch (e) { return false; }
+    }
+    function prefsLoad() {
+        try { const d = JSON.parse(localStorage.getItem(PREF_KEY) || '{}'); return { cats: d.cats || {}, terms: d.terms || {} }; }
+        catch (e) { return { cats: {}, terms: {} }; }
+    }
+    function prefsWeight(entry, now) {
+        return entry ? entry.w * Math.pow(0.5, (now - entry.t) / PREF_HALF_LIFE) : 0;
+    }
+    function _prefsTop(map, now, n, min) {
+        return Object.entries(map).map(([k, e]) => [k, prefsWeight(e, now)])
+            .filter(([, w]) => w >= min).sort((a, b) => b[1] - a[1]).slice(0, n);
+    }
+    function prefsSave(p, sync = true) {
+        const now = Date.now();
+        for (const key of ['cats', 'terms']) {
+            p[key] = Object.fromEntries(_prefsTop(p[key], now, 30, 0.05).map(([k]) => [k, p[key][k]]));
+        }
+        try { localStorage.setItem(PREF_KEY, JSON.stringify(p)); } catch (e) {}
+        const summary = {
+            c: Object.fromEntries(_prefsTop(p.cats, now, 4, 0.3).map(([k, w]) => [k, Math.round(w * 10) / 10])),
+            t: Object.fromEntries(_prefsTop(p.terms, now, 6, 0.3).map(([k, w]) => [k, Math.round(w * 10) / 10])),
+        };
+        document.cookie = 'classito_pref=' + encodeURIComponent(JSON.stringify(summary)) + '; path=/; max-age=2592000; samesite=lax';
+        if (sync && CLASSITO_LOGGED) {
+            clearTimeout(window._prefsSyncTimer);
+            window._prefsSyncTimer = setTimeout(() => {
+                fetch('/api/users/me/prefs', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) }).catch(() => {});
+            }, 2000);
+        }
+    }
+    function prefsAdd(kind, key, amount) {
+        if (!key || !prefsConsent()) return;
+        key = String(key).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+        if (!key) return;
+        const p = prefsLoad();
+        const map = kind === 'cat' ? p.cats : p.terms;
+        const now = Date.now();
+        map[key] = { w: Math.min(prefsWeight(map[key], now) + amount, 50), t: now };
+        prefsSave(p);
+    }
+    function prefsFromSearch(sp) {
+        if (!sp) return;
+        prefsAdd('cat', sp.cat, 3);
+        (sp.terms || []).forEach(t => prefsAdd('term', t, 3));
+    }
+    function prefsClear(reload) {
+        try { localStorage.removeItem(PREF_KEY); } catch (e) {}
+        document.cookie = 'classito_pref=; path=/; max-age=0';
+        const done = () => { if (reload) location.reload(); };
+        if (CLASSITO_LOGGED) fetch('/api/users/me/prefs', { method: 'DELETE' }).catch(() => {}).finally(done);
+        else done();
+    }
+    // Logado: junta uma vez por sessão o que está na conta com o que o celular aprendeu.
+    (function prefsMergeAccount() {
+        if (!CLASSITO_LOGGED || !prefsConsent()) return;
+        try { if (sessionStorage.getItem('classito_pref_sync')) return; sessionStorage.setItem('classito_pref_sync', '1'); } catch (e) {}
+        fetch('/api/users/me/prefs').then(r => r.ok ? r.json() : {}).then(srv => {
+            const p = prefsLoad();
+            const now = Date.now();
+            for (const key of ['cats', 'terms']) {
+                for (const [k, e] of Object.entries((srv && srv[key]) || {})) {
+                    if (!p[key][k] || prefsWeight(e, now) > prefsWeight(p[key][k], now)) p[key][k] = e;
+                }
+            }
+            prefsSave(p);
+        }).catch(() => {});
+    })();
+
+    // Vitrine: conta quando um cartão de anúncio APARECE na tela (pedido do dono
+    // em 15/11/2026 — o anunciante compara com o Instagram, onde "visualização" é
+    // aparecer, não abrir). Na grade a pessoa vê vários de uma vez ("no atacado"),
+    // então só conta quando ela PAROU para olhar: a tela fica parada 3 segundos
+    // com o cartão INTEIRO visível (90%: o dono viu que o celular dele mostra 6
+    // inteiros; os cortados embaixo não contam); qualquer rolagem zera. Não conta
+    // com os Stories abertos por cima nem com a aba escondida.
+    // Cada anúncio vai uma vez por dia neste celular; o servidor também confere
+    // (ver AdImpression e /api/impressions em app/main.py). Envia em lotes.
+    (function () {
+        if (!('IntersectionObserver' in window)) return;
+        const KEY = 'classito_vitrine_' + new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+        let sent;
+        try { sent = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch (e) { sent = new Set(); }
+        try {
+            Object.keys(localStorage).forEach(k => { if (k.startsWith('classito_vitrine_') && k !== KEY) localStorage.removeItem(k); });
+        } catch (e) {}
+        const timers = new Map();
+        // Fila por origem: o cartão pode dizer de onde é (data-origem="chat" nas
+        // respostas do chat, 20/11/2026); sem isso, vale a página.
+        const filas = {};
+        function origem() {
+            const p = location.pathname, q = new URLSearchParams(location.search);
+            if (p.startsWith('/u/') || p.startsWith('/perfil') || p.startsWith('/loja')) return 'perfil';
+            if (q.get('q') || p.startsWith('/busca')) return 'busca';
+            if (q.get('category')) return 'categoria';
+            return p === '/' ? 'inicio' : 'outro';
+        }
+        function envia() {
+            Object.keys(filas).forEach(org => {
+                const ids = filas[org].splice(0);
+                if (!ids.length) return;
+                const body = JSON.stringify({ ad_ids: ids, origem: org });
+                if (navigator.sendBeacon) navigator.sendBeacon('/api/impressions', new Blob([body], { type: 'application/json' }));
+                else fetch('/api/impressions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {});
+            });
+        }
+        function marca(id, org) {
+            if (sent.has(id)) return;
+            sent.add(id);
+            const o = org || origem();
+            (filas[o] = filas[o] || []).push(id);
+            try { localStorage.setItem(KEY, JSON.stringify([...sent].slice(-3000))); } catch (e) {}
+            if (filas[o].length >= 30) envia();
+        }
+        const PARADO_MS = 3000;
+        const visiveis = new Set();   // cartões com metade ou mais na tela agora
+        let paradoTimer = null;
+        function conta() {
+            paradoTimer = null;
+            if (document.visibilityState !== 'visible') return;
+            if (document.body.style.overflow === 'hidden') return;  // Stories (ou outra tela) por cima
+            visiveis.forEach(el => {
+                const id = +el.dataset.vitrine;
+                if (id) marca(id, el.dataset.origem);
+                io.unobserve(el);
+                visiveis.delete(el);
+            });
+        }
+        function recomeca() {
+            clearTimeout(paradoTimer);
+            paradoTimer = visiveis.size ? setTimeout(conta, PARADO_MS) : null;
+        }
+        // Rolar a página zera os 3 segundos. (Só a página: a fileira dos Stories
+        // balança sozinha e não pode impedir a contagem da grade.)
+        window.addEventListener('scroll', recomeca, { passive: true });
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                const id = +e.target.dataset.vitrine;
+                if (!id || sent.has(id)) { io.unobserve(e.target); visiveis.delete(e.target); return; }
+                if (e.isIntersecting && e.intersectionRatio >= 0.9) visiveis.add(e.target);
+                else visiveis.delete(e.target);
+            });
+            if (!paradoTimer) recomeca();
+        }, { threshold: [0, 0.9] });
+        function observa() {
+            document.querySelectorAll('[data-vitrine]').forEach(el => {
+                if (!el._vitrine) { el._vitrine = 1; io.observe(el); }
+            });
+        }
+        // Cartões chegam depois também ("carregar mais", busca, troca de filtro).
+        let espera = null;
+        new MutationObserver(() => { clearTimeout(espera); espera = setTimeout(observa, 300); })
+            .observe(document.documentElement, { childList: true, subtree: true });
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', observa); else observa();
+        setInterval(envia, 5000);
+        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') envia(); });
+        window.addEventListener('pagehide', envia);
+    })();
+
+    // Intenção (dono, 15/11/2026): cliques que mostram o que a pessoa quer —
+    // tocar numa bolinha dos Stories, "Ver anúncio", trocar de categoria
+    // arrastando, WhatsApp. Deixar rodar, pular ou fechar NÃO contam. A última
+    // intenção filtra a grade de anúncios (só nesta visita: sessionStorage) e
+    // também reforça a preferência guardada (prefsAdd, peso maior).
+    const INTENCAO_KEY = 'classito_intencao';
+    function intencoes() {
+        try { return JSON.parse(sessionStorage.getItem(INTENCAO_KEY) || '[]'); } catch (e) { return []; }
+    }
+    function registrarIntencao(slug, nome, peso) {
+        if (!slug) return;
+        const antes = intencoes();
+        const mesma = antes[0] && antes[0].slug === slug ? antes[0] : null;
+        const lista = antes.filter(i => i.slug !== slug);
+        // Mesma categoria de novo: mantém o refinamento (Aluga, Casa...); outra: começa limpa.
+        lista.unshift(mesma ? { ...mesma, nome: nome || mesma.nome } : { slug, nome: nome || slug });
+        try { sessionStorage.setItem(INTENCAO_KEY, JSON.stringify(lista.slice(0, 4))); } catch (e) {}
+        try { prefsAdd('cat', slug, peso || 2); } catch (e) {}
+        window.dispatchEvent(new CustomEvent('intencao-mudou', { detail: { slug } }));
+    }
+    // Recarrega a grade da tela inicial pela última intenção (90% da categoria +
+    // 10% convidados, ver home() em app/main.py). Só na tela inicial sem
+    // filtro/busca; a URL não muda (o filtro vale só nesta visita).
+    function aplicarIntencao(rolar) {
+        const alvo = document.getElementById('results-section');
+        const params = new URLSearchParams(location.search);
+        params.delete('intencao');
+        if (!alvo || !window.htmx || location.pathname !== '/' || [...params].length) return;
+        if (location.search) history.replaceState(history.state, '', '/');
+        const it = intencoes()[0];
+        let url = '/';
+        if (it) {
+            url = '/?intencao=' + encodeURIComponent(it.slug);
+            if (it.natureza) url += '&natureza=' + encodeURIComponent(it.natureza);
+            if (it.tipo) url += '&tipo=' + encodeURIComponent(it.tipo);
+            if (it.ordem) url += '&sort=' + encodeURIComponent(it.ordem);
+        }
+        htmx.ajax('GET', url, { target: '#results-section', swap: 'innerHTML' }).then(() => {
+            if (rolar) rolarAteFiltros();
+        });
+    }
+    // Parada da tela ao escolher categoria (dono, 23/11/2026): a busca fixa em
+    // cima, logo abaixo os nomes dos Stories e depois os filtros (Carros ✕,
+    // Vende/Aluga, Ordenar), para ir refinando sem rolar. A barra de busca encolhe
+    // ao rolar, então mede de novo depois da primeira rolagem e corrige.
+    function rolarAteFiltros() {
+        const alvo = document.getElementById('results-section');
+        const barra = document.querySelector('section.sticky');
+        const nome = [...document.querySelectorAll('.story-nome')].find(n => n.offsetParent);
+        const ref = nome || alvo;
+        if (!ref) return;
+        const destino = () => {
+            const fundo = barra ? barra.getBoundingClientRect().bottom : 140;
+            return Math.max(0, Math.round(ref.getBoundingClientRect().top + window.scrollY - fundo - 6));
+        };
+        window.scrollTo({ top: destino(), behavior: 'smooth' });
+        setTimeout(() => {
+            const t = destino();
+            if (Math.abs(t - window.scrollY) > 4) window.scrollTo({ top: t, behavior: 'smooth' });
+        }, 550);
+    }
+    // Botões de refinar (Vende/Aluga, Casa/Apartamento...): ajusta a intenção
+    // atual e recarrega a grade. '' = "Todos". Também é clique de intenção.
+    function refinarIntencao(campos, recarregar = true) {
+        const lista = intencoes();
+        if (!lista.length) return;
+        lista[0] = { ...lista[0], ...campos };
+        try { sessionStorage.setItem(INTENCAO_KEY, JSON.stringify(lista)); } catch (e) {}
+        try { prefsAdd('cat', lista[0].slug, 1); } catch (e) {}
+        if (recarregar) aplicarIntencao(false);
+    }
+    function limparIntencao() {
+        try { sessionStorage.removeItem(INTENCAO_KEY); } catch (e) {}
+        window.dispatchEvent(new CustomEvent('intencao-mudou', { detail: { slug: null } }));
+        aplicarIntencao(false);
+    }
+    // Botão com o nome embaixo da foto dos Stories (dono, 20/11/2026): tocar no
+    // NOME filtra a vitrine por aquela categoria e desce até os anúncios; tocar
+    // na FOTO abre os Stories. Tocar de novo no nome marcado tira o filtro.
+    function filtrarCategoria(slug, nome) {
+        const atual = intencoes()[0];
+        if (atual && atual.slug === slug) { limparIntencao(); return; }
+        registrarIntencao(slug, nome);
+        const params = new URLSearchParams(location.search);
+        params.delete('intencao');
+        if (location.pathname !== '/' || [...params].length) { location.href = '/'; return; }
+        aplicarIntencao(true);
+    }
+    // Marca (azul) o nome da categoria que está filtrando a vitrine.
+    function marcarNomeStories() {
+        const ativo = (intencoes()[0] || {}).slug;
+        document.querySelectorAll('.story-nome').forEach(el => {
+            el.classList.toggle('story-nome--ativo', !!ativo && el.dataset.slug === ativo);
+            el.setAttribute('aria-pressed', !!ativo && el.dataset.slug === ativo ? 'true' : 'false');
+        });
+    }
+    window.addEventListener('intencao-mudou', marcarNomeStories);
+    document.addEventListener('DOMContentLoaded', marcarNomeStories);
+    // Segurar o dedo numa bolinha dos Stories (dono, 15/11/2026): não abre os
+    // Stories, só filtra a grade por aquela categoria (atalho para quem já sabe
+    // o que quer). Toque rápido continua abrindo os Stories. Arrastar a fileira
+    // cancela. Conta como intenção, igual a tocar.
+    (function () {
+        const SEGURAR_MS = 500;
+        let timer = null, alvo = null, inicioX = 0, inicioY = 0, segurou = false;
+        function cancela() {
+            clearTimeout(timer); timer = null;
+            if (alvo) alvo.classList.remove('story-segurando');
+            alvo = null;
+        }
+        document.addEventListener('touchstart', e => {
+            const item = e.target.closest && e.target.closest('.story-item');
+            if (!item) return;
+            segurou = false;
+            alvo = item;
+            inicioX = e.touches[0].clientX; inicioY = e.touches[0].clientY;
+            item.classList.add('story-segurando');
+            timer = setTimeout(() => {
+                segurou = true;
+                try { navigator.vibrate && navigator.vibrate(15); } catch (er) {}
+                registrarIntencao(item.dataset.slug, item.dataset.nome);
+                clearTimeout(timer); timer = null;
+            }, SEGURAR_MS);
+        }, { passive: true });
+        document.addEventListener('touchmove', e => {
+            if (!timer) return;
+            const t = e.touches[0];
+            if (Math.abs(t.clientX - inicioX) > 10 || Math.abs(t.clientY - inicioY) > 10) cancela();
+        }, { passive: true });
+        // Só depois que o dedo sai: filtra e desce até a grade. O soltar não vira
+        // toque (senão caía num anúncio que passou por baixo do dedo).
+        document.addEventListener('touchend', e => {
+            if (segurou && alvo) {
+                e.preventDefault();
+                cancela();
+                aplicarIntencao(true);
+                setTimeout(() => { segurou = false; }, 600);
+                return;
+            }
+            cancela();
+        }, { passive: false });
+        document.addEventListener('touchcancel', cancela, { passive: true });
+        // Depois de segurar, o "clique" que o navegador solta não abre os Stories.
+        document.addEventListener('click', e => {
+            if (segurou && e.target.closest && e.target.closest('.story-item')) {
+                e.preventDefault(); e.stopImmediatePropagation(); segurou = false;
+            }
+        }, true);
+        // Sem o menu "salvar imagem" ao segurar a foto.
+        document.addEventListener('contextmenu', e => {
+            if (e.target.closest && e.target.closest('.story-item')) e.preventDefault();
+        });
+    })();
+
+    // Voltou para a tela inicial (de um anúncio, por exemplo) nesta mesma visita:
+    // a grade volta filtrada pela intenção.
+    document.addEventListener('DOMContentLoaded', () => {
+        if (intencoes().length && document.getElementById('results-section')) aplicarIntencao(false);
+    });
+    // Voltar com o botão do celular às vezes restaura a página guardada (sem
+    // recarregar): a grade antiga voltaria. Reaplica a intenção atual.
+    window.addEventListener('pageshow', e => {
+        if (e.persisted && intencoes().length && document.getElementById('results-section')) aplicarIntencao(false);
+    });
+
+    // Stories: quais anúncios esta pessoa já viu (neste celular), para o rodízio
+    // continuar de onde parou. Guarda só os ids, no máximo 1500.
+    const STORY_SEEN_KEY = 'classito_story_vistos';
+    function storySeenIds() {
+        try { return new Set(JSON.parse(localStorage.getItem(STORY_SEEN_KEY) || '[]')); } catch (e) { return new Set(); }
+    }
+    function rememberStorySeen(id) {
+        try {
+            const list = JSON.parse(localStorage.getItem(STORY_SEEN_KEY) || '[]').filter(x => x !== id);
+            list.push(id);
+            localStorage.setItem(STORY_SEEN_KEY, JSON.stringify(list.slice(-1500)));
+        } catch (e) {}
+    }
+    function forgetStorySeen(ids) {
+        try {
+            const drop = new Set(ids);
+            const list = JSON.parse(localStorage.getItem(STORY_SEEN_KEY) || '[]').filter(x => !drop.has(x));
+            localStorage.setItem(STORY_SEEN_KEY, JSON.stringify(list));
+        } catch (e) {}
+    }
+    function storyPhoto(ad) {
+        return ad.story_photo || (ad.images && ad.images.length ? ad.images[0].url : null);
+    }
+
+    function categoryStories(categoryList) {
+        return {
+            categories: categoryList || [],
+            open: false,
+            catIndex: 0,
+            storyAds: [],
+            storyIndex: 0,
+            progress: 0,
+            loading: false,
+            paused: false,
+            _timer: null,
+            _touchStartY: 0,
+            _touchStartX: 0,
+            _historyPushed: false,
+            _storySeen: new Set(),
+            _storyFlushBound: false,
+            voltaCompleta: false,   // aviso "Você viu todos" ao recomeçar a categoria
+            _pool: [],              // todos os anúncios da categoria, já na ordem do Stories
+            filtroNatureza: '',     // botões de refinar dentro do Stories (Vende/Aluga...)
+            filtroTipo: '',         // (Casa/Apartamento, Hatch/SUV...) — ver app/services/refino.py
+            _swiped: false,         // arrastou para o lado: o toque não avança anúncio
+
+            get currentAd() {
+                return this.storyAds[this.storyIndex] || null;
+            },
+            get currentCategory() {
+                return this.categories[this.catIndex] || null;
+            },
+
+            async openSession(slug) {
+                const idx = this.categories.findIndex(c => c.slug === slug);
+                if (idx === -1) return;
+                this.catIndex = idx;
+                registrarIntencao(slug, this.categories[idx].name);
+                this.open = true;
+                document.body.style.overflow = 'hidden';
+                if (!this._storyFlushBound) {
+                    // "Ver anúncio" sai da página sem passar por close().
+                    this._storyFlushBound = true;
+                    window.addEventListener('pagehide', () => this._flushStoryViews());
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.visibilityState === 'hidden') this._flushStoryViews();
+                    });
+                }
+                // Espera a story (tela preta) pintar DE VERDADE antes de
+                // empurrar a entrada de histórico — confirmado com o usuário
+                // (app instalado/PWA, modo standalone): o Android tira uma
+                // "foto" da tela pro gesto nativo de voltar (Predictive Back,
+                // Android 13+) no momento em que a entrada de histórico é
+                // criada. Sem esse atraso, open=true e pushState rodavam no
+                // mesmo tick, antes do navegador pintar o primeiro frame da
+                // story — a foto capturada era da página de baixo (rolada),
+                // e era ELA que aparecia rapidinho durante o gesto de voltar.
+                // Dois requestAnimationFrame = espera o navegador de fato
+                // pintar (1º agenda o frame, 2º confirma que o anterior já
+                // foi desenhado), não só o Alpine aplicar a mudança no DOM.
+                await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+                // Empurra uma entrada de histórico só pra story abrir — sem
+                // isso, o botão/gesto de "voltar" do celular não tinha
+                // NENHUMA entrada própria da story pra consumir, então saía
+                // direto pra qualquer página que já estivesse antes na aba
+                // em vez de só fechar a story e voltar pra home (achado
+                // real do usuário). _onPopState() fecha quando "voltar" é
+                // apertado com a story aberta.
+                history.pushState({ classitoStory: true }, '', location.href);
+                this._historyPushed = true;
+                await this._loadCategoryReel();
+            },
+
+            close() {
+                this.open = false;
+                this._stopTimer();
+                this._flushStoryViews();
+                document.body.style.overflow = '';
+                // A grade embaixo segue o que ela escolheu. Depois do history.back()
+                // logo abaixo terminar — senão o "voltar" desfaz a troca da grade.
+                setTimeout(() => aplicarIntencao(true), 400);
+                if (this.$refs.storyVideo) this.$refs.storyVideo.pause();
+                // Fechado pelo X/swipe/fim da última categoria (não pelo
+                // "voltar" do celular) — a entrada de histórico empurrada em
+                // openSession() ainda está lá, "cancela" ela com history.back()
+                // pra não sobrar um passo de "voltar" fantasma depois.
+                if (this._historyPushed) {
+                    this._historyPushed = false;
+                    history.back();
+                }
+            },
+
+            // Chamado quando o "voltar" do celular (ou do navegador) dispara
+            // popstate — o próprio gesto JÁ consumiu a entrada de histórico,
+            // então não chama history.back() de novo (senão voltaria um
+            // passo extra, pulando a home).
+            //
+            // ACHADO REAL (voltou a piscar mesmo depois do atraso via
+            // requestAnimationFrame em openSession()): a story SEMPRE abre
+            // por cima da própria home, no MESMO documento — não existe
+            // "página de baixo" diferente pra recarregar. O recarregamento
+            // completo ("location.href = '/'") que tínhamos aqui é, sozinho,
+            // o motivo do pisca: todo reload de página tem um instante de
+            // tela branca/sem estilo antes de pintar de novo — e pior ainda
+            // com a internet lenta da região. Não tem gesto nativo que
+            // resolva isso, porque o problema nem é o gesto: é recarregar
+            // quando não precisava. Se a home por baixo já está limpa (sem
+            // busca/filtro na URL — o caso relatado), fechar é só esconder a
+            // story e subir o scroll, sem nenhuma navegação. Só quando tem
+            // filtro/busca ativo (conteúdo de baixo é outro de verdade) que
+            // ainda recarrega "/" do zero.
+            _onPopState() {
+                if (this.open) {
+                    this._historyPushed = false;
+                    this._stopTimer();
+                    if (this.$refs.storyVideo) this.$refs.storyVideo.pause();
+                    if (location.pathname === '/' && !location.search) {
+                        this.open = false;
+                        document.body.style.overflow = '';
+                        if (intencoes().length) aplicarIntencao(true); else window.scrollTo(0, 0);
+                        return;
+                    }
+                    try { sessionStorage.setItem('classito_scroll_top', '1'); } catch (e) {}
+                    window.location.href = '/';
+                }
+            },
+
+            // Mantém o <video> da story em sincronia com currentAd — troca o
+            // src só quando muda de fato (evita reiniciar o vídeo em todo
+            // tick reativo do Alpine) e tenta tocar; autoplay com som bloqueado
+            // pelo navegador cai no catch, silencioso (o <video> já é muted).
+            _syncStoryVideo() {
+                const ad = this.currentAd;
+                this.$nextTick(() => {
+                    const v = this.$refs.storyVideo;
+                    if (!v) return;
+                    const url = ad && ad.video_file_url;
+                    if (!url) {
+                        v.pause();
+                        v.removeAttribute('src');
+                        return;
+                    }
+                    if (v.getAttribute('src') !== url) {
+                        v.src = url;
+                        v.load();
+                    }
+                    if (!this.paused) v.play().catch(() => {});
+                });
+                this._prefetchNextVideo();
+            },
+
+            // Sem preload nenhum, o vídeo só começava a baixar no exato
+            // instante em que o slide virava vídeo — dava um engasgo visível
+            // antes de tocar (photos já tinham isso via _preloadImages, vídeo
+            // não). Só adianta o PRÓXIMO (não o pool inteiro, como as fotos —
+            // vídeo é pesado demais pra isso) e passa pelo mesmo service
+            // worker que já cacheia /static/* (ver sw.js), então quando o
+            // <video> real pedir essa URL já sai do cache, instantâneo.
+            _prefetchNextVideo() {
+                if (!window.shouldAutoplayVideo()) return;
+                const next = this.storyAds[this.storyIndex + 1];
+                if (next && next.video_file_url) {
+                    fetch(next.video_file_url).catch(() => {});
+                }
+            },
+
+            async _loadCategoryReel() {
+                this.storyIndex = 0;
+                this.progress = 0;
+                this.storyAds = [];
+                const cat = this.currentCategory;
+                if (!cat) { this.close(); return; }
+                // Reusa o pool da PRÓXIMA categoria se já tiver sido adiantado
+                // (ver _prefetchNextCategory) — sem isso, toda troca de
+                // categoria mostrava o spinner de carregando de novo, mesmo a
+                // lista de categorias sendo conhecida o tempo todo e dando
+                // tempo de sobra (a duração da categoria atual) pra já ter
+                // buscado. Guarda a Promise, não só o resultado, pra conseguir
+                // reusar mesmo se a pessoa avançar rápido demais e a busca
+                // ainda estiver em andamento (ainda economiza tempo).
+                const prefetch = (this._nextCatPrefetch && this._nextCatPrefetch.slug === cat.slug) ? this._nextCatPrefetch : null;
+                this._nextCatPrefetch = null;
+                if (!prefetch || !prefetch.ready) this.loading = true;
+                try {
+                    const pool = prefetch ? await prefetch.promise : await this._fetchCategoryPool(cat.slug);
+                    // Todos os anúncios da categoria (antes eram só 10 e o Stories
+                    // pulava sozinho para outra categoria — dono, 15/11/2026).
+                    this._pool = this._orderStory(pool, cat.ad_id);
+                    // Refinamento que a pessoa já escolheu nesta categoria (grade ou Stories).
+                    const it = intencoes()[0];
+                    this.filtroNatureza = it && it.slug === cat.slug ? (it.natureza || '') : '';
+                    this.filtroTipo = it && it.slug === cat.slug ? (it.tipo || '') : '';
+                    this.storyAds = this._filtraPool();
+                } catch (e) {
+                    this.storyAds = [];
+                }
+                this.loading = false;
+                if (this.storyAds.length === 0) {
+                    this._advanceCategory();
+                    return;
+                }
+                this._preloadImages();
+                this._startTimer();
+                this._prefetchNextCategory();
+            },
+
+            // Busca um pool maior ordenado por mais visualizado (proxy de
+            // "anúncio mais atraente", já que não existe pontuação de
+            // qualidade de foto) e embaralha — assim a sequência muda a cada
+            // vez que a story é aberta, sempre puxando dos anúncios com mais
+            // engajamento da categoria.
+            _fetchCategoryPool(slug) {
+                return fetch(`/api/ads/stories?category=${encodeURIComponent(slug)}`)
+                    .then(res => res.ok ? res.json() : [])
+                    .catch(() => []);
+            },
+
+            _prefetchNextCategory() {
+                const next = this.categories[this.catIndex + 1];
+                if (!next) return;
+                const entry = { slug: next.slug, ready: false, promise: null };
+                entry.promise = this._fetchCategoryPool(next.slug).then(pool => { entry.ready = true; return pool; });
+                this._nextCatPrefetch = entry;
+            },
+
+            // Pré-carrega as fotos do pool inteiro assim que a story abre —
+            // sem isso, cada troca de slide só começava a baixar a foto
+            // naquele instante, travando visivelmente numa conexão mais lenta.
+            // Vídeo não entra aqui: preload="auto" no próprio <video> já
+            // cuida disso, e baixar vídeo antecipado desperdiçaria dado móvel.
+            // Em economia de dados, pula o preload adiantado — carrega só o
+            // slide atual mesmo, do jeito normal (ver window.shouldAutoplayVideo).
+            // Só as PRÓXIMAS 3 fotos (12/11/2026): antes baixava as 8 de uma vez ao
+            // abrir, pesado na internet do Tocantins. Chamado de novo a cada avanço.
+            _preloadImages() {
+                if (!window.shouldAutoplayVideo()) return;
+                this.storyAds.slice(this.storyIndex + 1, this.storyIndex + 4).forEach(ad => {
+                    if (ad.video_file_url) return;
+                    const url = storyPhoto(ad);
+                    if (url) { const img = new Image(); img.src = url; }
+                });
+            },
+
+            // Regra dos Stories (usuário, 12/11/2026): o 1º slide é o anúncio da
+            // CAPA (tocou no carro, abre no carro); depois metade novidades (até
+            // 7 dias no ar) e metade sorteio da categoria, intercalados
+            // (nova, sorteada, nova...). Nas duas metades vem antes o que a
+            // pessoa ainda não viu; novidades com foto de nota maior antes;
+            // cartaz/print (nota < 3) no fim do sorteio. Faltou de um lado,
+            // o outro completa. Viu todos da categoria: o rodízio recomeça.
+            _orderStory(pool, coverAdId) {
+                let seen = storySeenIds();
+                if (pool.some(ad => !ad.vendido) && pool.every(ad => ad.vendido || seen.has(ad.id))) {
+                    forgetStorySeen(pool.map(ad => ad.id));
+                    seen = new Set();
+                }
+                const cover = pool.find(ad => ad.id === coverAdId);
+                // Vendido/alugado (carimbo, prova de venda — dono, 20/11/2026): fora
+                // da ordem normal; entra depois, 1 a cada 10 e nunca nos 4 primeiros.
+                // Sorteio com peso: o vendido mais recente tem mais chance de vir antes.
+                const vendidos = pool.filter(ad => ad.vendido && ad !== cover)
+                    .map(ad => [Math.pow(Math.random(), 1 / (ad.vendido_peso || 1)), ad])
+                    .sort((a, b) => b[0] - a[0]).map(par => par[1]);
+                const rest = pool.filter(ad => ad !== cover && !ad.vendido);
+                const nota = ad => (ad.nota === null || ad.nota === undefined) ? 5 : ad.nota;
+                const unseenFirst = list => {
+                    const shuffled = this._shuffle(list);
+                    return shuffled.filter(ad => !seen.has(ad.id)).concat(shuffled.filter(ad => seen.has(ad.id)));
+                };
+                const fresh = unseenFirst(rest.filter(ad => ad.is_new))
+                    .sort((a, b) => (seen.has(a.id) - seen.has(b.id)) || (nota(b) - nota(a)));
+                // No sorteio, quem está parado (terço menos visto da categoria, ver
+                // home_mix.stuck_ids) vem antes — pedido do dono em 15/11/2026.
+                const others = unseenFirst(rest.filter(ad => !ad.is_new))
+                    .sort((a, b) => (seen.has(a.id) - seen.has(b.id)) || ((nota(a) < 3) - (nota(b) < 3))
+                                    || (!!b.parado - !!a.parado));
+                const out = cover ? [cover] : [];
+                while (fresh.length || others.length) {
+                    if (fresh.length) out.push(fresh.shift());
+                    if (others.length) out.push(others.shift());
+                }
+                if (!vendidos.length) return out;
+                const comVendidos = [];
+                for (let i = 0; i < out.length; i += 9) {
+                    const bloco = out.slice(i, i + 9);
+                    if (vendidos.length && bloco.length >= 4) {
+                        const pos = 4 + Math.floor(Math.random() * (bloco.length - 3));
+                        bloco.splice(pos, 0, vendidos.shift());
+                    }
+                    comVendidos.push(...bloco);
+                }
+                return comVendidos;
+            },
+
+            // Trocar de categoria é escolha da pessoa (arrastar para o lado ou os
+            // botões ‹ › no computador) e conta como intenção. As categorias
+            // também giram em volta: depois da última vem a primeira.
+            changeCategory(passo) {
+                const cat = this.currentCategory;
+                if (cat) markCategoryStorySeen(cat.id, cat.ad_id);
+                this._stopTimer();
+                if (!this.categories.length) { this.close(); return; }
+                this.catIndex = (this.catIndex + passo + this.categories.length) % this.categories.length;
+                const nova = this.currentCategory;
+                registrarIntencao(nova.slug, nova.name);
+                this._loadCategoryReel();
+            },
+
+            _advanceCategory() {
+                // Categoria sem anúncio para mostrar: segue para a próxima.
+                this.changeCategory(1);
+            },
+
+            next() {
+                this._stopTimer();
+                if (this.storyIndex < this.storyAds.length - 1) {
+                    this.storyIndex++;
+                    this.progress = 0;
+                    this._preloadImages();
+                    this._startTimer();
+                } else {
+                    // Viu todos da categoria: recomeça nela mesma (infinito).
+                    const cat = this.currentCategory;
+                    if (cat) markCategoryStorySeen(cat.id, cat.ad_id);
+                    this.voltaCompleta = true;
+                    setTimeout(() => { this.voltaCompleta = false; }, 2200);
+                    this.storyIndex = 0;
+                    this.progress = 0;
+                    this._preloadImages();
+                    this._startTimer();
+                }
+            },
+
+            // ── Botões de refinar dentro do Stories ──
+            _filtraPool() {
+                const lista = this._pool.filter(ad =>
+                    (!this.filtroNatureza || ad.ad_type === this.filtroNatureza) &&
+                    (!this.filtroTipo || ad.tipo === this.filtroTipo));
+                return lista.length ? lista : this._pool;
+            },
+            // Mesmas regras da grade: conta cada botão respeitando o outro filtro,
+            // some com zero, e uma linha com uma opção só não aparece.
+            get botoesStory() {
+                const cfg = this.currentCategory && this.currentCategory.refino;
+                if (!cfg) return { grupo: [], naturezas: [], tipos: [] };
+                const nat = {}, tip = {};
+                for (const ad of this._pool) {
+                    if (ad.vendido) continue;  // contagem é do que ainda está à venda/para alugar
+                    if (!this.filtroTipo || ad.tipo === this.filtroTipo) nat[ad.ad_type] = (nat[ad.ad_type] || 0) + 1;
+                    if (ad.tipo && cfg.tipos[ad.tipo] && (!this.filtroNatureza || ad.ad_type === this.filtroNatureza)) tip[ad.tipo] = (tip[ad.tipo] || 0) + 1;
+                }
+                const monta = (cont, rotulos, ativo) => {
+                    const out = Object.entries(cont).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1])
+                        .map(([id, n]) => ({ id, n, label: rotulos[id] || id, ativo: id === ativo }));
+                    return out.length >= 2 || ativo ? out : [];
+                };
+                return {
+                    grupo: cfg.grupo || [],
+                    naturezas: monta(nat, cfg.naturezas || {}, this.filtroNatureza),
+                    tipos: cfg.campo ? monta(tip, cfg.tipos || {}, this.filtroTipo) : [],
+                };
+            },
+            refinaStory(campo, valor) {
+                if (campo === 'natureza') this.filtroNatureza = this.filtroNatureza === valor ? '' : valor;
+                else this.filtroTipo = this.filtroTipo === valor ? '' : valor;
+                const cat = this.currentCategory;
+                if (cat) {
+                    registrarIntencao(cat.slug, cat.name);
+                    refinarIntencao({ natureza: this.filtroNatureza, tipo: this.filtroTipo }, false);
+                }
+                this.storyAds = this._filtraPool();
+                this.storyIndex = 0;
+                this.progress = 0;
+                this._preloadImages();
+                this._startTimer();
+            },
+            irParaCategoria(slug) {
+                const i = this.categories.findIndex(c => c.slug === slug);
+                if (i === -1 || i === this.catIndex) return;
+                this.changeCategory(i - this.catIndex);
+            },
+
+            verAnuncio() {
+                const ad = this.currentAd;
+                if (ad && ad.category) registrarIntencao(ad.category.slug, ad.category.name, 3);
+                this._flushStoryViews();
+            },
+
+            // Barrinhas do topo: no máximo 10 de cada vez (a categoria pode ter
+            // 80 anúncios); mostra o bloco de 10 em que a pessoa está.
+            get barras() {
+                const inicio = Math.floor(this.storyIndex / 10) * 10;
+                return this.storyAds.slice(inicio, inicio + 10).map((ad, k) => ({ ad, i: inicio + k }));
+            },
+
+            prev() {
+                if (this.storyIndex > 0) {
+                    this._stopTimer();
+                    this.storyIndex--;
+                    this.progress = 0;
+                    this._startTimer();
+                }
+            },
+
+            pause() {
+                this.paused = true;
+                if (this.$refs.storyVideo) this.$refs.storyVideo.pause();
+            },
+
+            resume() {
+                this.paused = false;
+                if (this.$refs.storyVideo && this.currentAd && this.currentAd.video_file_url) {
+                    this.$refs.storyVideo.play().catch(() => {});
+                }
+            },
+
+            _startTimer() {
+                this._stopTimer();
+                const stepMs = 50;
+                const durationMs = 4500;
+                const viewAfterMs = 3000;  // 3 s na tela = visualização, igual ao Instagram (dono, 15/11/2026)
+                this._timer = setInterval(() => {
+                    if (this.paused) return;
+                    this.progress += (stepMs / durationMs) * 100;
+                    if (this.currentAd && !this.currentAd.vendido && this.progress >= (viewAfterMs / durationMs) * 100
+                            && !this._storySeen.has(this.currentAd.id)) {
+                        this._storySeen.add(this.currentAd.id);
+                        rememberStorySeen(this.currentAd.id);
+                        prefsAdd('cat', this.currentAd.category && this.currentAd.category.slug, 0.5);
+                    }
+                    if (this.progress >= 100) this.next();
+                }, stepMs);
+            },
+
+            _stopTimer() {
+                if (this._timer) { clearInterval(this._timer); this._timer = null; }
+            },
+
+            // Um envio só, ao sair dos Stories: a internet da região é lenta.
+            _flushStoryViews() {
+                if (!this._storySeen.size) return;
+                const body = new Blob([JSON.stringify({ ad_ids: [...this._storySeen] })], { type: 'application/json' });
+                this._storySeen.clear();
+                try { navigator.sendBeacon('/api/stories/views', body); } catch (e) {}
+            },
+
+            onTouchStart(e) {
+                this._touchStartY = e.touches[0].clientY;
+                this._touchStartX = e.touches[0].clientX;
+                this.pause();
+            },
+
+            onTouchEnd(e) {
+                const dy = e.changedTouches[0].clientY - this._touchStartY;
+                const dx = Math.abs(e.changedTouches[0].clientX - this._touchStartX);
+                if (dy > 80 && dx < 60) {
+                    this.close();
+                    return;
+                }
+                const dxs = e.changedTouches[0].clientX - this._touchStartX;
+                if (Math.abs(dxs) > 70 && Math.abs(dy) < 60) {
+                    this._swiped = true;  // o toque que termina o arraste não avança anúncio
+                    setTimeout(() => { this._swiped = false; }, 350);
+                    this.changeCategory(dxs < 0 ? 1 : -1);
+                    this.paused = false;
+                    return;
+                }
+                this.resume();
+            },
+
+            formatPrice(ad) {
+                if (!ad || ad.price == null) return 'Gratuito';
+                return window.formatCardPrice(ad.price);
+            },
+
+            _shuffle(arr) {
+                const a = arr.slice();
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            },
+        };
+    }
+
+    function aiSearch() {
+        return {
+            chatHistory: [],
+            chatMessages: [],
+            chatLoading: false,
+            // Última pergunta mandada pra IA (digitada ou de um chip) — usada
+            // só pra personalizar o indicador de "buscando..." (ver
+            // index.html), em vez de um "alta demanda"/genérico sem relação
+            // com o que a pessoa pediu.
+            lastQuery: '',
+            chatInput: '',
+            started: false,
+            uiConfig: null,
+            detectedCity: null,
+            isDesktop: window.matchMedia('(min-width: 640px)').matches,
+            installNudgeShown: false,
+            animatedPlaceholder: 'O que você procura hoje?',
+            _placeholderPhrases: [
+                'O que você procura hoje?',
+                'Carro branco em Palmas...',
+                'Imóvel pra alugar...',
+                'Vaga de emprego...',
+                'iPhone usado barato...',
+                'Sofá retrátil...',
+                'Moto até R$10.000...',
+            ],
+            _placeholderTimer: null,
+
+            // Efeito "máquina de escrever" no placeholder — chama atenção pro
+            // campo vazio sem travar quem já está digitando (@focus desliga).
+            // Roda só enquanto o campo está vazio e a conversa não começou.
+            startPlaceholderAnimation() {
+                if (this._placeholderTimer) return;
+                let phraseIdx = 0;
+                let charIdx = 0;
+                let deleting = false;
+                const tick = () => {
+                    if (this.chatInput.trim() !== '' || this.chatMessages.length > 0) {
+                        this.stopPlaceholderAnimation();
+                        return;
+                    }
+                    const phrase = this._placeholderPhrases[phraseIdx];
+                    if (!deleting) {
+                        charIdx++;
+                        this.animatedPlaceholder = phrase.slice(0, charIdx);
+                        if (charIdx === phrase.length) {
+                            deleting = true;
+                            this._placeholderTimer = setTimeout(tick, 1600);
+                            return;
+                        }
+                        this._placeholderTimer = setTimeout(tick, 55);
+                    } else {
+                        charIdx--;
+                        this.animatedPlaceholder = phrase.slice(0, charIdx);
+                        if (charIdx === 0) {
+                            deleting = false;
+                            phraseIdx = (phraseIdx + 1) % this._placeholderPhrases.length;
+                            this._placeholderTimer = setTimeout(tick, 300);
+                            return;
+                        }
+                        this._placeholderTimer = setTimeout(tick, 25);
+                    }
+                };
+                this._placeholderTimer = setTimeout(tick, 400);
+            },
+
+            stopPlaceholderAnimation() {
+                if (this._placeholderTimer) {
+                    clearTimeout(this._placeholderTimer);
+                    this._placeholderTimer = null;
+                }
+            },
+
+            _now() {
+                const d = new Date();
+                return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            },
+
+            gridCols() {
+                if (!this.uiConfig) return this.isDesktop ? 3 : 2;
+                return this.isDesktop ? (this.uiConfig.cols_desktop || 3) : (this.uiConfig.cols_mobile || 2);
+            },
+
+            gridMax() {
+                if (!this.uiConfig) return this.isDesktop ? 6 : 4;
+                const c = this.isDesktop ? (this.uiConfig.cols_desktop || 3) : (this.uiConfig.cols_mobile || 2);
+                const r = this.isDesktop ? (this.uiConfig.rows_desktop || 2) : (this.uiConfig.rows_mobile || 2);
+                return c * r;
+            },
+
+            async _geocodeCity(lat, lon) {
+                try {
+                    const res = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=pt-BR`,
+                        { headers: { 'Accept-Language': 'pt-BR' } }
+                    );
+                    const data = await res.json();
+                    return data.address?.city || data.address?.town || data.address?.municipality || data.address?.county || null;
+                } catch (e) {
+                    return null;
+                }
+            },
+
+            async initConfig() {
+                if (!this.started) {
+                    this.started = true;
+                    this.startPlaceholderAnimation();
+                    // iPhone: ao abrir o teclado, o Safari às vezes deixa a barra
+                    // de busca (sticky bottom durante a conversa) atrás do próprio
+                    // teclado — quando o viewport encolher com o campo focado,
+                    // traz a barra de volta à vista (mesmo espírito do ajuste do
+                    // chat de criação, ver create.html).
+                    if (window.visualViewport) {
+                        window.visualViewport.addEventListener('resize', () => {
+                            const el = document.getElementById('aiChatInput');
+                            if (el && document.activeElement === el) {
+                                setTimeout(() => el.scrollIntoView({ block: 'nearest' }), 50);
+                            }
+                        });
+                    }
+                    // Carrega a config de UI uma vez
+                    try {
+                        const res = await fetch('/api/ia/search-ui-config');
+                        if (res.ok) {
+                            this.uiConfig = await res.json();
+                        }
+                    } catch (e) {
+                        console.warn('Erro ao carregar config de grade:', e);
+                        // Fallback para defaults se falhar
+                        this.uiConfig = {
+                            cols_mobile: 2,
+                            rows_mobile: 2,
+                            cols_desktop: 3,
+                            rows_desktop: 2,
+                        };
+                    }
+                    // Listener de mudança de tamanho de tela
+                    const mediaQuery = window.matchMedia('(min-width: 640px)');
+                    mediaQuery.addEventListener('change', (e) => {
+                        this.isDesktop = e.matches;
+                    });
+
+                    // GPS silencioso: só se permissão já foi concedida
+                    try {
+                        if (navigator.permissions && navigator.geolocation) {
+                            const perm = await navigator.permissions.query({ name: 'geolocation' });
+                            if (perm.state === 'granted') {
+                                navigator.geolocation.getCurrentPosition(
+                                    async (pos) => {
+                                        const city = await this._geocodeCity(pos.coords.latitude, pos.coords.longitude);
+                                        if (city) this.detectedCity = city;
+                                    },
+                                    () => {},
+                                    { timeout: 8000, maximumAge: 300000 }
+                                );
+                            }
+                        }
+                    } catch (e) {
+                        // Silencioso — geolocalização não é crítica
+                    }
+                }
+            },
+
+            useGPSInChat() {
+                if (!navigator.geolocation) return;
+                const icon = document.getElementById('gps-icon-ia');
+                const spinner = document.getElementById('gps-spinner-ia');
+                if (icon) icon.classList.add('hidden');
+                if (spinner) spinner.classList.remove('hidden');
+
+                navigator.geolocation.getCurrentPosition(
+                    async (pos) => {
+                        const city = await this._geocodeCity(pos.coords.latitude, pos.coords.longitude);
+                        if (city) this.chatInput = 'Perto de ' + city;
+                        if (spinner) spinner.classList.add('hidden');
+                        if (icon) icon.classList.remove('hidden');
+                    },
+                    () => {
+                        if (spinner) spinner.classList.add('hidden');
+                        if (icon) icon.classList.remove('hidden');
+                    },
+                    { timeout: 10000, maximumAge: 60000 }
+                );
+            },
+
+            async sendMessage() {
+                const msg = this.chatInput.trim();
+                if (!msg || this.chatLoading) return;
+
+                this.chatMessages.push({ role: 'user', content: msg, time: this._now() });
+                this.chatInput = '';
+
+                // Solta o foco em vez de recolocar — se não, o teclado do celular
+                // nunca recolhe (o usuário toca a setinha de enviar e o teclado
+                // continua tampando a tela, atrapalhando ver a resposta/resultado).
+                const el = document.getElementById('aiChatInput');
+                if (el) el.blur();
+
+                await this._sendToAI(msg);
+                this._scrollToLastMessage();
+            },
+
+            async sendChip(chip) {
+                if (this.chatLoading) return;
+                this.chatMessages.push({ role: 'user', content: chip.label, time: this._now() });
+                await this._sendToAI(chip.chip_message);
+                this._scrollToLastMessage();
+            },
+
+            focusChatInput() {
+                const el = document.getElementById('aiChatInput');
+                if (el) el.focus();
+            },
+
+            async loadMore(msg) {
+                if (msg.loadingMore) return;
+                msg.loadingMore = true;
+                try {
+                    const res = await fetch('/api/ia/busca/mais', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filters: msg.filters, offset: msg.results.length })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        msg.results.push(...(data.results || []));
+                        msg.resultsTotal = data.results_total ?? msg.resultsTotal;
+                    }
+                } catch (e) {
+                    // silencioso — o botão "Ver mais" só fica disponível de novo pra tentar outra vez
+                } finally {
+                    msg.loadingMore = false;
+                }
+            },
+
+            async _sendToAI(msg) {
+                this.lastQuery = msg;
+                this.chatLoading = true;
+                // Propaga pro escopo do <section> (ancestral) que a conversa começou,
+                // pra ele esconder o título grande e esticar o painel de chat pra tela cheia.
+                this.chatActive = true;
+                this._scrollChat();
+
+                try {
+                    const res = await fetch('/api/ia/busca', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message: msg,
+                            conversation_history: this.chatHistory.slice(),
+                            detected_city: this.detectedCity
+                        })
+                    });
+
+                    if (!res.ok) {
+                        throw new Error('Erro na IA');
+                    }
+
+                    const data = await res.json();
+                    const text = data.response_text || '';
+
+                    if (msg) {
+                        this.chatHistory.push({ role: 'user', content: msg });
+                        this.chatHistory.push({ role: 'assistant', content: text });
+                    } else if (text) {
+                        this.chatHistory.push({ role: 'assistant', content: text });
+                    }
+
+                    // Balão próprio de confirmação (ver confirm_expansion em
+                    // app/api/ia.py) — aparece ANTES do balão de resultado quando
+                    // o backend detecta que a IA expandiu uma gíria/abreviação
+                    // curta (ex: "jet" virou "jet ski"). Texto determinístico,
+                    // não depende da IA escrever a frase certa (já visto falhar).
+                    if (data.confirm_expansion && data.confirm_expansion.q) {
+                        this.chatMessages.push({
+                            role: 'confirm',
+                            time: this._now(),
+                            confirmExpansion: { q: data.confirm_expansion.q, resolved: null }
+                        });
+                    }
+
+                    if (text) {
+                        const aiMsg = {
+                            role: 'ai',
+                            content: text,
+                            time: this._now(),
+                            results: data.results || null,
+                            resultsUrl: data.results_url || null,
+                            resultsTotal: data.results_total || null,
+                            filters: data.filters || null,
+                            loadingMore: false,
+                            alternatives: data.alternatives || null,
+                            suggestedFilters: data.suggested_filters || null,
+                            consultaId: data.consulta_id || null
+                        };
+                        this.chatMessages.push(aiMsg);
+
+                        // Sugestão de instalar o app: um balão PRÓPRIO (não um detalhe
+                        // dentro do balão de texto — assim fica visível de verdade, igual
+                        // a qualquer outra mensagem). Só 1x por sessão, e só se a pessoa
+                        // ainda não instalou. Normalmente só a partir da 2ª busca (pra não
+                        // interromper a primeira interação) — EXCETO quando a própria
+                        // pergunta já é sobre o app/instalação, caso em que mostra na hora.
+                        // O botão chama exatamente a mesma função do item "Instalar App"
+                        // do menu ☰ (pwaManualInstall()) — mesmo link, mesmo comportamento.
+                        if (!this.installNudgeShown) {
+                            const userTurns = this.chatMessages.filter(m => m.role === 'user').length;
+                            // Propositalmente NÃO olha pro flag salvo em localStorage aqui —
+                            // ele fica "preso" em true pra sempre depois do 1º install (mesmo
+                            // que a pessoa desinstale depois), já causou o balão nunca mais
+                            // aparecer de novo num celular real. isStandaloneMode() reflete o
+                            // estado ATUAL (está rodando instalado agora?), é a checagem certa.
+                            const standalone = typeof isStandaloneMode === 'function' && isStandaloneMode();
+                            const askedAboutApp = /\b(app|aplicativo|instalar|instala|baixar|baixa)\b/i.test(msg);
+                            if ((userTurns >= 2 || askedAboutApp) && !standalone) {
+                                let nudgeType = null;
+                                if (typeof pwaDeferredPrompt !== 'undefined' && pwaDeferredPrompt) {
+                                    nudgeType = 'android';
+                                } else if (typeof isIOSSafari === 'function' && isIOSSafari()) {
+                                    nudgeType = 'ios';
+                                } else if (askedAboutApp) {
+                                    // Perguntou explicitamente sobre o app, mas o navegador
+                                    // (ex: Chrome desktop) ainda não liberou o popup nativo —
+                                    // mesmo assim mostra o botão, pra sempre dar algo clicável
+                                    // em resposta à pergunta (pwaManualInstall() sabe lidar
+                                    // com esse caso e orientar pelo menu do navegador).
+                                    nudgeType = 'generic';
+                                }
+                                if (nudgeType) {
+                                    this.chatMessages.push({ role: 'install', installNudgeType: nudgeType, time: this._now() });
+                                    this.installNudgeShown = true;
+                                }
+                            }
+                        }
+                    }
+
+                } catch (e) {
+                    this.chatMessages.push({
+                        role: 'ai',
+                        content: '🙏 Ops, tive um problema. Pode repetir?',
+                        time: this._now()
+                    });
+                } finally {
+                    this.chatLoading = false;
+                    this._scrollToLastMessage();
+                    // No celular o foco fica solto de propósito (ver sendMessage() —
+                    // senão o teclado nunca recolhe e tampa os resultados). No desktop
+                    // não existe esse teclado virtual, então não tem motivo pra fazer a
+                    // pessoa clicar de novo no campo a cada pergunta.
+                    if (this.isDesktop) this.focusChatInput();
+                }
+            },
+
+            _scrollChat() {
+                this.$nextTick(() => {
+                    const el = document.getElementById('aiChatMessages');
+                    if (el) el.scrollTop = el.scrollHeight;
+                });
+            },
+
+            // Usado quando a resposta termina de chegar — rola só até o TOPO do
+            // balão novo (não o fundo), pra quem acabou de receber um resultado
+            // comece lendo do início dele em vez de já ver o fim (ex: "Ver mais"
+            // e os chips de filtro, depois dos cards). Mira sempre na ÚLTIMA
+            // mensagem da IA (data-msg-role="ai"), nunca no último elemento cru
+            // — a partir da 2ª pergunta, o nudge de instalar o app pode ser
+            // empurrado DEPOIS do balão de resultados, e lastElementChild
+            // pegaria o nudge em vez do balão.
+            _scrollToLastMessage() {
+                this.$nextTick(() => {
+                    const container = document.getElementById('aiChatMessages');
+                    if (!container) return;
+                    const aiMsgs = container.querySelectorAll('[data-msg-role="ai"]');
+                    const last = aiMsgs.length ? aiMsgs[aiMsgs.length - 1] : container.lastElementChild;
+                    if (!last) { container.scrollTop = container.scrollHeight; return; }
+                    const delta = last.getBoundingClientRect().top - container.getBoundingClientRect().top;
+                    container.scrollTop += delta;
+                });
+            },
+
+        }
+    }
+
+    // Beacon best-effort de clique num card de resultado — alimenta
+    // busca_interacoes (ver app/models.py::SearchInteraction), nunca atrasa/
+    // bloqueia a navegação pro anúncio. Global (não método de aiSearch()) —
+    // usado tanto pelos cards do chat-IA (index.html, dentro do x-data de
+    // aiSearch()) quanto pelos cards da busca direta (ad_card.html, fora de
+    // qualquer x-data, onclick puro).
+    // Preço de anúncio em card (chat, Stories): mesma regra do filtro price_tag
+    // em app/main.py — sem ",00" em valor redondo e espaço normal depois do
+    // "R$", para quebrar ali em vez de cortar o número.
+    window.formatCardPrice = function(price) {
+        let text = price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (text.endsWith(',00')) text = text.slice(0, -3);
+        // Último recurso com a letra muito grande: quebra depois do ponto ou antes
+        // da vírgula em vez de cortar (espaço invisível, só usado se precisar).
+        text = text.replace(/\./g, '.\u200b').replace(/,/g, '\u200b,');
+        return 'R$ ' + text;
+    }
+
+    window.trackClick = function(consultaId, adId, posicao) {
+        try {
+            fetch('/api/ia/busca/interacao', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ consulta_id: consultaId, ad_id: adId, tipo: 'click', posicao }),
+                keepalive: true
+            }).catch(() => {});
+        } catch (e) {}
+    }
+
+    // Checagem de "economia de dados" — usada pro autoplay de vídeo em
+    // cards (observeAdCardVideos, abaixo) e pelo preload de fotos das
+    // Stories (categoryStories._preloadImages). navigator.connection
+    // só existe em Chromium (Android/desktop); Safari/Firefox caem no
+    // "true" (comportamento de hoje, sem regressão onde não dá pra saber).
+    window.shouldAutoplayVideo = function () {
+        try {
+            const c = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+            if (!c) return true;
+            if (c.saveData) return false;
+            if (c.effectiveType === 'slow-2g' || c.effectiveType === '2g') return false;
+            return true;
+        } catch (e) {
+            return true;
+        }
+    }
+
+    window.showToast = function(message, type = 'success') {
+        const event = new CustomEvent('toast', { detail: { message, type } });
+        window.dispatchEvent(event);
+    }
+
+    async function saveCurrentSearch() {
+        const label = prompt('Como você quer chamar essa busca? (ex: "Gato doação em Palmas")');
+        if (!label || !label.trim()) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const toFloat = (v) => (v === null || v === '') ? null : parseFloat(v);
+
+        try {
+            const res = await fetch('/api/saved-searches', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({
+                    label: label.trim(),
+                    q: params.get('q') || null,
+                    category: params.get('category') || null,
+                    ad_type: params.get('ad_type') || null,
+                    city: params.get('city') || null,
+                    neighborhood: params.get('neighborhood') || null,
+                    price_min: toFloat(params.get('price_min')),
+                    price_max: toFloat(params.get('price_max')),
+                }),
+            });
+            if (res.status === 401) {
+                showToast('Faça login para salvar buscas');
+                setTimeout(() => window.location.href = '/login', 1200);
+                return;
+            }
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                showToast(err.detail || 'Não foi possível salvar a busca');
+                return;
+            }
+            showToast('Busca salva! Você será avisado por e-mail sobre anúncios novos. 🔔');
+        } catch (e) {
+            showToast('Erro ao salvar busca. Tente novamente.');
+        }
+    }
+
+    async function copyToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch (err) {
+                console.error("navigator.clipboard failed:", err);
+            }
+        }
+        
+        // Fallback robusto para contextos não seguros (HTTP) ou navegadores antigos
+        try {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            const success = document.execCommand('copy');
+            document.body.removeChild(textArea);
+            return success;
+        } catch (err) {
+            console.error("Cópia falhou:", err);
+            return false;
+        }
+    }
+
+    // Balão de compartilhar (dono, 22/11/2026): WhatsApp, Status, Instagram,
+    // Facebook, copiar e "mais opções", cada um já configurado. Status e
+    // Instagram usam a imagem em pé de /ads/<id>/status.jpg (app/services/og_card.py).
+    // `opcoes` (campanha do Classi-to, 24/11/2026): {url, texto, semPlaca} — o link
+    // vai para a tela inicial (/?promo=ID), com texto próprio e sem a placa.
+    window.shareAd = function(event, id, title, quem, opcoes) {
+        if (event) { event.preventDefault(); event.stopPropagation(); }
+        const op = opcoes || {};
+        const url = op.url || `${window.location.origin}/c/${id}`;
+        const msg = op.texto || 'Confira esta oportunidade:';
+        const track = (canal) => { try { navigator.sendBeacon('/api/ia/busca/interacao', new Blob([JSON.stringify({ad_id: parseInt(id), tipo: 'compartilhou', canal})], {type: 'application/json'})); } catch (e) {} };
+        // Imagem em pé: começa a baixar já ao abrir, para o toque em Status/Instagram ser imediato.
+        let imgFile = null;
+        const imgPronta = fetch(`/ads/${id}/status.jpg`).then(r => r.ok ? r.blob() : null)
+            .then(b => { if (b) imgFile = new File([b], `classi-to-${id}.jpg`, {type: 'image/jpeg'}); return imgFile; }).catch(() => null);
+        const podeArquivo = () => imgFile && navigator.canShare && navigator.canShare({files: [imgFile]});
+        const baixar = () => { if (!imgFile) return false; const a = document.createElement('a'); a.href = URL.createObjectURL(imgFile); a.download = imgFile.name; document.body.appendChild(a); a.click(); a.remove(); return true; };
+        const fechar = () => { const el = document.getElementById('share-sheet'); if (el) el.remove(); };
+
+        const acoes = {
+            // Link sem "www" (dono, 23/11/2026: "dois links de site, feio"). O "https://"
+            // tem que ficar: sem ele o WhatsApp nem busca a página e o card não sai
+            // (testado em 23/11/2026).
+            whatsapp: () => { track('whatsapp'); const curto = url.replace(/^(https?:\/\/)www\./, '$1'); /* wa.me estraga emoji no redirecionamento */ window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(msg + ' ' + curto), '_blank'); fechar(); },
+            status: async () => {
+                await imgPronta;
+                if (podeArquivo()) {
+                    try { await navigator.share({files: [imgFile], text: msg + ' ' + url}); track('status'); fechar(); } catch (e) {}
+                } else if (baixar()) { track('status'); window.showToast('Imagem baixada! Poste no Status pelo celular.'); fechar(); }
+                else window.showToast('Não deu para montar a imagem agora.');
+            },
+            instagram: async () => {
+                await copyToClipboard(url);
+                await imgPronta;
+                if (podeArquivo()) {
+                    window.showToast('Link copiado! No Stories, cole na figurinha de link.');
+                    try { await navigator.share({files: [imgFile]}); track('instagram'); fechar(); } catch (e) {}
+                } else if (baixar()) { track('instagram'); window.showToast('Imagem baixada e link copiado! Poste pelo celular.'); fechar(); }
+                else window.showToast('Não deu para montar a imagem agora.');
+            },
+            facebook: () => { track('facebook'); window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank'); fechar(); },
+            placa: () => { track('placa'); window.open(`/ads/${id}/placa`, '_blank'); fechar(); },
+            copiar: async () => { if (await copyToClipboard(url)) { track('copiar'); window.showToast('Link copiado!'); fechar(); } else window.showToast('Erro ao copiar link.'); },
+            mais: async () => { try { await navigator.share({title, text: msg, url}); track('mais'); fechar(); } catch (e) {} },
+        };
+        const ic = {
+            whatsapp: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>',
+            status: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4 2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5" fill="#16a34a" stroke="none"/></svg>',
+            instagram: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#c13584" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#c13584" stroke="none"/></svg>',
+            facebook: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="#1877f2"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>',
+            placa: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#2D44A0" stroke-width="2" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>',
+            copiar: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg>',
+            mais: '<svg class="w-7 h-7" viewBox="0 0 24 24" fill="#374151"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>',
+        };
+        const celular = /Android|iPhone|iPad/i.test(navigator.userAgent);
+        const itens = [
+            ['whatsapp', 'WhatsApp', 'conversa ou grupo'],
+            ['status', 'Status', celular ? 'do WhatsApp' : 'baixar imagem'],
+            ['instagram', 'Instagram', celular ? 'Stories' : 'baixar imagem'],
+            ['facebook', 'Facebook', ''],
+            ['copiar', 'Copiar link', ''],
+        ];
+        // Placa VENDE-SE com QR Code: para todos (dono, 22/11/2026).
+        if (!op.semPlaca) itens.splice(4, 0, ['placa', 'Imprimir placa', 'com QR Code']);
+        if (navigator.share) itens.push(['mais', 'Mais opções', '']);
+
+        fechar();
+        const box = document.createElement('div');
+        box.id = 'share-sheet';
+        box.className = 'fixed inset-0 z-[90] flex items-end sm:items-center justify-center';
+        box.innerHTML = `
+            <div class="absolute inset-0 bg-black/40" data-fechar></div>
+            <div class="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 pb-8 sm:pb-6">
+                <div class="mx-auto mb-4 h-1.5 w-12 rounded-full bg-gray-200 sm:hidden"></div>
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-lg font-bold text-gray-900">Compartilhar</p>
+                    <button type="button" data-fechar class="w-9 h-9 rounded-full bg-gray-100 text-gray-500 text-lg leading-none" aria-label="Fechar">✕</button>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    ${itens.map(([k, nome, sub]) => `
+                    <button type="button" data-acao="${k}" class="flex flex-col items-center gap-1.5 rounded-2xl border border-gray-100 bg-gray-50 px-1 py-3 hover:bg-gray-100 active:scale-95 transition">
+                        <span class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center">${ic[k]}</span>
+                        <span class="text-sm font-semibold text-gray-800 leading-tight">${nome}</span>
+                        ${sub ? `<span class="text-[11px] text-gray-500 leading-tight -mt-1">${sub}</span>` : ''}
+                    </button>`).join('')}
+                </div>
+            </div>`;
+        box.addEventListener('click', (e) => {
+            if (e.target.closest('[data-fechar]')) return fechar();
+            const b = e.target.closest('[data-acao]');
+            if (b) acoes[b.dataset.acao]();
+        });
+        document.body.appendChild(box);
+    }
+
+    // Versão antiga (menu do sistema direto), mantida para quem chama sem balão.
+    window.shareAdNativo = async function(event, id, title, quem) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        const url = `${window.location.origin}/c/${id}`;
+        // Beacon best-effort — nunca trava o fluxo de compartilhar por causa
+        // disso (ver app/api/ia.py::api_busca_interacao). Marca intenção real
+        // de compartilhar, tanto pelo menu nativo quanto pela cópia manual.
+        const trackShare = () => {
+            try { navigator.sendBeacon('/api/ia/busca/interacao', new Blob([JSON.stringify({ad_id: parseInt(id), tipo: 'compartilhou'})], {type:'application/json'})); } catch(e) {}
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: title,
+                    // 'dono': o próprio anunciante divulgando (Meu Painel).
+                    // Curto: o título e o preço já vêm na prévia do link (dono, 22/11/2026).
+                    text: 'Confira esta oportunidade:',
+                    url: url,
+                });
+                trackShare();
+                return;
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error("Erro ao compartilhar:", err);
+                } else {
+                    return; // Usuário cancelou
+                }
+            }
+        }
+
+        // Tenta copiar para o clipboard (com fallback robusto)
+        const copied = await copyToClipboard(url);
+        if (copied) {
+            trackShare();
+            window.showToast("Link copiado!");
+        } else {
+            window.showToast("Erro ao copiar link.");
+        }
+    }
+
+    // Compartilha a URL ATUAL da página (não um id fixo como shareAd acima) —
+    // usada no perfil público, onde o filtro/ordenação já atualiza a URL
+    // sozinho via hx-push-url (ver perfil.html), então isso já manda o link
+    // filtrado certinho pro cliente, sem o vendedor precisar saber que dá
+    // pra copiar da barra de endereço. Se `ids` vier preenchido (seleção
+    // manual de anúncios dentro do filtro atual), acrescenta ?ids=1,2,3 na
+    // URL antes de compartilhar, mantendo os outros filtros já na barra.
+    window.shareCurrentPage = async function(title, ids) {
+        let url = window.location.href;
+        if (ids && ids.length) {
+            const u = new URL(url);
+            u.searchParams.set("ids", ids.join(","));
+            url = u.toString();
+        }
+        if (navigator.share) {
+            try {
+                await navigator.share({ title: title, text: title, url: url });
+                return;
+            } catch (err) {
+                if (err.name === 'AbortError') return;
+            }
+        }
+        const copied = await copyToClipboard(url);
+        if (copied) {
+            window.showToast("Link copiado!");
+        } else {
+            window.showToast("Erro ao copiar link.");
+        }
+    }
+    </script>
+
+
+    <script>
+    function cookieBanner() {
+        return {
+            show: false,
+            init() {
+                if (!localStorage.getItem('cookies_decision')) {
+                    setTimeout(() => this.show = true, 800);
+                }
+            },
+            accept() {
+                localStorage.setItem('cookies_decision', 'accepted');
+                document.cookie = 'cookies_accepted=1;max-age=31536000;path=/;samesite=lax';
+                try { gtag('consent', 'update', {ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted'}); } catch (e) {}
+                this.show = false;
+            },
+            reject() {
+                localStorage.setItem('cookies_decision', 'rejected');
+                try { gtag('consent', 'update', {ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'}); } catch (e) {}
+                this.show = false;
+            }
+        }
+    }
+    </script>
+
+
+
+    
+    <div id="pwa-install-banner" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 px-4">
+        <div class="w-full max-w-sm bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-6 text-center relative">
+            <button onclick="pwaInstallDismiss()" class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600" aria-label="Fechar">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <img src="/static/icon-192.png?v=3d" alt="Classi-to" class="w-16 h-16 rounded-2xl mx-auto mb-4 shadow-lg">
+            <p class="text-lg font-bold text-gray-900">Instalar o Classi-to</p>
+            <p class="text-sm text-gray-500 mt-1 mb-5">Acesso rápido direto da tela inicial</p>
+            <button onclick="pwaInstallClick()" class="w-full px-4 py-3 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-xl transition-all">Instalar</button>
+        </div>
+    </div>
+
+    
+    <div id="pwa-ios-banner" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 px-4">
+        <div class="w-full max-w-sm bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-6 text-center relative">
+            <button onclick="pwaIOSDismiss()" class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600" aria-label="Fechar">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <img src="/static/icon-192.png?v=3d" alt="Classi-to" class="w-16 h-16 rounded-2xl mx-auto mb-4 shadow-lg">
+            <p class="text-lg font-bold text-gray-900">Instalar o Classi-to</p>
+            <p class="text-sm text-gray-500 mt-1 mb-5">No iPhone, a instalação é pelo Safari:</p>
+            <div class="text-left space-y-3">
+                <div class="flex items-start gap-3">
+                    <span class="shrink-0 w-6 h-6 rounded-full bg-brand-50 text-brand-600 text-xs font-bold flex items-center justify-center">1</span>
+                    <p class="text-sm text-gray-700">Toque no ícone de <strong>Compartilhar</strong>
+                        <svg class="inline w-4 h-4 align-text-bottom" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 16V4m0 0L8 8m4-4l4 4M5 20h14a1 1 0 001-1v-7a1 1 0 00-1-1h-3M5 20a1 1 0 01-1-1v-7a1 1 0 011-1h3"></path></svg>
+                        na barra do navegador.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="shrink-0 w-6 h-6 rounded-full bg-brand-50 text-brand-600 text-xs font-bold flex items-center justify-center">2</span>
+                    <p class="text-sm text-gray-700">Role a lista e toque em <strong>"Adicionar à Tela de Início"</strong>.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="shrink-0 w-6 h-6 rounded-full bg-brand-50 text-brand-600 text-xs font-bold flex items-center justify-center">3</span>
+                    <p class="text-sm text-gray-700">Toque em <strong>"Adicionar"</strong> no canto superior.</p>
+                </div>
+            </div>
+            <button onclick="pwaIOSDismiss()" class="w-full mt-5 px-4 py-3 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-xl transition-all">Entendi</button>
+        </div>
+    </div>
+    <script>
+        var pwaDeferredPrompt = null;
+
+        function pwaInstallClick() {
+            var el = document.getElementById('pwa-install-banner');
+            if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            if (!pwaDeferredPrompt) return;
+            pwaDeferredPrompt.prompt();
+            pwaDeferredPrompt.userChoice.then(function (choice) {
+                if (choice.outcome === 'accepted') {
+                    try { localStorage.setItem('classito_pwa_installed', '1'); } catch (e) {}
+                }
+                pwaDeferredPrompt = null;
+            });
+        }
+
+        function pwaInstallDismiss() {
+            var el = document.getElementById('pwa-install-banner');
+            if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+        }
+
+        function isIOSSafari() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        function isStandaloneMode() {
+            return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        }
+
+        function pwaIOSInstructions() {
+            var el = document.getElementById('pwa-ios-banner');
+            if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
+        }
+
+        function pwaIOSDismiss() {
+            var el = document.getElementById('pwa-ios-banner');
+            if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+        }
+
+        // Item "Instalar App" no menu — dispara o mesmo prompt a qualquer
+        // momento (sem esperar ver 2 anúncios), pra quem já sabe que quer instalar.
+        function pwaManualInstall() {
+            if (pwaDeferredPrompt) {
+                var el = document.getElementById('pwa-install-banner');
+                if (el) { el.classList.remove('hidden'); el.classList.add('flex'); }
+                return;
+            }
+            if (isIOSSafari() && !isStandaloneMode()) {
+                pwaIOSInstructions();
+                return;
+            }
+            let alreadyInstalled = false;
+            try { alreadyInstalled = !!localStorage.getItem('classito_pwa_installed'); } catch (e) {}
+            if (alreadyInstalled || isStandaloneMode()) {
+                window.showToast && window.showToast('Você já tem o Classi-to instalado! 🎉', 'success');
+            } else {
+                // Navegador ainda não liberou o popup automático (comum no Chrome/Edge
+                // desktop logo na 1ª visita) — orienta pelo menu nativo do navegador.
+                window.showToast && window.showToast('Clique no ícone de instalar (⊕ ou ⋮) na barra de endereço do navegador e escolha "Instalar Classi-to".', 'success');
+            }
+        }
+
+        // iOS nunca dispara beforeinstallprompt — revela o item do menu direto,
+        // já que a única forma de saber que dá pra instalar é checar a plataforma.
+        try {
+            if (isIOSSafari() && !isStandaloneMode() && !localStorage.getItem('classito_pwa_installed')) {
+                var iosMenuBtn = document.getElementById('pwa-menu-install-btn');
+                if (iosMenuBtn) { iosMenuBtn.classList.remove('hidden'); iosMenuBtn.classList.add('flex'); }
+            }
+        } catch (e) {}
+
+        window.addEventListener('beforeinstallprompt', function (e) {
+            e.preventDefault();
+            pwaDeferredPrompt = e;
+            // Só revela o item do menu depois que o navegador confirmou que
+            // dá pra instalar — nunca aparece por um instante à toa.
+            try {
+                if (!localStorage.getItem('classito_pwa_installed')) {
+                    var menuBtn = document.getElementById('pwa-menu-install-btn');
+                    if (menuBtn) { menuBtn.classList.remove('hidden'); menuBtn.classList.add('flex'); }
+                }
+            } catch (e) {}
+        });
+
+        window.addEventListener('appinstalled', function () {
+            try { localStorage.setItem('classito_pwa_installed', '1'); } catch (e) {}
+            var el = document.getElementById('pwa-install-banner');
+            if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+            var menuBtn = document.getElementById('pwa-menu-install-btn');
+            if (menuBtn) { menuBtn.classList.add('hidden'); menuBtn.classList.remove('flex'); }
+        });
+    </script>
+
+    
+    <script>
+        (function () {
+            if (!('IntersectionObserver' in window)) return;
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    var video = entry.target;
+                    if (entry.isIntersecting) {
+                        // Economia de dados/conexão lenta: mantém só o poster
+                        // estático (mesmo estado de "fora da tela" — ver
+                        // window.shouldAutoplayVideo em cima), não baixa o
+                        // vídeo sozinho. Quem quiser o vídeo abre o anúncio.
+                        if (!window.shouldAutoplayVideo()) return;
+                        if (!video.src && video.dataset.src) video.src = video.dataset.src;
+                        video.play().catch(function () {});
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.35 });
+
+            function observeAdCardVideos() {
+                document.querySelectorAll('video.ad-card-video:not([data-observed])').forEach(function (v) {
+                    v.dataset.observed = '1';
+                    observer.observe(v);
+                });
+            }
+            observeAdCardVideos();
+            document.body.addEventListener('htmx:afterSwap', observeAdCardVideos);
+            document.body.addEventListener('htmx:afterSettle', observeAdCardVideos);
+        })();
+    </script>
+
+    
+    <script>
+        (function () {
+            if (!('IntersectionObserver' in window)) return;
+            var loadMoreObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        loadMoreObserver.unobserve(entry.target);
+                        entry.target.dispatchEvent(new Event('load-more-near'));
+                    }
+                });
+            }, { rootMargin: '2500px 0px' });
+
+            function observeLoadMoreTrigger() {
+                var el = document.getElementById('load-more-trigger');
+                if (el && !el.dataset.observed) {
+                    el.dataset.observed = '1';
+                    loadMoreObserver.observe(el);
+                }
+            }
+            observeLoadMoreTrigger();
+            // Só depois do settle: antes o htmx ainda não ligou o gatilho novo, e com o
+            // sentinela já perto da tela (trocar filtro) o evento se perdia e parava em 20.
+            document.body.addEventListener('htmx:afterSettle', observeLoadMoreTrigger);
+        })();
+    </script>
+
+    
+
+<script>
+// Abrir um anúncio é clique de intenção (dono, 15/11/2026): ao voltar, a grade da
+// tela inicial vem filtrada pela categoria dele. Só a categoria (um anúncio aberto
+// não basta para refinar em Aluga/Apartamento); mesma categoria mantém o
+// refinamento. Peso 0 nas preferências: abrir já conta no bloco abaixo.
+try { registrarIntencao("servicos", "Servi\u00e7os", 0); } catch (e) {}
+</script>
+<script>
+// Preferências (ver prefsAdd em base.html): abrir o anúncio ensina a categoria e
+// os detalhes (marca, cor); ficar 20 s na página conta mais.
+(function () {
+    const cat = "servicos";
+    const terms = [];
+    const learn = (w) => { prefsAdd('cat', cat, w); terms.forEach(t => prefsAdd('term', t, w / 2)); };
+    learn(2);
+    setTimeout(() => { if (!document.hidden) learn(2); }, 20000);
+})();
+</script>
+
+<script>
+function openReportModal() {
+    var modal = document.getElementById('report-modal');
+    modal.classList.remove('hidden');
+    modal._prevFocus = document.activeElement;
+    var first = modal.querySelector('select, button, input');
+    if (first) first.focus();
+    modal._trapHandler = function(e) {
+        if (e.key === 'Escape') { closeReportModal(); return; }
+        if (e.key !== 'Tab') return;
+        var focusable = modal.querySelectorAll('button, select, input, textarea, [tabindex]:not([tabindex="-1"])');
+        var firstEl = focusable[0], lastEl = focusable[focusable.length - 1];
+        if (e.shiftKey) { if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); } }
+        else { if (document.activeElement === lastEl) { e.preventDefault(); firstEl.focus(); } }
+    };
+    document.addEventListener('keydown', modal._trapHandler);
+}
+function closeReportModal() {
+    var modal = document.getElementById('report-modal');
+    modal.classList.add('hidden');
+    if (modal._trapHandler) document.removeEventListener('keydown', modal._trapHandler);
+    if (modal._prevFocus) modal._prevFocus.focus();
+}
+
+async function toggleFavorite(adId) {
+    const btn = document.getElementById('fav-btn');
+    const icon = document.getElementById('fav-icon');
+    const label = document.getElementById('fav-label');
+    const isFav = icon.textContent === '♥';
+
+    const url = `/api/users/me/favorites/${adId}`;
+    const method = isFav ? 'DELETE' : 'POST';
+    const res = await fetch(url, { method });
+
+    if (res.ok) {
+        if (isFav) {
+            icon.textContent = '♡';
+            label.textContent = 'Salvar';
+            btn.classList.remove('border-red-300', 'bg-red-50', 'text-red-500');
+            btn.classList.add('border-gray-200', 'text-gray-500');
+        } else {
+            icon.textContent = '♥';
+            label.textContent = 'Salvo';
+            btn.classList.add('border-red-300', 'bg-red-50', 'text-red-500');
+            btn.classList.remove('border-gray-200', 'text-gray-500');
+        }
+        window.showToast(isFav ? 'Removido dos favoritos' : 'Adicionado aos favoritos');
+    } else if (res.status === 401) {
+        window.location.href = '/login';
+    }
+}
+
+async function reportAd(adId) {
+    const reason = document.getElementById('report-reason').value;
+    const res = await fetch(`/api/ads/${adId}/report`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason })
+    });
+    document.getElementById('report-modal').classList.add('hidden');
+    if (res.ok) {
+        window.showToast('Denúncia enviada. Obrigado!');
+    } else {
+        const err = await res.json();
+        window.showToast(err.detail || 'Erro ao enviar denúncia');
+    }
+}
+</script>
+
+
+<div x-show="viewerOpen" role="dialog" aria-modal="true" aria-label="Fotos do anúncio" @keydown.escape.window="closeViewer()" @keydown.arrow-left.window="viewerOpen &amp;&amp; viewerStep(-1)" @keydown.arrow-right.window="viewerOpen &amp;&amp; viewerStep(1)" class="fixed inset-0 z-[100] bg-black select-none" data-teleport-target="true" style="display: none;">
+                        <div x-ref="viewerScroller" @scroll.passive="onViewerScroll()" @touchstart.passive="onTouchStart($event)" @touchmove="onTouchMove($event)" @touchend.passive="onTouchEnd($event)" @click="onViewerClick($event)" :class="zoomed ? 'overflow-hidden cursor-zoom-out' : 'overflow-x-auto snap-x snap-mandatory cursor-zoom-in'" :style="zoomed ? 'touch-action:none' : 'touch-action:pan-x'" class="flex w-full h-full overflow-y-hidden overscroll-contain [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden overflow-x-auto snap-x snap-mandatory cursor-zoom-in" style="touch-action:pan-x">
+                            
+                            <div class="shrink-0 w-full h-full snap-center snap-always flex items-center justify-center overflow-hidden">
+                                <img src="/static/uploads/8143762eaa3d4573b0f3b05ba539bc2c.webp" alt="Financiamento de veículos BV com taxa especial - foto 1" loading="lazy" draggable="false" :style="zoomStyle(0)" class="max-w-full max-h-full object-contain" style="">
+                            </div>
+                            
+                            <div class="shrink-0 w-full h-full snap-center snap-always flex items-center justify-center overflow-hidden">
+                                <img src="/static/uploads/7348331e8dc8418db00a01fc6dc45006.webp" alt="Financiamento de veículos BV com taxa especial - foto 2" loading="lazy" draggable="false" :style="zoomStyle(1)" class="max-w-full max-h-full object-contain" style="">
+                            </div>
+                            
+                            <div class="shrink-0 w-full h-full snap-center snap-always flex items-center justify-center overflow-hidden">
+                                <img src="/static/uploads/41192ea56ea147889c0b30211fd07f96.webp" alt="Financiamento de veículos BV com taxa especial - foto 3" loading="lazy" draggable="false" :style="zoomStyle(2)" class="max-w-full max-h-full object-contain" style="">
+                            </div>
+                            
+                        </div>
+                        <div class="absolute top-4 left-4 px-3 py-1 rounded-lg bg-black/60 text-sm font-bold text-white pointer-events-none">
+                            <span x-text="viewerIndex + 1">1</span> / 3
+                        </div>
+                        <button type="button" @click="closeViewer()" aria-label="Fechar" class="absolute top-3 right-3 w-11 h-11 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                        
+                        <button type="button" @click="viewerStep(-1)" x-show="!zoomed" aria-label="Foto anterior" class="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button type="button" @click="viewerStep(1)" x-show="!zoomed" aria-label="Próxima foto" class="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white items-center justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                        
+                    </div></body></html>

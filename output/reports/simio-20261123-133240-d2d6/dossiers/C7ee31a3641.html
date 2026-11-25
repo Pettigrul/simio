@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C7ee31a3641</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C7ee31a3641 — instagram.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.instagram.com/reels/DdEP-9cxlFH/</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação no Instagram da loja de veículos &#39;@tdemultimarcas.ce&#39; oferta refinanciamento (&#39;Empréstimo com Garantia de Veículo BV&#39;) utilizando peça publicitária com o logotipo oficial &#39;BV banco&#39; e identidade visual do Banco BV em destaque, sem exibir a marca/identificação da própria loja na arte, sem informar CNPJ/razão social e omitindo a declaração obrigatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021. Configura-se forte indício de comunicação passível de confusão com canal oficial ou descumprimento das regras de transparência de COBAN (STRONG_INDICATION / HIGH).</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>revisão crítica automatizada não executada para este candidato</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C7ee31a3641/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 995ce387b4c42a98f9aab8204445fa42c23f03f8edddd95c3fc828b8a87bc2f9</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C7ee31a3641/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a1e57ec69c6c77a20aa27fba5750cca298c3f42c5e65889285df584f367bff71</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.instagram.com/reels/DdEP-9cxlFH/ (domínio: www.instagram.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): TDE Multimarcas (@tdemultimarcas.ce) • Reel do Instagram</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C7ee31a3641\attempt-1\viewport.png (sha256 995ce387b4c42a98…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C7ee31a3641\attempt-1\fullpage.png (sha256 a1e57ec69c6c77a2…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Instagram @tdemultimarcas.ce - tdemultimarcas.ce Não venda seu carro, refinanciamento disponível!</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>tdemultimarcas.ce Av. João Pessoa Ver perfil</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/stories/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>tdemultimarcas.ce &lt;https://www.instagram.com/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Av. João Pessoa &lt;https://www.instagram.com/explore/locations/305042121/av-jo-o-pessoa/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Ver perfil &lt;https://www.instagram.com/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>tdemultimarcas.ce 2.434 posts · 6K seguidores &lt;https://www.instagram.com/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Ver mais no Instagram &lt;https://www.instagram.com/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Curtir &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>Comentar &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>Compartilhar &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>Salvar &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>page</td><td>1 curtida &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>page</td><td>tdemultimarcas.ce &lt;https://www.instagram.com/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>page</td><td>Adicione um comentário... &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-CONTACT-15"><td class="mono"><b>E-CONTACT-15</b></td><td>contact</td><td>page</td><td>Instagram &lt;https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Post do Instagram compartilhado por @tdemultimarcas.ce&#39; src=https://scontent-gig4-2.cdninstagram.com/v/t51.71878-15/801149419_1733569881268019_6011673938729444159_n.jpg?stp=dst-jpg_e15_tt6&amp;_nc_cat=103&amp;_nc_map=urlgen_bucketless&amp;ig_cache_key=Mzk4MjM3ODI2Nzc4ODU5 (1366x1708, acima da dobra)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Peça gráfica do post adota integralmente o padrão visual e cores institucionais do Banco BV para anunciar &#39;Empréstimo com Garantia de Veículo BV&#39;.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O perfil @tdemultimarcas.ce não apresenta razão social nem CNPJ na publicação ou na arte gráfica, que destaca apenas a marca do banco.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Nenhuma declaração de atuação como correspondente bancário ou prestador de serviços ao Banco BV foi exibida na arte ou na legenda.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>A peça anuncia diretamente o produto (&#39;Empréstimo com Garantia de Veículo BV&#39;, &#39;Processo 100% online e seguro&#39;) como se fosse comunicação institucional direta do banco.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso proeminente do logotipo oficial &#39;BV banco&#39; no canto superior direito da imagem sem identificação da loja terceira na peça gráfica.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Oferta de crédito/refinanciamento com chamada para atendimento via WhatsApp na peça que ostenta exclusivamente a marca BV.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Publicação em perfil de rede social de loja multimarcas (@tdemultimarcas.ce) com ícone de WhatsApp ilustrativo na imagem, sem número explícito extraído.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Alto risco de confusão para o consumidor devido ao uso de peça com aparência oficial do Banco BV por loja de veículos sem aviso de correspondente nem CNPJ.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: A peça gráfica do Reel exibe em destaque no topo direito o logotipo oficial &#39;BV banco&#39; e a chamada &#39;EMPRÉSTIMO COM GARANTIA DE VEÍCULO BV&#39;, sem identificar a condição de correspondente bancário. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Arte publicitária utiliza integralmente a paleta azul, elementos gráficos de brilho e tipografia característicos da identidade visual do Banco BV para ofertar refinanciamento de veículos. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Ausência total da declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021, art. 14, II e III) tanto na imagem do anúncio quanto na legenda da publicação. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A loja revendedora (@tdemultimarcas.ce) publica peça exclusiva com a marca do Banco BV sem informar sua razão social ou CNPJ. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Publicação (Reel) no Instagram realizada pelo perfil @tdemultimarcas.ce com a legenda &#39;Não venda seu carro, refinanciamento disponível!&#39; (E-TITLE, E-FOLD).</li><li>A imagem do post exibe em destaque o logotipo &#39;BV banco&#39; no canto superior direito e o selo &#39;EMPRÉSTIMO COM GARANTIA DE VEÍCULO BV&#39; (E-SHOT-VIEWPORT, E-SHOT-FULL).</li><li>A arte gráfica utiliza padrão visual azul do Banco BV e promove &#39;Liberação rápida&#39;, &#39;Você continua com o carro&#39;, &#39;Taxas especiais&#39; e &#39;Processo 100% online e seguro&#39; (E-SHOT-FULL).</li><li>Não há menção a CNPJ, razão social da loja ou declaração de correspondente bancário na peça gráfica ou na legenda (E-SHOT-FULL, E-TITLE).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível verificar na bio principal do perfil @tdemultimarcas.ce se há CNPJ informado, embora na publicação inspecionada ele esteja ausente.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação no Instagram da loja de veículos &#39;@tdemultimarcas.ce&#39; oferta refinanciamento (&#39;Empréstimo com Garantia de Veículo BV&#39;) utilizando peça publicitária com o logotipo oficial &#39;BV banco&#39; e identidade visual do Banco BV em destaque, sem exibir a marca/identificação da própria loja na arte, sem informar CNPJ/razão social e omitindo a declaração obrigatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021. Configura-se forte indício de comunicação passível de confusão com canal oficial ou descumprimento das regras de transparência de COBAN (STRONG_INDICATION / HIGH).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>@tdemultimarcas.ce<br><span class="mono">social:instagram.com:tdemultimarcas.ce</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>instagram.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/reels/DdEP-9cxlFH/</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/stories/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/tdemultimarcas.ce/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/explore/locations/305042121/av-jo-o-pessoa/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/reel/DdEP-9cxlFH/?utm_source=ig_embed&amp;ig_rid=Ap-h0x388faX0qdbYLt-87u</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>@tdemultimarcas.ce</td><td class="mono"><a href="#E-TITLE">E-TITLE</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: perfil em rede social</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços à contratante ausente, insuficiente ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td><br><span class="muted">H6-platform:Instagram</span></td><td class="mono">https://www.instagram.com/reels/DdEP-9cxlFH/</td><td>TDE Multimarcas (@tdemultimarcas.ce) • Reel do Instagram<br><span class="muted"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 17:54:47.193963+00:00</div>
+      <div class="kv"><b>IP do servidor</b>57.144.198.34</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C7ee31a3641\attempt-1\manifest.json<br>sha256 2d57a8fe6c493be1f023dafc63d15988bfb4c69cc9f5260563110988e509d2b9</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.instagram.com/reels/DdEP-9cxlFH/<br>Final: https://www.instagram.com/reels/DdEP-9cxlFH/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C7ee31a3641\attempt-1\viewport.png</td><td class="mono">995ce387b4c42a98f9aab8204445fa42c23f03f8edddd95c3fc828b8a87bc2f9</td><td>483755</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C7ee31a3641\attempt-1\fullpage.png</td><td class="mono">a1e57ec69c6c77a20aa27fba5750cca298c3f42c5e65889285df584f367bff71</td><td>1056046</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C7ee31a3641\attempt-1\page.html.txt</td><td class="mono">d1e7efbaef15e9aafdf49657b9f167a5ecf007c52f40a477f7aafbb7c1a6796a</td><td>258239</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C7ee31a3641\attempt-1\text.txt</td><td class="mono">20a286b4b4190ba345c7363bdce014884174bd01518920db54e9b53577cb8dec</td><td>358</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C7ee31a3641\attempt-1\page.json</td><td class="mono">9014d7eec9e6f6005cc0d90b8142b2fcb2046f3a15e47b2c521ae6488ffee9a5</td><td>9693</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

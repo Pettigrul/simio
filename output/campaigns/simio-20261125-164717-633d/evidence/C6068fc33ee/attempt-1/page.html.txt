@@ -1,0 +1,1025 @@
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<title>Denver 250 — Shineray Santa Cruz, Rio de Janeiro (RJ)</title>
+<meta name="description" content="Motos Shineray 0 km em Santa Cruz, Zona Oeste do Rio de Janeiro (RJ). R. Felipe Cardoso, 1896. Ficha técnica, preço e pronta entrega.">
+<meta property="og:site_name" content="Shineray Santa Cruz — Rio de Janeiro">
+<meta property="og:locale" content="pt_BR">
+<meta name="geo.region" content="BR-RJ">
+<meta name="geo.placename" content="Santa Cruz, Rio de Janeiro">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="icon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" id="link-canonico" href="https://www.shineraysantacruz.com.br/modelo.html?m=denver-250">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js" crossorigin="">
+<link rel="modulepreload" href="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#16161A;--ink2:#3A3A42;
+  --dim:rgba(0,0,0,.58);--dim2:rgba(0,0,0,.38);
+  --linha:rgba(0,0,0,.1);
+  --claro:#F5F4F2;--claro2:#EDECE9;
+  --red:#D7362B;--red-dark:#B32A21;--wa:#1EA952;
+  --escuro:#0A0A0B;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#fff;color:var(--ink);font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+::selection{background:var(--red);color:#fff}
+img{display:block}
+
+/* ===== NAVBAR (faixa escura, mantém a marca legível) ===== */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(10,10,11,.92);backdrop-filter:blur(10px)}
+.topnav .wrap{display:flex;align-items:center;gap:24px;height:74px;position:relative}
+.brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:23px;text-transform:uppercase;letter-spacing:.06em;color:#F5F5F3;text-decoration:none;z-index:1}
+.brand .accent{color:var(--red)}
+.logo-img{display:none;height:40px;width:auto;max-width:210px;object-fit:contain}
+@media(max-width:760px){.logo-img{height:34px;max-width:140px}}
+.btn-modelos{display:inline-flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;font-family:'Barlow',sans-serif;
+  color:#F5F5F3;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;padding:10px 0;z-index:2}
+.btn-modelos:hover{color:var(--red)}
+.btn-modelos .barras{display:inline-flex;flex-direction:column;gap:4px;width:20px}
+.btn-modelos .barras i{display:block;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,opacity .2s}
+.btn-modelos .barras i:nth-child(2){width:70%}
+.btn-modelos.aberto .barras i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.btn-modelos.aberto .barras i:nth-child(2){opacity:0}
+.btn-modelos.aberto .barras i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:520px){.btn-modelos span{display:none}}
+.nav-social{display:flex;align-items:center;gap:9px;margin-left:auto;flex-shrink:0}
+.nav-ico{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;
+  justify-content:center;color:#F5F5F3;text-decoration:none;transition:all .15s}
+.nav-ico i{font-size:17px}
+.nav-ico.ig:hover{background:#E1306C;border-color:#E1306C}
+.nav-ico.wa:hover{background:var(--wa);border-color:var(--wa)}
+.voltar{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em}
+.voltar:hover{color:#fff}
+@media(max-width:520px){.voltar span{display:none}}
+@media(max-width:430px){.logo-img{height:30px;max-width:112px}
+  .nav-ico{width:33px;height:33px}.nav-ico i{font-size:15px}.nav-social{gap:7px}
+  .topnav .wrap{gap:10px;padding:0 16px}}
+
+/* painel do catálogo */
+.painel-modelos{position:fixed;left:0;right:0;top:74px;z-index:55;background:rgba(10,10,11,.98);backdrop-filter:blur(14px);
+  max-height:0;overflow:hidden;transition:max-height .35s ease}
+.painel-modelos.aberto{max-height:calc(100svh - 74px);overflow-y:auto}
+.painel-inner{padding:36px 0 44px}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:30px}
+@media(max-width:1080px){.cat-grid{grid-template-columns:repeat(3,1fr);gap:26px}}
+@media(max-width:700px){.cat-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
+@media(max-width:420px){.cat-grid{grid-template-columns:1fr}}
+.cat-col h4{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px;line-height:1.35}
+.cat-col a{display:block;color:#F5F5F3;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;
+  text-transform:uppercase;padding:7px 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
+.cat-col a:hover,.cat-col a.atual{color:var(--red);border-bottom-color:var(--red)}
+.escurece{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:54;opacity:0;pointer-events:none;transition:opacity .3s}
+.escurece.on{opacity:1;pointer-events:auto}
+
+/* ===== CAPA (estilo revista): texto num painel próprio, foto ao lado ===== */
+/* O painel do texto tem fundo fixo, então a leitura não depende da foto —
+   e as fotos variam muito: uma é de estúdio cinza, outra é externa com mato
+   e céu. Tentar puxar a cor da foto deixava o painel escuro e ilegível. */
+/* altura mínima, não fixa: em monitor baixo (notebook 1366×768) o texto não
+   cabia e a faixa de números cobria os botões. Agora a capa cresce se precisar */
+.capa{position:relative;min-height:max(540px,min(88vh,820px));overflow:hidden;
+  display:flex;flex-direction:column;background:var(--claro)}
+.capa-grade{flex:1;min-height:0;display:grid;grid-template-columns:minmax(320px,41%) 1fr}
+.capa-txt{position:relative;z-index:2;background:var(--claro);display:grid;grid-template-rows:auto 1fr;
+  padding:104px 40px 40px max(28px,calc(50vw - 590px + 28px))}
+.capa-bloco{align-self:center;min-width:0}
+
+.capa-foto{position:relative;min-width:0;background:var(--claro2)}
+/* a foto preenche a coluna sem ditar a altura dela (quem manda é o texto) */
+.capa-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.capa-foto .sem{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;color:rgba(0,0,0,.16)}
+.capa-foto .sem i{font-size:clamp(70px,11vw,130px)}
+.capa-foto .sem span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim2)}
+
+.trilha{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim2);flex-wrap:wrap}
+.trilha a{color:var(--dim2);text-decoration:none}
+.trilha a:hover{color:var(--red)}
+.capa h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;line-height:.92;
+  font-size:clamp(40px,4.8vw,76px);text-transform:uppercase;color:var(--ink);letter-spacing:-.005em}
+.etiquetas{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.etiqueta{background:rgba(0,0,0,.055);color:var(--ink2);font-size:12px;font-weight:600;
+  padding:6px 15px;border-radius:20px}
+.etiqueta.destaque{background:var(--red);color:#fff}
+
+.capa-frase{font-size:clamp(14px,1.3vw,16px);color:var(--dim);margin-top:22px;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.capa-preco{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-top:26px}
+.capa-preco .rot{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim2)}
+.capa-preco .val{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:clamp(30px,3.6vw,46px);line-height:1;color:var(--ink)}
+.capa-preco .obs{font-size:13px;color:var(--dim2)}
+.capa-acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;border:none;border-radius:30px;padding:14px 28px;
+  font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .15s}
+.btn-vermelho{background:var(--red);color:#fff}
+.btn-vermelho:hover{background:var(--red-dark)}
+.btn-escuro{background:var(--ink);color:#fff}
+.btn-escuro:hover{background:var(--red)}
+.btn-claro{background:rgba(0,0,0,.06);color:var(--ink)}
+.btn-claro:hover{background:rgba(0,0,0,.12)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{filter:brightness(1.08)}
+
+/* faixa de números, tirada da ficha técnica */
+.capa-numeros{display:none;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(0,0,0,.1);
+  background:#fff;position:relative;z-index:2}
+.capa.com-numeros .capa-numeros{display:grid}
+.cn-item{padding:clamp(14px,1.8vw,22px) clamp(14px,2vw,26px);border-left:1px solid rgba(0,0,0,.08);min-width:0}
+.cn-item:first-child{border-left:none;padding-left:max(28px,calc(50vw - 590px + 28px))}
+.cn-item b{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:clamp(20px,2.4vw,30px);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cn-item span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim2)}
+
+/* monitor baixo: aperta os espaços para a capa inteira caber numa tela */
+@media(min-width:901px) and (max-height:760px){
+  .capa-txt{padding-top:92px;padding-bottom:26px}
+  .etiquetas{margin-top:12px}
+  .capa-frase{margin-top:14px;-webkit-line-clamp:3}
+  .capa-preco{margin-top:16px}
+  .capa-acoes{margin-top:18px}
+}
+
+@media(max-width:900px){
+  .capa{height:auto;min-height:0}
+  /* no celular a moto vem primeiro, antes do texto */
+  .capa-grade{display:flex;flex-direction:column}
+  .capa-foto{order:-1;height:clamp(280px,46vh,420px)}
+  .capa-txt{display:block;padding:26px 24px 30px}
+  .capa-bloco{margin-top:20px}
+  .capa h1{font-size:clamp(38px,10vw,58px)}
+  .capa-numeros{grid-template-columns:repeat(2,1fr) !important}
+  .cn-item:first-child{padding-left:clamp(14px,2vw,26px)}
+  .cn-item:nth-child(3),.cn-item:nth-child(4){border-top:1px solid rgba(0,0,0,.08)}
+  .cn-item:nth-child(odd){border-left:none}
+}
+
+/* ===== VOCÊ TAMBÉM VAI GOSTAR ===== */
+.tambem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+@media(max-width:860px){.tambem-grid{grid-template-columns:1fr;gap:26px}}
+.tambem-card{display:block;text-decoration:none;color:inherit}
+.tambem-foto{height:230px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;overflow:hidden}
+.tambem-foto img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .35s ease}
+.tambem-card:hover .tambem-foto img{transform:scale(1.05)}
+.tambem-foto .sem{color:rgba(0,0,0,.12);font-size:66px}
+.tambem-pe{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+  border-top:1px solid rgba(0,0,0,.1);padding-top:16px}
+.tambem-pe .rot{font-size:12px;color:var(--dim2);display:block;margin-bottom:4px}
+.tambem-nome{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05}
+.tambem-card:hover .tambem-nome{color:var(--red)}
+.tambem-preco{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:21px;line-height:1.05;text-align:right;white-space:nowrap}
+
+/* ===== FICHA TÉCNICA ===== */
+.ficha-abas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+@media(max-width:760px){
+  .ficha-abas{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;margin-left:-28px;margin-right:-28px;padding-left:28px;padding-right:28px;
+    scrollbar-width:none}
+  .ficha-abas::-webkit-scrollbar{display:none}
+}
+.ficha-aba{flex:0 0 auto;background:rgba(0,0,0,.045);color:var(--dim);border:none;cursor:pointer;
+  font-family:'Barlow',sans-serif;font-size:15px;padding:15px 30px;transition:background .15s,color .15s;white-space:nowrap}
+.ficha-aba:hover{background:rgba(0,0,0,.08);color:var(--ink)}
+.ficha-aba.on{background:var(--red);color:#fff}
+.ficha-painel{display:none}
+.ficha-painel.on{display:block}
+.ficha-linha{display:flex;gap:10px;flex-wrap:wrap;padding:15px 0;border-bottom:1px solid rgba(0,0,0,.07)}
+.ficha-linha:last-child{border-bottom:none}
+.ficha-linha b{font-weight:600;color:var(--ink)}
+.ficha-linha span{color:var(--dim)}
+
+/* ===== SEÇÕES ===== */
+section{padding:84px 0}
+.sec-claro{background:var(--claro)}
+.sec-titulo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,42px);text-transform:uppercase;line-height:1;margin-bottom:10px}
+.sec-sub{color:var(--dim);font-size:15px;margin-bottom:40px;max-width:620px}
+
+/* ===== ITENS DE SÉRIE: foto grande + card flutuante ===== */
+.item-linha{position:relative;margin-bottom:70px}
+.item-linha:last-child{margin-bottom:0}
+.item-foto-grande{width:74%;border-radius:20px;overflow:hidden;background:var(--claro2)}
+.item-foto-grande img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.item-foto-grande .sem{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:rgba(0,0,0,.14);font-size:60px}
+.item-texto{position:absolute;top:50%;transform:translateY(-50%);right:0;width:44%;background:#fff;border-radius:20px;
+  padding:40px 42px;box-shadow:0 24px 60px rgba(0,0,0,.1)}
+.item-texto h3{font-size:26px;font-weight:600;line-height:1.2}
+.item-texto p{font-size:15px;color:var(--dim);margin-top:18px}
+/* alterna o lado a cada item */
+.item-linha:nth-child(even) .item-foto-grande{margin-left:auto}
+.item-linha:nth-child(even) .item-texto{right:auto;left:0}
+@media(max-width:900px){
+  .item-linha{margin-bottom:40px}
+  .item-foto-grande{width:100%}
+  .item-linha:nth-child(even) .item-foto-grande{margin-left:0}
+  /* o card sobe 40px sobre o pé da foto: precisa de camada própria, senão a
+     foto é pintada por cima e corta o título (acontecia no iPhone) */
+  .item-texto,.item-linha:nth-child(even) .item-texto{position:relative;z-index:1;top:auto;transform:none;width:auto;
+    margin:-40px 14px 0;padding:30px 26px;box-shadow:0 14px 34px rgba(0,0,0,.09)}
+}
+
+/* ===== GALERIA ===== */
+.galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.galeria img{width:100%;height:210px;object-fit:cover;border-radius:12px;cursor:pointer;transition:transform .2s}
+.galeria img:hover{transform:scale(1.02)}
+
+/* ===== NO PÁTIO ===== */
+.estoque-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.est-card{background:#fff;border:1px solid var(--linha);border-radius:16px;padding:24px}
+.est-card .selo{display:inline-block;background:rgba(30,169,82,.12);color:#12833F;font-size:10px;font-weight:700;
+  padding:5px 12px;border-radius:20px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.est-card .nome{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:25px;text-transform:uppercase}
+.est-card .sub{font-size:13px;color:var(--dim);margin-top:2px}
+.est-card .preco{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;margin-top:14px}
+.est-card .preco small{font-size:12px;color:var(--dim);font-weight:500;font-family:'Barlow',sans-serif}
+.sem-estoque{border:1px dashed rgba(0,0,0,.18);border-radius:16px;padding:38px;text-align:center;color:var(--dim)}
+
+/* ===== CTA FINAL ===== */
+.cta{background:var(--ink);color:#fff;border-radius:20px;padding:52px 44px;display:flex;align-items:center;
+  justify-content:space-between;gap:28px;flex-wrap:wrap}
+.cta h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,4vw,42px);text-transform:uppercase;font-weight:700;line-height:1}
+.cta p{color:rgba(255,255,255,.6);font-size:14px;margin-top:8px;max-width:430px}
+.cta .btn-escuro{background:var(--red)}
+.cta .btn-escuro:hover{background:var(--red-dark)}
+.cta .btn-claro{background:rgba(255,255,255,.12);color:#fff}
+.cta .btn-claro:hover{background:rgba(255,255,255,.2)}
+
+/* ===== RODAPÉ: estilo e conteúdo vêm do rodape.js ===== */
+
+/* ===== MODAL / LIGHTBOX ===== */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal-bg.show{display:flex}
+.fmodal{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:34px;position:relative}
+.fmodal h3{font-family:'Barlow Condensed',sans-serif;font-size:27px;text-transform:uppercase;font-weight:700}
+.fmodal .fsub{font-size:12px;color:var(--red);margin-bottom:16px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.fmodal label{display:block;font-size:11px;color:var(--dim);font-weight:600;margin:14px 0 6px;letter-spacing:.16em;text-transform:uppercase}
+.fmodal input{width:100%;padding:13px 15px;border:1px solid rgba(0,0,0,.18);border-radius:10px;font-family:inherit;font-size:15px;color:var(--ink)}
+.fmodal input:focus{border-color:var(--red);outline:none}
+.fclose{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;color:var(--dim2);cursor:pointer}
+.fsend{width:100%;margin-top:22px;background:var(--ink);color:#fff;border:none;border-radius:30px;padding:15px;
+  font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.fsend:hover{background:var(--red)}
+.fsend:disabled{opacity:.6;cursor:wait}
+.fok{text-align:center;padding:10px 0}
+.fok .big{font-size:44px;margin-bottom:10px}
+.fok .fsub{color:var(--dim);text-transform:none;letter-spacing:0;font-weight:400;font-size:14px}
+.ferr{color:var(--red);font-size:13px;margin-top:10px;display:none}
+.fnota{font-size:12.5px;line-height:1.45;color:var(--dim2);margin-top:10px;display:flex;gap:6px;align-items:flex-start}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:110;padding:24px}
+.lightbox.on{display:flex}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+.lightbox .fechar{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:30px;cursor:pointer}
+</style>
+<style id="rs-estilo">
+.rs{background:#0A0A0B;color:#F5F5F3;font-family:'Barlow',sans-serif;border-top:1px solid rgba(255,255,255,.08)}
+.rs a{color:inherit;text-decoration:none}
+.rs ul{list-style:none;margin:0;padding:0}
+
+.rs-cta{background:#D7362B;background-image:repeating-linear-gradient(118deg,rgba(0,0,0,.06) 0 2px,transparent 2px 22px)}
+.rs-cta .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-top:44px;padding-bottom:44px}
+.rs-cta h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(38px,4.6vw,56px);line-height:.95;text-transform:uppercase;letter-spacing:.005em;margin:0}
+.rs-cta p{font-size:17px;color:rgba(255,255,255,.88);margin:10px 0 0}
+.rs-acoes{display:flex;gap:12px;flex:0 0 auto;flex-wrap:wrap}
+.rs-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 22px;border-radius:6px;font-weight:700;font-size:15.5px;transition:transform .15s,background .15s}
+.rs-btn:hover{transform:translateY(-1px)}
+.rs-btn.branco{background:#fff;color:#111}
+.rs-btn.branco i{color:#1EA952;font-size:21px}
+.rs-btn.vazado{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+.rs-btn.vazado:hover{background:rgba(255,255,255,.1)}
+
+.rs-main{padding:58px 0 42px}
+.rs-cols{display:grid;grid-template-columns:1.45fr 1fr 1fr 1.15fr;gap:40px}
+.rs-logo{height:30px;width:auto;display:block}
+.rs-logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;letter-spacing:.06em}
+.rs-logo-txt span{color:#D7362B}
+.rs-sobre{font-size:15.5px;line-height:1.62;color:rgba(255,255,255,.55);margin:18px 0 0;max-width:330px}
+.rs-redes{display:flex;gap:10px;margin-top:22px}
+.rs-redes a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .15s}
+.rs-redes a:hover{border-color:#D7362B;background:#D7362B}
+.rs h5{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin:4px 0 18px;display:flex;align-items:center;gap:10px}
+.rs h5::before{content:"";width:16px;height:2px;background:#D7362B}
+.rs-lista li{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:11px;line-height:1.4}
+.rs-lista a,.rs-lista button{color:rgba(255,255,255,.55);transition:color .15s}
+.rs-lista a:hover,.rs-lista button:hover{color:#fff}
+.rs-lista button{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
+.rs-contato li{display:flex;gap:10px;align-items:flex-start}
+.rs-contato i{color:#D7362B;font-size:17px;margin-top:1px;flex:0 0 auto}
+
+.rs-legal{border-top:1px solid rgba(255,255,255,.08);padding:22px 0 26px;display:flex;justify-content:space-between;align-items:center;gap:14px 24px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.35);letter-spacing:.02em}
+.rs-selo{display:inline-flex;align-items:center;gap:8px}
+.rs-selo img{height:15px;width:auto}
+
+@media(max-width:900px){
+  .rs-cols{grid-template-columns:1fr 1fr;gap:36px 28px}
+  .rs-marca{grid-column:1/-1}
+  .rs-sobre{max-width:none}
+}
+@media(max-width:640px){
+  .rs-cta .wrap{flex-direction:column;align-items:flex-start;padding-top:36px;padding-bottom:36px}
+  .rs-acoes{width:100%}
+  .rs-btn{flex:1 1 auto}
+  .rs-main{padding:44px 0 30px}
+  .rs-legal{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:420px){
+  .rs-cols{grid-template-columns:1fr}
+  .rs-acoes{flex-direction:column}
+}</style></head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <button class="btn-modelos" id="btn-modelos" aria-expanded="false">
+      <span class="barras"><i></i><i></i><i></i></span>
+      <span>Linha completa</span>
+    </button>
+    <a class="brand" href="index.html">
+      <img class="logo-img" alt="Shineray" src="logo.png" style="display: block;">
+      <span class="logo-txt" style="display: none;">Shineray<span class="accent">.</span></span>
+    </a>
+    <div class="nav-social">
+      <a class="voltar" href="index.html"><i class="ti ti-arrow-left"></i> <span>Início</span></a>
+      <a class="nav-ico ig" id="nav-ig" style="display: flex;" target="_blank" rel="noopener" aria-label="Instagram" href="https://instagram.com/shineray.santacruz"><i class="ti ti-brand-instagram"></i></a>
+      <a class="nav-ico wa" id="nav-wa" style="display: flex;" target="_blank" rel="noopener" aria-label="WhatsApp" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Denver%20250%20%F0%9F%8F%8D%EF%B8%8F"><i class="ti ti-brand-whatsapp"></i></a>
+    </div>
+  </div>
+</nav>
+
+<div class="painel-modelos" id="painel-modelos">
+  <div class="wrap painel-inner"><div class="cat-grid" id="cat-grid">
+  <div class="cat-col">
+    <h4>Ciclomotores</h4>
+    <a class="" href="modelo.html?m=jet-50">Jet 50</a><a class="" href="modelo.html?m=phoenix-s">Phoenix S</a><a class="" href="modelo.html?m=phoenix-s-efi">Phoenix S EFI</a>
+  </div>
+  <div class="cat-col">
+    <h4>Motocicletas</h4>
+    <a class="" href="modelo.html?m=rio-125-efi">Rio 125 EFI</a><a class="" href="modelo.html?m=jet-125">Jet 125</a><a class="" href="modelo.html?m=jet-125-efi">Jet 125 EFI</a><a class="" href="modelo.html?m=free-150-efi">Free 150 EFI</a><a class="" href="modelo.html?m=jef-150">JEF 150</a><a class="" href="modelo.html?m=jef-150s-efi">JEF 150s EFI</a><a class="" href="modelo.html?m=urban-lite">Urban Lite</a><a class="" href="modelo.html?m=urban-150-efi">Urban 150 EFI</a><a class="" href="modelo.html?m=shi-175">SHI 175</a><a class="" href="modelo.html?m=shi-170">SHI 170</a><a class="" href="modelo.html?m=jef-170">JEF 170</a><a class="" href="modelo.html?m=shi-175s-efi">SHI 175s EFI</a><a class="" href="modelo.html?m=shi-175-ss">SHI 175 SS</a><a class="" href="modelo.html?m=shi-250">SHI 250</a><a class="" href="modelo.html?m=250f">250F</a><a class="" href="modelo.html?m=shi-400sc">SHI 400sc</a>
+  </div>
+  <div class="cat-col">
+    <h4>SBM</h4>
+    <a class="" href="modelo.html?m=sbm-150s">SBM 150s</a><a class="" href="modelo.html?m=storm-200">Storm 200</a><a class="" href="modelo.html?m=iron-250">Iron 250</a><a class="" href="modelo.html?m=titanium-250">Titanium 250</a><a class="atual" href="modelo.html?m=denver-250">Denver 250</a>
+  </div></div></div>
+</div>
+<div class="escurece" id="escurece"></div>
+
+<!-- CAPA -->
+<header class="capa com-numeros" id="capa">
+  <div class="capa-grade">
+    <div class="capa-txt">
+      <div class="trilha">
+        <a href="index.html">Início</a> <span>›</span>
+        <span id="trilha-cat">SBM</span> <span>›</span>
+        <span id="trilha-nome">Denver 250</span>
+      </div>
+
+      <div class="capa-bloco">
+        <h1 id="m-nome">Denver 250</h1>
+        <div class="etiquetas" id="m-etiquetas"><span class="etiqueta">SBM</span><span class="etiqueta">0 km</span></div>
+        <p class="capa-frase" id="m-destaque"></p>
+        <div class="capa-preco" id="m-preco" style="display: flex;">
+      <span class="rot">A partir de</span>
+      <span class="val">R$&nbsp;27.500</span>
+      <span class="obs">consulte condições</span></div>
+        <div class="capa-acoes">
+          <button class="btn btn-vermelho" id="btn-interesse">Tenho interesse</button>
+          <a class="btn btn-wa" id="btn-wa" style="display: inline-flex;" target="_blank" rel="noopener" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Denver%20250%20%F0%9F%8F%8D%EF%B8%8F"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="capa-foto" id="foto-capa"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608310/modelos/geuzaatapeixydfefkph.jpg" alt="Denver 250"></div>
+  </div>
+
+  <div class="capa-numeros" id="capa-numeros" style="grid-template-columns: repeat(4, 1fr);"><div class="cn-item"><b>248,92 cc</b><span>cilindradas</span></div><div class="cn-item"><b>19 CV</b><span>potência</span></div><div class="cn-item"><b>17L</b><span>tanque</span></div><div class="cn-item"><b>Disco</b><span>freio dianteiro</span></div></div>
+</header>
+
+<!-- ITENS DE SÉRIE -->
+<section id="sec-itens" class="sec-claro" style="display:none">
+  <div class="wrap">
+    <h2 class="sec-titulo">Itens de série</h2>
+    <p class="sec-sub">O que já vem de fábrica na sua moto.</p>
+    <div id="m-itens"></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sec-sobre" style="display: block;">
+  <div class="wrap">
+    <h2 class="sec-titulo">Sobre a <span id="h-sobre">Denver 250</span></h2>
+    <p class="sec-sub">Os números oficiais da fábrica.</p>
+    <div class="ficha-abas" id="ficha-abas"><button class="ficha-aba on" data-aba="0">Motor</button><button class="ficha-aba" data-aba="1">Sistema Elétrico</button><button class="ficha-aba" data-aba="2">Dimensões</button><button class="ficha-aba" data-aba="3">Capacidade</button><button class="ficha-aba" data-aba="4">Rodas</button><button class="ficha-aba" data-aba="5">Freios</button></div>
+    <div id="ficha-paineis">
+      <div class="ficha-painel on" data-painel="0">
+        <div class="ficha-linha"><b>Câmbio:</b> <span>5 marchas</span></div><div class="ficha-linha"><b>Embreagem:</b> <span>Manual, Multi discos banhado a óleo</span></div><div class="ficha-linha"><b>Tipo do motor:</b> <span>Bicilíndrico em V, 4T, 4 Válvulas, OHC</span></div><div class="ficha-linha"><b>Cilindrada:</b> <span>248,92 cc</span></div><div class="ficha-linha"><b>Potência máxima:</b> <span>19 CV / 8000 RPM</span></div><div class="ficha-linha"><b>Torque máximo:</b> <span>18,5N.M / 6.000 RPM</span></div>
+      </div>
+      <div class="ficha-painel" data-painel="1">
+        <div class="ficha-linha"><b>Bateria:</b> <span>12V / 10AH</span></div><div class="ficha-linha"><b>Partida:</b> <span>Elétrica</span></div>
+      </div>
+      <div class="ficha-painel" data-painel="2">
+        <div class="ficha-linha"><b>Comprimento Total:</b> <span>2300mm</span></div><div class="ficha-linha"><b>Largura Total:</b> <span>1000mm</span></div><div class="ficha-linha"><b>Altura Total:</b> <span>1100mm</span></div><div class="ficha-linha"><b>Altura do assento:</b> <span>680mm</span></div><div class="ficha-linha"><b>Distância entre eixos:</b> <span>1520mm</span></div><div class="ficha-linha"><b>Distância do solo:</b> <span>160mm</span></div><div class="ficha-linha"><b>Suspensão dianteira:</b> <span>Garfo Telescópico</span></div><div class="ficha-linha"><b>Suspensão traseira:</b> <span>Convencional (Dois Amortecedores)</span></div>
+      </div>
+      <div class="ficha-painel" data-painel="3">
+        <div class="ficha-linha"><b>Peso bruto:</b> <span>346,7kg</span></div><div class="ficha-linha"><b>Peso líquido:</b> <span>178kg</span></div><div class="ficha-linha"><b>Peso em ordem de marcha:</b> <span>196,7kg</span></div><div class="ficha-linha"><b>Carga máxima:</b> <span>150kg (piloto+passageiro+bagagem+acessórios)</span></div><div class="ficha-linha"><b>Tanque de Combustível:</b> <span>17L</span></div>
+      </div>
+      <div class="ficha-painel" data-painel="4">
+        <div class="ficha-linha"><b>Roda dianteira/ARO:</b> <span>110/90 – 18"</span></div><div class="ficha-linha"><b>Roda traseira/ARO:</b> <span>130/90 – 15"</span></div>
+      </div>
+      <div class="ficha-painel" data-painel="5">
+        <div class="ficha-linha"><b>Dianteiro ABS:</b> <span>Disco (Ø=320mm) com acionamento hidráulico</span></div><div class="ficha-linha"><b>Traseiro ABS:</b> <span>Disco (Ø=260mm) com acionamento hidráulico</span></div>
+      </div></div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="sec-galeria" class="sec-claro" style="display: block;">
+  <div class="wrap">
+    <h2 class="sec-titulo">Galeria</h2>
+    <p class="sec-sub">Clique para ampliar.</p>
+    <div class="galeria" id="m-galeria"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608585/modelos/fqn3y1hlhbzz1xrosgp5.jpg" alt="Denver 250" loading="lazy"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608606/modelos/cmet995rkq1ptklo1ttb.jpg" alt="Denver 250" loading="lazy"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608644/modelos/fbazellmykjvy3m63ce5.jpg" alt="Denver 250" loading="lazy"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608654/modelos/zinizh6mjyevzto1b9s5.jpg" alt="Denver 250" loading="lazy"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608687/modelos/rympporrvjxxnugbqp7b.jpg" alt="Denver 250" loading="lazy"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608727/modelos/fo6ndu5wfkf4uzdphy3b.jpg" alt="Denver 250" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- NO PÁTIO -->
+<section id="sec-estoque">
+  <div class="wrap">
+    <h2 class="sec-titulo">Disponível na loja</h2>
+    <p class="sec-sub">Atualizado em tempo real — o que está aqui, está no pátio.</p>
+    <div id="m-estoque"><div class="sem-estoque">Nenhuma Denver 250 no pátio agora — mas conseguimos pedir pra você.<br>Chame no WhatsApp que a gente verifica o prazo.</div></div>
+  </div>
+</section>
+
+<!-- VOCÊ TAMBÉM VAI GOSTAR -->
+<section id="sec-tambem" class="sec-claro" style="display: block;">
+  <div class="wrap">
+    <h2 class="sec-titulo">Você também vai gostar</h2>
+    <p class="sec-sub">Outras motos da linha Shineray.</p>
+    <div class="tambem-grid" id="m-tambem">
+    <a class="tambem-card" href="modelo.html?m=storm-200">
+      <div class="tambem-foto"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608232/modelos/obk6e0wrnndkycjfedzv.jpg" alt="Storm 200" loading="lazy"></div>
+      <div class="tambem-pe">
+        <div>
+          <span class="rot">Nome comercial</span>
+          <div class="tambem-nome">Storm 200</div>
+        </div>
+        <div>
+          <span class="rot">Por:</span>
+          <div class="tambem-preco">R$&nbsp;23.095</div>
+        </div>
+      </div>
+    </a>
+    <a class="tambem-card" href="modelo.html?m=titanium-250">
+      <div class="tambem-foto"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608125/modelos/cxgnnfqebzoarqsuw3kn.jpg" alt="Titanium 250" loading="lazy"></div>
+      <div class="tambem-pe">
+        <div>
+          <span class="rot">Nome comercial</span>
+          <div class="tambem-nome">Titanium 250</div>
+        </div>
+        <div>
+          <span class="rot">Por:</span>
+          <div class="tambem-preco">R$&nbsp;27.489</div>
+        </div>
+      </div>
+    </a>
+    <a class="tambem-card" href="modelo.html?m=iron-250">
+      <div class="tambem-foto"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1790608422/modelos/wsc75agmt2sqa4vwv4j1.jpg" alt="Iron 250" loading="lazy"></div>
+      <div class="tambem-pe">
+        <div>
+          <span class="rot">Nome comercial</span>
+          <div class="tambem-nome">Iron 250</div>
+        </div>
+        <div>
+          <span class="rot">A partir de:</span>
+          <div class="tambem-preco">R$&nbsp;24.000</div>
+        </div>
+      </div>
+    </a></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h3 id="cta-titulo">Quer uma Denver 250?</h3>
+        <p>Deixe seu contato que a gente te chama, ou fale agora no WhatsApp. Sem compromisso.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn-escuro" id="btn-interesse2">Tenho interesse</button>
+        <a class="btn btn-claro" id="btn-wa2" style="display: inline-flex;" target="_blank" rel="noopener" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20Denver%20250%20%F0%9F%8F%8D%EF%B8%8F"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="rodape-site" class="rs">
+    
+
+    <div class="rs-main">
+      <div class="wrap">
+        <div class="rs-cols">
+          <div class="rs-marca">
+            <a href="index.html" aria-label="Shineray Santa Cruz — início">
+              <img class="rs-logo" src="logo.png" alt="Shineray" onerror="this.outerHTML='&lt;span class=&quot;rs-logo-txt&quot;&gt;Shineray&lt;span&gt;.&lt;/span&gt;&lt;/span&gt;'">
+            </a>
+            <p class="rs-sobre">Concessionária autorizada Shineray na Zona Oeste do Rio. Toda a linha 0 km, peças originais e oficina própria no mesmo endereço.</p>
+            <div class="rs-redes">
+              <a href="https://www.instagram.com/shineray.santacruz/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+              <a href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20%F0%9F%8F%8D%EF%B8%8F" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Felipe%20Cardoso%2C%201896%20-%20Santa%20Cruz%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2023520-572" target="_blank" rel="noopener" aria-label="Ver no mapa"><i class="ti ti-map-pin"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h5>Modelos</h5>
+            <ul class="rs-lista">
+              <li><button type="button" data-rs-modelos="">Ciclomotores</button></li><li><button type="button" data-rs-modelos="">Motocicletas</button></li><li><button type="button" data-rs-modelos="">SBM</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Pós-venda</h5>
+            <ul class="rs-lista">
+              <li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Estou%20procurando%20uma%20pe%C3%A7a%20para%20a%20minha%20moto." target="_blank" rel="noopener">Peças</a></li><li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Quero%20agendar%20uma%20revis%C3%A3o%20para%20a%20minha%20moto%20%F0%9F%94%A7" target="_blank" rel="noopener">Oficina e revisão</a></li><li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Preciso%20do%20manual%20do%20propriet%C3%A1rio%20da%20minha%20moto." target="_blank" rel="noopener">Manual do proprietário</a></li><li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20o%20p%C3%B3s-venda." target="_blank" rel="noopener">Fale conosco</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Contato</h5>
+            <ul class="rs-lista rs-contato">
+              <li><i class="ti ti-map-pin"></i><a href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Felipe%20Cardoso%2C%201896%20-%20Santa%20Cruz%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2023520-572" target="_blank" rel="noopener">R. Felipe Cardoso, 1896<br>Santa Cruz · Rio de Janeiro — RJ</a></li>
+              <li><i class="ti ti-clock"></i><span>Seg a sáb · 8h às 18h</span></li>
+              <li><i class="ti ti-brand-whatsapp"></i><a href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20%F0%9F%8F%8D%EF%B8%8F" target="_blank" rel="noopener">(21) 97742-2552</a></li>
+              <li><i class="ti ti-phone"></i><a href="tel:+552170264688">(21) 7026-4688</a></li>
+              <li><i class="ti ti-brand-instagram"></i><a href="https://www.instagram.com/shineray.santacruz/" target="_blank" rel="noopener">@shineray.santacruz</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="rs-legal">
+        <span>© 2026 SHINERAY SANTA CRUZ LTDA · CNPJ 68.778.195/0001-39</span>
+        <span class="rs-selo"><img src="icon.png" alt=""> Concessionária autorizada Shineray</span>
+      </div>
+    </div></footer>
+
+<div class="modal-bg" id="form-bg">
+  <div class="fmodal">
+    <button class="fclose" id="form-close"><i class="ti ti-x"></i></button>
+    <div id="form-campos">
+      <h3>Tenho interesse</h3>
+      <div class="fsub" id="form-moto-nome"></div>
+      <label>Seu nome</label>
+      <input type="text" id="form-nome" placeholder="Nome completo" style="">
+      <label>Seu WhatsApp</label>
+      <input type="tel" id="form-fone" placeholder="(21) 9 9999-9999" style="">
+      <div class="ferr" id="form-erro"></div>
+      <div class="fnota"><i class="ti ti-map-pin"></i> Loja física em Santa Cruz, Zona Oeste do Rio de Janeiro (RJ).</div>
+      <button class="fsend" id="form-enviar">Quero que me chamem</button>
+    </div>
+    <div class="fok" id="form-ok" style="display:none">
+      <div class="big">✅</div>
+      <h3>Recebemos seu contato!</h3>
+      <div class="fsub" style="margin-top:6px">Nossa equipe vai te chamar no WhatsApp em breve.</div>
+      <a class="btn btn-wa" id="form-ok-wa" style="display:none;margin-top:18px" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Ou chame agora</a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="fechar" id="lb-fechar"><i class="ti ti-x"></i></button>
+  <img id="lb-img" alt="">
+</div>
+
+<script type="module">
+import { firebaseConfig } from "./config.js?v=3";
+import { CATALOGO, TODOS, slug, acharModelo } from "./modelos.js?v=10";
+import { fichaDeFabrica } from "./fichas.js?v=1";
+import { capturarOrigem, origemAtual } from "./origem.js?v=1";
+import { montarRodape } from "./rodape.js?v=3";
+capturarOrigem();   // quem chega por um link direto da moto também conta
+const DEMO = !firebaseConfig || String(firebaseConfig.apiKey).includes("COLE");
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmtBRL = n => (Number(n) || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+function igLink(v) {
+  const t = String(v || "").trim();
+  if (!t) return "";
+  if (/^https?:\/\//i.test(t)) return t;
+  return "https://instagram.com/" + t.replace(/^@/, "");
+}
+function waLink(fone, msg) {
+  let d = String(fone || "").replace(/\D/g, "");
+  if (d && d.length <= 11) d = "55" + d;
+  return `https://wa.me/${d}?text=${encodeURIComponent(msg)}`;
+}
+
+const slugAtual = new URLSearchParams(location.search).get("m") || "";
+const base = acharModelo(slugAtual);
+let config = { nomeLoja: "Shineray Santa Cruz", cidade: "Santa Cruz", whatsapp: "" };
+let conteudo = null;
+let estoque = [];
+let todosModelos = [];   // só no modo teste: a lista local de modelos
+let todoEstoque = [];    // motos disponíveis de qualquer modelo
+let fb = null;
+
+// ---------- menu ----------
+$("cat-grid").innerHTML = CATALOGO.map(c => `
+  <div class="cat-col">
+    <h4>${esc(c.categoria)}</h4>
+    ${c.modelos.map(m => `<a class="${slug(m) === slugAtual ? "atual" : ""}" href="modelo.html?m=${esc(slug(m))}">${esc(m)}</a>`).join("")}
+  </div>`).join("");
+
+const btnModelos = $("btn-modelos"), painel = $("painel-modelos"), escurece = $("escurece");
+function alternarPainel(abrir) {
+  const vai = abrir ?? !painel.classList.contains("aberto");
+  painel.classList.toggle("aberto", vai);
+  btnModelos.classList.toggle("aberto", vai);
+  escurece.classList.toggle("on", vai);
+  document.body.style.overflow = vai ? "hidden" : "";
+}
+btnModelos.addEventListener("click", () => alternarPainel());
+escurece.addEventListener("click", () => alternarPainel(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") { alternarPainel(false); fecharLightbox(); } });
+
+// ---------- logo ----------
+(async function montarLogo() {
+  for (const arq of ["logo.svg", "logo.png"]) {
+    try {
+      const r = await fetch(arq, { method: "HEAD" });
+      if (!r.ok) continue;
+      document.querySelectorAll(".logo-img").forEach(i => { i.src = arq; i.style.display = "block"; });
+      document.querySelectorAll(".logo-txt").forEach(t => { t.style.display = "none"; });
+      return;
+    } catch (e) { /* tenta o próximo */ }
+  }
+})();
+
+// ---------- dados ----------
+async function carregar() {
+  if (!base) { semModelo(); return; }
+  render(true);   // nome, categoria e botões aparecem de imediato
+  if (DEMO) {
+    try {
+      const db = JSON.parse(localStorage.getItem("shineray_db_v1") || "{}");
+      if (db.config) config = { ...config, ...db.config };
+      todosModelos = db.modelos || [];
+      conteudo = todosModelos.find(m => m.slug === slugAtual) || null;
+      todoEstoque = (db.vitrine || db.motos || []).filter(m => m.status === "disponivel");
+      estoque = todoEstoque.filter(m => slug(m.modelo) === slugAtual);
+    } catch (e) { /* segue com o padrão */ }
+  } else {
+    // Tudo aqui é "se der, melhora a página" — nada pode impedir o render.
+    // Antes, uma falha ao carregar o Firebase deixava a página só com traços
+    // e o cliente tinha que recarregar na mão.
+    try {
+      const [{ initializeApp }, fs] = await Promise.all([
+        import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"),
+        import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
+      ]);
+      const db = fs.getFirestore(initializeApp(firebaseConfig));
+      fb = { fs, db };
+      // as três buscas vão juntas: em série, a página esperava uma soma de idas
+      // ao banco em vez da mais demorada delas
+      const [cfg, snapM, snapE] = await Promise.all([
+        fs.getDoc(fs.doc(db, "config", "loja")).catch(e => { console.warn("config", e.code || e.message); }),
+        // só o documento deste modelo: antes lia os 25 de uma vez
+        fs.getDoc(fs.doc(db, "modelos", slugAtual)).catch(e => { console.warn("modelo", e.code || e.message); }),
+        // "vitrine": cópia pública do estoque, sem custo/chassi
+        fs.getDocs(fs.query(fs.collection(db, "vitrine"), fs.where("status", "==", "disponivel")))
+          .catch(e => { console.warn("estoque", e.code || e.message); })
+      ]);
+      if (cfg?.exists()) config = { ...config, ...cfg.data() };
+      if (snapM?.exists()) conteudo = { slug: slugAtual, ...snapM.data() };
+      if (snapE) {
+        todoEstoque = snapE.docs.map(d => d.data());
+        estoque = todoEstoque.filter(m => slug(m.modelo) === slugAtual);
+      }
+    } catch (e) {
+      console.warn("Firebase indisponível — a página abre com o que já está no site", e.message);
+    }
+  }
+  render();
+}
+
+// busca o documento de um modelo qualquer (usado pelas sugestões do rodapé)
+async function buscarModelo(sl) {
+  if (DEMO) return todosModelos.find(m => m.slug === sl) || null;
+  if (!fb) return null;
+  try {
+    const d = await fb.fs.getDoc(fb.fs.doc(fb.db, "modelos", sl));
+    return d.exists() ? { slug: sl, ...d.data() } : null;
+  } catch (e) { return null; }
+}
+
+// preço de um modelo qualquer: o menor do pátio, senão o "a partir de" cadastrado
+// preço de um modelo qualquer: o menor do pátio, senão o "a partir de" cadastrado
+function precoDoModelo(sl, precoBase) {
+  const noPatio = todoEstoque
+    .filter(x => slug(x.modelo) === sl)
+    .map(x => Number(x.precoVenda) || 0)
+    .filter(v => v > 0);
+  if (noPatio.length) return { valor: Math.min(...noPatio), noPatio: true };
+  return { valor: Number(precoBase) || 0, noPatio: false };
+}
+
+const embaralhar = a => {
+  const c = [...a];
+  for (let i = c.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [c[i], c[j]] = [c[j], c[i]];
+  }
+  return c;
+};
+
+// Busca as sugestões uma a uma, até achar três com foto. Antes a página lia
+// os 25 modelos de uma vez só para montar esta seção — muito peso para o que
+// ela entrega, e era o que deixava a abertura lenta e sujeita a falhar.
+async function renderTambem() {
+  // as da mesma categoria vêm primeiro — são as parecidas de verdade
+  const outras = TODOS.filter(m => m.slug !== slugAtual);
+  const fila = [
+    ...embaralhar(outras.filter(m => m.categoria === base.categoria)),
+    ...embaralhar(outras.filter(m => m.categoria !== base.categoria))
+  ];
+
+  const escolhidas = [];
+  for (const m of fila) {
+    if (escolhidas.length >= 3) break;
+    const doc = await buscarModelo(m.slug);
+    const url = doc?.fotos?.[0]?.url;
+    if (url) escolhidas.push({ ...m, url, precoBase: doc.precoBase });
+  }
+  if (!escolhidas.length) return;
+
+  $("sec-tambem").style.display = "block";
+  $("m-tambem").innerHTML = escolhidas.map(m => {
+    const p = precoDoModelo(m.slug, m.precoBase);
+    return `
+    <a class="tambem-card" href="modelo.html?m=${esc(m.slug)}">
+      <div class="tambem-foto"><img src="${esc(m.url)}" alt="${esc(m.nome)}" loading="lazy"></div>
+      <div class="tambem-pe">
+        <div>
+          <span class="rot">Nome comercial</span>
+          <div class="tambem-nome">${esc(m.nome)}</div>
+        </div>
+        ${p.valor ? `<div>
+          <span class="rot">${p.noPatio ? "Por:" : "A partir de:"}</span>
+          <div class="tambem-preco">${fmtBRL(p.valor)}</div>
+        </div>` : ""}
+      </div>
+    </a>`;
+  }).join("");
+}
+
+document.getElementById("ficha-abas").addEventListener("click", e => {
+  const aba = e.target.closest(".ficha-aba");
+  if (!aba) return;
+  document.querySelectorAll(".ficha-aba").forEach(b => b.classList.toggle("on", b === aba));
+  document.querySelectorAll(".ficha-painel").forEach(p => p.classList.toggle("on", p.dataset.painel === aba.dataset.aba));
+});
+
+function semModelo() {
+  $("m-nome").textContent = "Modelo não encontrado";
+  $("m-destaque").innerHTML = `Esse modelo não está na nossa linha. <a href="index.html" style="color:var(--red)">Voltar para o início</a>.`;
+  $("sec-estoque").style.display = "none";
+}
+
+// Os quatro números da capa saem da ficha técnica que o Iago preenche.
+// Cada um tem como achar o item e como encurtar o valor, porque na ficha
+// eles vêm por extenso ("8 CV / 8000 RPM", "Hidráulico Disco (Ø = 220mm)").
+const NUMEROS_DA_CAPA = [
+  { procura: "cilindrada", rotulo: "cilindradas",
+    encurta: v => /^[\d.,]+$/.test(v) ? v : v },
+  { procura: "potencia",   rotulo: "potência",
+    encurta: v => v.split("/")[0].trim() },
+  { procura: "tanque",     rotulo: "tanque",
+    encurta: v => v.replace(/\(.*?\)/g, "").trim() },
+  { procura: "dianteiro",  rotulo: "freio dianteiro",
+    encurta: v => {
+      const p = (v.match(/disco|tambor/i) || [v])[0];
+      return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
+    } }
+];
+const semAcento = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+function montarNumerosDaCapa(ficha) {
+  const todos = ficha.flatMap(g => g.itens);
+  const achados = [];
+  for (const n of NUMEROS_DA_CAPA) {
+    const item = todos.find(i => semAcento(i.rotulo).includes(n.procura));
+    if (!item) continue;
+    const valor = n.encurta(item.valor.trim());
+    if (valor) achados.push({ valor, rotulo: n.rotulo });
+  }
+  const capa = $("capa");
+  if (achados.length < 2) { capa.classList.remove("com-numeros"); return; }
+  capa.classList.add("com-numeros");
+  const faixa = $("capa-numeros");
+  faixa.style.gridTemplateColumns = `repeat(${achados.length}, 1fr)`;
+  faixa.innerHTML = achados.map(a =>
+    `<div class="cn-item"><b>${esc(a.valor)}</b><span>${esc(a.rotulo)}</span></div>`).join("");
+}
+
+// parcial = primeira pintura, feita na hora, só com o que o catálogo local
+// já sabe (nome, categoria, botões). O resto entra quando o banco responde.
+function render(parcial = false) {
+  const nome = base.nome;
+  document.title = `${nome} — ${config.nomeLoja}, Rio de Janeiro (RJ)`;
+  $("link-canonico").href = `https://www.shineraysantacruz.com.br/modelo.html?m=${slugAtual}`;
+  $("trilha-nome").textContent = nome;
+  $("trilha-cat").textContent = base.categoria;
+  $("m-nome").textContent = nome;
+  $("h-sobre").textContent = nome;
+  $("cta-titulo").textContent = `Quer uma ${nome}?`;
+  montarRodape(config, { chamada: false, inicio: "index.html", abrirModelos: () => alternarPainel(true) });
+
+  // etiquetas
+  const naLoja = estoque.length > 0;
+  $("m-etiquetas").innerHTML = [
+    naLoja ? `<span class="etiqueta destaque">Pronta entrega</span>` : "",
+    `<span class="etiqueta">${esc(base.categoria)}</span>`,
+    `<span class="etiqueta">0 km</span>`
+  ].join("");
+
+  // preço: o menor do pátio; sem estoque, usa o "a partir de" cadastrado
+  const precosNoPatio = estoque.map(m => Number(m.precoVenda) || 0).filter(v => v > 0);
+  const doPatio = precosNoPatio.length ? Math.min(...precosNoPatio) : 0;
+  const cadastrado = Number(conteudo?.precoBase) || 0;
+  const preco = doPatio || cadastrado;
+  if (preco) {
+    const varios = new Set(precosNoPatio).size > 1;
+    $("m-preco").style.display = "flex";
+    $("m-preco").innerHTML = `
+      <span class="rot">${doPatio && !varios ? "Por" : "A partir de"}</span>
+      <span class="val">${fmtBRL(preco)}</span>
+      <span class="obs">${doPatio ? "à vista" : "consulte condições"}</span>`;
+  }
+
+  if (conteudo?.destaque) $("m-destaque").textContent = conteudo.destaque;
+
+  // foto da capa
+  const fotos = conteudo?.fotos || [];
+  $("foto-capa").innerHTML = fotos[0]
+    ? `<img src="${esc(fotos[0].url)}" alt="${esc(nome)}">`
+    : parcial
+      ? `<div class="sem"><i class="ti ti-motorbike"></i></div>`
+      : `<div class="sem"><i class="ti ti-motorbike"></i><span>Foto em breve</span></div>`;
+
+  // itens de série
+  const itens = (conteudo?.itens || []).filter(i => i.titulo);
+  if (itens.length) {
+    $("sec-itens").style.display = "block";
+    $("m-itens").innerHTML = itens.map(i => `
+      <div class="item-linha">
+        <div class="item-foto-grande">
+          ${i.foto?.url
+            ? `<img src="${esc(i.foto.url)}" alt="${esc(i.titulo)}" loading="lazy">`
+            : `<div class="sem"><i class="ti ti-settings-bolt"></i></div>`}
+        </div>
+        <div class="item-texto">
+          <h3>${esc(i.titulo)}</h3>
+          ${i.texto ? `<p>${esc(i.texto)}</p>` : ""}
+        </div>
+      </div>`).join("");
+  }
+
+  // ficha técnica (ocupa a seção "Sobre a ..."). Modelo que o gestor ainda
+  // não salvou no sistema mostra a ficha de fábrica (fichas.js), se tiver.
+  const salva = conteudo?.ficha;
+  const ficha = (Array.isArray(salva) ? salva : fichaDeFabrica(slugAtual) || [])
+    .map(g => ({ grupo: g.grupo, itens: (g.itens || []).filter(i => (i.rotulo || "").trim() && (i.valor || "").trim()) }))
+    .filter(g => g.itens.length);
+  montarNumerosDaCapa(ficha);
+  $("sec-sobre").style.display = ficha.length ? "block" : "none";
+  if (ficha.length) {
+    $("ficha-abas").innerHTML = ficha.map((g, i) =>
+      `<button class="ficha-aba${i === 0 ? " on" : ""}" data-aba="${i}">${esc(g.grupo)}</button>`).join("");
+    $("ficha-paineis").innerHTML = ficha.map((g, i) => `
+      <div class="ficha-painel${i === 0 ? " on" : ""}" data-painel="${i}">
+        ${g.itens.map(it => `<div class="ficha-linha"><b>${esc(it.rotulo)}:</b> <span>${esc(it.valor)}</span></div>`).join("")}
+      </div>`).join("");
+  }
+
+  // galeria
+  if (fotos.length > 1) {
+    $("sec-galeria").style.display = "block";
+    $("m-galeria").innerHTML = fotos.slice(1).map(f => `<img src="${esc(f.url)}" alt="${esc(nome)}" loading="lazy">`).join("");
+  }
+
+  // estoque
+  if (parcial) { $("m-estoque").innerHTML = ""; return; }
+
+  $("m-estoque").innerHTML = estoque.length
+    ? `<div class="estoque-lista">${estoque.map(m => `
+        <div class="est-card">
+          <span class="selo">Pronta entrega</span>
+          <div class="nome">${esc(m.modelo)}</div>
+          <div class="sub">${esc([m.cor, m.ano].filter(Boolean).join(" · "))}</div>
+          <div class="preco">${fmtBRL(m.precoVenda)} <small>à vista</small></div>
+        </div>`).join("")}</div>`
+    : `<div class="sem-estoque">Nenhuma ${esc(nome)} no pátio agora — mas conseguimos pedir pra você.<br>Chame no WhatsApp que a gente verifica o prazo.</div>`;
+
+  // você também vai gostar
+  renderTambem().catch(e => console.warn("sugestões indisponíveis", e));
+
+  // whatsapp
+  const ig = igLink(config.instagram);
+  if (ig) { const e = $("nav-ig"); e.style.display = "flex"; e.href = ig; }
+  if (config.whatsapp) {
+    const link = waLink(config.whatsapp, `Olá! Quero saber mais sobre a ${nome} 🏍️`);
+    const navW = $("nav-wa"); navW.style.display = "flex"; navW.href = link;
+    for (const id of ["btn-wa", "btn-wa2"]) {
+      const w = $(id);
+      w.style.display = "inline-flex";
+      w.href = link;
+    }
+  }
+}
+
+// ---------- formulário de interesse ----------
+async function salvarLead(nome, fone) {
+  const hoje = new Date();
+  const dataHoje = `${hoje.getFullYear()}-${String(hoje.getMonth()+1).padStart(2,"0")}-${String(hoje.getDate()).padStart(2,"0")}`;
+  const lead = { nome, telefone: fone, motoInteresse: base ? base.nome : "", etapa: "novo", proximoContato: dataHoje, obs: "Veio pela página do modelo", ...origemAtual() };
+  if (DEMO) {
+    const db = JSON.parse(localStorage.getItem("shineray_db_v1") || "{}");
+    db.leads = db.leads || [];
+    db.leads.unshift({ id: crypto.randomUUID(), ...lead, criadoEm: Date.now() });
+    localStorage.setItem("shineray_db_v1", JSON.stringify(db));
+  } else {
+    await fb.fs.addDoc(fb.fs.collection(fb.db, "leads"), { ...lead, criadoEm: fb.fs.serverTimestamp() });
+  }
+}
+
+const bg = $("form-bg");
+function abrirForm() {
+  $("form-moto-nome").textContent = base ? base.nome : "";
+  $("form-campos").style.display = "block";
+  $("form-ok").style.display = "none";
+  $("form-erro").style.display = "none";
+  $("form-nome").value = ""; $("form-fone").value = "";
+  bg.classList.add("show");
+}
+$("btn-interesse").addEventListener("click", abrirForm);
+$("btn-interesse2").addEventListener("click", abrirForm);
+$("form-close").addEventListener("click", () => bg.classList.remove("show"));
+bg.addEventListener("click", e => { if (e.target === bg) bg.classList.remove("show"); });
+
+$("form-enviar").addEventListener("click", async () => {
+  const nome = $("form-nome").value.trim();
+  const fone = $("form-fone").value.trim();
+  const erro = $("form-erro");
+  if (!nome || fone.replace(/\D/g, "").length < 10) {
+    erro.textContent = "Preencha seu nome e um WhatsApp válido com DDD.";
+    erro.style.display = "block";
+    return;
+  }
+  const btn = $("form-enviar");
+  btn.disabled = true;
+  try {
+    await salvarLead(nome, fone);
+    $("form-campos").style.display = "none";
+    $("form-ok").style.display = "block";
+    if (config.whatsapp) {
+      const okWa = $("form-ok-wa");
+      okWa.style.display = "inline-flex";
+      okWa.href = waLink(config.whatsapp, `Olá! Deixei meu contato no site sobre a ${base ? base.nome : ""} 🏍️`);
+    }
+  } catch (e) {
+    erro.textContent = "Ops, não conseguimos enviar. Tente de novo ou chame no WhatsApp.";
+    erro.style.display = "block";
+  }
+  btn.disabled = false;
+});
+
+// ---------- visualizador de foto ----------
+const lb = $("lightbox");
+function fecharLightbox() { lb.classList.remove("on"); }
+function abrirFoto(e) {
+  const img = e.target.closest("img");
+  if (img) { $("lb-img").src = img.src; lb.classList.add("on"); }
+}
+$("m-galeria").addEventListener("click", abrirFoto);
+$("foto-capa").addEventListener("click", abrirFoto);
+$("lb-fechar").addEventListener("click", fecharLightbox);
+lb.addEventListener("click", e => { if (e.target === lb) fecharLightbox(); });
+
+carregar().catch(e => {
+  console.warn("falha ao carregar", e);
+  try { render(); } catch (e2) { /* nada a fazer */ }
+});
+</script>
+
+
+</body></html>

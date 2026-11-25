@@ -1,0 +1,58 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C391fe2206f",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://bvapp.com/",
+  "final_url": "https://www.hugedomains.com/domain_profile.cfm?d=bvapp.com",
+  "redirect_chain": [
+    "http://bvapp.com/",
+    "https://www.hugedomains.com/domain_profile.cfm?d=bvapp.com",
+    "http://bvapp.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.26.6.37",
+  "collected_at": "2026-11-25T18:18:18.102588+00:00",
+  "manifest_written_at": "2026-11-25T18:18:26.553654+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C391fe2206f/attempt-1/viewport.png",
+      "sha256": "5a3f13362eaeade852f0e0cada786db694a9ed5c521f3bc2f9436d7028f19725",
+      "size_bytes": 40906
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C391fe2206f/attempt-1/fullpage.png",
+      "sha256": "5a3f13362eaeade852f0e0cada786db694a9ed5c521f3bc2f9436d7028f19725",
+      "size_bytes": 40906
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C391fe2206f/attempt-1/page.html.txt",
+      "sha256": "f011713f62fb628c26d13e8587f4012a2857a0499787c63462d4a46bb7ee2005",
+      "size_bytes": 44960
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C391fe2206f/attempt-1/text.txt",
+      "sha256": "d1fed59414c3573a76d5e8e47035f2ba893978efbb476c2f7f64e201a9280acb",
+      "size_bytes": 293
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C391fe2206f/attempt-1/page.json",
+      "sha256": "083b294114ffadb7111592f6e97df7373dce5b9e55022ecf348c43809811e737",
+      "size_bytes": 1415
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "network did not become idle (continuing)",
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

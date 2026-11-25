@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1324584edd",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://2viadeconta.com.br/boleto/2-via-boleto-bv-financeira-2-via-do-contrato-boletos-bv/",
+  "final_url": "https://2viadeconta.com.br/boleto/2-via-boleto-bv-financeira-2-via-do-contrato-boletos-bv/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.82.182",
+  "collected_at": "2026-11-19T18:10:29.522690+00:00",
+  "manifest_written_at": "2026-11-19T18:10:39.281083+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C1324584edd\\attempt-1\\viewport.png",
+      "sha256": "b3132dcca7f00d0c86f3f18f84526d344029b2ce28fa4bbc99dc8c958ef2c2d2",
+      "size_bytes": 48716
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C1324584edd\\attempt-1\\fullpage.png",
+      "sha256": "b3132dcca7f00d0c86f3f18f84526d344029b2ce28fa4bbc99dc8c958ef2c2d2",
+      "size_bytes": 48716
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C1324584edd\\attempt-1\\page.html.txt",
+      "sha256": "73f7f244733c4d0a22728b22b7c4ef23c3e227d5c01de53050f5d58e1369f073",
+      "size_bytes": 65537
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C1324584edd\\attempt-1\\text.txt",
+      "sha256": "7fb4d44edeb1528583c3b39f76216886dbd5ef8410df357e5334bd4f2379a963",
+      "size_bytes": 842
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C1324584edd\\attempt-1\\page.json",
+      "sha256": "ecca5ca0b4ad2e6dfa331754afd0a8f6a20c63b714c1512136016bd805c4f2d8",
+      "size_bytes": 2848
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

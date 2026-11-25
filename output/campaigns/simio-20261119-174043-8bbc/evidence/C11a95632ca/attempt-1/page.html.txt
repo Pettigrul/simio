@@ -1,0 +1,930 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="BR"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Cache-Control" content="No-Cache">
+<meta http-equiv="Pragma" content="No-Cache">
+<meta http-equiv="Expires" content="0">
+
+<meta name="robots" content="nofollow">
+<meta name="google-site-verification" content="DxuNw3ZIz5TEYK6wyygtx4Q3g-I2joR-ssXHLI2yNZU">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/jurisprudencia/css/screen.css;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31">
+
+<link rel="stylesheet" type="text/css" href="/jurisprudencia/css/window/default.css;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31">
+<link rel="stylesheet" type="text/css" href="/jurisprudencia/css/window/tjpr.css;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31">
+
+
+ 
+
+
+
+
+
+
+
+<script type="text/javascript" src="/jurisprudencia/js/prototype.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+<script type="text/javascript" src="/jurisprudencia/js/window/window.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+<script type="text/javascript" src="/jurisprudencia/js/window/effects.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+
+
+<script type="text/javascript" src="/jurisprudencia/js/overlibmws/overlibmws.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/overlibmws/overlibmws_crossframe.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/overlibmws/overlibmws_iframe.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/overlibmws/overlibmws_hide.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/overlibmws/overlibmws_shadow.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/scriptaculous/scriptaculous.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script><script type="text/javascript" src="https://portal.tjpr.jus.br/jurisprudencia/js/scriptaculous/builder.js"></script><script type="text/javascript" src="https://portal.tjpr.jus.br/jurisprudencia/js/scriptaculous/controls.js"></script><script type="text/javascript" src="https://portal.tjpr.jus.br/jurisprudencia/js/scriptaculous/slider.js"></script><script type="text/javascript" src="https://portal.tjpr.jus.br/jurisprudencia/js/scriptaculous/sound.js"></script>
+<script type="text/javascript" src="/jurisprudencia/js/ajax/ajaxtags.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+<script type="text/javascript" src="/jurisprudencia/js/ajax/ajaxtags_controls.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+<script type="text/javascript" src="/jurisprudencia/js/ajax/ajaxtags_parser.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+
+<script type="text/javascript" src="/jurisprudencia/js/calendar.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+
+<script type="text/javascript" src="/jurisprudencia/js/html-form-input-mask.js;jsessionid=519a2fd0613cc64cdcfe11247e19"></script>
+
+
+<script type="text/javascript" src="/jurisprudencia/js/tjpr.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/projudi.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript" src="/jurisprudencia/js/jurishighlight.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+<script type="text/javascript">
+  // Application root path for JavaScript functions
+  var appRootPath = "/jurisprudencia/;jsessionid=519a2fd0613cc64cdcfe11247e19";
+  
+  // Multiple onload function created by: Simon Willison
+  // http://simonwillison.net/2004/May/26/addLoadEvent/
+  function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+      window.onload = func;
+    } else {
+      window.onload = function() {
+        if (oldonload) {
+          oldonload();
+        }
+        func();
+      }
+    }
+  }
+  // adds fields masks javascript listener
+  addLoadEvent(function() {
+    Xaprb.InputMask.setupElementMasks();
+  });
+  function seguro() {
+	  openDialog("/jurisprudencia/privado/autorizacao.do?actionType=autenticar", "Login", 700, 600);
+  }
+  function recarregar() {
+	  if (document.forms && document.forms.length>0) {
+		  document.forms[0].submit();
+	  } else {
+		  location.reload();
+	  }
+	  return true;
+  }
+</script>
+<script type="text/javascript" src="/jurisprudencia/js/jurisprudencia.js;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31"></script>
+
+<title>jurisprudencia</title>
+</head>
+<body>
+	<div id="container">
+		
+
+
+
+
+
+
+<div id="header">
+  <div id="logo"><h1>Intranet - Tribunal de Justiça do Paraná</h1></div>
+  <h2>Jurisprudência</h2>
+  
+
+
+
+
+
+
+
+<script>
+	function handleeVoltar(url) {
+		event.preventDefault();
+
+		if (window !== window.top) {
+			// Está dentro de iframe
+			window.top.location.href = url;
+		} else {
+			// Página normal
+			window.location.href = url;
+		}
+	}
+</script>
+<div id="menuPublico" class="pos-acao">
+	
+
+	
+	<a href="/jurisprudencia/;jsessionid=519a2fd0613cc64cdcfe11247e19" onclick="handleeVoltar('/jurisprudencia/;jsessionid=519a2fd0613cc64cdcfe11247e19')">
+		INÍCIO
+		 |			
+	</a> 			
+	
+		
+															
+			<a href="/jurisprudencia/privado/autorizacao.do?actionType=autenticar">
+				ACESSO RESTRITO
+			</a>
+					
+			
+</div>
+
+</div>
+
+		
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="menu">
+<ul id="menubar">
+<li class="menubar" id="menu_random_name_346051384" onmouseover="menu(&quot;_random_name_346051384&quot;,&quot;over&quot;)" onmouseout="menu(&quot;_random_name_346051384&quot;,&quot;out&quot;)"></li>
+<li class="menubar" id="menu_random_name_779321782" onmouseover="menu(&quot;_random_name_779321782&quot;,&quot;over&quot;)" onmouseout="menu(&quot;_random_name_779321782&quot;,&quot;out&quot;)"></li>
+<li class="menubar" id="menu_random_name_808316442" onmouseover="menu(&quot;_random_name_808316442&quot;,&quot;over&quot;)" onmouseout="menu(&quot;_random_name_808316442&quot;,&quot;out&quot;)"></li>
+<li class="menubar" id="menu_random_name_955601243" onmouseover="menu(&quot;_random_name_955601243&quot;,&quot;over&quot;)" onmouseout="menu(&quot;_random_name_955601243&quot;,&quot;out&quot;)"></li>
+</ul>
+</div>
+
+
+<span id="confirmarCiencia">
+	
+				
+			
+		
+	
+</span>
+
+
+<script lang="javascript">
+	var urlKeepAlive = '/jurisprudencia/ajax.do;jsessionid=519a2fd0613cc64cdcfe11247e19?tjpr.url.crypto=8a6c53f8698c7ff7088d3764243ee7b602d64f941ff6399dacd20af854fb5818';
+	setInterval(function(){
+		fetch(urlKeepAlive, { method: 'GET' })
+				.then(response => response.text()) // ou .json()
+				.then(result => {
+				})
+				.catch(err => {
+				});
+	}, 60000);
+</script>
+
+<script lang="javascript">
+		var usuarios = document.getElementById('menubar').children[0].id;
+		var cedoc = document.getElementById('menubar').children[1].id;
+		var admin = document.getElementById('menubar').children[2].id;
+		var cidh = document.getElementById('menubar').children[3].id;
+		var cidh_disponibilizar = document.getElementById(cidh).getElementsByClassName('menuitem')[0].children[3];
+
+		
+			document.getElementById(usuarios).innerHTML='';			
+		
+		
+		
+			document.getElementById(cedoc).innerHTML='';			
+		
+	
+		
+			document.getElementById(admin).innerHTML='';			
+		
+
+		
+			document.getElementById(cidh).innerHTML='';
+		
+		
+			cidh_disponibilizar.innerHTML='';
+		
+</script>
+
+   
+			
+		
+		<div id="content">
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	/**
+	 * Função para limpar o conteúdo das mensagens
+	 */
+	function clearMessages(){
+		var successMsgs = document.getElementById('successMessages');
+		if(successMsgs != null && "" + successMsgs != "undefined"){
+			successMsgs.style.display="none";
+		}
+		
+		var errorMsgs = document.getElementById('errorMessages');
+		if(errorMsgs != null && "" + errorMsgs != "undefined"){
+			errorMessages.style.display="none";			
+		}
+		
+		
+	}	
+	// chama a função após 7 segundos
+	window.setTimeout("clearMessages()", 7000);
+</script>
+					
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/jurisprudencia/css/layout-2/tabs-filtro-2.css;jsessionid=519a2fd0613cc64cdcfe11247e19?updateIdx=31">
+<script type="text/javascript">
+	function validaChamadaDiretaID() {
+		var inicio=0;
+		var url=document.location+"";
+		if ( (inicio=url.indexOf("/j/"))>0) {
+			$('contrlVoltar').style.display="none";
+			id=url.substring(inicio+3,url.indexOf("/",inicio+3));
+			$('integra'+id).style.display='';
+			$('texto'+id).style.display='';
+		} else {
+			$('contrlVoltar').style.display="";			
+		}
+	}
+ 	addLoadEvent(validaChamadaDiretaID);
+	function imprimirSelecionados() {
+		if (! isAnyChecked(document.pesquisaForm.idsSelecionadosImp) && ! isAnyChecked(document.pesquisaForm.idsSelecionadosCidhImp)){
+			alert('Não há nenhum registro selecionado');
+			return;
+		}
+		document.pesquisaForm.action = '/jurisprudencia/publico/imprimirPesquisa.do;jsessionid=519a2fd0613cc64cdcfe11247e19?tjpr.url.crypto=8a6c53f8698c7ff7be4b80f414624b3fd22a943a8572f99b93bfd7482db25b1db74e79ca72d80307';
+		document.pesquisaForm.submit(); 
+	}
+	
+	function validarSelecao(){
+		return true;
+ 	}
+	function recarregar() {
+		location.reload();
+	}
+	function voltarTela(){
+			/*var URL = '/jurisprudencia/publico/pesquisa.do;jsessionid=519a2fd0613cc64cdcfe11247e19?tjpr.url.crypto=8a6c53f8698c7ff75a98968ef6ee2f396a051e03fdaaf5e23a6b758b3d398283';
+			document.pesquisaForm.action=URL;
+			document.pesquisaForm.submit();*/
+		history.go(-1);
+ 	}
+</script>
+<div class="formulario">
+	<form name="pesquisaForm" id="pesquisaForm" method="post" action="/jurisprudencia/publico/pesquisa.do;jsessionid=519a2fd0613cc64cdcfe11247e19?actionType=pesquisar" accept-charset="ISO-8859-1">
+		
+		
+		<input type="hidden" name="usuarioCienteSegredoJustica" id="usuarioCienteSegredoJustica" value="" style="">
+		<input type="hidden" name="segredoJustica" value="" style="">
+		<input type="hidden" name="id" value="2100000026397362" style="">
+		<input type="hidden" name="chave" value="" style="">
+		<input type="hidden" name="dataJulgamentoInicio" value="" style="">
+		<input type="hidden" name="dataJulgamentoFim" value="" style="">
+		<input type="hidden" name="dataPublicacaoInicio" value="" style="">
+		<input type="hidden" name="dataPublicacaoFim" value="" style="">
+		<input type="hidden" name="processo" value="" style="">
+		<input type="hidden" name="acordao" value="" style="">
+		<input type="hidden" name="idComarca" value="" style="">
+		<input type="hidden" name="idRelator" value="" style="">
+		<input type="hidden" name="idOrgaoJulgador" value="" style="">
+		<input type="hidden" name="idClasseProcessual" value="" style="">
+		<input type="hidden" name="idAssunto" value="" style="">
+
+        <input type="hidden" name="idPaisCidh" value="" style="">
+        <input type="hidden" name="idCadernoCidh" value="" style="">
+        <input type="hidden" name="idTemaCidh" value="" style="">
+        <input type="hidden" name="anoPublicacaoCidh" value="" style="">
+
+
+		<input type="hidden" name="pageVoltar" value="1" style="">
+		
+		<input type="hidden" name="idLocalPesquisa" value="" style="">
+		<input type="hidden" name="ambito" value="" style="">
+	
+		<input type="hidden" name="descricaoAssunto" value="" style="">
+		<input type="hidden" name="descricaoClasseProcessual" value="" style="">
+		<input type="hidden" name="nomeComarca" value="" style="">
+		<input type="hidden" name="nomeOrgaoJulgador" value="" style="">
+		<input type="hidden" name="nomeRelator" value="" style="">
+		<input type="hidden" name="idTipoDecisaoAcordao" value="" style="">
+		<input type="hidden" name="idTipoDecisaoMonocratica" value="" style="">
+		<input type="hidden" name="idTipoDecisaoDuvidaCompetencia" value="" style="">
+		
+		<input type="hidden" name="mostrarCompleto" value="true" style="">
+		<input type="hidden" name="criterioPesquisa" value="" style="">
+        <input type="hidden" name="siglaEstado" value="" style="">
+		
+		<input type="hidden" name="pageSize" value="50" style="">
+		<input type="hidden" name="pageNumber" value="1" style="">
+		<input type="hidden" name="sortColumn" value="id" style="">
+		<input type="hidden" name="sortOrder" value="desc" style="">
+		<input type="hidden" name="page" value="1" style="">
+		
+		
+		
+		
+		
+		<div class="secaoFormulario">
+			<span class="titulo">SELEÇÃO DE DECISÕES</span>
+
+			<table width="100%" border="0" class="juris-parametros">
+				<tbody><tr>
+					<td><br> <input type="checkbox" name="checker" value="checker" onclick="checkAll($('pesquisaForm').idsSelecionadosImp, this.checked);checkAll($('pesquisaForm').idsSelecionadosCidhImp, this.checked);" style="">
+						&nbsp;Selecionar Todos &nbsp;&nbsp;&nbsp; 
+						<a href="javascript:imprimirSelecionados()"><img alt="Imprimir" src="/jurisprudencia/img/icons/imprimir.gif">&nbsp;&nbsp;Imprimir
+							Selecionados</a> <br> <br></td>
+				</tr>
+				<tr>
+					<td>
+						
+							<div id="navigator"><div class="navRight"><a class="arrowFirstOff" title="Ir para a primeira página"><span>Primeira Página</span></a><a class="arrowPreviousOff" title="Ir para a página anterior"><span>Página Anterior</span></a><b>1</b><a class="arrowNextOff" title="Ir para a próxima página"><span>Próxima Página</span></a><a class="arrowLastOff" title="Ir para a última página"><span>Última Página</span></a></div><div class="navLeft">1 registro(s) encontrado(s), exibindo de 1 até 1</div><div style="clear:both"></div></div>
+						 
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						
+                        
+							
+						 
+						
+
+                            
+						
+
+
+						
+															
+						
+							<a name="DOC1"></a>
+							<table cellpadding="0" cellspacing="0" width="100%" class="resultTable jurisprudencia semborda">
+								<tbody><tr>
+									<th><b>DOCUMENTO 1</b></th>
+								</tr>
+							</tbody></table>
+							<div class="juris-inter-parametros">&nbsp;</div>
+							
+							<a id="link_2100000026397362" name="link_2100000026397362"></a><br><table class="resultTable linksacizentados juris-dados-completos" cellpadding="0" cellspacing="0" width="80%">
+								<colgroup>
+									<col width="20%">
+									<col width="30%">
+									<col width="20%">
+									<col width="20%">
+									<col width="10%">
+								</colgroup>
+
+								<tbody>
+                                
+                                
+                                
+                                    <tr class="even">
+                                        <td>
+                                            
+                                                
+                                                    <a href="javascript:document.location.replace('#integra_2100000026397362');" onclick="$('integra2100000026397362').style.display='';$('texto2100000026397362').style.display='';">
+                                                        
+                                                        <img alt="Íntegra" src="/jurisprudencia/img/icons/integra-acordao.gif">&nbsp;Íntegra do Acórdão</a>
+                                                
+                                                
+                                            
+                                        </td>
+                                        <td>
+                                            
+                                                
+                                                    <a href="javascript:document.location.replace('#');" onclick="abrirEmenta('ementa2100000026397362','ementaRef2100000026397362')" style="cursor: pointer;"> 
+                                                        <img alt="Integra" src="/jurisprudencia/img/icons/ementa-pre-formatada.gif">
+                                                        Ementa pré-formatada para citação
+                                                    </a>
+                                                
+                                                
+                                            
+                                        </td>
+                                        <td>
+                                            <a href="javascript:document.location.replace('/jurisprudencia/publico/visualizacao.do?tjpr.url.crypto=8a6c53f8698c7ff76db3047d195cb6a50e1bad728475d917206904084c03d1a7e341e6d089e3dce5f94a697fefb84d63832bb29dae726918de70d8b135ff75c85bce1bf63ddea135fa909f8bf88bec55')"><img src="/jurisprudencia/img/icons/anexo/ZIP.png">Carregar documento</a>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="idsSelecionadosImp" value="2100000026397362" style="">&nbsp;
+                                            Imprimir/salvar (selecionar)
+                                            <input type="hidden" name="pageVoltar" value="1" style="">
+                                        </td>
+                                        <td align="right" valign="middle">
+                                            </td>
+                                    </tr>
+
+                                    
+                                    
+
+                                    
+                                    <tr class="even">
+                                        <td colspan="5">
+                                            <div style="vertical-align: top;">
+                                                <span style="vertical-align: top;"><b>Processo:</b></span>
+                                                <div style="display: inline-block;"><div>0002975-19.2022.8.16.0158</div></div>
+                                            </div>
+                                            (Decisão monocrática)
+                                        </td>
+                                    </tr>
+
+                                    
+                                    <tr class="odd">
+                                        <td colspan="5"><b>Segredo de Justiça:</b>
+                                                Não</td>
+                                    </tr>
+
+                                    
+                                        
+                                        <tr class="even">
+                                            <td colspan="5">
+                                                <b>Relator(a):</b>
+                                                Maria Roseli Guiessmann<br> <i>Juíza de Direito Substituto em Segundo Grau</i>
+                                            </td>
+                                        </tr>
+                                    
+
+                                    
+                                    
+
+                                    
+                                        
+                                        <tr class="odd">
+                                            <td colspan="5"><b>Órgão Julgador:</b>
+                                                    5ª Turma Recursal dos Juizados Especiais</td>
+                                        </tr>
+                                    
+
+                                    
+                                        
+                                        <tr class="even">
+                                            <td colspan="5"><b>Comarca:</b>
+                                                    São Mateus do Sul</td>
+                                        </tr>
+                                    
+
+                                    
+                                    <tr class="odd">
+                                        <td colspan="5"><b>Data do Julgamento:</b> 
+                                            
+                                                09/10/2023 00:00:00
+                                            
+                                            
+                                        </td>
+                                    </tr>
+
+                                    
+                                        
+                                        <tr class="even">
+                                            <td colspan="5"><b>Fonte/Data da Publicação:</b>
+                                                    &nbsp;09/10/2023</td>
+                                        </tr>
+                                    
+
+                                    
+                                    
+                                        
+                                        <tr class="odd">
+                                            <td colspan="5">
+                                                <br> <b>Ementa</b><br> <br>
+
+                                                <div id="ementa2100000026397362">DECISÃO MONOCRÁTICA. RECURSO INOMINADO. BANCÁRIO.
+TARIFAS.  SENTENÇA  DE  PARCIAL  PROCEDÊNCIA  DOS
+PEDIDOS INICIAIS.  RECURSO DA RECLAMADA –  PLEITO DE
+RECONHECIMENTO  DA  LEGALIDADE  DA  COBRANÇA  DE
+TARIFAS  -  “TARIFA  DE  AVALIAÇÃO  DO  BEM”  –
+IMPOSSIBILIDADE  –  INSTITUIÇÃO  FINANCEIRA  QUE  NÃO
+DEMONSTROU  A  EFETIVA  PRESTAÇÃO  DO  SERVIÇO  –
+JUNTADA  DE  SUPOSTO  DOCUMENTO  DE  TERMO  DE
+AVALIAÇÃO – DOCUMENTO PRODUZIDO UNILATERALMENTE –
+ABUSIVIDADE  CONSTATADA,  À  LUZ  DO  ENTENDIMENTO
+ESTABELECIDO PELO C. STJ POR MEIO DO JULGAMENTO DO
+RESP  1578553/SP  (TEMA  958).  NECESSIDADE  DE
+RESTITUIÇÃO  DOS  VALORES  INDEVIDAMENTE  COBRADOS.
+“TARIFA DE REGISTRO” – POSSIBILIDADE – DESNECESSIDADE
+DE  COMPROVAÇÃO  DO  EFETIVO  REGISTRO  PELA
+INSTITUIÇÃO  FINANCEIRA  –  ATO  QUE  SE  CONCRETIZA  NO
+INTERESSE  DO  PROPRIETÁRIO  FIDUCIÁRIO,  EM  QUEM
+RECAIRÁ OS EFEITOS DA EVENTUAL DESÍDIA – FUNDAMENTO
+NO  ART.  1.361  DO  CC  E  NO  ART.  2º  DA  RESOLUÇÃO  N.
+320/2009 CONTRAN – EXPRESSA PREVISÃO CONTRATUAL DA
+TARIFA  EM  VALOR  NÃO  ABUSIVO  –  COBRANÇA  DEVIDA.
+“SEGURO  PRESTAMISTA”  –  POSSIBILIDADE  –  ADESÃO  AO
+SEGURO  QUE  FOI  FACULTADA  À  CONSUMIDORA  –
+CONTRATAÇÃO  QUE  SE  DEU  MEDIANTE  INSTRUMENTO
+PRÓPRIO  – AUSÊNCIA  DE  PRÁTICA  DE  VENDA  CASADA.
+SENTENÇA  REFORMADA  EM  PARTE.  RECURSO  INOMINADO
+CONHECIDO E PARCIALMENTE PROVIDO.
+I – RELATÓRIO
+A Reclamante pleiteou a condenação da Reclamada à restituição
+em dobro dos valores cobrados a título de tarifas e seguros incidentes em contrato de
+financiamento.
+A r. sentença julgou parcialmente procedentes os pedidos iniciais
+(mov. 19.1), a fim de condenar a Reclamada a restituir, de forma simples, o valor de
+R$ 6.025,24 (seis mil, vinte e cinco reais e vinte quatro centavos) cobrados a título de
+“Tarifa de Avaliação”, “Registro de Contrato” e “Seguro Prestamista”.
+Inconformada, a Reclamada interpôs o presente Recurso Inominado
+(mov. 56.1), arguindo preliminarmente a sua ilegitimidade passiva. No mérito, pugna
+pela improcedência dos pedidos iniciais ou, subsidiariamente, pela aplicação da taxa
+Selic e para que o termo inicial de incidência de correção monetária se dê a partir do
+desembolso.
+Devidamente  intimada,  a  parte  Recorrida  deixou  de  apresentar
+contrarrazões, conforme denota-se da certidão de renúncia do prazo (mov. 61).
+É o relatório. Passo ao voto.
+II – FUNDAMENTAÇÃO
+&nbsp;No  presente  caso,  é  cabível  o  julgamento  monocrático,
+considerando o disposto no art. 1.011, inc. I e art. 932, inc. IV e V, “b” do CPC, e que a
+fundamentação  supra  tem  por  base  acórdãos  do  Superior  Tribunal  de  Justiça  no
+julgamento de recursos repetitivos.
+Inicialmente,  afasto a preliminar de ilegitimidade passiva arguida
+pela  Recorrente,  eis  que  a  controvérsia  reside  na  suposta  abusividade de valores
+cobrados  em contrato  de financiamento em que figura como credora,  sendo esta,
+portanto, parte legítima para figurar no polo passivo da demanda.
+No mérito, da análise dos presentes autos, verifica-se que o recurso
+interposto  pela Reclamada  BV Financeira SA Crédito Financiamento e Investimento
+merece parcial provimento.
+Explico.
+No  que  se  refere  a  cobrança  de  “Tarifa  de  Avaliação  do  Bem”,
+entendo que  a  r.  sentença  deve ser  mantida  por  seus  próprios  fundamentos,  nos
+termos do art. 46 da Lei nº 9.099/1995.
+Extrai-se da r. sentença (mov. 19.1):
+“(...) Da tarifa de avaliação
+A parte Autora alegou que foi cobrada indevidamente a tarifa de
+avaliação pela Ré no valor de R$245,00.
+Neste  ponto,  cumpre  observar  a  tese  fixada  no  julgamento  do
+Recurso  Especial  Repetitivo  nº  1.578.553  –  SP  no  que pertine  a
+cobrança  da  tarifa  de  avaliação:  “Validade  da  tarifa  de
+avaliação do bem dado em garantia, bem como da cláusula
+que prevê o ressarcimento de despesa com o registro do
+contrato,  ressalvadas  a:  abusividade  da  cobrança  por
+serviço  não  efetivamente  prestado;  e  a  possibilidade  de
+controle da onerosidade excessiva, em cada caso concreto.”
+(STJ – RESP 1.578.553-SP -2016/0011277- 6– Relator Min. Paulo de
+Tarso Sanseverino, Julgamento: 28/11/2018)
+Logo, é lícita a cobrança da tarifa de avaliação, desde que haja a
+efetiva prestação do serviço e não se trate de cobrança excessiva.
+No  caso,  verifica-se  dos  autos  (mov.  12.2)  que  a  Ré
+colacionou aos autos tão somente um Laudo de Vistoria, que
+não tem o condão de comprovar a efetiva avaliação técnica
+do bem pela Ré a justificar a cobrança da tarifa questionada.
+Assim,  verifica-se  que a  parte  Ré não se  desincumbiu  do
+ônus  que  lhe  cabia  de  comprovar  nos  autos  a  efetiva
+prestação  do  serviço,  deixando  de  comprovar  que  foi
+realizada avaliação no veículo objeto do contrato, uma vez
+que o termo de avaliação apresentado pode ser preenchido
+inclusive por pessoa leiga.
+Deste modo, indevida a cobrança da tarifa de avaliação no
+caso  em  epígrafe,  devendo  a  parte  ré  restituir  à  parte
+autora o valor de R$245,00 (duzentos e quarenta e cinco
+reais). (...)”
+Complementando a decisão recorrida, ressalta-se que não se olvida
+que é  possível  a  cobrança  acerca  da  “Tarifa  de  Avaliação  do  Bem” quando  há
+prestação  do  serviço  especificado,  consoante  depreende-se  do  entendimento
+pacificado  pelo  STJ,  no  julgamento  do  REsp  nº&nbsp;1.578.553/SP  –  Recurso  Repetitivo
+(Tema 958):
+“Validade  da  tarifa  de  avaliação  do  bem  dado  em  garantia,
+ressalvada  a  abusividade  da  cobrança  por  serviço  não
+prestado e a possibilidade de controle da onerosidade excessiva,
+em cada caso concreto. (Tema 958 do STJ)”
+Entretanto,  não obstante tenha sido apresentado pela  instituição
+bancária o suposto termo de avaliação do veículo objeto do financiamento (mov. 12.2),
+denota-se  que  tal  documento,  por  si  só,  não  é  apto  para  atestar  que  houve  a
+prestação do serviço indicado, eis que produzido unilateralmente, com informações
+genéricas  e  escassas,  não  por  meio  de  uma  típica  avaliação  fornecida  por  um
+despachante.
+Logo,  uma  vez  que  não  restou  efetivamente  demonstrado  pela
+Recorrente que houve ônus financeiro para a elaboração do laudo, reputo que no caso
+em hipótese verifica-se abusividade na sua cobrança, devendo ser restituído o valor
+cobrado.
+Outrossim, esclareço que o termo inicial para atualização monetária
+e  de  juros  de  mora  devem  permanecer  nos  moldes  da  r.  sentença eis  que  se
+encontram em observância ao contido na art. 4051 do Código Civil e na Súmula 43, do
+C. STJ2. Além disso, cumpre ressaltar que a Taxa Selic é inaplicável, porquanto, não
+possui o poder de recuperar o poder de compra da moeda desde que a consumidora
+foi privada da quantia indevidamente cobrada.&nbsp;
+Por  outro  lado,  entendo  que  o  pleito  recursal  objetivando  o
+reconhecimento  da  legalidade  da  cobrança  das  tarifas  intituladas  “Registro  de
+Contrato” e “Seguro” merece provimento.
+Primeiro  pois,  com  relação  a  tarifa  denominada  “Registro  de
+Contrato”,  entendesse  que  a  sua  finalidade  é  dar  publicidade  à  contratação  e  ao
+encargo que recai  sobre  o  bem dado em garantia.  Com efeito,  conforme o artigo
+1.361, § 1º, do Código Civil3, e o artigo 2º da Resolução do Contran nº 320/20094, a
+propriedade  fiduciária  se  constitui  mediante  o  registro  do  contrato  na  repartição
+competente, com a anotação no certificado de registro.
+Nesse sentido, sobre a referida tarifa, destaca-se o entendimento
+pacificado pelo STJ no julgamento do REsp nº&nbsp;1.578.553/SP – Recurso Repetitivo (Tema
+958):
+“  [...] 2.3. Validade da tarifa de avaliação do bem dado em
+garantia, bem como da cláusula que prevê o ressarcimento
+de despesa com o registro do contrato, ressalvadas a: 2.3.1.
+1 Art. 405 do Código Civil – Contam-se os juros de mora desde a citação inicial.
+2 Súmula 43 STJ – Incide correção monetária sobre dívida por ato ilícito a partir da data do
+efetivo prejuízo.
+3 Art.  1.361.  Considera-se fiduciária  a  propriedade resolúvel  de coisa móvel  infungível  que o
+devedor, com escopo de garantia, transfere ao credor.
+§ 1 o Constitui-se a propriedade fiduciária com o registro do contrato, celebrado por instrumento
+público ou particular, que lhe serve de título, no Registro de Títulos e Documentos do domicílio do
+devedor, ou, em se tratando de veículos, na repartição competente para o licenciamento, fazendo-
+se a anotação no certificado de registro.
+4 Art.  2º  Os contratos de financiamento de veículos com cláusula de alienação fiduciária,  de
+arrendamento mercantil, de compra e venda com reserva de domínio ou de penhor celebrados,
+por instrumento público ou privado, serão registrados no órgão ou entidade executivo de trânsito
+do Estado ou do Distrito Federal em que for registrado e licenciado o veículo.
+abusividade  da  cobrança  por  serviço  não  efetivamente
+prestado;  e  a  2.3.2.  &nbsp; possibilidade  de  controle  da
+onerosidade excessiva,  em  cada  caso  concreto.  [...]  (REsp
+1578553/SP,  Rel.  Ministro  PAULO  DE  TARSO  SANSEVERINO,
+SEGUNDA SEÇÃO, julgado em 28/11/2018, DJe 06/12/2018)”.
+</div>
+
+                                                <div style="display: none;" id="ementaRef2100000026397362">(TJPR - 5ª Turma Recursal dos Juizados Especiais - 0002975-19.2022.8.16.0158 - São Mateus do Sul -  Rel.: JUÍZA DE DIREITO SUBSTITUTO EM SEGUNDO GRAU MARIA ROSELI GUIESSMANN -  J. 09.10.2023)</div>
+                                                <br> <br>
+                                            </td>
+                                        </tr>
+                                    
+
+
+                                    
+                                        
+                                        <tr class="even" id="integra2100000026397362" style="display: none;">
+                                            <td colspan="5"><br> <a id="integra_2100000026397362" name="integra_2100000026397362"></a> <b>Íntegra
+                                                do Acórdão</b> &nbsp;&nbsp;
+                                                <div class="juris-instrucoes-operadores juris-dados-completos">
+                                                    Ocultar
+                                                        Decisão monocrática&nbsp;&nbsp;&nbsp;&nbsp;<img id="iconAjuda" src="/jurisprudencia/img/icons/iMinus.gif;jsessionid=519a2fd0613cc64cdcfe11247e19" onclick="$('integra2100000026397362').style.display='none';$('texto2100000026397362').style.display='none';">
+                                                </div>
+
+                                                <b>Atenção:</b> O texto abaixo representa a transcrição de Decisão monocrática. Eventuais imagens serão suprimidas.<br><br><div id="texto2100000026397362">TRIBUNAL DE JUSTIÇA DO ESTADO DO PARANÁ<br>5ª TURMA RECURSAL DOS JUIZADOS ESPECIAIS <br>&nbsp;<br>Autos nº. 0002975-19.2022.8.16.0158<br>Recurso:&nbsp;0002975-19.2022.8.16.0158 RecIno<br>Classe<br>Processual:&nbsp;Recurso Inominado Cível<br>Assunto<br>Principal:&nbsp;Tarifas<br>Recorrente(s):&nbsp;  BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO<br>Recorrido(s):&nbsp;  DULCIMARA APARECIDA MORETTO<br>DECISÃO MONOCRÁTICA. RECURSO INOMINADO. BANCÁRIO.<br>TARIFAS.  SENTENÇA  DE  PARCIAL  PROCEDÊNCIA  DOS<br>PEDIDOS INICIAIS.  RECURSO DA RECLAMADA –  PLEITO DE<br>RECONHECIMENTO  DA  LEGALIDADE  DA  COBRANÇA  DE<br>TARIFAS  -  “TARIFA  DE  AVALIAÇÃO  DO  BEM”  –<br>IMPOSSIBILIDADE  –  INSTITUIÇÃO  FINANCEIRA  QUE  NÃO<br>DEMONSTROU  A  EFETIVA  PRESTAÇÃO  DO  SERVIÇO  –<br>JUNTADA  DE  SUPOSTO  DOCUMENTO  DE  TERMO  DE<br>AVALIAÇÃO – DOCUMENTO PRODUZIDO UNILATERALMENTE –<br>ABUSIVIDADE  CONSTATADA,  À  LUZ  DO  ENTENDIMENTO<br>ESTABELECIDO PELO C. STJ POR MEIO DO JULGAMENTO DO<br>RESP  1578553/SP  (TEMA  958).  NECESSIDADE  DE<br>RESTITUIÇÃO  DOS  VALORES  INDEVIDAMENTE  COBRADOS.<br>“TARIFA DE REGISTRO” – POSSIBILIDADE – DESNECESSIDADE<br>DE  COMPROVAÇÃO  DO  EFETIVO  REGISTRO  PELA<br>INSTITUIÇÃO  FINANCEIRA  –  ATO  QUE  SE  CONCRETIZA  NO<br>INTERESSE  DO  PROPRIETÁRIO  FIDUCIÁRIO,  EM  QUEM<br>RECAIRÁ OS EFEITOS DA EVENTUAL DESÍDIA – FUNDAMENTO<br>NO  ART.  1.361  DO  CC  E  NO  ART.  2º  DA  RESOLUÇÃO  N.<br>320/2009 CONTRAN – EXPRESSA PREVISÃO CONTRATUAL DA<br>TARIFA  EM  VALOR  NÃO  ABUSIVO  –  COBRANÇA  DEVIDA.<br>“SEGURO  PRESTAMISTA”  –  POSSIBILIDADE  –  ADESÃO  AO<br>SEGURO  QUE  FOI  FACULTADA  À  CONSUMIDORA  –<br>CONTRATAÇÃO  QUE  SE  DEU  MEDIANTE  INSTRUMENTO<br>PRÓPRIO  – AUSÊNCIA  DE  PRÁTICA  DE  VENDA  CASADA.<br>SENTENÇA  REFORMADA  EM  PARTE.  RECURSO  INOMINADO<br>CONHECIDO E PARCIALMENTE PROVIDO.<br>I – RELATÓRIO<br>A Reclamante pleiteou a condenação da Reclamada à restituição<br>em dobro dos valores cobrados a título de tarifas e seguros incidentes em contrato de<br>financiamento. <br>A r. sentença julgou parcialmente procedentes os pedidos iniciais<br>(mov. 19.1), a fim de condenar a Reclamada a restituir, de forma simples, o valor de<br>R$ 6.025,24 (seis mil, vinte e cinco reais e vinte quatro centavos) cobrados a título de<br>“Tarifa de Avaliação”, “Registro de Contrato” e “Seguro Prestamista”. <br>Inconformada, a Reclamada interpôs o presente Recurso Inominado<br>(mov. 56.1), arguindo preliminarmente a sua ilegitimidade passiva. No mérito, pugna<br>pela improcedência dos pedidos iniciais ou, subsidiariamente, pela aplicação da taxa<br>Selic e para que o termo inicial de incidência de correção monetária se dê a partir do<br>desembolso. <br>Devidamente  intimada,  a  parte  Recorrida  deixou  de  apresentar<br>contrarrazões, conforme denota-se da certidão de renúncia do prazo (mov. 61).  <br>É o relatório. Passo ao voto.<br>II – FUNDAMENTAÇÃO <br>&nbsp;No  presente  caso,  é  cabível  o  julgamento  monocrático,<br>considerando o disposto no art. 1.011, inc. I e art. 932, inc. IV e V, “b” do CPC, e que a<br>fundamentação  supra  tem  por  base  acórdãos  do  Superior  Tribunal  de  Justiça  no<br>julgamento de recursos repetitivos.<br>Inicialmente,  afasto a preliminar de ilegitimidade passiva arguida<br>pela  Recorrente,  eis  que  a  controvérsia  reside  na  suposta  abusividade de valores<br>cobrados  em contrato  de financiamento em que figura como credora,  sendo esta,<br>portanto, parte legítima para figurar no polo passivo da demanda. <br>No mérito, da análise dos presentes autos, verifica-se que o recurso<br>interposto  pela Reclamada  BV Financeira SA Crédito Financiamento e Investimento<br>merece parcial provimento. <br>Explico.  <br>No  que  se  refere  a  cobrança  de  “Tarifa  de  Avaliação  do  Bem”,<br>entendo que  a  r.  sentença  deve ser  mantida  por  seus  próprios  fundamentos,  nos<br>termos do art. 46 da Lei nº 9.099/1995.<br>Extrai-se da r. sentença (mov. 19.1): <br>“(...) Da tarifa de avaliação <br>A parte Autora alegou que foi cobrada indevidamente a tarifa de<br>avaliação pela Ré no valor de R$245,00. <br>Neste  ponto,  cumpre  observar  a  tese  fixada  no  julgamento  do<br>Recurso  Especial  Repetitivo  nº  1.578.553  –  SP  no  que pertine  a<br>cobrança  da  tarifa  de  avaliação:  “Validade  da  tarifa  de<br>avaliação do bem dado em garantia, bem como da cláusula<br>que prevê o ressarcimento de despesa com o registro do<br>contrato,  ressalvadas  a:  abusividade  da  cobrança  por<br>serviço  não  efetivamente  prestado;  e  a  possibilidade  de<br>controle da onerosidade excessiva, em cada caso concreto.”<br>(STJ – RESP 1.578.553-SP -2016/0011277- 6– Relator Min. Paulo de<br>Tarso Sanseverino, Julgamento: 28/11/2018) <br>Logo, é lícita a cobrança da tarifa de avaliação, desde que haja a<br>efetiva prestação do serviço e não se trate de cobrança excessiva.<br>No  caso,  verifica-se  dos  autos  (mov.  12.2)  que  a  Ré<br>colacionou aos autos tão somente um Laudo de Vistoria, que<br>não tem o condão de comprovar a efetiva avaliação técnica<br>do bem pela Ré a justificar a cobrança da tarifa questionada.<br>Assim,  verifica-se  que a  parte  Ré não se  desincumbiu  do<br>ônus  que  lhe  cabia  de  comprovar  nos  autos  a  efetiva<br>prestação  do  serviço,  deixando  de  comprovar  que  foi<br>realizada avaliação no veículo objeto do contrato, uma vez<br>que o termo de avaliação apresentado pode ser preenchido<br>inclusive por pessoa leiga. <br>Deste modo, indevida a cobrança da tarifa de avaliação no<br>caso  em  epígrafe,  devendo  a  parte  ré  restituir  à  parte<br>autora o valor de R$245,00 (duzentos e quarenta e cinco<br>reais). (...)”<br>Complementando a decisão recorrida, ressalta-se que não se olvida<br>que é  possível  a  cobrança  acerca  da  “Tarifa  de  Avaliação  do  Bem” quando  há<br>prestação  do  serviço  especificado,  consoante  depreende-se  do  entendimento<br>pacificado  pelo  STJ,  no  julgamento  do  REsp  nº&nbsp;1.578.553/SP  –  Recurso  Repetitivo<br>(Tema 958):<br>“Validade  da  tarifa  de  avaliação  do  bem  dado  em  garantia,<br>ressalvada  a  abusividade  da  cobrança  por  serviço  não<br>prestado e a possibilidade de controle da onerosidade excessiva,<br>em cada caso concreto. (Tema 958 do STJ)”<br>Entretanto,  não obstante tenha sido apresentado pela  instituição<br>bancária o suposto termo de avaliação do veículo objeto do financiamento (mov. 12.2),<br>denota-se  que  tal  documento,  por  si  só,  não  é  apto  para  atestar  que  houve  a<br>prestação do serviço indicado, eis que produzido unilateralmente, com informações<br>genéricas  e  escassas,  não  por  meio  de  uma  típica  avaliação  fornecida  por  um<br>despachante. <br>Logo,  uma  vez  que  não  restou  efetivamente  demonstrado  pela<br>Recorrente que houve ônus financeiro para a elaboração do laudo, reputo que no caso<br>em hipótese verifica-se abusividade na sua cobrança, devendo ser restituído o valor<br>cobrado. <br>Outrossim, esclareço que o termo inicial para atualização monetária<br>e  de  juros  de  mora  devem  permanecer  nos  moldes  da  r.  sentença eis  que  se<br>encontram em observância ao contido na art. 4051 do Código Civil e na Súmula 43, do<br>C. STJ2. Além disso, cumpre ressaltar que a Taxa Selic é inaplicável, porquanto, não<br>possui o poder de recuperar o poder de compra da moeda desde que a consumidora<br>foi privada da quantia indevidamente cobrada.&nbsp; <br>Por  outro  lado,  entendo  que  o  pleito  recursal  objetivando  o<br>reconhecimento  da  legalidade  da  cobrança  das  tarifas  intituladas  “Registro  de<br>Contrato” e “Seguro” merece provimento. <br>Primeiro  pois,  com  relação  a  tarifa  denominada  “Registro  de<br>Contrato”,  entendesse  que  a  sua  finalidade  é  dar  publicidade  à  contratação  e  ao<br>encargo que recai  sobre  o  bem dado em garantia.  Com efeito,  conforme o artigo<br>1.361, § 1º, do Código Civil3, e o artigo 2º da Resolução do Contran nº 320/20094, a<br>propriedade  fiduciária  se  constitui  mediante  o  registro  do  contrato  na  repartição<br>competente, com a anotação no certificado de registro.<br>Nesse sentido, sobre a referida tarifa, destaca-se o entendimento<br>pacificado pelo STJ no julgamento do REsp nº&nbsp;1.578.553/SP – Recurso Repetitivo (Tema<br>958):<br> “  [...] 2.3. Validade da tarifa de avaliação do bem dado em <br>garantia, bem como da cláusula que prevê o ressarcimento<br>de despesa com o registro do contrato, ressalvadas a: 2.3.1.<br>1 Art. 405 do Código Civil – Contam-se os juros de mora desde a citação inicial.<br>2 Súmula 43 STJ – Incide correção monetária sobre dívida por ato ilícito a partir da data do <br>efetivo prejuízo.<br>3 Art.  1.361.  Considera-se fiduciária  a  propriedade resolúvel  de coisa móvel  infungível  que o<br>devedor, com escopo de garantia, transfere ao credor.<br>§ 1 o Constitui-se a propriedade fiduciária com o registro do contrato, celebrado por instrumento<br>público ou particular, que lhe serve de título, no Registro de Títulos e Documentos do domicílio do<br>devedor, ou, em se tratando de veículos, na repartição competente para o licenciamento, fazendo-<br>se a anotação no certificado de registro.<br>4 Art.  2º  Os contratos de financiamento de veículos com cláusula de alienação fiduciária,  de<br>arrendamento mercantil, de compra e venda com reserva de domínio ou de penhor celebrados,<br>por instrumento público ou privado, serão registrados no órgão ou entidade executivo de trânsito<br>do Estado ou do Distrito Federal em que for registrado e licenciado o veículo.<br>abusividade  da  cobrança  por  serviço  não  efetivamente<br> prestado;  e  a  2.3.2.  &nbsp; possibilidade  de  controle  da <br>onerosidade excessiva,  em  cada  caso  concreto.  [...]  (REsp<br>1578553/SP,  Rel.  Ministro  PAULO  DE  TARSO  SANSEVERINO,<br>SEGUNDA SEÇÃO, julgado em 28/11/2018, DJe 06/12/2018)”.<br>&nbsp;<br>Desse modo, entre os requisitos que propiciam a cobrança, não está<br>a comprovação do efetivo registro por parte da instituição financeira, uma vez que tal<br>ato se concretiza no interesse do proprietário fiduciário, sobre quem recairia os efeitos<br>da eventual desídia. Além disso, denota-se que além do valor do encargo ter restado<br>expresso no contrato (R$ 350,00), este não se mostra abusivo ao considerar o valor<br>financiado (R$ 147.258,96). <br>No tocante ao Seguro de Proteção Financeira, restou estabelecido<br>pelo STJ, no julgamento do REsp nº 1.639.259/SP – Recurso Repetitivo (Tema 972), que<br>“[...]  o  consumidor  não  pode  ser  compelido  a  contratar  seguro  com  a<br>instituição financeira ou com seguradora por ela indicada”.<br>Assim,  em  que  pese  o  previsto  na  sentença  proferida  pelo  juiz<br>singular, não há que se falar em prática de venda casada no presente caso, vez que  no<br>contrato de financiamento ora analisado houve a opção de adesão ou não ao seguro<br>(mov. 1.5) e, ainda, a “Proposta de Adesão – Seguro Proteção Financeira Automóveis”<br>e  a  “Proposta  de  Contratação  –  Seguro  de  Acidentes  Pessoas  Premiado”  foram<br>firmados por meio de instrumentos apartados, por meio de assinatura eletrônica, a<br>qual não foi impugnada pela Autora (mov. 12.2). <br>Nesse sentido, destaca-se o entendimento unânime desta 5ª Turma<br>Recursal do e. TJ/PR sobre o tema, conforme os seguintes julgados:<br>&nbsp;<br>TARIFAS  BANCÁRIAS.  TEMA  958/STJ.TARIFA  DE  REGISTRO  DE<br>CONTRATO.  LEGALIDADE DA COBRANÇA.  RESTITUIÇÃO INDEVIDA.<br>TARIFA  DE  AVALIAÇÃO  DO  BEM.  AUSÊNCIA  DE<br>COMPROVAÇÃO  DA  EFETIVA  PRESTAÇÃO  DO  SERVIÇO.<br>COBRANÇA  ILEGAL.  RESTITUIÇÃO  DEVIDA. SEGUROS.<br>CONTRATAÇÕES  EM  APARTADO  COMPROVADAS.<br>LEGALIDADE DAS COBRANÇAS. TEMA 972/STJ. RESTITUIÇÃO<br>INDEVIDA. SENTENÇA  PARCIALMENTE  REFORMADA.  RECURSO<br>CONHECIDO E PARCIALMENTE PROVIDO. (TJPR - 5ª Turma Recursal<br>dos Juizados Especiais - 0004439-96.2021.8.16.0131 - Pato Branco<br>-&nbsp; Rel.: JUÍZA DE DIREITO SUBSTITUTO JÚLIA BARRETO CAMPELO -&nbsp; J.<br>28.03.2022). <br>&nbsp;<br>DECISÃO MONOCRÁTICA.&nbsp; RECURSO INOMINADO.&nbsp; BANCÁRIO. AÇÃO<br>DE REVISÃO CONTRATUAL C/C REPETIÇÃO DE INDÉBITO.  TARIFAS<br>INCIDENTES EM CONTRATO DE FINANCIAMENTO DE VEÍCULO.<br>SENTENÇA DE PARCIAL PROCEDÊNCIA. RECURSO DO RECLAMADO -<br>PLEITO  DE  RECONHECIMENTO  DA  LEGALIDADE  NA<br> COBRANÇA  DE  TARIFA  &nbsp; DE  &nbsp; ‘REGISTRO  DO  CONTRATO’  &nbsp; - <br> POSSIBILIDADE  &nbsp; -  &nbsp; DESNECESSIDADE  &nbsp; DE  &nbsp; COMPROVAÇÃO  &nbsp;<br>DO EFETIVO REGISTRO PELA INSTITUIÇÃO FINANCEIRA - ATO<br> QUE  SE  &nbsp; CONCRETIZA  &nbsp; NO  &nbsp; INTERESSE  &nbsp; DO  PROPRIETÁRIO <br> FIDUCIÁRIO,  &nbsp; EM QUEM RECAIRÁ OS EFEITOS D EVENTUAL <br>DESÍDIA – FUNDAMENTO NO ART. 1.361 DO CC E NO ART. 2º<br>DA RESOLUÇÃO N. 320/2009 CONTRAN. EXPRESSA PREVISÃO<br> CONTRATUAL  DA  TARIFA  EM  &nbsp; VALOR  &nbsp; NÃO  &nbsp; ABUSIVO  &nbsp; – <br> COBRANÇA  &nbsp; QUE  &nbsp; SE  &nbsp; CONFIGURA  &nbsp; DEVIDA.  SENTENÇA<br>REFORMADA. RECURSO INOMINADO CONHECIDO E PROVIDO. (TJPR<br>-  5ª  Turma  Recursal  dos  Juizados  Especiais  -  0004613-<br>55.2022.8.16.0104 - Laranjeiras do Sul -&nbsp; Rel.: JUÍZA DE DIREITO DA<br>TURMA  RECURSAL  DOS  JUÍZAADOS  ESPECIAIS  MARIA  ROSELI<br>GUIESSMANN -&nbsp; J. 27.07.2023).<br>&nbsp;<br>RECONHECIMENTO DE ILEGALIDADE DA COBRANÇA DE “TARIFA DE<br>CADASTRO”, “IOF” E “SEGURO” – IMPOSSIBILIDADE – LEGALIDADE<br>DA COBRANÇA DE TARIFA DE CADASTRO NO INÍCIO DA RELAÇÃO<br>ENTRE CONSUMIDOR E INSTITUIÇÃO FINANCEIRA – SÚMULA 566 DO<br>STJ. VALOR COBRADO QUE NÃO SE MOSTRA ABUSIVO EM RELAÇÃO<br>AO  CRÉDITO  TOTAL  DO  CONTRATO.  COBRANÇA  DE  IOF  NÃO<br>ABUSIVA  –  POSSIBILIDADE  DE  REPASSE  DO  ENCARGO  AO<br>CONTRATANTE – PREVISÃO CONTRATUAL.   ADESÃO AO SEGURO <br>QUE FOI FACULTADA AO CONSUMIDOR – CONTRATAÇÃO QUE<br>SE DEU MEDIANTE INSTRUMENTO PRÓPRIO – AUSÊNCIA DE<br>DEMONSTRAÇÃO  DE  VENDA  CASADA  –  RESTITUIÇÃO<br>INDEVIDA. PLEITO DE ALTERAÇÃO DA DEVOLUÇÃO DE VALORES<br>PARA A FORMA DOBRADA – IMPOSSIBILIDADE – AUSÊNCIA DE MÁ-FÉ<br>DA INSTITUIÇÃO FINANCEIRA – AFASTAMENTO DA REGRA DO ART.<br>42,  P.  ÚN.,  DO  CDC. SENTENÇA  MANTIDA  POR  SEUS  PRÓPRIOS<br>FUNDAMENTOS. RECURSO INOMINADO CONHECIDO E DESPROVIDO.<br>(TJPR  -  5ª  Turma  Recursal  dos  Juizados  Especiais  -  0001546-<br>03.2022.8.16.0098  -  Jacarezinho  -&nbsp; Rel.:  JUÍZA  DE  DIREITO  DA<br>TURMA  RECURSAL  DOS  JUÍZAADOS  ESPECIAIS  MARIA  ROSELI<br>GUIESSMANN -&nbsp; J. 30.01.2023).<br>&nbsp;<br>TARIFAS  BANCÁRIAS.  TEMA  958/STJ.TARIFA  DE  REGISTRO  DE<br>CONTRATO.  LEGALIDADE DA COBRANÇA.  RESTITUIÇÃO INDEVIDA.<br>TARIFA DE AVALIAÇÃO DO BEM. AUSÊNCIA DE COMPROVAÇÃO DA<br>EFETIVA  PRESTAÇÃO  DO  SERVIÇO.  COBRANÇA  ILEGAL.<br>RESTITUIÇÃO  DEVIDA.  SEGUROS.  CONTRATAÇÕES  EM<br>APARTADO COMPROVADAS. LEGALIDADE DAS COBRANÇAS.<br>TEMA  972/STJ.  RESTITUIÇÃO  INDEVIDA. SENTENÇA<br>PARCIALMENTE  REFORMADA.  RECURSO  CONHECIDO  E<br>PARCIALMENTE PROVIDO. (TJPR -  5ª Turma Recursal  dos Juizados<br>Especiais - 0004439-96.2021.8.16.0131 - Pato Branco -&nbsp; Rel.: JUÍZA<br>DE DIREITO SUBSTITUTO JÚLIA BARRETO CAMPELO -&nbsp; J. 28.03.2022).<br>III – CONCLUSÃO<br>Diante  do  exposto,  com  fundamento  no  artigo  932  do  CPC,<br>conheço dou parcial provimento ao Recurso Inominado interposto pela Reclamada,<br>a fim de reconhecer a legalidade da cobrança das tarifas denominadas “Registro de<br>Contrato” e “Seguros”, mantendo a decisão nos demais pontos. <br>Ante  o  resultado  do  apelo,  impõe-se  a  condenação  da  parte<br>Recorrente ao pagamento de honorários advocatícios, estes fixados em 10% (dez por<br>cento) sobre o valor da condenação, ou, não havendo, sobre o valor da causa, nos<br>termos do artigo 55 da Lei nº 9.099/1995.<br>Ressalta-se que as regras dos artigos 85 e 86, ambos do Código de<br>Processo Civil, não se aplicam em sede de Juizados Especiais, diante da existência de<br>Legislação específica sobre o tema e considerando a aplicação subsidiária do referido<br>Código  no  procedimento  estabelecido  pela  Lei  nº  9.099/1995,  nos  termos  do<br>Enunciado n. 161 do FONAJE.<br>Custas  na  forma  da  Lei  Estadual  nº  18.413/2014,  ressalvada  a<br>eventual anterior concessão dos benefícios da assistência judiciária gratuita.<br>Curitiba, datado e assinado digitalmente.<br>&nbsp;<br>Maria Roseli Guiessmann<br>Magistrada</div>
+                                            </td>
+                                        </tr>
+                                    
+
+                                    
+                                    
+
+                                
+                                
+								</tbody>
+							</table>
+
+							
+							
+						
+						
+						 
+						
+						<br> 
+						
+							<div id="navigator"><div class="navRight"><a class="arrowFirstOff" title="Ir para a primeira página"><span>Primeira Página</span></a><a class="arrowPreviousOff" title="Ir para a página anterior"><span>Página Anterior</span></a><b>1</b><a class="arrowNextOff" title="Ir para a próxima página"><span>Próxima Página</span></a><a class="arrowLastOff" title="Ir para a última página"><span>Última Página</span></a></div><div class="navLeft">1 registro(s) encontrado(s), exibindo de 1 até 1</div><div style="clear:both"></div></div>
+						 <br>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	</form>
+
+<script>
+  function abrirEmenta(idTd,idRefTd) {
+	  var iof=0;
+	  try {
+		  var r = $(idTd).innerHTML.toLowerCase().match(/(^|\s)ementa\s*:*/g);
+		  if ( r!=null  ) {
+			  iof = $(idTd).innerHTML.toLowerCase().indexOf(r[0]);
+			  if (iof>=0) { iof+=r[0].length; } else { iof = 0; }  
+		  }
+		  r=null; 
+	  }
+	  catch(err) {
+		  iof=0;
+	  }
+	  ref = $(idRefTd).innerHTML;
+	  $('divtexto').innerHTML = $(idTd).innerHTML.substring(iof).trim().replace(/<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)<\/\1>/gi,'$2').replace(/<br[^>]*>/gi,'\n') + '\n' + ref;
+	  var imprJanela = window.open('/jurisprudencia/branco.html;jsessionid=519a2fd0613cc64cdcfe11247e19','s'+idTd,'status=1,scrollbars=1,width=600,height=500');
+	  imprJanela.onload=selecionar;
+	  imprJanela.document.open("text/html");
+	  imprJanela.document.write("<html><body>");
+	  imprJanela.document.write($('divformatado').innerHTML);
+	  imprJanela.document.write("</body></html>");
+	  imprJanela.document.close();
+  }
+
+  function abrirReferencia(idRefTd) {
+      ref = $(idRefTd).innerHTML;
+      $('divtexto').innerHTML = ref.trim().replace(/<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)<\/\1>/gi,'$2').replace(/<br[^>]*>/gi,'\n') + '\n';
+      var imprJanela = window.open('/jurisprudencia/branco.html;jsessionid=519a2fd0613cc64cdcfe11247e19','s'+idRefTd,'status=1,scrollbars=1,width=600,height=500');
+
+      imprJanela.onload=selecionar;
+      imprJanela.document.open("text/html");
+      imprJanela.document.write("<html><body>");
+      imprJanela.document.write($('divformatado').innerHTML);
+      imprJanela.document.write("</body></html>");
+      imprJanela.document.close();
+  }
+
+  function modalPJE(url,idTd) {
+	  $('espacoDE').innerHTML = "<iframe id='frameimp' src='" + url + "' width='100%'/>";
+	  var imprJanela = window.open('/jurisprudencia/branco.html;jsessionid=519a2fd0613cc64cdcfe11247e19','s'+idTd,'status=1,scrollbars=1,width=600,height=600');
+	  imprJanela.document.open("text/html");
+	  imprJanela.document.write("<html><body>");
+	  imprJanela.document.write($('documentoExterno').innerHTML);
+	  imprJanela.document.write("</body></html>");
+	  imprJanela.document.close();
+	  setTimeout(imprJanela.DEselecionar, 1000);
+  }
+
+</script>
+	<div style="display: none" id="divformatado">
+		<style type="text/css">
+@media print {
+	.naoimprime {
+		display: none;
+	}
+}
+</style>
+		<script>
+  function substitui() {
+    document.getElementById('divimpressao').innerHTML = document.getElementById('divtexto').innerHTML.replace(/\n/gi,'<br>'); 
+    document.getElementById('divimpressao').style.display="";
+	document.getElementById('divtexto').style.display="none";
+  }
+  function copyToClipboard() {
+      const textarea = document.getElementById('divtexto');
+      textarea.focus();
+      if (textarea.selectionStart === textarea.selectionEnd) {
+          textarea.select(); // seleciona tudo
+      }
+      document.execCommand('copy');
+  }
+  function selecionar() {
+	  document.getElementById('divtexto').style.display="";
+	  document.getElementById('divimpressao').style.display="none";
+	  var text_val=document.getElementById('divtexto');
+	  text_val.focus();
+	  text_val.select();
+  }
+</script>
+		<h3 style="border-bottom: 1px solid #5D1F19; color: #5D1F19;">Jurisprudência</h3>
+		<table width="100%" style="color: #444444; font-family: Tahoma, Verdana, Arial, Helvetica, Sans-Serif; font-size: 10pt;">
+			<tbody><tr>
+				<td style="padding: 10px; background-color: white;"><font class="news">Visualização</font></td>
+				<td align="right">
+                    <div onclick="copyToClipboard();" style="cursor: pointer; display: inline;" title="Copia o texto selecionado ou, na ausência de seleção, todo o conteúdo">
+                        <img style="position: relative; top: 2px; width:17px; height:17px;" src="/jurisprudencia/img/icons/copy-paste.svg;jsessionid=519a2fd0613cc64cdcfe11247e19" alt="Selecionar tudo"> Copiar seleção
+                    </div>&nbsp;&nbsp;
+					<div onclick="selecionar();" style="cursor: pointer; display: inline;">
+						<img style="position: relative; top: 2px" src="/jurisprudencia/img/icons/ementa-pre-formatada.gif;jsessionid=519a2fd0613cc64cdcfe11247e19" alt="Selecionar tudo"> Selecionar tudo
+					</div>&nbsp;&nbsp;
+					<div onclick="substitui();window.print();" style="cursor: pointer; display: inline;">
+						<img style="position: relative; top: 2px" src="/jurisprudencia/img/icons/imprimir.gif;jsessionid=519a2fd0613cc64cdcfe11247e19" alt="Imprimir o texto"> Imprimir
+					</div>&nbsp;&nbsp;
+					<div onclick="window.close();" style="cursor: pointer; display: inline;">
+						<img style="position: relative; top: 2px" src="/jurisprudencia/img/themes/red/iClose2.png;jsessionid=519a2fd0613cc64cdcfe11247e19" alt="Fechar">
+						Fechar
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 25px; border: 1px solid rgb(221, 221, 221); background-color: rgb(245, 245, 245); display: none" id="divimpressao"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><textarea class="naoimprime" style="padding: 25px; border: 1px solid rgb(221, 221, 221); background-color: rgb(245, 245, 245); width: 100%;" rows="10" cols="60" id="divtexto"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="background-color: white;">
+					<p>
+						<br> <font color="#000000">* Não vale como certidão ou
+							intimação. </font>
+					</p>
+				</td>
+			</tr>
+		</tbody></table>
+	</div>
+
+	<div style="display: none" id="documentoExterno">
+		<style type="text/css">
+@media print {
+	.naoimprime {
+		display: none;
+	}
+}
+</style>
+		<script>
+	function DEimprimir() {
+		var o = document.getElementById('frameimp');
+		o.contentWindow.window.print();
+	}
+  function DEselecionar() {
+		var o = document.getElementById('frameimp');
+		var cand = o.contentWindow.window.outerHeight;
+		var lim = screen.height-300;
+		if (cand > lim) cand=lim;
+		o.height=cand;
+		window.resizeTo(window.outerWidth, cand+300);
+   }
+  
+</script>
+		<h3 style="border-bottom: 1px solid #5D1F19; color: #5D1F19;">Jurisprudência</h3>
+		<table width="100%" style="color: #444444; font-family: Tahoma, Verdana, Arial, Helvetica, Sans-Serif; font-size: 10pt;">
+			<tbody><tr>
+				<td style="padding: 10px; background-color: white;"><font class="news">Visualização</font></td>
+				<td align="right">
+					<div onclick="DEimprimir();" style="cursor: pointer; display: inline;">
+						<img style="position: relative; top: 2px" src="/jurisprudencia/img/icons/imprimir.gif;jsessionid=519a2fd0613cc64cdcfe11247e19" alt="Imprimir o texto"> Imprimir
+					</div>&nbsp;&nbsp;
+					<div onclick="window.close();" style="cursor: pointer; display: inline;">
+						<img style="position: relative; top: 2px" src="/jurisprudencia/img/themes/red/iClose2.png;jsessionid=519a2fd0613cc64cdcfe11247e19" alt="Fechar">
+						Fechar
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 25px; border: 1px solid rgb(221, 221, 221); background-color: rgb(245, 245, 245); display: none" id="divimpressao"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center" id="espacoDE"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="background-color: white;">
+					<p>
+						<br> <font color="#000000">* Não vale como certidão ou
+							intimação. </font>
+					</p>
+				</td>
+			</tr>
+		</tbody></table>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+    voltas = history.length;
+    var idsProcesso;
+
+    idsProcesso = [];
+
+    //alert(document.forms['pesquisaForm']['idsSelecionadosImp'][0].value);
+    if (idsProcesso.length==0) {
+        if (document.forms['pesquisaForm'] && document.forms['pesquisaForm']['idsSelecionadosImp']) {
+            num=document.forms['pesquisaForm']['idsSelecionadosImp'].length;
+            if (num>0) {
+                for(var x=0;x<num;x++) {
+                    idsProcesso[idsProcesso.length]=document.forms['pesquisaForm']['idsSelecionadosImp'][x].value;
+                }
+            }
+        }
+    }
+
+    //passei a destacar o texto por meio da TAG java
+    //destacaTexto(2, 1,idsProcesso, 'ementa');
+    //destacaTexto(2, 1,idsProcesso, 'texto');
+</script>
+				
+			
+			
+		</div>
+
+	</div>
+
+</body></html>

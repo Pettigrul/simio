@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cc23ddb01c7",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://motorsstore.com.br/avaliacao",
+  "final_url": "https://motorsstore.com.br/avaliacao",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.150.1.65",
+  "collected_at": "2026-11-19T18:33:14.950865+00:00",
+  "manifest_written_at": "2026-11-19T18:33:19.562464+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cc23ddb01c7\\attempt-1\\viewport.png",
+      "sha256": "30ac12215d46f4d3187cc772bf5ab25c56b800ddee2f96efa3d8fc2e23b7c471",
+      "size_bytes": 47183
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cc23ddb01c7\\attempt-1\\fullpage.png",
+      "sha256": "30ac12215d46f4d3187cc772bf5ab25c56b800ddee2f96efa3d8fc2e23b7c471",
+      "size_bytes": 47183
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cc23ddb01c7\\attempt-1\\page.html.txt",
+      "sha256": "1129be7adc90a2aa3f142c5513da06589b2e011fae31d4263157ebce6856c819",
+      "size_bytes": 65475
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cc23ddb01c7\\attempt-1\\text.txt",
+      "sha256": "10eb94b9cd00b3f91f18f701219b65632dd934dc17551e514ec905c4d6b0547d",
+      "size_bytes": 793
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cc23ddb01c7\\attempt-1\\page.json",
+      "sha256": "ce2b9e9242e433d6f0531d82de64f82d0602e25feb4fee7b52ed1072fd47ee80",
+      "size_bytes": 2750
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

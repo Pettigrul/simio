@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1a33ce6e2f",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.aquinoveiculos.com.br/",
+  "final_url": "https://www.aquinoveiculos.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "89.116.213.24",
+  "collected_at": "2026-11-19T18:14:19.799592+00:00",
+  "manifest_written_at": "2026-11-19T18:14:24.836523+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C1a33ce6e2f\\attempt-1\\viewport.png",
+      "sha256": "ab1409a226ebc9c92d4733095b539cfef16c14cf32c1dfba39ed900e29582ad2",
+      "size_bytes": 47540
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C1a33ce6e2f\\attempt-1\\fullpage.png",
+      "sha256": "ab1409a226ebc9c92d4733095b539cfef16c14cf32c1dfba39ed900e29582ad2",
+      "size_bytes": 47540
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C1a33ce6e2f\\attempt-1\\page.html.txt",
+      "sha256": "c6aa4177d99f891f0ced525b3d78222f15d6cb9dedefa56cd63fef64c974105d",
+      "size_bytes": 65490
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C1a33ce6e2f\\attempt-1\\text.txt",
+      "sha256": "897b29f4d379465db0e0091b8231694797231bbfbd36b4f73386507bc4e2faff",
+      "size_bytes": 794
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C1a33ce6e2f\\attempt-1\\page.json",
+      "sha256": "4c5064c106ce4e10c19153d311a8123e9bb432e21ccfdb5be55821eb970c83c5",
+      "size_bytes": 2752
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C8037dfd392</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C8037dfd392 — vazoli.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://vazoli.com.br/parceiros</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se da página de &#39;Parceiros&#39; da franquia e correspondente bancário Vazoli Soluções Financeiras (CNPJ 18.529.949/0001-49). O estabelecimento apresenta alta transparência quanto à sua identidade empresarial, contexto multibancos, aviso explícito da Resolução CMN nº 4.935/2021 e divulgação de SAC/Ouvidoria das instituições. Contudo, como exibe o logotipo gráfico do &#39;banco BV&#39; em sua galeria de parceiros, classifica-se como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED / MEDIUM) para verificação de conformidade quanto ao uso de logotipo da instituição contratante (art. 14, II, da Resolução CMN nº 4.935/2021).
+[Revisor: CONFIRM] A página pertence a um correspondente bancário / promotora de crédito (Vazoli Soluções Financeiras - CNPJ 18.529.949/0001-49) que atua em múltiplos produtos, incluindo Financiamento de Veículos e Crédito Pessoal. Embora a empresa identifique claramente sua condição de Correspondente Bancário nos termos da Resolução CMN nº 4.935/2021, sua razão social, CNPJ e informe os números de SAC e Ouvidoria do Banco BV no card exibido em E-SHOT-FULL, há utilização do logotipo gráfico da instituição contratante e necessidade de verificar se o CNPJ consta na base de correspondentes autorizados do Banco BV. Portanto, confirma-se a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C8037dfd392/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 22be1d5db8fc75789ca6c924299f624b0d5763349e855ccbee51858575f6c713</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C8037dfd392/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 05d7dcc72ddd4e6b592daf6606235c1f219dd79945e46ee65aa250d82b0f6912</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://vazoli.com.br/parceiros (domínio: vazoli.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): vazoli.com.br — Contudo, a ampliação da varredura para vídeos públicos de redes sociais, revendas de veículos, corretoras e correspondentes bancários permitiu identificar estabelecimentos e canais que promovem o **&#34;Feirão BV&#34;** ou ofertam **financiamento de veículos sob a marca do Banco BV / BV Financeira** | **Estabelecimento / Perfil:** Vazoli Franchising / Soluções Financeiras | **URL:** `https://www.vazoli.com.br/parceiros` | **Como utiliza a marca:** Exibe a marca e o logotipo do **Banco BV** em destaque em sua vitrine digital de parceiros para captação de clientes de **Financiamento de Veículos**, Crédito Pessoal e Consignado, com chamadas para cotação/simulação própria (*&#34;Faça uma cotação&#34;*) | Por ser um Correspondente Bancário, a Vazoli está limitada ao encaminhamento de propostas referentes a operações de crédito&#34;*)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C8037dfd392\attempt-1\viewport.png (sha256 22be1d5db8fc7578…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C8037dfd392\attempt-1\fullpage.png (sha256 05d7dcc72ddd4e6b…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Parceiros | Vazoli Soluções Financeiras</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Conheça todos os nossos bancos parceiros. Conheça!</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>BANCOS PARCEIROS</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>A Vazoli Soluções Financeiras é correspondente dos seguintes bancos e instituições</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>A Vazoli Produtos Unidades Parceiros Contato Contrate On-Line Bancos Parceiros Home | Parceiros Bancos Parceiros A Vazoli Soluções Financeiras é correspondente dos seguintes bancos e instituições A Vazoli é um Correspondente Bancário das seguintes Intituições Financeiras: Aliro, Allianz, Azul Seguros, Banco BMG, Banco BV, Banco Daycoval, Banco Digio, Banco do Brasil, Banco Inter, Banco Itaú Consignado, Banco Mercantil do Brasil S.A., Banco Pan, Banco Safra, Banco Santander Olé Consignado, Banrisul, Bradesco Financiamentos, BRB Financeira, C6 Consig, Canopus, Cashme, Creditas, Crefaz, Darwin Seguros, Embracon, Erbank, Essor Seguros, Ezze Seguros, Facta Financeira, Finanto, Flamex, HDI Seguros, iCred Crédito Inteligente, JBcred, Justus Seguradora, Mapfre, Mitsui Seguradora, Novo Seguros, PicPay, Pier Seguradora, Porto, Rodobens, Suhai Seguros, Tokio Marine Seguradora, Via Certa Banking, Yelum Seguradora, Zurich Seguros. Todos Crédito Consignado Crédito Pessoal Financiamento de Veículos Crédito Imobiliário Consórcio</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Precisando de dinheiro na mão? A Vazoli tem as melhores soluções! Faça uma cotação Siga-nos: Contatos Atendimento On-Line (17) 3513-4888 expansao@vazoli.com.br Contato Política de Privacidade Termos de Uso Canais Digitais Mapa do Site Home Sobre a Vazoli Produtos Unidades Parceiros Contato Pra você Crédito Consignado Financiamento Imobiliário Crédito Pessoal Saque Aniversário FGTS Ver Todos Institucional Acesso Ninho Treinamento Webmail Atendimento</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://vazoli.com.br/&gt; | A Vazoli &lt;https://vazoli.com.br/empresa&gt; | Produtos &lt;https://vazoli.com.br/produtos&gt; | Unidades &lt;https://vazoli.com.br/unidades&gt; | Parceiros &lt;https://vazoli.com.br/parceiros&gt; | Contato &lt;https://vazoli.com.br/contato&gt; | Instagram &lt;https://www.instagram.com/vazolioficial/&gt; | Facebook &lt;https://www.facebook.com/vazolioficial/&gt; | Youtube &lt;https://www.youtube.com/channel/UCU-RAs970rSmkkEzFcZY3TA/featured&gt; | Contrate On-Line &lt;https://vazoli.com.br/unidades&gt; | Área do Franqueado &lt;https://vazoli.com.br/#&gt; |  &lt;https://vazoli.com.br/&gt; | A Vazoli &lt;https://vazoli.com.br/empresa&gt; | Produtos &lt;https://vazoli.com.br/produtos&gt; | Unidades &lt;https://vazoli.com.br/unidades&gt; | Parceiros &lt;https://vazoli.com.br/parceiros&gt; | Contato &lt;https://vazoli.com.br/contato&gt; | Instagram &lt;https://www.instagram.com/vazolioficial/&gt; | Facebook &lt;https://www.facebook.com/vazolioficial/&gt; | Youtube &lt;https://www.youtube.com/channel/UCU-RAs970rSmkkEzFcZY3TA/featured&gt; | Contrate On-Line &lt;https://vazoli.com.br/unidades&gt; | Área do Franqueado &lt;https://vazoli.com.br/#&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>nav</td><td>Contrate On-Line &lt;https://vazoli.com.br/unidades&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>Contrate On-Line &lt;https://vazoli.com.br/unidades&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>footer</td><td>Faça uma cotação &lt;https://vazoli.com.br/unidades&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>nav</td><td>Instagram &lt;https://www.instagram.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>nav</td><td>Facebook &lt;https://www.facebook.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>nav</td><td>Instagram &lt;https://www.instagram.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>nav</td><td>Facebook &lt;https://www.facebook.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>header</td><td>Instagram &lt;https://www.instagram.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>header</td><td>Facebook &lt;https://www.facebook.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>header</td><td>Instagram &lt;https://www.instagram.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>header</td><td>Facebook &lt;https://www.facebook.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/vazolioficial/&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/vazolioficial&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>footer</td><td>(17) 3513-4888 &lt;tel:1735134888&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>footer</td><td>expansao@vazoli.com.br &lt;mailto:expansao@vazoli.com.br&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>nav</td><td>imagem alt=&#39;Vazoli Soluções Financeiras&#39; src=https://vazoli.com.br/logo/logo.png (160x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Vazoli Soluções Financeiras&#39; src=https://vazoli.com.br/logo/logo3.png (160x48, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Vazoli Empréstimos e Financiamentos&#39; src=https://vazoli.com.br/logo/logo3.png (230x69, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>BANCOS</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Home | Parceiros</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>BANCOS PARCEIROS</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A Vazoli Soluções Financeiras é correspondente dos seguintes bancos e instituições</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>A Vazoli é um Correspondente Bancário das seguintes Intituições Financeiras: Aliro, Allianz, Azul Seguros, Banco BMG, Banco BV, Banco Daycoval, Banco Digio, Banco do Brasil, Banco Inter, Banco Itaú Consignado, Banco Mercantil do Brasil S.A., Banco Pan, Banco Safra, Banco Santander Olé Consignado, Banrisul, Bradesco Financiamentos, BRB Financeira, C6 Consig, Canopus, Cashme, Creditas, Crefaz,</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Atendimento On-Line</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Atendimento</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Por ser um Correspondente Bancário, a Vazoli está limitada ao encaminhamento de propostas referentes a operações de crédito, cabendo as Instituições Financeiras a análise e aprovação do crédito, nos termos da Resolução CMN Nº 4.935, de 29 de julho de 2.021.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>VAZOLI FRANCHISING LTDA | 18.529.949/0001-49</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site utiliza identidade visual própria da Vazoli Soluções Financeiras (tons de verde e escuro), sem imitar o layout institucional do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-2">E-IMG-2</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A empresa identifica claramente sua razão social e CNPJ no rodapé (&#39;VAZOLI FRANCHISING LTDA | 18.529.949/0001-49&#39;), bem como seu nome comercial no topo e título.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-013">E-TXT-013</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página declara expressamente na área visível inicial e no rodapé sua condição de Correspondente Bancário nos termos da Resolução CMN nº 4.935/2021, além de apresentar no card do Banco BV os telefones de SAC e Ouvidoria da instituição.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A linguagem é clara ao posicionar a Vazoli como correspondente de diversas instituições financeiras, sem se passar pelo próprio Banco BV.</td><td class="mono"><a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-TXT-008">E-TXT-008</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Apesar de listar diversos bancos concorrentes e exibir os canais de SAC/Ouvidoria, a página utiliza o logotipo gráfico &#39;banco BV&#39; no card de parceiros.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página é informativa sobre os bancos parceiros e possui botões de chamada para ação (&#39;Contrate On-Line&#39; / &#39;Faça uma cotação&#39;) direcionando para a página de unidades da própria Vazoli.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-3">E-CTA-3</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato exibidos pertencem claramente à Vazoli (telefone, e-mail expansao@vazoli.com.br e redes sociais @vazolioficial), enquanto o card do BV informa os números de SAC (0800 701 8600) e Ouvidoria (0800 707 0083) do banco.</td><td class="mono"><a href="#E-CONTACT-11">E-CONTACT-11</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O risco de o consumidor acreditar estar no site oficial do Banco BV é baixo devido à clara identificação da Vazoli e ao contexto multibancos, mas há uso do logotipo da instituição.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: O correspondente bancário exibe o logotipo da marca &#39;banco BV&#39; em card na vitrine de parceiros na página, prática que requer revisão quanto à vedação de uso de marca/logotipo da instituição contratante pelo correspondente (art. 14, II, da Resolução CMN nº 4.935/2021). — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Declaração expressa de atuação como Correspondente Bancário nos termos da Resolução CMN nº 4.935/2021 na dobra inicial e no rodapé, além de exibição de SAC e Ouvidoria de cada instituição. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identificação clara da razão social (VAZOLI FRANCHISING LTDA) e do CNPJ (18.529.949/0001-49) no rodapé da página. — <span class="mono"><a href="#E-TXT-013">E-TXT-013</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página https://vazoli.com.br/parceiros pertence à Vazoli Soluções Financeiras (VAZOLI FRANCHISING LTDA, CNPJ 18.529.949/0001-49).</li><li>O texto visível na área inicial declara que &#39;A Vazoli é um Correspondente Bancário das seguintes Instituições Financeiras&#39;, listando o Banco BV em conjunto com dezenas de outros bancos e seguradoras.</li><li>Na grade visual de bancos parceiros (E-SHOT-FULL), há um card contendo o logotipo &#39;banco BV&#39; acompanhado dos telefones de SAC, Ouvidoria e Atendimento a deficientes auditivos do banco.</li><li>O rodapé traz aviso expresso sobre a limitação de atuação como Correspondente Bancário conforme a Resolução CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Necessário confirmar se a Vazoli Franchising Ltda consta na base interna de correspondentes autorizados do Banco BV e avaliar o uso do logotipo no card informativo de SAC/Ouvidoria.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se da página de &#39;Parceiros&#39; da franquia e correspondente bancário Vazoli Soluções Financeiras (CNPJ 18.529.949/0001-49). O estabelecimento apresenta alta transparência quanto à sua identidade empresarial, contexto multibancos, aviso explícito da Resolução CMN nº 4.935/2021 e divulgação de SAC/Ouvidoria das instituições. Contudo, como exibe o logotipo gráfico do &#39;banco BV&#39; em sua galeria de parceiros, classifica-se como B_AMBIGUOUS_COMMUNICATION (REVIEW_REQUIRED / MEDIUM) para verificação de conformidade quanto ao uso de logotipo da instituição contratante (art. 14, II, da Resolução CMN nº 4.935/2021).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>VAZOLI FRANCHISING LTDA<br><span class="mono">cnpj:18529949000149</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>vazoli.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>18.529.949/0001-49</td><td class="mono"><a href="#E-TXT-013">E-TXT-013</a></td><td>VAZOLI FRANCHISING LTDA | 18.529.949/0001-49</td></tr>
+      <tr><td>email</td><td>expansao@vazoli.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/vazolioficial/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/vazolioficial/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.youtube.com/channel/UCU-RAs970rSmkkEzFcZY3TA/featured</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/vazolioficial</td><td class="mono"><a href="#E-CONTACT-10">E-CONTACT-10</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>VAZOLI FRANCHISING LTDA</td><td class="mono"><a href="#E-TXT-013">E-TXT-013</a></td><td></td></tr>
+      <tr><td>phone</td><td>(17) 3513-4888</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>1735134888</td><td class="mono"><a href="#E-CONTACT-11">E-CONTACT-11</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Correspondente Bancário</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>A Vazoli Produtos Unidades Parceiros Contato Contrate On-Line Bancos Parceiros Home | Parceiros Bancos Parceiros A Vazoli Soluções Financeiras é correspondente dos seguintes bancos e instituições A Va</td></tr>
+      <tr><td>correspondent_declaration</td><td>Resolução CMN Nº 4.935</td><td class="mono"><a href="#E-TXT-012">E-TXT-012</a></td><td>Por ser um Correspondente Bancário, a Vazoli está limitada ao encaminhamento de propostas referentes a operações de crédito, cabendo as Instituições Financeiras a análise e aprovação do crédito, nos t</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Como utiliza a marca:** Exibe a marca e o logotipo do **Banco BV** em destaque em sua vitrine digital de parceiros para captação de clientes de **Financiamento de Veículos**, Crédito Pessoal e Consi</td></tr>
+      <tr><td>partnership_declaration</td><td>Bancos Parceiros</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>Parceiros Bancos Parceiros A Vazoli Soluções Financeiras é correspondente dos seguintes bancos e instituições A Vazoli é um Correspondente Bancário das seguintes Intituições Financeiras: Aliro, Allian</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-11">E-CONTACT-11</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-3">E-HEAD-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-013">E-TXT-013</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-11">E-CONTACT-11</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a um correspondente bancário / promotora de crédito (Vazoli Soluções Financeiras - CNPJ 18.529.949/0001-49) que atua em múltiplos produtos, incluindo Financiamento de Veículos e Crédito Pessoal. Embora a empresa identifique claramente sua condição de Correspondente Bancário nos termos da Resolução CMN nº 4.935/2021, sua razão social, CNPJ e informe os números de SAC e Ouvidoria do Banco BV no card exibido em E-SHOT-FULL, há utilização do logotipo gráfico da instituição contratante e necessidade de verificar se o CNPJ consta na base de correspondentes autorizados do Banco BV. Portanto, confirma-se a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Uso de logotipo da instituição financeira por Correspondente Bancário</td><td>LOW</td><td>Apesar de apresentar alta transparência regulatória (declaração de correspondente bancário conforme Resolução CMN nº 4.935/2021, razão social, CNPJ e telefones de SAC/Ouvidoria no card do Banco BV), o site exibe o logotipo gráfico do Banco BV na vitrine de parceiros, o que justifica a manutenção de REVIEW_REQUIRED para validação de vínculo contratual e avaliação de conformidade com o art. 14, II, da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-013">E-TXT-013</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-012">E-TXT-012</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-FOLD</li><li>E-TXT-008</li><li>E-TXT-012</li><li>E-TXT-013</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Páginas e vídeos no Facebook divulgando &#39;Feirão Banco BV&#39; ou financiamento sob a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - site:facebook.com (&#34;Feirão Banco BV&#34; OR &#34;Feirão bv financeira&#34; OR &#34;Feirão BV&#34;) -inurl:/bancobv/ -inurl:/napistapp/ -inurl:/public/ -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+  - site:facebook.com (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (veículos OR financiamento) loja -inurl:/bancobv/ -inurl:/napistapp/ -inurl:/public/ -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H6-platform:Facebook</span></td><td class="mono">https://vazoli.com.br/parceiros</td><td>vazoli.com.br<br><span class="muted">Contudo, a ampliação da varredura para vídeos públicos de redes sociais, revendas de veículos, corretoras e correspondentes bancários permitiu identificar estabelecimentos e canais que promovem o **&#34;Feirão BV&#34;** ou ofertam **financiamento de veículos sob a marca do Banco BV / BV Financeira** | **Estabelecimento / Perfil:** Vazoli Franchising / Soluções Financeiras | **URL:** `https://www.vazoli.com.br/parceiros` | **Como utiliza a marca:** Exibe a marca e o logotipo do **Banco BV** em destaque em sua vitrine digital de parceiros para captação de clientes de **Financiamento de Veículos**, Crédito Pessoal e Consignado, com chamadas para cotação/simulação própria (*&#34;Faça uma cotação&#34;*) | Por ser um Correspondente Bancário, a Vazoli está limitada ao encaminhamento de propostas referentes a operações de crédito&#34;*)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:59:30.282246+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.46.66</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C8037dfd392\attempt-1\manifest.json<br>sha256 c957d8f1da46e92963af350b6e9e25ca54276c88652b8f6ba5eeedb8d78ce9eb</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://vazoli.com.br/parceiros<br>Final: https://vazoli.com.br/parceiros</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C8037dfd392\attempt-1\viewport.png</td><td class="mono">22be1d5db8fc75789ca6c924299f624b0d5763349e855ccbee51858575f6c713</td><td>453256</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C8037dfd392\attempt-1\fullpage.png</td><td class="mono">05d7dcc72ddd4e6b592daf6606235c1f219dd79945e46ee65aa250d82b0f6912</td><td>1054464</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C8037dfd392\attempt-1\page.html.txt</td><td class="mono">daa01698886e3cd7de4eaf9a902de379c6dc9ee213d03ac571a2936bc5a83c27</td><td>64426</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C8037dfd392\attempt-1\text.txt</td><td class="mono">5d102831ec19a0358a4888d35301e7103333d212590e3352cd81f22b3f195bc0</td><td>1949</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C8037dfd392\attempt-1\page.json</td><td class="mono">b8db85edeff2111879fb40ad57ac3c0b9efe3721812ae8cd87fc4a9e4fb022f6</td><td>19858</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:59+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:59:30+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:59:58+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:59:58+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T15:00:50+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T15:01:02+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

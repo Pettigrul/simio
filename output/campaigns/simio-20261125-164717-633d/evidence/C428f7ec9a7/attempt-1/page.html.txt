@@ -1,0 +1,1100 @@
+<html lang="pt-BR" class=" sb-sem-ads"><head>
+  <meta charset="UTF-8">
+  <link rel="shortlink" href="/?p=2">
+<link rel="preconnect" href="https://cdn.joinads.me" crossorigin="">
+<script>
+(function(){
+  var LIM=30,CHAVE='sb_pv',robo=false;
+  try{
+    var ua=navigator.userAgent||'';
+    robo=!!navigator.webdriver||new RegExp('[a-z]bot/|(^|[^a-z])bot([^a-z]|$)|crawler|spider|headless|lighthouse|phantomjs','i').test(ua);
+  }catch(e){}
+  function contar(){
+    try{
+      var t=Date.now(),l=JSON.parse(localStorage.getItem(CHAVE)||'[]');
+      if(!Array.isArray(l))l=[];
+      l=l.filter(function(x){return t-x<36e5;});l.push(t);
+      if(l.length>LIM*2)l=l.slice(-LIM*2);
+      localStorage.setItem(CHAVE,JSON.stringify(l));
+      return l.length;
+    }catch(e){return 0;}
+  }
+  function aviso(){
+    if(document.querySelector('.sb-aviso-api'))return;
+    var alvo=document.querySelector('[joinadscode],.joinads');
+    if(!alvo||!alvo.parentNode)return;
+    var a=document.createElement('div');a.className='sb-aviso-api';
+    a.innerHTML='<strong>Consultando muitos CNPJs?</strong> A <a href="/api">API do SINTEGRA Brasil</a> devolve a inscri\u00e7\u00e3o estadual e os dados cadastrais direto no seu sistema, sem abrir p\u00e1gina por p\u00e1gina.';
+    alvo.parentNode.insertBefore(a,alvo);
+  }
+  function bloquear(m){
+    if(window.sbSemAds)return;
+    window.sbSemAds=m;
+    document.documentElement.className+=' sb-sem-ads';
+    try{if(navigator.sendBeacon)navigator.sendBeacon('/api/sem-anuncio',m);}catch(e){}
+    try{var g=window.googletag;if(g&&g.cmd)g.cmd.push(function(){g.destroySlots();});}catch(e){}
+    if(m==='pesado'){
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aviso);else aviso();
+    }
+  }
+  window.sbUsoAnuncio=function(){
+    if(window.sbSemAds)return false;
+    if(contar()>LIM){bloquear('pesado');return false;}
+    return true;
+  };
+  if(robo){bloquear('robo');return;}
+  if(contar()>LIM){bloquear('pesado');return;}
+  var s=document.createElement('script');s.async=true;s.src='https://cdn.joinads.me/myad6283838238.js';
+  (document.head||document.documentElement).appendChild(s);
+})();
+</script>
+<style>
+div[joinadscode]{min-height:250px;margin:14px auto;text-align:center}
+.sb-sem-ads div[joinadscode],.sb-sem-ads .joinads{display:none!important}
+.sb-aviso-api{margin:14px 0;padding:12px 14px;border:1px solid var(--borda,#e4e8ee);border-left:4px solid var(--azul-claro,#1e6091);border-radius:10px;background:var(--card,#fff);font-size:15px;line-height:1.5}
+.sb-aviso-api a{font-weight:600}
+</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrição Estadual e CNPJ de BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO (ES)</title>
+  <meta name="description" content="Inscrição Estadual de BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO, CNPJ 01.149.953/0114-66. Situação: Baixada. IE: não informada.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.sintegrabrasil.com.br/cnpj/01149953011466">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.sintegrabrasil.com.br/cnpj/01149953011466">
+  <link rel="alternate" hreflang="en" href="https://www.sintegrabrasil.com.br/en/cnpj/01149953011466">
+  <link rel="alternate" hreflang="x-default" href="https://www.sintegrabrasil.com.br/cnpj/01149953011466">
+  <meta name="theme-color" content="#0a3d62">
+  <meta name="google-adsense-account" content="ca-pub-8567543177290354">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Inscrição Estadual e CNPJ de BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO (ES)">
+  <meta property="og:description" content="Inscrição Estadual de BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO, CNPJ 01.149.953/0114-66. Situação: Baixada. IE: não informada.">
+  <meta property="og:url" content="https://www.sintegrabrasil.com.br/cnpj/01149953011466">
+  <meta property="og:site_name" content="SINTEGRA Brasil">
+  <meta property="og:image" content="https://www.sintegrabrasil.com.br/og-image.svg">
+  <link rel="stylesheet" href="/style.css?v=61">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.sintegrabrasil.com.br/"},{"@type":"ListItem","position":2,"name":"BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO","item":"https://www.sintegrabrasil.com.br/cnpj/01149953011466"}]}</script>
+  <script src="/consent.js?v=7" defer=""></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Z3HHB66R1Y"></script></head>
+<body>
+  
+  <header class="topbar">
+    <div class="container">
+      <a href="/" class="brand-home">
+        <span class="brand-name">SINTEGRA</span>
+        <span class="brand-title">Consulta de Inscrição Estadual</span>
+      </a>
+      <p class="subtitle">SINTEGRA Brasil · empresas de todo o Brasil</p>
+    </div>
+  </header>
+  <main class="container">
+    
+    
+    <article class="card">
+      <h1>BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO</h1>
+      <p class="muted">CNPJ 01.149.953/0114-66</p>
+      
+
+      <h2 class="sec-title">Inscrição Estadual</h2>
+      <p class="ie-none">Nenhuma Inscrição Estadual encontrada para este CNPJ.</p>
+      <div joinadscode="Content1"></div>
+
+      <h2 class="sec-title">Dados da empresa</h2>
+      <table class="details-table"><tbody>
+        <tr><th>Situação cadastral</th><td>Baixada</td></tr>
+        <tr><th>Natureza jurídica</th><td>Sociedade Anônima Fechada</td></tr>
+        <tr><th>Porte</th><td>Demais</td></tr>
+        <tr><th>Início de atividade</th><td>14/08/2013</td></tr>
+        <tr><th>Endereço</th><td>AVENIDA GOVERNADOR BLEY, nº 186, LOJA  03, CENTRO, Vitória / ES, 29010-902</td></tr>
+        <tr><th>Atividade principal</th><td>6436-1/00 - Sociedades de crédito, financiamento e investimento - financeiras</td></tr>
+      </tbody></table>
+
+      <p class="ficha-cta"><a class="btn-ficha" href="/cnpj/01149953011466/ficha" rel="nofollow">📄 Ficha cadastral para impressão (PDF)</a></p>
+
+      <div class="relatorios-pro no-print">
+      <h2 class="sec-title">Relatórios avançados <span class="pro-badge">Pro</span></h2>
+        <p class="muted" style="margin-top:0">Para due diligence, crédito e compliance.</p>
+        <div class="rel-links">
+          <a href="/cnpj/01149953011466/grupo-economico" rel="nofollow">🕸️ Grupo econômico<br><small>Empresas ligadas por sócios em comum</small></a>
+          <a href="/cnpj/01149953011466/risco" rel="nofollow">📊 Análise de risco<br><small>Solidez cadastral em indicadores</small></a>
+        </div>
+      </div>
+
+      
+  <div class="mon-box no-print">
+    <p class="mon-box-t">🔔 <strong>Monitore este CNPJ</strong></p>
+    <p class="mon-box-s">Receba um alerta por e-mail quando mudar a situação cadastral, abrir filial ou mudar o quadro de sócios.</p>
+    <form class="mon-form" autocomplete="on">
+      <input type="hidden" name="cnpj" value="01149953011466" style="">
+      <input type="text" name="site" class="mon-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="">
+      <input type="email" name="email" placeholder="seu@email.com" required="" style="">
+      <button type="submit">Monitorar</button>
+    </form>
+    <p class="mon-msg" role="status"></p>
+    <p class="mon-box-f"><a href="/monitorar">Como funciona o monitoramento →</a></p>
+  </div>
+  <script>
+  (function(){
+    document.querySelectorAll('form.mon-form').forEach(function(f){
+      f.addEventListener('submit',function(ev){
+        ev.preventDefault();
+        var btn=f.querySelector('button[type=submit]'), msg=f.querySelector('.mon-msg');
+        var cnpj=(f.querySelector('[name=cnpj]').value||'').replace(/\D/g,'');
+        var email=f.querySelector('[name=email]').value||'';
+        if(cnpj.length!==14){msg.textContent='Informe um CNPJ com 14 dígitos.';msg.className='mon-msg err';return;}
+        btn.disabled=true;msg.textContent='Enviando...';msg.className='mon-msg';
+        fetch('/api/monitorar',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({cnpj:cnpj,email:email,site:f.querySelector('[name=site]').value})})
+          .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+          .then(function(o){
+            btn.disabled=false;
+            if(o.j.erro){msg.textContent=o.j.erro;msg.className='mon-msg err';return;}
+            msg.textContent=o.j.mensagem||'Pronto!';msg.className='mon-msg ok';
+            f.querySelector('[name=cnpj]').value='';
+          }).catch(function(){btn.disabled=false;msg.textContent='Erro de conexão.';msg.className='mon-msg err';});
+      });
+    });
+  })();</script>
+
+      
+      <h2 class="sec-title">🏢 Matriz e filiais (157 estabelecimentos)</h2>
+      <div class="tabela-scroll"><table class="details-table filiais-table">
+        <thead><tr><th>CNPJ</th><th>Tipo</th><th>Município/UF</th><th>Situação</th></tr></thead>
+        <tbody><tr>
+      <td><a href="/cnpj/01149953000189">01.149.953/0001-89</a></td>
+      <td>Matriz</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000260">01.149.953/0002-60</a></td>
+      <td>Filial</td>
+      <td>São Caetano do Sul / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000340">01.149.953/0003-40</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000421">01.149.953/0004-21</a></td>
+      <td>Filial</td>
+      <td>Bauru / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000502">01.149.953/0005-02</a></td>
+      <td>Filial</td>
+      <td>Ribeirão Preto / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000693">01.149.953/0006-93</a></td>
+      <td>Filial</td>
+      <td>Campinas / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000774">01.149.953/0007-74</a></td>
+      <td>Filial</td>
+      <td>Santos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000855">01.149.953/0008-55</a></td>
+      <td>Filial</td>
+      <td>São Bernardo do Campo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953000936">01.149.953/0009-36</a></td>
+      <td>Filial</td>
+      <td>São José dos Campos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001070">01.149.953/0010-70</a></td>
+      <td>Filial</td>
+      <td>Sorocaba / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001150">01.149.953/0011-50</a></td>
+      <td>Filial</td>
+      <td>São José do Rio Preto / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001231">01.149.953/0012-31</a></td>
+      <td>Filial</td>
+      <td>Varginha / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001312">01.149.953/0013-12</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001401">01.149.953/0014-01</a></td>
+      <td>Filial</td>
+      <td>Niterói / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001584">01.149.953/0015-84</a></td>
+      <td>Filial</td>
+      <td>Campos dos Goytacazes / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001665">01.149.953/0016-65</a></td>
+      <td>Filial</td>
+      <td>Maringá / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001746">01.149.953/0017-46</a></td>
+      <td>Filial</td>
+      <td>Curitiba / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001827">01.149.953/0018-27</a></td>
+      <td>Filial</td>
+      <td>Ponta Grossa / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953001908">01.149.953/0019-08</a></td>
+      <td>Filial</td>
+      <td>Belo Horizonte / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002041">01.149.953/0020-41</a></td>
+      <td>Filial</td>
+      <td>Brasília / DF</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002122">01.149.953/0021-22</a></td>
+      <td>Filial</td>
+      <td>Uberlândia / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002203">01.149.953/0022-03</a></td>
+      <td>Filial</td>
+      <td>Divinópolis / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002394">01.149.953/0023-94</a></td>
+      <td>Filial</td>
+      <td>Cuiabá / MT</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002475">01.149.953/0024-75</a></td>
+      <td>Filial</td>
+      <td>Fortaleza / CE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002556">01.149.953/0025-56</a></td>
+      <td>Filial</td>
+      <td>Campo Grande / MS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002637">01.149.953/0026-37</a></td>
+      <td>Filial</td>
+      <td>Ipatinga / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002718">01.149.953/0027-18</a></td>
+      <td>Filial</td>
+      <td>Joinville / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002807">01.149.953/0028-07</a></td>
+      <td>Filial</td>
+      <td>Cascavel / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953002980">01.149.953/0029-80</a></td>
+      <td>Filial</td>
+      <td>Florianópolis / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003013">01.149.953/0030-13</a></td>
+      <td>Filial</td>
+      <td>Chapecó / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003102">01.149.953/0031-02</a></td>
+      <td>Filial</td>
+      <td>Caxias do Sul / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003285">01.149.953/0032-85</a></td>
+      <td>Filial</td>
+      <td>Santa Maria / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003366">01.149.953/0033-66</a></td>
+      <td>Filial</td>
+      <td>Porto Alegre / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003447">01.149.953/0034-47</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003528">01.149.953/0035-28</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003609">01.149.953/0036-09</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003790">01.149.953/0037-90</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003870">01.149.953/0038-70</a></td>
+      <td>Filial</td>
+      <td>Santo André / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953003951">01.149.953/0039-51</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004095">01.149.953/0040-95</a></td>
+      <td>Filial</td>
+      <td>Belo Horizonte / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004176">01.149.953/0041-76</a></td>
+      <td>Filial</td>
+      <td>Recife / PE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004257">01.149.953/0042-57</a></td>
+      <td>Filial</td>
+      <td>Fortaleza / CE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004338">01.149.953/0043-38</a></td>
+      <td>Filial</td>
+      <td>Goiânia / GO</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004419">01.149.953/0044-19</a></td>
+      <td>Filial</td>
+      <td>Blumenau / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004508">01.149.953/0045-08</a></td>
+      <td>Filial</td>
+      <td>Passo Fundo / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004680">01.149.953/0046-80</a></td>
+      <td>Filial</td>
+      <td>Vitória / ES</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004761">01.149.953/0047-61</a></td>
+      <td>Filial</td>
+      <td>Belo Horizonte / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004842">01.149.953/0048-42</a></td>
+      <td>Filial</td>
+      <td>Belo Horizonte / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953004923">01.149.953/0049-23</a></td>
+      <td>Filial</td>
+      <td>Sorocaba / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005067">01.149.953/0050-67</a></td>
+      <td>Filial</td>
+      <td>Goiânia / GO</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005148">01.149.953/0051-48</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005229">01.149.953/0052-29</a></td>
+      <td>Filial</td>
+      <td>Campinas / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005300">01.149.953/0053-00</a></td>
+      <td>Filial</td>
+      <td>Londrina / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005490">01.149.953/0054-90</a></td>
+      <td>Filial</td>
+      <td>Santos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005571">01.149.953/0055-71</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005652">01.149.953/0056-52</a></td>
+      <td>Filial</td>
+      <td>Curitiba / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005733">01.149.953/0057-33</a></td>
+      <td>Filial</td>
+      <td>Santo André / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005814">01.149.953/0058-14</a></td>
+      <td>Filial</td>
+      <td>Florianópolis / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953005903">01.149.953/0059-03</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006039">01.149.953/0060-39</a></td>
+      <td>Filial</td>
+      <td>Natal / RN</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006110">01.149.953/0061-10</a></td>
+      <td>Filial</td>
+      <td>Salvador / BA</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006209">01.149.953/0062-09</a></td>
+      <td>Filial</td>
+      <td>Brasília / DF</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006381">01.149.953/0063-81</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006462">01.149.953/0064-62</a></td>
+      <td>Filial</td>
+      <td>Guarulhos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006543">01.149.953/0065-43</a></td>
+      <td>Filial</td>
+      <td>Guarulhos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006624">01.149.953/0066-24</a></td>
+      <td>Filial</td>
+      <td>Jundiaí / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006705">01.149.953/0067-05</a></td>
+      <td>Filial</td>
+      <td>São Bernardo do Campo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006896">01.149.953/0068-96</a></td>
+      <td>Filial</td>
+      <td>São José do Rio Preto / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953006977">01.149.953/0069-77</a></td>
+      <td>Filial</td>
+      <td>Piracicaba / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007000">01.149.953/0070-00</a></td>
+      <td>Filial</td>
+      <td>Piracicaba / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007191">01.149.953/0071-91</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007272">01.149.953/0072-72</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007353">01.149.953/0073-53</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007434">01.149.953/0074-34</a></td>
+      <td>Filial</td>
+      <td>São José dos Campos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007515">01.149.953/0075-15</a></td>
+      <td>Filial</td>
+      <td>Olinda / PE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007604">01.149.953/0076-04</a></td>
+      <td>Filial</td>
+      <td>Manaus / AM</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007787">01.149.953/0077-87</a></td>
+      <td>Filial</td>
+      <td>Belém / PA</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007868">01.149.953/0078-68</a></td>
+      <td>Filial</td>
+      <td>Duque de Caxias / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953007949">01.149.953/0079-49</a></td>
+      <td>Filial</td>
+      <td>Campos dos Goytacazes / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008082">01.149.953/0080-82</a></td>
+      <td>Filial</td>
+      <td>Brasília / DF</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008163">01.149.953/0081-63</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008244">01.149.953/0082-44</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008325">01.149.953/0083-25</a></td>
+      <td>Filial</td>
+      <td>Criciúma / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008406">01.149.953/0084-06</a></td>
+      <td>Filial</td>
+      <td>Chapecó / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008597">01.149.953/0085-97</a></td>
+      <td>Filial</td>
+      <td>Curitiba / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008678">01.149.953/0086-78</a></td>
+      <td>Filial</td>
+      <td>Contagem / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008759">01.149.953/0087-59</a></td>
+      <td>Filial</td>
+      <td>Itajaí / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008830">01.149.953/0088-30</a></td>
+      <td>Filial</td>
+      <td>Presidente Prudente / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953008910">01.149.953/0089-10</a></td>
+      <td>Filial</td>
+      <td>Maceió / AL</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009054">01.149.953/0090-54</a></td>
+      <td>Filial</td>
+      <td>Teresina / PI</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009135">01.149.953/0091-35</a></td>
+      <td>Filial</td>
+      <td>Juiz de Fora / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009216">01.149.953/0092-16</a></td>
+      <td>Filial</td>
+      <td>São Luís / MA</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009305">01.149.953/0093-05</a></td>
+      <td>Filial</td>
+      <td>João Pessoa / PB</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009488">01.149.953/0094-88</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009569">01.149.953/0095-69</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009640">01.149.953/0096-40</a></td>
+      <td>Filial</td>
+      <td>Fortaleza / CE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009720">01.149.953/0097-20</a></td>
+      <td>Filial</td>
+      <td>Belo Horizonte / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009801">01.149.953/0098-01</a></td>
+      <td>Filial</td>
+      <td>Curitiba / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953009992">01.149.953/0099-92</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010060">01.149.953/0100-60</a></td>
+      <td>Filial</td>
+      <td>Araraquara / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010141">01.149.953/0101-41</a></td>
+      <td>Filial</td>
+      <td>Bauru / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010222">01.149.953/0102-22</a></td>
+      <td>Filial</td>
+      <td>Franca / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010303">01.149.953/0103-03</a></td>
+      <td>Filial</td>
+      <td>Limeira / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010494">01.149.953/0104-94</a></td>
+      <td>Filial</td>
+      <td>Marília / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010575">01.149.953/0105-75</a></td>
+      <td>Filial</td>
+      <td>Mogi das Cruzes / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010656">01.149.953/0106-56</a></td>
+      <td>Filial</td>
+      <td>Osasco / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010737">01.149.953/0107-37</a></td>
+      <td>Filial</td>
+      <td>Presidente Prudente / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010818">01.149.953/0108-18</a></td>
+      <td>Filial</td>
+      <td>São Carlos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953010907">01.149.953/0109-07</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011032">01.149.953/0110-32</a></td>
+      <td>Filial</td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011113">01.149.953/0111-13</a></td>
+      <td>Filial</td>
+      <td>São Vicente / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011202">01.149.953/0112-02</a></td>
+      <td>Filial</td>
+      <td>Taubaté / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011385">01.149.953/0113-85</a></td>
+      <td>Filial</td>
+      <td>Araçatuba / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011466">01.149.953/0114-66</a> <span class="tag on">esta página</span></td>
+      <td>Filial</td>
+      <td>Vitória / ES</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011547">01.149.953/0115-47</a></td>
+      <td>Filial</td>
+      <td>Campo Grande / MS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011628">01.149.953/0116-28</a></td>
+      <td>Filial</td>
+      <td>Recife / PE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011709">01.149.953/0117-09</a></td>
+      <td>Filial</td>
+      <td>Fortaleza / CE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011890">01.149.953/0118-90</a></td>
+      <td>Filial</td>
+      <td>Cuiabá / MT</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953011970">01.149.953/0119-70</a></td>
+      <td>Filial</td>
+      <td>Aracaju / SE</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012004">01.149.953/0120-04</a></td>
+      <td>Filial</td>
+      <td>Anápolis / GO</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012195">01.149.953/0121-95</a></td>
+      <td>Filial</td>
+      <td>Guarapuava / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012276">01.149.953/0122-76</a></td>
+      <td>Filial</td>
+      <td>São José dos Pinhais / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012357">01.149.953/0123-57</a></td>
+      <td>Filial</td>
+      <td>Foz do Iguaçu / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012438">01.149.953/0124-38</a></td>
+      <td>Filial</td>
+      <td>Tubarão / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012519">01.149.953/0125-19</a></td>
+      <td>Filial</td>
+      <td>Jaraguá do Sul / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012608">01.149.953/0126-08</a></td>
+      <td>Filial</td>
+      <td>Natal / RN</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012780">01.149.953/0127-80</a></td>
+      <td>Filial</td>
+      <td>Porto Alegre / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012861">01.149.953/0128-61</a></td>
+      <td>Filial</td>
+      <td>Caxias do Sul / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953012942">01.149.953/0129-42</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013086">01.149.953/0130-86</a></td>
+      <td>Filial</td>
+      <td>Santa Maria / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013167">01.149.953/0131-67</a></td>
+      <td>Filial</td>
+      <td>Canoas / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013248">01.149.953/0132-48</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013329">01.149.953/0133-29</a></td>
+      <td>Filial</td>
+      <td>Santos / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013400">01.149.953/0134-00</a></td>
+      <td>Filial</td>
+      <td>Duque de Caxias / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013590">01.149.953/0135-90</a></td>
+      <td>Filial</td>
+      <td>Palmas / TO</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013671">01.149.953/0136-71</a></td>
+      <td>Filial</td>
+      <td>Belo Horizonte / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013752">01.149.953/0137-52</a></td>
+      <td>Filial</td>
+      <td>Betim / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013833">01.149.953/0138-33</a></td>
+      <td>Filial</td>
+      <td>Contagem / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953013914">01.149.953/0139-14</a></td>
+      <td>Filial</td>
+      <td>Montes Claros / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014058">01.149.953/0140-58</a></td>
+      <td>Filial</td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014139">01.149.953/0141-39</a></td>
+      <td>Filial</td>
+      <td>Sete Lagoas / MG</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014210">01.149.953/0142-10</a></td>
+      <td>Filial</td>
+      <td>Pato Branco / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014309">01.149.953/0143-09</a></td>
+      <td>Filial</td>
+      <td>Feira de Santana / BA</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014481">01.149.953/0144-81</a></td>
+      <td>Filial</td>
+      <td>João Pessoa / PB</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014562">01.149.953/0145-62</a></td>
+      <td>Filial</td>
+      <td>Maceió / AL</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014643">01.149.953/0146-43</a></td>
+      <td>Filial</td>
+      <td>Campinas / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014724">01.149.953/0147-24</a></td>
+      <td>Filial</td>
+      <td>Canoas / RS</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014805">01.149.953/0148-05</a></td>
+      <td>Filial</td>
+      <td>Chapecó / SC</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953014996">01.149.953/0149-96</a></td>
+      <td>Filial</td>
+      <td>Serra / ES</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015020">01.149.953/0150-20</a></td>
+      <td>Filial</td>
+      <td>Praia Grande / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015100">01.149.953/0151-00</a></td>
+      <td>Filial</td>
+      <td>Serra / ES</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015291">01.149.953/0152-91</a></td>
+      <td>Filial</td>
+      <td>Campina Grande / PB</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015372">01.149.953/0153-72</a></td>
+      <td>Filial</td>
+      <td>Cabedelo / PB</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015453">01.149.953/0154-53</a></td>
+      <td>Filial</td>
+      <td>Várzea Grande / MT</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015534">01.149.953/0155-34</a></td>
+      <td>Filial</td>
+      <td>São Gonçalo / RJ</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015615">01.149.953/0156-15</a></td>
+      <td>Filial</td>
+      <td>Taubaté / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/01149953015704">01.149.953/0157-04</a></td>
+      <td>Filial</td>
+      <td>Olinda / PE</td>
+      <td>Baixada</td>
+    </tr></tbody>
+      </table></div>
+      
+      <h2 class="sec-title">🔗 Empresas relacionadas</h2>
+      <div class="tabela-scroll"><table class="details-table">
+        <thead><tr><th>Empresa</th><th>Município/UF</th><th>Situação</th></tr></thead>
+        <tbody><tr>
+      <td><a href="/cnpj/57684586000178">AWI CONSULTORIA LTDA</a></td>
+      <td>São Paulo / SP</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/61186680000174">BANCO BMG S.A</a></td>
+      <td>São Paulo / SP</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/07504580000101">HOMELAB COMERCIO DE MATERIAL DIDATICO E PEDAGOGICO LTDA.</a></td>
+      <td>Curitiba / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/36900820000187">ART&amp;BRINQ INDUSTRIA E COMERCIO DE BRINQUEDOS LTDA</a></td>
+      <td>Curitiba / PR</td>
+      <td>Baixada</td>
+    </tr><tr>
+      <td><a href="/cnpj/42380252000133">NOVITA LTDA.</a></td>
+      <td>Curitiba / PR</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/49996044000102">SATELITE ASSESSORIA CONTABIL E ECONOMICA LTDA</a></td>
+      <td>São José dos Campos / SP</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/50223850000127">AGROVERDE CONSULTING NSA LTDA</a></td>
+      <td>Potirendaba / SP</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/73199440000193">MOSCOZO &amp; ROCHA LTDA</a></td>
+      <td>Jundiaí / SP</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/07913328000148">FAIXA PRETA INVESTIMENTOS SPE S.A</a></td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/08959996000179">BV EMPREENDIMENTOS E PARTICIPACOES S.A.</a></td>
+      <td>São Paulo / SP</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/14797600000137">SE AME INTERMEDIACOES DE NEGOCIOS LTDA</a></td>
+      <td>São Paulo / SP</td>
+      <td>Ativa</td>
+    </tr><tr>
+      <td><a href="/cnpj/44623649000134">UTE PILAR GERACAO DE ENERGIA SPE S.A.</a></td>
+      <td>Rio de Janeiro / RJ</td>
+      <td>Ativa</td>
+    </tr></tbody>
+      </table></div>
+      
+
+      <div joinadscode="Content2"></div>
+      <h2 class="sec-title">Consultar outro CNPJ</h2>
+      
+  <form class="ssr-form" onsubmit="event.preventDefault();var c=this.cnpj.value.replace(/\D/g,'');if(c.length===14){location.href='/cnpj/'+c;}else{this.cnpj.setCustomValidity('Digite os 14 dígitos do CNPJ');this.cnpj.reportValidity();}">
+    <input name="cnpj" inputmode="numeric" maxlength="18" placeholder="Digite o CNPJ" oninput="this.setCustomValidity('')" required="" style="">
+    <button type="submit">Consultar</button>
+  </form>
+      <p class="muted" style="font-size:13px">
+        Veja também: <a href="/sintegra/es">empresas do Espírito Santo</a> · 
+        <a href="/incorporar">incorpore esta consulta no seu site</a> ·
+        <a href="/api">API grátis para desenvolvedores</a>
+      </p>
+      <p class="source">Dados públicos com caráter informativo. Para fins oficiais, confirme no SINTEGRA da SEFAZ do estado.</p>
+    </article>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"BV FINANCEIRA SA CREDITO FINANCIAMENTO E INVESTIMENTO","url":"https://www.sintegrabrasil.com.br/cnpj/01149953011466","identifier":{"@type":"PropertyValue","propertyID":"CNPJ","value":"01.149.953/0114-66"},"taxID":"01149953011466","address":{"@type":"PostalAddress","addressCountry":"BR","streetAddress":"AVENIDA GOVERNADOR BLEY, nº 186, LOJA  03, CENTRO","addressLocality":"Vitória","addressRegion":"ES","postalCode":"29010-902"},"sourceOrganization":{"@type":"GovernmentOrganization","name":"Receita Federal do Brasil","url":"https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica---cnpj"}}</script>
+    
+  </main>
+  <footer class="container footer">
+    <div class="fb-widget no-print" id="fb-widget">
+    <p class="fb-titulo">Como está sua experiência com o site?</p>
+    <div class="fb-notas" role="group" aria-label="Nota de 1 a 5">
+      <button type="button" data-nota="1" title="Péssima" aria-label="Nota 1 — péssima">😖</button>
+      <button type="button" data-nota="2" title="Ruim" aria-label="Nota 2 — ruim">😕</button>
+      <button type="button" data-nota="3" title="Regular" aria-label="Nota 3 — regular">😐</button>
+      <button type="button" data-nota="4" title="Boa" aria-label="Nota 4 — boa">🙂</button>
+      <button type="button" data-nota="5" title="Excelente" aria-label="Nota 5 — excelente">😍</button>
+    </div>
+    <form class="fb-form" hidden="">
+      <textarea maxlength="1000" rows="3" placeholder="Conte em poucas palavras o que achou ou o que podemos melhorar (opcional)" style=""></textarea>
+      <input type="text" name="site" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="">
+      <button type="submit">Enviar feedback</button>
+    </form>
+    <p class="fb-ok" hidden="">💙 Obrigado! Seu feedback ajuda a melhorar o site.</p>
+  </div>
+  <script>
+  (function(){
+    var w=document.getElementById('fb-widget');if(!w)return;
+    try{if(localStorage.getItem('fb-enviado')&&Date.now()-Number(localStorage.getItem('fb-enviado'))<2592e6){w.remove();return;}}catch(e){}
+    var nota=0,form=w.querySelector('.fb-form'),ok=w.querySelector('.fb-ok');
+    w.querySelectorAll('.fb-notas button').forEach(function(b){
+      b.addEventListener('click',function(){
+        nota=Number(b.dataset.nota);
+        w.querySelectorAll('.fb-notas button').forEach(function(x){x.classList.toggle('sel',x===b);});
+        form.hidden=false;form.querySelector('textarea').focus();
+      });
+    });
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();if(!nota)return;
+      var btn=form.querySelector('button');btn.disabled=true;
+      fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nota:nota,mensagem:form.querySelector('textarea').value,
+          pagina:location.pathname,site:form.querySelector('.fb-hp').value})})
+        .then(function(r){return r.json();})
+        .then(function(){w.querySelector('.fb-titulo').hidden=true;w.querySelector('.fb-notas').hidden=true;
+          form.hidden=true;ok.hidden=false;
+          try{localStorage.setItem('fb-enviado',String(Date.now()));}catch(e){}})
+        .catch(function(){btn.disabled=false;});
+    });
+  })();
+  </script>
+    <nav class="footer-cols" aria-label="Navegação do rodapé">
+      <div class="fcol">
+        <h4>Consultas</h4>
+        <a href="/">Início</a><a href="/busca">Busca de empresas</a><a href="/consultar-inscricao-estadual">Consultar IE</a><a href="/situacao-cadastral">Situação cadastral</a><a href="/cartao-cnpj">Cartão CNPJ</a><a href="/validar-inscricao-estadual">Validar IE</a>
+      </div>
+      <div class="fcol">
+        <h4>Ferramentas</h4>
+        <a href="/prospeccao">Prospecção (leads)</a><a href="/monitorar">Monitorar CNPJ</a><a href="/nfe">Gerar DANFE</a><a href="/estatisticas">Estatísticas</a><a href="/incorporar">Incorporar widget</a><a href="/api">API</a>
+      </div>
+      <div class="fcol">
+        <h4>Conteúdo</h4>
+        <a href="/blog">Blog</a><a href="/guias">Guias</a><a href="/comparativos">Comparativos</a><a href="/atividades">Atividades</a><a href="/sobre">Sobre</a><a href="/sobre-os-dados">Fonte dos dados</a>
+      </div>
+      <div class="fcol">
+        <h4>Conta &amp; Legal</h4>
+        <a href="/conta">Minha conta</a><a href="/assinar">Remover anúncios</a><a href="/contato">Contato</a><a href="/privacidade">Privacidade</a><a href="/cookies">Cookies</a><a href="/termos">Termos de uso</a><a href="/lgpd">Exclusão de dados</a>
+      </div></nav>
+    <nav class="states-nav"><span>Consulta por estado:</span> <a href="/sintegra/ac">AC</a> <a href="/sintegra/al">AL</a> <a href="/sintegra/ap">AP</a> <a href="/sintegra/am">AM</a> <a href="/sintegra/ba">BA</a> <a href="/sintegra/ce">CE</a> <a href="/sintegra/df">DF</a> <a href="/sintegra/es">ES</a> <a href="/sintegra/go">GO</a> <a href="/sintegra/ma">MA</a> <a href="/sintegra/mt">MT</a> <a href="/sintegra/ms">MS</a> <a href="/sintegra/mg">MG</a> <a href="/sintegra/pa">PA</a> <a href="/sintegra/pb">PB</a> <a href="/sintegra/pr">PR</a> <a href="/sintegra/pe">PE</a> <a href="/sintegra/pi">PI</a> <a href="/sintegra/rj">RJ</a> <a href="/sintegra/rn">RN</a> <a href="/sintegra/rs">RS</a> <a href="/sintegra/ro">RO</a> <a href="/sintegra/rr">RR</a> <a href="/sintegra/sc">SC</a> <a href="/sintegra/sp">SP</a> <a href="/sintegra/se">SE</a> <a href="/sintegra/to">TO</a></nav>
+    <p class="disclaimer">
+      <strong>Aviso:</strong> o SINTEGRA Brasil é um serviço <strong>independente e privado</strong>,
+      sem vínculo com a Receita Federal, com as SEFAZ estaduais ou com qualquer órgão público.
+    </p>
+    <p class="counter">🔎 <span id="contador-num">11.021.591</span> consultas realizadas</p>
+    <p class="footer-links">Compare preços com histórico: <a href="https://farejapreco.com.br/" target="_blank" rel="noopener">FarejaPreço</a></p>
+    <small>Desenvolvido e Gerenciado por <a href="https://www.spartanti.com.br" target="_blank" rel="noopener">Spartan TI</a> · CNPJ 36.939.912/0001-70</small>
+  </footer>
+  <script>
+    if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}
+    fetch('/api/contador').then(function(r){return r.json();}).then(function(d){var e=document.getElementById('contador-num');if(e&&typeof d.count==='number')e.textContent=d.count.toLocaleString('pt-BR');}).catch(function(){});
+  </script>
+  <script src="/heat.js" defer=""></script>
+  <script src="https://gridrushcolormatch.com/site/promo/popup.js" defer=""></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a602f8a80d601cd7',t:'MTc5NTYzNDAxMw=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a602f8a80d601cd7',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1ca3cb1e577241448b089e6b8ad3b2db&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+</body></html>

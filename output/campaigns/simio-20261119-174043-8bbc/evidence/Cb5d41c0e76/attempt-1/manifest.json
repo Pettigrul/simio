@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cb5d41c0e76",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.centralsagadequitacao.com/",
+  "final_url": "https://www.centralsagadequitacao.com/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "185.158.133.1",
+  "collected_at": "2026-11-19T18:10:21.961995+00:00",
+  "manifest_written_at": "2026-11-19T18:10:30.672741+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cb5d41c0e76\\attempt-1\\viewport.png",
+      "sha256": "7ba7580a04f11a63d9d068ceeea0af4aad4650e1c409e85cf382a9b81363b251",
+      "size_bytes": 47933
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cb5d41c0e76\\attempt-1\\fullpage.png",
+      "sha256": "7ba7580a04f11a63d9d068ceeea0af4aad4650e1c409e85cf382a9b81363b251",
+      "size_bytes": 47933
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cb5d41c0e76\\attempt-1\\page.html.txt",
+      "sha256": "ed2183bef162f6ab296dab83751c07cd3a9c188fcf6ae50e95b100d5e6b7e473",
+      "size_bytes": 65542
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cb5d41c0e76\\attempt-1\\text.txt",
+      "sha256": "659da79f1a6164dd0d2a56d7b9d5f80b035c4d90bcb847c9ff71982e52d71841",
+      "size_bytes": 805
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cb5d41c0e76\\attempt-1\\page.json",
+      "sha256": "ca211993ac28201f6617fdbec67d3f97d6bcd8cfec5740980a03b0f590b2442e",
+      "size_bytes": 2774
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C0292579f5a",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://creditfast.com.br/intermediadora/",
+  "final_url": "https://creditfast.com.br/intermediadora/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.9.43",
+  "collected_at": "2026-11-23T14:26:50.338315+00:00",
+  "manifest_written_at": "2026-11-23T14:26:55.459851+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C0292579f5a\\attempt-1\\viewport.png",
+      "sha256": "518a157a1ba9a1c80bde26f52a4c3dbeda4b069bf64bec1a45ccf0f9279130e1",
+      "size_bytes": 47366
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C0292579f5a\\attempt-1\\fullpage.png",
+      "sha256": "518a157a1ba9a1c80bde26f52a4c3dbeda4b069bf64bec1a45ccf0f9279130e1",
+      "size_bytes": 47366
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C0292579f5a\\attempt-1\\page.html.txt",
+      "sha256": "4be1b08b771cdabd9bb58f8560784fb005c1bd36f5ced9273515fce2457b0738",
+      "size_bytes": 65476
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C0292579f5a\\attempt-1\\text.txt",
+      "sha256": "48ffe8d62220cd9cfc29265f75ddf1f59c771b9903642c385949ac0065acb8d6",
+      "size_bytes": 797
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C0292579f5a\\attempt-1\\page.json",
+      "sha256": "528303b8510d3dead0ff89c20c551b1c19287bf6c1fa7bf50c07502d2b0548fc",
+      "size_bytes": 2758
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

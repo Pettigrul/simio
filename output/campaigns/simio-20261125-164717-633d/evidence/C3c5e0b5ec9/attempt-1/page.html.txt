@@ -1,0 +1,438 @@
+<html lang="pt-BR" class="js"><head>
+<meta charset="utf-8">
+<!-- Google Tag Manager, só depois do aceite de cookies (LGPD).
+     Sem escolha, ou com "Só os necessários", o GTM nem é baixado.
+     O aviso de cookies chama osyConsentimento() a cada escolha. -->
+<script>
+(function(w,d,id,chave){
+w.dataLayer=w.dataLayer||[];function gtag(){w.dataLayer.push(arguments);}
+function ler(){try{return JSON.parse(localStorage.getItem(chave))||null;}catch(e){return null;}}
+function sinal(c){var a=c&&c.analise?"granted":"denied",m=c&&c.marketing?"granted":"denied";
+return{analytics_storage:a,ad_storage:m,ad_user_data:m,ad_personalization:m};}
+gtag("consent","default",sinal(null));
+var carregado=false;
+w.osyConsentimento=function(){var c=ler();gtag("consent","update",sinal(c));
+if(!c||!(c.analise||c.marketing)||carregado)return;carregado=true;
+w.dataLayer.push({"gtm.start":new Date().getTime(),event:"gtm.js"});
+var j=d.createElement("script");j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+id;
+d.head.appendChild(j);};
+w.osyConsentimento();
+})(window,document,"GTM-KBZQVG9L","osy_cookies");
+</script>
+<!-- End Google Tag Manager -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulador de financiamento de caminhão | Osy Caminhões</title>
+<meta name="description" content="Calcule a parcela do seu caminhão antes de vir à loja. Escolha entrada e prazo, veja o CET e mande a simulação pronta para o vendedor.">
+<meta name="theme-color" content="#083955">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/favicon/icone-180.png">
+<link rel="preload" as="font" type="font/woff2" href="fontes/chivo.woff2" crossorigin="">
+<link rel="stylesheet" href="css/fontes.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/paginas.css">
+</head>
+
+<body data-pagina="financiamento">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div id="cabecalho">
+<div class="progresso" aria-hidden="true"><i style="transform: scaleX(0);"></i></div>
+
+<div class="util"><div class="wrap">
+  <a class="tel" href="tel:+556232971100">(62) 3297-1100</a>
+  <a class="local" href="https://maps.google.com/?q=GO-060+km+4,5+Goiânia+GO" target="_blank" rel="noopener">GO-060, km 4,5 · Chácaras Maringá 64, QD 04 · Goiânia / GO</a>
+  <span class="frentes">
+    <a href="https://www.grupoosy.com.br/" target="_blank" rel="noopener">Grupo Osy</a>
+    <a href="https://www.osyimplementos.com.br/" target="_blank" rel="noopener">Implementos</a>
+    <a href="https://www.osycomponentes.com.br/" target="_blank" rel="noopener">Componentes</a>
+    <a href="index.html" class="is">Caminhões</a>
+  </span>
+</div></div>
+
+<header class="site" id="hdr"><div class="wrap">
+  <a class="brand" href="index.html" aria-label="Osy Caminhões, início">
+    <img src="img/marca/osy-caminhoes-ass-horizontal-2.svg" alt="Osy Caminhões" width="238" height="36">
+  </a>
+  <nav class="main" aria-label="Principal">
+    <a href="seminovos.html" class="">Estoque</a><a href="financiamento.html" class="on">Financiamento</a><a href="quem-somos.html" class="">Quem somos</a><a href="unidades.html" class="">Unidades</a><a href="contato.html" class="">Contato</a>
+  </nav>
+  <div class="hactions">
+    <form class="hbusca" role="search" action="seminovos.html">
+      <button class="hlupa" type="submit" aria-label="Buscar"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <input name="q" type="search" placeholder="Marca, modelo ou código" aria-label="Buscar no estoque" style="">
+    </form>
+    <a class="social" href="https://www.instagram.com/osycaminhoesoficial/" target="_blank" rel="noopener" aria-label="Instagram da Osy Caminhões"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg></a>
+    <a class="btn btn--sm" href="https://wa.me/5562991089295?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Osy%20Caminh%C3%B5es%20e%20quero%20falar%20com%20um%20vendedor." target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35M12.05 21.8a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.17 6.45 6.6 2.02 12.05 2.02c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.88-9.88 9.88"></path></svg>Falar no WhatsApp</a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div></header>
+</div>
+
+<main id="conteudo">
+
+  <section class="hero hero--interno bg-halo bg-trama">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Você está aqui">
+        <a href="index.html">Início</a><span>/</span><span>Financiamento</span>
+      </nav>
+      <h1 style="margin-top:14px"><span data-osy="financiamento.hero.titulo1">A parcela primeiro.</span><br><span data-osy="financiamento.hero.titulo2">A papelada depois.</span></h1>
+      <p data-osy="financiamento.hero.chamada" class="lead" style="margin-top:18px">Escolha o caminhão, a entrada e o prazo. O resultado aparece na tela sem pedir cadastro. Se o número fizer sentido, aí sim você manda para o vendedor — com tudo já preenchido.</p>
+    </div>
+  </section>
+
+  <!-- ---------- calculadora ---------- -->
+  <section class="sec sec--sand bg-cunha bg-cunha--areia bg-cunha--esq" style="padding-top:clamp(26px,3vw,44px)">
+    <div class="wrap">
+      <div class="campo" style="margin-bottom:18px;max-width:440px">
+        <label for="escolher-veiculo">Simular com um caminhão do pátio</label>
+        <select id="escolher-veiculo"><option value="">Escolher depois, quero só testar valores</option></select>
+      </div>
+
+      <div id="calc">
+  <div class="calc">
+    <div class="calcin">
+      <div class="calcgrid">
+        <div class="campo">
+          <label for="c-preco">Valor do caminhão</label>
+          <input id="c-preco" type="text" inputmode="numeric" class="tnum" style="">
+          
+        </div>
+
+        <div class="campo">
+          <label for="c-entrada">Entrada</label>
+          <div class="entradaline">
+            <input id="c-entrada" type="text" inputmode="numeric" class="tnum" style="">
+            <span class="pct"><input id="c-entradapct" type="number" min="0" max="90" step="1" class="tnum" aria-label="Entrada em percentual" style=""></span>
+          </div>
+          <p class="avisominimo" id="c-min">Entrada mínima de 20% definida pela instituição financeira.</p>
+        </div>
+
+        <div class="campo">
+          <label id="c-prazo-rot">Prazo</label>
+          <div class="prazos" role="group" aria-labelledby="c-prazo-rot">
+            <button type="button" data-prazo="12" class="">12<small>meses</small></button><button type="button" data-prazo="24" class="">24<small>meses</small></button><button type="button" data-prazo="36" class="">36<small>meses</small></button><button type="button" data-prazo="48" class="on">48<small>meses</small></button><button type="button" data-prazo="60" class="">60<small>meses</small></button>
+          </div>
+        </div>
+
+        <!-- A conta aberta. Simulador que só cospe a parcela obriga o
+             comprador a confiar; mostrando de onde ela vem, ele
+             chega à loja sabendo o que vai discutir. -->
+        <div class="calcabre">
+          <b>O que entra no valor financiado</b>
+          <div class="calcabre-l"><span>Preço menos a entrada</span><i class="tnum" id="c-base">R$&nbsp;280.000</i></div>
+          <div class="calcabre-l"><span>IOF</span><i class="tnum" id="c-iof">R$&nbsp;13.706</i></div>
+          <div class="calcabre-l"><span>Tarifa de cadastro</span><i class="tnum" id="c-tarifa">R$&nbsp;1.150</i></div>
+          <div class="calcabre-l tot"><span>Valor financiado</span><i class="tnum" id="c-fin2">R$&nbsp;294.856</i></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="calcout">
+      <div class="sym"><svg viewBox="0 0 1261.02 951.2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path fill="currentColor" d="M0,353.3C0,141.32,141.33,0,353.32,0h587.02l-154.91,237.8h-410.37c-70.67,0-118.21,47.55-118.21,119.58s47.55,118.22,118.21,118.22h255.47l-154.91,237.8h-122.29C141.33,713.4,0,572.08,0,360.1v-6.8Z"></path>
+  <path fill="currentColor" d="M1261.02,597.9c0,211.98-141.32,353.3-353.3,353.3H320.7l154.91-237.8h409.02c70.65,0,118.21-47.56,118.21-119.58s-47.56-118.22-118.21-118.22h-254.11l154.91-237.8h122.29c211.98,0,353.3,141.32,353.3,353.3v6.8Z"></path>
+</svg></div>
+      <div class="calcres">
+        <p class="rot">Parcela estimada</p>
+        <p class="parcela tnum" id="c-parcela"><small>R$</small>9.790</p>
+        <p class="prazoinfo" id="c-prazoinfo">48× fixas · entrada de R$&nbsp;70.000 (20%)</p>
+      </div>
+      <div class="calclinhas">
+        <div><span>Valor financiado</span><b class="tnum" id="c-fin">R$&nbsp;294.856</b></div>
+        <div><span>Total a pagar</span><b class="tnum" id="c-total">R$&nbsp;539.907</b></div>
+        <div><span>Taxa de juros</span><b class="tnum" id="c-taxa">2,09% a.m.</b></div>
+        <div class="cet"><span>CET ao ano</span><b class="tnum" id="c-cet">32,14%</b></div>
+      </div>
+      <p class="calcnota"><b>Banco BV · vigência —.</b> Valores estimados, sujeitos a análise e aprovação de crédito pela instituição financeira Banco BV. Simulação pelo sistema Price, com parcelas fixas, incluindo IOF e tarifa de cadastro no valor financiado. O Custo Efetivo Total (CET) é apresentado ao ano. Taxas vigentes em —. Esta simulação não constitui proposta nem garantia de crédito.</p>
+    </div>
+  </div></div>
+
+      <div class="pos-calc">
+        <div class="bloco-lead" id="bloco-lead">
+          <h2 class="d3">Gostou da parcela?</h2>
+          <p class="lead" style="margin:12px 0 22px">Você já viu o número. O formulário abaixo é só
+            para o vendedor conseguir retornar — e ele chega com a simulação inteira anexada.</p>
+          <div id="lead">
+  <form class="leadform" id="formlead" novalidate="" data-osy-manual="">
+    <div class="campo"><label for="l-nome">Nome</label>
+      <input id="l-nome" name="nome" type="text" required="" autocomplete="name" style=""></div>
+    <div class="campo"><label for="l-tel">Telefone com DDD</label>
+      <input id="l-tel" name="telefone" type="tel" required="" autocomplete="tel" placeholder="(00) 00000-0000" style=""></div>
+    <div class="campo"><label for="l-email">E-mail</label>
+      <input id="l-email" name="email" type="email" required="" autocomplete="email" style=""></div>
+    <div class="campo"><label for="l-doc">CPF ou CNPJ <span style="text-transform:none;letter-spacing:0;font-weight:600">(opcional)</span></label>
+      <input id="l-doc" name="documento" type="text" inputmode="numeric" style=""></div>
+    <div class="campo full"><label for="l-unid">Unidade de atendimento</label>
+      <select id="l-unid" name="unidade">
+        <option value="goiania">Goiânia</option>
+        <option value="rioverde">Rio Verde</option>
+      </select></div>
+    <label class="lgpd full"><input type="checkbox" id="l-lgpd" required="" style="">
+      <span>Autorizo a Osy Caminhões a usar meus dados para retornar este contato e concordo com a
+      <a href="privacidade.html">política de privacidade</a>.</span></label>
+    <div class="full"><button class="btn btn--navy btn--bloco btn--lg" type="submit">Enviar esta simulação para um vendedor</button></div>
+    <p class="mini full">O vendedor recebe o caminhão, o preço, a entrada, o prazo, a parcela simulada e a unidade junto com o seu contato.</p>
+  </form>
+  <div class="okbox" id="l-ok"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- como funciona ---------- -->
+  <section class="sec sec--white bg-aresta sobre-claro reveal bg-cunha bg-cunha--navy bg-cunha--dentro">
+    <div class="wrap">
+      <div class="sechead sechead--split">
+        <div>
+          <p class="eyebrow eyebrow--claro">Como funciona</p>
+          <h2 class="d2" style="margin-top:16px">Do site até a chave<br>na mão</h2>
+        </div>
+        <p class="lead">A Osy é credenciada ao Banco BV. A proposta é montada aqui dentro:
+          você não percorre banco por banco.</p>
+      </div>
+      <div class="passos">
+        <div class="passo"><h3>Você simula no site</h3>
+          <p>Escolhe o caminhão, a entrada e o prazo. A parcela sai na hora, sem cadastro.</p></div>
+        <div class="passo"><h3>Manda a simulação para o vendedor</h3>
+          <p>Nome, telefone e e-mail. O vendedor da unidade do caminhão recebe tudo junto: veículo,
+            entrada, prazo e parcela.</p></div>
+        <div class="passo"><h3>A gente monta a proposta</h3>
+          <p>Com os seus documentos em mãos, a proposta vai para análise da instituição financeira.</p></div>
+        <div class="passo"><h3>Aprovado, você retira</h3>
+          <p>Assinatura, transferência e entrega em Goiânia ou Rio Verde.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- documentos ---------- -->
+  <section class="sec sec--sand reveal bg-cunha bg-cunha--areia bg-cunha--pe bg-cunha--larga">
+    <div class="wrap">
+      <div class="sechead">
+        <p class="eyebrow eyebrow--claro">O que levar</p>
+        <h2 class="d2">Documentos exigidos</h2>
+        <p class="lead">A lista muda conforme o perfil. Estes são os documentos que a análise pede
+          na maioria dos casos.</p>
+      </div>
+      <div class="docs">
+        <div>
+          <h3 class="d4" style="margin-bottom:12px">Pessoa física</h3>
+          <ul id="doc-pf"><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Documento de identidade com foto (RG ou CNH)</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>CPF</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Comprovante de endereço dos últimos três meses</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Comprovante de renda</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Certidão de estado civil</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Dados bancários</span></li></ul>
+        </div>
+        <div>
+          <h3 class="d4" style="margin-bottom:12px">Pessoa jurídica</h3>
+          <ul id="doc-pj"><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Contrato social e última alteração</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Cartão CNPJ</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Documento e CPF dos sócios</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Comprovante de endereço da empresa</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Faturamento dos últimos doze meses</span></li><li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5.5 5.5L20 6.5"></path></svg><span>Balanço ou declaração de imposto de renda</span></li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- perguntas ---------- -->
+  <section class="sec sec--white reveal campo campo--areia">
+    <div class="wrap wrap--estreito">
+      <div class="sechead">
+        <p class="eyebrow eyebrow--claro">Perguntas</p>
+        <h2 class="d2">O que todo mundo pergunta</h2>
+      </div>
+      <div class="faq">
+        <details open="">
+          <summary>A simulação vale como aprovação?</summary>
+          <div class="resp">Não. É uma estimativa calculada pelo sistema Price, com parcelas fixas.
+            A aprovação depende de análise de crédito da instituição financeira, feita com os seus
+            documentos. O valor final pode mudar.</div>
+        </details>
+        <details>
+          <summary>Por que a parcela inclui IOF e tarifa?</summary>
+          <div class="resp">Porque o valor financiado inclui os dois. Simulação que ignora IOF e
+            tarifa de cadastro mostra uma parcela menor que a real, e a pessoa chega à loja com
+            expectativa errada — que é o pior começo de negociação possível.</div>
+        </details>
+        <details>
+          <summary>O que é o CET?</summary>
+          <div class="resp">Custo Efetivo Total: a taxa que reúne juros, IOF e tarifas num número só,
+            ao ano. É o número que permite comparar propostas de bancos diferentes, e a legislação
+            brasileira exige que ele apareça em publicidade de crédito.</div>
+        </details>
+        <details>
+          <summary>Qual a entrada mínima?</summary>
+          <div class="resp">A entrada mínima é definida pela instituição financeira e varia com o
+            perfil e com o veículo. O simulador bloqueia valores abaixo do mínimo vigente.</div>
+        </details>
+        <details>
+          <summary>Dá para financiar caminhão com implemento junto?</summary>
+          <div class="resp">Sim, e é comum aqui. O Grupo Osy fabrica o implemento e fornece o
+            componente hidráulico, então o conjunto sai da mesma casa. Fale com o vendedor:
+            a composição muda o valor financiado.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- texto legal ---------- -->
+  <section class="sec sec--deep sec--compacta bg-cunha bg-cunha--clara bg-cunha--estreita">
+    <div class="wrap wrap--estreito">
+      <p class="eyebrow">Informação legal</p>
+      <p class="legal" style="margin-top: 16px;">Importado do protótipo. As taxas ainda não foram homologadas com o banco — confirmar antes de apresentar como proposta.</p><p class="legal" id="legal" style="margin-top:16px">Valores estimados, sujeitos a análise e aprovação de crédito pela instituição financeira Banco BV. Simulação pelo sistema Price, com parcelas fixas, incluindo IOF e tarifa de cadastro no valor financiado. O Custo Efetivo Total (CET) é apresentado ao ano. Taxas vigentes em —. Esta simulação não constitui proposta nem garantia de crédito.</p>
+      <p class="legal" style="margin-top:14px">
+        Fórmula aplicada: sistema Price, <b>PMT = PV × i ÷ (1 − (1 + i)<sup>−n</sup>)</b>, onde PV é o
+        valor financiado, i a taxa mensal em decimal e n o número de parcelas.
+      </p>
+      <!-- A ressalva que o visitante precisa ler antes de tratar a
+           simulação como proposta. Substituiu o lembrete interno
+           que ficava aqui e que listava, para a equipe, o que este
+           texto teria de dizer. -->
+      <p class="legal" style="margin-top:14px">
+        O valor apresentado é uma <b>estimativa</b> e não constitui proposta de crédito. A
+        contratação depende de análise e aprovação pela instituição financeira, que define as
+        condições finais — taxa, prazo, tarifas e Custo Efetivo Total. Consulte o comercial
+        para a simulação válida na data da contratação.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<div id="rodape">
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" aria-label="Menu" aria-hidden="true">
+  <div class="dtop">
+    <img src="img/marca/osy-caminhoes-ass-horizontal-2.svg" alt="Osy Caminhões" width="198" height="30">
+    <button class="dclose" id="dclose" aria-label="Fechar menu">✕</button>
+  </div>
+  <form class="dbusca" role="search" action="seminovos.html">
+    <input name="q" type="search" placeholder="Marca, modelo ou código" aria-label="Buscar no estoque" style="">
+    <button type="submit">Buscar</button>
+  </form>
+  <nav class="dnav" aria-label="Menu de navegação">
+    <a href="index.html" class="">Início</a>
+    <a href="seminovos.html" class="">Estoque<small>Todos os caminhões disponíveis</small></a><a href="financiamento.html" class="on">Financiamento<small>Simule a parcela antes de vir</small></a><a href="quem-somos.html" class="">Quem somos<small>24 anos e o ecossistema</small></a><a href="unidades.html" class="">Unidades<small>Goiânia e Rio Verde</small></a><a href="contato.html" class="">Contato<small>Fale com o comercial</small></a>
+  </nav>
+  <div class="dfoot">
+    <a class="btn btn--bloco" href="https://wa.me/5562991089295?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Osy%20Caminh%C3%B5es." target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35M12.05 21.8a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.17 6.45 6.6 2.02 12.05 2.02c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.88-9.88 9.88"></path></svg>Falar no WhatsApp</a>
+    <a class="tel" href="tel:+556232971100">(62) 3297-1100</a>
+    <a href="https://maps.google.com/?q=GO-060+km+4,5+Goiânia+GO" target="_blank" rel="noopener"><small>GO-060, km 4,5 · Chácaras Maringá 64, QD 04<br>Goiânia / GO</small></a>
+    <div class="dfrentes">
+      <a href="https://www.osyimplementos.com.br/" target="_blank" rel="noopener">Implementos</a>
+      <a href="https://www.osycomponentes.com.br/" target="_blank" rel="noopener">Componentes</a>
+      <a href="index.html" class="is">Caminhões</a>
+      <a class="dgrupo" href="https://www.grupoosy.com.br/" target="_blank" rel="noopener">Grupo Osy</a>
+    </div>
+  </div>
+</aside>
+
+<div class="appbar" id="appbar">
+  <div class="abpill">
+    <button class="abmenu" id="abmenu" aria-label="Abrir menu" aria-controls="drawer" aria-expanded="false">
+      <span class="abmark"><svg viewBox="0 0 1261.02 951.2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path fill="#f2f1ed" d="M0,353.3C0,141.32,141.33,0,353.32,0h587.02l-154.91,237.8h-410.37c-70.67,0-118.21,47.55-118.21,119.58s47.55,118.22,118.21,118.22h255.47l-154.91,237.8h-122.29C141.33,713.4,0,572.08,0,360.1v-6.8Z"></path>
+  <path fill="#c5c2b3" d="M1261.02,597.9c0,211.98-141.32,353.3-353.3,353.3H320.7l154.91-237.8h409.02c70.65,0,118.21-47.56,118.21-119.58s-47.56-118.22-118.21-118.22h-254.11l154.91-237.8h122.29c211.98,0,353.3,141.32,353.3,353.3v6.8Z"></path>
+</svg></span>
+      <span class="ablines"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+  <a class="abcirc abcalc" href="financiamento.html" aria-label="Simular financiamento"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2.5" width="16" height="19"></rect><path d="M8 7h8M8 12h2m3 0h3M8 16.5h2m3 0h3"></path></svg></a>
+  <a class="abcirc zap" href="https://wa.me/5562991089295?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Osy%20Caminh%C3%B5es." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35M12.05 21.8a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.17 6.45 6.6 2.02 12.05 2.02c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.88-9.88 9.88"></path></svg></a>
+</div>
+
+<a class="wafloat" href="https://wa.me/5562991089295?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Osy%20Caminh%C3%B5es." target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.96-.94 1.16c-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.35M12.05 21.8a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.17 6.45 6.6 2.02 12.05 2.02c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.88-9.88 9.88"></path></svg>Falar agora</a>
+
+<footer class="site">
+  <div class="fsym"><svg viewBox="0 0 1261.02 951.2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path fill="currentColor" d="M0,353.3C0,141.32,141.33,0,353.32,0h587.02l-154.91,237.8h-410.37c-70.67,0-118.21,47.55-118.21,119.58s47.55,118.22,118.21,118.22h255.47l-154.91,237.8h-122.29C141.33,713.4,0,572.08,0,360.1v-6.8Z"></path>
+  <path fill="currentColor" d="M1261.02,597.9c0,211.98-141.32,353.3-353.3,353.3H320.7l154.91-237.8h409.02c70.65,0,118.21-47.56,118.21-119.58s-47.56-118.22-118.21-118.22h-254.11l154.91-237.8h122.29c211.98,0,353.3,141.32,353.3,353.3v6.8Z"></path>
+</svg></div>
+  <div class="wrap">
+    <div class="fcols">
+      <div class="fbrand">
+        <img src="img/marca/osy-caminhoes-ass-horizontal-2.svg" alt="Osy Caminhões" width="258" height="40">
+        <p>A Osy Caminhões é a revenda de seminovos multimarca do Grupo Osy.</p>
+        <p class="fass">Transformação que se vê no caminho.</p>
+        <div class="fredes">
+          <a href="https://www.instagram.com/osycaminhoesoficial/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5M3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-4.7c0-1.12-.02-2.56-1.6-2.56-1.6 0-1.85 1.2-1.85 2.48V21h-3.92z"></path></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="seminovos.html">Estoque</a></li><li><a href="financiamento.html">Financiamento</a></li><li><a href="quem-somos.html">Quem somos</a></li><li><a href="unidades.html">Unidades</a></li><li><a href="contato.html">Contato</a></li>
+          <li><a href="privacidade.html">Política de privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Grupo Osy</h4>
+        <ul>
+          <li><a href="https://www.grupoosy.com.br/" target="_blank" rel="noopener">Grupo Osy</a></li>
+          <li><a href="https://www.osyimplementos.com.br/" target="_blank" rel="noopener">Osy Implementos</a></li>
+          <li><a href="https://www.osycomponentes.com.br/" target="_blank" rel="noopener">Osy Componentes</a></li>
+          <li><a href="index.html">Osy Caminhões</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Unidades</h4>
+        <ul>
+          <li><b>Goiânia</b><br><a href="tel:+556232971100">(62) 3297-1100</a><br>
+            <a href="https://maps.google.com/?q=GO-060+km+4,5+Goiânia+GO" target="_blank" rel="noopener">GO-060, km 4,5 · Chácaras Maringá 64, QD 04<br>Goiânia / GO</a></li>
+          <li style="margin-top:14px"><b>Rio Verde</b><br><a href="tel:+556430553058">(64) 3055-3058</a><br>
+            <a href="https://maps.google.com/?q=R.+Marcha+p%2F+o+Oeste,+1583+-+Vila+Maria,+Rio+Verde+-+GO,+75905-330" target="_blank" rel="noopener">Rio Verde / GO</a></li>
+          <li style="margin-top:14px"><a href="mailto:assist.comercial@grupoosy.com.br">assist.comercial@grupoosy.com.br</a></li>
+        </ul>
+        <p class="fcnpj">CNPJ 00.000.000/0001-00</p>
+      </div>
+    </div>
+    <div class="flegal">
+      <span>Osy Caminhões · Grupo Osy · Transformação que se vê no caminho.</span>
+      <span><a href="privacidade.html">Política de privacidade</a> ·
+        <button type="button" data-cookie-abrir="">Preferências de cookies</button> · © 2026</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie up" id="cookie"><div class="wrap">
+  <p>Usamos cookies para entender como o site é usado e melhorar a experiência. Você escolhe o que aceitar.</p>
+  <button class="btn btn--sm" data-cookie="tudo">Aceitar todos</button>
+  <button class="btn btn--out btn--sm" data-cookie="escolher">Escolher</button>
+  <button class="btn btn--out btn--sm" data-cookie="minimo">Só os necessários</button>
+</div></div>
+
+<div class="ckpanel" id="ckpanel" role="dialog" aria-modal="true" aria-labelledby="cktitulo" aria-hidden="true">
+  <div class="ckbox">
+    <h2 id="cktitulo">O que você aceita</h2>
+    <p>Você pode mudar isso quando quiser, pelo link no rodapé.</p>
+    <label class="ckopt"><input type="checkbox" checked="" disabled="" style="">
+      <span><b>Necessários</b>Fazem o site funcionar: navegação, filtros de estoque e a sua própria escolha de cookies. Não dá para desligar.</span></label>
+    <label class="ckopt"><input type="checkbox" id="ck-analise" style="">
+      <span><b>Medição de uso</b>Mostram quais caminhões e filtros são mais procurados. É o que diz para a gente o que falta no pátio.</span></label>
+    <label class="ckopt"><input type="checkbox" id="ck-marketing" style="">
+      <span><b>Marketing</b>Permitem medir o resultado de anúncio e campanha.</span></label>
+    <div class="ckacoes">
+      <button class="btn btn--navy btn--sm" data-cookie="salvar">Salvar escolha</button>
+      <button class="btn btn--out-navy btn--sm" data-cookie="fechar">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script src="https://hbfhqhcqargpcyilkjxo.supabase.co/storage/v1/object/public/snapshots/caminhoes.js"></script>
+<script src="js/anos-de-caminho.js"></script>
+<script src="js/imagem-leve.js"></script>
+<script src="js/config-do-painel.js"></script>
+<script src="js/config.js"></script>
+
+<script src="js/dados.js"></script>
+  <script src="js/textos-do-painel.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/interface.js"></script>
+<script src="js/veiculos.js"></script>
+<script src="js/financiamento.js"></script>
+
+
+</body></html>

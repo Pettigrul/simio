@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cf4e3d44eec",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://drcred.com.br/",
+  "final_url": "https://drcred.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.198.79.1",
+  "collected_at": "2026-11-23T14:38:06.530398+00:00",
+  "manifest_written_at": "2026-11-23T14:38:18.547695+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cf4e3d44eec\\attempt-1\\viewport.png",
+      "sha256": "b490b744329e0342ad4ca70caa480dabf28bfed0298b98feacfcb00562cfe306",
+      "size_bytes": 46544
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cf4e3d44eec\\attempt-1\\fullpage.png",
+      "sha256": "b490b744329e0342ad4ca70caa480dabf28bfed0298b98feacfcb00562cfe306",
+      "size_bytes": 46544
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cf4e3d44eec\\attempt-1\\page.html.txt",
+      "sha256": "4b5ed4306ebd437309c786ac354a84b4f84fae289b00bf75f3b024e305271a91",
+      "size_bytes": 65414
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cf4e3d44eec\\attempt-1\\text.txt",
+      "sha256": "9c8536c5b0869391023f56496ca9f2412212d940b81e5829306b8eb5d6342f08",
+      "size_bytes": 774
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cf4e3d44eec\\attempt-1\\page.json",
+      "sha256": "fc5f89fc4a74bf76a92c546b7384e1ae39a312b79dd6ee12aa65dee9fbb8a914",
+      "size_bytes": 2712
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C13a085f733",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://sivconecta.com.br/area-do-cliente",
+  "final_url": "https://sivconecta.com.br/area-do-cliente",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "186.202.135.240",
+  "collected_at": "2026-11-23T15:02:55.455769+00:00",
+  "manifest_written_at": "2026-11-23T15:03:00.214110+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C13a085f733\\attempt-1\\viewport.png",
+      "sha256": "3c105c93d6bcd85940d97d39a797a12c2bb434fb38f8b5895e6b6955162be23b",
+      "size_bytes": 47388
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C13a085f733\\attempt-1\\fullpage.png",
+      "sha256": "3c105c93d6bcd85940d97d39a797a12c2bb434fb38f8b5895e6b6955162be23b",
+      "size_bytes": 47388
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C13a085f733\\attempt-1\\page.html.txt",
+      "sha256": "f287397054c32286dd38e39488c96eab4cd3854b08c0d5d7e6a9bc1a39e44791",
+      "size_bytes": 65479
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C13a085f733\\attempt-1\\text.txt",
+      "sha256": "2d3a36da36266d739339739ddf1fba3acf031ef9446dd1b5a46fdde3107eb08a",
+      "size_bytes": 797
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C13a085f733\\attempt-1\\page.json",
+      "sha256": "a1390164573fac19174bf97b6561cf5176e37c79c5d34a10d6ceec9e6d9b8975",
+      "size_bytes": 2758
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

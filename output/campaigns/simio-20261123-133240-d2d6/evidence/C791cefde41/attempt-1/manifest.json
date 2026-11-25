@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C791cefde41",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://pervalesolar.com.br/",
+  "final_url": "https://pervalesolar.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "77.37.42.16",
+  "collected_at": "2026-11-23T14:40:12.398287+00:00",
+  "manifest_written_at": "2026-11-23T14:40:20.536574+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C791cefde41\\attempt-1\\viewport.png",
+      "sha256": "e653105839c32c8152d17e4148eaacecf2576f2072ceabb5aa248994238357ce",
+      "size_bytes": 47623
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C791cefde41\\attempt-1\\fullpage.png",
+      "sha256": "e653105839c32c8152d17e4148eaacecf2576f2072ceabb5aa248994238357ce",
+      "size_bytes": 47623
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C791cefde41\\attempt-1\\page.html.txt",
+      "sha256": "a87622a60cc53655a96fb8ff46ba9034eaeafb0c688d8c8f0fe722f74e916f00",
+      "size_bytes": 65476
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C791cefde41\\attempt-1\\text.txt",
+      "sha256": "a87cc0b22f36a49ab1a6890de52d845e65127e680c9cf04c7d54f775b5de87ea",
+      "size_bytes": 796
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C791cefde41\\attempt-1\\page.json",
+      "sha256": "fb101cfa53e1c4e6cd1648689faa0580c2a372f51b8388ef9e3eee4cb8da7c17",
+      "size_bytes": 2756
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

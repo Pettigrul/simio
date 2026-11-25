@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C3856b56773</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C3856b56773 — finanzero.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://finanzero.com.br/parceiros-banco-bv/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de landing page específica para o Banco BV operada pelo correspondente bancário/buscador de crédito FinanZero (CNPJ 23.722.194/0001-34). Embora a empresa se identifique no rodapé e declare sua condição de correspondente bancário citando a Resolução CMN nº 4.935/2021 e o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03), a página utiliza &#39;BV Financeira&#39; no início do título HTML, exibe o logotipo oficial &#39;BV banco&#39; em destaque acima da dobra ao lado de simulador de empréstimo (sem aviso visível de correspondente na área inicial) e não informa os números de SAC/Ouvidoria do Banco BV no rodapé. Recomenda-se revisão humana para verificação contratual e adequação às regras de uso de marca e transparência da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). Trata-se de landing page comercial de correspondente bancário/promotora de crédito (FinanZero Brasil Serviços Online Ltda., CNPJ 23.722.194/0001-34) voltada à captação de empréstimo com garantia de veículo utilizando o logotipo do Banco BV em destaque na dobra inicial (E-SHOT-VIEWPORT) e &#39;BV Financeira&#39; no início do título (E-TITLE). Apesar de apresentar declaração de correspondente bancário no rodapé citando a Resolução CMN nº 4.935/2021 e o CNPJ do Banco Votorantim S.A. (E-TXT-015, E-TXT-018), o aviso está confinado a uma caixa de rolagem no fim da página (E-SHOT-FULL), ausente na área visível inicial do simulador, e não apresenta os canais de SAC e Ouvidoria do Banco BV.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C3856b56773/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 53fe251d09fd1a60f2e51a83d09f3c97ab53b531a6b0730cb6708000cb90ca5f</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/C3856b56773/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a3f61c4eafcd34de00896afd9048670e065f0203a0971730b2f5fff36d169a77</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://finanzero.com.br/parceiros-banco-bv/ (domínio: finanzero.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): finanzero.com.br — **Nome do Estabelecimento:** FinanZero (`BV Financeira: Refinanciamento de Veículo Online - FinanZero`) | **URL:** `https://finanzero.com.br/` (Landing page dedicada ao Banco BV / BV Financeira) | **Como utiliza:** Utiliza `&#34;BV Financeira&#34;` logo no início do título da página para ranqueamento em buscadores</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\C3856b56773\attempt-1\viewport.png (sha256 53fe251d09fd1a60…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\C3856b56773\attempt-1\fullpage.png (sha256 a3f61c4eafcd34de…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>BV Financeira: Refinanciamento de Veículo Online - FinanZero</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Precisa de um empréstimo rápido e seguro? Com a FinanZero+BV Finaceira você faz uma simulação e tem as melhores opções. Faça sua simulação e descubra!</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: FinanZero</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: BV Financeira: Refinanciamento de Veículo Online - FinanZero</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Precisa de um empréstimo rápido e seguro? Com a FinanZero+BV Finaceira você faz uma simulação e tem as melhores opções. Faça sua simulação e descubra!</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://finanzero.com.br/parceiros-banco-bv/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Banco BV: mais uma parceria FinanZero</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Conheça a parceira Banco BV</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Quem é o Banco BV?</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Por que confiar na parceria Banco BV e FinanZero?</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Conheça outros produtos</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Empréstimo com Garantia Online</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Empréstimo Pessoal Online</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Empréstimo com garantia de veículo</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Blog Finanzero, tudo sobre empréstimos e dinheiro</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>As melhores dicas de empréstimo você encontra aqui</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Perguntas frequentes sobre empréstimo pessoal online</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>A FinanZero cobra pelo serviço de busca de empréstimos?</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Como solicitar o refinanciamento de veículo online com a FinanZero?</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Como desbloquear a câmera do celular?</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Em quantas vezes posso pagar pelo empréstimo online da FinanZero?</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>! Atenção. Fique atento a golpes. A FinanZero nunca pede depósito antecipado, taxa ou tarifa para liberar empréstimos. Fique atento a comportamentos suspeitos e jamais realize pagamentos para liberar empréstimos. Empréstimos Refinanciamentos Cartão de Crédito Consórcio Seguros Blog Ajuda Entrar | A FinanZero cobra pelo serviço de busca de empréstimos? | Como solicitar o refinanciamento de veículo online com a FinanZero? | Como desbloquear a câmera do celular? | Em quantas vezes posso pagar pelo empréstimo online da FinanZero? | O que é necessário para fazer um pedido de refinanciamento de veículo na FinanZero?</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>! Atenção. Fique atento a golpes. A FinanZero nunca pede depósito antecipado, taxa ou tarifa para liberar empréstimos. Fique atento a comportamentos suspeitos e jamais realize pagamentos para liberar empréstimos. Empréstimos Refinanciamentos Cartão de Crédito Consórcio Seguros Blog Ajuda Entrar Banco BV: mais uma parceria FinanZero Empréstimo com garantia de veículo sem sair de casa? Faça seu pedido!</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>INSTITUCIONAL Sobre nós Ajuda Termos e condições de uso Mapa do site Índice de Empréstimo Årsstämma CONSÓRCIO Consórcio Consórcio de imóvel Consórcio de veículo Consórcio de serviços Consórcio para cirurgias plásticas Consórcio de cursos Consórcio para intercâmbio Consórcio para festas Revenda de consórcios EMPRÉSTIMO Empréstimo Pessoal Online Simule seu empréstimo Empréstimo para Negativado Empréstimo para Autônomo Negativado Empréstimo com Garantia Empréstimo FGTS Empréstimo Consignado INSS Financiamento Imobiliário Empréstimo para MEI Empréstimo para empresas REFINANCIAMENTO Refinanciamento de Veículos Refinanciamento de Imóvel Empréstimo com Garantia Empréstimo com Garantia de Imóvel Empréstimo com Garantia de Veículo Empréstimo com Garantia de Celular CARTÃO DE CRÉDITO Cartão de Crédito SEGUROS Seguro de Automóvel BLOG Finanças Pessoais Impostos Mercado Negócios Crédito Benefícios do Governo PARCEIROS BV CREDITAS JBCRED OMNI NOVERDE SUPER SIM SIMPLIC CREFAZ Outros parceiros FinanZero Brasil Serviços Online Ltda. CNPJ/MF 23.722.194/0001-34 Alameda Mamoré, 687 | CJ 501 SALA 05-123 ANDAR 5 Alphaville - CEP: 06454-040 Tem uma sugestão? Envie um e-mail para atendimento@finanzero.com.br Assessoria de imprensa assessoria@finanzero.com.br 0800 607-3001 Segunda a Sexta - 9h às 18h SIGA A GENTE A FinanZero consulta mais de 40 instituições financeiras. Os prazos para pagamento variam de 6 a 36 meses por produto e Instituição financeira escolhida pelo cliente. A taxa de juros oferecida pelos parceiros varia de 1,49% a.m. a 18,01% a.m. Exemplo: Valor: R$ 5.000,00; prazo: 12 meses; Taxa de Juros: 2,9% a.m.; CET 64,4% a.a.; Parcelas R$ 500,44; Valor total com IOF incluso: R$ 6.005,28. A FinanZero Brasil Serviços Online Ltda. (CNPJ/MF 23.722.194/0001-34), com sede na Alameda Mamoré, 687, CJ 501 SALA 05-123 ANDAR 5, Alphaville – CEP: 06454-040, é um buscador de crédito correspondente bancário que atua conforme as diretrizes da Resolução CMN nº 4.935/2021 do Banco Central do Bra</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Voltar para a página inicial &lt;https://finanzero.com.br/&gt; | Empréstimos &lt;https://finanzero.com.br/parceiros-banco-bv/#&gt; | Refinanciamentos &lt;https://finanzero.com.br/parceiros-banco-bv/#&gt; | Cartão de Crédito &lt;https://finanzero.com.br/cartao-credito/&gt; | Consórcio &lt;https://finanzero.com.br/consorcio/&gt; | Seguros &lt;https://finanzero.com.br/parceiros-banco-bv/#&gt; | Blog &lt;https://finanzero.com.br/blog/&gt; | Ajuda &lt;https://finanzero.com.br/ajuda/&gt; | Entrar &lt;https://finanzero.com.br/me/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>SOLICITE SEU EMPRÉSTIMO AQUI &lt;https://finanzero.com.br/parceiros-banco-bv/#peca-agora&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>footer</td><td>atendimento@finanzero.com.br &lt;mailto:atendimento@finanzero.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td>assessoria@finanzero.com.br &lt;mailto:assessoria@finanzero.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td>0800 607-3001 &lt;tel:08006073001&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/finanzero/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/finanzero/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>encarregado.DPO@finanzero.com.br &lt;mailto:encarregado.DPO@finanzero.com.br&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Banco BV: mais uma parceria FinanZero</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Conheça a parceira Banco BV</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>A parceria entre a FinanZero e o Banco BV foi criada para tornar o processo de contratação de crédito ainda mais fácil, rápido e seguro. Através da plataforma da FinanZero, é possível simular, comparar e solicitar empréstimos oferecidos pelo BV sem sair de casa. É tecnologia e confiança trabalhando juntas para oferecer soluções financeiras sob medida para você.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Quem é o Banco BV?</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>O Banco BV é uma das maiores instituições financeiras privadas do Brasil, com mais de 30 anos de atuação. Reconhecido por sua solidez e inovação, o BV oferece uma ampla variedade de produtos e serviços, como crédito pessoal, financiamento de veículos, cartões, investimentos e muito mais. O banco se destaca por unir tecnologia, agilidade e foco na experiência do cliente.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Por que confiar na parceria Banco BV e FinanZero?</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A FinanZero reúne os melhores parceiros do mercado para garantir ofertas de crédito seguras, transparentes e com as melhores condições. O Banco BV é uma instituição consolidada, regulada pelo Banco Central e com um histórico sólido no setor financeiro. Ao unir a expertise digital da FinanZero com a credibilidade do BV, essa parceria entrega praticidade, segurança e confiança em cada etapa da sua</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>PARCEIROS</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>BV</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Outros parceiros</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>FinanZero Brasil Serviços Online Ltda. CNPJ/MF 23.722.194/0001-34</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Alameda Mamoré, 687 | CJ 501 SALA 05-123 ANDAR 5 Alphaville - CEP: 06454-040</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>atendimento@finanzero.com.br</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>A FinanZero consulta mais de 40 instituições financeiras. Os prazos para pagamento variam de 6 a 36 meses por produto e Instituição financeira escolhida pelo cliente. A taxa de juros oferecida pelos parceiros varia de 1,49% a.m. a 18,01% a.m. Exemplo: Valor: R$ 5.000,00; prazo: 12 meses; Taxa de Juros: 2,9% a.m.; CET 64,4% a.a.; Parcelas R$ 500,44; Valor total com IOF incluso: R$ 6.005,28.</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>A FinanZero Brasil Serviços Online Ltda. (CNPJ/MF 23.722.194/0001-34), com sede na Alameda Mamoré, 687, CJ 501 SALA 05-123 ANDAR 5, Alphaville – CEP: 06454-040, é um buscador de crédito correspondente bancário que atua conforme as diretrizes da Resolução CMN nº 4.935/2021 do Banco Central do Brasil.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Atuamos como correspondente bancário das seguintes instituições financeiras, as propostas são analisadas e o crédito concedido diretamente pelas instituições: ‎Creditas Soluções Financeiras – CNPJ 17.770.708/0001-24; Open Co Correspondente Bancário Ltda. – CNPJ 20.955.843/0001-59; Aymoré Crédito, Financiamento e Investimento S.A – CNPJ 07.707.650/0001-10; Banco Digio S.A..- CNPJ</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>27.098.060/0001-45 – SAC Digio: 0800 333 8735 | 0800 333 8736 – Deficientes auditivos | funciona 24h e caso não fique satisfeito: Ouvidoria Digio – 0800 333 1474 de segunda a sexta-feira, das 10h00 às 16h00; Bcredi Servicos de Credito e Cobranca S.A- CNPJ 31.105.806/0001-78; Lh1010 Serviços de Correspondente Bancário Ltda – CNPJ 17.103.297/0001-13; Id Finance Brasil Ltda – CNPJ</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>23.474.341/0001-02; Rebel tecnologia e correspondente bancário LTDA – CNPJ 23.563.189/0001-26; Banco Votorantim S.A. – CNPJ/ME 59.588.111/0001-03; Noverde tecnologia e pagamentos S/A: CNPJ 07.652.226/0001-16; Provu Serviços de Administração e Correspondente Bancário S.A. CNPJ 20.265.259/0001-71; SuperSim Analise de Dados e Correspondente Bancário Ltda. CNPJ 33.030.944/0001-60; FC Financeira S/A –</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Crédito, Financiamento e Investimento CNPJ 36.538.700/0001-01; Portocred S/A Crédito, Financiamento e Investimento, CNPJ 01.800.019/0001-85; Easyc Promotora de Serviços Financeiros e Corretagem de Seguros Online Ltda. CNPJ 24.081.684/0001-61; Virtus Tech Tecnologia e Serviços SA (“VirtusPay”) CNPJ 27.148.375/0001-50; Financeira Alfa S A Crédito Financiamento e Investimentos CNPJ</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>17.167.412/0001-13; Banco PAN S.A. CNPJ 59.285.411/0001-13; Omni S/A – Crédito, Financiamento e Investimento. CNPJ 92.228.410/0001-02; Click Cash (Crédito 24 Ltda), CNPJ 35.408.438/0001-98; Banco Bari de Investimentos e Financiamentos S/A (CNPJ 00.556.603/0001-74) e Bari Companhia Hipotecária (CNPJ 14.511.781/0001-93); Itaú Unibanco Holding S.A. CNPJ: 60.872.504/0001-23; Banco Rodobens S.A CNPJ:</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>33.603.457/0001-40; Koin Administradora de Cartões e Meios de Pagamento S.A. – CNPJ 17.991.841/0001-00.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza a identidade visual própria da FinanZero (verde, amarelo e branco), mas insere o logotipo do Banco BV em destaque no banner principal.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O estabelecimento identifica sua razão social (FinanZero Brasil Serviços Online Ltda.), CNPJ (23.722.194/0001-34) e endereço físico no rodapé.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-015">E-TXT-015</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Declara atuação como correspondente bancário nos termos da Resolução CMN nº 4.935/2021 apenas no rodapé (dentro de área de rolagem), citando o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03), porém sem informar os canais de SAC e Ouvidoria do Banco BV e sem aviso visível junto ao simulador no topo.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-017">E-TXT-017</a> <a href="#E-TXT-018">E-TXT-018</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O texto distingue a plataforma FinanZero do Banco BV, referindo-se ao banco em terceira pessoa como instituição financeira parceira.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-007">E-TXT-007</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso do logotipo &#39;BV banco&#39; em destaque no topo da landing page ao lado de formulário de simulação de crédito, prática que requer revisão quanto ao art. 14, II da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Oferta imediata de simulador de cotação (&#39;Peça uma cotação grátis! Quanto quer emprestado?&#39;) na área superior associada visualmente ao logotipo e nome do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-CTA-1">E-CTA-1</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato informados (atendimento@finanzero.com.br, 0800 607-3001 e redes sociais) estão claramente atribuídos à FinanZero.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-5">E-CONTACT-5</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Uso de &#39;BV Financeira: Refinanciamento de Veículo Online - FinanZero&#39; no título da página e logotipo em destaque na dobra principal pode induzir o consumidor a acreditar em canal dedicado ou endossado oficialmente.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Exibição em destaque do logotipo oficial &#39;BV banco&#39; na área principal (acima da dobra) da landing page comercial de captação de propostas de empréstimo. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] CONSUMER_CONFUSION: Título da página (title e og:title) inicia com &#39;BV Financeira: Refinanciamento de Veículo Online - FinanZero&#39; e meta description utiliza &#39;FinanZero+BV Finaceira&#39;, utilizando a marca no início do título para atrair buscas do banco. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-META-3">E-META-3</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora haja declaração de correspondente bancário no rodapé listando o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03), o aviso fica restrito a uma caixa de rolagem no final da página (ausente na área visível inicial onde ocorre a simulação) e não exibe os telefones de SAC/Ouvidoria do Banco BV. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-017">E-TXT-017</a> <a href="#E-TXT-018">E-TXT-018</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identificação clara da empresa operadora do site (FinanZero Brasil Serviços Online Ltda., CNPJ 23.722.194/0001-34) e atuação multimarcas. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-015">E-TXT-015</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Declaração expressa no rodapé de atuação como correspondente bancário conforme a Resolução CMN nº 4.935/2021, listando o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03) entre as instituições contratantes. — <span class="mono"><a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-016">E-TXT-016</a> <a href="#E-TXT-018">E-TXT-018</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A URL https://finanzero.com.br/parceiros-banco-bv/ é uma landing page comercial da FinanZero dedicada a produtos do Banco BV [E-URL, E-HEAD-1].</li><li>O título da página é &#39;BV Financeira: Refinanciamento de Veículo Online - FinanZero&#39; [E-TITLE].</li><li>Na área visível inicial (acima da dobra), é exibido o logotipo &#39;BV banco&#39; ao lado de um sinal de &#39;+&#39; e um simulador de cotação de empréstimo [E-SHOT-VIEWPORT, E-SHOT-FULL].</li><li>No rodapé, a empresa identifica-se como FinanZero Brasil Serviços Online Ltda. (CNPJ 23.722.194/0001-34) e declara atuar como correspondente bancário nos termos da Resolução CMN nº 4.935/2021, mencionando o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03) na lista de parceiros [E-FTR, E-TXT-015, E-TXT-018].</li><li>A caixa de texto do rodapé informa SAC e Ouvidoria apenas do Banco Digio, omitindo os canais de Ouvidoria do Banco BV [E-TXT-017, E-TXT-018].</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Confirmação se o vínculo de correspondente bancário com a FinanZero (CNPJ 23.722.194/0001-34) está ativo e se há autorização específica para a landing page dedicada.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de landing page específica para o Banco BV operada pelo correspondente bancário/buscador de crédito FinanZero (CNPJ 23.722.194/0001-34). Embora a empresa se identifique no rodapé e declare sua condição de correspondente bancário citando a Resolução CMN nº 4.935/2021 e o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03), a página utiliza &#39;BV Financeira&#39; no início do título HTML, exibe o logotipo oficial &#39;BV banco&#39; em destaque acima da dobra ao lado de simulador de empréstimo (sem aviso visível de correspondente na área inicial) e não informa os números de SAC/Ouvidoria do Banco BV no rodapé. Recomenda-se revisão humana para verificação contratual e adequação às regras de uso de marca e transparência da Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>FinanZero Brasil Serviços Online Ltda<br><span class="mono">cnpj:23722194000134</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>finanzero.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>23.722.194/0001-34</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>V CREDITAS JBCRED OMNI NOVERDE SUPER SIM SIMPLIC CREFAZ Outros parceiros FinanZero Brasil Serviços Online Ltda. CNPJ/MF 23.722.194/0001-34</td></tr>
+      <tr><td>cnpj</td><td>17.770.708/0001-24</td><td class="mono"><a href="#E-TXT-016">E-TXT-016</a></td><td>as propostas são analisadas e o crédito concedido diretamente pelas instituições: ‎Creditas Soluções Financeiras – CNPJ 17.770.708/0001-24</td></tr>
+      <tr><td>cnpj</td><td>20.955.843/0001-59</td><td class="mono"><a href="#E-TXT-016">E-TXT-016</a></td><td>; Open Co Correspondente Bancário Ltda. – CNPJ 20.955.843/0001-59</td></tr>
+      <tr><td>cnpj</td><td>07.707.650/0001-10</td><td class="mono"><a href="#E-TXT-016">E-TXT-016</a></td><td>; Aymoré Crédito, Financiamento e Investimento S.A – CNPJ 07.707.650/0001-10</td></tr>
+      <tr><td>cnpj</td><td>27.098.060/0001-45</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td>27.098.060/0001-45</td></tr>
+      <tr><td>cnpj</td><td>31.105.806/0001-78</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td>ria Digio – 0800 333 1474 de segunda a sexta-feira, das 10h00 às 16h00; Bcredi Servicos de Credito e Cobranca S.A- CNPJ 31.105.806/0001-78</td></tr>
+      <tr><td>cnpj</td><td>17.103.297/0001-13</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td>; Lh1010 Serviços de Correspondente Bancário Ltda – CNPJ 17.103.297/0001-13</td></tr>
+      <tr><td>cnpj</td><td>23.474.341/0001-02</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td>23.474.341/0001-02</td></tr>
+      <tr><td>cnpj</td><td>23.563.189/0001-26</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td>; Rebel tecnologia e correspondente bancário LTDA – CNPJ 23.563.189/0001-26</td></tr>
+      <tr><td>cnpj</td><td>59.588.111/0001-03</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td>; Banco Votorantim S.A. – CNPJ/ME 59.588.111/0001-03</td></tr>
+      <tr><td>cnpj</td><td>07.652.226/0001-16</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td>; Noverde tecnologia e pagamentos S/A: CNPJ 07.652.226/0001-16</td></tr>
+      <tr><td>cnpj</td><td>20.265.259/0001-71</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td>; Provu Serviços de Administração e Correspondente Bancário S.A. CNPJ 20.265.259/0001-71</td></tr>
+      <tr><td>cnpj</td><td>33.030.944/0001-60</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td>; SuperSim Analise de Dados e Correspondente Bancário Ltda. CNPJ 33.030.944/0001-60</td></tr>
+      <tr><td>cnpj</td><td>36.538.700/0001-01 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-TXT-019">E-TXT-019</a></td><td>Crédito, Financiamento e Investimento CNPJ 36.538.700/0001-01</td></tr>
+      <tr><td>cnpj</td><td>01.800.019/0001-85</td><td class="mono"><a href="#E-TXT-019">E-TXT-019</a></td><td>; Portocred S/A Crédito, Financiamento e Investimento, CNPJ 01.800.019/0001-85</td></tr>
+      <tr><td>cnpj</td><td>24.081.684/0001-61</td><td class="mono"><a href="#E-TXT-019">E-TXT-019</a></td><td>; Easyc Promotora de Serviços Financeiros e Corretagem de Seguros Online Ltda. CNPJ 24.081.684/0001-61</td></tr>
+      <tr><td>cnpj</td><td>27.148.375/0001-50</td><td class="mono"><a href="#E-TXT-019">E-TXT-019</a></td><td>; Virtus Tech Tecnologia e Serviços SA (“VirtusPay”) CNPJ 27.148.375/0001-50</td></tr>
+      <tr><td>cnpj</td><td>17.167.412/0001-13</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>17.167.412/0001-13</td></tr>
+      <tr><td>cnpj</td><td>59.285.411/0001-13</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>; Banco PAN S.A. CNPJ 59.285.411/0001-13</td></tr>
+      <tr><td>cnpj</td><td>92.228.410/0001-02</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>; Omni S/A – Crédito, Financiamento e Investimento. CNPJ 92.228.410/0001-02</td></tr>
+      <tr><td>cnpj</td><td>35.408.438/0001-98</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>; Click Cash (Crédito 24 Ltda), CNPJ 35.408.438/0001-98</td></tr>
+      <tr><td>cnpj</td><td>00.556.603/0001-74</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>; Banco Bari de Investimentos e Financiamentos S/A (CNPJ 00.556.603/0001-74</td></tr>
+      <tr><td>cnpj</td><td>14.511.781/0001-93</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>) e Bari Companhia Hipotecária (CNPJ 14.511.781/0001-93</td></tr>
+      <tr><td>cnpj</td><td>60.872.504/0001-23</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td>); Itaú Unibanco Holding S.A. CNPJ: 60.872.504/0001-23</td></tr>
+      <tr><td>cnpj</td><td>33.603.457/0001-40</td><td class="mono"><a href="#E-TXT-021">E-TXT-021</a></td><td>33.603.457/0001-40</td></tr>
+      <tr><td>cnpj</td><td>17.991.841/0001-00</td><td class="mono"><a href="#E-TXT-021">E-TXT-021</a></td><td>; Koin Administradora de Cartões e Meios de Pagamento S.A. – CNPJ 17.991.841/0001-00</td></tr>
+      <tr><td>legal_name</td><td>FinanZero Brasil Serviços Online Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>A FinanZero Brasil Serviços Online Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>atendimento@finanzero.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>assessoria@finanzero.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/finanzero/</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/finanzero/</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>email</td><td>encarregado.DPO@finanzero.com.br</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Open Co Correspondente Bancário Ltda</td><td class="mono"><a href="#E-TXT-016">E-TXT-016</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>Financiamento e Investimento S.A</td><td class="mono"><a href="#E-TXT-016">E-TXT-016</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Bcredi Servicos de Credito e Cobranca S.A</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Lh1010 Serviços de Correspondente Bancário Ltda</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Id Finance Brasil Ltda</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>Banco Votorantim S.A</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Provu Serviços de Administração e Correspondente Bancário S.A</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>SuperSim Analise de Dados e Correspondente Bancário Ltda</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>FC Financeira S/A</td><td class="mono"><a href="#E-TXT-018">E-TXT-018</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Portocred S/A</td><td class="mono"><a href="#E-TXT-019">E-TXT-019</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Easyc Promotora de Serviços Financeiros e Corretagem de Seguros Online Ltda</td><td class="mono"><a href="#E-TXT-019">E-TXT-019</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Omni S/A</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Crédito 24 Ltda</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Koin Administradora de Cartões e Meios de Pagamento S.A</td><td class="mono"><a href="#E-TXT-021">E-TXT-021</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>FinanZero</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 607-3001</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>08006073001</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 333 8735</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 333 8736</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 333 1474</td><td class="mono"><a href="#E-TXT-017">E-TXT-017</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>INSTITUCIONAL Sobre nós Ajuda Termos e condições de uso Mapa do site Índice de Empréstimo Årsstämma CONSÓRCIO Consórcio Consórcio de imóvel Consórcio de veículo Consórcio de serviços Consórcio para ci</td></tr>
+      <tr><td>correspondent_declaration</td><td>Resolução CMN nº 4.935</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>INSTITUCIONAL Sobre nós Ajuda Termos e condições de uso Mapa do site Índice de Empréstimo Årsstämma CONSÓRCIO Consórcio Consórcio de imóvel Consórcio de veículo Consórcio de serviços Consórcio para ci</td></tr>
+      <tr><td>correspondent_declaration</td><td>Atuamos como correspondente</td><td class="mono"><a href="#E-TXT-016">E-TXT-016</a></td><td>Atuamos como correspondente bancário das seguintes instituições financeiras, as propostas são analisadas e o crédito concedido diretamente pelas instituições: ‎Creditas Soluções Financeiras – CNPJ 17.</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiros</td><td class="mono"><a href="#E-CANONICAL">E-CANONICAL</a></td><td>https://finanzero.com.br/parceiros-banco-bv/</td></tr>
+      <tr><td>partnership_declaration</td><td>parceria</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a></td><td>Banco BV: mais uma parceria FinanZero</td></tr>
+      <tr><td>partnership_declaration</td><td>parceira</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a></td><td>Conheça a parceira Banco BV</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) com dígito verificador inválido ignorados: 36.538.700/0001-01</li><li>CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro CNPJ presente na página, tratados como referência à contratante: 59.588.111/0001-03, 07.707.650/0001-10, 01.800.019/0001-85, 92.228.410/0001-02</li><li>a página se apresenta com o nome da instituição (Financiamento e Investimento S.A; Banco Votorantim S.A); isso é identidade declarada/visual, não a identidade do responsável</li><li>21 CNPJs distintos na página: pode ser diretório, marketplace ou grupo de empresas; associação ao responsável é incerta</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (CONSUMER_CONFUSION) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-META-1">E-META-1</a> <a href="#E-META-3">E-META-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-017">E-TXT-017</a> <a href="#E-TXT-018">E-TXT-018</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Confirma-se a classificação REVIEW_REQUIRED (prioridade MEDIUM). Trata-se de landing page comercial de correspondente bancário/promotora de crédito (FinanZero Brasil Serviços Online Ltda., CNPJ 23.722.194/0001-34) voltada à captação de empréstimo com garantia de veículo utilizando o logotipo do Banco BV em destaque na dobra inicial (E-SHOT-VIEWPORT) e &#39;BV Financeira&#39; no início do título (E-TITLE). Apesar de apresentar declaração de correspondente bancário no rodapé citando a Resolução CMN nº 4.935/2021 e o CNPJ do Banco Votorantim S.A. (E-TXT-015, E-TXT-018), o aviso está confinado a uma caixa de rolagem no fim da página (E-SHOT-FULL), ausente na área visível inicial do simulador, e não apresenta os canais de SAC e Ouvidoria do Banco BV.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Transparência regulatória parcial de correspondente bancário</td><td>MEDIUM</td><td>A página pertence a um correspondente bancário (FinanZero, CNPJ 23.722.194/0001-34) que dedica uma landing page comercial com simulador de crédito e exibição em destaque do logotipo do Banco BV acima da dobra (E-SHOT-VIEWPORT), além de iniciar o título da página com &#39;BV Financeira&#39; (E-TITLE). Embora declare atuação como correspondente bancário do Banco Votorantim S.A. no rodapé (E-TXT-015, E-TXT-018), essa informação fica restrita a uma área de rolagem no final da página (E-SHOT-FULL) e omite os telefones de SAC/Ouvidoria do Banco BV (informando apenas os do Banco Digio em E-TXT-017), justificando a manutenção de REVIEW_REQUIRED.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-017">E-TXT-017</a> <a href="#E-TXT-018">E-TXT-018</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-016">E-TXT-016</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-FTR</li><li>E-TXT-011</li><li>E-TXT-015</li><li>E-TXT-018</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Terceiros e promotoras que usam a marca no título da página.
+Execute no Google Search as seguintes consultas (dorks):
+  - (intitle:&#34;Banco BV&#34; OR intitle:&#34;bv financeira&#34; OR intitle:&#34;BV Financiamentos&#34; OR intitle:&#34;BV Promotora&#34;) (financiamento OR crédito OR veículos OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+  - (intitle:&#34;BV Veículos&#34; OR intitle:&#34;Agência BV&#34;) (financiamento OR seminovos OR veículos) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H1-identity:title-brand</span></td><td class="mono">https://finanzero.com.br/parceiros-banco-bv/</td><td>finanzero.com.br<br><span class="muted">**Nome do Estabelecimento:** FinanZero (`BV Financeira: Refinanciamento de Veículo Online - FinanZero`) | **URL:** `https://finanzero.com.br/` (Landing page dedicada ao Banco BV / BV Financeira) | **Como utiliza:** Utiliza `&#34;BV Financeira&#34;` logo no início do título da página para ranqueamento em buscadores</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:22:21.547645+00:00</div>
+      <div class="kv"><b>IP do servidor</b>34.160.80.40</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\C3856b56773\attempt-1\manifest.json<br>sha256 ba3db2895f2236fd9db668edcaa9292546143c876e09f48a5c294763cfb73d91</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://finanzero.com.br/parceiros-banco-bv/<br>Final: https://finanzero.com.br/parceiros-banco-bv/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\C3856b56773\attempt-1\viewport.png</td><td class="mono">53fe251d09fd1a60f2e51a83d09f3c97ab53b531a6b0730cb6708000cb90ca5f</td><td>322696</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\C3856b56773\attempt-1\fullpage.png</td><td class="mono">a3f61c4eafcd34de00896afd9048670e065f0203a0971730b2f5fff36d169a77</td><td>704974</td></tr>
+      <tr><td>html</td><td class="mono">evidence\C3856b56773\attempt-1\page.html.txt</td><td class="mono">fb7654016670a01d5b5424e923bc1d3b83658f3186d4459852e34c253e3b664d</td><td>222125</td></tr>
+      <tr><td>text</td><td class="mono">evidence\C3856b56773\attempt-1\text.txt</td><td class="mono">92e0385f2ed4217608f85b4428ff75443460bc2da403bd3de24b6f32e58a3e4b</td><td>7346</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\C3856b56773\attempt-1\page.json</td><td class="mono">524544e43120719779c354e03499c662e8eaab1d703f1530f4e80841d8ac5a4d</td><td>29596</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:57+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 3.5)</td></tr>
+      <tr><td>2026-11-23T14:22:21+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:22:39+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:22:39+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:23:24+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:23:37+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

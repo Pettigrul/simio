@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C28df07bced</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C28df07bced — investcertopromotora.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">http://investcertopromotora.com.br/servicos</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento comercial investigado é uma promotora de crédito ativa que atua na intermediação de produtos financeiros e lista a BV Financeira entre seus parceiros comerciais em contexto multibancos. Embora possua identidade própria consolidada e não mimetize o Banco BV, a ausência de identificação societária (CNPJ/Razão Social) e da declaração formal de correspondente bancário (art. 14 da Resolução CMN nº 4.935/2021) configura comunicação ambígua, requerendo revisão com prioridade média.
+[Revisor: CONFIRM] A InvestCerto qualifica-se como promotora de crédito (correspondente bancário) que oferece intermediação financeira de múltiplos bancos. Conforme o histórico indexado (E-DISC-001) e a seção de bancos parceiros (E-HEAD-13, E-SHOT-FULL), a empresa atua com instituições financeiras parceiras, porém omite dados regulatórios essenciais exigidos pela Resolução CMN 4.935/2021 (razão social societária, CNPJ, menção explícita à condição de correspondente bancário e ouvidoria). Trata-se de vínculo comercial não plenamente esclarecido em um agente do público-alvo prioritário, justificando a manutenção de REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C28df07bced/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 4b1643b29757e914b9c5c9876e88ef811051b469794c5698d3f4512885c63d59</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C28df07bced/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 d6df7e2558937f3f069bc23cc3d4f98fe904c2162419e3c6681a02458845e908</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: http://investcertopromotora.com.br/servicos (domínio: investcertopromotora.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): investcertopromotora.com.br — **URL:** `https://investcertopromotora.com.br` | **Produtos com a marca BV:** Empréstimo Consignado, Empréstimo Pessoal e Garantias | **Como utiliza a marca e elementos visuais:** Lista a &#34;BV Financeira&#34; em sua grade de instituições parceiras em página com botões de chamada para simulação online imediata | Não exibe na página institucional os dados obrigatórios de identificação de correspondente (Razão Social societária, CNPJ ativo e citação à norma do Banco Central)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C28df07bced/attempt-1/viewport.png (sha256 4b1643b29757e914…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C28df07bced/attempt-1/fullpage.png (sha256 d6df7e2558937f3f…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Serviços - INVESTCERTO - Promotora de Crédito</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Invest Certo - Promotora de Crédito</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>author: Agência Lúmen - contato@agencialumen.com.br</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>PORTAL DE NEGÓCIOS INVE$TCERTO</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>SERVIÇOS</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>EMPRÉSTIMOS CONSIGNADOS</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>EMPRÉSTIMOS COM GARANTIA DE IMÓVEL</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>EMPRÉSTIMOS PESSOAIS</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>SEGUROS</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>CONSÓRCIOS</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>CARTÕES</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>APROVEITE AS VANTAGENS E FAÇA AGORA MESMO UMA SIMULAÇÃO</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>APOSENTADOS</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>FUNCIONÁRIO PÚBLICO</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>MILITARES DO EXÉRCITO, MARINHA E AERONÁUTICA</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>BANCOS PARCEIROS</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>INFORMAÇÕES</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>ACOMPANHE-NOS NAS REDES SOCIAIS</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Trabalhe conosco Portal de negócios INVE$TCERTO Usuário Senha Conectar Home Quem somos Serviços Notícias Seja um parceiro Contato Serviços Empréstimos consignados INSS - Crédito Consignado para Aposentados e Pensionistas do INSS. SERVIDORES PUBLICOS - Crédito Consignado através de desconto em folha de pagamento para Servidores Públicos, Municipais, Estaduais e Federais MILITARES - Crédito Consignado para Militares da Marinha , Exército e Aeronáutica. Empréstimos com garantia de imóvel BMG Realiza - Empréstimo com garantia de imóvel para quem precisa de crédito fácil e seguro para investir, expandir negócios ou até mesmo reorganizar suas finanças. Empréstimos pessoais Com o empréstimo pessoal você tem uma linha de crédito rápido, fácil e com desconto em conta corrente ou cheque. Agidébito - Emprestimos com descontos em débito em conta.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>HOME &lt;http://investcertopromotora.com.br/&gt; | QUEM SOMOS &lt;http://investcertopromotora.com.br/quemsomos&gt; | SERVIÇOS &lt;http://investcertopromotora.com.br/servicos&gt; | NOTÍCIAS &lt;http://investcertopromotora.com.br/noticias&gt; | SEJA UM PARCEIRO &lt;http://investcertopromotora.com.br/sejaparceiro&gt; | CONTATO &lt;http://investcertopromotora.com.br/contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Conectar</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=http://investcertopromotora.com.br/public/images/logo.png (382x121, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>HOME QUEM SOMOS SERVIÇOS NOTÍCIAS SEJA UM PARCEIRO CONTATO</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>BANCOS PARCEIROS</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>CEP: 57300-070 - Arapiraca-AL</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual própria da INVESTCERTO predomina em todo o site, sem mimetização das cores institucionais do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>Identificação pelo nome fantasia &#39;INVESTCERTO Promotora de Crédito&#39;, porém sem menção ao CNPJ ou Razão Social societária no rodapé.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência da declaração regulatória obrigatória de correspondente bancário e contatos de ouvidoria, em descumprimento à Res. CMN nº 4.935/2021.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Comunicação em 3ª pessoa, apresentando-se como promotora de crédito independente que intermedia produtos junto a múltiplos bancos parceiros.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>A marca BV não aparece em destaque na página inspecionada; consta em carrossel de bancos parceiros conforme histórico de indexação, em contexto multibancos.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-HEAD-13">E-HEAD-13</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Oferta de intermediação de crédito consignado, seguros e consórcios, direcionando para contato e simulação com a promotora.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-9">E-HEAD-9</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da promotora em Arapiraca-AL (telefone fixo e e-mail com domínio próprio).</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Baixo risco de confusão direta sobre a titularidade do canal, porém com relação jurídica não formalmente esclarecida nos termos regulatórios.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A promotora de crédito divulga atuação como parceira de instituições financeiras (incluindo BV Financeira conforme índice de busca), porém não apresenta declaração formal de correspondente bancário, relação jurídica clara nem dados societários completos (CNPJ e Razão Social). — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-003">E-TXT-003</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Ausência de CNPJ e razão social formalizada no rodapé da página, constando apenas nome fantasia &#39;INVESTCERTO Promotora de Crédito&#39; e endereço físico em Arapiraca/AL. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-003">E-TXT-003</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] INSTITUTIONAL_LANGUAGE: Apresentação expressa como promotora de crédito e listagem de bancos em grade de parceiros em contexto multibancos. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-13">E-HEAD-13</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Logotipo e identidade gráfica próprios da InvestCerto dominam o cabeçalho e as áreas de conteúdo. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-IMG-1">E-IMG-1</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio investcertopromotora.com.br pertence à InvestCerto - Promotora de Crédito.</li><li>A página apresenta serviços de empréstimos consignados, pessoais, com garantia de imóvel, consórcios e cartões.</li><li>Há uma seção dedicada a &#39;BANCOS PARCEIROS&#39; exibindo instituições financeiras parceiras em carrossel.</li><li>O índice de busca (E-DISC-001) confirma que a BV Financeira é listada na grade de instituições parceiras do site.</li><li>Não há identificação de CNPJ ativo ou Razão Social formal no rodapé da página.</li><li>Não há declaração expressa de correspondente bancário vinculada à regulamentação do Banco Central (Res. CMN 4.935/2021).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível verificar se a marca BV é exibida como logo atual ou antigo na rotação completa do carrossel de parceiros.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento comercial investigado é uma promotora de crédito ativa que atua na intermediação de produtos financeiros e lista a BV Financeira entre seus parceiros comerciais em contexto multibancos. Embora possua identidade própria consolidada e não mimetize o Banco BV, a ausência de identificação societária (CNPJ/Razão Social) e da declaração formal de correspondente bancário (art. 14 da Resolução CMN nº 4.935/2021) configura comunicação ambígua, requerendo revisão com prioridade média.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:investcertopromotora.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>investcertopromotora.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@agencialumen.com.br</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>parceiras</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Como utiliza a marca e elementos visuais:** Lista a &#34;BV Financeira&#34; em sua grade de instituições parceiras em página com botões de chamada para simulação online imediata</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-003">E-TXT-003</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-003">E-TXT-003</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A InvestCerto qualifica-se como promotora de crédito (correspondente bancário) que oferece intermediação financeira de múltiplos bancos. Conforme o histórico indexado (E-DISC-001) e a seção de bancos parceiros (E-HEAD-13, E-SHOT-FULL), a empresa atua com instituições financeiras parceiras, porém omite dados regulatórios essenciais exigidos pela Resolução CMN 4.935/2021 (razão social societária, CNPJ, menção explícita à condição de correspondente bancário e ouvidoria). Trata-se de vínculo comercial não plenamente esclarecido em um agente do público-alvo prioritário, justificando a manutenção de REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Promotoras, correspondentes e corretoras oferecendo refinanciamento, crédito consignado, empréstimo pessoal e garantia com a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; (&#34;crédito com garantia&#34; OR &#34;home equity&#34; OR refinanciamento) (correspondente OR promotora OR financeira) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) (&#34;crédito consignado&#34; OR &#34;empréstimo consignado&#34; OR consignado) (promotora OR correspondente OR &#34;taxas&#34; OR simulação) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;BV Financeira&#34; OR &#34;Banco BV&#34;) (&#34;Daycoval&#34; OR &#34;Pan&#34; OR &#34;Safra&#34; OR &#34;BMG&#34;) (consignado OR refinanciamento OR empréstimo OR promotora) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:refinanciamento e crédito com garantia</span></td><td class="mono">http://investcertopromotora.com.br/servicos</td><td>investcertopromotora.com.br<br><span class="muted">**URL:** `https://investcertopromotora.com.br` | **Produtos com a marca BV:** Empréstimo Consignado, Empréstimo Pessoal e Garantias | **Como utiliza a marca e elementos visuais:** Lista a &#34;BV Financeira&#34; em sua grade de instituições parceiras em página com botões de chamada para simulação online imediata | Não exibe na página institucional os dados obrigatórios de identificação de correspondente (Razão Social societária, CNPJ ativo e citação à norma do Banco Central)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:04:24.308646+00:00</div>
+      <div class="kv"><b>IP do servidor</b>69.10.55.154</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C28df07bced/attempt-1/manifest.json<br>sha256 f283def72e368717c1645ab076b5cac9a86be8cabb00862a603629b7db95986a</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: http://investcertopromotora.com.br/servicos<br>Final: http://investcertopromotora.com.br/servicos</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C28df07bced/attempt-1/viewport.png</td><td class="mono">4b1643b29757e914b9c5c9876e88ef811051b469794c5698d3f4512885c63d59</td><td>195721</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C28df07bced/attempt-1/fullpage.png</td><td class="mono">d6df7e2558937f3f069bc23cc3d4f98fe904c2162419e3c6681a02458845e908</td><td>617570</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C28df07bced/attempt-1/page.html.txt</td><td class="mono">b9e4a67db097fe05444d7b367dc2c47b3d3c999f564e26596fcc13c3423dc898</td><td>14790</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C28df07bced/attempt-1/text.txt</td><td class="mono">1eac25c97eb2a9012b6eb4307d5645f2bebdf43fbb4029712ed023c68eed0b7c</td><td>2130</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C28df07bced/attempt-1/page.json</td><td class="mono">449485a6350278bc30f4210a9415fbdbd9a872b9921f0050fb486db27fa18121</td><td>9222</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:07+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T19:04:24+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:31+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:31+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:04:52+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:05:22+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

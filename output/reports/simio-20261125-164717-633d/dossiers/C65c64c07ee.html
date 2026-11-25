@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C65c64c07ee</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C65c64c07ee — descomplicred.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://emprestimos.descomplicred.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página é operada pela promotora descompliCred para captação de crédito auto equity. A empresa possui marca própria dominante e afirma atuar como correspondente bancário. Contudo, insere o logotipo antigo/legado da BV (B vermelho e V azul) acompanhado do termo &#39;Correspondente&#39; sem apresentar a razão social, CNPJ ou os contatos de ouvidoria da instituição contratante (exigências da Res. CMN nº 4.935/2021). Trata-se de relação de parceria com comunicação ambígua e desatualizada, justificando classificação REVIEW_REQUIRED com prioridade MEDIUM.
+[Revisor: CONFIRM] A página pertence a uma promotora/correspondente de crédito (descompliCred) ofertando empréstimo com garantia de veículo. Há exibição do logotipo legado da marca Banco BV acompanhado do descritor &#39;Correspondente&#39; (E-IMG-3 e E-SHOT-FULL), sem a inclusão de dados cadastrais obrigatórios (CNPJ e razão social) e sem menção aos canais oficiais de ouvidoria do banco parceiro (Resolução CMN nº 4.935/2021). Como a marca própria da promotora permanece predominante mas a comunicação da parceria é desatualizada e ambígua quanto aos deveres regulatórios, confirma-se a hipótese de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C65c64c07ee/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 f60f3d1adde28a764f054c2e393be93275fc84d30085668815f006d28824e3df</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/C65c64c07ee/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 2de951d5953d1c0300b9e4d1a1c798cda0699c7e5b29f85d9219ae535a090625</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://emprestimos.descomplicred.com.br/ (domínio: emprestimos.descomplicred.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): descomplicred.com.br — **URL:** `https://descomplicred.com.br` | **Como a marca é utilizada:** Landing page de captação de clientes para empréstimo com garantia de veículo (auto equity), prometendo liberação de até 80% do valor do bem com taxas reduzidas e formulário eletrônico | Utiliza destaque visual/textual com o rótulo *“Correspondente BV”* | Declara atuar como correspondente que negocia com parceiros, porém não exibe no corpo da página ou rodapé a razão social do operador, seu CNPJ próprio ou os telefones das ouvidorias e canais oficiais do Banco BV</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C65c64c07ee/attempt-1/viewport.png (sha256 f60f3d1adde28a76…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C65c64c07ee/attempt-1/fullpage.png (sha256 2de951d5953d1c03…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Empréstimo com Garantia de Carro - descompliCred</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Você sabia que pode usar os seus bens para conseguir empréstimos com taxas mais baixas? Quando o empréstimo é com garantia o processo é mais fácil e as taxas são muito menores.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Empréstimos descompliCred</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Empréstimo com Garantia de Carro - descompliCred</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Você sabia que pode usar seu carro para conseguir empréstimos com taxas mais baixas? Quando o empréstimo é com garantia o processo é mais fácil e as taxas são muito menores.</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: descompliCred</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Empréstimo com garantia de Carro</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Empréstimo com Carro em Garantia</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Por quê o empréstimo da descompliCred?</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Acesse o nosso site e conheça mais a descompliCred</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Utilize um dos canais abaixo para falar conosco:</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>EMPRÉSTIMOS COM CARRO EM GARANTIA SOBRE NÓS CONTATO Empréstimo com garantia de Carro Você sabia que pode usar seu carro para conseguir empréstimos com taxas mais baixas? Quando o empréstimo é com garantia o processo é mais fácil e as taxas são muito menores. Clique no botão abaixo e fale com um de nossos analistas. SOLICITE AGORA</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Empréstimo com garantia de Carro Você sabia que pode usar seu carro para conseguir empréstimos com taxas mais baixas? Quando o empréstimo é com garantia o processo é mais fácil e as taxas são muito menores. Clique no botão abaixo e fale com um de nossos analistas. Solicite agora Empréstimo com Carro em Garantia Utilizamos cookies e tecnologias semelhantes de acordo com a nossa Política de Privacidade e, ao continuar navegando, você concorda com estas condições. Concordar e Fechar</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>©2026 descompliCred.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://emprestimos.descomplicred.com.br/#&gt; | EMPRÉSTIMOS &lt;https://emprestimos.descomplicred.com.br/#home&gt; | COM CARRO EM GARANTIA &lt;https://emprestimos.descomplicred.com.br/#section2&gt; | SOBRE NÓS &lt;https://emprestimos.descomplicred.com.br/#section6&gt; | CONTATO &lt;https://emprestimos.descomplicred.com.br/#section8&gt; |  &lt;https://www.facebook.com/descomplicredoficial/&gt; |  &lt;https://twitter.com/descompliCred&gt; |  &lt;https://www.instagram.com/descomplicredoficial/&gt; | SOLICITE AGORA &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>SOLICITE AGORA &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>ACESSE &lt;https://descomplicred.com.br/&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Concordar e Fechar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td> &lt;https://www.facebook.com/descomplicredoficial/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td> &lt;https://www.instagram.com/descomplicredoficial/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>header</td><td>SOLICITE AGORA &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>(11) 2496-0072 &lt;tel:1124960072&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>CANAL DO WHATSAPP &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/descomplicredoficial/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/descomplicredoficial/&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Fale pelo WhatsApp &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header</td><td>imagem alt=&#39;Empréstimos descompliCred&#39; src=https://emprestimos.descomplicred.com.br/images/logo-dark.png (183x26, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Empréstimos descompliCred&#39; src=https://emprestimos.descomplicred.com.br/images/logo.png (183x26, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Correspondente BV&#39; src=https://emprestimos.descomplicred.com.br/images/bv_correspondente.png (335x323, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Empréstimos descompliCred&#39; src=https://emprestimos.descomplicred.com.br/images/logo-dark.png (180x26, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>A descompliCred é um correspondente bancário que negocia empréstimos com as instituições financeiras parceiras. Nosso trabalho é buscar as melhores ofertas e enviá-las, de forma gratuíta e pré aprovada, aos nossos clientes.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>O empréstimo com garantia é mais seguro e possibilita uma taxa mais baixa, se comparado com as taxas praticadas em outras modalidades. É muito confiável pois diminui o risco da instituição financeira, podendo assim oferecer taxas de juros muito atraentes. Além disso disponibiliza uma quantia maior, sem burocracia e muito mais prazo para pagar.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>CANAL DO WHATSAPP</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A identidade visual dominante da página pertence à própria descompliCred (paleta verde e preta), embora haja inserção pontual da logo BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-2">E-IMG-2</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O estabelecimento comercial se identifica sob a marca de fantasia &#39;descompliCred&#39;, mas não informa sua razão social nem CNPJ em nenhum local visível da página.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Embora declare explicitamente ser correspondente bancário, não cumpre os requisitos de transparência cadastral (CNPJ do correspondente e canais da ouvidoria do Banco BV).</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O texto explicita que a descompliCred atua como intermediária que negocia empréstimos com instituições financeiras parceiras, sem se passar pelo próprio banco.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Exibição do logotipo histórico/legado da BV (B vermelho e V azul) sob a legenda &#39;Correspondente&#39;, denotando falta de conformidade com a identidade visual atual do banco.</td><td class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Jornada de captação de potenciais clientes para empréstimo com garantia de veículo com redirecionamento para canal de atendimento próprio via WhatsApp.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-8">E-CONTACT-8</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Canais de contato apresentados pertencem exclusivamente à descompliCred (telefone e WhatsApp com DDD 11 e redes sociais próprias).</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-5">E-CONTACT-5</a> <a href="#E-NAV">E-NAV</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>O uso de logotipo legado do banco acoplado ao termo &#39;Correspondente&#39; sem a identificação do CNPJ da contratada nem das regras de ouvidoria pode gerar dúvida sobre a formalidade e regularidade do credenciamento perante o Banco BV.</td><td class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Utilização do logotipo legado/antigo do Banco BV (monograma &#39;B&#39; vermelho entrelaçado ao &#39;V&#39; azul) associado à inscrição &#39;Correspondente&#39;, indicando peça promocional desatualizada e sem alinhamento com os padrões vigentes de governança da marca. — <span class="mono"><a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página declara atuar como correspondente bancário, porém omite a razão social e o CNPJ do operador, além de não disponibilizar os canais de ouvidoria e atendimento oficial da instituição financeira parceira, em desacordo com as exigências da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Predomínio de marca própria (&#39;descompliCred&#39;) em todo o cabeçalho, domínio, chamadas e rodapé. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: Afirmação em terceira pessoa de que negocia empréstimos com financeiras parceiras na condição de correspondente bancário. — <span class="mono"><a href="#E-TXT-001">E-TXT-001</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página é uma landing page de captação de clientes para empréstimo com garantia de veículo operada pela marca &#39;descompliCred&#39;.</li><li>A identidade própria da descompliCred é dominante visualmente na área superior e no rodapé do site.</li><li>Na seção intermediária da página (&#39;Por quê o empréstimo da descompliCred?&#39;), há a inserção de uma imagem com o logotipo antigo/legado do Banco BV (B vermelho e V azul) sob o título &#39;Correspondente&#39;.</li><li>O texto informativo declara expressamente que a empresa atua como correspondente bancário que negocia com instituições financeiras parceiras.</li><li>A página omite o CNPJ e a razão social da descompliCred, bem como os dados e canais de contato com a ouvidoria do Banco BV.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não é possível confirmar pelo conteúdo público da página se a descompliCred possui contrato ativo e regular como correspondente bancário do Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página é operada pela promotora descompliCred para captação de crédito auto equity. A empresa possui marca própria dominante e afirma atuar como correspondente bancário. Contudo, insere o logotipo antigo/legado da BV (B vermelho e V azul) acompanhado do termo &#39;Correspondente&#39; sem apresentar a razão social, CNPJ ou os contatos de ouvidoria da instituição contratante (exigências da Res. CMN nº 4.935/2021). Trata-se de relação de parceria com comunicação ambígua e desatualizada, justificando classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Empréstimos descompliCred<br><span class="mono">domain:descomplicred.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>descomplicred.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/descomplicredoficial/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/descomplicredoficial/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Empréstimos descompliCred</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 2496-0072</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>phone</td><td>1124960072</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>SOLICITE AGORA &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>CANAL DO WHATSAPP &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Fale pelo WhatsApp &lt;https://api.whatsapp.com/send?phone=551124960072&gt;</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a></td><td>A descompliCred é um correspondente bancário que negocia empréstimos com as instituições financeiras parceiras. Nosso trabalho é buscar as melhores ofertas e enviá-las, de forma gratuíta e pré aprovad</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Declara atuar como correspondente que negocia com parceiros, porém não exibe no corpo da página ou rodapé a razão social do operador, seu CNPJ próprio ou os telefones das ouvidorias e canais oficiais </td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma promotora/correspondente de crédito (descompliCred) ofertando empréstimo com garantia de veículo. Há exibição do logotipo legado da marca Banco BV acompanhado do descritor &#39;Correspondente&#39; (E-IMG-3 e E-SHOT-FULL), sem a inclusão de dados cadastrais obrigatórios (CNPJ e razão social) e sem menção aos canais oficiais de ouvidoria do banco parceiro (Resolução CMN nº 4.935/2021). Como a marca própria da promotora permanece predominante mas a comunicação da parceria é desatualizada e ambígua quanto aos deveres regulatórios, confirma-se a hipótese de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Correspondentes bancários e promotoras que declaram vínculo com a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;correspondente bancário&#34; OR &#34;Correspondente no País&#34; OR &#34;correspondente do Banco BV&#34;) &#34;Banco BV&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;correspondente BV&#34; OR &#34;Somos correspondente&#34; &#34;Banco BV&#34; OR &#34;correspondente&#34; &#34;bv financeira&#34;) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;correspondente&#34; &#34;Banco Votorantim&#34; financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H3-service:correspondente-vinculo</span></td><td class="mono">https://emprestimos.descomplicred.com.br/</td><td>descomplicred.com.br<br><span class="muted">**URL:** `https://descomplicred.com.br` | **Como a marca é utilizada:** Landing page de captação de clientes para empréstimo com garantia de veículo (auto equity), prometendo liberação de até 80% do valor do bem com taxas reduzidas e formulário eletrônico | Utiliza destaque visual/textual com o rótulo *“Correspondente BV”* | Declara atuar como correspondente que negocia com parceiros, porém não exibe no corpo da página ou rodapé a razão social do operador, seu CNPJ próprio ou os telefones das ouvidorias e canais oficiais do Banco BV</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:17:40.865379+00:00</div>
+      <div class="kv"><b>IP do servidor</b>50.116.113.44</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C65c64c07ee/attempt-1/manifest.json<br>sha256 f8b8742ca1a221db62d40d971356a182dfbb325a3cb67b4adac639a9360c58b0</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://emprestimos.descomplicred.com.br/<br>Final: https://emprestimos.descomplicred.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C65c64c07ee/attempt-1/viewport.png</td><td class="mono">f60f3d1adde28a764f054c2e393be93275fc84d30085668815f006d28824e3df</td><td>365143</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C65c64c07ee/attempt-1/fullpage.png</td><td class="mono">2de951d5953d1c0300b9e4d1a1c798cda0699c7e5b29f85d9219ae535a090625</td><td>656899</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C65c64c07ee/attempt-1/page.html.txt</td><td class="mono">3d6850df2a3c0e79e25b19ebe79040e670166baf7c5ce8d2e8d0217518356535</td><td>19043</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C65c64c07ee/attempt-1/text.txt</td><td class="mono">6b42f9df61d36a692a61e30ada90ac2db362743036a371aea733fbdedb14c0db</td><td>2131</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C65c64c07ee/attempt-1/page.json</td><td class="mono">eb65de8b204ef3117d0043f002c34bc5c9e146b842cd249faf9edcf17afcb553</td><td>10527</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:09+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-25T19:17:40+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:46+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:17:46+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:18:17+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:18:26+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

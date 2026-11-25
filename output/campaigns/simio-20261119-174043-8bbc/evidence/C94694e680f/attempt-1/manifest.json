@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C94694e680f",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://nsamotoseletricas.com.br/",
+  "final_url": "https://nsamotoseletricas.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "64.29.17.1",
+  "collected_at": "2026-11-19T18:24:02.213615+00:00",
+  "manifest_written_at": "2026-11-19T18:24:06.687579+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C94694e680f\\attempt-1\\viewport.png",
+      "sha256": "caa4f3db94f78674d306ae8af19956c43190f42e0176970648a1bf091e63cf2d",
+      "size_bytes": 47326
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C94694e680f\\attempt-1\\fullpage.png",
+      "sha256": "caa4f3db94f78674d306ae8af19956c43190f42e0176970648a1bf091e63cf2d",
+      "size_bytes": 47326
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C94694e680f\\attempt-1\\page.html.txt",
+      "sha256": "ff951b90c17f8c8aaadd2499929322720af64496f63a070e698af2940a86f425",
+      "size_bytes": 65505
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C94694e680f\\attempt-1\\text.txt",
+      "sha256": "0a52386e526fe49c988dcbfa80b7107b60fc9e8c3c0ac054caf22dd40edd5333",
+      "size_bytes": 796
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C94694e680f\\attempt-1\\page.json",
+      "sha256": "d8dfcdd3edb7b21d6119eb109927a6dd454ea79d0665ad6f929420605406796b",
+      "size_bytes": 2756
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

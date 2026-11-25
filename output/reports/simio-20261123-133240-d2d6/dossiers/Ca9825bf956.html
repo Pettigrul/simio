@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Ca9825bf956</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Ca9825bf956 — realcredi.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://realcredi.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada pertence à Real Credi (PIRES PROMOTORA DE NEGÓCIOS LTDA, CNPJ 16.503.186/0001-31), que atua como correspondente bancário. O site apresenta identidade visual totalmente própria, exibe razão social e CNPJ no cabeçalho e rodapé, declara expressamente sua condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 e não faz uso de logotipos do Banco BV. A única menção ao Banco BV ocorre de forma legítima e transparente para informar que o botão de simulação de crédito com garantia de veículo redireciona o usuário para o ambiente oficial do banco (bv.com.br). Trata-se, portanto, de menção comercial legítima sem indícios de uso indevido da marca.
+[Revisor: CONFIRM] A página pertence a uma promotora de crédito e correspondente bancário (Real Credi / PIRES PROMOTORA DE NEGÓCIOS LTDA - CNPJ 16.503.186/0001-31) que oferta &#39;Crédito com garantia de veículo&#39; vinculando sua operação ao Banco BV (&#39;parceiro da Real Credi&#39;) com link parametrizado de parceiro comercial (parceiroComercial/488346). Apesar de apresentar identidade visual própria, informar razão social e CNPJ no cabeçalho e rodapé e mencionar a Resolução CMN nº 4.935/2021, a declaração de correspondente bancário é genérica (não lista nominalmente o Banco BV como instituição contratante no aviso regulatório), não consta menção à Ouvidoria do Banco BV na página e a seção específica do produto não renderizou visualmente no screenshot completo. Portanto, confirma-se a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Ca9825bf956/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 e5b5de682e48a73b636e9c2ce6117d6865c2c9ca3504bd9c7e52020318d38823</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Ca9825bf956/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 d15a29b6c1fb8120ae3717e8dda697360263dc6c01f9c4e895231dae19bf211e</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://realcredi.com.br/ (domínio: realcredi.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): realcredi.com.br — **Estabelecimento / Perfil:** Real Credi (`PIRES PROMOTORA DE NEGÓCIOS LTDA`) | **URL:** `https://realcredi.com.br/` | **Uso da Marca e Produtos:** Destaca uma seção de *&#34;Crédito com garantia de veículo&#34;*, refinanciamento, liberação de margem e consignado CLT com botão de captura e simulador, afirmando na interface: *&#34;Simulação feita no ambiente seguro do banco BV, parceiro da Real Credi&#34;* | Exibe no rodapé a razão social (`PIRES PROMOTORA DE NEGÓCIOS LTDA`), o CNPJ (`16.503.186/0001-31`), endereço físico em Hortolândia/SP e exemplos de CET, mas não destaca de forma explícita o termo regulamentar de declaração de &#34;correspondente bancário&#34; nos termos da Resolução CMN nº 4.935/2021 no trecho principal da página</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\Ca9825bf956\attempt-1\viewport.png (sha256 e5b5de682e48a73b…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\Ca9825bf956\attempt-1\fullpage.png (sha256 d15a29b6c1fb8120…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Empréstimo Consignado, CLT e Crédito na Conta de Luz | Real Credi</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Real Credi: consignado INSS, portabilidade e margem, empréstimo CLT e crédito na conta de luz — aceita negativado. Simulação grátis e atendimento em todo o Brasil pelo WhatsApp, com lojas físicas em Hortolândia/SP.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Real Credi</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Real Credi | Empréstimo Consignado, CLT e Crédito na Conta de Luz</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Aceita negativado, aprovação rápida e atendimento em todo o Brasil pelo WhatsApp. Consignado INSS, portabilidade, CLT e crédito na conta de luz. Simule grátis!</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: Real Credi</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://realcredi.com.br/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>A solução certa para cada momento da sua vida financeira.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Nossos produtos</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Crédito Consignado INSS</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Portabilidade e Margem</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Crédito para Trabalhador CLT</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Crédito na Conta de Energia</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Crédito com garantia de veículo</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Simule em poucos minutos</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Como funciona</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Solicite</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Análise rápida</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Dinheiro na conta</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Por que escolher a Real Credi?</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Atendimento Humanizado</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Segurança e Transparência</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>PIRES PROMOTORA DE NEGÓCIOS LTDA | CNPJ: 16.503.186/0001-31 | Rua Argolino de Moraes, 113 - Centro, Hortolândia, SP Prazos: 6 a 36 meses (mín. 61 dias) | CET máx: 29,90% a.a. | Ex: R$ 1.000 em 12x de R$ 113,74 – Total: R$ 1.364,88 (CET: 29,90% a.a.) Fique atento: Não solicitamos nenhum tipo de pagamento antecipado para liberação de empréstimo. Início Produtos Como funciona Por que escolher Fale conosco Simular agora</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>PIRES PROMOTORA DE NEGÓCIOS LTDA | CNPJ: 16.503.186/0001-31 | Rua Argolino de Moraes, 113 - Centro, Hortolândia, SP Prazos: 6 a 36 meses (mín. 61 dias) | CET máx: 29,90% a.a. | Ex: R$ 1.000 em 12x de R$ 113,74 – Total: R$ 1.364,88 (CET: 29,90% a.a.) Fique atento: Não solicitamos nenhum tipo de pagamento antecipado para liberação de empréstimo. Início Produtos Como funciona Por que escolher Fale conosco Simular agora A solução certa para cada momento da sua vida financeira. Na Real Credi você encontra as melhores opções de crédito em todo o Brasil, com segurança, agilidade e atendimento humanizado. Simular agora Falar no WhatsApp Segurança Seus dados protegidos do início ao fim Rápido Análise ágil e sem burocracia Condições justas Taxas competitivas e parcelas que cabem no seu bolso Atendimento humano Especialistas prontos para te ajudar Nossos produtos</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Crédito descomplicado para quem mais precisa. Empréstimo pessoal com parcelas na conta de energia: aceita negativado, sem descontar do salário e com Pix no mesmo dia. NAVEGAÇÃO Início Produtos Como funciona Por que escolher Fale conosco Política de Privacidade Termos de Uso PRODUTOS Consignado INSS Portabilidade e Margem Crédito CLT Crédito na Conta de Energia Crédito com Garantia de Veículo CONTATO (19) 99673-4456 (19) 99227-9463 (19) 98817-9898 contato@realcrediconsignados.com.br realcredi.com.br Loja 1: Rua Argolino de Moraes, 113 — Centro, Hortolândia/SP — CEP 13184-230 Loja 2: Rua 15 de Novembro, 97 — Centro, Nova Odessa/SP — CEP 13380-005 Loja 3: Rua Rio Branco, 95 — Centro, Nova Odessa/SP — CEP 13380-005 Atendimento: seg. a sex., das 8h às 17h20, e sáb., das 8h às 12h A plataforma Real Credi pertence à empresa Pires Promotora de Negócios Ltda — CNPJ 16.503.186/0001-31, com sede na Rua Argolino de Moraes, 113 — Centro, Hortolândia/SP — CEP 13184-230. A Real Credi atua como correspondente bancário de renomadas instituições financeiras, de acordo com as diretrizes estabelecidas pela Resolução CMN nº 4.935/2021 do Banco Central do Brasil. A Real Credi apenas realiza a intermediação das operações de crédito. A análise do crédito e a liberação do valor na conta do cliente são feitas única e exclusivamente pelas instituições parceiras. A aprovação dos créditos descritos nesta plataforma está sujeita a análise de crédito e às políticas das instituições financeiras. As taxas de juros praticadas são determinadas pelas instituições parceiras e o Custo Efetivo Total (CET) será sempre confirmado e exibido antes de qualquer finalização de contratação. Simulações exibidas nesta página são ilustrativas e não constituem oferta. Não prometemos aprovação garantida. Não cobramos taxas de nenhuma natureza para liberação de crédito, nem solicitamos quaisquer depósitos ou antecipações. Nossos serviços são totalmente gratuitos para o cliente; somos remunerados pelas instituições fin</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://realcredi.com.br/#hero&gt; | Início &lt;https://realcredi.com.br/#hero&gt; | Produtos &lt;https://realcredi.com.br/#produtos&gt; | Como funciona &lt;https://realcredi.com.br/#como-funciona&gt; | Por que escolher &lt;https://realcredi.com.br/#por-que-escolher&gt; | Fale conosco &lt;https://realcredi.com.br/#contato&gt; | Simular agora &lt;https://realcredi.com.br/#contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Simular agora &lt;https://realcredi.com.br/#contato&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Simular agora &lt;https://realcredi.com.br/#contato&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Falar no WhatsApp &lt;https://api.whatsapp.com/send/?phone=%2B5519996734456&amp;text=Ol%C3%A1+Real+Credi.+Vim+pelo+seu+site+e+gostaria+de+atendimento.&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Simular INSS &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Consignado%20INSS.&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Quero economizar &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Portabilidade%20de%20Cr%C3%A9dito&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Simular CLT &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Cr%C3%A9dito%20CLT.&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Solicitar agora &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Cr%C3%A9dito%20na%20Conta%20de%20Energia.&gt;</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Simular com meu veículo &lt;https://www.bv.com.br/credito/credito-com-veiculo-garantia/simulacaov2/pre-analise/informar-cpf/parceiroComercial/488346&gt;</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Quero simular</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Falar no WhatsApp &lt;https://api.whatsapp.com/send/?phone=%2B5519996734456&amp;text=Ol%C3%A1+Real+Credi.+Vim+pelo+seu+site+e+gostaria+de+atendimento.&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Simular INSS &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Consignado%20INSS.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Quero economizar &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Portabilidade%20de%20Cr%C3%A9dito&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Simular CLT &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Cr%C3%A9dito%20CLT.&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Solicitar agora &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Cr%C3%A9dito%20na%20Conta%20de%20Energia.&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>(19) 99673-4456 &lt;https://api.whatsapp.com/send/?phone=%2B5519996734456&amp;text=Ol%C3%A1+Real+Credi.+Vim+pelo+seu+site+e+gostaria+de+atendimento.&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>(19) 99227-9463 &lt;https://wa.me/5519992279463?text=Ol%C3%A1%20Real%20Credi!%20Vim%20do%20site%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td>(19) 98817-9898 &lt;https://wa.me/5519988179898?text=Ol%C3%A1%20Real%20Credi!%20Vim%20do%20site%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td>contato@realcrediconsignados.com.br &lt;mailto:contato@realcrediconsignados.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td>Douglas Garcia &lt;https://wa.me/+5541933008319?text=Ol%C3%A1%20Douglas.%20Vim%20pelo%20site%20da%20Real%20Credi%20da%20Adriana.%20%0AGostaria%20de%20um%20site%20semelhante.%20&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/realcredi_consignados/&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/realcrediconsignados&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>footer</td><td>WhatsApp &lt;https://api.whatsapp.com/send/?phone=%2B5519996734456&amp;text=Ol%C3%A1+Real+Credi.+Vim+pelo+seu+site+e+gostaria+de+atendimento.&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>page</td><td>Fale conosco no WhatsApp &lt;https://api.whatsapp.com/send/?phone=%2B5519996734456&amp;text=Ol%C3%A1+Real+Credi.+Vim+pelo+seu+site+e+gostaria+de+atendimento.&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Real Credi Logo&#39; src=https://realcredi.com.br/images/logo-realcredi.webp (61x68, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Logo Real Credi - Empréstimos&#39; src=https://realcredi.com.br/images/logo-realcredi.webp (83x92, abaixo da dobra)</td></tr>
+      <tr id="E-OFFICIAL-LINKS"><td class="mono"><b>E-OFFICIAL-LINKS</b></td><td>link</td><td>page</td><td>Simular com meu veículo &lt;https://www.bv.com.br/credito/credito-com-veiculo-garantia/simulacaov2/pre-analise/informar-cpf/parceiroComercial/488346&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>PIRES PROMOTORA DE NEGÓCIOS LTDA | CNPJ: 16.503.186/0001-31 | Rua Argolino de Moraes, 113 - Centro, Hortolândia, SP</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Na Real Credi você encontra as melhores opções de crédito em todo o Brasil, com segurança, agilidade e atendimento humanizado.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Falar no WhatsApp</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Atendimento humano</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Simulação feita no ambiente seguro do banco BV, parceiro da Real Credi. *Sujeito à análise de crédito.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Atendimento Humanizado</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Atendimento presencial, do jeito que você confia</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Além do atendimento pelo WhatsApp, temos lojas físicas em Hortolândia e Nova Odessa/SP para você falar com a gente pessoalmente.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Atendimento de segunda a sexta das 8h às 18h</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Loja 1: Rua Argolino de Moraes, 113 — Centro, Hortolândia/SP — CEP 13184-230</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Loja 2: Rua 15 de Novembro, 97 — Centro, Nova Odessa/SP — CEP 13380-005</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Loja 3: Rua Rio Branco, 95 — Centro, Nova Odessa/SP — CEP 13380-005</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Atendimento: seg. a sex., das 8h às 17h20, e sáb., das 8h às 12h</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>A plataforma Real Credi pertence à empresa Pires Promotora de Negócios Ltda — CNPJ 16.503.186/0001-31, com sede na Rua Argolino de Moraes, 113 — Centro, Hortolândia/SP — CEP 13184-230. A Real Credi atua como correspondente bancário de renomadas instituições financeiras, de acordo com as diretrizes estabelecidas pela Resolução CMN nº 4.935/2021 do Banco Central do Brasil.</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>A Real Credi apenas realiza a intermediação das operações de crédito. A análise do crédito e a liberação do valor na conta do cliente são feitas única e exclusivamente pelas instituições parceiras. A aprovação dos créditos descritos nesta plataforma está sujeita a análise de crédito e às políticas das instituições financeiras. As taxas de juros praticadas são determinadas pelas instituições</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>parceiras e o Custo Efetivo Total (CET) será sempre confirmado e exibido antes de qualquer finalização de contratação. Simulações exibidas nesta página são ilustrativas e não constituem oferta. Não prometemos aprovação garantida.</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>© 2026 Real Credi · Pires Promotora de Negócios Ltda. Todos os direitos reservados. | Desenvolvedor: Douglas Garcia — Por One Analytic</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A página utiliza identidade visual própria da empresa Real Credi (tons de verde, bege e laranja), sem qualquer imitação das cores ou elementos visuais do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A empresa se identifica claramente tanto no topo da página quanto no rodapé com sua razão social (PIRES PROMOTORA DE NEGÓCIOS LTDA), CNPJ (16.503.186/0001-31) e endereços físicos.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-014">E-TXT-014</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Declara expressamente sua atuação como correspondente bancário de acordo com a Resolução CMN nº 4.935/2021, esclarecendo que realiza apenas intermediação de operações de crédito.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-014">E-TXT-014</a> <a href="#E-TXT-015">E-TXT-015</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A comunicação é realizada sempre em nome da Real Credi, distinguindo claramente o correspondente bancário da instituição financeira parceira (&#39;Simulação feita no ambiente seguro do banco BV, parceiro da Real Credi&#39;).</td><td class="mono"><a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-015">E-TXT-015</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não há uso do logotipo do Banco BV na página; apenas o logotipo da própria Real Credi é exibido.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Para o produto de crédito com garantia de veículo, o botão de simulação redireciona diretamente para a URL oficial de parceiro comercial no domínio bv.com.br, informando previamente o usuário.</td><td class="mono"><a href="#E-CTA-8">E-CTA-8</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> <a href="#E-TXT-005">E-TXT-005</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato (WhatsApp, e-mail, redes sociais e lojas físicas) são claramente identificados como pertencentes à Real Credi.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-9">E-CONTACT-9</a> <a href="#E-TXT-010">E-TXT-010</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não há risco de confusão para o consumidor, pois a página deixa evidente que se trata da promotora Real Credi e não de um canal oficial do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Exibição visível da razão social (PIRES PROMOTORA DE NEGÓCIOS LTDA), CNPJ (16.503.186/0001-31) e endereço já no topo da página (header/above the fold) e no rodapé. — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Declaração explícita de atuação como correspondente bancário nos termos da Resolução CMN nº 4.935/2021 do Banco Central do Brasil. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-014">E-TXT-014</a> <a href="#E-TXT-015">E-TXT-015</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Redirecionamento transparente para o simulador oficial do Banco BV (bv.com.br) com código de parceiro comercial e aviso textual claro sobre a mudança de ambiente. — <span class="mono"><a href="#E-CTA-8">E-CTA-8</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> <a href="#E-TXT-005">E-TXT-005</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio realcredi.com.br pertence à empresa PIRES PROMOTORA DE NEGÓCIOS LTDA (CNPJ 16.503.186/0001-31).</li><li>A razão social, o CNPJ e o endereço da empresa são exibidos de forma destacada na faixa superior (header) e no rodapé da página.</li><li>Não há uso do logotipo ou identidade visual do Banco BV.</li><li>Há apenas uma menção textual discreta ao Banco BV informando que a simulação de crédito com garantia de veículo ocorre no ambiente seguro do banco parceiro (redirecionando para bv.com.br).</li><li>O rodapé contém declaração explícita de atuação como correspondente bancário conforme a Resolução CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Alguns cards intermediários da página (seção &#39;Nossos produtos&#39;) não renderizaram visualmente na captura de tela de página inteira devido a animações de rolagem, mas seu conteúdo textual e links foram integralmente extraídos no DOM.</li><li>divergência modelo × regras: o modelo indicou A_LEGITIMATE_COMMERCIAL_MENTION/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada pertence à Real Credi (PIRES PROMOTORA DE NEGÓCIOS LTDA, CNPJ 16.503.186/0001-31), que atua como correspondente bancário. O site apresenta identidade visual totalmente própria, exibe razão social e CNPJ no cabeçalho e rodapé, declara expressamente sua condição de correspondente bancário nos termos da Resolução CMN nº 4.935/2021 e não faz uso de logotipos do Banco BV. A única menção ao Banco BV ocorre de forma legítima e transparente para informar que o botão de simulação de crédito com garantia de veículo redireciona o usuário para o ambiente oficial do banco (bv.com.br). Trata-se, portanto, de menção comercial legítima sem indícios de uso indevido da marca.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>PIRES PROMOTORA DE NEGÓCIOS LTDA<br><span class="mono">cnpj:16503186000131</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>realcredi.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>16.503.186/0001-31</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>o do banco BV, parceiro da Real Credi&#34;* | Exibe no rodapé a razão social (`PIRES PROMOTORA DE NEGÓCIOS LTDA`), o CNPJ (`16.503.186/0001-31</td></tr>
+      <tr><td>legal_name</td><td>PIRES PROMOTORA DE NEGÓCIOS LTDA</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@realcrediconsignados.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/realcredi_consignados/</td><td class="mono"><a href="#E-CONTACT-11">E-CONTACT-11</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/realcrediconsignados</td><td class="mono"><a href="#E-CONTACT-12">E-CONTACT-12</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Real Credi</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(19) 99673-4456</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(19) 99227-9463</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(19) 98817-9898</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar no WhatsApp &lt;https://api.whatsapp.com/send/?phone=%2B5519996734456&amp;text=Ol%C3%A1+Real+Credi.+Vim+pelo+seu+site+e+gostaria+de+atendimento.&amp;type=phone_number&amp;app_absent=0&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Simular INSS &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Consignado%20INSS.&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Quero economizar &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Portabilidade%20de%20Cr%C3%A9dito&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Simular CLT &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Cr%C3%A9dito%20CLT.&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Solicitar agora &lt;https://wa.me/+5519996734456?text=Ol%C3%A1%20vim%20pelo%20seu%20site.%20Gostaria%20de%20atendimento%20para%20Cr%C3%A9dito%20na%20Conta%20de%20Energia.&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Crédito descomplicado para quem mais precisa. Empréstimo pessoal com parcelas na conta de energia: aceita negativado, sem descontar do salário e com Pix no mesmo dia. NAVEGAÇÃO Início Produtos Como fu</td></tr>
+      <tr><td>correspondent_declaration</td><td>Resolução CMN nº 4.935</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Crédito descomplicado para quem mais precisa. Empréstimo pessoal com parcelas na conta de energia: aceita negativado, sem descontar do salário e com Pix no mesmo dia. NAVEGAÇÃO Início Produtos Como fu</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiro</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Uso da Marca e Produtos:** Destaca uma seção de *&#34;Crédito com garantia de veículo&#34;*, refinanciamento, liberação de margem e consignado CLT com botão de captura e simulador, afirmando na interface: *</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (CONTACT_CHANNELS) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma promotora de crédito e correspondente bancário (Real Credi / PIRES PROMOTORA DE NEGÓCIOS LTDA - CNPJ 16.503.186/0001-31) que oferta &#39;Crédito com garantia de veículo&#39; vinculando sua operação ao Banco BV (&#39;parceiro da Real Credi&#39;) com link parametrizado de parceiro comercial (parceiroComercial/488346). Apesar de apresentar identidade visual própria, informar razão social e CNPJ no cabeçalho e rodapé e mencionar a Resolução CMN nº 4.935/2021, a declaração de correspondente bancário é genérica (não lista nominalmente o Banco BV como instituição contratante no aviso regulatório), não consta menção à Ouvidoria do Banco BV na página e a seção específica do produto não renderizou visualmente no screenshot completo. Portanto, confirma-se a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Identificação da instituição contratante e Ouvidoria (Res. CMN 4.935/2021)</td><td>MEDIUM</td><td>Embora a promotora Real Credi (PIRES PROMOTORA DE NEGÓCIOS LTDA, CNPJ 16.503.186/0001-31) exiba seus dados cadastrais no topo e rodapé e mencione a Resolução CMN nº 4.935/2021 de forma genérica (&#39;correspondente bancário de renomadas instituições financeiras&#39;), ela promove Crédito com Garantia de Veículo citando o Banco BV como parceiro sem nomear expressamente o Banco BV na declaração formal de correspondente e sem divulgar o telefone da Ouvidoria da instituição financeira contratante.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-014">E-TXT-014</a> <a href="#E-CTA-8">E-CTA-8</a> </td></tr>
+      <tr><td>Renderização incompleta na captura visual da seção de produtos</td><td>LOW</td><td>Na captura de página inteira (E-SHOT-FULL), os cards de produtos e a seção intermediária que contém a menção ao Banco BV (&#39;Simulação feita no ambiente seguro do banco BV, parceiro da Real Credi&#39;) aparecem em branco por efeito de carregamento/animação, impedindo a verificação visual completa do destaque dado à marca naquele bloco.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-TXT-005">E-TXT-005</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-014">E-TXT-014</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-HDR</li><li>E-FTR</li><li>E-OFFICIAL-LINKS</li><li>E-TXT-014</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Promotoras e correspondentes oferecendo refinanciamento, crédito com garantia, consignado e home equity.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; (&#34;crédito com garantia&#34; OR &#34;home equity&#34; OR refinanciamento) (correspondente OR promotora) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+  - &#34;Banco BV&#34; (consignado OR &#34;empréstimo&#34;) promotora (&#34;correspondente bancário&#34; OR correspondente) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:refinanciamento e crédito com garantia</span></td><td class="mono">https://realcredi.com.br/</td><td>realcredi.com.br<br><span class="muted">**Estabelecimento / Perfil:** Real Credi (`PIRES PROMOTORA DE NEGÓCIOS LTDA`) | **URL:** `https://realcredi.com.br/` | **Uso da Marca e Produtos:** Destaca uma seção de *&#34;Crédito com garantia de veículo&#34;*, refinanciamento, liberação de margem e consignado CLT com botão de captura e simulador, afirmando na interface: *&#34;Simulação feita no ambiente seguro do banco BV, parceiro da Real Credi&#34;* | Exibe no rodapé a razão social (`PIRES PROMOTORA DE NEGÓCIOS LTDA`), o CNPJ (`16.503.186/0001-31`), endereço físico em Hortolândia/SP e exemplos de CET, mas não destaca de forma explícita o termo regulamentar de declaração de &#34;correspondente bancário&#34; nos termos da Resolução CMN nº 4.935/2021 no trecho principal da página</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:40:28.339720+00:00</div>
+      <div class="kv"><b>IP do servidor</b>76.76.21.21</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\Ca9825bf956\attempt-1\manifest.json<br>sha256 ca3bb1ecc459f5e98270119b5ef1641d89e245e3bbc42b7d16fe428da8ad202e</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://realcredi.com.br/<br>Final: https://realcredi.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\Ca9825bf956\attempt-1\viewport.png</td><td class="mono">e5b5de682e48a73b636e9c2ce6117d6865c2c9ca3504bd9c7e52020318d38823</td><td>644235</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\Ca9825bf956\attempt-1\fullpage.png</td><td class="mono">d15a29b6c1fb8120ae3717e8dda697360263dc6c01f9c4e895231dae19bf211e</td><td>992216</td></tr>
+      <tr><td>html</td><td class="mono">evidence\Ca9825bf956\attempt-1\page.html.txt</td><td class="mono">4bc78c384e2253b0814c8f7ed38cbd89307a89c56f3eee0bbcd10aa54edee2bf</td><td>47028</td></tr>
+      <tr><td>text</td><td class="mono">evidence\Ca9825bf956\attempt-1\text.txt</td><td class="mono">45289053a6f9754cd0b4693dde3916cf9b8410e2ee6124909a5ed553045a2605</td><td>6310</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\Ca9825bf956\attempt-1\page.json</td><td class="mono">b91e9de44d03a2f9ebc8043b30b52b5a1a6ca7335dd8d8991e5325fa656110f0</td><td>27274</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-23T14:40:28+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:40:39+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:40:39+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:41:12+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:41:34+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

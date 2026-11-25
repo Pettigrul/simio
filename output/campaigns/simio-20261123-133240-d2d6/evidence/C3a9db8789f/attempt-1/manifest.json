@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C3a9db8789f",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://motorsstore.com.br/carros/honda/hb-20/hb20-c-plus-900000028",
+  "final_url": "https://motorsstore.com.br/carros/honda/hb-20/hb20-c-plus-900000028",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "216.150.1.193",
+  "collected_at": "2026-11-23T14:31:19.044129+00:00",
+  "manifest_written_at": "2026-11-23T14:31:37.574378+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\C3a9db8789f\\attempt-1\\viewport.png",
+      "sha256": "687396d81d62bce2cd9b5c358eb1baf37548cf4470ba02c998ad303d06940ea3",
+      "size_bytes": 48240
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\C3a9db8789f\\attempt-1\\fullpage.png",
+      "sha256": "687396d81d62bce2cd9b5c358eb1baf37548cf4470ba02c998ad303d06940ea3",
+      "size_bytes": 48240
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\C3a9db8789f\\attempt-1\\page.html.txt",
+      "sha256": "f61949f7641de036f6d5aa9106001e9820e902d495658036ab3f927178cf618c",
+      "size_bytes": 65538
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\C3a9db8789f\\attempt-1\\text.txt",
+      "sha256": "01b2b8601e50aa091a3bef663c61ee85a3be11b342df5e6745d40a099cda7d4b",
+      "size_bytes": 824
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\C3a9db8789f\\attempt-1\\page.json",
+      "sha256": "8731a42991539f587259a99046bc590b4504a016917751a9af8dadbe416ceb60",
+      "size_bytes": 2812
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

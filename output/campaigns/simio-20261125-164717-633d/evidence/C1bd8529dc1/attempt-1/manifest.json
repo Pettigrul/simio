@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1bd8529dc1",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://nalista.com.br/",
+  "final_url": "http://nalista.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "69.6.249.241",
+  "collected_at": "2026-11-25T18:19:39.116012+00:00",
+  "manifest_written_at": "2026-11-25T18:19:42.556931+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C1bd8529dc1/attempt-1/viewport.png",
+      "sha256": "231285a29097aeea3237b3ce1527874f7ce7974ea4570c26dbf23cb7447a4f5e",
+      "size_bytes": 46729
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C1bd8529dc1/attempt-1/fullpage.png",
+      "sha256": "231285a29097aeea3237b3ce1527874f7ce7974ea4570c26dbf23cb7447a4f5e",
+      "size_bytes": 46729
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C1bd8529dc1/attempt-1/page.html.txt",
+      "sha256": "bbeb905484068d7d0dede37b0051a14c31054dffd43a68ce78869ade86066aef",
+      "size_bytes": 21576
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C1bd8529dc1/attempt-1/text.txt",
+      "sha256": "99bf42998cdcdc124b4c4100ba2b16ed57f006cf4500a653d1640a89a947084a",
+      "size_bytes": 295
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C1bd8529dc1/attempt-1/page.json",
+      "sha256": "4c9b3b776c3fe64ab5e71e916c0ce309565bc591bd662938899760581e4a627b",
+      "size_bytes": 2502
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

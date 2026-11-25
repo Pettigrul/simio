@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cc54aa8789c</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261123-133240-d2d6</b> · Gerado em: 2026-11-24T17:38:17+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cc54aa8789c — inovacare.solar</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://inovacare.solar/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de empresa integradora de energia solar (Inovacare SOLAR) que se declara correspondente bancário do Banco BV e do Santander e oferta formulário próprio de simulação de financiamento solar. Apesar de usar identidade visual própria e declarar a condição de correspondente, o site omite completamente o CNPJ e a razão social do estabelecimento, bem como informações de transparência exigidas pela Resolução CMN nº 4.935/2021, enquadrando-se em comunicação ambígua/incompleta que requer revisão.
+[Revisor: CONFIRM] A página pertence a uma empresa integradora de energia solar (Inovacare SOLAR) que declara expressamente atuar como correspondente bancário do Banco BV e do Santander (&#39;Somos correspondentes BV e Santander. Simule seu financiamento SOLAR!&#39;) e disponibiliza formulário próprio para simulação de financiamento e envio de fatura de energia (E-HEAD-2, E-TXT-001, E-SHOT-FULL). Contudo, não há identificação de CNPJ, razão social ou telefones de atendimento/ouvidoria da instituição financeira contratante na página ou no rodapé (E-FTR), justificando a confirmação de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>nenhum cadastro autorizado de correspondentes carregado; CONFIRMED_COBAN indisponível nesta execução</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Cc54aa8789c/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 0bbe9e24471199ea11e9650cf00a8fe01bc2807e50ffe8a918d560f59c5e0766</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261123-133240-d2d6/evidence/Cc54aa8789c/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 140f3d5b305ff8bc62db268814dabd3891d757f1512a3d51ec8da1f994a6968f</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://inovacare.solar/ (domínio: inovacare.solar)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): inovacare.solar — **URL:** `https://inovacare.solar` | Somos correspondentes BV e Santander&#34;*, acompanhada de formulário próprio para estimativa de preço e upload da conta de energia elétrica | **Conformidade (CNPJ / Razão Social / Declaração):** **Declara a condição de correspondente** (*&#34;Correspondente BV&#34;*), informa telefone e endereço físico no rodapé (Mogi das Cruzes - SP)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence\Cc54aa8789c\attempt-1\viewport.png (sha256 0bbe9e24471199ea…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence\Cc54aa8789c\attempt-1\fullpage.png (sha256 140f3d5b305ff8bc…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Energia Solar Residencial e Comercial | Inovacare SOLAR</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Somos uma empresa de energia solar pronta para conectar você ou sua empresa a um futuro mais verde e sustentável em Mogi das Cruzes e no Alto Tietê.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Energia Solar Residencial e Comercial | Inovacare SOLAR</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Somos uma empresa de energia solar pronta para conectar você ou sua empresa a um futuro mais verde e sustentável em Mogi das Cruzes e no Alto Tietê.</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>author: Inovacare SOLAR</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://inovacare.solar/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Por que gerar sua própria energia a partir do sol?</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Somos correspondentes BV e Santander. Simule seu financiamento SOLAR!</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Total Carnes investe em energia solar e estima economia anual de R$ 67 mil</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Entenda o processo de compra de um gerador fotovoltaico</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Como funciona a energia solar em casa?</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>10 placas solares geram quantos kWh por mês?</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>É necessário declarar sistema de energia solar no imposto de renda?</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Geração de Energia Solar e Consumo Simultâneo: Entendendo o Fluxo de Energia</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>SUA EMPRESA DE ENERGIA SOLAR EM MOGI DAS CRUZES E REGIÃO Conectamos você a um futuro mais verde e sustentável! HOME QUEM SOMOS BLOG CONTATO PROJETOS ENTREGUES SIMULE SEU SISTEMA × HOME QUEM SOMOS BLOG CONTATO SIMULE SEU SISTEMA PROJETOS ENTREGUES X</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>SUA EMPRESA DE ENERGIA SOLAR EM MOGI DAS CRUZES E REGIÃO Conectamos você a um futuro mais verde e sustentável! HOME QUEM SOMOS BLOG CONTATO PROJETOS ENTREGUES SIMULE SEU SISTEMA × HOME QUEM SOMOS BLOG CONTATO SIMULE SEU SISTEMA PROJETOS ENTREGUES X CONFIABILIDADE DESDE 2016 AQUI, VOCÊ FALA COM PESSOAS! SUPORTE E ASSISTÊNCIA TÉCNICA DIRETO CONOSCO Por que gerar sua própria energia a partir do sol? Economia para sempre na sua fatura de energia. Proteção contra a inflação energética. Valorização do seu imóvel. Garantia de retorno em curto prazo do investimento e várias opções de financiamento. Usamos cookies para garantir que você obtenha a melhor experiência no nosso site. Ao continuar navegando, você aceita a nossa Política de Privacidade. Aceito</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>TRABALHAMOS COM AS MELHORES MARCAS! MAPA DO SITE: HOME INICIAL QUEM SOMOS BLOG CONTATO SIMULE SEU SISTEMA POLÍTICA DE PRIVACIDADE FORMA DE PAGAMENTO AQUI NÃO É PROBLEMA! Simule seu financiamento solar! (11) 2610-4004 atendimento@inovacare.solar Avenida João XXIII, 1.160, Bloco B S1 Jardim São Pedro, 08830-000 Mogi das Cruzes, SP, Brasil Inovacare SOLAR © Todos os direitos reservados. Designed by PieReti Usamos cookies para garantir que você obtenha a melhor experiência no nosso site. Ao continuar navegando, você aceita a nossa Política de Privacidade. ACEITO</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>HOME &lt;https://inovacare.solar/&gt; | QUEM SOMOS &lt;https://inovacare.solar/quem-somos&gt; | BLOG &lt;https://inovacare.solar/publicacoes&gt; | CONTATO &lt;https://inovacare.solar/contato&gt; | PROJETOS ENTREGUES &lt;https://inovacare.solar/publicacoes/projetos-entregues/4&gt; | SIMULE SEU SISTEMA &lt;https://inovacare.solar/orcamento&gt; | × &lt;https://inovacare.solar/&gt; | HOME &lt;https://inovacare.solar/&gt; | QUEM SOMOS &lt;https://inovacare.solar/quem-somos&gt; | BLOG &lt;https://inovacare.solar/publicacoes&gt; | CONTATO &lt;https://inovacare.solar/contato&gt; | SIMULE SEU SISTEMA &lt;https://inovacare.solar/orcamento&gt; | PROJETOS ENTREGUES &lt;https://inovacare.solar/publicacoes/projetos-entregues/4&gt; | Enviar uma mensagem pelo whatsapp. &lt;https://web.whatsapp.com/send?phone=5511989887666&gt; | X &lt;https://inovacare.solar/&gt; | Telefone &lt;tel:+551126104004&gt; | atendimento@inovacare.solar &lt;mailto:atendimento@inovacare.solar&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>× &lt;https://inovacare.solar/&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>ENVIAR</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Facebook &lt;https://www.facebook.com/InovacareSOLAR&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>Instagram &lt;https://www.instagram.com/inovacaresolar/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>header</td><td>Enviar uma mensagem pelo whatsapp. &lt;https://web.whatsapp.com/send?phone=5511989887666&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>header</td><td>Telefone &lt;tel:+551126104004&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>header</td><td>atendimento@inovacare.solar &lt;mailto:atendimento@inovacare.solar&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Compartilhe no Facebook &lt;https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Finovacare.solar%2F&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Compartilhe no whatsapp &lt;https://web.whatsapp.com/send?text=http%3A%2F%2Finovacare.solar%2F&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/InovacareSOLAR&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/inovacaresolar/&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td>atendimento@inovacare.solar &lt;mailto:atendimento@inovacare.solar&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Inovacare SOLAR&#39; src=https://inovacare.solar/images/logotipo-inovacare-solar.svg (185x61, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Somos correspondentes BV e Santander&#39; src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII= (300x300, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Correspondente BV&#39; src=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII= (1x1, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Somos correspondentes BV e Santander. Simule seu financiamento SOLAR!</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Telefone*:</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>atendimento@inovacare.solar</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site utiliza identidade visual própria da empresa de energia solar &#39;Inovacare SOLAR&#39;, sem imitar cores ou layout institucional do Banco BV.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>A página identifica apenas o nome fantasia &#39;Inovacare SOLAR&#39;, endereço físico em Mogi das Cruzes/SP e telefone, omitindo o CNPJ e a razão social da empresa que realiza a captação de financiamento.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Há declaração explícita da condição de correspondente (&#39;Somos correspondentes BV e Santander&#39;), porém desacompanhada da identificação cadastral (CNPJ) do correspondente e dos dados de ouvidoria do banco contratante.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A comunicação ocorre em nome da própria integradora de energia solar, mencionando a atuação como correspondente de duas instituições financeiras (BV e Santander) sem reivindicar titularidade da marca bancária.</td><td class="mono"><a href="#E-META-1">E-META-1</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Existem elementos de imagem com atributos alt &#39;Somos correspondentes BV e Santander&#39; e &#39;Correspondente BV&#39; (não carregados visualmente no momento da captura por lazy-loading/placeholder), indicando espaços destinados a selos/logotipos na seção de simulação e no rodapé.</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Disponibiliza formulário próprio para simulação de financiamento solar (&#39;Simule seu financiamento SOLAR!&#39;), coletando nome, e-mail, telefone, localização, consumo médio e upload da conta de energia elétrica sem a devida identificação de CNPJ do intermediário.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-CTA-2">E-CTA-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de contato (telefone, WhatsApp, e-mail @inovacare.solar e redes sociais) estão claramente vinculados à empresa Inovacare SOLAR.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-5">E-CONTACT-5</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O consumidor compreende que está no site de uma empresa de energia solar, mas não dispõe das informações obrigatórias de identificação empresarial (CNPJ) na oferta de simulação de crédito vinculada à marca BV.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: O estabelecimento comercial (Inovacare SOLAR) atua na oferta e simulação de financiamento solar como correspondente bancário, mas não exibe seu CNPJ nem sua razão social em nenhuma parte visível da página ou do rodapé. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora declare textualmente &#39;Somos correspondentes BV e Santander&#39;, a página disponibiliza formulário de captação para simulação de financiamento solar sem informar o CNPJ do correspondente e os canais de atendimento/ouvidoria da instituição financeira contratante, em desacordo com as exigências de transparência da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] CORRESPONDENT_TRANSPARENCY: A empresa declara expressamente atuar como correspondente bancário (&#39;Somos correspondentes BV e Santander&#39;) em contexto multimarcas. — <span class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-001">E-TXT-001</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Uso de marca e domínio próprios (Inovacare SOLAR / inovacare.solar) claramente distintos da instituição financeira. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio inovacare.solar pertence à empresa de energia solar &#39;Inovacare SOLAR&#39;, sediada em Mogi das Cruzes - SP.</li><li>A página exibe a chamada &#39;Somos correspondentes BV e Santander. Simule seu financiamento SOLAR!&#39; acompanhada de formulário de captação de dados e upload de conta de energia.</li><li>Há elementos de imagem com textos alternativos &#39;Somos correspondentes BV e Santander&#39; e &#39;Correspondente BV&#39; na página e no rodapé.</li><li>Não há exibição de CNPJ ou razão social da empresa na página inspecionada.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>As imagens com alt &#39;Somos correspondentes BV e Santander&#39; (E-IMG-2) e &#39;Correspondente BV&#39; (E-IMG-3) estavam com placeholder base64 1x1 na captura, não sendo possível verificar visualmente se utilizam o logotipo oficial do Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de empresa integradora de energia solar (Inovacare SOLAR) que se declara correspondente bancário do Banco BV e do Santander e oferta formulário próprio de simulação de financiamento solar. Apesar de usar identidade visual própria e declarar a condição de correspondente, o site omite completamente o CNPJ e a razão social do estabelecimento, bem como informações de transparência exigidas pela Resolução CMN nº 4.935/2021, enquadrando-se em comunicação ambígua/incompleta que requer revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:inovacare.solar</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>inovacare.solar</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>atendimento@inovacare.solar</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/InovacareSOLAR</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/inovacaresolar/</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Finovacare.solar%2F</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 2610-4004</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Enviar uma mensagem pelo whatsapp. &lt;https://web.whatsapp.com/send?phone=5511989887666&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Compartilhe no whatsapp &lt;https://web.whatsapp.com/send?text=http%3A%2F%2Finovacare.solar%2F&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (DECLARED_COMMERCIAL_IDENTITY) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-2">E-CTA-2</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-4-argon)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Inovacare SOLAR) que declara expressamente atuar como correspondente bancário do Banco BV e do Santander (&#39;Somos correspondentes BV e Santander. Simule seu financiamento SOLAR!&#39;) e disponibiliza formulário próprio para simulação de financiamento e envio de fatura de energia (E-HEAD-2, E-TXT-001, E-SHOT-FULL). Contudo, não há identificação de CNPJ, razão social ou telefones de atendimento/ouvidoria da instituição financeira contratante na página ou no rodapé (E-FTR), justificando a confirmação de REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Imagens lazy-load não renderizadas</td><td>LOW</td><td>As imagens associadas à declaração de correspondente (E-IMG-2 e E-IMG-3) permaneceram em placeholder base64, impedindo verificar visualmente a exibição do logotipo do Banco BV, embora o texto explícito em E-HEAD-2 e E-TXT-001 confirme a atuação declarada como correspondente BV.</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Integradores e correspondentes de energia solar que utilizam a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) &#34;energia solar&#34; (financiamento OR integrador OR parceiro) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+  - (&#34;financiamento solar&#34; OR &#34;Correspondente BV&#34; OR &#34;parceiro BV&#34;) (&#34;Banco BV&#34; OR &#34;energia solar&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br -site:weebly.com -site:site123.me
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de energia solar</span></td><td class="mono">https://inovacare.solar/</td><td>inovacare.solar<br><span class="muted">**URL:** `https://inovacare.solar` | Somos correspondentes BV e Santander&#34;*, acompanhada de formulário próprio para estimativa de preço e upload da conta de energia elétrica | **Conformidade (CNPJ / Razão Social / Declaração):** **Declara a condição de correspondente** (*&#34;Correspondente BV&#34;*), informa telefone e endereço físico no rodapé (Mogi das Cruzes - SP)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-23 14:54:24.192220+00:00</div>
+      <div class="kv"><b>IP do servidor</b>186.202.153.179</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence\Cc54aa8789c\attempt-1\manifest.json<br>sha256 16e2a2daa28b0cc5a1e9248bdaec5d76e2e4eb8d9e91f8bfd7246bb48e143095</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://inovacare.solar/<br>Final: https://inovacare.solar/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence\Cc54aa8789c\attempt-1\viewport.png</td><td class="mono">0bbe9e24471199ea11e9650cf00a8fe01bc2807e50ffe8a918d560f59c5e0766</td><td>1001577</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence\Cc54aa8789c\attempt-1\fullpage.png</td><td class="mono">140f3d5b305ff8bc62db268814dabd3891d757f1512a3d51ec8da1f994a6968f</td><td>1318944</td></tr>
+      <tr><td>html</td><td class="mono">evidence\Cc54aa8789c\attempt-1\page.html.txt</td><td class="mono">7b4e4b7e125ab0900d7c7ea169ef4e54e36e5b8d43bc01f4735c20bd204e8a80</td><td>686681</td></tr>
+      <tr><td>text</td><td class="mono">evidence\Cc54aa8789c\attempt-1\text.txt</td><td class="mono">50b734dfa854ac81302636841f49aae4f5e8614920781a2a91b3ed19d8fa433d</td><td>4638</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence\Cc54aa8789c\attempt-1\page.json</td><td class="mono">cce2ef6aa9aea5f24c14c45fd94de56f2e4a20d8a0b838ddfca785a1f621e3d1</td><td>26531</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-23T14:17:58+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-23T14:54:24+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-23T14:54:40+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-23T14:54:40+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-23T14:55:31+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-23T14:55:45+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cc9eb99f854",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.renegociacaoquitacao.com/",
+  "final_url": "https://www.renegociacaoquitacao.com/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "185.158.133.1",
+  "collected_at": "2026-11-19T18:10:39.444913+00:00",
+  "manifest_written_at": "2026-11-19T18:10:48.223564+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Cc9eb99f854\\attempt-1\\viewport.png",
+      "sha256": "52952c7fcc1f5201e3620bd8292f7ccdddffd70a48ef6a6407559570c223aa13",
+      "size_bytes": 47884
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Cc9eb99f854\\attempt-1\\fullpage.png",
+      "sha256": "52952c7fcc1f5201e3620bd8292f7ccdddffd70a48ef6a6407559570c223aa13",
+      "size_bytes": 47884
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Cc9eb99f854\\attempt-1\\page.html.txt",
+      "sha256": "2b82c670acb636788ed63e60b2ba90821e7b8e3ec69dc8b7a6e255c6d403ae1f",
+      "size_bytes": 65535
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Cc9eb99f854\\attempt-1\\text.txt",
+      "sha256": "01ee4a005fcaac067f8eff479bcc12abcc4637dd78507ccafa5f63d5b90ae59f",
+      "size_bytes": 803
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Cc9eb99f854\\attempt-1\\page.json",
+      "sha256": "2835c267fcd4af419ea6ac0af830e9a5fccc01720a11a2e64e678456e1f4bb45",
+      "size_bytes": 2770
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,1228 @@
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0B">
+<!-- "Santa Cruz" existe em vários estados. Sem o Rio de Janeiro escrito no
+     título, na descrição e no endereço, o Google mostrava a loja para gente
+     de outro estado — e era de lá que vinham os contatos. -->
+<title>Shineray Santa Cruz — Motos 0 km na Zona Oeste do Rio (RJ)</title>
+<meta name="application-name" content="Shineray Santa Cruz RJ">
+<meta property="og:site_name" content="Shineray Santa Cruz — Rio de Janeiro">
+<meta name="description" content="Concessionária Shineray autorizada em Santa Cruz, Zona Oeste do Rio de Janeiro (RJ). R. Felipe Cardoso, 1896. Motos 0 km a pronta entrega, financiamento facilitado e revisão na loja.">
+<meta property="og:title" content="Shineray Santa Cruz — Rio de Janeiro (RJ)">
+<meta property="og:description" content="Motos 0 km a pronta entrega em Santa Cruz, Zona Oeste do Rio · Financiamento facilitado">
+<meta property="og:url" content="https://www.shineraysantacruz.com.br/">
+<meta property="og:image" content="https://www.shineraysantacruz.com.br/hero.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta name="geo.region" content="BR-RJ">
+<meta name="geo.placename" content="Santa Cruz, Rio de Janeiro">
+<!-- endereço oficial: evita o Google tratar o .web.app como página duplicada -->
+<link rel="canonical" href="https://www.shineraysantacruz.com.br/">
+<!-- ficha da loja para o Google: é isto que coloca a loja no mapa certo -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MotorcycleDealer",
+  "name": "Shineray Santa Cruz",
+  "description": "Concessionária Shineray autorizada em Santa Cruz, Zona Oeste do Rio de Janeiro.",
+  "url": "https://www.shineraysantacruz.com.br/",
+  "image": "https://www.shineraysantacruz.com.br/hero.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Felipe Cardoso, 1896 - Santa Cruz",
+    "addressLocality": "Rio de Janeiro",
+    "addressRegion": "RJ",
+    "postalCode": "23520-572",
+    "addressCountry": "BR"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Rio de Janeiro" },
+    { "@type": "AdministrativeArea", "name": "Zona Oeste do Rio de Janeiro" }
+  ]
+}
+</script>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="icon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0B;--panel:#121214;--panel2:#17171A;
+  --line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.2);
+  --txt:#F5F5F3;--dim:rgba(255,255,255,.55);--dim2:rgba(255,255,255,.35);
+  --red:#D7362B;--red-dark:#B32A21;--wa:#1EA952;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--txt);font-size:16px;line-height:1.55}
+.cond{font-family:'Barlow Condensed',sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+::selection{background:var(--red);color:#fff}
+
+/* NAVBAR — logo centralizada, links à esquerda, WhatsApp à direita */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(10,10,11,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topnav .wrap{display:flex;align-items:center;gap:24px;height:78px;position:relative}
+.brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:.06em;color:var(--txt);text-decoration:none;z-index:1}
+.brand .accent{color:var(--red)}
+.logo-img{display:none;height:42px;width:auto;max-width:220px;object-fit:contain}
+@media(max-width:760px){.logo-img{height:38px;max-width:150px}}
+@media(max-width:430px){.logo-img{height:32px;max-width:118px}
+  .nav-ico{width:33px;height:33px}.nav-ico i{font-size:15px}.nav-social{gap:7px}
+  .topnav .wrap{gap:10px;padding:0 16px}}
+/* GATILHO "MODELOS" (esquerda) */
+.btn-modelos{display:inline-flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;font-family:'Barlow',sans-serif;
+  color:var(--txt);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;padding:10px 0;z-index:2}
+.btn-modelos:hover{color:var(--red)}
+.btn-modelos .barras{display:inline-flex;flex-direction:column;gap:4px;width:20px}
+.btn-modelos .barras i{display:block;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,opacity .2s}
+.btn-modelos .barras i:nth-child(2){width:70%}
+.btn-modelos.aberto .barras i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.btn-modelos.aberto .barras i:nth-child(2){opacity:0}
+.btn-modelos.aberto .barras i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:520px){.btn-modelos span{display:none}}
+
+/* PAINEL DO CATÁLOGO */
+.painel-modelos{position:fixed;left:0;right:0;top:78px;z-index:55;background:rgba(10,10,11,.98);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .35s ease}
+.painel-modelos.aberto{max-height:calc(100svh - 78px);overflow-y:auto}
+.painel-inner{padding:38px 0 46px}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:30px}
+@media(max-width:1080px){.cat-grid{grid-template-columns:repeat(3,1fr);gap:26px}}
+@media(max-width:700px){.cat-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
+@media(max-width:420px){.cat-grid{grid-template-columns:1fr}}
+.cat-col h4{font-family:'Barlow',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px;line-height:1.35}
+.cat-col a{display:block;color:var(--txt);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;
+  text-transform:uppercase;letter-spacing:.02em;padding:7px 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
+.cat-col a:hover{color:var(--red);border-bottom-color:var(--red)}
+.painel-rodape{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:flex;gap:22px;flex-wrap:wrap;align-items:center;
+  font-size:12px;color:var(--dim);letter-spacing:.06em}
+.painel-rodape a{color:var(--txt);text-decoration:none;font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+.painel-rodape a:hover{color:var(--red)}
+.escurece{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:54;opacity:0;pointer-events:none;transition:opacity .3s}
+.escurece.on{opacity:1;pointer-events:auto}
+
+.navlinks{display:flex;gap:24px;margin-left:auto}
+.navlinks a{color:var(--dim);text-decoration:none;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;white-space:nowrap}
+.navlinks a:hover{color:#fff}
+.nav-social{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.nav-ico{width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;
+  justify-content:center;color:var(--txt);text-decoration:none;transition:all .15s;flex-shrink:0}
+.nav-ico i{font-size:18px}
+.nav-ico.ig:hover{background:#E1306C;border-color:#E1306C;color:#fff}
+.nav-ico.wa:hover{background:var(--wa);border-color:var(--wa);color:#fff}
+@media(max-width:1320px){.navlinks{gap:18px}.navlinks a{font-size:11px;letter-spacing:.1em}}
+@media(max-width:900px){.navlinks{display:none}.nav-social{margin-left:auto}}
+
+
+/* ===== DESTAQUES: cards grandes com foto de fundo ===== */
+.destaques{background:var(--bg);padding:96px 0}
+.dest-cab{display:flex;align-items:baseline;gap:18px;border-top:1px solid var(--line);padding-top:26px;margin-bottom:38px}
+.dest-cab .num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--red);letter-spacing:.1em}
+.dest-cab h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,48px);text-transform:uppercase;line-height:1}
+.dest-cab h2 em{font-style:normal;color:var(--red)}
+.dest-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:820px){.dest-grid{grid-template-columns:1fr}}
+.dest-card{position:relative;border-radius:20px;overflow:hidden;min-height:400px;display:flex;align-items:flex-end;
+  background:var(--panel);isolation:isolate}
+/* a cada 3 cards, um ocupa a linha inteira — dá o ritmo do mosaico */
+.dest-card:nth-child(3n){grid-column:1 / -1;min-height:360px}
+@media(max-width:820px){.dest-card,.dest-card:nth-child(3n){grid-column:auto;min-height:340px}}
+.dest-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s ease}
+.dest-card:hover img{transform:scale(1.04)}
+.dest-card::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(8,8,10,.95) 0%,rgba(8,8,10,.72) 32%,rgba(8,8,10,.28) 58%,rgba(8,8,10,.02) 82%)}
+.dest-vazio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-size:80px;z-index:-2}
+.dest-corpo{position:relative;padding:34px 36px 32px;width:100%}
+@media(max-width:560px){.dest-corpo{padding:26px 24px 26px}}
+.dest-nome{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(38px,4.6vw,62px);
+  text-transform:uppercase;line-height:.95;color:#fff}
+.dest-frase{font-size:16px;color:rgba(255,255,255,.82);margin-top:10px;max-width:420px;line-height:1.45}
+.dest-acoes{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px}
+.dest-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#16161A;border:none;border-radius:40px;
+  padding:13px 26px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
+.dest-btn:hover{background:var(--red);color:#fff}
+.dest-btn i{font-size:16px;transition:transform .2s}
+.dest-btn:hover i{transform:translateX(3px)}
+.dest-link{color:rgba(255,255,255,.85);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:3px}
+.dest-link:hover{color:#fff;border-color:#fff}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
+  background:radial-gradient(ellipse 90% 60% at 75% 20%,rgba(215,54,43,.22),transparent 60%),var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;z-index:2;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px}
+.hero-mark{position:absolute;left:50%;transform:translateX(-50%);bottom:-4%;z-index:2;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24vw;line-height:.8;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);user-select:none;pointer-events:none;white-space:nowrap}
+.hero .wrap{position:relative;z-index:3;width:100%;max-width:none;padding-top:110px;padding-bottom:80px;padding-left:clamp(24px,6vw,120px)}
+.hero-conteudo{max-width:660px}
+
+/* VÍDEO DE FUNDO DO HERO */
+.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:0;transition:opacity .8s ease}
+.hero-media.on{opacity:1}
+.hero-media video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(10,10,11,.88) 0%,rgba(10,10,11,.6) 40%,rgba(10,10,11,.12) 100%),
+             linear-gradient(to top,rgba(10,10,11,.9) 0%,rgba(10,10,11,0) 42%)}
+/* com vídeo, o letreiro vazado atrapalha menos */
+.hero.com-video .hero-mark{-webkit-text-stroke-color:rgba(255,255,255,.05)}
+.kicker{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-bottom:26px}
+.kicker::before{content:"";width:44px;height:1px;background:var(--red)}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(28px,3.9vw,50px);line-height:1.04;text-transform:uppercase;letter-spacing:.005em;max-width:620px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{font-size:16px;color:var(--dim);margin:24px 0 36px;max-width:430px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:16px 30px;border-radius:3px;text-decoration:none;cursor:pointer;border:none;font-family:inherit;transition:all .18s}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark)}
+.arrow-link{display:inline-flex;align-items:center;gap:12px;color:var(--txt);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px}
+.arrow-link i{transition:transform .2s}
+.arrow-link:hover i{transform:translateX(6px)}
+.arrow-link:hover{border-color:var(--txt)}
+.btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--line2)}
+.btn-ghost:hover{border-color:#fff}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{filter:brightness(1.1)}
+.hero-scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--dim2);font-size:10px;letter-spacing:.3em;text-transform:uppercase}
+.hero-scroll::after{content:"";width:1px;height:44px;background:linear-gradient(var(--red),transparent);animation:drop 1.6s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(1);opacity:0}}
+
+/* MARQUEE */
+/* FAIXA VERMELHA — parada de propósito. Era um letreiro correndo, mas no
+   Safari do Mac o texto em movimento travava e a faixa aparecia vazia. */
+.faixa{background:var(--red);padding:14px 20px;overflow:hidden}
+.faixa-itens{display:flex;justify-content:center;align-items:center}
+.faixa span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.16em;color:#fff;white-space:nowrap}
+.faixa b,.faixa-itens.varias::before,.faixa-itens.varias::after{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.16em;color:rgba(0,0,0,.45);margin:0 22px}
+/* Nunca quebra linha: mostra só as frases que cabem. Medido no Chrome —
+   4 frases pedem ~1060px, 3 ~740px, 2 ~445px — com folga para o Safari. */
+@media(max-width:1179px){.faixa-itens.varias span:nth-of-type(n+4),.faixa-itens.varias b:nth-of-type(n+3){display:none}}
+@media(max-width:819px){.faixa-itens.varias span:nth-of-type(n+3),.faixa-itens.varias b:nth-of-type(n+2){display:none}}
+/* celular: uma frase só, entre /// como o aviso de inauguração */
+@media(max-width:499px){
+  .faixa{padding:14px 12px}
+  .faixa b,.faixa-itens.varias::before,.faixa-itens.varias::after{margin:0 10px}
+  .faixa-itens.varias span:nth-of-type(n+2),.faixa-itens.varias b{display:none}
+  .faixa-itens.varias::before,.faixa-itens.varias::after{content:"///"}
+}
+
+/* SECTIONS / CHAPTERS */
+section{padding:96px 0}
+.chapter{display:flex;align-items:baseline;gap:18px;border-top:1px solid var(--line);padding-top:26px;margin-bottom:54px}
+.chapter .num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--red);letter-spacing:.1em}
+.chapter h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(34px,5vw,54px);text-transform:uppercase;line-height:1}
+.chapter h2 em{font-style:normal;color:var(--red)}
+.chapter .right{margin-left:auto;font-size:13px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:700px){.chapter{flex-wrap:wrap}.chapter .right{margin-left:0;width:100%}}
+
+/* CHIPS */
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.chip{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;border-radius:3px;background:transparent;border:1px solid var(--line2);color:var(--dim);cursor:pointer;transition:all .15s}
+.chip:hover{color:#fff;border-color:#fff}
+.chip.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* CARROSSEL DE MOTOS — vitrine de modelos estilo Lamborghini */
+.light .chip{border-color:rgba(0,0,0,.25);color:rgba(0,0,0,.6)}
+.light .chip:hover{color:#111;border-color:#111}
+.light .chip.active{background:var(--red);color:#fff;border-color:var(--red)}
+/* ===== VITRINE: a moto num fundo contínuo, sem quadro e sem borda =====
+   O fundo da seção repete o degradê do estúdio de cada foto, na mesma
+   altura em que ela aparece, e as bordas da foto se apagam nele: a moto
+   parece solta, sem retângulo em volta. Texto à esquerda, moto à direita.
+   Foto em fundo branco deixa a seção toda branca — com todas as fotos
+   assim, a vitrine fica igual de uma moto para outra.
+   Foto recortada (PNG com fundo transparente) dispensa o apagado: a moto
+   fica pousada num estúdio claro, com sombra.
+   Cada moto vive numa camada própria, com o fundo dela junto: a troca é uma
+   camada inteira se fundindo por cima da outra. Se o fundo fosse da seção,
+   ele trocaria de uma vez (degradê não tem transição) e, por um instante,
+   a foto antiga apareceria com a emenda num fundo que não é o dela. */
+.vitrine{position:relative;min-height:100svh;padding:0;overflow:hidden;isolation:isolate;
+  background:#ECEDF0;
+  --vt-marg:clamp(24px,6.4vw,120px);   /* margem das laterais */
+  --vt-ink:#16161A}
+.vt-inner{position:relative;height:100svh;display:block}
+
+.vt-foto{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.vt-camada{position:absolute;inset:0;transition:opacity .5s ease}
+.vt-camada.recortada{background:radial-gradient(ellipse 70% 75% at 66% 46%,#FFFFFF 0%,#F2F2F4 48%,#E2E2E6 100%)}
+.vt-espaco{display:none}
+/* a área da moto ocupa o lado direito; a foto fica do tamanho dela mesma
+   (não da caixa), senão o apagado das bordas cairia fora da foto */
+.vt-area{position:absolute;left:36%;right:calc(var(--vt-marg) * .5);
+  top:clamp(84px,11vh,120px);bottom:clamp(80px,12vh,124px);
+  display:flex;align-items:center;justify-content:center}
+/* o apagado age só numa faixa estreita de cada borda (as rodas costumam
+   chegar perto dela) e num oval largo que some com os cantos da foto, que
+   em estúdio são mais escuros */
+.vt-moto{display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%),
+    linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%),
+    radial-gradient(ellipse 72% 72% at 50% 50%,#000 72%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%),
+    linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%),
+    radial-gradient(ellipse 72% 72% at 50% 50%,#000 72%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+/* o recorte não tem margem nenhuma em volta: sem esse respiro a moto
+   encostaria no topo e no pé da área */
+.vt-camada.recortada .vt-area{padding:5% 4% 8%}
+.vt-camada.recortada .vt-moto{-webkit-mask-image:none;mask-image:none;
+  filter:drop-shadow(0 26px 18px rgba(0,0,0,.16)) drop-shadow(0 6px 6px rgba(0,0,0,.10))}
+.vt-foto .sem{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  color:rgba(0,0,0,.12);font-size:clamp(90px,16vw,190px)}
+
+/* bloco de informação, à esquerda */
+.vt-pe{position:absolute;left:var(--vt-marg);top:50%;transform:translateY(-46%);z-index:3;
+  width:min(34%,520px);text-align:left;color:var(--vt-ink)}
+.vt-specs{display:flex;align-items:center;gap:14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:clamp(12px,1.1vw,16px);letter-spacing:.32em;text-transform:uppercase;color:rgba(0,0,0,.5);
+  margin-bottom:clamp(10px,1.2vw,18px)}
+.vt-specs::before{content:"";width:30px;height:3px;background:var(--red);flex:0 0 auto}
+.vt-nome{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(58px,8vw,140px);
+  line-height:.88;text-transform:uppercase;color:var(--vt-ink);margin-bottom:clamp(12px,1.4vw,20px);
+  text-wrap:balance}
+.vt-preco{font-size:clamp(14px,1.25vw,19px);color:rgba(0,0,0,.6);margin-bottom:clamp(20px,2.4vw,36px)}
+.vt-preco b{color:var(--vt-ink);font-weight:700}
+.vt-acoes{display:flex;gap:clamp(16px,1.8vw,28px);align-items:center;flex-wrap:wrap}
+.vt-btn{display:inline-flex;align-items:center;gap:12px;background:var(--vt-ink);color:#fff;border:none;
+  cursor:pointer;font-family:'Barlow',sans-serif;font-size:clamp(11px,1vw,14px);font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:16px 16px 16px 24px;border-radius:2px;
+  transition:background .15s}
+.vt-btn:hover{background:#000}
+.vt-btn i{display:inline-flex;align-items:center;justify-content:center;width:26px;height:22px;
+  background:var(--red);color:#fff;border-radius:2px;font-size:15px;font-style:normal;line-height:1}
+.vt-link{color:var(--vt-ink);text-decoration:none;font-size:clamp(11px,1vw,14px);font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid currentColor;padding-bottom:3px}
+.vt-link:hover{color:var(--red)}
+
+/* barra de progresso, a próxima moto e as setas */
+.vt-rodape{position:absolute;left:var(--vt-marg);bottom:clamp(24px,3.4vh,40px);z-index:3;
+  display:flex;align-items:center;gap:18px}
+.vt-barra{display:block;width:clamp(110px,14vw,210px);height:2px;background:rgba(0,0,0,.14)}
+.vt-barra span{display:block;height:100%;background:var(--vt-ink);transition:width .3s ease}
+.vt-count{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.16em;
+  color:rgba(0,0,0,.6);font-variant-numeric:tabular-nums}
+.vt-setas{position:absolute;right:var(--vt-marg);bottom:clamp(18px,2.8vh,34px);z-index:3;display:flex;align-items:center;gap:10px}
+.vt-prox{background:none;border:none;cursor:pointer;text-align:right;margin-right:10px;padding:0;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(0,0,0,.45);line-height:1.25}
+.vt-prox b{display:block;font-size:19px;letter-spacing:.04em;color:var(--vt-ink);font-weight:700}
+.vt-prox:hover b{color:var(--red)}
+.vt-seta{width:48px;height:48px;border-radius:50%;border:1px solid rgba(0,0,0,.2);
+  background:rgba(255,255,255,.5);color:var(--vt-ink);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .15s}
+.vt-seta:hover{background:var(--vt-ink);color:#fff;border-color:var(--vt-ink)}
+.vt-seta i{font-size:20px}
+
+/* tablet e celular: moto em cima, informação embaixo, tudo no mesmo fundo */
+@media(max-width:900px){
+  .vitrine,.vt-inner{min-height:0;height:auto}
+  .vt-inner{padding:84px 0 24px}
+  /* as camadas continuam cobrindo a seção inteira (o fundo vai até atrás
+     do texto); a foto fica numa caixa de proporção fixa, e um espaço
+     invisível do mesmo tamanho segura o lugar dela antes do texto — assim
+     a seção não muda de altura de uma moto para outra */
+  .vt-area{left:0;right:0;top:84px;bottom:auto;aspect-ratio:4/3;padding:0 4px}
+  .vt-espaco{display:block;aspect-ratio:4/3}
+  .vt-camada.recortada{background:radial-gradient(ellipse 90% 60% at 50% 26%,#FFFFFF 0%,#F2F2F4 50%,#E2E2E6 100%)}
+  .vt-camada.recortada .vt-area{padding:14px 22px 8px}
+  .vt-pe{position:relative;left:auto;top:auto;transform:none;width:auto;padding:14px 22px 0}
+  .vt-nome{font-size:clamp(46px,13vw,76px)}
+  .vt-rodape{position:relative;left:auto;bottom:auto;padding:0 22px;margin-top:28px;min-height:44px}
+  .vt-setas{bottom:24px;right:22px}
+  .vt-prox{display:none}
+  .vt-seta{width:44px;height:44px}
+}
+.mwa{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--wa);color:#fff;border:none;border-radius:3px;padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:inherit;text-decoration:none}
+.vazio{padding:70px 20px;text-align:center;color:rgba(0,0,0,.5);border:1px dashed rgba(0,0,0,.3)}
+.vazio i{font-size:44px;opacity:.5;display:block;margin-bottom:10px}
+
+/* SEÇÃO CLARA (alternância estilo Lamborghini) */
+.light{background:#F2F1EE;color:#111114}
+.light .chapter{border-top-color:rgba(0,0,0,.14)}
+.light .chapter .right{color:rgba(0,0,0,.5)}
+
+/* POR QUE — escuro */
+.pq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border:1px solid var(--line)}
+.pq{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .2s}
+.pq:hover{background:var(--panel)}
+.pq i{font-size:30px;color:var(--red)}
+.pq h3{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:600;text-transform:uppercase;margin:16px 0 8px}
+.pq p{font-size:14px;color:var(--dim)}
+
+/* CONTATO */
+/* ===== A LOJA: cartão arredondado sobre a própria foto desfocada ===== */
+.loja{position:relative;background:#0A0A0B;padding:clamp(56px,7vw,104px) 0;overflow:hidden;isolation:isolate}
+/* a própria foto, desfocada, faz o fundo atrás do cartão */
+.loja-blur{position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;z-index:-1;
+  filter:blur(46px) saturate(1.05) brightness(.62)}
+.loja-cartao{position:relative;max-width:1120px;margin:0 auto;border-radius:clamp(18px,2vw,30px);
+  overflow:hidden;background:#121214;aspect-ratio:16/9;min-height:420px;
+  box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.loja-foto{position:absolute;inset:0}
+.loja-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.loja-foto .sem{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;color:rgba(255,255,255,.22);background:linear-gradient(140deg,#1C1C20,#0E0E10)}
+.loja-foto .sem i{font-size:52px}
+.loja-foto .sem span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+/* véu pra dar leitura ao texto sem apagar a fachada */
+.loja-veu{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,8,10,.86) 0%,rgba(8,8,10,.4) 30%,rgba(8,8,10,0) 58%),
+             linear-gradient(to right,rgba(8,8,10,.6) 0%,rgba(8,8,10,0) 45%)}
+.loja-marca{position:absolute;top:clamp(20px,3vw,34px);left:clamp(20px,3vw,36px);z-index:2;color:#fff;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(15px,1.9vw,24px);
+  text-transform:uppercase;line-height:1.05;letter-spacing:.02em}
+.loja-marca b{color:var(--red)}
+.loja-titulo{position:absolute;left:clamp(20px,3vw,36px);bottom:clamp(22px,3vw,38px);z-index:2}
+.loja-titulo h2{font-family:'Barlow',sans-serif;font-weight:400;color:#fff;line-height:1.04;
+  font-size:clamp(38px,5.4vw,62px);letter-spacing:-.01em}
+.loja-titulo p{color:rgba(255,255,255,.72);font-size:clamp(13px,1.6vw,18px);margin-top:8px}
+/* ficha da loja no canto */
+.loja-ficha{position:absolute;right:clamp(20px,3vw,36px);bottom:clamp(22px,3vw,38px);z-index:2;
+  width:clamp(280px,31vw,360px);background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  color:#16161A;border-radius:clamp(10px,1.1vw,14px);padding:clamp(20px,2.4vw,28px);
+  display:grid;gap:clamp(11px,1.4vw,17px)}
+.lf-item{font-size:clamp(13px,1.4vw,15px);line-height:1.4}
+.lf-item .rot{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(22,22,26,.45);margin-bottom:3px}
+.lf-item a{color:#16161A;text-decoration:none;border-bottom:1px solid transparent}
+.lf-item a:hover{color:var(--red);border-bottom-color:var(--red)}
+.lf-btn{justify-self:start;display:inline-flex;align-items:center;gap:9px;background:#16161A;color:#fff;
+  text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 22px;border-radius:6px;transition:background .15s}
+.lf-btn:hover{background:var(--red)}
+
+/* celular: a ficha desce pra baixo da foto, dentro do mesmo cartão */
+@media(max-width:820px){
+  .loja-cartao{--foto-h:clamp(260px,44vh,380px);aspect-ratio:auto;min-height:0}
+  .loja-foto{position:relative;height:var(--foto-h)}
+  .loja-veu{height:var(--foto-h);bottom:auto}
+  .loja-marca{top:18px;left:20px}
+  /* o título fica ancorado no pé da foto, que agora tem altura própria */
+  .loja-titulo{top:calc(var(--foto-h) - 104px);bottom:auto;left:20px}
+  .loja-ficha{position:relative;right:auto;bottom:auto;width:auto;margin:14px;
+    background:#fff;backdrop-filter:none}
+}
+/* RODAPÉ: estilo e conteúdo vêm do rodape.js (o mesmo das páginas de modelo) */
+
+/* MODAL LEAD */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal-bg.show{display:flex}
+.fmodal{background:var(--panel);border:1px solid var(--line2);max-width:410px;width:100%;padding:32px;position:relative}
+.fmodal h3{font-family:'Barlow Condensed',sans-serif;font-size:26px;text-transform:uppercase;font-weight:700}
+.fmodal .fsub{font-size:12px;color:var(--red);margin-bottom:16px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.fmodal label{display:block;font-size:11px;color:var(--dim);font-weight:600;margin:14px 0 6px;letter-spacing:.18em;text-transform:uppercase}
+.fmodal input{width:100%;padding:13px 14px;border:1px solid var(--line2);background:var(--bg);color:var(--txt);border-radius:3px;font-family:inherit;font-size:15px}
+.fmodal input:focus{border-color:var(--red);outline:none}
+.fclose{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;color:var(--dim);cursor:pointer}
+.fclose:hover{color:#fff}
+.fsend{width:100%;margin-top:22px;background:var(--red);color:#fff;border:none;border-radius:3px;padding:15px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:inherit}
+.fsend:hover{background:var(--red-dark)}
+.fsend:disabled{opacity:.6;cursor:wait}
+.fok{text-align:center;padding:10px 0}
+.fok .big{font-size:44px;margin-bottom:10px}
+.fok .fsub{color:var(--dim);text-transform:none;letter-spacing:0;font-weight:400;font-size:14px}
+.ferr{color:#FF7B72;font-size:13px;margin-top:10px;display:none}
+.fnota{font-size:12.5px;line-height:1.45;color:var(--dim2);margin-top:10px;display:flex;gap:6px;align-items:flex-start}
+.fok .mwa{margin-top:18px}
+</style>
+<style id="rs-estilo">
+.rs{background:#0A0A0B;color:#F5F5F3;font-family:'Barlow',sans-serif;border-top:1px solid rgba(255,255,255,.08)}
+.rs a{color:inherit;text-decoration:none}
+.rs ul{list-style:none;margin:0;padding:0}
+
+.rs-cta{background:#D7362B;background-image:repeating-linear-gradient(118deg,rgba(0,0,0,.06) 0 2px,transparent 2px 22px)}
+.rs-cta .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-top:44px;padding-bottom:44px}
+.rs-cta h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(38px,4.6vw,56px);line-height:.95;text-transform:uppercase;letter-spacing:.005em;margin:0}
+.rs-cta p{font-size:17px;color:rgba(255,255,255,.88);margin:10px 0 0}
+.rs-acoes{display:flex;gap:12px;flex:0 0 auto;flex-wrap:wrap}
+.rs-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 22px;border-radius:6px;font-weight:700;font-size:15.5px;transition:transform .15s,background .15s}
+.rs-btn:hover{transform:translateY(-1px)}
+.rs-btn.branco{background:#fff;color:#111}
+.rs-btn.branco i{color:#1EA952;font-size:21px}
+.rs-btn.vazado{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+.rs-btn.vazado:hover{background:rgba(255,255,255,.1)}
+
+.rs-main{padding:58px 0 42px}
+.rs-cols{display:grid;grid-template-columns:1.45fr 1fr 1fr 1.15fr;gap:40px}
+.rs-logo{height:30px;width:auto;display:block}
+.rs-logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;text-transform:uppercase;letter-spacing:.06em}
+.rs-logo-txt span{color:#D7362B}
+.rs-sobre{font-size:15.5px;line-height:1.62;color:rgba(255,255,255,.55);margin:18px 0 0;max-width:330px}
+.rs-redes{display:flex;gap:10px;margin-top:22px}
+.rs-redes a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .15s}
+.rs-redes a:hover{border-color:#D7362B;background:#D7362B}
+.rs h5{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin:4px 0 18px;display:flex;align-items:center;gap:10px}
+.rs h5::before{content:"";width:16px;height:2px;background:#D7362B}
+.rs-lista li{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:11px;line-height:1.4}
+.rs-lista a,.rs-lista button{color:rgba(255,255,255,.55);transition:color .15s}
+.rs-lista a:hover,.rs-lista button:hover{color:#fff}
+.rs-lista button{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
+.rs-contato li{display:flex;gap:10px;align-items:flex-start}
+.rs-contato i{color:#D7362B;font-size:17px;margin-top:1px;flex:0 0 auto}
+
+.rs-legal{border-top:1px solid rgba(255,255,255,.08);padding:22px 0 26px;display:flex;justify-content:space-between;align-items:center;gap:14px 24px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.35);letter-spacing:.02em}
+.rs-selo{display:inline-flex;align-items:center;gap:8px}
+.rs-selo img{height:15px;width:auto}
+
+@media(max-width:900px){
+  .rs-cols{grid-template-columns:1fr 1fr;gap:36px 28px}
+  .rs-marca{grid-column:1/-1}
+  .rs-sobre{max-width:none}
+}
+@media(max-width:640px){
+  .rs-cta .wrap{flex-direction:column;align-items:flex-start;padding-top:36px;padding-bottom:36px}
+  .rs-acoes{width:100%}
+  .rs-btn{flex:1 1 auto}
+  .rs-main{padding:44px 0 30px}
+  .rs-legal{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:420px){
+  .rs-cols{grid-template-columns:1fr}
+  .rs-acoes{flex-direction:column}
+}</style></head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="topnav">
+  <div class="wrap">
+    <button class="btn-modelos" id="btn-modelos" aria-expanded="false">
+      <span class="barras"><i></i><i></i><i></i></span>
+      <span>Linha completa</span>
+    </button>
+    <div class="navlinks">
+      <a href="#modelos">Modelos</a>
+      <a href="#contato">A loja</a>
+    </div>
+    <a class="brand" href="#">
+      <img class="logo-img" alt="Shineray" src="logo.png" style="display: block;">
+      <span class="logo-txt" style="display: none;">Shineray<span class="accent">.</span></span>
+    </a>
+    <div class="nav-social">
+      <a class="nav-ico ig" id="nav-ig" style="display: flex;" target="_blank" rel="noopener" aria-label="Instagram" href="https://instagram.com/shineray.santacruz"><i class="ti ti-brand-instagram"></i></a>
+      <a class="nav-ico wa" id="nav-wa" style="display: flex;" target="_blank" rel="noopener" aria-label="WhatsApp" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20%F0%9F%8F%8D%EF%B8%8F"><i class="ti ti-brand-whatsapp"></i></a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAINEL COM A LINHA COMPLETA -->
+<div class="painel-modelos" id="painel-modelos">
+  <div class="wrap painel-inner">
+    <div class="cat-grid" id="cat-grid">
+  <div class="cat-col">
+    <h4>Ciclomotores</h4>
+    <a href="modelo.html?m=jet-50">Jet 50</a><a href="modelo.html?m=phoenix-s">Phoenix S</a><a href="modelo.html?m=phoenix-s-efi">Phoenix S EFI</a>
+  </div>
+  <div class="cat-col">
+    <h4>Motocicletas</h4>
+    <a href="modelo.html?m=rio-125-efi">Rio 125 EFI</a><a href="modelo.html?m=jet-125">Jet 125</a><a href="modelo.html?m=jet-125-efi">Jet 125 EFI</a><a href="modelo.html?m=free-150-efi">Free 150 EFI</a><a href="modelo.html?m=jef-150">JEF 150</a><a href="modelo.html?m=jef-150s-efi">JEF 150s EFI</a><a href="modelo.html?m=urban-lite">Urban Lite</a><a href="modelo.html?m=urban-150-efi">Urban 150 EFI</a><a href="modelo.html?m=shi-175">SHI 175</a><a href="modelo.html?m=shi-170">SHI 170</a><a href="modelo.html?m=jef-170">JEF 170</a><a href="modelo.html?m=shi-175s-efi">SHI 175s EFI</a><a href="modelo.html?m=shi-175-ss">SHI 175 SS</a><a href="modelo.html?m=shi-250">SHI 250</a><a href="modelo.html?m=250f">250F</a><a href="modelo.html?m=shi-400sc">SHI 400sc</a>
+  </div>
+  <div class="cat-col">
+    <h4>SBM</h4>
+    <a href="modelo.html?m=sbm-150s">SBM 150s</a><a href="modelo.html?m=storm-200">Storm 200</a><a href="modelo.html?m=iron-250">Iron 250</a><a href="modelo.html?m=titanium-250">Titanium 250</a><a href="modelo.html?m=denver-250">Denver 250</a>
+  </div></div>
+    <div class="painel-rodape">
+      <span>Toda a linha Shineray — clique no modelo para ver detalhes</span>
+      <a href="#modelos" id="link-pronta-entrega">Ver o que está no pátio →</a>
+    </div>
+  </div>
+</div>
+<div class="escurece" id="escurece"></div>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-media" id="hero-media">
+    <video id="hero-video" autoplay="" muted="" loop="" playsinline="" preload="auto" poster="hero.jpg" src="hero.mp4"></video>
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-mark">SHINERAY</div>
+  <div class="wrap">
+    <div class="hero-conteudo">
+      <!-- .kicker é flex: o texto tem que ficar todo dentro do span, senão
+           cada pedaço vira um item da flex e ganha o gap no meio -->
+      <div class="kicker"><span id="h-cidade">Concessionária autorizada · Santa Cruz, Rio de Janeiro</span></div>
+      <h1>Revolucione seu futuro com a tecnologia, economia e qualidade <em>Shineray</em>.</h1>
+      <p>Motos 0 km a pronta entrega, financiamento facilitado e a primeira revisão feita aqui, com quem entende.</p>
+      <div class="hero-cta" style="flex-direction:column;align-items:flex-start;gap:22px">
+        <a class="arrow-link" id="hero-wa" style="display: inline-flex;" target="_blank" rel="noopener" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20das%20motos%20%F0%9F%8F%8D%EF%B8%8F">Chamar no WhatsApp <i class="ti ti-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Role</div>
+</header>
+
+<!-- MARQUEE -->
+<!-- já nasce com o aviso escrito: a faixa não fica vazia enquanto o banco responde -->
+<div class="faixa"><div class="faixa-itens varias" id="faixa-itens"><span>Pronta entrega</span><b>///</b><span>0 km direto da fábrica</span><b>///</b><span>Financiamento facilitado</span><b>///</b><span>Revisão dos 1.000 km na loja</span></div></div>
+
+<!-- MODELOS NO PATIO -->
+<section id="modelos" class="vitrine">
+  <div class="vt-inner" id="car-stage" style="display: block;">
+    <div class="vt-foto" id="vt-foto"><div class="vt-camada" style="opacity: 1; background: linear-gradient(rgb(255, 255, 255) 0%, rgb(255, 255, 255) 18.2%, rgb(255, 255, 255) 30.7%, rgb(255, 255, 255) 43.2%, rgb(255, 255, 255) 55.8%, rgb(255, 255, 255) 68.3%, rgb(253, 253, 253) 80.8%, rgb(253, 253, 253) 100%);"><div class="vt-area"><img class="vt-moto" crossorigin="anonymous" src="https://res.cloudinary.com/djfq9zitt/image/upload/v1792231570/vitrine/bj6lxfai9yhcxykcsoxd.jpg" alt="Storm 200"></div></div></div>
+    <div class="vt-espaco" aria-hidden="true"></div>
+
+    <div class="vt-pe">
+      <div class="vt-specs" id="vt-specs">SBM · 0 km · Preta</div>
+      <h2 class="vt-nome" id="vt-nome">Storm 200</h2>
+      <div class="vt-preco" id="vt-preco">A partir de <b>R$&nbsp;23.100</b></div>
+      <div class="vt-acoes">
+        <button class="vt-btn" id="vt-btn" data-moto="Storm 200 Preta">Tenho interesse <i>›</i></button>
+        <a class="vt-link" id="vt-ficha" href="modelo.html?m=storm-200">Ver ficha completa</a>
+      </div>
+    </div>
+
+    <div class="vt-rodape" id="vt-rodape" style="visibility: visible;">
+      <span class="vt-barra"><span id="vt-barra-fill" style="width: 33.3333%;"></span></span>
+      <span class="vt-count" id="car-count">02 / 06</span>
+    </div>
+    <div class="vt-setas" id="vt-setas">
+      <button class="vt-prox" id="vt-prox" type="button">Próxima<b>250F</b></button>
+      <button class="vt-seta" id="car-prev" aria-label="Moto anterior"><i class="ti ti-arrow-left"></i></button>
+      <button class="vt-seta" id="car-next" aria-label="Próxima moto"><i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+  <div class="vazio" id="car-vazio" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;color:rgba(0,0,0,.5);border:none">
+    <i class="ti ti-motorbike"></i>
+    Nenhuma moto disponível no momento.<br>Chame a gente no WhatsApp pra saber das próximas!
+  </div>
+</section>
+
+<!-- DESTAQUES -->
+<section id="destaques" class="destaques" style="display: block;">
+  <div class="wrap">
+    <div class="dest-cab">
+      <span class="num">02</span>
+      <h2>Em <em>destaque</em></h2>
+    </div>
+    <div class="dest-grid" id="dest-grid">
+    <article class="dest-card">
+      <img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1785172952/destaques/dtvlexsg8suyxfx51ege.jpg" alt="Denver 250" loading="lazy">
+      <div class="dest-corpo">
+        <h3 class="dest-nome">Denver 250</h3>
+        <p class="dest-frase">Conheça a Denver: Para quem valoriza cada quilometro da viagem.</p>
+        <div class="dest-acoes">
+          <button class="dest-btn" data-moto="Denver 250">Tenho interesse <i class="ti ti-arrow-right"></i></button>
+          <a class="dest-link" href="modelo.html?m=denver-250">Ver detalhes</a>
+        </div>
+      </div>
+    </article>
+    <article class="dest-card">
+      <img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1792234039/destaques/jynygqmcoc4xol6tjjlb.jpg" alt="ATV200" loading="lazy">
+      <div class="dest-corpo">
+        <h3 class="dest-nome">ATV200</h3>
+        <p class="dest-frase">design arrojado e potência na medida certa, o quadriciclo acessível para pessoas exigentes.</p>
+        <div class="dest-acoes">
+          <button class="dest-btn" data-moto="ATV200">Tenho interesse <i class="ti ti-arrow-right"></i></button>
+          
+        </div>
+      </div>
+    </article>
+    <article class="dest-card">
+      <img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1792232930/destaques/mexqxstzn0idlrfknyzs.jpg" alt="TITANIUM 250" loading="lazy">
+      <div class="dest-corpo">
+        <h3 class="dest-nome">TITANIUM 250</h3>
+        <p class="dest-frase">Estilo também é atitude! Pensada para despertar seu espírito livre, motor em V e o desempenho ideal para te acompanhar na estrada.</p>
+        <div class="dest-acoes">
+          <button class="dest-btn" data-moto="TITANIUM 250">Tenho interesse <i class="ti ti-arrow-right"></i></button>
+          <a class="dest-link" href="modelo.html?m=titanium-250">Ver detalhes</a>
+        </div>
+      </div>
+    </article></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="loja">
+  <img class="loja-blur" id="loja-blur" alt="" aria-hidden="true" src="https://res.cloudinary.com/djfq9zitt/image/upload/v1785177634/loja/wbdmhcz5fdqmbxejtwhx.jpg">
+  <div class="wrap">
+    <div class="loja-cartao">
+      <div class="loja-foto" id="loja-foto"><img src="https://res.cloudinary.com/djfq9zitt/image/upload/v1785177634/loja/wbdmhcz5fdqmbxejtwhx.jpg" alt="Fachada da Shineray Santa Cruz" loading="lazy"></div>
+      <div class="loja-veu"></div>
+
+      <div class="loja-marca">Shineray<br><b>Santa Cruz</b></div>
+
+      <div class="loja-titulo">
+        <h2>A loja</h2>
+        <p id="loja-sub">Santa Cruz · Rio de Janeiro</p>
+      </div>
+
+      <div class="loja-ficha">
+        <div class="lf-item">
+          <span class="rot">Endereço</span>
+          <a id="c-endereco" href="https://www.google.com/maps/search/?api=1&amp;query=R.+Felipe+Cardoso%2C+1896+-+Santa+Cruz%2C+Rio+de+Janeiro+-+RJ%2C+23520-572" target="_blank" rel="noopener">R. Felipe Cardoso, 1896<br>Santa Cruz · Rio de Janeiro — RJ<br>CEP 23520-572</a>
+        </div>
+        <div class="lf-item">
+          <span class="rot">Horário</span>
+          <span>Segunda a sábado, das 8h às 18h</span>
+        </div>
+        <div class="lf-item">
+          <span class="rot">Instagram</span>
+          <span id="c-instagram">@shineray.santacruz</span>
+        </div>
+        <a class="lf-btn" id="c-wa" style="display: inline-flex;" target="_blank" rel="noopener" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20%F0%9F%8F%8D%EF%B8%8F"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="rodape-site" class="rs">
+    
+    <div class="rs-cta">
+      <div class="wrap">
+        <div>
+          <h3>Sua próxima moto<br>está aqui.</h3>
+          <p>Fale com a gente agora — a resposta sai na hora, no horário da loja.</p>
+        </div>
+        <div class="rs-acoes">
+          <a class="rs-btn branco" href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20das%20motos%20%F0%9F%8F%8D%EF%B8%8F" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Chamar no WhatsApp</a>
+          <a class="rs-btn vazado" href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Felipe%20Cardoso%2C%201896%20-%20Santa%20Cruz%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2023520-572" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i> Como chegar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rs-main">
+      <div class="wrap">
+        <div class="rs-cols">
+          <div class="rs-marca">
+            <a href="#" aria-label="Shineray Santa Cruz — início">
+              <img class="rs-logo" src="logo.png" alt="Shineray" onerror="this.outerHTML='&lt;span class=&quot;rs-logo-txt&quot;&gt;Shineray&lt;span&gt;.&lt;/span&gt;&lt;/span&gt;'">
+            </a>
+            <p class="rs-sobre">Concessionária autorizada Shineray na Zona Oeste do Rio. Toda a linha 0 km, peças originais e oficina própria no mesmo endereço.</p>
+            <div class="rs-redes">
+              <a href="https://www.instagram.com/shineray.santacruz/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+              <a href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20%F0%9F%8F%8D%EF%B8%8F" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Felipe%20Cardoso%2C%201896%20-%20Santa%20Cruz%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2023520-572" target="_blank" rel="noopener" aria-label="Ver no mapa"><i class="ti ti-map-pin"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h5>Modelos</h5>
+            <ul class="rs-lista">
+              <li><button type="button" data-rs-modelos="">Ciclomotores</button></li><li><button type="button" data-rs-modelos="">Motocicletas</button></li><li><button type="button" data-rs-modelos="">SBM</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Pós-venda</h5>
+            <ul class="rs-lista">
+              <li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Estou%20procurando%20uma%20pe%C3%A7a%20para%20a%20minha%20moto." target="_blank" rel="noopener">Peças</a></li><li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Quero%20agendar%20uma%20revis%C3%A3o%20para%20a%20minha%20moto%20%F0%9F%94%A7" target="_blank" rel="noopener">Oficina e revisão</a></li><li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Preciso%20do%20manual%20do%20propriet%C3%A1rio%20da%20minha%20moto." target="_blank" rel="noopener">Manual do proprietário</a></li><li><a href="https://wa.me/5521973032047?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20o%20p%C3%B3s-venda." target="_blank" rel="noopener">Fale conosco</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Contato</h5>
+            <ul class="rs-lista rs-contato">
+              <li><i class="ti ti-map-pin"></i><a href="https://www.google.com/maps/search/?api=1&amp;query=R.%20Felipe%20Cardoso%2C%201896%20-%20Santa%20Cruz%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2023520-572" target="_blank" rel="noopener">R. Felipe Cardoso, 1896<br>Santa Cruz · Rio de Janeiro — RJ</a></li>
+              <li><i class="ti ti-clock"></i><span>Seg a sáb · 8h às 18h</span></li>
+              <li><i class="ti ti-brand-whatsapp"></i><a href="https://wa.me/5521977422552?text=Ol%C3%A1!%20Vim%20pelo%20site%20%F0%9F%8F%8D%EF%B8%8F" target="_blank" rel="noopener">(21) 97742-2552</a></li>
+              <li><i class="ti ti-phone"></i><a href="tel:+552170264688">(21) 7026-4688</a></li>
+              <li><i class="ti ti-brand-instagram"></i><a href="https://www.instagram.com/shineray.santacruz/" target="_blank" rel="noopener">@shineray.santacruz</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="rs-legal">
+        <span>© 2026 SHINERAY SANTA CRUZ LTDA · CNPJ 68.778.195/0001-39</span>
+        <span class="rs-selo"><img src="icon.png" alt=""> Concessionária autorizada Shineray</span>
+      </div>
+    </div></footer>
+
+<!-- MODAL: DEIXAR CONTATO -->
+<div class="modal-bg" id="form-bg">
+  <div class="fmodal">
+    <button class="fclose" id="form-close"><i class="ti ti-x"></i></button>
+    <div id="form-campos">
+      <h3>Tenho interesse</h3>
+      <div class="fsub" id="form-moto-nome"></div>
+      <label>Seu nome</label>
+      <input type="text" id="form-nome" placeholder="Nome completo" style="">
+      <label>Seu WhatsApp</label>
+      <input type="tel" id="form-fone" placeholder="(21) 9 9999-9999" style="">
+      <div class="ferr" id="form-erro">Preencha seu nome e WhatsApp.</div>
+      <div class="fnota"><i class="ti ti-map-pin"></i> Loja física em Santa Cruz, Zona Oeste do Rio de Janeiro (RJ).</div>
+      <button class="fsend" id="form-enviar">Quero que me chamem</button>
+    </div>
+    <div class="fok" id="form-ok" style="display:none">
+      <div class="big">✅</div>
+      <h3>Recebemos seu contato!</h3>
+      <div class="fsub" style="margin-top:6px">Nossa equipe vai te chamar no WhatsApp em breve.</div>
+      <a class="mwa" id="form-ok-wa" style="display:none" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> Ou chame a gente agora</a>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { firebaseConfig } from "./config.js?v=3";
+import { CATALOGO, slug, acharModelo } from "./modelos.js?v=10";
+import { capturarOrigem, origemAtual } from "./origem.js?v=1";
+import { montarRodape } from "./rodape.js?v=3";
+capturarOrigem();   // antes de tudo: de onde a pessoa chegou
+const DEMO = !firebaseConfig || String(firebaseConfig.apiKey).includes("COLE");
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmtBRL = n => (Number(n) || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+// aceita "@loja", "loja" ou o link completo
+function igLink(v) {
+  const t = String(v || "").trim();
+  if (!t) return "";
+  if (/^https?:\/\//i.test(t)) return t;
+  return "https://instagram.com/" + t.replace(/^@/, "");
+}
+function waLink(fone, msg) {
+  let d = String(fone || "").replace(/\D/g, "");
+  if (d && d.length <= 11) d = "55" + d;
+  return `https://wa.me/${d}?text=${encodeURIComponent(msg)}`;
+}
+
+let motos = [], config = { nomeLoja: "Shineray Santa Cruz", cidade: "Santa Cruz", whatsapp: "", emBreve: true };
+let filtro = "Todas";
+let fb = null;
+
+// O carrossel é a vitrine que a loja monta no sistema (Gerenciar site →
+// Vitrine), com foto, cor e preço próprios — não depende do estoque nem das
+// páginas dos modelos. Só antes de a primeira vitrine existir é que o site
+// mostra, para não ficar vazio, uma moto de cada modelo do pátio.
+function montarVitrine(vitrine, estoque) {
+  if (Array.isArray(vitrine)) {
+    return vitrine.filter(v => v.ativo && v.foto?.url).map((v, i) => ({
+      id: `${v.slug}-${i}`, modelo: v.modelo, categoria: v.categoria, cor: v.cor || "",
+      tipo: "Nova", precoVenda: Number(v.preco) || 0, fotos: [v.foto]
+    }));
+  }
+  const vistos = new Set();
+  return estoque.filter(m => m.fotos?.[0]?.url && !vistos.has(slug(m.modelo)) && vistos.add(slug(m.modelo)));
+}
+
+async function carregar() {
+  if (DEMO) {
+    try {
+      const db = JSON.parse(localStorage.getItem("shineray_db_v1") || "{}");
+      if (db.config) config = { ...config, ...db.config };
+      motos = montarVitrine(config.vitrineSite, (db.vitrine || db.motos || []).filter(m => m.status === "disponivel"));
+    } catch (e) { /* vazio */ }
+  } else {
+    const [{ initializeApp }, fs] = await Promise.all([
+      import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
+    ]);
+    const db = fs.getFirestore(initializeApp(firebaseConfig));
+    fb = { fs, db };
+    const cfg = await fs.getDoc(fs.doc(db, "config", "loja"));
+    if (cfg.exists()) config = { ...config, ...cfg.data() };
+    // o pátio ("vitrine", a cópia pública do estoque, sem custo nem chassi)
+    // só é lido enquanto a loja não montou a vitrine dela
+    let estoque = [];
+    if (!Array.isArray(config.vitrineSite)) {
+      const snap = await fs.getDocs(fs.query(fs.collection(db, "vitrine"), fs.where("status", "==", "disponivel")));
+      estoque = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    }
+    motos = montarVitrine(config.vitrineSite, estoque);
+  }
+  render();
+}
+
+async function salvarLead(nome, fone, motoDesc) {
+  const hoje = new Date();
+  const dataHoje = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${String(hoje.getDate()).padStart(2, "0")}`;
+  const lead = { nome, telefone: fone, motoInteresse: motoDesc, etapa: "novo", proximoContato: dataHoje, obs: "Veio pelo site", ...origemAtual() };
+  if (DEMO) {
+    const db = JSON.parse(localStorage.getItem("shineray_db_v1") || "{}");
+    db.leads = db.leads || [];
+    db.leads.unshift({ id: crypto.randomUUID(), ...lead, criadoEm: Date.now() });
+    localStorage.setItem("shineray_db_v1", JSON.stringify(db));
+  } else {
+    await fb.fs.addDoc(fb.fs.collection(fb.db, "leads"), { ...lead, criadoEm: fb.fs.serverTimestamp() });
+  }
+}
+
+// ---------- menu com a linha completa de modelos ----------
+document.getElementById("cat-grid").innerHTML = CATALOGO.map(c => `
+  <div class="cat-col">
+    <h4>${esc(c.categoria)}</h4>
+    ${c.modelos.map(m => `<a href="modelo.html?m=${esc(slug(m))}">${esc(m)}</a>`).join("")}
+  </div>`).join("");
+
+const btnModelos = document.getElementById("btn-modelos");
+const painel = document.getElementById("painel-modelos");
+const escurece = document.getElementById("escurece");
+
+function alternarPainel(abrir) {
+  const vai = abrir ?? !painel.classList.contains("aberto");
+  painel.classList.toggle("aberto", vai);
+  btnModelos.classList.toggle("aberto", vai);
+  escurece.classList.toggle("on", vai);
+  btnModelos.setAttribute("aria-expanded", vai ? "true" : "false");
+  document.body.style.overflow = vai ? "hidden" : "";
+}
+btnModelos.addEventListener("click", () => alternarPainel());
+escurece.addEventListener("click", () => alternarPainel(false));
+document.getElementById("link-pronta-entrega").addEventListener("click", () => alternarPainel(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") alternarPainel(false); });
+
+// logo da loja: usa o arquivo da pasta se existir, senão fica o nome escrito
+(async function montarLogo() {
+  for (const arq of ["logo.svg", "logo.png"]) {
+    try {
+      const res = await fetch(arq, { method: "HEAD" });
+      if (!res.ok) continue;
+      document.querySelectorAll(".logo-img").forEach(img => { img.src = arq; img.style.display = "block"; });
+      document.querySelectorAll(".logo-txt").forEach(t => { t.style.display = "none"; });
+      return;
+    } catch (e) { /* tenta o próximo */ }
+  }
+})();
+
+// vídeo de fundo do hero: usa o link das configurações ou o arquivo hero.mp4 da pasta
+async function montarVideoHero() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const url = (config.heroVideo || "").trim() || "hero.mp4";
+  const externo = /^https?:\/\//i.test(url);
+  if (!externo) {
+    try {
+      const res = await fetch(url, { method: "HEAD" });
+      if (!res.ok) return; // sem arquivo: mantém o fundo padrão
+    } catch (e) { return; }
+  }
+  const v = document.getElementById("hero-video");
+  v.addEventListener("loadeddata", () => {
+    document.getElementById("hero-media").classList.add("on");
+    document.getElementById("hero").classList.add("com-video");
+    v.play().catch(() => {}); // já carregado: garante o play mesmo se o autoplay engasgar
+  }, { once: true });
+  // se o navegador pausar ao voltar para a aba, retoma
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && v.src) v.play().catch(() => {});
+  });
+  v.src = url;
+  v.play().catch(() => {});
+}
+
+function render() {
+  document.getElementById("h-cidade").textContent =
+    `Concessionária autorizada · ${config.cidade || "Santa Cruz"}, Rio de Janeiro`;
+  montarRodape(config, { abrirModelos: () => alternarPainel(true) });
+  // mesmo texto do <title> lá em cima: o que o Google indexa e o que o
+  // visitante lê na aba precisam dizer a mesma coisa
+  document.title = `${config.nomeLoja} — Motos 0 km na Zona Oeste do Rio (RJ)`;
+  // faixa vermelha, parada: antes de abrir só o aviso; depois, as vantagens
+  const faixa = document.getElementById("faixa-itens");
+  if (config.emBreve !== false) {
+    faixa.className = "faixa-itens";
+    faixa.innerHTML = `<b>///</b><span>Inauguração em breve</span><b>///</b>`;
+  } else {
+    const frases = ["Pronta entrega", "0 km direto da fábrica", "Financiamento facilitado", "Revisão dos 1.000 km na loja"];
+    faixa.className = "faixa-itens varias";
+    faixa.innerHTML = frases.map(f => `<span>${esc(f)}</span>`).join("<b>///</b>");
+  }
+
+  if (config.whatsapp) {
+    for (const [id, msg] of [["nav-wa", "Olá! Vim pelo site 🏍️"], ["hero-wa", "Olá! Vim pelo site e quero saber das motos 🏍️"], ["c-wa", "Olá! Vim pelo site 🏍️"]]) {
+      const el = document.getElementById(id);
+      el.style.display = id === "nav-wa" ? "flex" : "inline-flex";
+      el.href = waLink(config.whatsapp, msg);
+    }
+  }
+  const ig = igLink(config.instagram);
+  if (ig) {
+    const el = document.getElementById("nav-ig");
+    el.style.display = "flex";
+    el.href = ig;
+    const linhaIg = document.getElementById("c-instagram");
+    if (linhaIg) linhaIg.textContent = "@" + ig.replace(/\/$/, "").split("/").pop();
+  }
+
+  if (config.fotoLoja?.url) {
+    document.getElementById("loja-foto").innerHTML =
+      `<img src="${esc(config.fotoLoja.url)}" alt="Fachada da ${esc(config.nomeLoja)}" loading="lazy">`;
+    document.getElementById("loja-blur").src = config.fotoLoja.url;
+  }
+  // enquanto não inaugura, o subtítulo do cartão avisa
+  document.getElementById("loja-sub").textContent =
+    config.emBreve !== false ? "Inauguração em breve" : `${config.cidade || "Santa Cruz"} · Rio de Janeiro`;
+
+  renderCarousel();
+  renderDestaques();
+  bumpTimer();
+  montarVideoHero();
+}
+
+// ---------- cards em destaque ----------
+function renderDestaques() {
+  const lista = (config.destaques || []).filter(d => d.titulo && d.foto?.url);
+  const sec = document.getElementById("destaques");
+  if (!lista.length) { sec.style.display = "none"; return; }
+  sec.style.display = "block";
+  document.getElementById("dest-grid").innerHTML = lista.map(d => `
+    <article class="dest-card">
+      <img src="${esc(d.foto.url)}" alt="${esc(d.titulo)}" loading="lazy">
+      <div class="dest-corpo">
+        <h3 class="dest-nome">${esc(d.titulo)}</h3>
+        ${d.frase ? `<p class="dest-frase">${esc(d.frase)}</p>` : ""}
+        <div class="dest-acoes">
+          <button class="dest-btn" data-moto="${esc(d.titulo)}">Tenho interesse <i class="ti ti-arrow-right"></i></button>
+          ${d.slug ? `<a class="dest-link" href="modelo.html?m=${esc(d.slug)}">Ver detalhes</a>` : ""}
+        </div>
+      </div>
+    </article>`).join("");
+}
+
+document.getElementById("dest-grid").addEventListener("click", e => {
+  const btn = e.target.closest(".dest-btn");
+  if (!btn) return;
+  motoForm = btn.dataset.moto;
+  document.getElementById("form-moto-nome").textContent = motoForm;
+  document.getElementById("form-campos").style.display = "block";
+  document.getElementById("form-ok").style.display = "none";
+  document.getElementById("form-erro").style.display = "none";
+  document.getElementById("form-nome").value = "";
+  document.getElementById("form-fone").value = "";
+  document.getElementById("form-bg").classList.add("show");
+});
+
+// ---------- carrossel de motos ----------
+let idx = 0;
+let timer = null;
+const listaFiltrada = () => filtro === "Todas" ? motos : motos.filter(m => m.categoria === filtro);
+
+// Lê a foto antes de mostrar: as cores do estúdio dela e se ela é recortada
+// (PNG com fundo transparente). Lê a própria imagem da tela, já baixada — o
+// Cloudinary libera essa leitura. Se der errado, fica o cinza padrão.
+let trocaAtual = 0;
+function analisarFoto(im) {
+  try {
+    const c = document.createElement("canvas");
+    c.width = c.height = 3;
+    const ctx = c.getContext("2d", { willReadFrequently: true });
+    const w = im.naturalWidth, h = im.naturalHeight;
+    const p = Math.max(4, Math.round(Math.min(w, h) * 0.04));
+    const ler = (sx, sy) => {
+      ctx.clearRect(0, 0, 3, 3);
+      ctx.drawImage(im, sx, sy, p, p, 0, 0, 3, 3);
+      const d = ctx.getImageData(0, 0, 3, 3).data;
+      let r = 0, g = 0, b = 0, a = 0;
+      for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; a += d[i + 3]; }
+      const n = d.length / 4;
+      return [r / n, g / n, b / n, a / n];
+    };
+    // canto transparente = moto recortada, pousa no estúdio claro
+    const cantos = [[0, 0], [w - p, 0], [0, h - p], [w - p, h - p]].map(([x, y]) => ler(x, y));
+    const recortada = cantos.reduce((t, q) => t + q[3], 0) / 4 < 250;
+    // a foto de estúdio é um degradê de cima para baixo (o chão é quase
+    // branco). Guarda a cor de seis faixas da foto: o fundo da seção repete
+    // esse degradê na mesma altura, e a borda da foto encosta sempre numa
+    // cor igual à dela. A cor vem da borda ESQUERDA, que é a que fica de
+    // frente para o texto e mais aparece; se ali tiver uma roda encostada
+    // (bem mais escuro que a borda direita), vale a direita
+    const luz = c => c[0] * .3 + c[1] * .59 + c[2] * .11;
+    const media = lista => [0, 1, 2].map(i => Math.round(lista.reduce((t, q) => t + q[i], 0) / lista.length));
+    const linhas = [0, .2, .4, .6, .8, 1].map(f => {
+      const y = Math.min(h - p, Math.round(f * (h - p)));
+      const esq = media([ler(0, y), ler(Math.round(.03 * (w - p)), y)]);
+      const dir = media([ler(w - p, y), ler(Math.round(.97 * (w - p)), y)]);
+      return luz(esq) >= luz(dir) - 25 ? esq : dir;
+    });
+    return { recortada, linhas };
+  } catch (e) {
+    return null;
+  }
+}
+
+// Pinta a camada com o degradê da foto, cada faixa na altura em que ela
+// aparece na tela. Refaz quando a janela muda de tamanho (a foto muda de lugar).
+function pintarCamada(camada, img, linhas) {
+  if (!linhas || !img.isConnected) return;
+  const r = img.getBoundingClientRect(), cr = camada.getBoundingClientRect();
+  if (!r.height || !cr.height) return;
+  const rgb = c => `rgb(${c.join(",")})`;
+  const pos = f => (((r.top - cr.top) + r.height * f) / cr.height * 100).toFixed(1);
+  const faixas = linhas.map((c, i) => `${rgb(c)} ${pos(i / (linhas.length - 1))}%`);
+  camada.style.background = `linear-gradient(to bottom,${rgb(linhas[0])} 0%,${faixas.join(",")},${rgb(linhas[linhas.length - 1])} 100%)`;
+}
+let repintar = null;
+window.addEventListener("resize", () => {
+  clearTimeout(repintar);
+  repintar = setTimeout(() => {
+    const camada = [...document.querySelectorAll("#vt-foto .vt-camada")].pop();
+    if (camada?._linhas) pintarCamada(camada, camada.querySelector("img"), camada._linhas);
+  }, 150);
+});
+
+// Troca de moto: a nova entra numa camada própria — a foto junto com o fundo
+// de estúdio dela —, por cima da antiga e só depois de carregada e pintada.
+// Como cada camada combina consigo mesma, a fusão de uma na outra nunca
+// mostra a emenda da foto, nem por um instante.
+async function trocarFoto(url, alt, troca) {
+  const fundo = document.getElementById("vt-foto");
+  if (!url) {
+    fundo.innerHTML = `<div class="sem"><i class="ti ti-motorbike"></i></div>`;
+    return;
+  }
+  const nova = document.createElement("div");
+  nova.className = "vt-camada";
+  nova.style.opacity = "0";
+  nova.innerHTML = `<div class="vt-area"><img class="vt-moto" crossorigin="anonymous" src="${esc(url)}" alt="${esc(alt)}"></div>`;
+  fundo.querySelector(".sem")?.remove();
+  fundo.appendChild(nova);
+
+  // espera a foto carregar — mas com teto, pra nunca ficar presa.
+  // (img.decode() trava quando a aba está em segundo plano)
+  const img = nova.querySelector("img");
+  await new Promise(pronto => {
+    if (img.complete && img.naturalWidth) return pronto();
+    img.addEventListener("load", pronto, { once: true });
+    img.addEventListener("error", pronto, { once: true });
+    setTimeout(pronto, 2000);
+  });
+  if (troca !== trocaAtual) { nova.remove(); return; }  // já pediram outra moto
+  const info = img.naturalWidth ? analisarFoto(img) : null;
+
+  // recortada: estúdio claro com sombra; foto normal: o fundo da camada
+  // vira o degradê do estúdio dela e as bordas da foto se apagam nele
+  const recortada = !!info?.recortada;
+  nova.classList.toggle("recortada", recortada);
+  nova._linhas = recortada ? null : info?.linhas || null;
+  if (nova._linhas) pintarCamada(nova, img, nova._linhas);
+  // foto que já estava baixada chega aqui no mesmo instante em que entrou
+  // com opacidade 0; sem forçar o navegador a registrar esse 0, ele pula
+  // direto pro 1 e a moto aparece de estalo
+  void nova.offsetWidth;
+  nova.style.opacity = "1";
+  // as de baixo só saem depois que a nova terminou de cobrir tudo — todas,
+  // não só a última, para nenhuma ficar esquecida se as trocas se atropelarem
+  for (const velha of fundo.querySelectorAll(".vt-camada")) {
+    if (velha !== nova) setTimeout(() => velha.remove(), 600);
+  }
+}
+
+function renderCarousel() {
+  const lista = listaFiltrada();
+  const inner = document.getElementById("car-stage");
+  const vazio = document.getElementById("car-vazio");
+  if (!lista.length) { inner.style.display = "none"; vazio.style.display = "flex"; return; }
+  inner.style.display = "block";
+  vazio.style.display = "none";
+
+  const n = lista.length;
+  idx = ((idx % n) + n) % n;
+
+  const montar = () => {
+    trocaAtual++;
+    const m = lista[idx];
+    const url = m.fotos?.[0]?.url;
+    const nomeMoto = [m.modelo, m.cor].filter(Boolean).join(" ");
+
+    document.getElementById("vt-specs").textContent =
+      [m.categoria, m.tipo === "Usada" ? "Usada" : "0 km", m.cor].filter(Boolean).join(" · ");
+    document.getElementById("vt-nome").textContent = m.modelo;
+    document.getElementById("vt-preco").innerHTML = Number(m.precoVenda) > 0
+      ? `A partir de <b>${fmtBRL(m.precoVenda)}</b>` : "Consulte as condições";
+    document.getElementById("vt-btn").dataset.moto = nomeMoto;
+    // modelo novo (chegou na nota mas ainda não tem página) fica sem o link,
+    // em vez de levar para uma página de "modelo não encontrado"
+    const ficha = document.getElementById("vt-ficha");
+    ficha.href = `modelo.html?m=${esc(slug(m.modelo))}`;
+    ficha.style.display = acharModelo(slug(m.modelo)) ? "" : "none";
+
+    trocarFoto(url, m.modelo, trocaAtual);
+
+    // a próxima da fila: o nome dela ao lado das setas, e a foto já vai
+    // sendo baixada para a troca sair sem espera
+    const varias = n > 1;
+    document.getElementById("vt-setas").style.display = varias ? "" : "none";
+    document.getElementById("vt-rodape").style.visibility = varias ? "visible" : "hidden";
+    const prox = lista[(idx + 1) % n];
+    document.getElementById("vt-prox").innerHTML = varias ? `Próxima<b>${esc(prox.modelo)}</b>` : "";
+    if (varias && prox.fotos?.[0]?.url) {
+      const pre = new Image();
+      pre.crossOrigin = "anonymous";
+      pre.src = prox.fotos[0].url;
+    }
+
+    if (varias) {
+      document.getElementById("car-count").textContent =
+        `${String(idx + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
+      document.getElementById("vt-barra-fill").style.width = `${((idx + 1) / n) * 100}%`;
+    }
+  };
+
+  montar();
+}
+
+// o nome da próxima moto também leva até ela
+document.getElementById("vt-prox").addEventListener("click", () => nav(1));
+
+function nav(d) { idx += d; renderCarousel(); bumpTimer(); }
+document.getElementById("car-prev").addEventListener("click", () => nav(-1));
+document.getElementById("car-next").addEventListener("click", () => nav(1));
+
+function bumpTimer() {
+  clearInterval(timer);
+  if (listaFiltrada().length > 1) timer = setInterval(() => { idx++; renderCarousel(); }, 7000);
+}
+
+// arrastar no celular
+let touchX = null;
+document.getElementById("car-stage").addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+document.getElementById("car-stage").addEventListener("touchend", e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  touchX = null;
+  if (Math.abs(dx) > 50) nav(dx > 0 ? -1 : 1);
+}, { passive: true });
+
+// ---------- formulário "tenho interesse" ----------
+let motoForm = "";
+const bg = document.getElementById("form-bg");
+
+document.getElementById("car-stage").addEventListener("click", e => {
+  const btn = e.target.closest("#vt-btn");
+  if (!btn) return;
+  motoForm = btn.dataset.moto;
+  document.getElementById("form-moto-nome").textContent = motoForm;
+  document.getElementById("form-campos").style.display = "block";
+  document.getElementById("form-ok").style.display = "none";
+  document.getElementById("form-erro").style.display = "none";
+  document.getElementById("form-nome").value = "";
+  document.getElementById("form-fone").value = "";
+  bg.classList.add("show");
+});
+document.getElementById("form-close").addEventListener("click", () => bg.classList.remove("show"));
+bg.addEventListener("click", e => { if (e.target === bg) bg.classList.remove("show"); });
+
+document.getElementById("form-enviar").addEventListener("click", async () => {
+  const nome = document.getElementById("form-nome").value.trim();
+  const fone = document.getElementById("form-fone").value.trim();
+  const erro = document.getElementById("form-erro");
+  if (!nome || fone.replace(/\D/g, "").length < 10) {
+    erro.textContent = "Preencha seu nome e um WhatsApp válido com DDD.";
+    erro.style.display = "block";
+    return;
+  }
+  const btn = document.getElementById("form-enviar");
+  btn.disabled = true;
+  try {
+    await salvarLead(nome, fone, motoForm);
+    document.getElementById("form-campos").style.display = "none";
+    document.getElementById("form-ok").style.display = "block";
+    if (config.whatsapp) {
+      const okWa = document.getElementById("form-ok-wa");
+      okWa.style.display = "flex";
+      okWa.href = waLink(config.whatsapp, `Olá! Deixei meu contato no site sobre a ${motoForm} 🏍️`);
+    }
+  } catch (err) {
+    erro.textContent = "Ops, não conseguimos enviar. Tente de novo ou chame no WhatsApp.";
+    erro.style.display = "block";
+  }
+  btn.disabled = false;
+});
+
+carregar();
+</script>
+
+
+</body></html>

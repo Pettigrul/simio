@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Ca67e57116d",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://bvboleto.lovable.app/",
+  "final_url": "https://bvboleto.lovable.app/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "185.41.148.1",
+  "collected_at": "2026-11-19T18:10:21.939858+00:00",
+  "manifest_written_at": "2026-11-19T18:10:29.389830+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Ca67e57116d\\attempt-1\\viewport.png",
+      "sha256": "0f64a45b52f1907b4f58c2a86c890ee041da5f49017a00f7f97629f92b045b93",
+      "size_bytes": 47367
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Ca67e57116d\\attempt-1\\fullpage.png",
+      "sha256": "0f64a45b52f1907b4f58c2a86c890ee041da5f49017a00f7f97629f92b045b93",
+      "size_bytes": 47367
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Ca67e57116d\\attempt-1\\page.html.txt",
+      "sha256": "e87eefd6211da8c4fc6039ffe0df9e5ac3ce99120209f71501d1bf7a3424a82f",
+      "size_bytes": 65449
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Ca67e57116d\\attempt-1\\text.txt",
+      "sha256": "8b423970df598afd5e28559d7bd7683b114d3a6cf0c0902ce04bba594f8696a4",
+      "size_bytes": 781
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Ca67e57116d\\attempt-1\\page.json",
+      "sha256": "aafb68e566acf0cdbbc7c54c13417e1474c6cb874b48d4429aa9f355ffac7285",
+      "size_bytes": 2726
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

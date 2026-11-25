@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Ca89a9a8efe",
+  "attempt": 1,
+  "status": "BLOCKED",
+  "original_url": "https://www.energizel.com.br/a-energizel",
+  "final_url": "https://www.energizel.com.br/a-energizel",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "172.217.192.121",
+  "collected_at": "2026-11-23T14:51:58.771249+00:00",
+  "manifest_written_at": "2026-11-23T14:52:05.400250+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence\\Ca89a9a8efe\\attempt-1\\viewport.png",
+      "sha256": "0041b9469c5457de762872164b1269143b05991c4424c7ecf67557839bda29b0",
+      "size_bytes": 47532
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence\\Ca89a9a8efe\\attempt-1\\fullpage.png",
+      "sha256": "0041b9469c5457de762872164b1269143b05991c4424c7ecf67557839bda29b0",
+      "size_bytes": 47532
+    },
+    {
+      "kind": "html",
+      "path": "evidence\\Ca89a9a8efe\\attempt-1\\page.html.txt",
+      "sha256": "0f223b17b38934dc41a78172e5e7f2423c2fd91c06f3e6dc8ad9ae04ea45a0af",
+      "size_bytes": 65471
+    },
+    {
+      "kind": "text",
+      "path": "evidence\\Ca89a9a8efe\\attempt-1\\text.txt",
+      "sha256": "01bc0393b21e9f9bbf686128cc6c61d304757af8318a3d954b16e922a545b442",
+      "size_bytes": 795
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence\\Ca89a9a8efe\\attempt-1\\page.json",
+      "sha256": "5471f8a26748d25bfe5c68889849ec2bd62459f724cc2c8ca5e4946d58eb643c",
+      "size_bytes": 2754
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: acesso bloqueado pelo filtro web corporativo da rede"
+  ],
+  "not_inspected": [
+    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

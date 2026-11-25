@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Ce3bd84da3e</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-164717-633d</b> · Gerado em: 2026-11-25T19:57:14+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Ce3bd84da3e — proverfinanciamentos.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://proverfinanciamentos.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de estabelecimento intermediador de crédito (correspondente bancário de veículos/caminhões) com identidade visual própria dominante e presença do logotipo atual do Banco BV inserido legitimamente na seção de parceiros. Todavia, a transparência regulatória como COBAN é incompleta: o rodapé informa o CNPJ do Banco Votorantim contratante, mas omite a razão social e o CNPJ da própria Prover Financiamentos, cita norma revogada (Res. 3.954) e não informa canal de ouvidoria. Configura-se comunicação ambígua com necessidade de adequação às regras da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A página pertence a uma promotora/correspondente bancário de financiamento de caminhões (Prover Financiamentos). Não há overbranding nem usurpação de oficialidade, constando a marca própria de forma dominante e o logotipo do Banco BV inserido na seção de parceiros. Contudo, há deficiências de transparência regulatória nos termos da Resolução CMN nº 4.935/2021 (omissão da razão social e CNPJ do próprio correspondente no rodapé, citação de norma revogada e ausência de canal de ouvidoria). A classificação REVIEW_REQUIRED com prioridade MEDIUM está correta e se sustenta integralmente.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Ce3bd84da3e/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 abe9272b8f1fd25fb9b98934a7315ad52ffd0acdbe0f4cf5f04d771bd688a103</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-164717-633d/evidence/Ce3bd84da3e/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 c447183c47fc6030a295e78e9b7fe45e65beee28123051f2f243b03b51e06529</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://proverfinanciamentos.com.br/ (domínio: proverfinanciamentos.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): proverfinanciamentos.com.br — **URL:** `https://proverfinanciamentos.com.br` | **Como a marca é utilizada:** Especializada na captação e consultoria de financiamento de caminhões, cavalos mecânicos e empréstimo com garantia de veículo | Coloca-se como intermediadora declarando: *“Somos Correspondentes Bancários da seguinte instituição: Banco Votorantim S.A. (CNPJ 59.588.111/0001-03)”* | Cita a norma revogada (Resolução Bacen nº 3.954) em vez da vigente Resolução CMN nº 4.935/2021 | Informa o CNPJ do Banco Votorantim contratante, porém não dá transparência ao CNPJ e dados societários da própria Prover Financiamentos no rodapé de contratação | **Defasagem de fundamentação legal:** Diversos intermediadores que possuem CNPJ cadastrado e se declaram correspondentes de veículos/caminhões mantêm textos regulatórios apontando para a Resolução Bacen nº 3.954/2011</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Ce3bd84da3e/attempt-1/viewport.png (sha256 abe9272b8f1fd25f…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Ce3bd84da3e/attempt-1/fullpage.png (sha256 c447183c47fc6030…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Financiamento de Caminhões Sem Comprovar Renda | Prover</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Quer comprar seu caminhão mas não tem como comprovar renda? Na Prover Financiamentos ajudamos autônomos a conquistar o bruto. Simule agora!</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Prover Finaciamentos</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Financiamento de Caminhões Sem Comprovar Renda - Prover Financiamentos</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Compre seu caminhão com facilidade! Especialistas em crédito para autônomos e motoristas, mesmo sem comprovação de renda. Simule agora!</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://proverfinanciamentos.com.br/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>CRÉDITO PRA QUEM MOVE O BRASIL!</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>UMA PLATAFORMA ESPECIALIZADA EM FINANCIAMENTO DE CAMINHÕES E CARRETAS</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>CONHEÇA NOSSAS OPORTUNIDADES DE CRÉDITO</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>ESPECIALISTA EM FINANCIAMENTOS</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>CONHEÇA NOSSOS PARCEIROS</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Home Quem somos Contato Crédito pra quem move o Brasil! UMA PLATAFORMA ESPECIALIZADA EM FINANCIAMENTO DE CAMINHÕES E CARRETAS × ⚠️ Antes de solicitar o financiamento verifique se o seu nome não está negativado. [Consultar CPF Agora] Respeitamos sua privacidade Cookies nos ajudam a melhorar sua experiência, entregar conteúdo personalizado e analisar o tráfego. Você pode escolher quais cookies permitir clicando em Personalizar . Clique em Aceitar Todos para consentir ou Rejeitar Todos para recusar cookies não essenciais. Personalizar Rejeitar Todos Aceitar Todos</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Home &lt;https://proverfinanciamentos.com.br/&gt; | Quem somos &lt;https://proverfinanciamentos.com.br/quem-somos/&gt; | Contato &lt;https://proverfinanciamentos.com.br/contato/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Personalizar</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Rejeitar Todos</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Aceitar Todos</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>FALE AGORA COM UM ESPECIALISTA! &lt;https://api.whatsapp.com/send/?phone=5511943144465&amp;text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+ajuda%21&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>FALE AGORA COM UM ESPECIALISTA! &lt;https://api.whatsapp.com/send/?phone=5511943144465&amp;text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+ajuda%21&amp;type=phone_number&amp;app_absent=0&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td> &lt;https://www.facebook.com/share/1B9PnQNcE6/&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/proverfinanciamentos?igsh=N2t1dWpiaWY0ODh2&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;LOGO PROVER LOGO&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/elementor/thumbs/cropped-40cfb68e958e554fa020744e53f47204-rohc84fzk5ybj3b5p4e4e1v32gabt7ww2wnlw5tre0.png (64x64, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/07/NOVO-logo-PROVER-FINANCIAMENTOS-SEM-TEL.png (332x320, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;grupo-vamos-logo-vector&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/grupo-vamos-logo-vector.png (299x166, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;librelato-logo&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/librelato-logo.png (299x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;nostra logo&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/nostra.png (225x225, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;omni-banco-financeira-logo&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/omni-banco-financeira-logo.png (299x167, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;bv&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/bv.png (299x208, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;grupo-vamos-logo-vector&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/grupo-vamos-logo-vector.png (299x166, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;librelato-logo&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/librelato-logo.png (299x131, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;nostra logo&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/nostra.png (225x225, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page</td><td>imagem alt=&#39;omni-banco-financeira-logo&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/omni-banco-financeira-logo.png (299x167, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page</td><td>imagem alt=&#39;bv&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/bv.png (299x208, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page</td><td>imagem alt=&#39;grupo-vamos-logo-vector&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/03/grupo-vamos-logo-vector.png (299x166, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://proverfinanciamentos.com.br/wp-content/uploads/2026/07/NOVO-logo-PROVER-FINANCIAMENTOS-SEM-TEL.png (116x112, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Documentação simples: Dados pessoais e endereço</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Atendimento personalizado.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Atendimento personalizado.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Atendimento personalizado.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Atendimento personalizado.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Por isso, trabalhamos para desburocratizar o acesso ao financiamento, oferecendo atendimento ágil, transparente e soluções sob medida para cada cliente.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>CONHEÇA NOSSOS PARCEIROS</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Nunca solicitamos qualquer taxa ou depósito para liberação de empréstimos ou financiamentos. Fique atento com fraudes e havendo dúvidas, entre em contato conosco. Como correspondente bancário seguimos as diretrizes da Resolução nº 3.954, do Banco Central do Brasil. Somos Correspondentes Bancários da seguinte instituição: Banco Votorantim S.A. (CNPJ 59.588.111/0001-03. Não somos instituição</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>financeira. Crédito sujeito a análise e aprovação de crédito. As taxas de juros praticadas nas modalidades aqui oferecidas são estabelecidas unicamente pelas instituições parceiras, de acordo com os critérios de análise cada instituição. Só enviamos e-mail com a extensão “@proverfinanciamentos”. Qualquer atividade suspeita, entre em contato conosco.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v5)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identidade visual própria consolidada da Prover Financiamentos (paleta preta, dourada e azul com logo próprio em formato &#39;P&#39;), sem apropriação indevida das cores e estilos do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Omissão de dados cadastrais societários próprios (CNPJ e razão social) da Prover Financiamentos no rodapé comercial.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência do canal de ouvidoria da instituição contratante e citação de fundamentação normativa defasada (Res. Bacen 3.954/2011), descumprindo requisitos de transparência da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Deixa explícito que não é instituição financeira e que atua como intermediadora/correspondente.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-009">E-TXT-009</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O logotipo atual do Banco BV é exibido de forma secundária e proporcional dentro do carrossel/seção de parceiros comerciais e financeiros (junto a Grupo Vamos, Librelato, Nostra, Omni).</td><td class="mono"><a href="#E-IMG-7">E-IMG-7</a> <a href="#E-IMG-12">E-IMG-12</a> <a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-TXT-007">E-TXT-007</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O fluxo de contratação visa a captação de clientes para financiamento de veículos pesados, direcionando para atendimento via WhatsApp da própria Prover.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato identificados pertencem à Prover Financiamentos (WhatsApp, redes sociais com handle próprio e menção de domínio de e-mail @proverfinanciamentos).</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-TXT-009">E-TXT-009</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Não há simulação de canal oficial do Banco BV, embora a falta do CNPJ próprio e da ouvidoria gere fragilidade regulatória na relação de correspondente.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora declare atuar como correspondente bancário do Banco Votorantim S.A. e informe o CNPJ do banco contratante, a Prover Financiamentos omite sua própria razão social e CNPJ, além de não disponibilizar canal de ouvidoria e citar norma revogada (Resolução Bacen nº 3.954/2011 em vez da Resolução CMN nº 4.935/2021). — <span class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-009">E-TXT-009</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: A empresa atua sob o nome fantasia &#39;Prover Financiamentos&#39; / &#39;Prover Soluções Financeiras&#39;, mas não fornece dados cadastrais societários próprios (CNPJ/endereço) no rodapé ou na página inicial. — <span class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: Predomínio total da marca própria &#39;Prover Financiamentos&#39; no topo, cabeçalho e corpo da página. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li><li>[HIGH] LOGO_USAGE: Logotipo do BV posicionado em contexto legítimo de parceiros de crédito/multibancos (ao lado de Omni, Grupo Vamos, Librelato). — <span class="mono"><a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-IMG-12">E-IMG-12</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: Declara expressamente que não é instituição financeira e que os serviços são prestados na qualidade de correspondente bancário. — <span class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-009">E-TXT-009</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O site pertence à Prover Financiamentos (proverfinanciamentos.com.br), especializada em financiamento de caminhões, implementos e empréstimo com garantia de veículo.</li><li>O logotipo atual do Banco BV (letras minúsculas &#39;bv&#39;) é exibido em carrossel de parceiros ao lado de outras marcas (Omni Banco, Grupo Vamos, Librelato, Nostra). Não há uso de logotipo antigo (B vermelho e V azul).</li><li>O rodapé declara: &#39;Como correspondente bancário seguimos as diretrizes da Resolução nº 3.954, do Banco Central do Brasil. Somos Correspondentes Bancários da seguinte instituição: Banco Votorantim S.A. (CNPJ 59.588.111/0001-03). Não somos instituição financeira.&#39;</li><li>Não há identificação de CNPJ ou razão social da própria Prover Financiamentos no rodapé ou na página.</li><li>Não há indicação dos canais de Ouvidoria do Banco Votorantim/BV.</li><li>A fundamentação legal informada é a Resolução Bacen nº 3.954/2011, que foi revogada e substituída pela Resolução CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Confirmação cadastral do CNPJ da Prover Financiamentos e status formal do contrato de correspondente bancário com o Banco Votorantim S.A.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Trata-se de estabelecimento intermediador de crédito (correspondente bancário de veículos/caminhões) com identidade visual própria dominante e presença do logotipo atual do Banco BV inserido legitimamente na seção de parceiros. Todavia, a transparência regulatória como COBAN é incompleta: o rodapé informa o CNPJ do Banco Votorantim contratante, mas omite a razão social e o CNPJ da própria Prover Financiamentos, cita norma revogada (Res. 3.954) e não informa canal de ouvidoria. Configura-se comunicação ambígua com necessidade de adequação às regras da Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>Prover Finaciamentos<br><span class="mono">domain:proverfinanciamentos.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>proverfinanciamentos.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>59.588.111/0001-03</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td> como intermediadora declarando: *“Somos Correspondentes Bancários da seguinte instituição: Banco Votorantim S.A. (CNPJ 59.588.111/0001-03</td></tr>
+      <tr><td>institution_name_displayed</td><td>Banco Votorantim S.A</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/share/1B9PnQNcE6/</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/proverfinanciamentos?igsh=N2t1dWpiaWY0ODh2</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Prover Finaciamentos</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>FALE AGORA COM UM ESPECIALISTA! &lt;https://api.whatsapp.com/send/?phone=5511943144465&amp;text=Ol%C3%A1%2C+vim+pelo+site+e+gostaria+de+ajuda%21&amp;type=phone_number&amp;app_absent=0&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a></td><td>Nunca solicitamos qualquer taxa ou depósito para liberação de empréstimos ou financiamentos. Fique atento com fraudes e havendo dúvidas, entre em contato conosco. Como correspondente bancário seguimos</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro CNPJ presente na página, tratados como referência à contratante: 59.588.111/0001-03</li><li>a página se apresenta com o nome da instituição (Banco Votorantim S.A); isso é identidade declarada/visual, não a identidade do responsável</li><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-12">E-IMG-12</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TXT-007">E-TXT-007</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-009">E-TXT-009</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-TXT-009">E-TXT-009</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma promotora/correspondente bancário de financiamento de caminhões (Prover Financiamentos). Não há overbranding nem usurpação de oficialidade, constando a marca própria de forma dominante e o logotipo do Banco BV inserido na seção de parceiros. Contudo, há deficiências de transparência regulatória nos termos da Resolução CMN nº 4.935/2021 (omissão da razão social e CNPJ do próprio correspondente no rodapé, citação de norma revogada e ausência de canal de ouvidoria). A classificação REVIEW_REQUIRED com prioridade MEDIUM está correta e se sustenta integralmente.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Correspondentes bancários e promotoras que declaram vínculo com a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;correspondente bancário&#34; OR &#34;Correspondente no País&#34; OR &#34;correspondente do Banco BV&#34;) &#34;Banco BV&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;correspondente BV&#34; OR &#34;Somos correspondente&#34; &#34;Banco BV&#34; OR &#34;correspondente&#34; &#34;bv financeira&#34;) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;correspondente&#34; &#34;Banco Votorantim&#34; financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H3-service:correspondente-vinculo</span></td><td class="mono">https://proverfinanciamentos.com.br/</td><td>proverfinanciamentos.com.br<br><span class="muted">**URL:** `https://proverfinanciamentos.com.br` | **Como a marca é utilizada:** Especializada na captação e consultoria de financiamento de caminhões, cavalos mecânicos e empréstimo com garantia de veículo | Coloca-se como intermediadora declarando: *“Somos Correspondentes Bancários da seguinte instituição: Banco Votorantim S.A. (CNPJ 59.588.111/0001-03)”* | Cita a norma revogada (Resolução Bacen nº 3.954) em vez da vigente Resolução CMN nº 4.935/2021 | Informa o CNPJ do Banco Votorantim contratante, porém não dá transparência ao CNPJ e dados societários da própria Prover Financiamentos no rodapé de contratação | **Defasagem de fundamentação legal:** Diversos intermediadores que possuem CNPJ cadastrado e se declaram correspondentes de veículos/caminhões mantêm textos regulatórios apontando para a Resolução Bacen nº 3.954/2011</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 19:18:55.283623+00:00</div>
+      <div class="kv"><b>IP do servidor</b>69.6.249.202</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Ce3bd84da3e/attempt-1/manifest.json<br>sha256 313a3cc9c4a9fa134c2ce7fadec3f7a1e29a8f47e6e1906837ab7a4f5e496c65</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://proverfinanciamentos.com.br/<br>Final: https://proverfinanciamentos.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Ce3bd84da3e/attempt-1/viewport.png</td><td class="mono">abe9272b8f1fd25fb9b98934a7315ad52ffd0acdbe0f4cf5f04d771bd688a103</td><td>832025</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Ce3bd84da3e/attempt-1/fullpage.png</td><td class="mono">c447183c47fc6030a295e78e9b7fe45e65beee28123051f2f243b03b51e06529</td><td>1812344</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Ce3bd84da3e/attempt-1/page.html.txt</td><td class="mono">7d1155e482e554d55d33754e45be1b31095ac2f1ad3994fa2116fa59584b8329</td><td>186812</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Ce3bd84da3e/attempt-1/text.txt</td><td class="mono">9622a8be0950bc8141101a1113f237af61daac1086ff60081a82b39ca41fd19e</td><td>4284</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Ce3bd84da3e/attempt-1/page.json</td><td class="mono">1b454760db13c8e7d393e0f6d4943bb3421474ec08bebd5ab2bc10039c889e03</td><td>16801</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T18:12:09+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-25T19:18:55+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:03+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:03+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T19:19:34+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T19:20:27+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
