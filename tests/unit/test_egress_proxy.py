@@ -13,6 +13,8 @@ async def _raw(port: int, payload: bytes) -> bytes:
     w.write(payload)
     await w.drain()
     data = await asyncio.wait_for(r.read(65536), 5)
+    if b"Content-Length:" in data and data.endswith(b"\r\n\r\n"):
+        data += await asyncio.wait_for(r.read(65536), 5)
     w.close()
     return data
 
@@ -76,6 +78,24 @@ async def test_dns_answer_is_validated_and_pinned(monkeypatch) -> None:
     async with EgressProxy(policy) as proxy:
         out = await _raw(proxy.port, b"CONNECT rebind.example.com:443 HTTP/1.1\r\n\r\n")
         assert out.startswith(b"HTTP/1.1 403") and "non-public" in proxy.blocked[0]
+
+
+async def test_ipv6_first_answer_falls_back_to_reachable_ipv4(monkeypatch) -> None:
+    """Hosts like Meta's answer AAAA first; without an IPv6 route the proxy must still connect
+    through a validated IPv4 instead of failing the whole page (ERR_TUNNEL_CONNECTION_FAILED)."""
+    srv, port, _ = await _origin()
+    loop = asyncio.get_running_loop()
+
+    async def dual_stack(host, port, type=0):
+        return [(10, 1, 6, "", ("2001:db8::1", port, 0, 0)), (2, 1, 6, "", ("127.0.0.1", port))]
+
+    monkeypatch.setattr(loop, "getaddrinfo", dual_stack)
+    policy = UrlPolicy(unsafe_allow_hosts=frozenset({"dual.example.com"}))
+    async with EgressProxy(policy) as proxy:
+        out = await _raw(proxy.port, f"CONNECT dual.example.com:{port} HTTP/1.1\r\n\r\n".encode())
+        assert out.startswith(b"HTTP/1.1 200"), out
+        assert proxy.ip_for("dual.example.com") == "127.0.0.1"
+    srv.close()
 
 
 def test_split_hostport() -> None:

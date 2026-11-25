@@ -328,6 +328,18 @@ class Storage:
         )
         return int(cur.lastrowid or 0)
 
+    def searched_coban_cnpjs(self, exclude_campaign: str | None = None) -> set[str]:
+        """CNPJs already covered by a successful COBAN-seeded (H9) search in other campaigns."""
+        rows = self.conn.execute(
+            "SELECT hypothesis_id FROM queries WHERE hypothesis_id LIKE 'H9-coban:%'"
+            " AND status IN ('OK','EMPTY') AND campaign_id IS NOT ?",
+            (exclude_campaign,),
+        ).fetchall()
+        out: set[str] = set()
+        for r in rows:
+            out.update(c for c in r["hypothesis_id"].split(":", 1)[1].split(",") if c)
+        return out
+
     def list_queries(self, campaign_id: str) -> list[dict[str, Any]]:
         rows = self.conn.execute("SELECT * FROM queries WHERE campaign_id=? ORDER BY id", (campaign_id,)).fetchall()
         return [dict(r) for r in rows]

@@ -21,21 +21,40 @@ TRACKING_PARAMS = frozenset(
         "ttclid",
         "twclid",
         "igshid",
+        "igsh",
         "mc_cid",
         "mc_eid",
         "_ga",
         "_gl",
         "ref",
         "ref_src",
+        "referrer",
         "srsltid",
         "spm",
         "si",
         "trk",
         "cmpid",
         "s_kwcid",
+        "mibextid",
+        "rdid",
+        "share_url",
     }
 )
 TRACKING_PREFIXES = ("utm_", "pk_", "mtm_", "hsa_", "vero_", "_hs")
+SOCIAL_UI_LOCALE_HOSTS = (
+    "instagram.com",
+    "facebook.com",
+    "tiktok.com",
+    "threads.com",
+    "wa.me",
+    "whatsapp.com",
+    "x.com",
+    "twitter.com",
+    "linkedin.com",
+    "play.google.com",
+    "youtube.com",
+)
+SOCIAL_UI_LOCALE_PARAMS = frozenset({"hl", "locale", "lang"})
 DEFAULT_PORTS = {"http": 80, "https": 443}
 
 _URL_RE = re.compile(
@@ -83,17 +102,21 @@ def normalize_url(url: str) -> str:
         host = host[4:]
     port = parts.port
     netloc = host if port in (None, DEFAULT_PORTS.get(scheme)) else f"{host}:{port}"
-    path = quote(unquote(parts.path or "/"), safe="/:@!$&'()*+,;=-._~%")
+    raw_path = re.sub(r";jsessionid=[^/?#]+", "", parts.path or "/", flags=re.IGNORECASE)
+    path = quote(unquote(raw_path), safe="/:@!$&'()*+,;=-._~%")
     path = re.sub(r"/{2,}", "/", path)
     for suffix in ("/index.html", "/index.htm", "/index.php"):
         if path.endswith(suffix):
             path = path[: -len(suffix) + 1]
     if len(path) > 1:
         path = path.rstrip("/")
+    strip_locale = domain_matches(host, SOCIAL_UI_LOCALE_HOSTS)
     query_items = [
         (k, v)
         for k, v in parse_qsl(parts.query, keep_blank_values=True)
-        if k.lower() not in TRACKING_PARAMS and not k.lower().startswith(TRACKING_PREFIXES)
+        if k.lower() not in TRACKING_PARAMS
+        and not k.lower().startswith(TRACKING_PREFIXES)
+        and not (strip_locale and k.lower() in SOCIAL_UI_LOCALE_PARAMS)
     ]
     query = urlencode(sorted(query_items))
     return urlunsplit(("https" if scheme in ("http", "https") else scheme, netloc, path, query, ""))

@@ -112,16 +112,16 @@ async def test_offline_hunt_end_to_end(settings, storage, site) -> None:
     assert wb["Strong Indications"].max_row >= 2
     # Dossiers for priority candidates, readable offline, escaped, script-free.
     assert report.dossiers
-    html = (settings.output_dir / report.dossiers[next(iter(report.dossiers))]).read_text()
+    html = (settings.output_dir / report.dossiers[next(iter(report.dossiers))]).read_text(encoding="utf-8")
     assert "<script" not in html.lower()
     assert "Content-Security-Policy" in html
     lookalike_id = next(c.id for c in storage.list_candidates(summary.campaign_id) if c.url.endswith("lookalike.html"))
-    dossier = (settings.output_dir / report.dossiers[lookalike_id]).read_text()
+    dossier = (settings.output_dir / report.dossiers[lookalike_id]).read_text(encoding="utf-8")
     assert "E-SHOT-VIEWPORT" in dossier and "Art. 14" in dossier
     shots = re.findall(r'<img src="([^"]+)"', dossier)
     assert shots and all((report.report_dir / "dossiers" / s).resolve().is_file() for s in shots)
     inj_id = next(c.id for c in storage.list_candidates(summary.campaign_id) if c.url.endswith("injection.html"))
-    inj = (settings.output_dir / report.dossiers[inj_id]).read_text()
+    inj = (settings.output_dir / report.dossiers[inj_id]).read_text(encoding="utf-8")
     assert "Ignore todas as instru" in inj and "font-size:2px" not in inj  # text kept, markup never rendered
 
 

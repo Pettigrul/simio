@@ -11,8 +11,10 @@ Grounding is not an exhaustive web index; results are a sample guided by the hyp
 
 from __future__ import annotations
 
+import html
 import logging
-from urllib.parse import urljoin
+import re
+from urllib.parse import unquote, urljoin
 
 import httpx
 
@@ -25,12 +27,28 @@ log = logging.getLogger(__name__)
 
 REDIRECT_HOSTS = frozenset({"vertexaisearch.cloud.google.com"})
 SEARCH_RESULT_HOSTS = frozenset({"www.google.com", "google.com"})
+_YAHOO_RESULT_RE = re.compile(r'/RU=([^/]+)/RK=\d+/RS=[^"\']+["\'][^>]*>(.*?)</a>', re.DOTALL)
+_SOCIAL_DOMAINS = ("instagram.com/", "facebook.com/", "tiktok.com/", "linkedin.com/")
 
 GROUNDING_INSTRUCTIONS = (
-    "Você está apoiando uma auditoria de conformidade. Use a busca do Google para encontrar "
-    "páginas públicas na web brasileira que correspondam à hipótese abaixo. Cite as páginas "
-    "específicas encontradas (sites de estabelecimentos, páginas de anúncios ou de atendimento), "
-    "não páginas institucionais do próprio banco nem notícias. Seja factual e breve.\n\n"
+    "Você está apoiando uma auditoria de conformidade de correspondentes bancários (Resolução CMN "
+    "nº 4.935/2021) e proteção de marca. Use a busca do Google para encontrar páginas públicas na "
+    "web brasileira e em redes sociais que correspondam especificamente à hipótese abaixo.\n"
+    "Priorize encontrar:\n"
+    "- sites e landing pages de correspondentes bancários, promotoras de crédito, lojas/revendas de "
+    "veículos e empresas de energia solar que utilizem a marca ou o logotipo do banco em destaque, "
+    "ofereçam simuladores próprios, promovam feirões ou omitam no site sua razão social, CNPJ e a "
+    "declaração obrigatória de correspondente bancário;\n"
+    "- perfis comerciais, páginas e publicações de terceiros em redes sociais que usem a marca como "
+    "se fossem canais ou representantes oficiais.\n"
+    "Exclua das buscas e não retorne:\n"
+    "- domínios e perfis oficiais do próprio grupo (bv.com.br, bancobv.com.br, bvfinanceira.com.br, "
+    "bvinvestimentos.com.br, napista.com.br, bvopen.com.br, meufinanciamentosolar.com.br);\n"
+    "- notícias de imprensa, reclamações (Reclame Aqui), processos judiciais (Jusbrasil/Tribunais), "
+    "órgãos públicos (.gov.br), arquivos PDF avulsos de leilão e guias telefônicos/cadastrais que "
+    "apenas listam o CNPJ/endereço da própria BV Financeira S.A.\n"
+    "Para cada página encontrada, descreva brevemente como ela utiliza a marca e se exibe ou omite "
+    "sua razão social, CNPJ e condição de correspondente.\n\n"
     "Hipótese: "
 )
 
@@ -155,4 +173,59 @@ class GroundingConnector:
                 "model_text_excerpt": res.text[:1500],
             },
         )
+        # Vertex AI Search Grounding strips instagram.com and facebook.com from grounding_chunks.
+        # When executing social platform hypotheses in live mode (no mock transport), supplement with
+        # direct web dork queries so public Instagram/Facebook reels, posts and profiles are discovered.
+        if self.transport is None and hypothesis.id.startswith("H6-platform:") and hypothesis.keyword_queries:
+            social_hits = await self._supplement_social_dorks(hypothesis)
+            seen_urls = {h.original_url for h in hits}
+            for sh in social_hits:
+                if sh.original_url not in seen_urls:
+                    seen_urls.add(sh.original_url)
+                    hits.append(sh)
+            record.result_count = len(hits)
+            if hits:
+                record.status = "OK"
         return hits, record
+
+    async def _supplement_social_dorks(self, hypothesis: SearchHypothesis) -> list[DiscoveryHit]:
+        out: list[DiscoveryHit] = []
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+            )
+        }
+        try:
+            async with httpx.AsyncClient(timeout=self.http_timeout, trust_env=True, follow_redirects=True, headers=headers) as c:
+                for dork in hypothesis.keyword_queries:
+                    # Strip excess -site: operators for the social search engine query
+                    clean_dork = re.sub(r"\s+-site:\S+", "", dork).strip()
+                    r = await c.get("https://br.search.yahoo.com/search", params={"p": clean_dork, "n": 20})
+                    if r.status_code != 200:
+                        continue
+                    for idx, m in enumerate(_YAHOO_RESULT_RE.finditer(r.text), 1):
+                        raw_url = unquote(m.group(1)).strip()
+                        if not raw_url.startswith(("http://", "https://")):
+                            continue
+                        if not any(d in raw_url.lower() for d in _SOCIAL_DOMAINS):
+                            continue
+                        try:
+                            self.policy.check_static(raw_url)
+                        except PolicyViolation:
+                            continue
+                        title = html.unescape(re.sub(r"<[^>]+>", " ", m.group(2))).strip()
+                        out.append(
+                            DiscoveryHit(
+                                source=self.name,
+                                original_url=raw_url,
+                                query=clean_dork,
+                                hypothesis_id=hypothesis.id,
+                                title=title[:300] or None,
+                                rank=idx,
+                                metadata={"supplement": "social_dork"},
+                            )
+                        )
+        except Exception as exc:
+            log.debug("social dork supplement skipped: %s", exc)
+        return out

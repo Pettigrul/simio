@@ -13,7 +13,7 @@ from pathlib import Path
 
 from simio.brands import BrandProfile, fold, sentences
 from simio.collectors.browser import BrowserCollector
-from simio.core.models import Evidence, EvidenceItem, ImageInfo
+from simio.core.models import DiscoveryHit, Evidence, EvidenceItem, ImageInfo
 from simio.core.urls import domain_matches, hostname_of
 
 # ---------------------------------------------------------------------------------- regexes
@@ -51,7 +51,26 @@ INJECTION_RE = re.compile(
 KEYWORD_RE = re.compile(
     r"(?i)(cnpj|raz[aã]o social|nome fantasia|ltda|eireli|ouvidoria|sac\b|atendimento|whatsapp|"
     r"correspondente|parceir|credenciad|autorizad|oficial|endere[cç]o|cep\b|telefone|"
-    r"institui[cç][aã]o financeira|banco)"
+    r"institui[cç][aã]o financeira|banco|2[aª]\s*via|segunda\s*via|boleto|quita[cç][aã]o|"
+    r"logo(?:tipo)?\s*(?:antig[oa]|velh[oa]|legad[oa])|bv\s*antig[oa])"
+)
+LEGACY_LOGO_RE = re.compile(
+    r"(?i)(bv-?logo-?antig[oa]|logo-?antiga-?bv|bv-?antig[oa]|bv_antig[oa]|logo-?bv-?antiga|"
+    r"bv-?vermelh|b-?vermelho|logotipo\s+antigo|logo\s+antiga|marca\s+antiga)"
+)
+MULTI_BANK_PHRASE_RE = re.compile(
+    r"(?i)\b(bancos\s+parceiros|financeiras\s+parceiras|principais\s+bancos|diversos\s+bancos|"
+    r"v[aá]rios\s+bancos|m[uú]ltiplos\s+bancos|todas\s+as\s+financeiras|"
+    r"trabalhamos\s+com\s+(?:os\s+)?bancos|financiamos\s+(?:por|pelos))\b"
+)
+BANKING_CONTEXT_RE = re.compile(
+    r"(?i)\b(banco|financeira|financiamento|financie|financiar|cr[eé]dito|empr[eé]stimo|"
+    r"consignado|promotora|correspondente|boleto|quita[cç][aã]o|parcela|sac\b|ouvidoria|"
+    r"refinanciamento|ve[ií]culos?|seminovos|autom[oó]veis|motos?|solar|feir[aã]o)\b"
+)
+EDITORIAL_URL_RE = re.compile(
+    r"(?i)(?:^https?://(?:ajuda|help|meajuda)\.|/hc/pt-br/articles/|"
+    r"/(?:jurisprudencia|processos?|reclame|publieditorial|post-patrocinado)/)"
 )
 
 _CNPJ_WEIGHTS_1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
@@ -99,7 +118,12 @@ def _lines(text: str) -> list[str]:
     return out
 
 
-def build_catalog(ev: Evidence, brand: BrandProfile, max_text_items: int = 60) -> list[EvidenceItem]:
+def build_catalog(
+    ev: Evidence,
+    brand: BrandProfile,
+    max_text_items: int = 60,
+    discovery_hits: list[DiscoveryHit] | None = None,
+) -> list[EvidenceItem]:
     items: list[EvidenceItem] = []
     add = items.append
     url = ev.final_url or ev.original_url
@@ -127,6 +151,28 @@ def build_catalog(ev: Evidence, brand: BrandProfile, max_text_items: int = 60) -
                 f"ocorrências: {'; '.join(ev.errors)[:600] or 'nenhuma'}",
             )
         )
+    if discovery_hits:
+        seen_disc: set[str] = set()
+        disc_idx = 0
+        for h in discovery_hits:
+            parts = [x.strip() for x in (h.title or "", h.snippet or "") if x and x.strip()]
+            if not parts:
+                continue
+            combined = " — ".join(parts)[:1000]
+            if combined in seen_disc:
+                continue
+            seen_disc.add(combined)
+            disc_idx += 1
+            add(
+                EvidenceItem(
+                    ref=f"E-DISC-{disc_idx:03d}",
+                    kind="text",
+                    location="search_index",
+                    content=f"Índice de busca ({h.source}): {combined}",
+                )
+            )
+            if disc_idx >= 5:
+                break
     for art, ref in (("screenshot_viewport", "E-SHOT-VIEWPORT"), ("screenshot_full", "E-SHOT-FULL")):
         a = ev.artifact(art)
         if a:
@@ -139,7 +185,7 @@ def build_catalog(ev: Evidence, brand: BrandProfile, max_text_items: int = 60) -
                 )
             )
     p = ev.page
-    if p is None:
+    if p is None or not ev.usable:
         return items
     add(EvidenceItem(ref="E-TITLE", kind="title", location="head", content=p.title or "(sem título)"))
     for i, key in enumerate(
@@ -182,7 +228,12 @@ def build_catalog(ev: Evidence, brand: BrandProfile, max_text_items: int = 60) -
         )
     for i, c in enumerate(p.contact_links[:20]):
         add(EvidenceItem(ref=f"E-CONTACT-{i + 1}", kind="contact", location=c.location, content=f"{c.text} <{c.href}>"))
-    brandish = [img for img in p.images if _image_is_brandish(img, brand)]
+    is_social = domain_matches(hostname_of(url), ("instagram.com", "facebook.com", "tiktok.com"))
+    brandish = [
+        img
+        for img in p.images
+        if _image_is_brandish(img, brand) or (is_social and img.above_fold and img.width >= 200 and img.height >= 200)
+    ]
     for i, img in enumerate(brandish[:20]):
         add(
             EvidenceItem(
@@ -233,7 +284,12 @@ def build_catalog(ev: Evidence, brand: BrandProfile, max_text_items: int = 60) -
 
 def _image_is_brandish(img: ImageInfo, brand: BrandProfile) -> bool:
     blob = f"{img.alt} {img.src}"
-    return bool(brand.mentions(blob) or "logo" in fold(blob) or brand.domain_brand_match(img.src))
+    return bool(
+        brand.mentions(blob)
+        or "logo" in fold(blob)
+        or LEGACY_LOGO_RE.search(blob)
+        or brand.domain_brand_match(img.src)
+    )
 
 
 # --------------------------------------------------------------------------------- signals
@@ -256,6 +312,7 @@ class PageSignals:
     brand_above_fold: bool = False
     brand_images: list[Hit] = field(default_factory=list)
     brand_images_above_fold: int = 0
+    legacy_logo_markers: list[Hit] = field(default_factory=list)
     official_claims: list[Hit] = field(default_factory=list)
     brand_linked_claims: list[Hit] = field(default_factory=list)
     disclosures: list[Hit] = field(default_factory=list)
@@ -266,7 +323,14 @@ class PageSignals:
     partnership_with_brand: list[Hit] = field(default_factory=list)
     reported_claims: list[Hit] = field(default_factory=list)  # third-person / news / warnings
     weak_mentions: int = 0
+    has_discovery_evidence: bool = False
+    official_channel: bool = False
     article_page: bool = False
+    editorial_context: bool = False
+    homonym_context: bool = False
+    competitor_banks: list[str] = field(default_factory=list)
+    multi_bank_context: bool = False
+    sensitive_service_claims: list[Hit] = field(default_factory=list)
     ouvidoria: list[Hit] = field(default_factory=list)
     official_links: bool = False
     whatsapp_contacts: list[Hit] = field(default_factory=list)
@@ -284,10 +348,14 @@ class PageSignals:
             f"marca na área visível inicial: {'sim' if self.brand_above_fold else 'não'}",
             f"imagens possivelmente de logotipo/marca: {len(self.brand_images)} "
             f"({self.brand_images_above_fold} acima da dobra)",
+            "indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): "
+            + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.legacy_logo_markers[:5]) or "nenhum identificado"),
             "expressões de oficialidade: "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.official_claims[:8]) or "nenhuma"),
             "expressões de oficialidade próximas à marca: "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.brand_linked_claims[:8]) or "nenhuma"),
+            "serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: "
+            + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.sensitive_service_claims[:6]) or "nenhum"),
             "declarações de correspondente/independência: "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.disclosures[:8]) or "nenhuma encontrada")
             + f"; locais: {', '.join(sorted(self.disclosure_locations)) or '-'}"
@@ -297,15 +365,34 @@ class PageSignals:
             "menções a parceria: "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.partnership[:5]) or "nenhuma")
             + f" (associadas à marca: {len(self.partnership_with_brand)})",
+            "contexto multimarcas/multibancos (outras instituições financeiras na página): "
+            + (
+                f"sim ({', '.join(self.competitor_banks[:6])})"
+                if self.multi_bank_context
+                else (f"parcial ({', '.join(self.competitor_banks[:4])})" if self.competitor_banks else "não")
+            ),
             "expressões de oficialidade em discurso de terceiros (notícia/alerta): "
             + (", ".join(f"'{h.value}' [{h.ref}]" for h in self.reported_claims[:5]) or "nenhuma"),
-            f"página do tipo artigo/notícia (og:type): {'sim' if self.article_page else 'não'}",
+            f"página do tipo artigo/notícia (og:type): {'sim' if self.article_page else 'não'}; "
+            f"contexto editorial/informativo/reclamação: {'sim' if self.editorial_context else 'não'}",
             f"ouvidoria mencionada: {'sim' if self.ouvidoria else 'não'}",
             f"links para domínio oficial da instituição: {'sim' if self.official_links else 'não'}",
             f"contatos WhatsApp: {len(self.whatsapp_contacts)}; telefones: {len(self.phones)}",
             "CNPJs: " + (", ".join(f"{h.value} [{h.ref}]" for h in self.cnpjs[:5]) or "nenhum"),
             f"formulários na página: {self.forms_present}",
         ]
+        if self.official_channel:
+            out.append("canal/domínio oficial da própria instituição identificado na URL final")
+        if self.has_discovery_evidence and not self.usable:
+            out.append(
+                "acesso direto pelo navegador indisponível/bloqueado; sinais extraídos das evidências "
+                "indexadas na descoberta (E-DISC-*)"
+            )
+        if self.homonym_context and self.brand_mentions == 0:
+            out.append(
+                "observação: indício de homônimo da sigla 'BV' (ex.: Boa Vista/RR ou agência de "
+                "publicidade/modelos) sem menção explícita ao nome completo da instituição"
+            )
         if self.injection_markers:
             out.append(
                 "ATENÇÃO: conteúdo com padrões de instrução a modelos de IA (possível prompt "
@@ -317,40 +404,102 @@ class PageSignals:
 def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceItem]) -> PageSignals:
     sig = PageSignals(usable=ev.usable)
     url = ev.final_url or ev.original_url
-    sig.brand_in_domain = brand.domain_brand_match(hostname_of(url))
-    p = ev.page
-    if p is None:
+    host = hostname_of(url)
+    p = ev.page if ev.usable else None
+    disc_items = [i for i in catalog if i.ref.startswith("E-DISC-")]
+    disc_text = "\n".join(i.content for i in disc_items)
+    sig.has_discovery_evidence = any(len(i.content) >= 80 for i in disc_items)
+    sig.official_channel = brand.is_official_url(url, title=p.title if p else disc_text[:200])
+    sig.brand_in_domain = None if sig.official_channel else brand.domain_brand_match(host)
+    if p is None and not sig.has_discovery_evidence:
         return sig
-    sig.forms_present = p.forms_present
-    # Strong terms only: the weak term ("BV") is too ambiguous to count on its own in body text.
-    sig.brand_mentions = len(brand.strong_mentions(p.visible_text))
-    sig.weak_mentions = len(brand.weak_mentions(p.visible_text))
-    sig.article_page = (p.meta.get("og:type") or "").strip().lower() in ("article", "news", "noticia")
-    # Mentions *inside* a correspondent disclosure are transparency, not brand prominence. In short
-    # identity fields (title, site name, header, nav) the weak term is meaningful.
+    if p is not None:
+        sig.forms_present = p.forms_present
+        full_text = "\n".join(filter(None, (p.title, p.header_text, p.above_fold_text, p.visible_text, p.footer_text)))
+        sig.brand_mentions = len(brand.strong_mentions(p.visible_text))
+        sig.weak_mentions = len(brand.weak_mentions(p.visible_text))
+        sig.article_page = (p.meta.get("og:type") or "").strip().lower() in ("article", "news", "noticia")
+    else:
+        full_text = disc_text
+        has_bank_ctx = bool(BANKING_CONTEXT_RE.search(disc_text))
+        sig.brand_mentions = len(brand.strong_mentions(disc_text)) + (
+            len(brand.weak_mentions(disc_text)) if has_bank_ctx else 0
+        )
+        sig.weak_mentions = len(brand.weak_mentions(disc_text))
+        sig.article_page = False
+    sig.editorial_context = sig.article_page or bool(EDITORIAL_URL_RE.search(url) or brand.is_deprioritized(host))
+    folded_full = fold(full_text)
+    has_explicit_bank_marker = (
+        sig.brand_mentions > 0
+        or bool(brand.strong_mentions(host))
+        or bool(brand.sensitive_service_mentions(full_text))
+        or bool(brand.disclosures(full_text))
+        or bool(re.search(r"\b(banco|financeira|correspondente|sac\s+bv|0800)\b", folded_full))
+    )
+    sig.homonym_context = brand.has_homonym_context(full_text) and not has_explicit_bank_marker
+    if sig.homonym_context and sig.brand_mentions == 0 and not brand.strong_mentions(host):
+        sig.brand_in_domain = None
+    sig.competitor_banks = brand.competitor_mentions(full_text)
+    sig.multi_bank_context = len(sig.competitor_banks) >= 2 or (
+        len(sig.competitor_banks) >= 1 and bool(MULTI_BANK_PHRASE_RE.search(full_text))
+    )
+
     nd = brand.without_disclosures
-    sig.brand_in_title = bool(brand.mentions(nd(p.title)) or brand.mentions(nd(p.meta.get("og:site_name", ""))))
-    sig.brand_in_header = bool(
-        brand.mentions(nd(p.header_text)) or any(brand.mentions(nd(n.text)) for n in p.nav_items)
-    )
-    sig.brand_above_fold = bool(brand.strong_mentions(nd(p.above_fold_text)))
-    sig.disclosure_names_institution = any(
-        _real_disclosures_naming_institution(brand, t) for t in (p.visible_text, p.header_text, p.footer_text)
-    )
+    if p is not None:
+        title_nd = f"{nd(p.title)} {nd(p.meta.get('og:site_name', ''))}".strip()
+        header_nd = " ".join([nd(p.header_text), *(nd(n.text) for n in p.nav_items)]).strip()
+        has_banking_context = (
+            sig.brand_mentions > 0
+            or bool(sig.brand_in_domain)
+            or bool(brand.official_claims(full_text))
+            or bool(brand.disclosures(full_text))
+            or bool(BANKING_CONTEXT_RE.search(full_text))
+        )
+        allow_weak_identity = has_banking_context and not (sig.homonym_context and sig.brand_mentions == 0)
+        title_has_competitors = bool(brand.competitor_mentions(title_nd)) and not sig.brand_in_domain
+        header_has_competitors = bool(brand.competitor_mentions(header_nd)) and not sig.brand_in_domain
+
+        sig.brand_in_title = bool(
+            (brand.strong_mentions(title_nd) or (allow_weak_identity and brand.weak_mentions(title_nd)))
+            and not title_has_competitors
+        )
+        sig.brand_in_header = bool(
+            (brand.strong_mentions(header_nd) or (allow_weak_identity and brand.weak_mentions(header_nd)))
+            and not header_has_competitors
+        )
+        sig.brand_above_fold = bool(brand.strong_mentions(nd(p.above_fold_text)))
+        sig.disclosure_names_institution = any(
+            _real_disclosures_naming_institution(brand, t) for t in (p.visible_text, p.header_text, p.footer_text)
+        )
+    else:
+        sig.brand_above_fold = sig.brand_mentions > 0
+        sig.disclosure_names_institution = bool(_real_disclosures_naming_institution(brand, disc_text))
     sig.official_links = any(i.ref == "E-OFFICIAL-LINKS" for i in catalog)
     for item in catalog:
         text = item.content
         if INJECTION_RE.search(text):  # every kind, including image alt text and metadata
             sig.injection_markers.append(Hit(INJECTION_RE.search(text).group(0), item.ref))  # type: ignore[union-attr]
         if item.kind == "image":
-            sig.brand_images.append(Hit(text[:120], item.ref))
-            if item.above_fold:
-                sig.brand_images_above_fold += 1
+            # Only treat an image as a brand logo indicator when not a non-bank homonym page.
+            if not (sig.homonym_context and sig.brand_mentions == 0 and not sig.brand_in_domain):
+                sig.brand_images.append(Hit(text[:120], item.ref))
+                if item.above_fold:
+                    sig.brand_images_above_fold += 1
+                if LEGACY_LOGO_RE.search(text):
+                    sig.legacy_logo_markers.append(Hit(text[:120], item.ref))
             continue
         if item.kind in ("screenshot", "network", "domain"):
             continue
+        if LEGACY_LOGO_RE.search(text) and not is_disc:
+            sig.legacy_logo_markers.append(Hit(LEGACY_LOGO_RE.search(text).group(0), item.ref))  # type: ignore[union-attr]
+        # Do not count synthetic meta-descriptions inside E-DISC snippets ("sem exibir razão social /
+        # correspondente bancário") as actual correspondent disclosures on the page.
+        is_disc = item.ref.startswith("E-DISC-")
         for sentence in sentences(text):
             claims = brand.official_claims(sentence)
+            if claims:
+                if sig.homonym_context and sig.brand_mentions == 0 and not brand.strong_mentions(sentence):
+                    claims = [c for c in claims if brand.strong_mentions(c)]
             if claims:
                 # brand-linked: the claim phrase itself names the brand ("SAC BV") or the sentence does
                 linked = any(brand.mentions(c) for c in claims) or bool(brand.mentions(sentence))
@@ -361,19 +510,25 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
                         sig.reported_claims.append(Hit(c, item.ref, sentence[:200]))
                     elif linked:
                         sig.brand_linked_claims.append(Hit(c, item.ref, sentence[:200]))
+            sens = brand.sensitive_service_mentions(sentence)
+            if sens and not REPORTED_RE.search(fold(sentence)):
+                if brand.mentions(sentence) or sig.brand_in_title or sig.brand_in_domain or sig.brand_mentions > 0:
+                    for s_val in sens:
+                        sig.sensitive_service_claims.append(Hit(s_val, item.ref, sentence[:200]))
             for pm in brand.partnership_mentions(sentence):
                 sig.partnership.append(Hit(pm, item.ref, sentence[:200]))
                 if brand.mentions(sentence):
                     sig.partnership_with_brand.append(Hit(pm, item.ref, sentence[:200]))
-        for d in brand.disclosures(text):
-            sig.disclosures.append(Hit(d, item.ref, text[:200]))
-            sig.disclosure_locations.add(item.location)
-            if item.location in ("viewport", "header") or item.above_fold:
-                sig.disclosure_above_fold = True
+        if not is_disc:
+            for d in brand.disclosures(text):
+                sig.disclosures.append(Hit(d, item.ref, text[:200]))
+                sig.disclosure_locations.add(item.location)
+                if item.location in ("viewport", "header") or item.above_fold:
+                    sig.disclosure_above_fold = True
         folded = fold(text)
-        if "ouvidoria" in folded:
+        if "ouvidoria" in folded and not is_disc:
             sig.ouvidoria.append(Hit("ouvidoria", item.ref, text[:200]))
-        if item.kind == "contact" and ("wa.me" in folded or "whatsapp" in folded):
+        if (item.kind == "contact" or is_disc) and ("wa.me" in folded or "whatsapp" in folded):
             sig.whatsapp_contacts.append(Hit(text[:200], item.ref))
         for m in PHONE_RE.finditer(text):
             sig.phones.append(Hit(m.group(1), item.ref, text[:200]))
@@ -382,7 +537,7 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
             if sum(ch.isdigit() for ch in raw) >= 8:  # avoid matching random uppercase words
                 sig.cnpjs.append(Hit(format_cnpj(raw), item.ref, text[:300]))
     # Disclosure in the above-fold text counts even if only the E-TXT copy matched.
-    if brand.disclosures(p.above_fold_text) or brand.disclosures(p.header_text):
+    if p is not None and (brand.disclosures(p.above_fold_text) or brand.disclosures(p.header_text)):
         sig.disclosure_above_fold = True
     return sig
 

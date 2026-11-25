@@ -266,7 +266,7 @@ class IdentityFact(Strict):
 
 class RegistryMatch(Strict):
     source: str
-    matched_on: str  # cnpj | name
+    matched_on: str  # cnpj | cnpj_root | name
     record: dict[str, str]
     authoritative: bool
 

@@ -87,7 +87,7 @@ _SIGNAL_CASES = (
 def cross_check(assessment: BrandAssessment, heuristic: BrandAnalysisOutput) -> BrandAssessment:
     """Model vs deterministic rules. Page content (or text inside screenshots) may persuade the model
     to clear a page: when the rules see B/C/D signals and the model says NO_INDICATION, the case is
-    forced to human review instead of being silently cleared."""
+    forced to human review instead of being silently cleared, preserving the deterministic indicators."""
     if assessment.classification != FinalClassification.NO_INDICATION or heuristic.case not in _SIGNAL_CASES:
         return assessment
     note = (
@@ -95,10 +95,20 @@ def cross_check(assessment: BrandAssessment, heuristic: BrandAnalysisOutput) -> 
         f"determinísticas indicam {heuristic.case.value}; encaminhado para revisão (possível erro ou "
         "influência do conteúdo da página)"
     )
+    merged_case = (
+        heuristic.case
+        if assessment.case in (ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION, ScenarioCase.NOT_RELEVANT)
+        else assessment.case
+    )
+    merged_confusion = assessment.brand_confusion_indicators or heuristic.brand_confusion_indicators
+    merged_refs = sorted(set(assessment.evidence_references) | set(heuristic.evidence_references))
     return assessment.model_copy(
         update={
+            "case": merged_case,
             "classification": FinalClassification.REVIEW_REQUIRED,
             "priority": max(assessment.priority, Priority.MEDIUM, key=lambda p: PRIORITY_RANK[p]),
+            "brand_confusion_indicators": merged_confusion,
+            "evidence_references": merged_refs,
             "requires_human_review": True,
             "uncertainties": [*assessment.uncertainties, note],
             "guardrail_notes": [*assessment.guardrail_notes, note],
@@ -145,7 +155,7 @@ class BrandAnalyst:
     ) -> BrandAssessment:
         valid_refs = {i.ref for i in catalog}
         heuristic = heuristic_analysis(signals, self.scoring, ev, identity, valid_refs)
-        if self.uses_llm and ev.usable:
+        if self.uses_llm and (ev.usable or signals.has_discovery_evidence):
             assert self.gateway is not None and self.model is not None
             version, system = render("brand_analyst", brand_name=self.brand.display_name)
             parts: list[Part] = [
@@ -191,9 +201,9 @@ def heuristic_analysis(
 
     def pick(*cands: str) -> list[str]:
         found = [c for c in cands if c in refs_ok]
-        return found[:2] or ["E-URL"]
+        return found[:2] or (["E-DISC-001"] if "E-DISC-001" in refs_ok else ["E-URL"])
 
-    if not ev.usable:
+    if not ev.usable and not sig.has_discovery_evidence:
         return BrandAnalysisOutput(
             case=ScenarioCase.E_INSUFFICIENT_EVIDENCE,
             classification=CASE_DEFAULTS[ScenarioCase.E_INSUFFICIENT_EVIDENCE][0],
@@ -212,7 +222,13 @@ def heuristic_analysis(
     dims: list[DimensionAssessment] = []
     score_c = 0.0
     score_l = 0.0
-    prominent = sig.brand_in_domain or sig.brand_in_title or sig.brand_in_header or sig.brand_images_above_fold
+    prominent = (
+        sig.brand_in_domain
+        or sig.brand_in_title
+        or sig.brand_in_header
+        or sig.brand_images_above_fold
+        or (not ev.usable and sig.has_discovery_evidence and sig.brand_mentions > 0)
+    )
 
     if sig.brand_in_domain:
         score_c += sc.w_brand_in_domain
@@ -298,6 +314,46 @@ def heuristic_analysis(
                 evidence_refs=[h.ref for h in sig.whatsapp_contacts][:3],
             )
         )
+    has_active_capture = bool(sig.whatsapp_contacts or sig.forms_present > 0 or sig.phones)
+    if (
+        sig.sensitive_service_claims
+        and has_active_capture
+        and not (sig.disclosure_above_fold and sig.disclosure_names_institution)
+        and not sig.editorial_context
+    ):
+        score_c += sc.w_sensitive_service_bait
+        confusion.append(
+            Indicator(
+                dimension=Dimension.SERVICE_JOURNEY,
+                strength=Level.HIGH,
+                description="Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação "
+                "de contato sem identificação destacada de correspondente/assessoria: "
+                + ", ".join(sorted({h.value for h in sig.sensitive_service_claims})),
+                evidence_refs=sorted({h.ref for h in sig.sensitive_service_claims})[:5],
+            )
+        )
+    if (
+        identity is not None
+        and identity.referenced_institution_cnpjs
+        and not identity.owner_cnpjs
+        and not sig.disclosures
+        and not sig.editorial_context
+    ):
+        score_c += sc.w_institution_cnpj_impersonation
+        inst_refs = [
+            f.evidence_ref
+            for f in identity.facts
+            if f.kind == "cnpj" and f.value in identity.referenced_institution_cnpjs and f.evidence_ref
+        ]
+        confusion.append(
+            Indicator(
+                dimension=Dimension.DECLARED_COMMERCIAL_IDENTITY,
+                strength=Level.HIGH,
+                description="Página de terceiro exibe CNPJ oficial da instituição sem identificar CNPJ próprio "
+                "do responsável nem declarar condição de correspondente",
+                evidence_refs=inst_refs[:3] or pick("E-FTR", "E-URL"),
+            )
+        )
     if sig.disclosures:
         refs = sorted({h.ref for h in sig.disclosures})[:5]
         names = "" if sig.disclosure_names_institution else " (sem nomear a instituição contratante)"
@@ -325,6 +381,28 @@ def heuristic_analysis(
                     evidence_refs=refs,
                 )
             )
+    owner_identified = bool(identity is not None and identity.owner_cnpjs) or bool(sig.disclosures)
+    multi_bank_transparent = (
+        sig.multi_bank_context
+        and not sig.brand_in_domain
+        and not sig.brand_in_title
+        and not sig.brand_in_header
+        and not sig.brand_linked_claims
+        and not sig.sensitive_service_claims
+        and owner_identified
+    )
+    if multi_bank_transparent:
+        score_l += sc.w_multi_bank_context
+        mb_refs = sorted({h.ref for h in sig.partnership})[:3] or pick("E-FOLD", "E-TITLE", "E-URL")
+        legit.append(
+            Indicator(
+                dimension=Dimension.CORRESPONDENT_TRANSPARENCY,
+                strength=Level.MEDIUM,
+                description="Apresentação da marca em contexto multimarcas/multibancos junto a outras instituições "
+                f"financeiras ({', '.join(sig.competitor_banks[:5])}), caracterizando oferta intermediada por terceiro",
+                evidence_refs=mb_refs,
+            )
+        )
     if sig.ouvidoria:
         score_l += sc.w_ouvidoria
         legit.append(
@@ -358,27 +436,63 @@ def heuristic_analysis(
         or bool(sig.brand_linked_claims)
     )
     # The page presents *itself* with the brand (vs. a news article or review that talks about it).
-    self_presented = bool(sig.brand_in_domain) or sig.brand_in_header or (sig.brand_in_title and not sig.article_page)
+    self_presented = bool(sig.brand_in_domain) or sig.brand_in_header or (
+        sig.brand_in_title and not sig.article_page and not sig.editorial_context
+    )
     # Only a disclosure that names the institution (Art. 14, III) and is not contradicted in the same
-    # sentence counts as prominent transparency.
-    transparent = sig.disclosure_above_fold and sig.disclosure_names_institution
+    # sentence, or a clear multi-bank intermediary listing without official claims/domain, counts as
+    # sufficient context to avoid treating brand mentions as impersonation.
+    named_disclosure = sig.disclosure_above_fold and sig.disclosure_names_institution
+    transparent = named_disclosure or multi_bank_transparent
+    editorial_only = (
+        sig.editorial_context
+        and not sig.brand_in_domain
+        and not sig.brand_in_header
+        and not sig.brand_linked_claims
+        and not (sig.sensitive_service_claims and has_active_capture)
+        and not sig.whatsapp_contacts
+        and not sig.brand_images_above_fold
+    )
     caps: list[str] = []
-    if not relevant:
+    if sig.official_channel:
+        case = ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+        confusion.clear()
+        legit.append(
+            Indicator(
+                dimension=Dimension.DECLARED_COMMERCIAL_IDENTITY,
+                strength=Level.HIGH,
+                description="URL final pertence a domínio ou perfil institucional oficial da própria marca",
+                evidence_refs=["E-URL"],
+            )
+        )
+    elif not ev.usable and (not relevant or editorial_only):
+        case = ScenarioCase.E_INSUFFICIENT_EVIDENCE
+    elif not relevant:
         case = ScenarioCase.NOT_RELEVANT
-    elif net >= sc.threshold_d and sig.brand_linked_claims and self_presented and not transparent:
-        case = ScenarioCase.D_STRONG_IMPERSONATION
-    elif sig.brand_linked_claims or (
-        net >= sc.threshold_c and sig.brand_in_domain and (sig.brand_in_title or sig.brand_in_header)
+    elif editorial_only:
+        case = ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    elif (
+        net >= sc.threshold_d
+        and (sig.brand_linked_claims or (sig.sensitive_service_claims and has_active_capture))
+        and self_presented
+        and not named_disclosure
     ):
-        # C needs a signal of *direct service by the institution* (official language, or the brand
-        # used as the site's own domain + identity); brand prominence alone is case B.
+        case = ScenarioCase.D_STRONG_IMPERSONATION
+    elif (
+        sig.brand_linked_claims
+        or (sig.sensitive_service_claims and has_active_capture and not named_disclosure and not sig.editorial_context)
+        or (net >= sc.threshold_c and sig.brand_in_domain and (sig.brand_in_title or sig.brand_in_header))
+    ):
+        # C needs a signal of *direct service by the institution* (official language, sensitive
+        # post-sale capture, or the brand used as the site's own domain + identity); brand prominence
+        # alone is case B.
         case = ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL
     elif net >= sc.threshold_b or (prominent and not transparent):
         case = ScenarioCase.B_AMBIGUOUS_COMMUNICATION
     else:
         case = ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
     if (
-        sig.article_page
+        (sig.article_page or sig.editorial_context)
         and not sig.brand_in_domain
         and case
         in (
@@ -386,7 +500,9 @@ def heuristic_analysis(
             ScenarioCase.D_STRONG_IMPERSONATION,
         )
     ):
-        caps.append("página declarada como artigo/notícia (og:type): cenário limitado a B para revisão humana")
+        caps.append(
+            "página declarada/identificada como artigo/notícia/editorial: cenário limitado a B para revisão humana"
+        )
         case = ScenarioCase.B_AMBIGUOUS_COMMUNICATION
     cls, prio = CASE_DEFAULTS[case]
 

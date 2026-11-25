@@ -110,15 +110,15 @@ class EgressProxy:
             host, port = _split_hostport(target, 443)
             scheme = "http" if port == 80 else "https"
             try:
-                ip = await self._authorize(host, port, scheme)
+                ips = await self._authorize(host, port, scheme)
             except PolicyViolation as exc:
                 self.blocked.append(f"{scheme}://{target} -> {exc}")
                 await self._reply(writer, 403, "blocked by SIMIO egress policy")
                 return
-            up = await self._open(ip, port, writer)
+            up = await self._open(host, ips, port, writer)
             if up is None:
                 return
-            up_r, up_w = up
+            ip, up_r, up_w = up
             target_host = ip if self.pin_upstream else host
             if self.upstream and not await self._upstream_connect(up_r, up_w, target_host, port, writer):
                 return
@@ -134,12 +134,13 @@ class EgressProxy:
         host = parts.hostname.lower()
         port = parts.port or 80
         try:
-            ip = await self._authorize(host, port, "http")
+            ips = await self._authorize(host, port, "http")
         except PolicyViolation as exc:
             self.blocked.append(f"{target[:200]} -> {exc}")
             await self._reply(writer, 403, "blocked by SIMIO egress policy")
             return
         kept = [h for h in headers if h.split(":", 1)[0].strip().lower() not in HOP_HEADERS]
+        ip = ips[0]
         if self.upstream:
             if self.pin_upstream:
                 hostport = f"[{ip}]" if ":" in ip else ip
@@ -158,10 +159,10 @@ class EgressProxy:
                 path += "?" + parts.query
             request_line = f"{method} {path} {version}"
         new_head = "\r\n".join([request_line, *kept, "Connection: close", "", ""]).encode("latin-1")
-        up = await self._open(ip, port, writer)
+        up = await self._open(host, [ip] if self.upstream else ips, port, writer)
         if up is None:
             return
-        up_r, up_w = up
+        _, up_r, up_w = up
         up_w.write(new_head)
         await up_w.drain()
         # Response head: force Connection: close towards Chromium (no socket reuse for requests the
@@ -205,30 +206,38 @@ class EgressProxy:
             return False
         return True
 
-    async def _authorize(self, host: str, port: int, scheme: str) -> str:
+    async def _authorize(self, host: str, port: int, scheme: str) -> list[str]:
+        """All policy-validated addresses, IPv4 first: hosts without an IPv6 route (common on
+        home networks) would otherwise fail on AAAA-first answers such as Meta's."""
         host = host.strip("[]").lower()
         hostport = f"[{host}]" if ":" in host else host
         url = f"{scheme}://{hostport}:{port}/"
         addresses = await self.policy.aresolve_checked(url)
-        ip = addresses[0]
-        self.connections.append((host, ip, port))
-        return ip
+        return sorted(addresses, key=lambda a: ":" in a)
 
     async def _open(
-        self, ip: str, port: int, client: asyncio.StreamWriter
-    ) -> tuple[asyncio.StreamReader, asyncio.StreamWriter] | None:
-        try:
-            if self.upstream:
-                up = urlsplit(self.upstream)
-                target_host, target_port = up.hostname or "", up.port or 8080
-            else:
-                target_host, target_port = ip, port
-            return await asyncio.wait_for(
-                asyncio.open_connection(target_host, target_port, limit=MAX_HEAD), self.connect_timeout_s
-            )
-        except (OSError, TimeoutError) as exc:
-            await self._reply(client, 502, f"upstream connection failed: {type(exc).__name__}")
-            return None
+        self, host: str, ips: list[str], port: int, client: asyncio.StreamWriter
+    ) -> tuple[str, asyncio.StreamReader, asyncio.StreamWriter] | None:
+        """Connect to the first reachable validated address (or to the upstream proxy, pinned to
+        the first one). Only addresses that passed the policy are ever tried."""
+        last: BaseException | None = None
+        if self.upstream:
+            up = urlsplit(self.upstream)
+            candidates = [(ips[0], up.hostname or "", up.port or 8080)]
+        else:
+            candidates = [(ip, ip, port) for ip in ips]
+        for ip, target_host, target_port in candidates:
+            try:
+                r, w = await asyncio.wait_for(
+                    asyncio.open_connection(target_host, target_port, limit=MAX_HEAD), self.connect_timeout_s
+                )
+            except (OSError, TimeoutError) as exc:
+                last = exc
+                continue
+            self.connections.append((host.strip("[]").lower(), ip, port))
+            return ip, r, w
+        await self._reply(client, 502, f"upstream connection failed: {type(last).__name__}")
+        return None
 
     async def _pipe(
         self,

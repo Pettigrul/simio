@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banco BV - Design System Preview</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body {
+    font-family: var(--bv-font-family-body);
+    color: var(--bv-text-primary);
+    background-color: var(--bv-bg-light);
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: var(--bv-spacing-xl);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--bv-font-family-title);
+    color: var(--bv-text-heading);
+    margin-top: 0;
+  }
+  .section {
+    background: var(--bv-bg-main);
+    border-radius: var(--bv-radius-lg);
+    padding: var(--bv-spacing-xl);
+    margin-bottom: var(--bv-spacing-xl);
+    box-shadow: var(--bv-shadow-sm);
+  }
+  
+  /* Color Swatches */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--bv-spacing-md);
+  }
+  .swatch {
+    border-radius: var(--bv-radius-md);
+    overflow: hidden;
+    box-shadow: var(--bv-shadow-md);
+  }
+  .swatch-color {
+    height: 100px;
+    width: 100%;
+  }
+  .swatch-info {
+    padding: var(--bv-spacing-sm);
+    background: var(--bv-bg-main);
+    font-size: 14px;
+    border-top: 1px solid var(--bv-surface-border);
+  }
+  .swatch-info strong {
+    display: block;
+    margin-bottom: var(--bv-spacing-xs);
+  }
+
+  /* Typography */
+  .type-sample {
+    margin-bottom: var(--bv-spacing-md);
+    border-bottom: 1px solid var(--bv-surface-border);
+    padding-bottom: var(--bv-spacing-sm);
+  }
+  .type-sample.h1 { font-size: 40px; font-weight: 600; }
+  .type-sample.h2 { font-size: 32px; font-weight: 500; }
+  .type-sample.h3 { font-size: 24px; font-weight: 500; }
+  .type-sample.body1 { font-size: 16px; font-weight: 400; line-height: 1.5; }
+  .type-sample.body2 { font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--bv-text-secondary); }
+
+  /* Buttons */
+  .btn-group {
+    display: flex;
+    gap: var(--bv-spacing-md);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--bv-font-family-body);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: var(--bv-radius-pill);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--bv-blue-primary);
+    color: var(--bv-text-white);
+  }
+  .btn-primary:hover {
+    background: var(--bv-blue-primary-hover);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--bv-blue-primary);
+    border: 2px solid var(--bv-blue-primary);
+  }
+  .btn-secondary:hover {
+    background: var(--bv-bg-blue-light);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--bv-blue-primary);
+    padding: 12px 0;
+  }
+  .btn-ghost:hover {
+    text-decoration: underline;
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--bv-spacing-lg);
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: var(--bv-spacing-lg);
+    transition: box-shadow 0.2s ease;
+  }
+  .card:hover {
+    box-shadow: var(--bv-shadow-lg);
+  }
+  .card-title {
+    font-size: 20px;
+    margin-bottom: var(--bv-spacing-sm);
+    color: var(--bv-blue-dark);
+  }
+  .card-text {
+    color: var(--bv-text-secondary);
+    margin-bottom: var(--bv-spacing-md);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <div class="section" style="background: url('../Assets/image1.png') center/cover; color: white;">
+    <h1 style="color: white; font-size: 48px;">Banco BV Design System</h1>
+    <p style="font-size: 20px;">Crédito para suas conquistas.</p>
+  </div>
+
+  <div class="section">
+    <h2>1. Colors</h2>
+    <div class="color-grid">
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-blue-primary)"></div><div class="swatch-info"><strong>Primary Blue</strong>#0B5FFF</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-blue-dark)"></div><div class="swatch-info"><strong>Dark Blue</strong>#001A6B</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-blue-medium)"></div><div class="swatch-info"><strong>Medium Blue</strong>#003087</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-bg-blue-light)"></div><div class="swatch-info"><strong>Light Blue</strong>#EFF4FB</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-text-primary)"></div><div class="swatch-info"><strong>Text Primary</strong>#272833</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-text-secondary)"></div><div class="swatch-info"><strong>Text Secondary</strong>#6B6C7E</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-surface-border)"></div><div class="swatch-info"><strong>Border</strong>#E7E7ED</div></div>
+      <div class="swatch"><div class="swatch-color" style="background: var(--bv-bg-light)"></div><div class="swatch-info"><strong>Background</strong>#F5F5F5</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Typography</h2>
+    <div class="type-sample h1">Heading 1 - Conquiste seus planos (40px)</div>
+    <div class="type-sample h2">Heading 2 - Soluções do banco BV (32px)</div>
+    <div class="type-sample h3">Heading 3 - Empréstimo com garantia (24px)</div>
+    <div class="type-sample body1">Body 1 - No banco BV, você tem soluções práticas para organizar sua vida financeira, realizar seus sonhos e ir mais longe. (16px)</div>
+    <div class="type-sample body2">Body 2 - Sujeito a análise de crédito e condições comerciais. (14px)</div>
+  </div>
+
+  <div class="section">
+    <h2>3. Buttons</h2>
+    <div class="btn-group">
+      <button class="btn btn-primary">Área do cliente</button>
+      <button class="btn btn-secondary">Simular financiamento</button>
+      <button class="btn btn-ghost">Saiba mais -></button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>4. Cards</h2>
+    <div class="card-grid">
+      
+      <div class="card">
+        <h3 class="card-title">Financiamento de veículos</h3>
+        <p class="card-text">Seja moto, carro ou caminhão, aqui você financia seu veículo com taxas reduzidas.</p>
+        <button class="btn btn-ghost">Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">Empréstimos</h3>
+        <p class="card-text">Da reforma à organização das contas: tenha dinheiro extra para os seus planos.</p>
+        <button class="btn btn-ghost">Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">Conta e Cartão</h3>
+        <p class="card-text">Organize sua vida financeira em um só lugar de forma 100% digital e segura.</p>
+        <button class="btn btn-ghost">Saiba mais</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

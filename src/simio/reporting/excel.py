@@ -1,4 +1,4 @@
-"""Consolidated Excel workbook (openpyxl)."""
+"""Consolidated Excel workbook (openpyxl) aligned with Banco BV Design System."""
 
 from __future__ import annotations
 
@@ -10,20 +10,43 @@ from pathlib import Path
 from typing import Any
 
 from openpyxl import Workbook
-from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.drawing.image import Image as OpenpyxlImage
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
 from simio.core.storage import Storage
 from simio.reporting.data import CandidateRecord
 
-HEADER_FILL = PatternFill("solid", fgColor="1F3A5F")
-HEADER_FONT = Font(color="FFFFFF", bold=True)
+# Banco BV Design System Theme Colors
+# --bv-blue-dark: #001A6B
+# --bv-blue-primary: #0B5FFF
+# --bv-bg-light: #F5F5F5 / #EFF4FB
+HEADER_FILL = PatternFill("solid", fgColor="001A6B")
+HEADER_FONT = Font(name="Inter", size=11, color="FFFFFF", bold=True)
+DATA_FONT = Font(name="Inter", size=10, color="272833")
+
+# Status and Classification Fills with high legibility and soft tint
 FILLS = {
-    "STRONG_INDICATION": PatternFill("solid", fgColor="F4C7C3"),
-    "REVIEW_REQUIRED": PatternFill("solid", fgColor="FCE8B2"),
-    "INCONCLUSIVE": PatternFill("solid", fgColor="E0E0E0"),
-    "NO_INDICATION": PatternFill("solid", fgColor="D9EAD3"),
+    "STRONG_INDICATION": PatternFill("solid", fgColor="FCE8E6"),  # Soft red
+    "REVIEW_REQUIRED": PatternFill("solid", fgColor="FEF3D6"),    # Soft amber
+    "INCONCLUSIVE": PatternFill("solid", fgColor="E7E7ED"),       # Soft gray
+    "NO_INDICATION": PatternFill("solid", fgColor="E6F4EA"),      # Soft green
 }
+
+STATUS_FONTS = {
+    "STRONG_INDICATION": Font(name="Inter", size=10, color="B42318", bold=True),
+    "REVIEW_REQUIRED": Font(name="Inter", size=10, color="B54708", bold=True),
+    "INCONCLUSIVE": Font(name="Inter", size=10, color="475467", bold=True),
+    "NO_INDICATION": Font(name="Inter", size=10, color="067647", bold=True),
+}
+
+THIN_BORDER = Border(
+    left=Side(style="thin", color="E7E7ED"),
+    right=Side(style="thin", color="E7E7ED"),
+    top=Side(style="thin", color="E7E7ED"),
+    bottom=Side(style="thin", color="E7E7ED"),
+)
+
 _ILLEGAL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 MAX_CELL = 32000
 
@@ -53,18 +76,26 @@ def _sheet(
 ) -> None:
     ws = wb.create_sheet(title)
     ws.append(headers)
+    ws.row_dimensions[1].height = 28
     for c in ws[1]:
         c.fill, c.font = HEADER_FILL, HEADER_FONT
-        c.alignment = Alignment(wrap_text=True, vertical="top")
+        c.alignment = Alignment(wrap_text=True, vertical="center", horizontal="left")
+        c.border = THIN_BORDER
     for row in rows:
         ws.append([_cell(v) for v in row])
     for r in ws.iter_rows(min_row=2):
         for c in r:
+            c.font = DATA_FONT
+            c.border = THIN_BORDER
             c.alignment = Alignment(wrap_text=True, vertical="top")
         if fill_col is not None:
-            fill = FILLS.get(str(r[fill_col].value))
+            val = str(r[fill_col].value)
+            fill = FILLS.get(val)
             if fill:
                 r[fill_col].fill = fill
+            s_font = STATUS_FONTS.get(val)
+            if s_font:
+                r[fill_col].font = s_font
     for i in range(1, len(headers) + 1):
         ws.column_dimensions[get_column_letter(i)].width = (widths or {}).get(i, 22)
     ws.freeze_panes = "A2"
@@ -149,6 +180,18 @@ def write_workbook(
         ],
     ]
     _sheet(wb, "Executive Summary", ["Item", "Valor"], summary, {1: 34, 2: 110})
+
+    # Add Banco BV logo to Executive Summary if available
+    ws_exec = wb["Executive Summary"]
+    logo_path = Path("design-system/assets/bv-logo-blue.png")
+    if logo_path.exists():
+        try:
+            img = OpenpyxlImage(str(logo_path))
+            img.width = 120
+            img.height = 89
+            ws_exec.add_image(img, "D2")
+        except Exception:
+            pass
 
     cand_headers = [
         "ID",

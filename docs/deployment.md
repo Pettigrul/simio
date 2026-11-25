@@ -1,127 +1,169 @@
-# Deployment no computador corporativo
+<p align="center">
+  <img src="../assets/logos/logo-claro.svg" alt="SIMIO - Implantação e Operação" width="340">
+</p>
 
-Guia genérico: não contém (nem deve receber) nomes reais de projetos, regiões internas, proxies,
-contas ou modelos da organização.
+<p align="center">
+  <img src="../assets/badges/automação.svg" alt="Automação">
+  <img src="../assets/badges/agentes.svg" alt="Agentes">
+  <img src="../assets/badges/monitoramento.svg" alt="Monitoramento">
+</p>
 
-## 1. Ambiente virtual e dependências
+# Guia de Implantação e Operação no Ambiente Corporativo
 
-```bash
-git clone <url-do-repositório-privado> simio && cd simio
-python -m venv .venv
-# Linux/macOS: source .venv/bin/activate     Windows (PowerShell): .venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install -e ".[dev]"            # ou: pip install -e .  (sem ferramentas de teste)
+<p align="center">
+  <img src="../assets/banners/divisoria.svg" alt="Divisória" width="100%">
+</p>
+
+Este guia descreve como configurar e operar o SIMIO em uma estação de trabalho corporativa sem necessidade de privilégios de administrador, Docker ou banco de dados externo.
+
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
+
+## <img src="../assets/icones/web.svg" width="22" height="22" valign="middle"> 1. Instalação do ambiente Python e Chromium
+
+```powershell
+# 1. Criar e ativar o ambiente virtual (opcional se usar instalação no perfil do usuário)
+python.exe -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# 2. Instalar o pacote SIMIO e dependências de desenvolvimento/teste
+pip.exe install --upgrade pip
+pip.exe install -e ".[dev]"
+
+# 3. Instalar o navegador Chromium do Playwright (fica salvo em %LOCALAPPDATA%\ms-playwright)
+python.exe -m playwright install chromium
 ```
 
-Sem privilégios de administrador: tudo fica no perfil do usuário. Se o índice de pacotes for um
-espelho interno, configure `PIP_INDEX_URL` conforme a orientação da organização.
-
-## 2. Playwright / Chromium
+No Linux ou macOS, os comandos equivalentes são:
 
 ```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
 python -m playwright install chromium
 ```
 
-O navegador é baixado para o perfil do usuário (`%LOCALAPPDATA%\ms-playwright` no Windows). Atrás de
-proxy, defina `HTTPS_PROXY` antes do comando. Se o download externo for bloqueado, a organização
-pode disponibilizar o pacote do navegador e definir `PLAYWRIGHT_DOWNLOAD_HOST`. `simio doctor`
-testa a inicialização.
+Se a sua rede exigir repositório interno de pacotes Python, defina `PIP_INDEX_URL` antes do `pip.exe install`. Caso o download do Chromium precise passar por proxy corporativo, defina `HTTPS_PROXY` na sessão antes de rodar `playwright install chromium`.
 
-## 3. Vertex AI
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
 
-1. Obtenha com a área responsável: projeto GCP, localização e modelos Gemini aprovados.
-2. Autentique pelo fluxo oficial (sem colar tokens em arquivos):
-   ```bash
-   gcloud auth application-default login     # ou conta de serviço definida pela organização
+## <img src="../assets/icones/grounding.svg" width="22" height="22" valign="middle"> 2. Configuração da Vertex AI e Google Search Grounding
+
+1. **Autenticação (ADC)**:
+   Autentique via Google Cloud CLI com a conta autorizada no projeto GCP:
+   ```powershell
+   gcloud auth application-default login
    ```
-3. Configure `.env` (copie de `.env.example`):
+   *(Alternativamente, aponte `SIMIO_GCP_CREDENTIALS_PATH` no `.env` para o arquivo JSON de credenciais ADC no seu perfil de usuário).*
+
+2. **Arquivo `.env` na raiz do projeto**:
+   ```ini
+   SIMIO_GCP_PROJECT=<id-do-projeto-gcp>
+   SIMIO_GCP_LOCATION=global
+   SIMIO_ANALYSIS_MODEL=<modelo-gemini-multimodal>
+   SIMIO_REVIEW_MODEL=<modelo-gemini-revisor>
+   SIMIO_DISCOVERY_MODEL=<modelo-gemini-grounding>
    ```
-   SIMIO_GCP_PROJECT=<projeto>
-   SIMIO_GCP_LOCATION=<localização, ex.: global>
-   SIMIO_ANALYSIS_MODEL=<modelo multimodal aprovado>
-   SIMIO_REVIEW_MODEL=<opcional>
-   SIMIO_DISCOVERY_MODEL=<modelo com suporte a Google Search Grounding>
+   Um modelo *flash* (ex.: `gemini-3.8-flash`) atende as três funções com custo menor.
+
+3. **Diagnóstico completo**:
+   ```powershell
+   python.exe -m simio doctor --live
    ```
-4. Valide: `simio doctor --live` (faz uma chamada `generate_content` mínima e uma consulta de
-   grounding com tema público neutro).
+   O comando verifica: versão do Python, bibliotecas instaladas, permissão de escrita em `output/`, migrações do SQLite, abertura real do Chromium headless com sandbox, perfil `bv.toml`, credenciais ADC, uma chamada real `generate_content` à Vertex AI e uma busca real com Google Search Grounding.
 
-O SDK `google-genai` ≥ 3 usa `enterprise=True` (nomenclatura atual da plataforma); versões anteriores
-usam `vertexai=True`. O SIMIO detecta automaticamente.
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
 
-## 4. Google Search Grounding
+## <img src="../assets/icones/protecao.svg" width="22" height="22" valign="middle"> 3. Operação com Proxy Corporativo e Inspeção TLS
 
-- Verifique se o modelo/região suportam a ferramenta `google_search` (consulte a documentação
-  vigente da plataforma) e se o projeto tem o recurso habilitado e aprovado pela organização.
-- Teste: `simio doctor --live` e depois `SIMIO_LIVE_TESTS=1 python -m pytest tests/live -q`.
-- Termos de uso: as *search suggestions* (`search_entry_point`) são preservadas sem alteração no
-  banco (`queries.metadata_json`). O SIMIO não exibe a resposta textual do modelo como resultado ao
-  usuário; usa apenas as fontes. Avalie com o jurídico os requisitos aplicáveis ao seu uso.
-- Grounding não é índice exaustivo: combine com URLs importadas e conectores opcionais.
+### 3.1. Chamadas de API (Vertex AI e conectores de busca)
+O SDK da Vertex AI e o cliente HTTP (`httpx`) respeitam automaticamente as variáveis padrão do sistema operacional:
+- `HTTPS_PROXY`, `HTTP_PROXY` e `NO_PROXY`;
+- `SSL_CERT_FILE` e `REQUESTS_CA_BUNDLE` (para autoridades certificadoras corporativas).
 
-## 5. Execução offline
+### 3.2. Navegador Chromium (`SIMIO_BROWSER_PROXY`)
+Para que a coleta de páginas pelo Chromium passe por um proxy corporativo, configure no `.env`:
+```ini
+SIMIO_BROWSER_PROXY=http://endereco-do-proxy:8080
+```
+Como funciona internamente:
+- O Chromium conecta primeiro ao `EgressProxy` local do SIMIO (que valida a URL contra a política anti-SSRF e resolve o DNS).
+- Em seguida, o `EgressProxy` encadeia a conexão para o `SIMIO_BROWSER_PROXY` enviando por padrão o **IP público já validado** (`SIMIO_BROWSER_PROXY_PIN_IP=true`).
+- Se o proxy corporativo bloquear requisições `CONNECT` direcionadas a endereços IP numéricos (exigindo o nome de domínio para aplicar filtros de categoria web), defina `SIMIO_BROWSER_PROXY_PIN_IP=false` no `.env`.
+- Quando um site é bloqueado pelo filtro web corporativo (ex.: página de bloqueio de política de acesso), o coletor reconhece automaticamente o bloqueio, marca a coleta como `BLOCKED` (não repetível) e registra no relatório que o conteúdo real do site não pôde ser inspecionado devido ao filtro da rede.
 
-Sem Vertex nem APIs de busca (ex.: validação inicial, contingência):
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
 
-```bash
-simio hunt --offline --urls-file urls.txt --limit 50
+## <img src="../assets/icones/busca.svg" width="22" height="22" valign="middle"> 4. Serper: dorks executados literalmente
+
+O Grounding usa os dorks como orientação, e o Gemini escreve as próprias buscas. O Serper executa cada dork exatamente como está escrito e é a principal fonte de resultados do Instagram e do Facebook.
+
+Preencha `SIMIO_SERPER_API_KEY` no `.env` com a sua chave e, se quiser mais resultados por dork:
+
+```ini
+SIMIO_SERPER_PAGES=1      # páginas de 10 resultados por dork (1 crédito cada)
 ```
 
-A coleta das páginas importadas ocorre normalmente; análise e revisão usam regras
-determinísticas, e todas as decisões registram essa limitação.
+- **Conta gratuita**: 2.500 créditos no cadastro e no máximo 10 resultados por página. O conector já pagina de 10 em 10 e para quando uma página volta incompleta.
+- **Consumo**: cerca de 170 créditos por rodada completa com `SIMIO_SERPER_PAGES=1`.
+- **Sem chave**: o conector fica indisponível e a rodada segue só com as outras fontes.
 
-## 6. Proxy e certificados
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
 
-- APIs (google-genai/httpx): `HTTPS_PROXY`, `HTTP_PROXY`, `NO_PROXY`; CA corporativa via
-  `SSL_CERT_FILE` / `REQUESTS_CA_BUNDLE`.
-- Navegador: `SIMIO_BROWSER_PROXY=http://<proxy>:<porta>` (credenciais, se necessárias, no próprio
-  URL do proxy via `.env` local). O proxy de egress do SIMIO encadeia para ele enviando o **IP já
-  validado** (anti DNS rebinding). Se o proxy corporativo recusar CONNECT para IP (filtragem por
-  hostname), o erro aparece como `upstream proxy refused CONNECT`; avalie com a segurança usar
-  `SIMIO_BROWSER_PROXY_PIN_IP=false` (risco residual em docs/security.md).
-- Sandbox do Chromium: ativo por padrão. Se não iniciar (ambientes Linux restritos sem user
-  namespaces), `simio doctor` mostra a falha; desative (`SIMIO_BROWSER_SANDBOX=false`) somente com
-  aprovação da segurança. No Windows o sandbox funciona sem privilégios de administrador.
-- Inspeção TLS corporativa no navegador: prefira instalar a CA no repositório do sistema; só em
-  último caso use `SIMIO_IGNORE_HTTPS_ERRORS=true` e registre a decisão.
-- Erros comuns: `CERTIFICATE_VERIFY_FAILED` (CA ausente), `407` (autenticação do proxy),
-  `ERR_TUNNEL_CONNECTION_FAILED` (proxy recusou CONNECT ou destino bloqueado pela política).
+## <img src="../assets/icones/validado.svg" width="22" height="22" valign="middle"> 5. Cadastro de Correspondentes Autorizados (COBANs)
 
-## 7. Diretórios locais de evidência
+### 5.1. Preparar a base (mensalmente)
+```bash
+python scripts/prepare_coban_registry.py Todos_Cobans_Ativos.xlsx --out data/coban_registry_bv.csv
+```
+O script aceita `.xlsx` ou `.csv` com as colunas `cnpj`, `nmpessoa`, `dtcadastro` e `login_parceiro`, e:
+- remove CNPJs inválidos;
+- remove entidades do próprio banco (raízes de CNPJ de `institution_cnpjs` no `bv.toml` e nomes internos como "COMISSAO PARCERIA");
+- junta linhas duplicadas do mesmo CNPJ (vários logins de parceiro) e corrige acentuação corrompida;
+- lê a data de referência do nome do arquivo ou da aba.
 
-`SIMIO_OUTPUT_DIR` (padrão `output/`) contém banco, evidências, relatórios e logs. Mantenha-o em
-local aprovado, com backup e controle de acesso definidos pela auditoria. Não sincronize com
-serviços pessoais e não copie para máquinas pessoais.
+### 5.2. Configurar
+```ini
+SIMIO_COBAN_REGISTRY_PATH=<caminho>/data/coban_registry_bv.csv
+SIMIO_COBAN_REGISTRY_AUTHORITATIVE=true
+SIMIO_COBAN_REGISTRY_REFERENCE_DATE=2026-10-06
+SIMIO_COBAN_SEED_LIMIT=40     # correspondentes pesquisados por campanha (0 desativa a H9)
+SIMIO_COBAN_SEED_BATCH=4      # correspondentes por prompt de busca
+```
 
-Cadastro autorizado de correspondentes (opcional, habilita `CONFIRMED_COBAN`):
-`SIMIO_COBAN_REGISTRY_PATH=/caminho/relacao_correspondentes.csv` (colunas `cnpj;nome;...`),
-`SIMIO_COBAN_REGISTRY_AUTHORITATIVE=true` somente se a fonte for oficial/aprovada e
-`SIMIO_COBAN_REGISTRY_REFERENCE_DATE=AAAA-MM-DD` (exibida nos relatórios).
-Antes do uso, preencha e valide em `src/simio/brands/bv.toml` os itens marcados `VALIDATE`
-(domínios oficiais completos e CNPJs da instituição).
+### 5.3. Como a base é usada
+| Uso | Efeito |
+|---|---|
+| **Classificação** | CNPJ exato na base: `CONFIRMED_COBAN`. Mesma raiz de CNPJ (matriz/filial): `POSSIBLE_COBAN` com confiança média. |
+| **Busca guiada (H9)** | Pesquisa nome do correspondente + marca, começando pelos cadastros mais recentes e alternando a cada campanha. |
+| **Varredura aberta** | **Não depende da base.** H1–H8, H10 e H11 rodam sempre. |
 
-## 8. Limites de custo e concorrência
+A base contém dados de parceiros e deve ficar só na máquina de execução (`data/` está no `.gitignore`).
 
-| Variável | Padrão | Efeito |
-|---|---|---|
-| `SIMIO_MAX_LLM_REQUESTS` | 300 | Requisições LLM por campanha (inclui tentativas e grounding) |
-| `SIMIO_MAX_LLM_TOKENS` | 2.000.000 | Tokens por campanha |
-| `SIMIO_MAX_SEARCH_QUERIES` | 40 | Consultas de descoberta |
-| `SIMIO_WORKERS` | 3 | Candidatos em paralelo (também limita chamadas LLM simultâneas) |
-| `SIMIO_MAX_ATTEMPTS` | 3 | Tentativas por etapa antes de FAILED |
-| `SIMIO_MAX_RECOLLECTS` | 1 | Novas coletas solicitadas pelo revisor |
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
 
-Ao esgotar o orçamento a campanha pausa (`PAUSED_BUDGET`); rode `simio resume --max-llm-requests N`
-(ou `--max-tokens N`): sem flags, a retomada mantém os parâmetros originais da campanha. Análises
-já pagas para a mesma evidência são reaproveitadas.
-Estimativa: cada candidato analisado usa ~1–3 requisições (analista, revisor, reparo eventual).
+## <img src="../assets/icones/regras.svg" width="22" height="22" valign="middle"> 6. Dimensionamento de Orçamento e Concorrência
 
-## 9. Pendências de validação corporativa
+| Parâmetro CLI | Variável `.env` | Padrão | Recomendação prática |
+|---|---|---|---|
+| `--limit` | — | `50` | `50` para triagem rápida; `1000` para a varredura mensal completa |
+| `--max-queries` | `SIMIO_MAX_SEARCH_QUERIES` | `40` | `300` cobre todas as hipóteses em todas as fontes; `0` para analisar só `--urls-file` |
+| `--max-llm-requests` | `SIMIO_MAX_LLM_REQUESTS` | `300` | Cerca de 2 por candidato + 1 por prompt de Grounding. Para `--limit 1000`, use `2500` |
+| `--max-tokens` | `SIMIO_MAX_LLM_TOKENS` | `2000000` | Cerca de 21 mil por candidato. Para `--limit 1000`, use `25000000` |
+| `--workers` | `SIMIO_WORKERS` | `3` | `3` a `5` em máquinas locais; mais que isso pesa na memória por causa das abas do Chromium |
 
-- [ ] `simio doctor --live` com projeto/modelos aprovados.
-- [ ] `SIMIO_LIVE_TESTS=1 python -m pytest tests/live` (saída estruturada e grounding reais).
-- [ ] Compatibilidade de `response_json_schema` com o modelo aprovado (há fallback automático).
-- [ ] Resolução dos URIs de redirecionamento do grounding através do proxy corporativo.
-- [ ] Preencher/validar `bv.toml` (domínios oficiais, **CNPJs da instituição**) e carregar cadastro de
-  correspondentes autoritativo com data de referência.
-- [ ] Verificar o sandbox do Chromium e o encadeamento com o proxy corporativo (CONNECT para IP).
-- [ ] Revalidar vigência da Res. CMN 4.935/2021 e calibrar a pontuação com casos reais revisados.
+**Ordem de grandeza** (gemini-3.8-flash): cerca de US$ 0,03 por candidato analisado. Uma varredura de 1.000 candidatos fica entre US$ 20 e 35. Se o orçamento acabar, a campanha pausa como `PAUSED_BUDGET` e continua com `simio resume`.
+
+<p align="center">
+  <img src="../assets/banners/footer.svg" alt="SIMIO Footer" width="100%">
+</p>

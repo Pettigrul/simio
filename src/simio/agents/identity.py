@@ -15,6 +15,7 @@ import csv
 import io
 import re
 from dataclasses import dataclass, field
+from functools import cached_property
 from pathlib import Path
 
 from simio.agents.evidence import (
@@ -41,6 +42,8 @@ from simio.core.models import (
 from simio.core.urls import hostname_of, registrable_domain
 
 SOCIAL_RE = re.compile(r"(?i)https?://(?:www\.)?(instagram|facebook|linkedin|tiktok|youtube)\.com/[^\s<>\"]+")
+IG_HANDLE_TITLE_RE = re.compile(r"(?i)^Instagram\s+@([A-Za-z0-9._]+)")
+IG_META_HANDLE_RE = re.compile(r"\(@([A-Za-z0-9._]+)\)")
 
 
 # --------------------------------------------------------------------------------- registry
@@ -82,15 +85,35 @@ class CobanRegistry:
     def match_cnpj(self, cnpj: str) -> dict[str, str] | None:
         return self.records.get(normalize_cnpj(cnpj))
 
+    def match_cnpj_root(self, cnpj: str) -> dict[str, str] | None:
+        """Same legal entity, different establishment (matriz/filial share the 8-digit root)."""
+        c = normalize_cnpj(cnpj)
+        if len(c) != 14 or c in self.records:
+            return None
+        return self._by_root.get(c[:8])
+
     def match_name(self, name: str) -> dict[str, str] | None:
         target = fold(name).strip()
         if len(target) < 6:
             return None
+        return self._by_name.get(target)
+
+    @cached_property
+    def _by_root(self) -> dict[str, dict[str, str]]:
+        idx: dict[str, dict[str, str]] = {}
+        for cnpj, rec in sorted(self.records.items()):  # matriz (0001) sorts first within a root
+            idx.setdefault(cnpj[:8], rec)
+        return idx
+
+    @cached_property
+    def _by_name(self) -> dict[str, dict[str, str]]:
+        idx: dict[str, dict[str, str]] = {}
         for rec in self.records.values():
-            n = fold(rec.get("nome") or rec.get("name") or rec.get("razao_social") or "")
-            if n and (n == target):
-                return rec
-        return None
+            for raw in (rec.get("nome"), rec.get("name"), rec.get("razao_social")):
+                n = fold(raw or "").strip()
+                if n:
+                    idx.setdefault(n, rec)
+        return idx
 
 
 # --------------------------------------------------------------------------------- agent
@@ -127,7 +150,7 @@ class IdentityAgent:
         inferences: list[str] = []
         limitations: list[str] = []
 
-        if not ev.usable:
+        if not ev.usable and not signals.has_discovery_evidence:
             limitations.append("coleta sem conteúdo utilizável; identidade não pôde ser examinada")
             return IdentityAttribution(
                 candidate_id=candidate_id,
@@ -139,6 +162,11 @@ class IdentityAgent:
                 attribution_confidence=Level.NONE,
                 limitations=limitations,
                 rationale="Conteúdo não coletado; nenhuma atribuição possível além do domínio.",
+            )
+        if not ev.usable:
+            limitations.append(
+                "acesso direto pelo navegador indisponível/bloqueado; identidade examinada apenas "
+                "a partir das evidências indexadas na descoberta (E-DISC-*)"
             )
 
         # ---- CNPJs: owner vs. referenced institution ---------------------------------
@@ -210,6 +238,15 @@ class IdentityAgent:
                     claimed.append(val)
                     facts.append(IdentityFact(kind="institution_name_displayed", value=val, evidence_ref=ref))
                 return
+            # Do not attribute another bank's corporate name (e.g. "Banco Inter S/A", "Banco Omni S/A")
+            # or a shared platform's og:site_name ("YouTube", "Instagram", "Facebook") as the third-party owner.
+            folded_val = fold(val)
+            if (
+                self.brand.competitor_mentions(val)
+                or re.match(r"^banco\s+\w+", folded_val)
+                or folded_val in ("youtube", "instagram", "facebook", "tiktok", "linkedin", "my site", "home")
+            ):
+                return
             bucket = legal_names if kind == "legal_name" else trade_names
             if val not in bucket:
                 bucket.append(val)
@@ -231,6 +268,13 @@ class IdentityAgent:
         site_name = ev.page.meta.get("og:site_name") if ev.page else None
         if site_name:
             add_name("trade_name", site_name, "E-META-2" if any(i.ref == "E-META-2" for i in catalog) else "E-TITLE")
+        if ev.page and reg_domain in ("instagram.com", "tiktok.com", "facebook.com"):
+            m_ig = IG_HANDLE_TITLE_RE.search(ev.page.title or "") or IG_META_HANDLE_RE.search(
+                (ev.page.meta.get("twitter:title") or "") + " " + (ev.page.meta.get("og:title") or "")
+            )
+            if m_ig:
+                handle = f"@{m_ig.group(1)}"
+                add_name("trade_name", handle, "E-TITLE")
         if claimed:
             inferences.append(
                 "a página se apresenta com o nome da instituição ("
@@ -263,6 +307,14 @@ class IdentityAgent:
                     authoritative=self.registry.authoritative,
                 )
                 break
+        if registry_match is None:
+            for c in owner_cnpjs:
+                rec = self.registry.match_cnpj_root(c)
+                if rec:
+                    registry_match = RegistryMatch(
+                        source=self.registry.source, matched_on="cnpj_root", record=rec, authoritative=False
+                    )
+                    break
         if registry_match is None:
             for name in legal_names:
                 rec = self.registry.match_name(name)
@@ -310,6 +362,14 @@ class IdentityAgent:
                 "um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o "
                 "domínio é seu"
             )
+        elif registry_match and registry_match.matched_on == "cnpj_root":
+            cls = IdentityClass.POSSIBLE_COBAN
+            conf = Level.MEDIUM if self.registry.authoritative else Level.LOW
+            rationale = (
+                f"O CNPJ da página não consta do cadastro, mas outro estabelecimento da mesma empresa (raiz "
+                f"{owner_cnpjs[0][:8] if owner_cnpjs else ''}, matriz/filial) consta de '{registry_match.source}'; "
+                "confirmar se o contrato de correspondente abrange este estabelecimento."
+            )
         elif registry_match:
             cls = IdentityClass.POSSIBLE_COBAN
             conf = Level.LOW
@@ -345,6 +405,9 @@ class IdentityAgent:
         if owner_cnpjs:
             entity_key = f"cnpj:{normalize_cnpj(owner_cnpjs[0])}"
             basis = "cnpj publicado na página"
+        elif reg_domain in ("instagram.com", "tiktok.com", "facebook.com") and trade_names:
+            entity_key = f"social:{reg_domain}:{fold(trade_names[0]).lstrip('@')}"
+            basis = "perfil em rede social"
         else:
             entity_key = f"domain:{reg_domain}"
             basis = "domínio (sem CNPJ)"

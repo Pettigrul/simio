@@ -20,6 +20,7 @@ from simio.core.models import (
     BrandAssessment,
     CollectionStatus,
     ComplianceAssessment,
+    Dimension,
     Evidence,
     EvidenceSufficiency,
     FinalClassification,
@@ -52,8 +53,11 @@ class ScoringConfig(BaseModel):
     w_generic_official_claim: float = 0.5
     w_no_disclosure: float = 1.5
     w_whatsapp_with_prominent_brand: float = 0.5
+    w_sensitive_service_bait: float = 2.5
+    w_institution_cnpj_impersonation: float = 2.5
     w_disclosure_prominent: float = 2.5
     w_disclosure_present: float = 1.0
+    w_multi_bank_context: float = 2.0
     w_ouvidoria: float = 0.5
     w_owner_identified: float = 0.5
     threshold_b: float = 1.5
@@ -124,11 +128,28 @@ def apply_brand_guardrails(
     sufficiency = out.evidence_sufficiency
     injection = out.possible_prompt_injection or bool(signals.injection_markers)
 
-    if not evidence.usable:
+    if not evidence.usable and not signals.has_discovery_evidence:
         if case != ScenarioCase.E_INSUFFICIENT_EVIDENCE or cls != C.INCONCLUSIVE:
             notes.append("coleta sem conteúdo utilizável: forçado cenário E / INCONCLUSIVE")
         case, cls, sufficiency = ScenarioCase.E_INSUFFICIENT_EVIDENCE, C.INCONCLUSIVE, EvidenceSufficiency.INSUFFICIENT
         prio = Priority.MEDIUM if signals.brand_in_domain else Priority.LOW
+    elif not evidence.usable and signals.has_discovery_evidence:
+        sufficiency = EvidenceSufficiency.PARTIAL
+        notes.append(
+            "acesso direto no navegador local bloqueado/indisponível; avaliação baseada nas evidências "
+            "indexadas na descoberta (E-DISC-*)"
+        )
+        if cls == C.NO_INDICATION and not signals.official_channel:
+            if confusion:
+                cls = C.REVIEW_REQUIRED
+                prio = max(prio, Priority.MEDIUM, key=lambda p: PRIORITY_RANK[p])
+            else:
+                notes.append("página não inspecionada diretamente não pode receber NO_INDICATION: marcado INCONCLUSIVE")
+                case, cls, sufficiency = (
+                    ScenarioCase.E_INSUFFICIENT_EVIDENCE,
+                    C.INCONCLUSIVE,
+                    EvidenceSufficiency.INSUFFICIENT,
+                )
     if case in (ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION, ScenarioCase.NOT_RELEVANT) and cls in (
         C.STRONG_INDICATION,
         C.REVIEW_REQUIRED,
@@ -144,11 +165,55 @@ def apply_brand_guardrails(
     ):
         notes.append(f"cenário {case.value} incompatível com NO_INDICATION: elevado a REVIEW_REQUIRED")
         cls = C.REVIEW_REQUIRED
+    if case == ScenarioCase.B_AMBIGUOUS_COMMUNICATION and cls == C.NO_INDICATION:
+        if confusion:
+            notes.append(
+                "inconsistência cenário B_AMBIGUOUS_COMMUNICATION × NO_INDICATION com indicadores de confusão: "
+                "elevado a REVIEW_REQUIRED"
+            )
+            cls = C.REVIEW_REQUIRED
+            prio = max(prio, Priority.MEDIUM, key=lambda p: PRIORITY_RANK[p])
+        else:
+            notes.append(
+                "inconsistência cenário B_AMBIGUOUS_COMMUNICATION × NO_INDICATION sem indicadores de confusão: "
+                "cenário ajustado para A_LEGITIMATE_COMMERCIAL_MENTION"
+            )
+            case = ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    if (
+        cls == C.REVIEW_REQUIRED
+        and evidence.usable
+        and not signals.disclosures
+        and not signals.editorial_context
+    ):
+        conf_dims = {i.dimension for i in confusion}
+        has_high_visual_or_claim = any(
+            i.strength == Level.HIGH
+            and i.dimension
+            in (
+                Dimension.LOGO_USAGE,
+                Dimension.VISUAL_IDENTITY,
+                Dimension.INSTITUTIONAL_LANGUAGE,
+                Dimension.SERVICE_JOURNEY,
+            )
+            for i in confusion
+        )
+        has_transparency_gap = bool(
+            conf_dims & {Dimension.CORRESPONDENT_TRANSPARENCY, Dimension.DECLARED_COMMERCIAL_IDENTITY}
+        )
+        if len(confusion) >= scoring.strong_min_indicators and has_high_visual_or_claim and has_transparency_gap:
+            notes.append(
+                "uso destacado de logotipo/identidade visual ou linguagem da instituição sem CNPJ/declaração "
+                "de correspondente: elevado a STRONG_INDICATION (HIGH)"
+            )
+            cls = C.STRONG_INDICATION
+            prio = Priority.HIGH
+            if case == ScenarioCase.B_AMBIGUOUS_COMMUNICATION:
+                case = ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL
     if cls == C.STRONG_INDICATION:
         strong_ok = (
             len(confusion) >= scoring.strong_min_indicators
             and sufficiency != EvidenceSufficiency.INSUFFICIENT
-            and evidence.usable
+            and (evidence.usable or signals.has_discovery_evidence)
         )
         if not strong_ok:
             notes.append(
@@ -184,7 +249,9 @@ def apply_brand_guardrails(
         evidence_references=refs,
         reasoning_summary=out.reasoning_summary,
         requires_human_review=requires_human or (out.requires_human_review and cls != C.NO_INDICATION),
-        extraction_confidence=out.extraction_confidence if evidence.usable else Level.NONE,
+        extraction_confidence=(
+            out.extraction_confidence if (evidence.usable or signals.has_discovery_evidence) else Level.NONE
+        ),
         evidence_sufficiency=sufficiency,
         possible_prompt_injection=injection,
         analyzer=analyzer,
@@ -197,6 +264,8 @@ def apply_brand_guardrails(
 def needs_review(assessment: BrandAssessment, review_all: bool = False) -> bool:
     if review_all:
         return True
+    if assessment.classification == C.INCONCLUSIVE and assessment.extraction_confidence == Level.NONE:
+        return False
     return (
         assessment.classification != C.NO_INDICATION
         or assessment.extraction_confidence in (Level.LOW, Level.NONE)
@@ -228,6 +297,16 @@ def apply_review(assessment: BrandAssessment, review: Review | None) -> tuple[C,
             rc = max(rc, C.REVIEW_REQUIRED, key=lambda c: CLASSIFICATION_RANK[c])
     if review.decision == ReviewDecision.CONFIRM:
         return cls, prio, notes
+    if (
+        rc == C.NO_INDICATION
+        and assessment.possible_prompt_injection
+        and any("divergência modelo × regras" in n for n in assessment.guardrail_notes)
+    ):
+        notes.append(
+            "revisor sugeriu NO_INDICATION em candidato com possível prompt injection e divergência "
+            "modelo × regras; mantido REVIEW_REQUIRED para decisão humana"
+        )
+        return C.REVIEW_REQUIRED, max(rp, Priority.MEDIUM, key=lambda p: PRIORITY_RANK[p]), notes
     return rc, rp, notes
 
 
@@ -279,11 +358,18 @@ def compose_final(
         for r in ind.evidence_refs:
             if r not in key_refs:
                 key_refs.append(r)
-    requires_human = (
-        cls != C.NO_INDICATION
-        or assessment.requires_human_review
-        or (review is not None and review.requires_human_review and cls != C.NO_INDICATION)
-    )
+    if review is not None and cls == C.NO_INDICATION:
+        requires_human = (
+            review.requires_human_review
+            or assessment.possible_prompt_injection
+            or evidence.status == CollectionStatus.PARTIAL
+        )
+    else:
+        requires_human = (
+            cls != C.NO_INDICATION
+            or assessment.requires_human_review
+            or (review is not None and review.requires_human_review and cls != C.NO_INDICATION)
+        )
     return FinalDecision(
         candidate_id=candidate_id,
         routing=suggest_routing(cls, identity.classification),

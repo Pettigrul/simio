@@ -1,106 +1,146 @@
-# Arquitetura
+<p align="center">
+  <img src="../assets/logos/logo-claro.svg" alt="SIMIO - Arquitetura" width="340">
+</p>
 
-## Decisão de framework
+<p align="center">
+  <img src="../assets/badges/agentes.svg" alt="Agentes">
+  <img src="../assets/badges/automação.svg" alt="Automação">
+  <img src="../assets/badges/monitoramento.svg" alt="Monitoramento">
+</p>
 
-Foram avaliados LangGraph, Google ADK e implementação Python nativa. Escolhemos **Python nativo
-com `asyncio` e uma máquina de estados explícita persistida em SQLite**:
+# Arquitetura do Sistema
 
-| Critério | Nativo | LangGraph / ADK |
-|---|---|---|
-| Fluxo | Linear e conhecido (descoberta → coleta → análise → revisão) | Grafos/agentes livres são desnecessários |
-| Persistência | Estado por candidato em SQLite, transições validadas | Checkpointers próprios, acoplamento ao framework |
-| Testabilidade | Agentes são classes/funções com entradas/saídas Pydantic | Requer harness do framework |
-| Custo operacional | Sem dependências pesadas; roda em qualquer Python ≥ 3.11 | Mais dependências e superfície de atualização |
-| Controle | Orçamento, retry, limites de ciclo explícitos | Indireto |
+<p align="center">
+  <img src="../assets/banners/divisoria.svg" alt="Divisória" width="100%">
+</p>
 
-Não há comunicação livre entre agentes: o orquestrador passa saídas tipadas adiante.
+## <img src="../assets/icones/regras.svg" width="22" height="22" valign="middle"> 1. Visão geral e decisões de projeto
 
-## Módulos
+O SIMIO foi construído em **Python 3.11+ nativo com `asyncio` e SQLite**, sem frameworks pesados de orquestração (como LangGraph ou CrewAI).
+
+Por que essa escolha:
+- **Fluxo determinístico e auditável**: o caminho de cada candidato é conhecido (`Descoberta → Coleta → Identidade → Marca → Conformidade → Revisão → Decisão Final`). Agentes não conversam livremente entre si; o `Orchestrator` controla cada transição e passa contratos Pydantic estritos (`extra="forbid"`) de uma etapa para a outra.
+- **Persistência e retomada nativa**: cada transição de estado, consulta executada, evidência coletada e chamada de LLM é gravada imediatamente em SQLite (`output/simio.db`). Se o processo for interrompido ou atingir o teto de orçamento, `simio resume` retoma do ponto exato sem pagar novamente por análises de IA já concluídas.
+- **Segurança por padrão**: o navegador Chromium nunca acessa a internet diretamente; cada página cria um `EgressProxy` local que valida a URL, resolve o DNS, bloqueia IPs privados/internos e fixa o IP validado na conexão.
+
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
+
+## <img src="../assets/icones/agentes.svg" width="22" height="22" valign="middle"> 2. Estrutura de módulos
 
 ```
 src/simio/
-  cli.py                 Typer: doctor, hunt, resume, report, status, test
-  config.py              Settings (SIMIO_*), sem valores corporativos fixos
+  cli.py                   Interface de linha de comando (Typer): hunt, resume, report, status, doctor, test
+  config.py                Configurações tipadas (pydantic-settings, prefixo SIMIO_, leitura de .env)
+  logging_setup.py         Logs estruturados (JSONL em output/logs/simio.jsonl) com redação de segredos
   core/
-    models.py            Contratos Pydantic (extra="forbid") de todos os agentes
-    state.py             Tabela de transições, estados em voo e pontos de retomada
-    storage.py           SQLite + migrações versionadas (schema_migrations)
-    orchestrator.py      Pipeline, concorrência, retry/backoff, orçamento, retomada
-    decision.py          Guardrails determinísticos e composição da decisão final
-    urls.py              Normalização, domínio registrável (PSL embutida), extração de URLs
+    models.py              Modelos Pydantic compartilhados entre todos os módulos
+    state.py               Máquina de estados do candidato e regras de transição permitidas
+    storage.py             Persistência SQLite com migrações versionadas, checkpoints e lease de campanha
+    orchestrator.py        Pipeline assíncrono, pool de workers, retry/backoff, orçamento e retomada
+    decision.py            ScoringConfig, guardrails determinísticos e composição da FinalDecision
+    urls.py                Normalização canônica de URLs, extração de domínio registrável (PSL offline)
   agents/
-    discovery.py         Hipóteses, plano de consultas, fallback, dedup, priorização
-    evidence.py          Catálogo de evidências endereçável + sinais determinísticos
-    identity.py          Atribuição de identidade e cadastro de correspondentes
-    brand.py             Brand Analyst (Gemini multimodal) + heurística offline
-    compliance.py        Mapeamento normativo/contratual determinístico
-    reviewer.py          Revisor cético (LLM + desafios determinísticos)
+    discovery.py           Hipóteses de busca (H1–H7 marca/produto/canais, H8 domínios semelhantes, H9 COBANs, H10 fraudes, H11 NaPista), planejamento intercalado, deduplicação e priorização
+    evidence.py            Construção do catálogo de evidências (E-*) e extração determinística de sinais
+    identity.py            Extração/validação de CNPJ (numérico e alfanumérico), razão social e cruzamento COBAN
+    brand.py               BrandAnalyst (Gemini multimodal + heurística offline + cross_check)
+    compliance.py          Mapeamento determinístico para a Resolução CMN nº 4.935/2021 e cláusulas contratuais
+    reviewer.py            Reviewer cético (LLM + desafios determinísticos de validação)
   providers/
-    llm.py               Interface neutra, orçamento persistente, retry, reparo de JSON
-    vertex.py            google-genai (Vertex AI), grounding, tradução de erros
-    grounding.py         Conector de descoberta via Google Search Grounding
-    search.py            Brave, Serper, urlscan, importação de arquivo/texto
-    mock.py              Provedor determinístico para testes
-  collectors/browser.py  Playwright: coleta, screenshots, manifesto SHA-256
+    llm.py                 LLMGateway: reserva de orçamento, semáforo de concorrência, retry e reparo de JSON
+    vertex.py              Integração oficial com google-genai (Vertex AI) e Google Search Grounding
+    grounding.py           Conector de descoberta via Grounding com resolução segura de redirecionamentos
+    search.py              Conectores de busca (Serper paginado, Brave, urlscan.io, crt.sh) e importadores (.txt / .csv)
+    typosquat.py           Domínios semelhantes (typo/combosquatting/troca de TLD) resolvidos por DNS (fonte `typosquat`)
+    mock.py                Provedor determinístico em memória para testes automatizados
+  collectors/
+    browser.py             Coleta via Playwright/Chromium headless, screenshots, extração DOM e manifesto SHA-256
   security/
-    url_policy.py        Política de destinos (SSRF)
-    egress_proxy.py      Proxy de egress por página (aplicação na camada de rede)
-  reporting/             Excel (openpyxl) e dossiês HTML (Jinja2 com autoescape)
-  prompts/               Prompts versionados (front-matter `version:`)
-  knowledge/cmn_4935.toml  Texto literal dos dispositivos usados no mapeamento
-  brands/bv.toml         Perfil de marca (termos, domínios oficiais, frases)
+    url_policy.py          Política anti-SSRF (validação sintática e resolução DNS contra redes privadas)
+    egress_proxy.py        Proxy HTTP/CONNECT por página com DNS pinning
+  reporting/
+    data.py                Carregamento consistente de registros por campanha e ordenação por criticidade
+    excel.py               Geração da planilha consolidada (.xlsx) com 8 abas e proteção contra fórmula injection
+    dossier.py             Geração dos dossiês HTML individuais (Jinja2 com autoescape e Content-Security-Policy)
+  prompts/
+    brand_analyst.md       Prompt versionado do analista de marca (brand-analyst/v3)
+    reviewer.md            Prompt versionado do revisor cético (reviewer/v2)
+  knowledge/
+    cmn_4935.toml          Texto literal dos artigos da Resolução CMN nº 4.935/2021
+  brands/
+    bv.toml                Perfil da marca Banco BV (domínios, perfis sociais, CNPJs, regexes, vocabulário e sementes de typosquatting)
+scripts/
+  prepare_coban_registry.py  Limpa a exportação de COBANs ativos e gera data/coban_registry_bv.csv
+  check_secrets.py           Varredura de segredos na árvore e no histórico do Git
 ```
 
-## Máquina de estados
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
+
+## <img src="../assets/icones/classificacao.svg" width="22" height="22" valign="middle"> 3. Máquina de estados do candidato
+
+Cada URL única descoberta em uma campanha percorre os seguintes estados em `core/state.py`:
 
 ```
-DISCOVERED → QUEUED → COLLECTING → COLLECTED → ANALYZING → REVIEWING → COMPLETED
-                ↑          │                        │           │   └→ INCONCLUSIVE
-                └──────────┘ (falha transitória)    │           └→ QUEUED (nova coleta, máx. SIMIO_MAX_RECOLLECTS)
-                                                    └→ COMPLETED / INCONCLUSIVE (sem revisão)
-qualquer etapa → FAILED (após SIMIO_MAX_ATTEMPTS erros internos)
+DISCOVERED ──► QUEUED ──► COLLECTING ──► COLLECTED ──► ANALYZING ──► REVIEWING ──► COMPLETED
+                 ▲            │                            │             │   └───► INCONCLUSIVE
+                 └────────────┘ (falha transitória)        │             └───────► QUEUED (RECOLLECT, máx. 1x)
+                                                           └─────────────────────► COMPLETED / INCONCLUSIVE
+qualquer etapa em voo ──► FAILED (após SIMIO_MAX_ATTEMPTS falhas internas)
 ```
 
-- Cada transição é validada (`core/state.py`) e registrada em `state_transitions`; as transições
-  de entrada nas etapas são *compare-and-set* (falham se outro escritor moveu o candidato).
-- **Lease por campanha** (`campaign_leases`, heartbeat de 30 s, expira em 120 s): dois processos não
-  processam a mesma campanha; `resume` concorrente termina com código 4.
-- Tentativas são contadas **antes** de cada etapa; `resume` marca como FAILED o candidato que
-  interrompeu o processo `SIMIO_MAX_ATTEMPTS` vezes (sem "candidato veneno").
-- Um erro inesperado num candidato é isolado (FAILED) sem afetar os demais nem o navegador.
-- Ctrl+C/falha deixam a campanha `INTERRUPTED`/`FAILED` (não `RUNNING`).
-- `simio resume` devolve estados em voo ao último estado estável (`COLLECTING→QUEUED`,
-  `ANALYZING/REVIEWING→COLLECTED`) e continua **com os parâmetros originais da campanha** (modelo,
-  modo offline, orçamentos); só flags explícitas (`--max-llm-requests`, `--max-tokens`,
-  `--workers`, `--offline`) os alteram.
-- Descoberta: URLs importadas e resultados de cada consulta são salvos em checkpoint à medida que
-  chegam; consultas já executadas não são repetidas e contam no limite; candidatos já na fila
-  contam no `--limit`. Conclusão marcada pelo checkpoint `discovery_done`.
-- Avaliações são gravadas com o `evidence_id` de origem: nova tentativa/retomada **reaproveita**
-  análises de LLM já pagas para a mesma evidência, e os relatórios mostram uma única rodada coerente.
-- Candidatos além de `--limit` permanecem `DISCOVERED` (backlog rastreável).
-- Deduplicação: chave única `(campanha, URL normalizada)`; domínios agrupados por domínio
-  registrável; estabelecimentos agrupados por CNPJ (`entities`) — um domínio pode ter várias
-  páginas, um estabelecimento vários domínios.
+### Garantias operacionais da máquina de estados:
+1. **Transições atômicas (*Compare-and-Set*)**: toda transição é validada contra `TRANSITIONS`, gravada na tabela `state_transitions` dentro de uma transação SQLite (`BEGIN IMMEDIATE`) e verifica o estado esperado do candidato.
+2. **Lease de campanha única (`campaign_leases`)**: enquanto um processo executa `hunt` ou `resume` em uma campanha, ele mantém um *lease* com *heartbeat* a cada 30 segundos (expiração em 120 segundos). Isso impede que dois terminais processem a mesma campanha ao mesmo tempo.
+3. **Isolamento de falhas entre workers**: os candidatos são processados em paralelo até o limite de `--workers`. Se um candidato sofrer um erro inesperado, apenas ele é marcado como `FAILED`, sem derrubar os demais workers nem fechar a instância compartilhada do Chromium.
+4. **Proteção contra "candidato veneno" (`recover_in_flight`)**: o contador de tentativas (`attempts`) é incrementado **antes** de iniciar a etapa de coleta ou análise. Se um candidato travar ou derrubar o processo repetidamente até atingir `max_attempts`, o `resume` o move automaticamente para `FAILED` em vez de entrar em loop infinito.
+5. **Reaproveitamento de análises pagas (`evidence_id`)**: cada avaliação (`identity`, `brand`, `compliance`, `review`, `final`) é salva vinculada ao `id` da evidência coletada. Se uma campanha parar no meio da etapa de revisão por falta de orçamento, ao rodar `simio resume` a análise já feita pelo `BrandAnalyst` para aquela evidência é reaproveitada do banco sem nova chamada à Vertex AI.
 
-## Orçamento e falhas
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
 
-- `Budget` persiste uso em `llm_usage`; requisições **e uma estimativa de tokens** (texto/3 +
-  custo fixo por imagem + `max_output_tokens`) são reservadas antes da chamada, inclusive tentativas
-  que falham: o teto de tokens é rígido mesmo com vários workers. Ao esgotar: a campanha fica `PAUSED_BUDGET`, candidatos voltam ao estado
-  estável e `simio resume` continua com orçamento maior.
-- Erros transitórios (429/5xx/timeout) têm retry com backoff exponencial + jitter.
-- Saída de modelo inválida: uma tentativa de reparo; depois o candidato conta tentativa e,
-  esgotadas, vai a `FAILED`.
-- Vertex indisponível (auth/permissão/modelo inexistente): degrada para analistas
-  determinísticos apenas o agente afetado (ex.: só o revisor) e registra a limitação.
-- Navegador que cai (ex.: falta de memória) é relançado automaticamente.
-- Grounding indisponível: o conector é desativado na execução e os demais continuam (fallback).
-  Sem nenhum mecanismo, `hunt` informa diagnóstico e aceita URLs importadas.
+## <img src="../assets/icones/busca.svg" width="22" height="22" valign="middle"> 4. Descoberta: fontes, hipóteses e planejamento (`agents/discovery.py`)
 
-## Contratos e rastreabilidade
+```
+build_hypotheses(marca)  ──►  H1–H7, H10, H11   (varredura aberta, sem depender de COBANs)
+coban_hypotheses(base)   ──►  H9               (opcional, sempre no fim da fila)
+TyposquatConnector       ──►  H8               (DNS, sem acessar páginas)
+                                   │
+                                   ▼
+             plan(): uma lista por fonte, intercaladas (zip)
+   grounding: 1 prompt por hipótese │ serper/brave: 1 consulta por dork
+   typosquat: 1 consulta por semente │ crtsh: padrões de domínio
+                                   │
+                                   ▼
+         run() ─► deduplicate() ─► prioritise() ─► fila (--limit)
+```
 
-O **catálogo de evidências** (`E-TITLE`, `E-FOLD`, `E-FTR`, `E-TXT-001`, `E-SHOT-VIEWPORT`…) é
-uma função pura da evidência armazenada; relatórios o reconstroem. Analistas devem citar refs do
-catálogo; refs inexistentes são descartadas e indicadores sem refs válidas são removidos
-(`core/decision.py`). O Excel e os dossiês exibem o texto bruto de cada ref.
+| Fonte | Unidade de consulta | Consultas na rodada BV |
+|---|---|---|
+| `grounding` | Prompt com a hipótese e seus dorks (o Gemini faz cerca de 18 buscas por prompt) | 38 + até 10 de H9 |
+| `serper` | Um dork executado literalmente, em páginas de 10 resultados (`SIMIO_SERPER_PAGES`) | 128 + até 40 de H9 |
+| `typosquat` | Uma semente (`typo:bancobv.com.br`) ou rótulo (`combo:bv`), com cerca de 1.900 domínios no total | 7 |
+| `crtsh` | Padrão de domínio da marca | 3 |
+
+- **Orçamento**: `SIMIO_MAX_SEARCH_QUERIES` corta a lista intercalada; 300 cobre o plano completo (cerca de 230 consultas).
+- **Retomada**: consultas já executadas na campanha são puladas no `resume`.
+- **Rotação de COBANs**: `Storage.searched_coban_cnpjs()` guarda quais correspondentes já foram pesquisados com sucesso; a próxima campanha começa pelos que faltam.
+
+<p align="center">
+  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
+</p>
+
+## <img src="../assets/icones/validado.svg" width="22" height="22" valign="middle"> 5. Controle de orçamento e resiliência de LLM (`providers/llm.py`)
+
+- **Reserva prévia de requisições e tokens (`Budget`)**: antes de disparar qualquer chamada à Vertex AI, o `LLMGateway` reserva no banco 1 requisição e uma estimativa conservadora de tokens (`caracteres / 3 + 1800 por imagem + max_output_tokens`). Isso garante que múltiplos workers paralelos não ultrapassem o teto de `--max-llm-requests` ou `--max-tokens`.
+- **Pausa limpa por orçamento (`PAUSED_BUDGET`)**: quando o orçamento se esgota, o orquestrador interrompe novas chamadas, devolve o candidato atual ao estado estável `COLLECTED` e finaliza a execução com status `PAUSED_BUDGET`, gerando os relatórios parciais do que já foi concluído.
+- **Autorreparo de JSON estruturado**: todas as saídas do modelo são validadas pelo schema Pydantic correspondente (`BrandAnalysisOutput` ou `ReviewOutput`). Se o modelo retornar um JSON fora do contrato, o `LLMGateway` faz automaticamente uma tentativa de reparo enviando os erros de validação do Pydantic de volta ao modelo.
+- **Degradação graciosa**: se a Vertex AI estiver inacessível por erro de permissão/configuração (`LLMUnavailable`), o orquestrador degrada apenas o agente afetado para o analisador heurístico determinístico e registra a limitação no relatório final.
+
+<p align="center">
+  <img src="../assets/banners/footer.svg" alt="SIMIO Footer" width="100%">
+</p>

@@ -70,6 +70,32 @@ def deterministic_challenges(
                 evidence_refs=sorted({h.ref for h in sig.disclosures})[:5],
             )
         )
+    if (
+        sig.multi_bank_context
+        and not sig.brand_in_domain
+        and not sig.brand_linked_claims
+        and a.classification == C.STRONG_INDICATION
+    ):
+        ch.append(
+            Challenge(
+                topic="multi_bank_intermediation",
+                severity=Level.HIGH,
+                concern="A página menciona múltiplas instituições financeiras concorrentes "
+                f"({', '.join(sig.competitor_banks[:4])}) sem domínio próprio da marca nem alegação "
+                "de canal oficial; provável intermediação multimarcas.",
+                evidence_refs=["E-URL"],
+            )
+        )
+    if sig.editorial_context and not sig.brand_in_domain and a.classification == C.STRONG_INDICATION:
+        ch.append(
+            Challenge(
+                topic="editorial_or_third_party_platform",
+                severity=Level.HIGH,
+                concern="A URL/página aparenta ser conteúdo editorial, portal de reclamações, processo "
+                "judicial ou documentação de terceiros, não um canal de captação passando-se pelo banco.",
+                evidence_refs=["E-URL"],
+            )
+        )
     if a.brand_confusion_indicators and all(i.strength == Level.LOW for i in a.brand_confusion_indicators):
         ch.append(
             Challenge(
@@ -115,15 +141,18 @@ def heuristic_review(
             recollect_reason="coleta parcial com falha transitória",
             reasoning_summary="Nova coleta solicitada antes de concluir.",
         )
-    if "legitimate_disclosure" in topics and cls == C.STRONG_INDICATION:
+    if (
+        topics & {"legitimate_disclosure", "multi_bank_intermediation", "editorial_or_third_party_platform"}
+        and cls == C.STRONG_INDICATION
+    ):
         return ReviewOutput(
             decision=ReviewDecision.DOWNGRADE,
             revised_classification=C.REVIEW_REQUIRED,
             revised_priority=Priority.HIGH,
             challenges=ch,
             contradictory_evidence=[c.concern for c in ch if c.topic == "contradictory_evidence"],
-            reasoning_summary="Indício forte rebaixado: existe declaração de correspondente a "
-            "ser ponderada por auditor.",
+            reasoning_summary="Indício forte rebaixado: existem sinais de transparência, intermediação "
+            "multimarcas ou contexto editorial a serem ponderados por auditor.",
         )
     if "over_interpretation" in topics and prio == Priority.HIGH:
         return ReviewOutput(

@@ -10,7 +10,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from simio.core.urls import domain_matches
+from simio.core.urls import domain_matches, hostname_of, normalize_url
 
 BRANDS_DIR = Path(__file__).parent
 
@@ -65,6 +65,7 @@ class BrandProfile(BaseModel):
     strong_terms: list[str]
     weak_terms: list[str] = Field(default_factory=list)
     official_domains: list[str] = Field(default_factory=list)
+    official_social_profiles: list[str] = Field(default_factory=list)
     institution_names: list[str] = Field(default_factory=list)
     institution_cnpjs: list[str] = Field(default_factory=list)
     domain_patterns: list[str] = Field(default_factory=list)
@@ -75,7 +76,14 @@ class BrandProfile(BaseModel):
     official_claim_phrases: list[str] = Field(default_factory=list)
     correspondent_disclosure_phrases: list[str] = Field(default_factory=list)
     partnership_phrases: list[str] = Field(default_factory=list)
+    competitor_institutions: list[str] = Field(default_factory=list)
+    sensitive_service_phrases: list[str] = Field(default_factory=list)
+    homonym_context_phrases: list[str] = Field(default_factory=list)
     deprioritized_domains: list[str] = Field(default_factory=list)
+    # Lookalike-domain discovery (providers/typosquat.py)
+    typosquat_seeds: list[str] = Field(default_factory=list)
+    typosquat_combo_labels: list[str] = Field(default_factory=list)
+    typosquat_keywords: list[str] = Field(default_factory=list)
 
     # ------------------------------------------------------------------ compiled matchers
     @cached_property
@@ -97,6 +105,18 @@ class BrandProfile(BaseModel):
     @cached_property
     def _partner_re(self) -> re.Pattern[str] | None:
         return _phrase_regex(self.partnership_phrases)
+
+    @cached_property
+    def _competitor_re(self) -> re.Pattern[str] | None:
+        return _phrase_regex(self.competitor_institutions)
+
+    @cached_property
+    def _sensitive_re(self) -> re.Pattern[str] | None:
+        return _phrase_regex(self.sensitive_service_phrases)
+
+    @cached_property
+    def _homonym_re(self) -> re.Pattern[str] | None:
+        return _phrase_regex(self.homonym_context_phrases)
 
     @cached_property
     def _domain_res(self) -> list[re.Pattern[str]]:
@@ -141,6 +161,24 @@ class BrandProfile(BaseModel):
     def partnership_mentions(self, text: str) -> list[str]:
         return self._find(self._partner_re, text)
 
+    def competitor_mentions(self, text: str) -> list[str]:
+        """Distinct competitor financial institutions mentioned in ``text``."""
+        found = self._find(self._competitor_re, text)
+        out: list[str] = []
+        seen: set[str] = set()
+        for item in found:
+            canon = re.sub(r"^banco\s+", "", fold(item)).strip()
+            if canon and canon not in seen:
+                seen.add(canon)
+                out.append(item)
+        return out
+
+    def sensitive_service_mentions(self, text: str) -> list[str]:
+        return self._find(self._sensitive_re, text)
+
+    def has_homonym_context(self, text: str) -> bool:
+        return bool(self._find(self._homonym_re, text))
+
     def without_disclosures(self, text: str) -> str:
         """Text minus the sentences that are correspondent/independence disclosures.
 
@@ -154,7 +192,8 @@ class BrandProfile(BaseModel):
         return [s for s in sentences(text) if self.disclosures(s) and self.strong_mentions(s)]
 
     def is_institution_name(self, value: str) -> bool:
-        """True when a value is (essentially) just the institution's own name."""
+        """True when a value is (essentially) just the institution's own name or one of its official
+        group companies/products (e.g. BV Financeira, BV Investimentos, NaPista)."""
         v = re.sub(r"[^a-z0-9 ]+", " ", fold(value)).strip()
         v = re.sub(r"\s+", " ", v)
         if not v:
@@ -168,8 +207,13 @@ class BrandProfile(BaseModel):
         stripped = v
         for n in sorted(names, key=len, reverse=True):
             stripped = stripped.replace(n, " ")
-        rest = re.sub(r"\b(s a|sa|s\.a|ltda|oficial|site|o|a|do|da|de)\b", " ", stripped)
-        return bool(self.strong_mentions(value)) and not rest.strip()
+        rest = re.sub(
+            r"\b(s a|sa|s\.a|ltda|oficial|site|o|a|do|da|de|e|credito|financiamento|investimento|investimentos)\b",
+            " ",
+            stripped,
+        )
+        has_inst = bool(self.strong_mentions(value)) or any(n in v for n in names if len(n) >= 6)
+        return has_inst and not rest.strip()
 
     def domain_brand_match(self, hostname: str) -> str | None:
         host = hostname.lower()
@@ -180,6 +224,39 @@ class BrandProfile(BaseModel):
 
     def is_official(self, hostname: str) -> bool:
         return domain_matches(hostname, self.official_domains)
+
+    def is_official_url(self, url: str, title: str | None = None, snippet: str | None = None) -> bool:
+        """True when ``url`` belongs to an official institutional domain or an official social
+        profile/post of the institution."""
+        host = hostname_of(url)
+        if self.is_official(host):
+            return True
+        if not self.official_social_profiles:
+            return False
+        try:
+            norm = normalize_url(url).lower()
+        except Exception:
+            norm = url.strip().lower()
+        # Strip scheme and common country/mobile prefixes on social domains (e.g. br.linkedin.com, m.facebook.com)
+        bare = re.sub(r"^https?://(?:(?:www|m|br|pt)\.)?", "", norm).rstrip("/")
+        handles = set()
+        for prof in self.official_social_profiles:
+            clean_prof = re.sub(r"^https?://(?:(?:www|m|br|pt)\.)?", "", prof.strip().lower()).rstrip("/")
+            if not clean_prof:
+                continue
+            if bare == clean_prof or bare.startswith(clean_prof + "/") or bare.startswith(clean_prof + "?"):
+                return True
+            slug = clean_prof.rsplit("/", 1)[-1].lstrip("@")
+            if slug:
+                handles.add(slug)
+        # Direct post/reel URLs on Instagram (e.g. instagram.com/reel/XYZ/) do not include the handle
+        # in the URL path, but search titles/snippets start with "banco BV (@bancobv)" or "banco BV on Instagram:".
+        if handles and domain_matches(host, ("instagram.com", "tiktok.com", "facebook.com", "x.com", "twitter.com")):
+            meta_text = fold(f"{title or ''} {snippet or ''}")
+            for h in handles:
+                if f"(@{h})" in meta_text or f"{fold(self.display_name)} on instagram:" in meta_text:
+                    return True
+        return False
 
     def is_deprioritized(self, hostname: str) -> bool:
         return domain_matches(hostname, self.deprioritized_domains)

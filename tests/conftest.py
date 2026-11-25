@@ -147,3 +147,20 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
             item.add_marker(pytest.mark.skip(reason="live test: set SIMIO_LIVE_TESTS=1 in an authorised environment"))
         if "browser" in item.keywords and not _BROWSER:
             item.add_marker(pytest.mark.skip(reason="Playwright Chromium not installed"))
+
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_pyfunc_call(pyfuncitem: pytest.Function) -> bool | None:
+    """Fallback runner for async tests when pytest-asyncio is not installed in the environment."""
+    import asyncio
+    import inspect
+
+    if pyfuncitem.config.pluginmanager.has_plugin("asyncio"):
+        return None
+    func = pyfuncitem.obj
+    if inspect.iscoroutinefunction(func):
+        argnames = pyfuncitem._fixtureinfo.argnames
+        kwargs = {arg: pyfuncitem.funcargs[arg] for arg in argnames if arg in pyfuncitem.funcargs}
+        asyncio.run(func(**kwargs))
+        return True
+    return None

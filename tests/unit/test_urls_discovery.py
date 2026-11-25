@@ -27,6 +27,13 @@ from tests.helpers import BRAND
         ("https://loja.example/index.html", "https://loja.example/"),
         ("loja.example/x//y/", "https://loja.example/x/y"),
         ("https://loja.example/p?gclid=1&fbclid=2", "https://loja.example/p"),
+        ("https://wa.me/canal_exemplo?lang=el_GR", "https://wa.me/canal_exemplo"),
+        ("https://www.instagram.com/reel/AbCdEf/?hl=da&igsh=xyz", "https://instagram.com/reel/AbCdEf"),
+        ("https://www.facebook.com/loja.exemplo/videos/123/?locale=pt_BR", "https://facebook.com/loja.exemplo/videos/123"),
+        (
+            "https://portal.tjpr.jus.br/e-dj/publico/carregarDocumento.do;jsessionid=fead3062?id=1",
+            "https://portal.tjpr.jus.br/e-dj/publico/carregarDocumento.do?id=1",
+        ),
     ],
 )
 def test_normalize(a: str, b: str) -> None:
@@ -93,6 +100,125 @@ def test_hypotheses_cover_required_axes() -> None:
     ids = {h.id.split(":")[0] for h in hs}
     assert {"H1-identity", "H2-product", "H3-service", "H4-official-language", "H5-establishment", "H6-platform"} <= ids
     assert all("-site:bv.com.br" in q for h in hs for q in h.keyword_queries)
+
+
+def test_prioritise_excludes_official_domains_social_profiles_and_tag_indexes() -> None:
+    hits = [
+        DiscoveryHit(source="brave", original_url="https://www2.bvfinanceira.com.br/acesso/clientes", title="Acesso"),
+        DiscoveryHit(source="brave", original_url="https://developers-sandbox.bvopen.com.br/apis", title="APIs"),
+        DiscoveryHit(source="brave", original_url="https://napista.com.br/motos", title="NaPista Motos"),
+        DiscoveryHit(source="brave", original_url="https://www.instagram.com/bancobv/", title="banco BV (@bancobv)"),
+        DiscoveryHit(source="brave", original_url="https://www.facebook.com/bancobv/videos/123/", title="BV"),
+        DiscoveryHit(source="brave", original_url="https://www.tiktok.com/@bancobv/video/123", title="banco BV"),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://www.instagram.com/reel/DYpFTKTpnS-/",
+            title='banco BV on Instagram: "Aqui o crédito é o primeiro passo"',
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://www.instagram.com/popular/bv-financeira-parceiro/",
+            title="Bv Financeira Parceiro",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://www.tiktok.com/discover/banco-bv-es-seguro",
+            title="Banco Bv Es Seguro",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://m.facebook.com/public/Bv-Financiamentos/",
+            title="People named Bv Financiamentos",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://armazviplprd.blob.core.windows.net/pdf/72b9840d-edc0",
+            title="Edital Leilão PDF",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://guiacidade.example/brasilia-df/empresa/bv-financeira-sa-credito",
+            title="Guia Cidade - BV Financeira SA",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://bvinvestimentos.com.br/fundos",
+            title="BV Investimentos",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://bkbv.lovable.app/",
+            title="Banco BV — 2ª via de boleto e quitação",
+        ),
+    ]
+    groups, _ = deduplicate(hits, UrlPolicy())
+    ordered = prioritise(groups, BRAND)
+    kept = [g for g in ordered if g.excluded_reason is None]
+    excluded = {g.normalized_url: g.excluded_reason for g in ordered if g.excluded_reason is not None}
+    assert [g.hostname for g in kept] == ["bkbv.lovable.app"]
+    assert len(excluded) == 13
+    assert excluded["https://www2.bvfinanceira.com.br/acesso/clientes"] == "official institutional domain"
+    assert excluded["https://bvinvestimentos.com.br/fundos"] == "official institutional domain"
+    assert excluded["https://developers-sandbox.bvopen.com.br/apis"] == "official institutional domain"
+    assert excluded["https://instagram.com/bancobv"] == "official institutional social profile"
+    assert excluded["https://instagram.com/reel/DYpFTKTpnS-"] == "official institutional social profile"
+    assert excluded["https://instagram.com/popular/bv-financeira-parceiro"] == "social platform tag/search index page"
+    assert excluded["https://tiktok.com/discover/banco-bv-es-seguro"] == "social platform tag/search index page"
+    assert excluded["https://armazviplprd.blob.core.windows.net/pdf/72b9840d-edc0"] == "direct binary/PDF document URL"
+    assert (
+        excluded["https://guiacidade.example/brasilia-df/empresa/bv-financeira-sa-credito"]
+        == "public business directory entry for the institution itself"
+    )
+
+
+def test_prioritise_demotes_noise_and_preserves_domain_diversity_and_homepage() -> None:
+    hits = [
+        DiscoveryHit(
+            source="brave",
+            original_url="https://www.bvfinanon.example/",
+            title="Banco BV - Canal Oficial 2ª via de boleto",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://www.bv-brc.org/",
+            title="BV-BRC: Bacterial and Viral Bioinformatics Resource Center",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://facebook.com/in.el/posts/agencia-bv-model",
+            title="Agência BV Model Localizada em Moçambique",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://sp.olx.com.br/sao-paulo/autos-e-pecas/motos/honda-cg-160-12345",
+            title="Honda CG 160 - financio pela BV Financeira",
+        ),
+        DiscoveryHit(
+            source="brave",
+            original_url="https://ajuda.crm.example/adicionar-simulador-da-bv-financeira/",
+            title="Como adicionar o simulador da BV Financeira no site",
+        ),
+        # Multi-page domain: 3 regional subpages + 1 homepage
+        DiscoveryHit(source="brave", original_url="https://multicred.example/financiamento/recife", title="Banco BV"),
+        DiscoveryHit(source="brave", original_url="https://multicred.example/financiamento/manaus", title="Banco BV"),
+        DiscoveryHit(source="brave", original_url="https://multicred.example/financiamento/goiania", title="Banco BV"),
+        DiscoveryHit(source="brave", original_url="https://multicred.example/", title="Multicred"),
+    ]
+    groups, _ = deduplicate(hits, UrlPolicy())
+    ordered = prioritise(groups, BRAND)
+    by_url = {g.normalized_url: g for g in ordered}
+    assert ordered[0].hostname == "bvfinanon.example"
+    # Foreign scientific domain with "bv-" does not match brand domain patterns
+    assert by_url["https://bv-brc.org/"].score < 0
+    # Modeling agency "Agência BV Model" does not get official-channel bonus
+    assert "official-channel language in title/snippet" not in by_url["https://facebook.com/in.el/posts/agencia-bv-model"].reasons
+    # Individual OLX listing and help tutorial are de-prioritised
+    assert by_url["https://sp.olx.com.br/sao-paulo/autos-e-pecas/motos/honda-cg-160-12345"].score < 0
+    assert by_url["https://ajuda.crm.example/adicionar-simulador-da-bv-financeira"].score < 0
+    # 3rd regional subpage (sorted alphabetically: goiania, manaus, recife) gets domain-diversity penalty,
+    # while homepage is never penalised.
+    assert any("additional page" in r for r in by_url["https://multicred.example/financiamento/recife"].reasons)
+    assert not any("additional page" in r for r in by_url["https://multicred.example/"].reasons)
 
 
 # ------------------------------------------------------------------ connectors

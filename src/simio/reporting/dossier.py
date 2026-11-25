@@ -9,6 +9,7 @@ from pathlib import Path
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from simio.reporting.data import CandidateRecord
+from simio.reporting.logo_data import BV_LOGO_WHITE_DATA_URI
 
 _env = Environment(
     loader=PackageLoader("simio.reporting", "templates"),
@@ -43,6 +44,7 @@ def render_dossier(rec: CandidateRecord, output_dir: Path, dossier_path: Path) -
         hits=rec.hits,
         transitions=rec.transitions,
         shots=shots,
+        bv_logo_white_uri=BV_LOGO_WHITE_DATA_URI,
         generated_at=datetime.now(UTC).isoformat(timespec="seconds"),
     )
 

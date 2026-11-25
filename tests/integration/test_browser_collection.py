@@ -47,7 +47,7 @@ async def test_collects_screenshots_text_and_hashes(settings, site) -> None:
     vp = cdir / ev.artifact("screenshot_viewport").path
     assert vp.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
     assert not any(a.path.endswith(".html") for a in ev.artifacts)  # raw HTML stored as .html.txt
-    manifest = json.loads((cdir / ev.manifest_path).read_text())
+    manifest = json.loads((cdir / ev.manifest_path).read_text(encoding="utf-8"))
     assert manifest["hash_algorithm"] == "SHA-256" and len(manifest["artifacts"]) == len(ev.artifacts)
     assert sha256_file(cdir / ev.manifest_path) == ev.manifest_sha256
 

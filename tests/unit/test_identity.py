@@ -68,6 +68,23 @@ def test_non_authoritative_registry_never_confirms(tmp_path: Path) -> None:
     assert a.classification != IdentityClass.CONFIRMED_COBAN
 
 
+def test_same_company_other_establishment_is_possible_coban_not_confirmed(tmp_path: Path) -> None:
+    """Registry lists the branch (0002); the page shows the head office (0001) of the same company."""
+    reg = _registry(tmp_path, "cnpj;nome\n11222333000262;LOJA EXEMPLO LTDA FILIAL\n")
+    a = _attr(make_evidence(footer=f"Loja Exemplo Ltda CNPJ {CNPJ_A}"), reg)
+    assert a.classification == IdentityClass.POSSIBLE_COBAN
+    assert a.attribution_confidence == Level.MEDIUM
+    assert a.registry_match and a.registry_match.matched_on == "cnpj_root"
+    assert not a.registry_match.authoritative
+
+
+def test_registry_name_index_and_root_lookup(tmp_path: Path) -> None:
+    reg = _registry(tmp_path, "cnpj;nome\n11222333000181;Loja Exemplo Ltda\n11222333000262;Loja Exemplo Filial\n")
+    assert reg.match_name("LOJA EXEMPLO LTDA")["cnpj"] == "11222333000181"
+    assert reg.match_cnpj_root("11222333000181") is None  # exact match takes precedence elsewhere
+    assert reg.match_cnpj_root("11.222.333/0003-43")["cnpj"] == "11222333000181"  # matriz preferred
+
+
 def test_invalid_cnpj_is_not_used() -> None:
     a = _attr(make_evidence(footer="Empresa X — CNPJ 11.222.333/0001-82"))
     assert a.owner_cnpjs == []
@@ -163,3 +180,46 @@ def test_facts_and_inferences_are_separated() -> None:
     assert {"domain", "cnpj", "email", "whatsapp"} <= kinds
     assert all(f.evidence_ref for f in a.facts)
     assert a.inferences  # association reasoning kept apart from facts
+
+
+def test_bv_group_companies_and_other_banks_are_never_attributed_as_third_party_owner() -> None:
+    """Regression: fragments of 'BV Financeira S.A. - Crédito, Financiamento e Investimento',
+    'BV Investimentos', 'NaPista', historical CNPJ 01.149.953/0001-89, or competing bank names like
+    'Banco Inter S/A' must never become the third-party page owner."""
+    ev = make_evidence(
+        footer="Correspondente bancário de BV Financeira S.A. - Crédito, Financiamento e Investimento "
+        "(CNPJ 01.149.953/0001-89), BV Investimentos, NaPista e Banco Inter S/A."
+    )
+    a = _attr(ev)
+    assert a.display_name is None
+    assert a.owner_cnpjs == []
+    assert "01.149.953/0001-89" in a.referenced_institution_cnpjs
+
+
+def test_social_embed_url_rewriting_and_instagram_handle_attribution() -> None:
+    from simio.collectors.browser import _social_embed_url
+
+    assert (
+        _social_embed_url("https://www.instagram.com/reels/DdEP-9cxlFH/")
+        == "https://www.instagram.com/p/DdEP-9cxlFH/embed/captioned/"
+    )
+    assert (
+        _social_embed_url("https://www.instagram.com/loja_exemplo/p/AbC123/")
+        == "https://www.instagram.com/p/AbC123/embed/captioned/"
+    )
+    assert (
+        _social_embed_url("https://www.instagram.com/agencia_bv_/")
+        == "https://www.instagram.com/agencia_bv_/embed/"
+    )
+    assert "plugins/video.php" in _social_embed_url(
+        "https://www.facebook.com/loja.exemplo/videos/feirao-bv/123456/"
+    )
+
+    ev = make_evidence(
+        url="https://www.instagram.com/reels/DdEP-9cxlFH/",
+        title="Instagram @tdemultimarcas.ce - Não venda seu carro, refinanciamento disponível!",
+        body="tdemultimarcas.ce Não venda seu carro, refinanciamento disponível!",
+    )
+    a = _attr(ev)
+    assert a.display_name == "@tdemultimarcas.ce"
+    assert a.entity_key == "social:instagram.com:tdemultimarcas.ce"

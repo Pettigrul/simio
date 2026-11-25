@@ -28,7 +28,7 @@ from typing import Any, Protocol
 
 from simio.agents.brand import BrandAnalyst
 from simio.agents.compliance import ComplianceAnalyst, RequirementCatalog
-from simio.agents.discovery import DiscoveryAgent, deduplicate, prioritise, summarize_queries
+from simio.agents.discovery import DiscoveryAgent, coban_hypotheses, deduplicate, prioritise, summarize_queries
 from simio.agents.evidence import EvidenceAgent, build_catalog, compute_signals
 from simio.agents.identity import CobanRegistry, IdentityAgent
 from simio.agents.reviewer import Reviewer
@@ -60,7 +60,8 @@ from simio.providers.llm import (
     LLMProvider,
     LLMUnavailable,
 )
-from simio.providers.search import BraveSearch, Connector, SerperSearch, UrlscanSearch
+from simio.providers.search import BraveSearch, Connector, CrtShSearch, SerperSearch, UrlscanSearch
+from simio.providers.typosquat import TyposquatConnector
 from simio.providers.vertex import VertexProvider
 from simio.security.url_policy import UrlPolicy
 
@@ -142,8 +143,10 @@ class Orchestrator:
                 gateway, s.effective_discovery_model, self.policy, brand.official_domains, s.http_timeout_s
             ),
             "brave": BraveSearch(key(s.brave_api_key), s.http_timeout_s),
-            "serper": SerperSearch(key(s.serper_api_key), s.http_timeout_s),
+            "serper": SerperSearch(key(s.serper_api_key), s.http_timeout_s, pages=s.serper_pages),
             "urlscan": UrlscanSearch(key(s.urlscan_api_key), s.http_timeout_s),
+            "crtsh": CrtShSearch(s.http_timeout_s),
+            "typosquat": TyposquatConnector(brand),
         }
         return [registry[name] for name in sources if name in registry]
 
@@ -290,8 +293,14 @@ class Orchestrator:
         done = {
             (q["source"], q["query_text"]) for q in self.storage.list_queries(campaign_id) if q["source"] in sources
         }
+        coban_hyps, coban_note = self._coban_hypotheses(campaign_id, brand, connectors)
         agent = DiscoveryAgent(
-            brand, connectors, self.policy, max_queries=self.settings.max_search_queries, already_done=done
+            brand,
+            connectors,
+            self.policy,
+            max_queries=self.settings.max_search_queries,
+            already_done=done,
+            extra_hypotheses=coban_hyps,
         )
         partial = [
             DiscoveryHit.model_validate(h)
@@ -320,6 +329,8 @@ class Orchestrator:
             )
 
         outcome = await agent.run([*opts.imported, *partial], on_query=on_query)
+        if coban_note:
+            outcome.diagnostics.append(coban_note)
         if self.settings.offline:
             outcome.diagnostics.insert(
                 0, "offline mode: automatic discovery and AI analysis disabled; only imported URLs are processed"
@@ -357,7 +368,8 @@ class Orchestrator:
                 self.storage.add_discovery_result(cid, h.metadata.get("query_db_id"), h)
             self.storage.set_priority(cid, g.score, g.reasons)
             cand = self.storage.get_candidate(cid)
-            if cand.status == S.DISCOVERED and queued < opts.limit:
+            is_manual = any(h.source.startswith("import") for h in g.hits)
+            if cand.status == S.DISCOVERED and queued < opts.limit and (g.score >= 0 or is_manual):
                 self.storage.transition(cid, S.QUEUED, note=f"prioritised (score {g.score:.1f})")
                 queued += 1
         info = {
@@ -373,6 +385,27 @@ class Orchestrator:
         self.storage.set_checkpoint(campaign_id, "discovery_done", True)
         self.storage.log_decision(campaign_id, None, "discovery", "completed", info)
         log.info("discovery: %d hits, %d unique, %d queued", len(outcome.hits), len(groups), queued)
+
+    def _coban_hypotheses(
+        self, campaign_id: str, brand: BrandProfile, connectors: list[Connector]
+    ) -> tuple[list[Any], str | None]:
+        """H9: searches seeded by the registered correspondents (complements the open-web sweep).
+        Rotates across campaigns: correspondents searched in earlier campaigns are skipped."""
+        s = self.settings
+        if s.coban_seed_limit <= 0 or not connectors:
+            return [], None
+        if not s.coban_registry_path or not s.coban_registry_path.is_file():
+            return [], "coban-seeded search (H9): SIMIO_COBAN_REGISTRY_PATH not set; skipped"
+        registry = CobanRegistry.load(s.coban_registry_path, authoritative=s.coban_registry_authoritative)
+        searched = self.storage.searched_coban_cnpjs(exclude_campaign=campaign_id)
+        hyps, n = coban_hypotheses(
+            registry.records, brand, limit=s.coban_seed_limit, batch=s.coban_seed_batch, exclude=searched
+        )
+        remaining = len(registry.records) - len(searched) - n
+        return hyps, (
+            f"coban-seeded search (H9): {n} registered correspondents in {len(hyps)} prompt(s); "
+            f"{len(searched)} searched in earlier campaigns, ~{max(0, remaining)} not yet searched"
+        )
 
     # ------------------------------------------------------------------ processing
     async def _process(
@@ -533,7 +566,8 @@ class Orchestrator:
             if latest is None:
                 raise RuntimeError("no evidence stored for a COLLECTED candidate")
             ev_id, ev = latest
-            catalog = build_catalog(ev, ctx.brand)
+            disc_hits = st.discovery_hits(cid)
+            catalog = build_catalog(ev, ctx.brand, discovery_hits=disc_hits)
             signals = compute_signals(ev, ctx.brand, catalog)
 
             stage = "identity"

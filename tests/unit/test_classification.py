@@ -488,3 +488,313 @@ def test_injection_detected_outside_body_text(field) -> None:
     ev = make_evidence(title="Loja", **kw)
     sig = compute_signals(ev, BRAND, build_catalog(ev, BRAND))
     assert sig.injection_markers
+
+
+# ---------------------------------------------------------------- OSINT & false-positive reduction tests
+def test_multi_bank_dealer_page_is_legitimate_no_indication() -> None:
+    """A vehicle dealer or solar integrator listing Banco BV alongside competing banks under its own
+    domain and without official-channel claims is a legitimate multi-bank intermediary (Scenario A)."""
+    sig, idn, a = _case(
+        url="https://carneiroveiculos.example/financiamento",
+        title="Financiamento | Carneiro Veículos Multimarcas",
+        header="Carneiro Veículos",
+        above_fold="Trabalhamos com os principais bancos parceiros: Banco BV, Santander, Itaú e Banco Pan.",
+        body="Faça sua simulação de financiamento de veículos na Carneiro Veículos.",
+        footer="Carneiro Veículos Ltda — CNPJ 11.222.333/0001-81",
+        images=[("Logo Banco BV", True), ("Logo Santander", True)],
+        contacts=[("WhatsApp", "https://wa.me/5511900000000")],
+    )
+    assert sig.multi_bank_context and len(sig.competitor_banks) >= 3
+    assert a.case == ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    assert a.classification == C.NO_INDICATION
+    assert idn.classification == IdentityClass.POSSIBLE_COBAN
+
+
+def test_multi_bank_comparative_title_does_not_trigger_brand_identity() -> None:
+    """Pages like 'Financiamento de Energia Solar | Solar Exemplo (BV e BTG)' list multiple banks
+    in the title and should not be flagged as impersonating the bank."""
+    sig, _, a = _case(
+        url="https://solarexemplo.example/financiamento",
+        title="Financiamento de Energia Solar | Solar Exemplo (Banco BV, Santander e Solfácil)",
+        header="Solar Exemplo Engenharia",
+        body="Opções de financiamento para energia solar pelos bancos Santander, Solfácil e Banco BV.",
+        footer="Solar Exemplo Engenharia Ltda CNPJ 11.222.333/0001-81",
+    )
+    assert not sig.brand_in_title and sig.multi_bank_context
+    assert a.case == ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    assert a.classification == C.NO_INDICATION
+
+
+@pytest.mark.parametrize(
+    "kw",
+    [
+        dict(
+            url="https://bvveiculos-rr.example/",
+            title="BV Veículos — Seminovos em Boa Vista, Roraima",
+            header="BV Veículos Boa Vista",
+            body="Compre seu seminovo em Boa Vista - RR na Via das Flores.",
+        ),
+        dict(
+            url="https://agenciabv.example/",
+            title="Agência BV — Agência de Marketing Digital e Publicidade",
+            header="Agência BV Company",
+            body="Gestão de tráfego, assessoria de imprensa e comunicação corporativa.",
+        ),
+        dict(
+            url="https://ferramentas.example/produto/soldadora-alpha-7000-bv",
+            title="Soldadora Inversora Profissional MMA TIG 127V/220V ALPHA 7000 BV",
+            body="Equipamento de solda industrial bivolt.",
+        ),
+    ],
+)
+def test_homonym_and_non_banking_bv_acronyms_are_not_flagged(kw) -> None:
+    sig, _, a = _case(**kw)
+    assert not sig.brand_in_title and not sig.brand_linked_claims
+    assert a.case == ScenarioCase.NOT_RELEVANT
+    assert a.classification == C.NO_INDICATION
+
+
+@pytest.mark.parametrize(
+    "kw",
+    [
+        dict(
+            url="https://ajuda.crm.example/adicionar-simulador-da-bv-financeira/",
+            title="Como adicionar o simulador da BV Financeira no site e na proposta",
+            body="Neste tutorial mostramos passo a passo como configurar a integração no painel do CRM.",
+        ),
+        dict(
+            url="https://www.reclameaqui.com.br/bv-financeira/preciso-da-carta-de-quitacao_123/",
+            title="Preciso da carta de quitação - Banco BV - Reclame Aqui",
+            body="Fiz o pagamento do financiamento no Banco BV e aguardo a baixa de gravame.",
+        ),
+        dict(
+            url="https://www.jusbrasil.com.br/processos/123/acao-contra-bv-financeira",
+            title="Processo Judicial - BV Financeira S.A. Crédito Financiamento e Investimento",
+            body="Poder Judiciário. Apelação cível em contrato de financiamento.",
+        ),
+    ],
+)
+def test_editorial_help_and_complaint_pages_are_not_flagged_as_impersonation(kw) -> None:
+    sig, _, a = _case(**kw)
+    assert sig.editorial_context
+    assert a.case == ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    assert a.classification == C.NO_INDICATION
+
+
+def test_sensitive_boleto_and_settlement_whatsapp_bait_is_high_risk() -> None:
+    """A third-party page offering 2nd-copy boleto / contract settlement via WhatsApp without clear
+    correspondent disclosure must be flagged at least as Scenario C / HIGH priority."""
+    sig, _, a = _case(
+        url="https://atendimento-boletos.example/",
+        title="2ª Via de Boleto Banco BV — Quitação com Desconto",
+        header="Atendimento Rápido BV Financeira",
+        above_fold="Solicite sua 2ª via de boleto ou quitação de financiamento com até 90% de desconto no WhatsApp.",
+        contacts=[("Emitir Boleto no WhatsApp", "https://wa.me/5511999990000")],
+    )
+    assert sig.sensitive_service_claims
+    assert a.case in (ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL, ScenarioCase.D_STRONG_IMPERSONATION)
+    assert a.classification in (C.REVIEW_REQUIRED, C.STRONG_INDICATION)
+    assert a.priority == Priority.HIGH
+
+
+def test_institution_cnpj_displayed_without_owner_cnpj_or_disclosure_is_flagged() -> None:
+    """Displaying the bank's own official CNPJ on an external site without any third-party CNPJ or
+    correspondent disclosure is a strong confusion signal."""
+    _, idn, a = _case(
+        url="https://credito-rapido-online.example/",
+        title="Financiamento de Veículos — Simulação Online",
+        above_fold="Simule seu financiamento de veículos Banco BV com aprovação imediata.",
+        footer="Banco BV S.A. — CNPJ 01.858.774/0001-10. Todos os direitos reservados.",
+        contacts=[("Atendimento WhatsApp", "https://wa.me/5511988887777")],
+    )
+    assert idn.referenced_institution_cnpjs == ["01.858.774/0001-10"]
+    assert idn.owner_cnpjs == []
+    assert any("CNPJ oficial da instituição" in i.description for i in a.brand_confusion_indicators)
+    assert a.classification in (C.REVIEW_REQUIRED, C.STRONG_INDICATION)
+
+
+def test_guardrail_resolves_case_b_with_no_indication_inconsistency() -> None:
+    """Regression for real campaign finding (Cf09ef5e0e0): LLM returning B_AMBIGUOUS_COMMUNICATION
+    with NO_INDICATION must either be elevated to REVIEW_REQUIRED (when confusion indicators exist)
+    or normalised to A_LEGITIMATE_COMMERCIAL_MENTION (when no confusion indicators exist)."""
+    with_ind = _guard(
+        _llm_out(
+            case=ScenarioCase.B_AMBIGUOUS_COMMUNICATION,
+            classification=C.NO_INDICATION,
+            priority=Priority.LOW,
+            brand_confusion_indicators=TWO_INDICATORS,
+        )
+    )
+    assert with_ind.classification == C.REVIEW_REQUIRED
+    assert with_ind.priority == Priority.MEDIUM
+    assert any("B_AMBIGUOUS_COMMUNICATION × NO_INDICATION" in n for n in with_ind.guardrail_notes)
+
+    without_ind = _guard(
+        _llm_out(
+            case=ScenarioCase.B_AMBIGUOUS_COMMUNICATION,
+            classification=C.NO_INDICATION,
+            priority=Priority.LOW,
+            brand_confusion_indicators=[],
+        )
+    )
+    assert without_ind.case == ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    assert without_ind.classification == C.NO_INDICATION
+
+
+def test_reviewer_downgrades_strong_on_multi_bank_context() -> None:
+    ev = make_evidence(
+        url="https://multimarcas.example/financiamento",
+        title="Financiamento Multimarcas",
+        above_fold="Bancos parceiros: Banco BV, Santander, Itaú e Banco Pan.",
+    )
+    cat = build_catalog(ev, BRAND)
+    sig = compute_signals(ev, BRAND, cat)
+    idn = IdentityAgent(BRAND, CobanRegistry()).attribute("C1", ev, cat, sig)
+    forced_strong = _guard(_llm_out(brand_confusion_indicators=TWO_INDICATORS))
+    rv = heuristic_review(forced_strong, ev, sig, idn, can_recollect=False)
+    assert rv.decision == ReviewDecision.DOWNGRADE
+    assert rv.revised_classification == C.REVIEW_REQUIRED
+    assert any(c.topic == "multi_bank_intermediation" for c in rv.challenges)
+
+
+def test_redirected_to_official_domain_or_profile_is_cleared() -> None:
+    sig, _, a = _case(
+        url="https://www2.bvfinanceira.com.br/acesso/clientes",
+        title="Acesso Clientes — BV Financeira",
+        header="BV Financeira",
+        above_fold="Portal oficial do cliente Banco BV.",
+    )
+    assert sig.official_channel is True
+    assert a.case == ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION
+    assert a.classification == C.NO_INDICATION
+
+
+def test_homonym_cannot_mask_explicit_banking_bait() -> None:
+    """An attacker mentioning 'Boa Vista' on a page offering 'SAC BV 0800' / '2ª via de boleto'
+    must NOT be cleared by the homonym filter."""
+    sig, _, a = _case(
+        url="https://bv-atendimento.example/",
+        title="Atendimento BV — 2ª Via de Boleto",
+        above_fold="SAC BV 0800 000 0009. Solicite 2ª via de boleto e quitação no WhatsApp. Endereço: Boa Vista.",
+        contacts=[("WhatsApp", "https://wa.me/5511900001111")],
+    )
+    assert not sig.homonym_context
+    assert a.classification in (C.REVIEW_REQUIRED, C.STRONG_INDICATION)
+
+
+def test_corporate_blocked_page_uses_discovery_snippet_for_analysis() -> None:
+    """Regression for corporate web-filter blocks (HTTP 403): when Chromium is blocked locally
+    but Google Search Grounding returned descriptive snippets (E-DISC-*), the candidate is analysed
+    from E-DISC-001 and routed as REVIEW_REQUIRED instead of a blind INCONCLUSIVE."""
+    from simio.core.models import DiscoveryHit
+
+    ev = make_evidence(url="https://motors-exemplo.example/financiamento", status=CollectionStatus.BLOCKED)
+    hits = [
+        DiscoveryHit(
+            source="grounding",
+            original_url="https://motors-exemplo.example/financiamento",
+            title="Motors Exemplo - Financiamento",
+            snippet="Landing page de financiamento com simulador próprio e pré-aprovação via WhatsApp "
+            "destacando a BV Financeira, sem exibir razão social, CNPJ ou declaração de correspondente.",
+        )
+    ]
+    cat = build_catalog(ev, BRAND, discovery_hits=hits)
+    sig = compute_signals(ev, BRAND, cat)
+    assert sig.has_discovery_evidence
+    idn = IdentityAgent(BRAND, CobanRegistry()).attribute("C1", ev, cat, sig)
+    out = heuristic_analysis(sig, SC, ev, idn, {i.ref for i in cat})
+    a = apply_brand_guardrails(
+        out, analyzer="heuristic-v1", prompt_version=None, valid_refs={i.ref for i in cat}, evidence=ev, signals=sig, scoring=SC
+    )
+    assert a.classification == C.REVIEW_REQUIRED
+    assert a.evidence_sufficiency == EvidenceSufficiency.PARTIAL
+    assert "E-DISC-001" in a.evidence_references
+
+
+def test_cross_check_cannot_be_downgraded_to_no_indication_when_injection_present() -> None:
+    """Regression: when cross_check flags a model vs. rules divergence alongside prompt injection,
+    the reviewer cannot downgrade it to NO_INDICATION; for non-injected editorial pages, the
+    reviewer can confirm or downgrade."""
+    from simio.agents.brand import cross_check
+
+    ev = make_evidence(**SCENARIOS["ambiguous"])
+    cat = build_catalog(ev, BRAND)
+    sig = compute_signals(ev, BRAND, cat)
+    heur = heuristic_analysis(sig, SC, ev, None, {i.ref for i in cat})
+    llm_cleared = _guard(
+        _llm_out(
+            case=ScenarioCase.A_LEGITIMATE_COMMERCIAL_MENTION,
+            classification=C.NO_INDICATION,
+            priority=Priority.LOW,
+            brand_confusion_indicators=[],
+            possible_prompt_injection=True,
+        ),
+        name="ambiguous",
+    )
+    checked = cross_check(llm_cleared.model_copy(update={"classification": C.NO_INDICATION}), heur)
+    assert checked.classification == C.REVIEW_REQUIRED
+    assert checked.brand_confusion_indicators  # deterministic indicators preserved
+    rv = Review(
+        decision=ReviewDecision.DOWNGRADE,
+        revised_classification=C.NO_INDICATION,
+        revised_priority=Priority.LOW,
+        reviewer="mock",
+    )
+    final_cls, _, notes = apply_review(checked, rv)
+    assert final_cls == C.REVIEW_REQUIRED
+    assert any("divergência modelo × regras" in n for n in notes)
+
+
+def test_high_logo_or_visual_confusion_with_transparency_gap_elevates_to_strong_indication() -> None:
+    """Regression for cases like bigfeiraodoautomovel.com.br and Instagram reel DdEP-9cxlFH:
+    when a dealer/feirão/COBAN uses the bank's official logo prominently (HIGH) and omits CNPJ
+    or correspondent disclosure (without any disclosure on the page), it is elevated to
+    STRONG_INDICATION (HIGH) so it surfaces in the Strong Indications sheet."""
+    ev = make_evidence(
+        url="https://bigfeiraodoautomovel.example/",
+        title="Big Feirão do Automóvel",
+        header="Big Feirão & BV Financeira",
+        above_fold="Taxas especiais de financiamento e aprovação rápida de crédito em parceria com o Banco BV.",
+        images=[("Big Feirão & BV Financeira", True)],
+    )
+    cat = build_catalog(ev, BRAND)
+    sig = compute_signals(ev, BRAND, cat)
+    assert not sig.disclosures
+    llm_b = BrandAnalysisOutput(
+        case=ScenarioCase.B_AMBIGUOUS_COMMUNICATION,
+        classification=C.REVIEW_REQUIRED,
+        priority=Priority.MEDIUM,
+        brand_confusion_indicators=[
+            Indicator(
+                dimension=Dimension.LOGO_USAGE,
+                strength=Level.HIGH,
+                description="Logotipo oficial acoplado no cabeçalho e banner principal",
+                evidence_refs=["E-IMG-1", "E-FOLD"],
+            ),
+            Indicator(
+                dimension=Dimension.DECLARED_COMMERCIAL_IDENTITY,
+                strength=Level.HIGH,
+                description="Ausência de CNPJ e razão social do responsável",
+                evidence_refs=["E-FOLD"],
+            ),
+            Indicator(
+                dimension=Dimension.CORRESPONDENT_TRANSPARENCY,
+                strength=Level.MEDIUM,
+                description="Sem declaração de correspondente bancário",
+                evidence_refs=["E-FOLD"],
+            ),
+        ],
+        evidence_references=["E-IMG-1", "E-FOLD"],
+    )
+    a = apply_brand_guardrails(
+        llm_b,
+        analyzer="gemini",
+        prompt_version="brand-analyst/v5",
+        valid_refs={i.ref for i in cat},
+        evidence=ev,
+        signals=sig,
+        scoring=SC,
+    )
+    assert a.classification == C.STRONG_INDICATION
+    assert a.priority == Priority.HIGH
+    assert a.case == ScenarioCase.C_POSSIBLE_OFFICIAL_CHANNEL

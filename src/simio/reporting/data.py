@@ -44,7 +44,7 @@ class CandidateRecord:
     @property
     def sort_key(self) -> tuple[int, int, float]:
         if self.final is None:
-            return (-1, -1, -self.candidate.priority_score)
+            return (1, 0, -self.candidate.priority_score)
         return (
             -CLASSIFICATION_RANK[self.final.classification],
             -PRIORITY_RANK[self.final.priority],
@@ -70,13 +70,14 @@ def load_records(storage: Storage, campaign_id: str, brand: BrandProfile) -> lis
         def get(kind: str, cls: type[M], ev_id: int | None = ev_id, cid: str = cand.id) -> M | None:
             return storage.get_assessment(cid, kind, cls, evidence_id=ev_id)
 
+        hits = storage.discovery_hits(cand.id)
         out.append(
             CandidateRecord(
                 candidate=cand,
-                hits=storage.discovery_hits(cand.id),
+                hits=hits,
                 evidence=ev,
                 all_evidence=storage.all_evidence(cand.id),
-                catalog=build_catalog(ev, brand) if ev else [],
+                catalog=build_catalog(ev, brand, discovery_hits=hits) if ev else [],
                 identity=get("identity", IdentityAttribution),
                 brand=get("brand", BrandAssessment),
                 compliance=get("compliance", ComplianceAssessment),

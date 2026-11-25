@@ -21,7 +21,9 @@ import shutil
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
+import re
 from typing import Any
+from urllib.parse import quote
 
 from simio.config import Settings
 from simio.core.models import Artifact, CollectionStatus, Evidence, PageData
@@ -68,6 +70,39 @@ CHALLENGE_MARKERS = (
     "attention required",
     "cf-challenge",
 )
+
+CORPORATE_BLOCK_MARKERS = (
+    "site bloqueado para seu perfil",
+    "bloqueado devido as políticas de acesso",
+    "bloqueado devido às políticas de acesso",
+    "regra de bloqueio:",
+)
+
+_IG_POST_RE = re.compile(
+    r"(?i)^https?://(?:www\.|m\.)?instagram\.com/(?:[^/?#]+/)?(?:p|reel|reels|tv)/([A-Za-z0-9_-]+)"
+)
+_IG_PROFILE_RE = re.compile(r"(?i)^https?://(?:www\.|m\.)?instagram\.com/([A-Za-z0-9._]+)/?(?:\?.*)?$")
+_IG_RESERVED = frozenset(
+    {"p", "reel", "reels", "tv", "stories", "explore", "popular", "accounts", "direct", "about", "legal", "tags"}
+)
+_FB_VIDEO_RE = re.compile(r"(?i)^https?://(?:www\.|m\.|web\.)?facebook\.com/(?:[^/?#]+/videos/|reel/|watch/?\?v=)")
+_FB_POST_RE = re.compile(r"(?i)^https?://(?:www\.|m\.|web\.)?facebook\.com/[^/?#]+/posts/")
+
+
+def _social_embed_url(url: str) -> str:
+    """Rewrite public Instagram/Facebook post, reel and profile URLs to their official unauthenticated
+    embed endpoints so Chromium can render the visual creative, handle and caption without a login wall."""
+    m = _IG_POST_RE.match(url)
+    if m:
+        return f"https://www.instagram.com/p/{m.group(1)}/embed/captioned/"
+    m = _IG_PROFILE_RE.match(url)
+    if m and m.group(1).lower() not in _IG_RESERVED:
+        return f"https://www.instagram.com/{m.group(1)}/embed/"
+    if _FB_VIDEO_RE.match(url):
+        return f"https://www.facebook.com/plugins/video.php?href={quote(url, safe='')}&show_text=true&width=500"
+    if _FB_POST_RE.match(url):
+        return f"https://www.facebook.com/plugins/post.php?href={quote(url, safe='')}&show_text=true&width=500"
+    return url
 
 EXTRACT_JS = r"""
 (maxChars) => {
@@ -130,8 +165,20 @@ EXTRACT_JS = r"""
     const r = p.getBoundingClientRect();
     if (r.top < vh && r.bottom > 0) fold.push(t);
   }
+  let pageTitle = clean(document.title);
+  let visText = ((document.body ? document.body.innerText : '') || '');
+  if (pageTitle === 'Instagram' || location.hostname.includes('instagram.com')) {
+    const userEl = document.querySelector('.UsernameText, .Header .Username, a.Username');
+    const capEl = document.querySelector('.Caption');
+    const pathMatch = location.pathname.match(/^\/([A-Za-z0-9._]+)\/embed\/?$/i);
+    const u = userEl ? clean(userEl.innerText) : (pathMatch ? pathMatch[1] : '');
+    const c = capEl ? clean(capEl.innerText) : '';
+    if (u || c) pageTitle = `Instagram ${u ? '@' + u : ''}${c ? ' - ' + c : ''}`.slice(0, 500);
+    const imgAlts = images.map(i => i.alt).filter(a => a && a.length > 15).join('\n');
+    if (imgAlts) visText = visText + '\n' + imgAlts;
+  }
   return {
-    title: clean(document.title).slice(0, 500),
+    title: pageTitle.slice(0, 500),
     meta, canonical,
     lang: document.documentElement.lang || null,
     headings, nav_items: nav, ctas, contact_links: contacts,
@@ -140,7 +187,7 @@ EXTRACT_JS = r"""
     header_text: sectionText('header,[role=banner]'),
     footer_text: sectionText('footer,[role=contentinfo]'),
     above_fold_text: fold.join(' ').slice(0, 8000),
-    visible_text: ((document.body ? document.body.innerText : '') || '').slice(0, maxChars),
+    visible_text: visText.slice(0, maxChars),
     forms_present: document.forms.length
   };
 }
@@ -325,8 +372,9 @@ class BrowserCollector:
             page.on("response", guard.on_response)
             page.set_default_timeout(s.nav_timeout_ms)
 
+            fetch_url = _social_embed_url(url)
             try:
-                response = await page.goto(url, wait_until="domcontentloaded", timeout=s.nav_timeout_ms)
+                response = await page.goto(fetch_url, wait_until="domcontentloaded", timeout=s.nav_timeout_ms)
             except PlaywrightTimeout:
                 ev.status = CollectionStatus.FAILED
                 ev.retryable = True
@@ -356,7 +404,7 @@ class BrowserCollector:
                 ev.errors.append("network did not become idle (continuing)")
             if s.settle_ms:
                 await page.wait_for_timeout(s.settle_ms)
-            ev.final_url = page.url
+            ev.final_url = url if fetch_url != url and page.url == fetch_url else page.url
 
             # The egress proxy connected to a validated (pinned) IP; record it for custody.
             ev.server_ip = proxy.ip_for(hostname_of(ev.final_url))
@@ -371,10 +419,19 @@ class BrowserCollector:
             raw = await page.evaluate(EXTRACT_JS, s.max_text_chars)  # truncated in-page (memory bound)
             raw["visible_text"] = (raw.get("visible_text") or "")[: s.max_text_chars]
             ev.page = PageData.model_validate(raw)
-            if ev.http_status and ev.http_status >= 400:
+            lowered = (ev.page.title + " " + ev.page.visible_text[:5000]).lower()
+            if any(m in lowered for m in CORPORATE_BLOCK_MARKERS):
+                ev.status = CollectionStatus.BLOCKED
+                ev.retryable = False
+                ev.errors.append(
+                    f"HTTP {ev.http_status or 403}: acesso bloqueado pelo filtro web corporativo da rede"
+                )
+                ev.not_inspected.append(
+                    "conteúdo real do site não inspecionado (acesso bloqueado pela política de rede corporativa)"
+                )
+            elif ev.http_status and ev.http_status >= 400:
                 ev.status = CollectionStatus.FAILED
                 ev.errors.append(f"HTTP {ev.http_status}: page content is an error page")
-            lowered = (ev.page.title + " " + ev.page.visible_text[:5000]).lower()
             if any(m in lowered for m in CHALLENGE_MARKERS):
                 ev.errors.append("possible bot challenge/CAPTCHA detected; no bypass attempted")
                 ev.not_inspected.append("conteúdo real possivelmente oculto por desafio anti-bot")

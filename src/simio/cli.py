@@ -62,6 +62,10 @@ def _print_summary(summary, report=None) -> None:  # type: ignore[no-untyped-def
         typer.echo(f"  · {d}")
     if report is not None:
         typer.secho(f"Relatório: {report.workbook}", fg="green")
+        if getattr(report, "html_report", None):
+            typer.secho(f"Relatório HTML: {report.html_report}", fg="green")
+        if getattr(report, "pdf_report", None):
+            typer.secho(f"Relatório PDF: {report.pdf_report}", fg="green")
         typer.echo(f"Dossiês: {len(report.dossiers)} em {report.report_dir / 'dossiers'}")
 
 
@@ -206,6 +210,10 @@ def report(
         cid = _resolve_campaign(storage, campaign)
         res = generate_reports(s, storage, cid, all_dossiers=all_dossiers)
         typer.secho(f"Relatório: {res.workbook}", fg="green")
+        if res.html_report:
+            typer.secho(f"Relatório HTML: {res.html_report}", fg="green")
+        if res.pdf_report:
+            typer.secho(f"Relatório PDF: {res.pdf_report}", fg="green")
         typer.echo(f"Dossiês: {len(res.dossiers)} em {res.report_dir / 'dossiers'}")
     finally:
         storage.close()

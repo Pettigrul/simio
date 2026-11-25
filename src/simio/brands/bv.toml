@@ -12,19 +12,79 @@ strong_terms = ["banco bv", "bv financeira", "banco votorantim", "bv financiamen
 weak_terms = ["bv"]
 
 # Official institutional domains (VALIDATE: add every official domain / app link).
-official_domains = ["bv.com.br"]
+official_domains = [
+  "bv.com.br",
+  "bancobv.com.br",
+  "bvfinanceira.com.br",
+  "bvinvestimentos.com.br",
+  "napista.com.br",
+  "bvopen.com.br",
+  "meufinanciamentosolar.com.br",
+  "votorantim.com.br",
+  "vam.com.br",
+]
 
-# Legal names / CNPJs of the institution itself. CNPJs found on third-party pages that match
-# these are treated as *references to the contracting institution*, never as the page owner.
-# VALIDATE: fill with the official CNPJs in the corporate environment.
-institution_names = ["Banco BV", "Banco Votorantim", "BV Financeira"]
-institution_cnpjs = []
+# Official social media profiles / handles of the institution itself.
+official_social_profiles = [
+  "instagram.com/bancobv",
+  "instagram.com/napistabr",
+  "instagram.com/parceirosolarbv",
+  "facebook.com/bancobv",
+  "facebook.com/napistapp",
+  "tiktok.com/@bancobv",
+  "linkedin.com/company/bancobv",
+  "linkedin.com/company/napista",
+  "youtube.com/@bancobv",
+  "youtube.com/c/bancobv",
+  "x.com/bancobv",
+  "twitter.com/bancobv",
+]
+
+# Legal names / CNPJs of the institution itself and its official group entities/products.
+# CNPJs and names found on third-party pages that match these are treated as *references to the
+# contracting institution*, never as the third-party page owner.
+institution_names = [
+  "Banco BV",
+  "Banco BV S.A.",
+  "Banco Votorantim",
+  "Banco Votorantim S.A.",
+  "BV Financeira",
+  "BV Financeira S.A.",
+  "BV Financeira S/A",
+  "BV Financeira S.A. Crédito, Financiamento e Investimento",
+  "BV Financeira S/A Crédito, Financiamento e Investimento",
+  "Crédito, Financiamento e Investimento",
+  "Financiamento e Investimento S.A.",
+  "Financiamento e Investimento S/A",
+  "Financiamento e Investimento S.A",
+  "BV Investimentos",
+  "BV Asset",
+  "BV DTVM",
+  "Votorantim Asset Management",
+  "Votorantim Finanças",
+  "BV Leasing",
+  "BV Corretora de Seguros",
+  "NaPista",
+  "Na Pista",
+  "Feirão Na Pista",
+  "Meu Financiamento Solar",
+]
+institution_cnpjs = [
+  "59.588.111/0001-03",
+  "01.858.774/0001-10",
+  "01.149.953/0001-89",
+  "03.384.738/0001-98",
+  "09.023.931/0001-80",  # BV Corretora de Seguros S.A. (consta do cadastro interno de COBANs)
+  "01.386.256/0001-41",  # Votorantim Finanças S.A. (consta do cadastro interno de COBANs)
+]
 
 # Regexes applied to the registrable domain / hostname labels.
 domain_patterns = [
-  '(^|[-.])bv([-.]|$)',
+  '(^|\.)bv(\.|$)',
   'banco-?bv',
-  '^bv-?(financ|credit|cred|veicul|auto|emprest|consig|digital|oficial|atendiment|sac|cartao|solar)',
+  '(^|[.-])(bk)?bv-?(financ|finan|credit|cred|veicul|auto|emprest|consig|digital|oficial|atendiment|sac|cartao|solar|sol([.-]|$)|boleto|quitac|acordo|negocia|simulad|feirao|promotora|parceir|loja|multimarcas|seminovos|motos|carros)',
+  '(^|[.-])(feirao|central|atendimento|boleto|quitacao|acordo|simulador|parceiro|financiamento|credito|emprestimo|loja|agencia)-?bv([.-]|$)',
+  '(^|[.-])bkbv([.-]|$)',
   'bv-?financeira',
   'banco-?votorantim',
 ]
@@ -34,8 +94,10 @@ products = [
   "financiamento de carro",
   "financiamento de moto",
   "refinanciamento de veículo",
+  "crédito consignado",
   "crédito pessoal",
   "empréstimo com garantia de veículo",
+  "empréstimo consignado",
   "financiamento de energia solar",
   "cartão de crédito",
 ]
@@ -61,30 +123,98 @@ platforms = ["site", "WhatsApp", "Instagram", "Facebook", "Google Meu Negócio"]
 official_claim_phrases = [
   "canal oficial", "site oficial", "atendimento oficial", "central oficial", "página oficial",
   "loja oficial", "representante oficial", "somos o banco bv", "aqui é o banco bv",
-  "banco bv oficial", "sac banco bv", "sac bv", "central de atendimento banco bv",
-  "central de atendimento bv", "fale com o banco bv", "agência bv", "agência banco bv",
-  "gerente do banco bv", "unidade banco bv", "unidade bv", "bv atendimento",
+  "aqui no banco bv", "banco bv oficial", "sac banco bv", "sac bv",
+  "central de atendimento banco bv", "central de atendimento bv", "fale com o banco bv",
+  "fale com a bv", "agência bv", "agência banco bv", "gerente do banco bv", "unidade banco bv",
+  "unidade bv", "bv atendimento", "canais oficiais bv", "canais oficiais banco bv",
+  "ambiente seguro banco bv", "ambiente seguro bv", "central de quitação bv",
+  "central de boletos bv", "central de negociação bv", "central 0800 bv",
+  "central 0800 banco bv", "atendimento online bv", "atendimento online banco bv",
+  "portal do cliente bv", "acesso clientes bv", "ouvidoria oficial bv",
+  "simulação bancária oficial", "parceiro oficial bv", "parceiro oficial banco bv",
+  "parceiro oficial da bv financeira", "correspondente financeiro autorizado",
+  "representante autorizado da bv financeira", "representante autorizado banco bv",
 ]
 
 # Language that discloses a correspondent / independent relationship.
 correspondent_disclosure_phrases = [
   "correspondente bancário", "correspondente bancario", "correspondente no país",
-  "correspondentes no país", "correspondente do banco bv", "correspondente bv",
+  "correspondentes no país", "correspondente do banco bv", "correspondente da bv financeira",
+  "correspondente bv", "correspondente banco bv", "correspondente bancário autorizado",
+  "correspondente autorizado", "correspondente credenciado", "somos correspondente",
   "resolução cmn nº 4.935", "resolução cmn n° 4.935", "resolução 4.935", "resolução nº 4.935",
-  "atuamos como correspondente", "prestador de serviços", "prestadora de serviços",
-  "não somos o banco", "não somos uma instituição financeira", "não é uma instituição financeira",
-  "não somos instituição financeira", "empresa independente",
+  "atuamos como correspondente", "na qualidade de correspondente", "prestador de serviços",
+  "prestadora de serviços", "não somos o banco", "não somos uma instituição financeira",
+  "não é uma instituição financeira", "não somos instituição financeira", "empresa independente",
 ]
 
 partnership_phrases = [
   "parceiro", "parceiros", "parceira", "parceiras", "parceria", "em parceria com", "credenciado", "credenciada",
-  "autorizado", "autorizada",
+  "autorizado", "autorizada", "bancos parceiros", "financeiras parceiras", "parceiro oficial",
+  "parceiros autorizados",
+]
+
+# Competing financial institutions commonly listed alongside the brand on legitimate multi-bank
+# dealer / broker / solar-integrator pages ("Bancos parceiros: Santander, Itaú, Pan, BV...").
+competitor_institutions = [
+  "banco pan", "santander", "itaú", "itau", "bradesco", "banco safra", "safra finance",
+  "c6 bank", "banco c6", "daycoval", "solfácil", "solfacil", "btg pactual", "banco btg",
+  "sicoob", "sicredi", "banco do brasil", "caixa econômica", "banco digio", "banco bmg",
+  "paraná banco", "parana banco", "banco mercantil", "omni financeira", "porto seguro financiamento",
+]
+
+# Post-sale / billing / settlement service expressions that, when combined with third-party
+# WhatsApp/CTA capture and no clear correspondent/collection-agency disclosure, indicate high risk
+# of consumer confusion or boleto/settlement bait.
+sensitive_service_phrases = [
+  "2ª via de boleto", "2a via de boleto", "segunda via de boleto", "2ª via do boleto",
+  "segunda via do boleto", "2ª via do contrato", "emitir boleto", "atualizar boleto",
+  "quitação de financiamento", "quitar financiamento", "quitação de contrato", "quitar contrato",
+  "quitação antecipada", "antecipação de parcelas", "desconto na quitação",
+  "renegociação de dívida", "negociação de dívida", "acordo de dívida",
+  "baixa de gravame",
+]
+
+# Non-banking contexts where the bare acronym "BV" refers to a geographic or industry homonym
+# (e.g. Boa Vista/RR, Bela Vista, Boa Viagem, marketing/modeling agencies).
+homonym_context_phrases = [
+  "boa vista", "roraima", "bela vista", "boa viagem", "agência de marketing",
+  "agência de publicidade", "agência de comunicação", "agência de modelos",
+  "model management", "casting", "assessoria de imprensa", "marketing digital",
+  "bioinformatics", "raju institute",
 ]
 
 # Domains that rarely host an establishment's own communication (news, reviews, legal
-# databases, the regulator). They are kept but de-prioritised.
+# databases, job boards, business directories, logo repositories, the regulator).
 deprioritized_domains = [
-  "wikipedia.org", "reclameaqui.com.br", "jusbrasil.com.br", "gov.br", "bcb.gov.br",
-  "youtube.com", "linkedin.com", "glassdoor.com.br", "g1.globo.com", "valor.globo.com",
-  "infomoney.com.br", "exame.com", "estadao.com.br", "folha.uol.com.br",
+  "wikipedia.org", "reclameaqui.com.br", "proteste.org.br", "consumidor.gov.br",
+  "jusbrasil.com.br", "jus.br", "escavador.com", "consultaprocessobrasil.com.br",
+  "processorapido.com", "sisjud.com.br", "tramitacaointeligente.com.br",
+  "gov.br", "bcb.gov.br", "sec.gov", "youtube.com", "linkedin.com", "glassdoor.com.br",
+  "indeed.com", "econodata.com.br", "cnpj.biz", "cnpjdobrasil.com.br", "cnpj.info",
+  "serasaexperian.com.br", "emis.com", "zoominfo.com", "rocketreach.co", "aeroleads.com",
+  "empresasembrasil.com", "agenciasbancarias.net", "bancoseagencias.com.br",
+  "agenciadobanco.com.br", "guiadeagenciasbancarias.com.br", "moovitapp.com", "maptons.com",
+  "shopfully.com.br", "safetymails.com", "wanderboat.ai", "brandsoftheworld.com",
+  "logospng.org", "brandfetch.com", "behance.net",
+  "scribd.com", "issuu.com", "evef.com.br", "globo.com", "g1.globo.com", "valor.globo.com",
+  "uol.com.br", "folha.uol.com.br", "estadao.com.br", "infomoney.com.br", "exame.com",
+  "istoedinheiro.com.br", "prnewswire.com", "neofeed.com.br", "canalsolar.com.br",
+  "portalsolar.com.br", "automotivebusiness.com.br", "autossegredos.com.br", "letsmoney.com.br",
+  "mobills.com.br", "idinheiro.com.br", "serasa.com.br", "financera.com.br", "xpi.com.br",
+]
+
+# ---- Lookalike domains (typosquatting / combosquatting) -------------------------------------
+# Seeds: official domains whose label gets typo permutations (labels < 5 chars only get TLD swaps).
+typosquat_seeds = ["bancobv.com.br", "bvfinanceira.com.br", "napista.com.br", "bv.com.br"]
+# Brand labels combined with sector keywords (bv-financiamento, bancobvacordo, feiraobv...).
+typosquat_combo_labels = ["bv", "bancobv", "bvfinanceira"]
+typosquat_keywords = [
+  "financiamento", "financiamentos", "financie", "financeira", "credito", "cred", "emprestimo",
+  "consignado", "veiculos", "veiculo", "auto", "autos", "carros", "motos", "feirao", "simulador",
+  "simulacao", "boleto", "boletos", "2via", "segundavia", "acordo", "acordos", "quitacao", "quitar",
+  "negociacao", "renegociacao", "desconto", "atendimento", "sac", "central", "oficial", "online",
+  "digital", "app", "cliente", "clientes", "parceiro", "parceiros", "correspondente", "promotora",
+  "solar", "energiasolar", "cartao", "pix", "seguros", "portal", "login", "acesso", "contrato",
+  "proposta", "aprovado", "facil",
 ]

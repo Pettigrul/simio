@@ -13,7 +13,7 @@ from typing import Annotated
 from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
-DISCOVERY_SOURCES = ("grounding", "brave", "serper", "urlscan")
+DISCOVERY_SOURCES = ("grounding", "brave", "serper", "urlscan", "crtsh", "typosquat")
 
 
 class Settings(BaseSettings):
@@ -47,6 +47,13 @@ class Settings(BaseSettings):
     max_llm_requests: int = Field(default=300, ge=0, description="Per-campaign LLM call budget")
     max_llm_tokens: int = Field(default=2_000_000, ge=0, description="Per-campaign token budget")
     max_search_queries: int = Field(default=40, ge=0, description="Discovery query budget")
+    coban_seed_limit: int = Field(
+        default=0,
+        ge=0,
+        description="Registered correspondents searched per campaign (H9; most recent first, rotating across "
+        "campaigns). 0 disables. Requires SIMIO_COBAN_REGISTRY_PATH",
+    )
+    coban_seed_batch: int = Field(default=4, ge=1, le=10, description="Correspondents per H9 search prompt")
 
     # ---- Concurrency / pipeline ----------------------------------------------------------
     workers: int = Field(default=3, ge=1, le=16)
@@ -58,6 +65,9 @@ class Settings(BaseSettings):
     brave_api_key: SecretStr | None = None
     serper_api_key: SecretStr | None = None
     urlscan_api_key: SecretStr | None = None
+    serper_pages: int = Field(
+        default=1, ge=1, le=10, description="Serper result pages (10 results / 1 credit each) per query"
+    )
     http_timeout_s: float = Field(default=20.0, gt=0)
 
     # ---- Browser / evidence --------------------------------------------------------------
