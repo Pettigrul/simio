@@ -1,0 +1,55 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verify</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async="" defer=""></script>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;background:#0b0f17;color:#e6e6e6}
+    .card{width:360px;max-width:92vw;background:#121a2a;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
+    .muted{opacity:.75;font-size:12px;margin-top:8px}
+    button{width:100%;padding:10px 12px;border-radius:12px;border:0;background:#3b82f6;color:white;font-weight:600;cursor:pointer;margin-top:12px}
+    button:disabled{opacity:.6;cursor:not-allowed}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div>Complete verification to continue</div>
+    <div class="muted">This helps protect the site from abuse.</div>
+
+    <div style="margin-top:14px" class="cf-turnstile" data-sitekey="0x4AAAAAACVDKj2HzrDn1uYw" data-callback="onOk" data-error-callback="onErr" data-expired-callback="onExp"><div><div></div><input type="hidden" name="cf-turnstile-response" id="cf-chl-widget-kcjz0_response" style=""></div></div>
+
+    <button id="btn" disabled="" onclick="submit()">Continue</button>
+    <div id="msg" class="muted"></div>
+  </div>
+
+<script>
+  const RETURN_URL = "https://fghv6.com/?cid=15034"
+  let TOKEN = ""
+
+  function onOk(t){ TOKEN = t; document.getElementById('btn').disabled = !t; document.getElementById('msg').textContent = "" }
+  function onErr(){ document.getElementById('msg').textContent = "Verification error. Please refresh." }
+  function onExp(){ TOKEN=""; document.getElementById('btn').disabled = true; document.getElementById('msg').textContent = "Expired. Please retry." }
+
+  async function submit(){
+    if(!TOKEN) return
+    document.getElementById('btn').disabled = true
+    document.getElementById('msg').textContent = "Verifying..."
+
+    const r = await fetch("/verify", {
+      method:"POST",
+      headers:{ "content-type":"application/json" },
+      body: JSON.stringify({ token: TOKEN, u: RETURN_URL })
+    })
+    const j = await r.json().catch(()=>null)
+    if(!r.ok || !j){
+      document.getElementById('msg').textContent = "Failed. Please refresh."
+      return
+    }
+
+    // redirect back with ticket
+    location.href = j.redirect
+  }
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;74514b4e3ff446268e1238ac99c44b77&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+</body></html>

@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cc5987b9ce5",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://bv.org/",
+  "final_url": "http://bv.org/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "162.159.135.42",
+  "collected_at": "2026-11-26T01:32:01.269632+00:00",
+  "manifest_written_at": "2026-11-26T01:32:09.330019+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cc5987b9ce5/attempt-1/viewport.png",
+      "sha256": "0277d67b73c74b27978016009d96e34a60cf348c6b2bc038449d8fe1622d32de",
+      "size_bytes": 31934
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cc5987b9ce5/attempt-1/fullpage.png",
+      "sha256": "0277d67b73c74b27978016009d96e34a60cf348c6b2bc038449d8fe1622d32de",
+      "size_bytes": 31934
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cc5987b9ce5/attempt-1/page.html.txt",
+      "sha256": "ffbf121b859931f01407d733f34f7064a5b331666ca46a354b690b06a5ce8708",
+      "size_bytes": 44178
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cc5987b9ce5/attempt-1/text.txt",
+      "sha256": "7c174668a35bd4e4ffbef2affe00cffc6a8016c98b3a6891ed288e014b07821c",
+      "size_bytes": 280
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cc5987b9ce5/attempt-1/page.json",
+      "sha256": "c76ae05acdf2369ed9a1bd54163f2e53b9c52a3c4a284beb5737b68810b8a877",
+      "size_bytes": 1414
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "network did not become idle (continuing)",
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

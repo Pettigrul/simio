@@ -1,0 +1,256 @@
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GP Repasse | Carros e motos com financiamento Banco BV</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,400;0,600;1,700;1,800&amp;display=swap">
+<style>
+:root{--bg:#000;--p:#111;--p2:#1a1a1a;--ln:#2a2a2a;--tx:#fff;--mt:#a8a8a8;--rd:#e60000;--rd2:#ff1a1a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 Saira,system-ui,sans-serif}
+img{max-width:100%}a{color:inherit}
+h1,h2,h3{font-style:italic;font-weight:800;line-height:1.05;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,8vw,4.6rem)}h2{font-size:clamp(1.7rem,5vw,2.6rem);margin-bottom:.4rem}h3{font-size:1.2rem}
+.w{max-width:1180px;margin:0 auto;padding:0 18px}section{padding:56px 0}
+.sub{color:var(--mt);margin:0 0 24px;max-width:60ch}
+button,.btn{font:600 .95rem Saira,sans-serif;cursor:pointer;border:0;border-radius:6px;padding:12px 18px;text-decoration:none;display:inline-block;text-align:center}
+.red{background:var(--rd);color:#fff}.red:hover{background:var(--rd2)}
+.out{background:transparent;color:#fff;border:1px solid #555}.out:hover{border-color:#fff}
+:focus-visible{outline:2px solid #fff;outline-offset:2px}
+header .w{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:8px;padding-bottom:8px}
+.logo{height:56px;display:block}nav{display:flex;gap:18px;align-items:center}nav a{text-decoration:none;color:var(--mt);font-weight:600}nav a:hover{color:#fff}
+@media(max-width:760px){nav a:not(.btn){display:none}}
+.hero{padding:40px 0 48px;background:linear-gradient(115deg,#000 55%,#2a0000 100%);border-bottom:3px solid var(--rd)}
+.hero p{font-size:1.15rem;color:#d6d6d6;max-width:52ch;margin:18px 0 26px}.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:34px}
+.trust div{background:rgba(255,255,255,.05);border-left:3px solid var(--rd);padding:12px 14px;font-size:.92rem;color:#ddd}.trust b{display:block;color:#fff}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:14px}.tabs button{background:var(--p2);color:#ccc;white-space:nowrap}.tabs .on{background:var(--rd);color:#fff}
+.flt{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:22px}
+input,select,textarea{width:100%;background:var(--p2);color:#fff;border:1px solid var(--ln);border-radius:6px;padding:11px;font:inherit}
+label{display:block;font-size:.85rem;color:var(--mt);margin-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.card{background:var(--p);border:1px solid var(--ln);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.ph{aspect-ratio:16/10;background:linear-gradient(135deg,#1c1c1c,#0a0a0a);display:grid;place-items:center;position:relative}.ph img{width:100%;height:100%;object-fit:cover}
+.ph b{font:italic 800 4.5rem Saira;color:#2b2b2b}.tag{position:absolute;top:10px;left:10px;background:var(--rd);font-size:.78rem;font-weight:600;padding:3px 9px;border-radius:4px}
+.bd{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}.m,.o{margin:0;color:var(--mt);font-size:.9rem}
+.pr{font:italic 800 1.7rem Saira;margin:6px 0 4px}.pr small{display:block;font:400 .75rem Saira;color:var(--mt)}.bt{display:grid;gap:8px;margin-top:auto}
+.bt button:first-child{background:var(--rd);color:#fff}.bt button:last-child{background:#128c4a;color:#fff}
+.two{display:grid;grid-template-columns:1fr;gap:24px}@media(min-width:900px){.two{grid-template-columns:330px 1fr}}
+.box{background:var(--p);border:1px solid var(--ln);border-radius:10px;padding:20px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.fg .full{grid-column:1/-1}
+.res{margin-top:14px;padding:14px;background:#1c0000;border:1px solid var(--rd);border-radius:8px}.res b{font:italic 800 1.9rem Saira}.res small{display:block;color:var(--mt);margin-top:6px}
+.dep{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.dep blockquote{margin:0;background:var(--p);border-left:3px solid var(--rd);padding:16px;color:#ddd}.dep cite{display:block;margin-top:8px;color:var(--mt);font-size:.85rem;font-style:normal}
+details{background:var(--p);border:1px solid var(--ln);border-radius:8px;padding:14px 16px;margin-bottom:8px}summary{cursor:pointer;font-weight:600}details p{color:var(--mt);margin:8px 0 0}
+footer{border-top:1px solid var(--ln);padding:28px 0 90px;color:var(--mt);font-size:.9rem}footer a{color:#fff}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.fab .wa{background:#128c4a;color:#fff;border-radius:40px;padding:13px 20px;box-shadow:0 4px 18px rgba(0,0,0,.6)}.fab .ch{background:var(--rd);color:#fff;border-radius:40px;padding:11px 18px}
+#chat{position:fixed;right:12px;bottom:calc(150px + env(safe-area-inset-bottom,0px));width:min(360px,calc(100vw - 24px));height:min(480px,60vh);background:var(--p);border:1px solid var(--rd);border-radius:12px;z-index:30;display:none;flex-direction:column}
+#chat.open{display:flex}#chat header{padding:12px 14px;background:var(--rd);font-weight:600;display:flex;justify-content:space-between}#chat header button{background:none;color:#fff;padding:0 4px}
+#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}.mb{max-width:86%;padding:9px 12px;border-radius:10px;background:var(--p2);font-size:.92rem;white-space:pre-line}.mb.u{align-self:flex-end;background:var(--rd)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}.chips button{background:var(--p2);color:#ddd;padding:6px 10px;font-size:.8rem;border:1px solid var(--ln)}
+#cf{display:flex;gap:6px;padding:10px;border-top:1px solid var(--ln)}
+#adm{position:fixed;inset:0;background:var(--bg);z-index:50;overflow:auto;display:none;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 40px}#adm.open{display:block}
+.at{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}.at button{background:var(--p2);color:#ccc}.at .on{background:var(--rd);color:#fff}
+.lead{background:var(--p);border:1px solid var(--ln);border-radius:8px;padding:14px;margin-bottom:10px;font-size:.9rem}.lead dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:8px 0}.lead dt{color:var(--mt)}.lead dd{margin:0;word-break:break-word}
+.row2{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row2 select{width:auto}.mini{padding:7px 12px;font-size:.82rem;background:var(--p2);color:#fff}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.kp div{background:var(--p);border:1px solid var(--ln);padding:16px;border-radius:8px}.kp b{font:italic 800 2rem Saira;display:block}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#fff;color:#000;padding:10px 18px;border-radius:6px;z-index:60;display:none;font-weight:600}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="w"><a href="#topo"><img class="logo" alt="GP Repasse" src="data:image/jpeg;base64,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"></a>
+<nav><a href="#estoque">Estoque</a><a href="#credito">Crédito BV</a><a href="#faq">Dúvidas</a><a class="btn red" href="#credito" data-t="sim">Simular agora</a></nav></div></header>
+<main id="topo">
+<div class="hero"><div class="w">
+<h1>Carro e moto com taxa de repasse e crédito pelo Banco BV.</h1>
+<p>Veja o estoque, simule a parcela e descubra se o seu crédito sai em minutos. Sem burocracia e com atendimento direto no WhatsApp.</p>
+<div class="row"><a class="btn red" href="#credito" data-t="sim">Descobrir minha aprovação</a><a class="btn out" href="#estoque">Ver estoque</a></div>
+<div class="trust"><div><b>Parceria Banco BV</b>Crédito facilitado para pessoa física</div><div><b>Garantia e procedência</b>Veículos com laudo e documentação conferida</div><div><b>Loja registrada</b>CNPJ <span class="cnpj">00.000.000/0001-00</span></div></div>
+</div></div>
+
+<section id="estoque"><div class="w">
+<h2>Oportunidades de repasse</h2><p class="sub">Unidades com taxa especial BV. O estoque muda rápido: veículos marcados como alta procura costumam sair primeiro.</p>
+<div class="tabs" id="tabs"><button class="on" data-c="novos">Carros novos</button><button class="" data-c="seminovos">Seminovos</button><button class="" data-c="usados">Usados</button><button class="" data-c="motos">Motos</button></div>
+<div class="flt"><select id="fm" aria-label="Marca"><option value="">Marca (todas)</option></select><input id="fmod" placeholder="Modelo" aria-label="Modelo" style=""><select id="fa" aria-label="Ano"><option value="0">Ano (todos)</option></select><select id="fp" aria-label="Preço"><option value="0">Preço (todos)</option><option value="40000">Até R$ 40 mil</option><option value="80000">Até R$ 80 mil</option><option value="120000">Até R$ 120 mil</option><option value="999999">Acima de R$ 120 mil</option></select><select id="fc" aria-label="Câmbio"><option value="">Câmbio (todos)</option><option>Manual</option><option>Automático</option></select></div>
+<div class="grid" id="grid"><p class="sub">Nenhum veículo com esses filtros. Limpe os filtros ou fale com a equipe: podemos buscar o veículo para você.</p></div></div></section>
+
+<section id="credito" style="background:#080808"><div class="w">
+<h2>Simule e libere seu crédito no Banco BV</h2><p class="sub">Escolha o valor, veja a parcela e envie seu cadastro. Nossa equipe confirma a análise com o banco e chama você no WhatsApp.</p>
+<div class="two">
+<div class="box"><h3>Simulador</h3><br>
+<label for="sv">Valor do veículo (R$)</label><input id="sv" type="number" value="60000" min="0" style=""><br><br>
+<label for="se">Entrada (R$)</label><input id="se" type="number" value="15000" min="0" style=""><br><br>
+<label for="sp">Prazo</label><select id="sp"><option>12</option><option>24</option><option>36</option><option selected="">48</option><option>60</option></select>
+<div class="res">Parcela estimada<br><b id="sr">48x de R$&nbsp;1.434</b><small>Simulação ilustrativa com taxa de <span id="tx">1,89</span>% ao mês. Taxa, prazo e aprovação final dependem da análise do Banco BV.</small></div></div>
+<div class="box"><h3>Cadastro para análise de crédito</h3><br>
+<div class="fg" id="lf">
+<div><label>Nome completo</label><input name="nome" autocomplete="name" style=""></div>
+<div><label>CPF</label><input name="cpf" inputmode="numeric" placeholder="000.000.000-00" style=""></div>
+<div><label>RG</label><input name="rg" style=""></div>
+<div><label>Data de nascimento</label><input name="nasc" type="date" style=""></div>
+<div class="full"><label>Endereço completo (rua, número, bairro, cidade/UF, CEP)</label><input name="end" autocomplete="street-address" style=""></div>
+<div><label>Renda comprovada mensal (R$)</label><input name="renda" type="number" style=""></div>
+<div><label>Estado civil</label><select name="civil"><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option></select></div>
+<div><label>Telefone / WhatsApp</label><input name="tel" type="tel" autocomplete="tel" style=""></div>
+<div><label>E-mail</label><input name="email" type="email" autocomplete="email" style=""></div>
+<div class="full"><label>Veículo de interesse</label><select name="veic" id="lv"><option>Outro / ainda não escolhi</option></select></div>
+<div class="full"><label style="display:flex;gap:8px;align-items:flex-start;color:#ccc"><input type="checkbox" id="lg" style="width: auto; margin-top: 4px;">Autorizo o uso dos meus dados pela GP Repasse e pelo Banco BV para análise de crédito, conforme a LGPD.</label></div>
+</div><br>
+<div class="row2"><button class="red" id="bs">Enviar cadastro para análise</button><button style="background:#128c4a;color:#fff" id="bw">Enviar pelo WhatsApp</button></div>
+</div></div></div></section>
+
+<section><div class="w"><h2>Quem já repassou com a GP</h2><p class="sub">Depoimentos de clientes.</p>
+<div class="dep" id="dep"><blockquote>Fechei meu financiamento em poucos dias e a parcela coube no bolso.<cite>Cliente GP Repasse</cite></blockquote><blockquote>Atendimento direto no WhatsApp, sem enrolação.<cite>Cliente GP Repasse</cite></blockquote><blockquote>Moto entregue com tudo certo na documentação.<cite>Cliente GP Repasse</cite></blockquote></div></div></section>
+
+<section id="faq" style="background:#080808"><div class="w two" style="grid-template-columns:1fr">
+<div><h2>Dúvidas sobre repasse</h2><br>
+<details><summary>O que é um veículo de repasse?</summary><p>É um veículo negociado com preço abaixo do praticado em lojas tradicionais, vindo de operações de troca, retomada ou compra em volume. Você paga menos pelo mesmo veículo.</p></details>
+<details><summary>Como funciona o financiamento pelo Banco BV?</summary><p>Você simula, envia o cadastro, o banco analisa e, aprovado o crédito, assinamos o contrato. Fale com a equipe para conferir taxas e prazos atuais.</p></details>
+<details><summary>Quais documentos preciso?</summary><p>CNH ou RG, CPF, comprovante de residência e comprovante de renda.</p></details>
+<details><summary>Aceitam meu veículo na troca?</summary><p>Avaliamos o seu veículo. Chame no WhatsApp com modelo, ano e quilometragem.</p></details>
+<details><summary>Os veículos têm garantia?</summary><p>Sim, conferimos documentação e procedência antes de anunciar. Os termos de garantia são combinados no fechamento.</p></details></div>
+<div class="box"><h3>Onde estamos</h3><p class="m" style="color:var(--mt)">Endereço: <span class="addr">Avenida Recife, 2323, ao lado do Armazém Coral</span><br>Horário: <span class="hrs">Seg a sex 8h às 18h | Sáb 8h às 13h</span></p><br><div class="row2"><a class="btn red" data-t="wa" data-wa="" target="_blank" rel="noopener" href="https://wa.me/5581999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GP%20Repasse%20e%20quero%20atendimento.">Falar no WhatsApp</a><a class="btn out" data-t="ig" target="_blank" rel="noopener" id="ig" href="https://www.instagram.com/gp_repasse/">Instagram @gp_repasse</a></div></div>
+</div></section>
+</main>
+<footer><div class="w">GP Repasse | CNPJ <span class="cnpj">00.000.000/0001-00</span> | Financiamento sujeito à análise e aprovação do Banco BV. Imagens ilustrativas; valores sujeitos a alteração.</div></footer>
+
+<div class="fab"><button class="ch" id="co">Atendimento 24h com IA</button><a class="btn wa" data-t="wa" data-wa="" target="_blank" rel="noopener" href="https://wa.me/5581999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20GP%20Repasse%20e%20quero%20atendimento.">Falar com um vendedor</a></div>
+<div id="chat" role="dialog" aria-label="Assistente GP Repasse"><header><span>Assistente GP Repasse</span><button id="cx" aria-label="Fechar">✕</button></header><div id="msgs"></div><div class="chips" id="chips"></div><form id="cf"><input id="ci" placeholder="Digite sua dúvida" autocomplete="off" style=""><button class="red">Enviar</button></form></div>
+
+<div id="adm"><div class="w"><div class="row2" style="justify-content:space-between"><h2>Painel GP Repasse</h2><button class="out" id="ax">Sair</button></div><div id="ab"></div></div></div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// Chave pública (anon): segura no navegador, pois o acesso é controlado por RLS no Supabase.
+const SB_URL='https://mkquzbwyjoaqbbnsafuz.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1rcXV6Ynd5am9hcWJibnNhZnV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM5MTU1MzEsImV4cCI6MjEwOTQ5MTUzMX0.0XvEFPHW-eZxEqEAPu2fD8NOpBe14oOYmLHtDpv3LIU';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+const C={wa:'5581999999999',cnpj:'00.000.000/0001-00',addr:'Avenida Recife, 2323, ao lado do Armazém Coral',hrs:'Seg a sex 8h às 18h | Sáb 8h às 13h',rate:1.89,
+dep:[['Fechei meu financiamento em poucos dias e a parcela coube no bolso.','Cliente GP Repasse'],['Atendimento direto no WhatsApp, sem enrolação.','Cliente GP Repasse'],['Moto entregue com tudo certo na documentação.','Cliente GP Repasse']]};
+const D=[
+{id:'d1',cat:'novos',marca:'Fiat',modelo:'Argo Drive 1.0',ano:2025,km:0,cambio:'Manual',preco:84900,opc:'Central multimídia',hot:1,on:1},
+{id:'d2',cat:'novos',marca:'Hyundai',modelo:'HB20 Comfort 1.0',ano:2025,km:0,cambio:'Automático',preco:89900,opc:'Ar-condicionado digital',hot:0,on:1},
+{id:'d3',cat:'seminovos',marca:'Volkswagen',modelo:'Polo Highline TSI',ano:2022,km:31000,cambio:'Automático',preco:92900,opc:'Teto solar',hot:1,on:1},
+{id:'d4',cat:'seminovos',marca:'Chevrolet',modelo:'Onix LT 1.0',ano:2021,km:42000,cambio:'Manual',preco:58900,opc:'Direção elétrica',hot:0,on:1},
+{id:'d5',cat:'usados',marca:'Fiat',modelo:'Palio Attractive 1.0',ano:2014,km:98000,cambio:'Manual',preco:27900,opc:'Ar e direção',hot:0,on:1},
+{id:'d6',cat:'usados',marca:'Renault',modelo:'Sandero Expression',ano:2016,km:84000,cambio:'Manual',preco:36900,opc:'Multimídia',hot:1,on:1},
+{id:'d7',cat:'motos',marca:'Honda',modelo:'CG 160 Fan',ano:2024,km:5200,cambio:'Manual',preco:15900,opc:'Partida elétrica',hot:1,on:1},
+{id:'d8',cat:'motos',marca:'Yamaha',modelo:'Fazer 250',ano:2023,km:12000,cambio:'Manual',preco:21900,opc:'Freios ABS',hot:0,on:1}];
+const CATS={novos:'Carros novos',seminovos:'Seminovos',usados:'Usados',motos:'Motos'};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const R=n=>(+n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+let stock=[],leads=[],ev={},cat='novos';
+const wa=t=>'https://wa.me/'+C.wa+(t?'?text='+encodeURIComponent(t):'');
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3200)}
+function track(k){ev[k]=(ev[k]||0)+1;try{sb.from('metrics').insert({k}).then(()=>{})}catch(e){}}
+const nz=v=>(v===undefined||v==='')?null:String(v);
+const leadRow=o=>({nome:o.nome,cpf:nz(o.cpf),rg:nz(o.rg),nasc:nz(o.nasc),endereco:nz(o.end),renda:nz(o.renda),civil:nz(o.civil),tel:o.tel,email:nz(o.email),veiculo:nz(o.veic),simulacao:nz(o.sim),origem:nz(o.src)});
+async function save(col,id,o){try{
+ if(col==='stock'){const r={cat:o.cat,marca:o.marca,modelo:o.modelo,ano:o.ano,km:o.km,cambio:o.cambio,preco:o.preco,opc:o.opc||null,hot:!!o.hot,ativo:!!o.on,img:o.img||null};
+  if(String(id).length===36){const{error}=await sb.from('stock').update(r).eq('id',id);return !error}
+  const{data,error}=await sb.from('stock').insert(r).select().single();if(data)o.id=data.id;return !error}
+ if(col==='leads'){if(String(id).length===36){const{error}=await sb.from('leads').update({status:o.status}).eq('id',id);return !error}
+  const{error}=await sb.from('leads').insert(leadRow(o));return !error}
+}catch(e){}return false}
+async function loadStock(){const{data}=await sb.from('stock').select('*').order('created_at');if(data){stock=data.map(r=>({...r,on:r.ativo?1:0,hot:r.hot?1:0}));fill();render()}}
+// ---- catalog
+function fill(){const v=stock.filter(x=>x.on&&x.cat===cat),ms=[...new Set(v.map(x=>x.marca))].sort(),ys=[...new Set(v.map(x=>x.ano))].sort((a,b)=>b-a);
+ $('#fm').innerHTML='<option value="">Marca (todas)</option>'+ms.map(m=>`<option>${esc(m)}</option>`).join('');
+ $('#fa').innerHTML='<option value="0">Ano (todos)</option>'+ys.map(y=>`<option>${y}</option>`).join('')}
+function render(){
+ $('#tabs').innerHTML=Object.entries(CATS).map(([k,n])=>`<button class="${k===cat?'on':''}" data-c="${k}">${n}</button>`).join('');
+ const m=$('#fm').value,q=$('#fmod').value.toLowerCase(),a=+$('#fa').value,p=+$('#fp').value,c=$('#fc').value;
+ const l=stock.filter(x=>x.on&&x.cat===cat&&(!m||x.marca===m)&&(!q||x.modelo.toLowerCase().includes(q))&&(!a||x.ano>=a)&&(!c||x.cambio===c)&&(!p||(p===999999?x.preco>120000:x.preco<=p)));
+ $('#grid').innerHTML=l.length?l.map(v=>`<article class="card"><div class="ph">${v.img?`<img alt="${esc(v.modelo)}" src="${esc(v.img)}">`:'<b>GP</b>'}${v.hot?'<span class="tag">Alta procura</span>':''}</div><div class="bd"><h3>${esc(v.marca)} ${esc(v.modelo)}</h3><p class="m">${v.ano} | ${(+v.km).toLocaleString('pt-BR')} km | ${esc(v.cambio)}</p><p class="o">${esc(v.opc)}</p><p class="pr">${R(v.preco)}<small>valor de repasse</small></p><div class="bt"><button data-sim="${esc(v.id)}">Simular financiamento BV</button><button data-int="${esc(v.id)}">Tenho interesse no WhatsApp</button></div></div></article>`).join(''):'<p class="sub">Nenhum veículo com esses filtros. Limpe os filtros ou fale com a equipe: podemos buscar o veículo para você.</p>';
+ const sel=$('#lv'),cur=sel.value;sel.innerHTML='<option>Outro / ainda não escolhi</option>'+stock.filter(x=>x.on).map(v=>`<option>${esc(v.marca+' '+v.modelo+' '+v.ano)}</option>`).join('');sel.value=cur||sel.options[0].value}
+$('#tabs').onclick=e=>{const c=e.target.dataset.c;if(c){cat=c;['#fm','#fa','#fp','#fc'].forEach(s=>$(s).selectedIndex=0);$('#fmod').value='';fill();render()}};
+['#fm','#fmod','#fa','#fp','#fc'].forEach(s=>$(s).oninput=render);
+$('#grid').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ const v=stock.find(x=>x.id===(b.dataset.sim||b.dataset.int));if(!v)return;
+ if(b.dataset.sim){track('sim');$('#sv').value=v.preco;$('#se').value=Math.round(v.preco*.25);$('#lv').value=v.marca+' '+v.modelo+' '+v.ano;calc();$('#credito').scrollIntoView()}
+ else{track('wa');open(wa(`Olá! Tenho interesse no ${v.marca} ${v.modelo} ${v.ano} (${R(v.preco)}) que vi no site da GP Repasse.`),'_blank')}};
+// ---- simulator
+function calc(){const v=+$('#sv').value||0,e=+$('#se').value||0,n=+$('#sp').value,i=C.rate/100,f=Math.max(v-e,0);
+ $('#sr').textContent=f?n+'x de '+R(f*i/(1-Math.pow(1+i,-n))):'-'}
+['#sv','#se','#sp'].forEach(s=>$(s).oninput=calc);
+function lead(src){const o={};$$('#lf [name]').forEach(i=>o[i.name]=i.value.trim());
+ o.sim=$('#sr').textContent;o.status='Novo';o.src=src;o.t=Date.now();return o}
+function msg(o){return `*Cadastro GP Repasse*\nNome: ${o.nome}\nCPF: ${o.cpf}\nRG: ${o.rg}\nNascimento: ${o.nasc}\nEndereço: ${o.end}\nRenda: ${o.renda}\nEstado civil: ${o.civil}\nTelefone: ${o.tel}\nE-mail: ${o.email}\nVeículo: ${o.veic}\nSimulação: ${o.sim} (entrada ${R($('#se').value)})`}
+function valid(){const o=lead('');if(!o.nome||!o.tel||!o.cpf){toast('Preencha nome, CPF e telefone.');return 0}if(!$('#lg').checked){toast('Aceite a autorização de uso dos dados.');return 0}return o}
+async function send(w){const o=valid();if(!o)return;o.src=w?'Site + WhatsApp':'Site';track('lead');const ok=await save('leads','l'+o.t.toString(36),o);
+ if(w)open(wa(msg(o)),'_blank');else toast(ok?'Cadastro enviado! Nossa equipe fala com você em breve.':'Não foi possível gravar aqui. Use "Enviar pelo WhatsApp" para concluir.')}
+$('#bs').onclick=()=>send(0);$('#bw').onclick=()=>send(1);
+// ---- chatbot
+let bs=0,bl={};
+function say(t,u){const d=document.createElement('div');d.className='mb'+(u?' u':'');d.textContent=t;$('#msgs').append(d);$('#msgs').scrollTop=1e9}
+function chips(a){$('#chips').innerHTML=a.map(x=>`<button type="button">${x}</button>`).join('')}
+const KB=[[/financ|bv|parcel|entrada|cr[eé]dit|aprova|empr[eé]st/,'Trabalhamos com o Banco BV. Você simula a parcela no site, envia o cadastro e o banco analisa o crédito. Pode ter entrada, e o prazo vai de 12 a 60 meses. A aprovação final depende da análise do banco.'],
+[/repasse/,'Repasse é um veículo negociado com preço abaixo do mercado, vindo de trocas e retomadas. Todos passam por conferência de documentação antes de anunciar.'],
+[/moto/,'Temos motos novas e seminovas. Veja na aba Motos do estoque e use os filtros por marca e preço.'],[/novo|0 ?km/,'Os carros novos ficam na aba Carros novos, com taxa especial BV em unidades selecionadas.'],
+[/seminov/,'Nos seminovos você encontra veículos com baixa quilometragem e documentação conferida. Veja na aba Seminovos.'],[/usad/,'Os usados têm o melhor custo-benefício para quem quer parcela menor. Veja na aba Usados.'],
+[/document|cnh|renda|comprov/,'Para análise você precisa de CNH ou RG, CPF, comprovante de residência e comprovante de renda.'],[/hor[aá]rio|endere|onde|local/,'Endereço: '+C.addr+'. Horário: '+C.hrs+'.'],
+[/troca|meu carro|minha moto/,'Avaliamos seu veículo na troca. Passe modelo, ano e quilometragem com um vendedor.']];
+function bot(t){const x=t.toLowerCase();
+ if(bs){if(bs===1){bl.nome=t;bs=2;return say('Prazer, '+t.split(' ')[0]+'! Qual o seu WhatsApp com DDD?')}
+  bl.tel=t;bs=0;chips(['Como funciona o financiamento?','Quais documentos?']);const o={nome:bl.nome,tel:bl.tel,status:'Novo',src:'Chatbot',t:Date.now(),veic:'A definir'};track('lead');save('leads','l'+o.t.toString(36),o);
+  say('Anotado! Um vendedor chama você. Se preferir adiantar, abra a conversa no WhatsApp.');const a=document.createElement('a');a.className='btn red';a.textContent='Abrir WhatsApp';a.target='_blank';a.href=wa('Olá! Sou '+bl.nome+' e falei com o assistente do site.');a.style.alignSelf='flex-start';$('#msgs').append(a);return}
+ if(/vendedor|atendente|humano|whats|interesse|quero|comprar/.test(x)){bs=1;chips([]);return say('Vou direcionar você a um vendedor. Qual o seu nome?')}
+ const k=KB.find(r=>r[0].test(x));say(k?k[1]:'Posso ajudar com estoque, financiamento BV, documentos, troca e horários. Se preferir, falo com um vendedor por você.');chips(['Falar com vendedor','Como funciona o financiamento?','Quais documentos?'])}
+$('#co').onclick=()=>{$('#chat').classList.add('open');if(!$('#msgs').children.length){track('chat');say('Olá! Sou o assistente da GP Repasse e respondo 24h. Como posso ajudar?');chips(['Como funciona o financiamento?','O que é repasse?','Quais documentos?','Falar com vendedor'])}};
+$('#cx').onclick=()=>$('#chat').classList.remove('open');
+$('#chips').onclick=e=>{if(e.target.tagName==='BUTTON'){say(e.target.textContent,1);bot(e.target.textContent)}};
+$('#cf').onsubmit=e=>{e.preventDefault();const t=$('#ci').value.trim();if(t){say(t,1);$('#ci').value='';bot(t)}};
+// ---- admin
+const ST=['Novo','Em análise BV','Pendência','Aprovado','Recusado'];
+const ROUTE_ADMIN=/\/admin\/?$/.test(location.pathname)||location.hash==='#admin';
+async function isAdm(){try{const{data}=await sb.rpc('eh_admin');return data===true}catch(e){return false}}
+function loginView(msg){$('#ab').innerHTML=`<div class="box" style="max-width:380px"><h3>Entrar como administrador</h3><br><label for="le">E-mail</label><input id="le" type="email" autocomplete="username"><br><br><label for="lp">Senha</label><input id="lp" type="password" autocomplete="current-password"><p class="sub" style="margin:10px 0">${msg||''}</p><button class="red" id="lb">Entrar</button></div>`}
+async function loadAdmin(){await loadStock();
+ const a=await sb.from('leads').select('*').order('created_at',{ascending:false});
+ leads=(a.data||[]).map(r=>({id:r.id,nome:r.nome,cpf:r.cpf,rg:r.rg,nasc:r.nasc,end:r.endereco,renda:r.renda,civil:r.civil,tel:r.tel,email:r.email,veic:r.veiculo,sim:r.simulacao,src:r.origem,status:r.status,t:Date.parse(r.created_at)}));
+ const m=await sb.from('metrics').select('k').limit(50000);ev2={};(m.data||[]).forEach(r=>ev2[r.k]=(ev2[r.k]||0)+1);adm('leads')}
+async function enterAdmin(){if(await isAdm())await loadAdmin();else{await sb.auth.signOut();location.replace('/')}}
+async function openAdmin(){$('#adm').classList.add('open');const{data:{session}}=await sb.auth.getSession();if(!session)return loginView();enterAdmin()}
+$('#ab').addEventListener('click',async e=>{if(e.target.id!=='lb')return;
+ const{error}=await sb.auth.signInWithPassword({email:$('#le').value.trim(),password:$('#lp').value});
+ if(error)return loginView('E-mail ou senha incorretos.');enterAdmin()});
+$('#ax').onclick=async()=>{await sb.auth.signOut();location.replace('/')};
+
+let admT='leads',seen={},ev2={},edit=null;
+function adm(t){admT=t;const tb=['leads','estoque','metricas'],nm={leads:'Leads ('+leads.length+')',estoque:'Estoque',metricas:'Métricas'};let h=`<div class="at">${tb.map(k=>`<button class="${k===t?'on':''}" data-at="${k}">${nm[k]}</button>`).join('')}</div>`;
+ if(t==='leads')h+=leads.length?leads.map(l=>`<div class="lead"><b>${esc(l.nome)}</b> | ${esc(l.src)} | ${new Date(l.t).toLocaleString('pt-BR')}<dl>${['cpf','rg','nasc','end','renda','civil','tel','email','veic','sim'].filter(k=>l[k]).map(k=>`<dt>${k}</dt><dd>${esc(l[k])}</dd>`).join('')}</dl><div class="row2"><select data-ls="${esc(l.id)}">${ST.map(s=>`<option${s===l.status?' selected':''}>${s}</option>`).join('')}</select><a class="btn mini" target="_blank" rel="noopener" href="https://wa.me/55${esc((l.tel||'').replace(/\D/g,''))}">WhatsApp</a><button class="mini" data-ld="${esc(l.id)}">Excluir</button></div></div>`).join(''):'<p class="sub">Nenhum cadastro ainda. Os envios do site aparecem aqui.</p>';
+ if(t==='estoque'){const v=edit||{cat:'novos',on:1,hot:0,ano:2025,km:0,cambio:'Manual'};
+  h+=`<div class="box"><h3>${edit?'Editar':'Novo'} veículo</h3><br><div class="fg" id="ef"><div><label>Categoria</label><select name="cat">${Object.entries(CATS).map(([k,n])=>`<option value="${k}"${k===v.cat?' selected':''}>${n}</option>`).join('')}</select></div><div><label>Marca</label><input name="marca" value="${esc(v.marca)}"></div><div><label>Modelo</label><input name="modelo" value="${esc(v.modelo)}"></div><div><label>Ano</label><input name="ano" type="number" value="${v.ano}"></div><div><label>Km</label><input name="km" type="number" value="${v.km}"></div><div><label>Câmbio</label><select name="cambio"><option${v.cambio==='Manual'?' selected':''}>Manual</option><option${v.cambio!=='Manual'?' selected':''}>Automático</option></select></div><div><label>Preço de repasse (R$)</label><input name="preco" type="number" value="${v.preco||''}"></div><div><label>Opcional principal</label><input name="opc" value="${esc(v.opc)}"></div><div><label>Foto</label><input id="ph" type="file" accept="image/*"></div><div><label><input type="checkbox" name="hot"${v.hot?' checked':''} style="width:auto"> Alta procura</label></div></div><br><div class="row2"><button class="red" id="es">Salvar</button>${edit?'<button class="out" id="ec">Cancelar</button>':''}</div></div><br>`+stock.map(x=>`<div class="lead"><b>${esc(x.marca)} ${esc(x.modelo)}</b> ${x.ano} | ${R(x.preco)} | ${CATS[x.cat]}${x.on?'':' (pausado)'}<div class="row2" style="margin-top:8px"><button class="mini" data-se="${esc(x.id)}">Editar</button><button class="mini" data-sp="${esc(x.id)}">${x.on?'Pausar':'Reativar'}</button><button class="mini" data-sd="${esc(x.id)}">Remover</button></div></div>`).join('')}
+ if(t==='metricas'){const m=Object.assign({},ev2);for(const k in ev)m[k]=Math.max(m[k]||0,ev[k]);
+  h+=`<div class="kp"><div><b>${m.view||0}</b>Acessos</div><div><b>${m.wa||0}</b>Cliques no WhatsApp</div><div><b>${m.sim||0}</b>Simulações iniciadas</div><div><b>${m.lead||0}</b>Cadastros enviados</div><div><b>${m.chat||0}</b>Chats abertos</div><div><b>${m.ig||0}</b>Cliques no Instagram</div></div>`}
+ $('#ab').innerHTML=h}
+$('#ab').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+ if(d.at){edit=null;return adm(d.at)}
+ if(d.ld&&confirm('Excluir cadastro?')){{const{error}=await sb.from('leads').delete().eq('id',d.ld);error?toast('Sem permissão'):loadAdmin()}}
+ const v=stock.find(x=>x.id===(d.se||d.sp||d.sd));
+ if(d.se){edit=v;adm('estoque')}
+ if(d.sp){v.on=v.on?0:1;await save('stock',v.id,v);render();adm('estoque')}
+ if(d.sd&&confirm('Remover veículo?')){stock=stock.filter(x=>x!==v);try{await sb.from('stock').delete().eq('id',v.id)}catch(x){}fill();render();adm('estoque')}
+ if(b.id==='ec'){edit=null;adm('estoque')}
+  if(b.id==='es'){const o=Object.assign({id:edit?edit.id:'v'+Date.now().toString(36),on:1,img:edit&&edit.img},{});
+  $$('#ef [name]').forEach(i=>o[i.name]=i.type==='checkbox'?+i.checked:(i.type==='number'?+i.value:i.value.trim()));
+  if(!o.marca||!o.modelo||!o.preco)return toast('Informe marca, modelo e preço.');
+  const f=$('#ph').files[0];if(f)o.img=await shrink(f);
+  const i=stock.findIndex(x=>x.id===o.id);i>=0?stock[i]=o:stock.push(o);
+  const ok=await save('stock',o.id,o);edit=null;fill();render();adm('estoque');toast(ok?'Salvo e publicado.':'Salvo só nesta sessão (sem banco conectado).')}};
+$('#ab').onchange=async e=>{const s=e.target.dataset.ls;if(s){const l=leads.find(x=>x.id===s);l.status=e.target.value;await save('leads',s,l)}};
+function shrink(f){return new Promise(r=>{const i=new Image;i.onload=()=>{const c=document.createElement('canvas'),k=Math.min(1,720/i.width);c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.7))};i.src=URL.createObjectURL(f)})}
+// ---- init
+$$('.cnpj').forEach(e=>e.textContent=C.cnpj);$('.addr').textContent=C.addr;$('.hrs').textContent=C.hrs;$('#tx').textContent=C.rate.toString().replace('.',',');
+$('#ig').href='https://www.instagram.com/gp_repasse/';
+$$('[data-wa]:not(button)').forEach(a=>a.href=wa('Olá! Vim pelo site da GP Repasse e quero atendimento.'));
+document.addEventListener('click',e=>{const t=e.target.closest('[data-t]');if(t)track(t.dataset.t)});
+$('#dep').innerHTML=C.dep.map(d=>`<blockquote>${esc(d[0])}<cite>${esc(d[1])}</cite></blockquote>`).join('');
+fill();render();calc();if(!ROUTE_ADMIN)track('view');
+loadStock();
+if(ROUTE_ADMIN)openAdmin();
+</script>
+
+
+</body></html>

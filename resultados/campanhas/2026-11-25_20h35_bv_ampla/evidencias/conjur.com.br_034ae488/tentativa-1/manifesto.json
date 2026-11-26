@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C034ae48874",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://conjur.com.br/2014-fev-26/atendente-financiamento-nao-considerada-bancaria/",
+  "final_url": "https://conjur.com.br/2014-fev-26/atendente-financiamento-nao-considerada-bancaria/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.21.82.158",
+  "collected_at": "2026-11-26T02:12:50.729913+00:00",
+  "manifest_written_at": "2026-11-26T02:13:00.243340+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C034ae48874/attempt-1/viewport.png",
+      "sha256": "f51480a933d5931d21cd250af1b9a8e4139f5b10f339c4395c510213d63f49d7",
+      "size_bytes": 146633
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C034ae48874/attempt-1/fullpage.png",
+      "sha256": "52f65a93a5a453b55fa010678af0ffd107fb6a7c41fcdcf4f42f561376369111",
+      "size_bytes": 493168
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C034ae48874/attempt-1/page.html.txt",
+      "sha256": "72845867e8347a2e94e70119791fe0ff17fd642147857bc71ca5c9e19181026d",
+      "size_bytes": 222353
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C034ae48874/attempt-1/text.txt",
+      "sha256": "65e305caa10f6443e6e90dd3a6a569929d8dc2e4d0756ecad8fcf4560af48bbf",
+      "size_bytes": 3670
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C034ae48874/attempt-1/page.json",
+      "sha256": "ceb3b163981080109e3fe64301596f2e7339da2724184813db602ccfe475d611",
+      "size_bytes": 25262
+    }
+  ],
+  "blocked_requests": [
+    "https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -> DNS resolution failed for invstatic101.creativecdn.com: [Errno -5] No address associated with hostname"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

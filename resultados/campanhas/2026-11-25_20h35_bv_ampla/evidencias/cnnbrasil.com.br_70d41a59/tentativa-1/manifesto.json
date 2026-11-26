@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C70d41a599a",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.cnnbrasil.com.br/economia/money/negocios/banco-bv-tem-lucro-liquido-de-r-481-milhoes-no-1o-trimestre/",
+  "final_url": "https://www.cnnbrasil.com.br/economia/money/negocios/banco-bv-tem-lucro-liquido-de-r-481-milhoes-no-1o-trimestre/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "192.0.66.204",
+  "collected_at": "2026-11-26T02:15:15.052256+00:00",
+  "manifest_written_at": "2026-11-26T02:15:24.287253+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C70d41a599a/attempt-1/viewport.png",
+      "sha256": "32a25b4ebba1827c3767c71973db9a3d29380e1703b2a1ee837aa0c17623a5dc",
+      "size_bytes": 765286
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C70d41a599a/attempt-1/fullpage.png",
+      "sha256": "8a956fdbadfbcc90625ce64c1e1cc21bb66becce1c3d0f28f983566a15690ba0",
+      "size_bytes": 1859221
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C70d41a599a/attempt-1/page.html.txt",
+      "sha256": "1e1b48aa93036f1598ff23c915ee0962a37c300c3718d225d068d0f817940836",
+      "size_bytes": 453861
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C70d41a599a/attempt-1/text.txt",
+      "sha256": "3d3fa6497d7f295e6cdb03a5f1fd6fff7b94ea81b3f8904e6c32884bb09650ee",
+      "size_bytes": 4673
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C70d41a599a/attempt-1/page.json",
+      "sha256": "77acd79146031bad96537ffa9c0bce8cf48ddcfc37d440a9d1bc71f5cbe947fb",
+      "size_bytes": 46313
+    }
+  ],
+  "blocked_requests": [
+    "https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -> DNS resolution failed for invstatic101.creativecdn.com: [Errno -5] No address associated with hostname",
+    "https://match.sharethrough.com/sync/v1?source_id=xTFJbLbs37tyhbKsPP9VC2cm&source_user_id=dca1352337&gdpr=0&gdpr_consent= -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://i.liadm.com/s/75145?bidder_id=195755&bidder_uuid=F5881761-01B2-4557-A692-31131AEE4DE6 -> DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,1642 @@
+<html lang="pt-br"><head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>(()=>{class RocketLazyLoadScripts{constructor(){this.v="2.0.5",this.userEvents=["keydown","keyup","mousedown","mouseup","mousemove","mouseover","mouseout","touchmove","touchstart","touchend","touchcancel","wheel","click","dblclick","input"],this.attributeEvents=["onblur","onclick","oncontextmenu","ondblclick","onfocus","onmousedown","onmouseenter","onmouseleave","onmousemove","onmouseout","onmouseover","onmouseup","onmousewheel","onscroll","onsubmit"]}async t(){this.i(),this.o(),/iP(ad|hone)/.test(navigator.userAgent)&&this.h(),this.u(),this.l(this),this.m(),this.k(this),this.p(this),this._(),await Promise.all([this.R(),this.L()]),this.lastBreath=Date.now(),this.S(this),this.P(),this.D(),this.O(),this.M(),await this.C(this.delayedScripts.normal),await this.C(this.delayedScripts.defer),await this.C(this.delayedScripts.async),await this.T(),await this.F(),await this.j(),await this.A(),window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this.lastTouchEnd&&await new Promise(t=>setTimeout(t,500-Date.now()+this.lastTouchEnd)),this.I(),this.H(),this.U(),this.W()}i(){this.CSPIssue=sessionStorage.getItem("rocketCSPIssue"),document.addEventListener("securitypolicyviolation",t=>{this.CSPIssue||"script-src-elem"!==t.violatedDirective||"data"!==t.blockedURI||(this.CSPIssue=!0,sessionStorage.setItem("rocketCSPIssue",!0))},{isRocket:!0})}o(){window.addEventListener("pageshow",t=>{this.persisted=t.persisted,this.realWindowLoadedFired=!0},{isRocket:!0}),window.addEventListener("pagehide",()=>{this.onFirstUserAction=null},{isRocket:!0})}h(){let t;function e(e){t=e}window.addEventListener("touchstart",e,{isRocket:!0}),window.addEventListener("touchend",function i(o){o.changedTouches[0]&&t.changedTouches[0]&&Math.abs(o.changedTouches[0].pageX-t.changedTouches[0].pageX)<10&&Math.abs(o.changedTouches[0].pageY-t.changedTouches[0].pageY)<10&&o.timeStamp-t.timeStamp<200&&(window.removeEventListener("touchstart",e,{isRocket:!0}),window.removeEventListener("touchend",i,{isRocket:!0}),"INPUT"===o.target.tagName&&"text"===o.target.type||(o.target.dispatchEvent(new TouchEvent("touchend",{target:o.target,bubbles:!0})),o.target.dispatchEvent(new MouseEvent("mouseover",{target:o.target,bubbles:!0})),o.target.dispatchEvent(new PointerEvent("click",{target:o.target,bubbles:!0,cancelable:!0,detail:1,clientX:o.changedTouches[0].clientX,clientY:o.changedTouches[0].clientY})),event.preventDefault()))},{isRocket:!0})}q(t){this.userActionTriggered||("mousemove"!==t.type||this.firstMousemoveIgnored?"keyup"===t.type||"mouseover"===t.type||"mouseout"===t.type||(this.userActionTriggered=!0,this.onFirstUserAction&&this.onFirstUserAction()):this.firstMousemoveIgnored=!0),"click"===t.type&&t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),"touchstart"===this.lastEvent&&"touchend"===t.type&&(this.lastTouchEnd=Date.now()),"click"===t.type&&(this.lastTouchEnd=0),this.lastEvent=t.type,t.composedPath&&t.composedPath()[0].getRootNode()instanceof ShadowRoot&&(t.rocketTarget=t.composedPath()[0]),this.savedUserEvents.push(t)}u(){this.savedUserEvents=[],this.userEventHandler=this.q.bind(this),this.userEvents.forEach(t=>window.addEventListener(t,this.userEventHandler,{passive:!1,isRocket:!0})),document.addEventListener("visibilitychange",this.userEventHandler,{isRocket:!0})}U(){this.userEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!1,isRocket:!0})),document.removeEventListener("visibilitychange",this.userEventHandler,{isRocket:!0}),this.savedUserEvents.forEach(t=>{(t.rocketTarget||t.target).dispatchEvent(new window[t.constructor.name](t.type,t))})}m(){const t="return false",e=Array.from(this.attributeEvents,t=>"data-rocket-"+t),i="["+this.attributeEvents.join("],[")+"]",o="[data-rocket-"+this.attributeEvents.join("],[data-rocket-")+"]",s=(e,i,o)=>{o&&o!==t&&(e.setAttribute("data-rocket-"+i,o),e["rocket"+i]=new Function("event",o),e.setAttribute(i,t))};new MutationObserver(t=>{for(const n of t)"attributes"===n.type&&(n.attributeName.startsWith("data-rocket-")||this.everythingLoaded?n.attributeName.startsWith("data-rocket-")&&this.everythingLoaded&&this.N(n.target,n.attributeName.substring(12)):s(n.target,n.attributeName,n.target.getAttribute(n.attributeName))),"childList"===n.type&&n.addedNodes.forEach(t=>{if(t.nodeType===Node.ELEMENT_NODE)if(this.everythingLoaded)for(const i of[t,...t.querySelectorAll(o)])for(const t of i.getAttributeNames())e.includes(t)&&this.N(i,t.substring(12));else for(const e of[t,...t.querySelectorAll(i)])for(const t of e.getAttributeNames())this.attributeEvents.includes(t)&&s(e,t,e.getAttribute(t))})}).observe(document,{subtree:!0,childList:!0,attributeFilter:[...this.attributeEvents,...e]})}I(){this.attributeEvents.forEach(t=>{document.querySelectorAll("[data-rocket-"+t+"]").forEach(e=>{this.N(e,t)})})}N(t,e){const i=t.getAttribute("data-rocket-"+e);i&&(t.setAttribute(e,i),t.removeAttribute("data-rocket-"+e))}k(t){Object.defineProperty(HTMLElement.prototype,"onclick",{get(){return this.rocketonclick||null},set(e){this.rocketonclick=e,this.setAttribute(t.everythingLoaded?"onclick":"data-rocket-onclick","this.rocketonclick(event)")}})}S(t){function e(e,i){let o=e[i];e[i]=null,Object.defineProperty(e,i,{get:()=>o,set(s){t.everythingLoaded?o=s:e["rocket"+i]=o=s}})}e(document,"onreadystatechange"),e(window,"onload"),e(window,"onpageshow");try{Object.defineProperty(document,"readyState",{get:()=>t.rocketReadyState,set(e){t.rocketReadyState=e},configurable:!0}),document.readyState="loading"}catch(t){console.log("WPRocket DJE readyState conflict, bypassing")}}l(t){this.originalAddEventListener=EventTarget.prototype.addEventListener,this.originalRemoveEventListener=EventTarget.prototype.removeEventListener,this.savedEventListeners=[],EventTarget.prototype.addEventListener=function(e,i,o){o&&o.isRocket||!t.B(e,this)&&!t.userEvents.includes(e)||t.B(e,this)&&!t.userActionTriggered||e.startsWith("rocket-")||t.everythingLoaded?t.originalAddEventListener.call(this,e,i,o):(t.savedEventListeners.push({target:this,remove:!1,type:e,func:i,options:o}),"mouseenter"!==e&&"mouseleave"!==e||t.originalAddEventListener.call(this,e,t.savedUserEvents.push,o))},EventTarget.prototype.removeEventListener=function(e,i,o){o&&o.isRocket||!t.B(e,this)&&!t.userEvents.includes(e)||t.B(e,this)&&!t.userActionTriggered||e.startsWith("rocket-")||t.everythingLoaded?t.originalRemoveEventListener.call(this,e,i,o):t.savedEventListeners.push({target:this,remove:!0,type:e,func:i,options:o})}}J(t,e){this.savedEventListeners=this.savedEventListeners.filter(i=>{let o=i.type,s=i.target||window;return e!==o||t!==s||(this.B(o,s)&&(i.type="rocket-"+o),this.$(i),!1)})}H(){EventTarget.prototype.addEventListener=this.originalAddEventListener,EventTarget.prototype.removeEventListener=this.originalRemoveEventListener,this.savedEventListeners.forEach(t=>this.$(t))}$(t){t.remove?this.originalRemoveEventListener.call(t.target,t.type,t.func,t.options):this.originalAddEventListener.call(t.target,t.type,t.func,t.options)}p(t){let e;function i(e){return t.everythingLoaded?e:e.split(" ").map(t=>"load"===t||t.startsWith("load.")?"rocket-jquery-load":t).join(" ")}function o(o){function s(e){const s=o.fn[e];o.fn[e]=o.fn.init.prototype[e]=function(){return this[0]===window&&t.userActionTriggered&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(t=>{const e=arguments[0][t];delete arguments[0][t],arguments[0][i(t)]=e})),s.apply(this,arguments),this}}if(o&&o.fn&&!t.allJQueries.includes(o)){const e={DOMContentLoaded:[],"rocket-DOMContentLoaded":[]};for(const t in e)document.addEventListener(t,()=>{e[t].forEach(t=>t())},{isRocket:!0});o.fn.ready=o.fn.init.prototype.ready=function(i){function s(){parseInt(o.fn.jquery)>2?setTimeout(()=>i.bind(document)(o)):i.bind(document)(o)}return"function"==typeof i&&(t.realDomReadyFired?!t.userActionTriggered||t.fauxDomReadyFired?s():e["rocket-DOMContentLoaded"].push(s):e.DOMContentLoaded.push(s)),this},s("on"),s("one"),s("off"),t.allJQueries.push(o)}e=o}t.allJQueries=[],o(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){o(t)}})}P(){const t=new Map;document.write=document.writeln=function(e){const i=document.currentScript,o=document.createRange(),s=i.parentElement;let n=t.get(i);void 0===n&&(n=i.nextSibling,t.set(i,n));const c=document.createDocumentFragment();o.setStart(c,0),c.appendChild(o.createContextualFragment(e)),s.insertBefore(c,n)}}async R(){return new Promise(t=>{this.userActionTriggered?t():this.onFirstUserAction=t})}async L(){return new Promise(t=>{document.addEventListener("DOMContentLoaded",()=>{this.realDomReadyFired=!0,t()},{isRocket:!0})})}async j(){return this.realWindowLoadedFired?Promise.resolve():new Promise(t=>{window.addEventListener("load",t,{isRocket:!0})})}M(){this.pendingScripts=[];this.scriptsMutationObserver=new MutationObserver(t=>{for(const e of t)e.addedNodes.forEach(t=>{"SCRIPT"!==t.tagName||!t.src||t.noModule||t.isWPRocket||this.pendingScripts.push({script:t,promise:new Promise(e=>{const i=()=>{const i=this.pendingScripts.findIndex(e=>e.script===t);i>=0&&this.pendingScripts.splice(i,1),e()};t.addEventListener("load",i,{isRocket:!0}),t.addEventListener("error",i,{isRocket:!0}),setTimeout(i,1e3)})})})}),this.scriptsMutationObserver.observe(document,{childList:!0,subtree:!0})}async F(){await this.X(),this.pendingScripts.length?(await this.pendingScripts[0].promise,await this.F()):this.scriptsMutationObserver.disconnect()}D(){this.delayedScripts={normal:[],async:[],defer:[]},document.querySelectorAll("script[type$=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _(){await this.L();let t=[];document.querySelectorAll("script[type$=rocketlazyloadscript][data-rocket-src]").forEach(e=>{let i=e.getAttribute("data-rocket-src");if(i&&!i.startsWith("data:")){i.startsWith("//")&&(i=location.protocol+i);try{const o=new URL(i).origin;o!==location.origin&&t.push({src:o,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}catch(t){}}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this.Y(t,"preconnect")}async G(t){if(await this.K(),!0!==t.noModule||!("noModule"in HTMLScriptElement.prototype))return new Promise(e=>{let i;function o(){(i||t).setAttribute("data-rocket-status","executed"),e()}try{if(navigator.userAgent.includes("Firefox/")||""===navigator.vendor||this.CSPIssue)i=document.createElement("script"),[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),i.setAttribute(e,t.nodeValue))}),t.text&&(i.text=t.text),t.nonce&&(i.nonce=t.nonce),i.hasAttribute("src")?(i.addEventListener("load",o,{isRocket:!0}),i.addEventListener("error",()=>{i.setAttribute("data-rocket-status","failed-network"),e()},{isRocket:!0}),setTimeout(()=>{i.isConnected||e()},1)):(i.text=t.text,o()),i.isWPRocket=!0,t.parentNode.replaceChild(i,t);else{const i=t.getAttribute("data-rocket-type"),s=t.getAttribute("data-rocket-src");i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",o,{isRocket:!0}),t.addEventListener("error",i=>{this.CSPIssue&&i.target.src.startsWith("data:")?(console.log("WPRocket: CSP fallback activated"),t.removeAttribute("src"),this.G(t).then(e)):(t.setAttribute("data-rocket-status","failed-network"),e())},{isRocket:!0}),s?(t.fetchPriority="high",t.removeAttribute("data-rocket-src"),t.src=s):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}}catch(i){t.setAttribute("data-rocket-status","failed-transform"),e()}});t.setAttribute("data-rocket-status","skipped")}async C(t){const e=t.shift();return e?(e.isConnected&&await this.G(e),this.C(t)):Promise.resolve()}O(){this.Y([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}Y(t,e){this.trash=this.trash||[];let i=!0;var o=document.createDocumentFragment();t.forEach(t=>{const s=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(s&&!s.startsWith("data:")){const n=document.createElement("link");n.href=s,n.rel=e,"preconnect"!==e&&(n.as="script",n.fetchPriority=i?"high":"low"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),t.nonce&&(n.nonce=t.nonce),o.appendChild(n),this.trash.push(n),i=!1}}),document.head.appendChild(o)}W(){this.trash.forEach(t=>t.remove())}async T(){try{document.readyState="interactive"}catch(t){}this.fauxDomReadyFired=!0;try{await this.K(),this.J(document,"readystatechange"),document.dispatchEvent(new Event("rocket-readystatechange")),await this.K(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.K(),this.J(document,"DOMContentLoaded"),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this.K(),this.J(window,"DOMContentLoaded"),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}catch(t){console.error(t)}}async A(){try{document.readyState="complete"}catch(t){}try{await this.K(),this.J(document,"readystatechange"),document.dispatchEvent(new Event("rocket-readystatechange")),await this.K(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.K(),this.J(window,"load"),window.dispatchEvent(new Event("rocket-load")),await this.K(),window.rocketonload&&window.rocketonload(),await this.K(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this.K(),this.J(window,"pageshow");const t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this.K(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}catch(t){console.error(t)}}async K(){Date.now()-this.lastBreath>45&&(await this.X(),this.lastBreath=Date.now())}async X(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}B(t,e=window){return e===document&&"readystatechange"===t||(e===document&&"DOMContentLoaded"===t||(e===window&&"DOMContentLoaded"===t||(e===window&&"load"===t||e===window&&"pageshow"===t)))}static run(){(new RocketLazyLoadScripts).t()}}RocketLazyLoadScripts.run()})();
+</script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chega em Ingleses a unidade física da Velox Soluções Financeiras</title>
+<style id="wpr-usedcss">@font-face{font-family:Roboto;font-style:italic;font-weight:100;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:italic;font-weight:300;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:italic;font-weight:400;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:italic;font-weight:500;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:italic;font-weight:700;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:italic;font-weight:900;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO5CnqEu92Fr1Mu53ZEC9_Vu3r1gIhOszmkBnka.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:normal;font-weight:100;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:normal;font-weight:300;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:normal;font-weight:400;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:normal;font-weight:500;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:normal;font-weight:700;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Roboto;font-style:normal;font-weight:900;font-stretch:100%;font-display:swap;src:url(https://acontecendoaqui.com.br/wp-content/cache/fonts/1/google-fonts/fonts/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}#submit{border:#00dd80;background-color:#00dd80;font-weight:600;padding:8px 30px;color:#000}img.emoji{display:inline!important;border:none!important;box-shadow:none!important;height:1em!important;width:1em!important;margin:0 .07em!important;vertical-align:-.1em!important;background:0 0!important;padding:0!important}:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.aligncenter{clear:both}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}:root{--wp--preset--aspect-ratio--square:1;--wp--preset--aspect-ratio--4-3:4/3;--wp--preset--aspect-ratio--3-4:3/4;--wp--preset--aspect-ratio--3-2:3/2;--wp--preset--aspect-ratio--2-3:2/3;--wp--preset--aspect-ratio--16-9:16/9;--wp--preset--aspect-ratio--9-16:9/16;--wp--preset--color--black:#000000;--wp--preset--color--cyan-bluish-gray:#abb8c3;--wp--preset--color--white:#ffffff;--wp--preset--color--pale-pink:#f78da7;--wp--preset--color--vivid-red:#cf2e2e;--wp--preset--color--luminous-vivid-orange:#ff6900;--wp--preset--color--luminous-vivid-amber:#fcb900;--wp--preset--color--light-green-cyan:#7bdcb5;--wp--preset--color--vivid-green-cyan:#00d084;--wp--preset--color--pale-cyan-blue:#8ed1fc;--wp--preset--color--vivid-cyan-blue:#0693e3;--wp--preset--color--vivid-purple:#9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple:linear-gradient(135deg,rgb(6, 147, 227) 0%,rgb(155, 81, 224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan:linear-gradient(135deg,rgb(122, 220, 180) 0%,rgb(0, 208, 130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange:linear-gradient(135deg,rgb(252, 185, 0) 0%,rgb(255, 105, 0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red:linear-gradient(135deg,rgb(255, 105, 0) 0%,rgb(207, 46, 46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray:linear-gradient(135deg,rgb(238, 238, 238) 0%,rgb(169, 184, 195) 100%);--wp--preset--gradient--cool-to-warm-spectrum:linear-gradient(135deg,rgb(74, 234, 220) 0%,rgb(151, 120, 209) 20%,rgb(207, 42, 186) 40%,rgb(238, 44, 130) 60%,rgb(251, 105, 98) 80%,rgb(254, 248, 76) 100%);--wp--preset--gradient--blush-light-purple:linear-gradient(135deg,rgb(255, 206, 236) 0%,rgb(152, 150, 240) 100%);--wp--preset--gradient--blush-bordeaux:linear-gradient(135deg,rgb(254, 205, 165) 0%,rgb(254, 45, 45) 50%,rgb(107, 0, 62) 100%);--wp--preset--gradient--luminous-dusk:linear-gradient(135deg,rgb(255, 203, 112) 0%,rgb(199, 81, 192) 50%,rgb(65, 88, 208) 100%);--wp--preset--gradient--pale-ocean:linear-gradient(135deg,rgb(255, 245, 203) 0%,rgb(182, 227, 212) 50%,rgb(51, 167, 181) 100%);--wp--preset--gradient--electric-grass:linear-gradient(135deg,rgb(202, 248, 128) 0%,rgb(113, 206, 126) 100%);--wp--preset--gradient--midnight:linear-gradient(135deg,rgb(2, 3, 129) 0%,rgb(40, 116, 252) 100%);--wp--preset--font-size--small:13px;--wp--preset--font-size--medium:20px;--wp--preset--font-size--large:36px;--wp--preset--font-size--x-large:42px;--wp--preset--spacing--20:0.44rem;--wp--preset--spacing--30:0.67rem;--wp--preset--spacing--40:1rem;--wp--preset--spacing--50:1.5rem;--wp--preset--spacing--60:2.25rem;--wp--preset--spacing--70:3.38rem;--wp--preset--spacing--80:5.06rem;--wp--preset--shadow--natural:6px 6px 9px rgba(0, 0, 0, .2);--wp--preset--shadow--deep:12px 12px 50px rgba(0, 0, 0, .4);--wp--preset--shadow--sharp:6px 6px 0px rgba(0, 0, 0, .2);--wp--preset--shadow--outlined:6px 6px 0px -3px rgb(255, 255, 255),6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp:6px 6px 0px rgb(0, 0, 0)}:where(body){margin:0}:where(.is-layout-flex){gap:.5em}:where(.is-layout-grid){gap:.5em}body{padding-top:0;padding-right:0;padding-bottom:0;padding-left:0}:root :where(.wp-element-button,.wp-block-button__link){background-color:#32373c;border-width:0;color:#fff;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;padding-top:calc(.667em + 2px);padding-right:calc(1.333em + 2px);padding-bottom:calc(.667em + 2px);padding-left:calc(1.333em + 2px);text-decoration:none;text-transform:inherit}.no-js .owl-carousel{display:block}.owl-height{transition:height .5s ease-in-out}.lity{z-index:9990;position:fixed;top:0;right:0;bottom:0;left:0;white-space:nowrap;background:#0b0b0b;background:rgba(0,0,0,.9);outline:0!important;opacity:0;-webkit-transition:opacity .3s;-o-transition:opacity .3s;transition:opacity .3s ease}.lity.lity-opened{opacity:1}.lity.lity-closed{opacity:0}.lity *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.lity-loader{z-index:9991;color:#fff;position:absolute;top:50%;margin-top:-.8em;width:100%;text-align:center;font-size:14px;font-family:Arial,Helvetica,sans-serif;opacity:0;-webkit-transition:opacity .3s;-o-transition:opacity .3s;transition:opacity .3s ease}.lity-loading .lity-loader{opacity:1}.lity-content{z-index:9993;width:100%;-webkit-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1);-webkit-transition:-webkit-transform .3s;transition:-webkit-transform .3s ease;-o-transition:-o-transform .3s;transition:transform .3s ease;transition:transform .3s ease,-webkit-transform .3s ease,-o-transform .3s ease}.lity-closed .lity-content,.lity-loading .lity-content{-webkit-transform:scale(.8);-ms-transform:scale(.8);-o-transform:scale(.8);transform:scale(.8)}.lity-content:after{content:'';position:absolute;left:0;top:0;bottom:0;display:block;right:0;width:auto;height:auto;z-index:-1;-webkit-box-shadow:0 0 8px rgba(0,0,0,.6);box-shadow:0 0 8px rgba(0,0,0,.6)}.lity-iframe-container{width:100%;height:0;padding-top:56.25%;overflow:auto;pointer-events:auto;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-overflow-scrolling:touch}.lity-iframe-container iframe{position:absolute;display:block;top:0;left:0;width:100%;height:100%;-webkit-box-shadow:0 0 8px rgba(0,0,0,.6);box-shadow:0 0 8px rgba(0,0,0,.6);background:#000}.lity-hide{display:none}:root{--transition:all ease 0.3s;--bege:#fdfbf3;--begeEscuro:#b59d6d;--preto:#000000;--preto-2:#2c2c2c;--branco:#ffffff;--rosa:#ff0050;--rosaClaro:#f81a98;--cinza:#ebebeb;--cinzaC4:#c4c4c4;--cinzaClaro:#cecece;--cinzaMuitoClaro:#fdfbf3;--cinzaMedio:#f6f6f6;--cinzaIntermediario:#808080;--cinzaEscuro:#6c6c6c;--marrom:#ca5c25;--azulClaro:#28c4d6;--azulMarinho:#264276;--verde:#c1d122;--laranja:#ff9000;--violeta:#5c25ff;--vermelho:#d00404;--salmao:#f5706b;--verdeEscuro:#00a335;--azulOpaco:#71a9d9;--placeholder:#646464;--filterLaranja:invert(51%) sepia(67%) saturate(986%) hue-rotate(360deg) brightness(104%) contrast(111%);--filterAzulClaro:invert(24%) sepia(94%) saturate(2401%) hue-rotate(148deg) brightness(88%) contrast(91%);--filterMarrom:invert(38%) sepia(83%) saturate(1272%) hue-rotate(346deg) brightness(95%) contrast(85%);--filterVermelho:invert(48%) sepia(62%) saturate(8925%) hue-rotate(343deg) brightness(101%) contrast(173%);--filterRosaClaro:invert(18%) sepia(62%) saturate(5925%) hue-rotate(313deg) brightness(101%) contrast(173%);--filterVerde:invert(3%) sepia(61%) saturate(5733%) hue-rotate(349deg) brightness(90%) contrast(79%);--filterVioleta:invert(73%) sepia(94%) saturate(5164%) hue-rotate(256deg) brightness(98%) contrast(106%);--filterSalmao:invert(39%) sepia(52%) saturate(3453%) hue-rotate(317deg) brightness(100%) contrast(92%);--filterPreto:invert(0%) sepia(85%) saturate(7438%) hue-rotate(291deg) brightness(0%) contrast(113%);--filterBranco:invert(98%) sepia(7%) saturate(228%) hue-rotate(254deg) brightness(117%) contrast(100%);--filterAzulOpaco:invert(78%) sepia(55%) saturate(2066%) hue-rotate(178deg) brightness(89%) contrast(90%)}a,article,body,canvas,center,del,div,em,embed,fieldset,figure,footer,form,h1,h2,h3,header,html,i,iframe,img,label,legend,li,nav,object,output,p,section,span,strong,table,tbody,time,tr,ul,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;text-decoration:none}article,figure,footer,header,nav,section{display:block}body{line-height:1}ul{list-style:none}table{border-collapse:collapse;border-spacing:0}*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}body{overflow-x:hidden;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}font{font-size:inherit!important;color:inherit!important;font-family:Telegraf!important}.titulo-2,.titulo-3{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:66px;line-height:76px;color:var(--preto)}.titulo-2{font-size:42px;line-height:50px}.titulo-3{font-size:38px;line-height:46px}@media (max-width:768px){.titulo-2{font-size:38px;line-height:41px}.titulo-3{font-size:30px;line-height:31px}}.form-newsletter .wpcf7-not-valid-tip{position:absolute;top:-22px;background:red;color:#fff;font-size:11px;padding:0 10px}.btn-newsletter{width:182px;height:60px;gap:10px;background:var(--azulOpaco);border-radius:5px;outline:0;border:none;display:flex;align-items:center;justify-content:center;transition:var(--transition);z-index:2;cursor:pointer;color:#fff;font-family:Roboto,sans-serif;font-size:16px;margin-top:10px}.btn-newsletter:hover{background:var(--preto)}.btn-topo{width:60px;height:60px;background:var(--cinzaMedio);border-radius:100%;display:flex;align-items:center;justify-content:center;transition:all ease .3s}.btn-topo:hover{background:var(--preto)}.btn-topo:hover img{filter:invert(95%) sepia(5%) saturate(19%) hue-rotate(193deg) brightness(105%) contrast(716%)}.form-row input,.form-row select,.form-row textarea{display:block;width:100%;max-width:751px;outline:0;height:67px;border:1px solid #cdcdcd;border-radius:5px;padding:0 19.5px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--placeholder)}.form-row textarea{height:125px;padding:19.5px;resize:none}.form-row select{-webkit-appearance:none;-moz-appearance:none;appearance:none}.form-row.select{position:relative}.form-row.select img{position:absolute;top:50%;transform:translateY(-50%);right:19.5px}.form-row ::-webkit-input-placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--placeholder)}.filter-banner-inner{background-color:rgba(0,0,0,.6);width:100%;height:100%;position:absolute;top:0;left:0;right:0;margin:auto;max-width:1140px;display:none}.filter-banner .filter-banner-inner{display:block!important}.form-row :-ms-input-placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--placeholder)}.form-row ::placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--placeholder)}.grid{width:100%;max-width:1160px;padding:0 10px;margin:0 auto;z-index:1;max-width:1140px!important}.container-iframe{position:relative;overflow:hidden;width:100%;padding-top:56.25%}@media (min-width:576px){.grid{max-width:540px}}@media (min-width:768px){.grid{max-width:720px}}@media (min-width:992px){.grid{max-width:960px}}@media (min-width:1200px){.grid{max-width:1160px}}.owl-item:not(.active){opacity:.5!important}.header-logo span{position:absolute;text-indent:-9999px;top:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden}.header .grid{display:flex;justify-content:space-between}.header .grid .col:first-child{width:100%;max-width:964px;display:flex;align-items:center;justify-content:space-between;background:var(--branco);padding:29px 0}.header .grid .col:last-child{width:100%;max-width:175px;min-width:175px;background:var(--preto);display:flex;align-items:center;justify-content:flex-end;position:relative}.header .grid .col:last-child:before{content:"";display:block;width:1000%;height:100%;background:var(--preto);position:absolute;top:0;right:-1000%}.header-menu{display:flex;align-items:center;justify-content:space-between}.header-menu ul{display:flex;align-items:center;justify-content:flex-end}.header-menu a{font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:16px;font-feature-settings:"kern" off;color:var(--preto);margin-right:60px;text-decoration:none}a.header-icon-busca{margin-right:90px}.header-menu-categorias{display:flex;align-items:center;justify-content:flex-end;font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:16px;font-feature-settings:"kern" off;color:var(--branco);text-decoration:none}.header-menu-categorias img{margin-left:27px}.submenu-categorias{overflow:hidden;display:none;background:var(--preto)}.submenu-categorias ul{display:flex;justify-content:flex-start;flex-wrap:wrap}.submenu-categorias li{width:calc(100% / 5)}.submenu-categorias a{display:block;width:100%;height:350px;position:relative;z-index:2;border-bottom:solid 3px var(--azulClaro)}.submenu-categorias a:before{content:"";width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:.4;transition:var(--transition)}.submenu-categorias a .thumb-menu{max-width:100%;object-fit:cover;object-position:center;width:100%;height:100%}.submenu-categorias a span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:199px;font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:52px;line-height:56px;letter-spacing:-.01em;color:var(--cinzaMuitoClaro)}.bg-menu-active{width:100%;height:100vh;position:fixed;left:0;z-index:9;display:none}.arrow-right.icon{color:#000;position:absolute;margin-left:2px;margin-top:10px;width:16px;height:2px;background-color:var(--branco)}.arrow-right.icon:before{content:"";position:absolute;right:1px;top:-5px;width:10px;height:10px;border-top:solid 2px var(--branco);border-right:solid 2px var(--branco);-webkit-transform:rotate(45deg);transform:rotate(45deg)}.submenu-categorias a .seta-menu{position:absolute;bottom:41px;right:33px}.submenu-categorias .ads-menu{width:auto}.submenu-categorias .ads-menu .ads span{color:var(--branco)}.submenu-categorias .ads-menu a{border-bottom:none;height:auto}.submenu-categorias .ads-menu a:before{display:none}.header-menu-categorias-mobile{display:none}.menu-mobile{background:var(--cinzaMedio);display:none}.menu-mobile li{display:block;width:100%;padding:22px 55px;border-bottom:solid 1px var(--cinza)}.menu-mobile li:first-child{padding-top:55px}.menu-mobile li:last-child{border-bottom:none}.menu-mobile li a{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:24px;line-height:32px;color:var(--preto);text-decoration:none}.menu-mobile li a img{filter:var(--filterRosaClaro);position:relative;top:5px;margin-left:16px}.menu-social-mobile{display:flex;align-items:center;justify-content:space-between;padding:140px 52px 50px}.menu-social-mobile a img{filter:var(--filterPreto)}.header-menus{position:absolute;width:100%;height:auto;z-index:10;display:none}.header-busca{position:absolute;height:100%;width:100%;z-index:9;background-color:var(--preto)}.header-busca-box{padding:20px 0 29px;background:var(--preto)}.header-busca-box form{display:flex;justify-content:space-between;align-items:center;width:100%}.header-busca input{display:block;width:100%;text-align:left;border:none;border-bottom:solid 2px var(--branco);height:55px;outline:0;margin-bottom:0;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:16px;letter-spacing:.02em;background:0 0;color:var(--branco)}.header-busca ::-webkit-input-placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:32px;letter-spacing:.02em;color:var(--cinzaIntermediario)}.header-busca :-ms-input-placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:32px;letter-spacing:.02em;color:var(--cinzaIntermediario)}.header-busca ::placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:32px;letter-spacing:.02em;color:var(--cinzaIntermediario)}.header-busca ::selection{background-color:var(--preto);color:var(--branco)}.header-busca ::-moz-selection{background-color:var(--preto);color:var(--branco)}.header-busca ::-o-selection{background-color:var(--preto);color:var(--branco)}.header-busca ::-ms-selection{background-color:var(--preto);color:var(--branco)}.header-busca ::-webkit-selection{background-color:var(--preto);color:var(--branco)}.header-busca button{outline:0;cursor:pointer;display:flex;align-items:center;justify-content:center;width:175px;min-width:175px;height:55px;margin-left:auto;background:0 0;border:none;font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:16px;color:var(--branco);border:solid 1px var(--cinzaClaro);border-radius:5px;margin-left:14px;transition:var(--transition)}.header-busca button:hover{background:var(--branco);color:var(--preto)}.header-busca button img{margin-left:17px}.header-logo span{display:none}@media (max-width:1420px){.submenu-categorias a{height:281px}.submenu-categorias a span{font-size:44px;line-height:50px}}@media (max-width:1199px){.submenu-categorias li{width:calc(100% / 3)}.submenu-categorias .ads-menu{width:calc((100% / 3) * 1)}}@media (max-width:991px){.header-menu-categorias-mobile{display:block;line-height:0}.submenu-categorias{position:absolute;top:0;display:block;transform:translateX(-100%);transition:var(--transition)}.submenu-categorias.open{transform:translateX(0)}.header-menu nav{display:none}.header .grid .col:last-child{display:none}.header .grid .col:first-child{max-width:100%;padding:45.38px 0 45.5px}a.header-icon-busca{margin:0}.grid{padding:0 20px}.header-logo img{width:183px;height:auto;display:block}}@media (max-width:768px){.submenu-categorias .ads-menu{width:calc((100% / 2) * 1)}.header-busca input{font-size:16px}.header-busca ::-webkit-input-placeholder{font-size:16px}.header-busca :-ms-input-placeholder{font-size:16px}.header-busca ::placeholder{font-size:16px}.header-busca-box{padding:50px 0}.header-busca-fechar{margin-bottom:40px}.header-busca button{font-size:19px}}@media (max-width:640px){.submenu-categorias li{width:100%}.submenu-categorias a span{font-size:52px}.submenu-categorias .ads-menu{width:100%}}@media (max-width:540px){.header-busca-box form{display:block}.header-busca button{font-size:19px;margin:20px auto 0}.submenu-categorias a{height:150px}.submenu-categorias a span{font-size:35px;line-height:30px}}.pre-footer{padding:20px 0;padding-bottom:35px}.pre-footer .grid{display:flex;align-items:center;justify-content:space-between}.pre-footer .grid .col:first-child{width:100%;max-width:554px;min-height:300px}.pre-footer .grid .col:last-child{width:100%;max-width:557px}.form-newsletter .form-row-flex{justify-content:flex-start}.titulo-newsletter{display:flex;align-items:center;font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:38px;line-height:46px;color:var(--preto)}.titulo-newsletter img{margin-right:14px}.form-newsletter .newsletter-text{max-width:333px;margin-bottom:23px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}.form-newsletter br{display:none}.form-row-flex{display:flex;align-items:center;justify-content:space-between}.form-newsletter input[type=email],.form-newsletter input[type=text]{width:98%;height:60px;border:1px solid var(--cinzaClaro);box-sizing:border-box;border-radius:5px;padding:0 15px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2);outline:0}.form-newsletter input[type=checkbox]{width:14px;height:14px;border:1px solid var(--cinzaClaro);box-sizing:border-box;border-radius:2px}.form-newsletter ::-webkit-input-placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}.form-newsletter :-ms-input-placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}.form-newsletter ::placeholder{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}.envia-noticia{width:100%;height:250px;display:flex;align-items:center;justify-content:space-between;background:var(--cinza);padding:34px 30px 34px 40px;border-radius:5px;text-decoration:none}.envia-noticia:hover strong{text-decoration:underline}.envia-noticia strong{display:block;max-width:181px;font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:38px;line-height:40px;margin-bottom:10px;color:var(--preto)}.envia-noticia p{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2);max-width:191px}.envia-noticia img{margin-top:-50px;width:305px}.newsletter-aceite{display:flex;align-items:center;margin-top:9px}.wpcf7-form-control.wpcf7-acceptance .wpcf7-list-item{margin-left:0}.wpcf7-form-control.wpcf7-acceptance .wpcf7-list-item input{margin-right:4px}.newsletter-aceite label{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--cinzaEscuro)}.newsletter-aceite label a{text-decoration:none;font-weight:600;color:var(--cinzaEscuro)}.ads img{display:block;height:auto;max-width:100%}@media (max-width:990px){.ads-header img{aspect-ratio:300/50}}.ads-container{display:table;position:relative;margin:0 auto}.ads span{display:flex;align-items:center;justify-content:space-between;margin-top:5px;margin-bottom:20px;font-size:12px;position:absolute;right:-43px;top:50%;transform:translateY(-50%) rotate(90deg)}.ads.ads-gbf span{margin-bottom:0}.ads-header{margin:20px 0}@media (max-width:1199px){.pre-footer .grid .col:first-child{max-width:364px}.form-newsletter .newsletter-text{margin-left:0}.form-row-flex{margin-left:0;flex-direction:column;gap:10px}.form-newsletter input[type=email],.form-newsletter input[type=text]{width:100%}.newsletter-aceite{margin-left:0}}@media (max-width:991px){.pre-footer .grid{flex-direction:column}.pre-footer .grid .col:first-child{max-width:100%}.form-newsletter{background:var(--cinzaMedio);padding:40px 50px;border-radius:5px}.form-newsletter .form-row-flex{align-items:initial}.form-newsletter input[type=email],.form-newsletter input[type=text]{width:100%}.envia-noticia{background:0 0;padding:51px 0 0}.envia-noticia img{margin-top:0}}@media (max-width:768px){.titulo-newsletter{font-size:26px}.form-newsletter input[type=email],.form-newsletter input[type=text]{width:310px}.envia-noticia img{max-width:220px}.envia-noticia strong{max-width:219px;font-size:26px;line-height:31px}}@media (max-width:570px){.form-newsletter{padding:30px 20px}.titulo-newsletter{font-size:18px}.titulo-newsletter img{margin-right:10px;width:16px}.form-newsletter .newsletter-text{margin-bottom:13px}.form-newsletter input[type=email],.form-newsletter input[type=text]{width:100%;height:40px;padding:0 12px}.btn-newsletter{height:40px;cursor:pointer}.btn-newsletter .active{cursor:pointer}.btn-newsletter img{width:16.13px;display:block}.envia-noticia img{max-width:138px}.envia-noticia{padding:0}.envia-noticia strong{line-height:46px;font-size:18px}.envia-noticia{height:210px}}.footer{background:var(--preto);position:relative;margin-top:105px;z-index:99}.footer-toggle{display:flex;justify-content:center;align-items:center;width:70px;height:70px;position:absolute;left:50%;transform:translateX(-50%);top:-70px;background:var(--preto);transition:var(--transition)}.footer-toggle:hover{background:var(--azulOpaco)}.footer .footer-menu{display:flex;justify-content:space-between;padding:104px 0 54px;margin-top:-400px}.footer .footer-menu .col:first-child{width:100%;max-width:362px}.footer .footer-menu .col:nth-child(2){width:100%;max-width:529px}.footer .footer-menu .col:last-child{width:100%;max-width:230px;min-width:230px}.footer-nav{display:flex;justify-content:flex-start}.footer-nav-list{width:180px}.footer-nav-list li{margin-bottom:19px}.footer-nav-list li:last-child{margin-bottom:0}.footer-nav-list a{text-decoration:none;color:var(--branco);font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:16px}.footer-nav-list a:hover{text-decoration:underline}.btn-footer{display:flex;justify-content:center;align-items:center;width:230px;height:60px;border:1px solid var(--cinzaIntermediario);border-radius:12px;font-family:Roboto,sans-serif;font-style:normal;font-weight:600;font-size:15.5px;line-height:16px;text-decoration:none;margin-bottom:20px;color:var(--branco);transition:var(--transition)}.btn-footer:hover{background:var(--branco);color:var(--preto)}.btn-footer img{display:block;margin-right:10px}.footer-bottom{border-top:solid 1px var(--preto-2);padding:49px 0}.footer-bottom .grid{display:flex;align-items:center;justify-content:space-between}.footer-bottom .grid .col:first-child{width:100%;max-width:271px;min-width:271px}.footer-bottom .grid .col:nth-child(2){width:100%;text-align:center}.footer-bottom .grid .col:last-child{width:100%;max-width:254px;min-width:254px;display:flex;align-items:center;justify-content:space-between}.footer-bottom .links-flex{display:flex;justify-content:center;align-items:center;gap:10px}.footer-social{display:flex;justify-content:space-between;align-items:center}.footer-social img{display:block;width:21px}.footer-politica{text-decoration:none;color:var(--cinzaClaro);font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:11px;line-height:12px}.footer-politica:hover{text-decoration:underline}.footer-direitos{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:11px;line-height:12px;color:var(--cinzaClaro);text-align:right}.logo-footer,.voltar-topo-bottom{display:none}@media (max-width:991px){.footer .footer-menu{flex-wrap:wrap;padding:60px 0}.footer .footer-menu .col:first-child{max-width:100%;text-align:center;margin-bottom:40px}.footer .footer-menu .col:nth-child(2){max-width:50%}}@media (max-width:768px){.logo-footer{display:block;margin:0 auto;margin-bottom:47px}.voltar-topo-bottom{display:block;margin:0 auto;margin-bottom:16px;margin-top:36px}.voltar-topo-bottom img{display:block;margin:0 auto}.logo-footer img{display:block;margin:0 auto}.footer-bottom>.grid{padding-top:50px}.footer .footer-menu .col:nth-child(2){max-width:100%}.footer-nav-list{width:100%;text-align:center}.footer-nav{flex-direction:column}.footer-nav-list li:last-child{margin-bottom:19px}.footer-nav{margin-bottom:18px}.footer .footer-menu .col:last-child{max-width:100%;min-width:100%}.btn-footer{margin-left:auto;margin-right:auto}.footer-bottom{border:none;padding-top:0}.footer .footer-menu{padding:60px 0 0}.footer-bottom .grid{flex-direction:column}.footer-social .grid{flex-direction:row}.footer-social{margin-bottom:20px}.footer-bottom .grid .col:nth-child(2){margin-bottom:20px}.footer-bottom .grid .col:last-child{flex-direction:column}.footer-direitos{text-align:center;margin-bottom:37px}.ads-gbbl{margin:14px auto 35px}.footer-politica{margin-left:0}}.btn-topo{position:fixed;right:40px;bottom:40px;z-index:10}.wpcf7 .wpcf7-response-output{font-size:13px;border-radius:3px;border-width:1.5px}.main-banner{text-align:center;width:100%;height:400px;background-repeat:no-repeat,repeat;background-position:center;align-items:center;display:flex;align-items:center;justify-content:center;position:relative;background-size:cover}.main-banner+.ads{margin-top:35px}.container{display:grid;margin:auto;height:auto}.main-banner img{position:absolute;object-fit:cover;object-position:center;width:100%;height:100%;top:0;left:0}.main-banner .slide-img{position:absolute;object-fit:cover;max-width:1140px;height:100%;top:0;left:50%;transform:translateX(-50%)}.main-banner .data-publicacao{letter-spacing:2px;width:100%;margin:auto;font-weight:300;color:var(--branco);text-transform:uppercase;font-family:Roboto,sans-serif;margin-bottom:15px}.main-banner h1{width:70%;margin:auto;color:var(--branco)}.main-banner .scroll{display:flex;justify-content:center;align-items:center;width:38px;height:21px;position:absolute;bottom:50px;cursor:pointer;z-index:1}.article+.ads{margin-top:5px}.ads-container{width:max-content!important;z-index:9}.ads-single{float:left;margin-right:60px}.entry-content span{font-family:inherit!important;font-size:inherit!important}.ads-container span{font-size:12px!important}.entry-content .content-inner{position:relative;width:70%;margin:auto;box-sizing:border-box}.entry-content a{text-decoration:none;color:var(--azulOpaco)}.entry-content a:hover{text-decoration:none;color:var(--azulMarinho)}.entry-content{margin-top:5px;position:relative;display:flex}.entry-content>.grid{position:relative}.entry-content em{font-style:italic}.entry-content div,.entry-content p{padding:10px 0}.entry-content div:after,.entry-content p:after{content:"";display:block}.entry-content div strong,.entry-content p strong{font-weight:700}.entry-content ul{padding-left:15px;width:70%;margin:auto;box-sizing:border-box}.entry-content ul li{list-style-type:disc}.entry-content div{max-width:100%!important}.entry-content h1{padding:10px 0;width:70%;margin:auto;text-align:center;font-size:48px;font-style:normal;font-weight:700;line-height:46px;color:var(--preto);margin-bottom:20px}.entry-content h2{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:38px;line-height:46px;color:var(--preto);padding-right:40%;margin-block:60px 30px}.entry-content h3{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:36px;line-height:46px;color:var(--preto);margin:44.26px auto 50px;width:70%;position:relative;padding-left:15%}.entry-content h3:before{content:"";width:18%;height:1px;background:var(--preto);display:block;position:absolute;left:0;top:19px;z-index:-1}.entry-content h3{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:34px;line-height:46px;color:var(--preto);margin:44.26px auto 50px;width:70%;position:relative;padding-left:15%}.entry-content h3:before{content:"";width:18%;height:1px;background:var(--preto);display:block;position:absolute;left:0;top:19px}.entry-content img{padding:0;height:auto}.entry-content h3+p>img{margin-top:-50px}.aligncenter,.alignleft,.alignright{display:block;padding:0!important}.aligncenter{float:none;margin:.5em auto 1em}.alignright{padding:0}.alignright img{float:right;margin-left:20px;margin-top:0!important}.alignleft{padding:0}.alignleft img{float:left;margin-left:0;border-right:20px solid;border-color:#fff;margin-top:0!important}.titulo-2 .subtitulo{letter-spacing:2px;width:100%;margin:auto;font-weight:300;color:var(--branco);font-family:Roboto,sans-serif;margin-bottom:15px;font-size:16px;text-transform:none;width:70%;display:block;line-height:1.5;margin-top:10px}@media (max-width:991px){.cta-whatsapp .grid{flex-wrap:wrap!important}}@media (max-width:768px){.main-banner h1{width:100%}.entry-content>.grid{padding:0 20px;width:inherit}.entry-content div{width:100%}.entry-content h1{width:100%;font-size:36px;line-height:40px;padding:0}.entry-content h2{width:100%;padding:0}.entry-content h3{width:100%}.entry-content h3::before{width:10%}.entry-content .content-inner,.entry-content p{width:100%}.entry-content img{max-width:100%;padding:20px 0;margin:0}.entry-content{margin-top:15px}.article+.ads{margin-top:15px}}@media (max-width:340px){.entry-content h1{font-size:32px;line-height:38px}}.related{padding:35px 0 57px;background-size:cover;background-repeat:no-repeat;background-position:center;position:relative;background-color:var(--cinzaMedio)}.related-background{top:0;width:100%;height:220px;background-color:var(--branco);display:block;position:absolute}.related-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:31px;position:relative}.related-loop{display:flex;justify-content:space-between}.related-item{width:100%;max-width:363px}.related-item a{text-decoration:none}.related-item figure{width:100%;height:207px;margin-bottom:20px;position:relative}.related-item figure img{object-fit:cover;object-position:center;width:100%;height:100%;border-radius:5px}.related-item strong{display:block;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:13px;line-height:22px;margin-bottom:3px;color:var(--cinzaIntermediario)}.related-item h2{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:18px;line-height:120%;color:var(--preto);margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.related .titulo-3{color:var(--cinzaClaro)}.related-item p{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}.gallery-item{float:initial!important;margin:10px;width:auto!important}.container-iframe iframe{max-width:100%;height:auto;aspect-ratio:16/9}@media (max-width:1199px){.related-item{max-width:293px}}@media (max-width:991px){.related-item{width:100%;max-width:215px}.posts-social{width:100%!important;position:relative!important;top:0!important;left:0!important}.posts-social .grid{display:flex!important;gap:10px!important}.posts-social img{margin:0!important}.titulo-2 .subtitulo{display:none}}@media (max-width:768px){.related-loop{flex-direction:column}.related-item{width:100%;max-width:100%;margin-bottom:30px}.related-item:last-child{margin-bottom:0}.related-item p{display:block}}@media(max-width:575px){.container-iframe iframe{width:100%;height:auto;aspect-ratio:16/9}}.posts-social{align-items:center;position:absolute;top:-12px;left:-60px;filter:var(--filterPreto);width:auto!important}.posts-social img{display:block;width:23px;padding:0;margin:15px 0;height:auto;fill:#fce57e}.social-desktop{display:block}.social-mobile{display:none}@media (max-width:991px){.social-mobile{display:block!important;margin:20px 0 50px}.social-desktop.posts-social .grid::before,.social-mobile.posts-social .grid::before{content:"Compartilhe:";font-weight:600}}.cta-whatsapp{margin:100px 0}.cta-whatsapp .grid{display:flex;flex-wrap:nowrap;gap:40px}.cta-whatsapp-inner{width:100%;border-radius:20px;background:var(--cinzaMedio);padding:50px;display:flex;flex-direction:column;box-shadow:0 10px 10px 0 rgba(0,0,0,.09)}.cta-whatsapp-inner figure{max-width:100px;max-height:100px;width:100%;margin:auto}.cta-whatsapp-inner figure img{width:100%;height:auto}.cta-whatsapp-inner span{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:22px;line-height:120%;color:var(--preto);text-align:center;max-width:400px;margin:auto;margin-bottom:20px}.cta-whatsapp-inner .bt-whats{width:auto;height:auto;padding:20px 50px;background:var(--verdeEscuro);color:var(--branco);border-radius:8px;display:flex;align-self:center;margin-bottom:20px;opacity:1}.cta-whatsapp-inner .bt-whats:hover{opacity:.7}.cta-whatsapp-inner p{text-align:center;max-width:400px;margin:auto}.cta-whatsapp-inner p strong{font-weight:500;place-content:center}.cta-whatsapp-inner{text-align:center}.cta-whatsapp input[type=email],.cta-whatsapp input[type=text]{width:98%;height:60px;border:1px solid var(--cinzaClaro);box-sizing:border-box;border-radius:5px;padding:0 15px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2);outline:0;margin:10px auto}.cta-whatsapp .btn-newsletter{margin:10px auto}.wpcf7-not-valid-tip{color:#dc3232!important;font-size:13px!important;margin:auto!important}a h2:hover{text-decoration:underline}a p:hover{text-decoration:underline}h2 a:hover{text-decoration:underline}.titulo-3:hover{text-decoration:none}.slide{position:relative}.slide .grid{position:relative;z-index:2}.slide .slide-img{position:absolute;object-fit:cover;max-width:1140px!important;height:100%;top:0;left:50%;transform:translateX(-50%);object-position:top}.slide strong{display:block;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:14px;line-height:22px;text-transform:uppercase;color:var(--branco);letter-spacing:.01em}.slide p{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--cinza);max-width:673px;padding-left:30px}.slide .owl-nav{position:absolute;top:11%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:flex-start;height:0}.slide .owl-nav button{margin:0!important;position:relative;left:-110px}.slide .owl-dots .owl-dot:hover span{background:var(--branco)!important;border-color:var(--branco)!important}@media (max-width:1420px){.slide .grid{max-width:910px}.slide .owl-nav button{left:0}}@media (max-width:1191px){.slide .owl-nav{flex-direction:row;top:initial;bottom:100px;transform:translateX(-50%);justify-content:flex-start;max-width:910px}}@media (max-width:991px){.slide .grid{max-width:720px;margin-bottom:50px}.slide .owl-nav{max-width:720px}}@media (max-width:768px){.slide p{margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.slide .grid{max-width:540px}.slide .owl-nav{max-width:540px}}.artigos-colunas{padding:35px 0 0}.artigos-colunas .grid{display:flex;justify-content:space-between}.artigos-colunas .grid .col:first-child{width:98%;max-width:654px}.artigos-colunas .grid .col:last-child{width:98%;max-width:437px}.card-artigo-coluna-big{width:100%;margin-bottom:50px}.card-artigo-coluna-big a{text-decoration:none}.card-artigo-coluna-big figure{width:100%;max-height:375px;position:relative;border-radius:5px;overflow:hidden;margin-bottom:30px}.card-artigo-coluna-big figure img{object-fit:cover;object-position:center;width:100%;height:auto;border-radius:5px}.card-artigo-coluna-big strong{display:block;margin-bottom:8px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:13px;line-height:22px;color:var(--cinzaIntermediario)}.card-artigo-coluna-big h2{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:30px;line-height:31px;color:var(--preto);margin-bottom:12px;padding-right:100px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.card-artigo-coluna-big p{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2)}.card-artigo-coluna-small{margin-bottom:40px}.card-artigo-coluna-small a{text-decoration:none;display:flex;justify-content:space-between;align-items:center}.card-artigo-coluna-small figure{width:227px;min-width:227px;height:130px;margin-right:25px}.card-artigo-coluna-small figure img{object-fit:cover;object-position:center;width:100%;height:100%;border-radius:5px}.card-artigo-coluna-small strong{display:block;margin-bottom:5px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:13px;line-height:22px;color:var(--cinzaIntermediario)}.card-artigo-coluna-small h2{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:18px;line-height:120%;color:var(--preto);margin-bottom:2px;padding-right:80px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.card-artigo-coluna-small p{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2);padding-right:50px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.card-artigo-coluna-medium{margin-bottom:40px}.card-artigo-coluna-medium a{text-decoration:none}.card-artigo-coluna-medium figure{width:100%;height:250px;border-radius:5px;overflow:hidden}.card-artigo-coluna-medium figure img{object-fit:cover;object-position:center;width:100%;height:100%;border-radius:5px}.card-artigo-coluna-body{background:var(--cinzaMedio);padding:30px 23px 35px 20px}.card-artigo-coluna-medium strong{display:block;margin-bottom:6px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:13px;line-height:22px;color:var(--cinzaIntermediario)}.card-artigo-coluna-medium h2{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:24px;line-height:120%;color:var(--preto);margin-bottom:9px;padding-right:40px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.card-artigo-coluna-medium p{font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:15.5px;line-height:22px;color:var(--preto-2);padding-right:50px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.card-artigo-coluna-nano{margin-bottom:45px;padding-bottom:45px;border-bottom:solid 1px var(--cinza)}.card-artigo-coluna-nano:last-child{margin:0;background-color:#ca5c25}.card-artigo-coluna-nano p{color:var(--preto-2);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.card-artigo-coluna-nano:last-child{border-bottom:none}.card-artigo-coluna-nano a{text-decoration:none;display:flex;justify-content:space-between}.card-artigo-coluna-nano figure{width:192px;min-width:192px;height:110px;margin-right:18px}.card-artigo-coluna-nano figure img{object-fit:cover;object-position:center;width:100%;height:100%;border-radius:5px}.card-artigo-coluna-nano strong{display:block;margin-top:4px;font-family:Roboto,sans-serif;font-style:normal;font-weight:400;font-size:13px;line-height:22px;color:var(--cinzaIntermediario)}.card-artigo-coluna-nano h2{font-family:Roboto,sans-serif;font-style:normal;font-weight:700;font-size:18px;line-height:120%;color:var(--preto);margin-bottom:2px;padding-right:0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}@media (max-width:1199px){.artigos-colunas .grid .col:first-child,.artigos-colunas .grid .col:last-child{max-width:454px}.card-artigo-coluna-big h2{padding-right:20px}.card-artigo-coluna-small figure{min-width:146px}}@media (max-width:991px){.artigos-colunas .grid .col:first-child,.artigos-colunas .grid .col:last-child{max-width:324px}.card-artigo-coluna-nano a,.card-artigo-coluna-small a{flex-direction:column}.card-artigo-coluna-nano figure,.card-artigo-coluna-small figure{width:100%;margin-bottom:20px;margin-right:0}}@media (max-width:768px){.artigos-colunas .grid{flex-wrap:wrap}.artigos-colunas .grid .col:last-child{max-width:100%}.artigos-colunas .grid .col:first-child{max-width:100%;width:100%}.artigos-colunas{padding:52px 0 0}.card-artigo-coluna-big h2,.card-artigo-coluna-nano h2,.card-artigo-coluna-small h2{font-size:18px;line-height:120%;margin-bottom:7px;padding:0}.card-artigo-coluna-big figure,.card-artigo-coluna-nano figure,.card-artigo-coluna-small figure{position:relative;width:auto;height:auto;border-radius:5px;overflow:hidden;margin-bottom:0}.card-artigo-coluna-big div,.card-artigo-coluna-nano div,.card-artigo-coluna-small div{border-radius:5px;box-shadow:none;padding:21px 46px 21px 29px}.card-artigo-coluna-big p,.card-artigo-coluna-nano p,.card-artigo-coluna-small p{padding:0;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.card-artigo-coluna-big,.card-artigo-coluna-small{margin-bottom:0}.artigos-colunas .grid .col:first-child .titulo-3{max-width:207px;word-break:break-all}}.wpcf7 .screen-reader-response{position:absolute;overflow:hidden;clip:rect(1px,1px,1px,1px);clip-path:inset(50%);height:1px;width:1px;margin:-1px;padding:0;border:0;word-wrap:normal!important;word-break:normal!important}.wpcf7 .hidden-fields-container{display:none}.wpcf7 form .wpcf7-response-output{margin:2em .5em 1em;padding:.2em 1em;border:2px solid #00a0d2}.wpcf7 form.init .wpcf7-response-output,.wpcf7 form.resetting .wpcf7-response-output,.wpcf7 form.submitting .wpcf7-response-output{display:none}.wpcf7 form.sent .wpcf7-response-output{border-color:#46b450}.wpcf7 form.aborted .wpcf7-response-output,.wpcf7 form.failed .wpcf7-response-output{border-color:#dc3232}.wpcf7 form.spam .wpcf7-response-output{border-color:#f56e28}.wpcf7 form.invalid .wpcf7-response-output,.wpcf7 form.payment-required .wpcf7-response-output,.wpcf7 form.unaccepted .wpcf7-response-output{border-color:#ffb900}.wpcf7-form-control-wrap{position:relative}.wpcf7-not-valid-tip{color:#dc3232;font-size:1em;font-weight:400;display:block}.use-floating-validation-tip .wpcf7-not-valid-tip{position:relative;top:-2ex;left:1em;z-index:100;border:1px solid #dc3232;background:#fff;padding:.2em .8em;width:24em}.wpcf7-list-item{display:inline-block;margin:0 0 0 1em}.wpcf7-spinner{visibility:hidden;display:inline-block;background-color:#23282d;opacity:.75;width:24px;height:24px;border:none;border-radius:100%;padding:0;margin:0 24px;position:relative}form.submitting .wpcf7-spinner{visibility:visible}.wpcf7-spinner::before{content:"";position:absolute;background-color:#fbfbfc;top:4px;left:4px;width:6px;height:6px;border:none;border-radius:100%;transform-origin:8px 8px;animation-name:spin;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite}@media (prefers-reduced-motion:reduce){.wpcf7-spinner::before{animation-name:blink;animation-duration:2s}}@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes blink{from{opacity:0}50%{opacity:1}to{opacity:0}}.wpcf7 [inert]{opacity:.5}.wpcf7 input[type=file]{cursor:pointer}.wpcf7 input[type=file]:disabled{cursor:default}.wpcf7 .wpcf7-submit:disabled{cursor:not-allowed}.wpcf7 input[type=email],.wpcf7 input[type=tel],.wpcf7 input[type=url]{direction:ltr}.submenu-categorias .categoria-1 a,.submenu-categorias .categoria-1 a .arrow-right.icon,.submenu-categorias .categoria-1 a:focus:before,.submenu-categorias .categoria-1 a:hover:before{background:#7ab7e5}.submenu-categorias .categoria-1 a,.submenu-categorias .categoria-1 a .arrow-right.icon:before{border-color:#7ab7e5}.submenu-categorias .categoria-2 a,.submenu-categorias .categoria-2 a .arrow-right.icon,.submenu-categorias .categoria-2 a:focus:before,.submenu-categorias .categoria-2 a:hover:before{background:#f29104}.submenu-categorias .categoria-2 a,.submenu-categorias .categoria-2 a .arrow-right.icon:before{border-color:#f29104}.submenu-categorias .categoria-3 a,.submenu-categorias .categoria-3 a .arrow-right.icon,.submenu-categorias .categoria-3 a:focus:before,.submenu-categorias .categoria-3 a:hover:before{background:#40b38c}.submenu-categorias .categoria-3 a,.submenu-categorias .categoria-3 a .arrow-right.icon:before{border-color:#40b38c}.submenu-categorias .categoria-4 a,.submenu-categorias .categoria-4 a .arrow-right.icon,.submenu-categorias .categoria-4 a:focus:before,.submenu-categorias .categoria-4 a:hover:before{background:#c00d0d}.submenu-categorias .categoria-4 a,.submenu-categorias .categoria-4 a .arrow-right.icon:before{border-color:#c00d0d}.submenu-categorias .categoria-5 a,.submenu-categorias .categoria-5 a .arrow-right.icon,.submenu-categorias .categoria-5 a:focus:before,.submenu-categorias .categoria-5 a:hover:before{background:#e6348b}.submenu-categorias .categoria-5 a,.submenu-categorias .categoria-5 a .arrow-right.icon:before{border-color:#e6348b}.submenu-categorias .categoria-6 a,.submenu-categorias .categoria-6 a .arrow-right.icon,.submenu-categorias .categoria-6 a:focus:before,.submenu-categorias .categoria-6 a:hover:before{background:#d0d609}.submenu-categorias .categoria-6 a,.submenu-categorias .categoria-6 a .arrow-right.icon:before{border-color:#d0d609}.submenu-categorias .categoria-7 a,.submenu-categorias .categoria-7 a .arrow-right.icon,.submenu-categorias .categoria-7 a:focus:before,.submenu-categorias .categoria-7 a:hover:before{background:#78509b}.submenu-categorias .categoria-7 a,.submenu-categorias .categoria-7 a .arrow-right.icon:before{border-color:#78509b}.submenu-categorias .categoria-8 a,.submenu-categorias .categoria-8 a .arrow-right.icon,.submenu-categorias .categoria-8 a:focus:before,.submenu-categorias .categoria-8 a:hover:before{background:#ffd004}.submenu-categorias .categoria-8 a,.submenu-categorias .categoria-8 a .arrow-right.icon:before{border-color:#ffd004}</style>
+
+        
+
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+	<meta name="description" content="Empresa está no mercado financeiro desde 2004 e vem se tornando sólida, contando com mais de 700 franqueados.">
+	<link rel="canonical" href="https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Chega em Ingleses a unidade física da Velox Soluções Financeiras">
+	<meta property="og:description" content="Empresa está no mercado financeiro desde 2004 e vem se tornando sólida, contando com mais de 700 franqueados.">
+	<meta property="og:url" content="https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/">
+	<meta property="og:site_name" content="Acontecendo Aqui">
+	<meta property="og:image" content="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-300x171.jpg">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:label1" content="Est. tempo de leitura">
+	<meta name="twitter:data1" content="4 minutos">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/","url":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/","name":"Chega em Ingleses a unidade física da Velox Soluções Financeiras","isPartOf":{"@id":"https:\/\/acontecendoaqui.com.br\/#website"},"primaryImageOfPage":{"@id":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/#primaryimage"},"image":{"@id":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/#primaryimage"},"thumbnailUrl":"https:\/\/acontecendoaqui.com.br\/wp-content\/uploads\/2023\/08\/3-33-300x171.jpg","datePublished":"2023-08-25T18:00:30+00:00","description":"Empresa está no mercado financeiro desde 2004 e vem se tornando sólida, contando com mais de 700 franqueados.","breadcrumb":{"@id":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/#breadcrumb"},"inLanguage":"pt-BR","potentialAction":[{"@type":"ReadAction","target":["https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/"]}]},{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/#primaryimage","url":"https:\/\/acontecendoaqui.com.br\/wp-content\/uploads\/2023\/08\/3-33.jpg","contentUrl":"https:\/\/acontecendoaqui.com.br\/wp-content\/uploads\/2023\/08\/3-33.jpg","width":875,"height":500},{"@type":"BreadcrumbList","@id":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https:\/\/acontecendoaqui.com.br\/"},{"@type":"ListItem","position":2,"name":"Notícias","item":"https:\/\/acontecendoaqui.com.br\/noticia\/"},{"@type":"ListItem","position":3,"name":"Chega em Ingleses a unidade física da Velox Soluções Financeiras"}]},{"@type":"WebSite","@id":"https:\/\/acontecendoaqui.com.br\/#website","url":"https:\/\/acontecendoaqui.com.br\/","name":"Acontecendo Aqui","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/acontecendoaqui.com.br\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"pt-BR"}]}</script>
+
+
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://acontecendoaqui.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facontecendoaqui.com.br%2Fempreendedorismo%2Fchega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras%2F">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://acontecendoaqui.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facontecendoaqui.com.br%2Fempreendedorismo%2Fchega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras%2F&amp;format=xml">
+<style id="wp-img-auto-sizes-contain-inline-css"></style>
+
+<style id="wp-emoji-styles-inline-css"></style>
+<style id="wp-block-library-inline-css"></style>
+<style id="classic-theme-styles-inline-css"></style>
+
+<style id="global-styles-inline-css"></style>
+
+
+
+
+
+
+
+
+<script id="googleapis-jquery-js" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/vendor/jquery/js/jquery-3.6.0.min.js?ver=3.6.0" data-rocket-defer="" defer=""></script>
+<script id="owlcarousel-js-js" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/vendor/owl/js/owl.carousel.min.js?ver=2.3.4" data-rocket-defer="" defer=""></script>
+<script id="lity-js-js" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/vendor/lity/js/lity.min.js?ver=2.4.3" data-rocket-defer="" defer=""></script>
+<script id="mask-js-js" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/vendor/mask/js/jquery.mask.min.js?ver=2.4.3" data-rocket-defer="" defer=""></script>
+<script data-minify="1" id="cidades-estados-js-js" src="https://acontecendoaqui.com.br/wp-content/cache/min/1/wp-content/themes/portal-aa/assets/vendor/cidades-estados/js/cidades-estados.js?ver=1792714093" data-rocket-defer="" defer=""></script>
+<script data-minify="1" id="main-js-js" src="https://acontecendoaqui.com.br/wp-content/cache/min/1/wp-content/themes/portal-aa/assets/js/geral.js?ver=1792714093" data-rocket-defer="" defer=""></script>
+<script data-minify="1" id="single-js-js" src="https://acontecendoaqui.com.br/wp-content/cache/min/1/wp-content/themes/portal-aa/assets/js/single.js?ver=1792714093" data-rocket-defer="" defer=""></script>
+<link rel="https://api.w.org/" href="https://acontecendoaqui.com.br/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://acontecendoaqui.com.br/wp-json/wp/v2/noticia/174139"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://acontecendoaqui.com.br/xmlrpc.php?rsd">
+<link rel="shortlink" href="https://acontecendoaqui.com.br/?p=174139">
+  
+  <script type="text/rocketlazyloadscript">
+    let wind = window;
+
+    let adoptMetaTag = wind.document.createElement("meta");
+    adoptMetaTag.name = "adopt-website-id";
+
+    adoptMetaTag.content = '8bfe915d-387f-45a7-888c-d377874af312';
+    wind.document.getElementsByTagName("head")[0].appendChild(adoptMetaTag);
+
+    let adoptTag = wind.document.createElement("script");
+    adoptTag.type = "text/javascript";
+    adoptTag.charset = "utf-8";
+    adoptTag.async = true;
+    adoptTag.src = `//tag.goadopt.io/injector.js?website_code=8bfe915d-387f-45a7-888c-d377874af312`;
+    wind.document.getElementsByTagName("head")[0].appendChild(adoptTag);
+  </script>
+<meta name="keywords" content="Santa Catarina, Ingleses, Empreendedorismo, Velox, Multibancos, Serviços financeiros, Itaú, Santander, Bradesco, Banco Pan, Banco BMG, Banco Safra, C6 Bank, Banco BV, Creditas, Banco do Brasil"><meta property="og:image" content="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33.jpg"><link rel="icon" href="https://acontecendoaqui.com.br/wp-content/uploads/2021/12/cropped-aa-32x32.png" sizes="32x32">
+<link rel="icon" href="https://acontecendoaqui.com.br/wp-content/uploads/2021/12/cropped-aa-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://acontecendoaqui.com.br/wp-content/uploads/2021/12/cropped-aa-180x180.png">
+<meta name="msapplication-TileImage" content="https://acontecendoaqui.com.br/wp-content/uploads/2021/12/cropped-aa-270x270.png">
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>
+    <!-- Google Tag Manager -->
+    <script type="text/rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5V3V459');</script>
+    <!-- End Google Tag Manager -->
+
+    <script type="text/rocketlazyloadscript" data-rocket-src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+
+        <script>window.addEventListener('load',function(){var s=document.createElement('script');s.src='https://receiver.posclick.dinamize.com/forms/js/336543_5553.js';document.body.appendChild(s);});</script>
+
+
+<meta name="generator" content="WP Rocket 3.24" data-wpr-features="wpr_remove_unused_css wpr_delay_js wpr_defer_js wpr_minify_js wpr_lazyload_images wpr_lazyload_iframes wpr_image_dimensions wpr_minify_css wpr_cdn wpr_host_fonts_locally wpr_desktop"><link href="https://www.google.com" rel="preconnect"></head>
+
+<body class="wp-singular noticia-template-default single single-noticia postid-174139 wp-theme-portal-aa noticia-chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras" data-template="https://acontecendoaqui.com.br/wp-content/themes/portal-aa" data-post-id="174139" data-post-type="noticia">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3V459"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+
+
+
+
+
+
+
+
+<div data-rocket-location-hash="0c8fdc95ef4187208ee454e7c7980a44" class="ads ads-gbf ads-header" data-hash="17956444791">
+
+    <div data-rocket-location-hash="88df13312b881318127433c2813d550e" class="ads-container">
+
+        <a target="_blank" aria-label="Publicidade: BC Segurança- Cabeçalho" href="https://bc.sc.gov.br/noticia/44778" data-post_id="261342">
+
+        <picture>
+
+            
+            <source width="300px" height="50px" media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/5837.8-WEBBANNER-300X50-ACONTECENDO-AQUI.jpg" srcset="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/5837.8-WEBBANNER-300X50-ACONTECENDO-AQUI.jpg">
+
+            
+            <img width="1140px" height="140px" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/5837.8-WEBBANNER-1140X140-ACONTECENDO-AQUI.jpg" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/5837.8-WEBBANNER-1140X140-ACONTECENDO-AQUI.jpg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img 
+                width="1140px" 
+                height="140px" 
+                src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/5837.8-WEBBANNER-1140X140-ACONTECENDO-AQUI.jpg" 
+                alt=""></noscript>
+
+        </picture>
+
+        </a>
+
+
+
+        <span>Publicidade</span>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<header data-rocket-location-hash="f7b38a696537257d66bcf6f9a513fd93" class="header" data-categorias="closed">
+
+
+
+    <div data-rocket-location-hash="df156e00e9ad430518a83a0f9f93a71f" class="grid">
+
+
+
+        <div data-rocket-location-hash="f794d2887a31d34bfaaf24dd6d0bdb27" class="col">
+
+
+
+            <a class="header-menu-categorias-mobile" href="#" data-status="close" data-icon-open="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu-mobile.svg" data-icon-close="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/fechar.svg" data-icon-voltar="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/voltar.svg">
+
+
+
+                <img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" class="icon-menu-hamburguer" alt="-" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu-mobile.svg"><noscript><img width="24" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu-mobile.svg" class="icon-menu-hamburguer" alt="-"></noscript>
+
+
+
+            </a>
+
+
+
+            
+
+
+
+            <a class="header-logo" href="https://acontecendoaqui.com.br">
+
+
+
+                
+                    <img width="245" height="42" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-acontecendo-aqui.svg" alt="Acontecendo Aqui" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-acontecendo-aqui.svg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="245" height="42" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-acontecendo-aqui.svg" alt="Acontecendo Aqui"></noscript>
+
+                
+
+
+            </a>
+
+
+
+
+
+
+
+            <div class="header-menu">
+
+
+
+            <nav>
+
+
+
+                    <ul>
+
+
+
+                        
+
+
+                        <li><a href="/vagas/">Vagas</a></li>
+
+
+
+                        
+
+
+                        <li><a href="/parceiros">Parceiros </a></li>
+
+
+
+                        
+
+
+                        <li><a href="https://acontecendoaqui.com.br/categorias/podcasts/">Podcasts</a></li>
+
+
+
+                        
+
+
+                        <li><a href="/colunistas/">Colunistas</a></li>
+
+
+
+                        
+
+
+                    </ul>
+
+
+
+                </nav>
+
+
+
+
+
+
+
+                <a class="header-icon-busca" href="#">
+
+
+
+                    <img width="24" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/busca.svg" data-open="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/busca.svg" data-close="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/fechar.svg" data-status="open" alt="Pesquisar" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/busca.svg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="24" height="24" 
+
+
+
+                    src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/busca.svg" 
+
+
+
+                    data-open="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/busca.svg" 
+
+
+
+                    data-close="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/fechar.svg" 
+
+
+
+                    data-status="open"
+
+
+
+                    alt="Pesquisar"></noscript>
+
+
+
+                </a>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <div data-rocket-location-hash="4c04869cb8389b5578d020b641599f6c" class="col">
+
+
+
+            <a class="header-menu-categorias" data-status="closed" href="#">
+
+
+
+                Categorias
+
+
+
+                <img width="24" height="24" data-icon-close="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/fechar-branco.svg" data-icon-open="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu.svg" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu.svg" class="icon-menu-hamburguer entered lazyloaded" alt="-" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu.svg" data-ll-status="loaded"><noscript><img width="24" height="24" data-icon-close="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/fechar-branco.svg" data-icon-open="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu.svg" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/menu.svg" class="icon-menu-hamburguer" alt="-"></noscript>
+
+
+
+            </a>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div data-rocket-location-hash="fe0ce6699de92597000ccfbf6fa3043e" class="header-menus">
+
+
+
+    <nav class="menu-mobile">
+
+
+
+            <ul>
+
+
+
+                
+
+
+                <li>
+
+
+
+                    <a href="#categorias" class="has-submenu">
+
+
+
+                        Categorias 
+
+
+
+                        
+
+
+                        <img class="seta-menu-mobile" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="-" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/seta-direita.svg?v=3"><noscript><img class="seta-menu-mobile" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/seta-direita.svg?v=3" alt="-"></noscript>
+
+
+
+                        
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <li>
+
+
+
+                    <a href="/vagas/" class="">
+
+
+
+                        Vagas 
+
+
+
+                        
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <li>
+
+
+
+                    <a href="/parceiros" class="">
+
+
+
+                        Parceiros 
+
+
+
+                        
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <li>
+
+
+
+                    <a href="/colunistas/" class="">
+
+
+
+                        Colunistas 
+
+
+
+                        
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+            </ul>
+
+
+
+
+
+
+
+            <div class="menu-social-mobile">
+
+
+
+                
+
+
+                <a target="_blank" href="https://twitter.com/acontecendoaqui"><img width="20" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3C/svg%3E" alt="Twitter" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg" alt="Twitter"></noscript></a>
+
+
+
+                
+
+
+                
+
+
+                
+
+
+                <a target="_blank" href="https://whatsapp.com/channel/0029VacOQP69RZAdeQrrpx0d"><img width="20" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3C/svg%3E" alt="Whatsapp" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg" alt="Whatsapp"></noscript></a>
+
+
+
+                
+
+
+                
+
+
+                <a target="_blank" href="https://www.facebook.com/acontecendo"><img width="19" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2019%2020'%3E%3C/svg%3E" alt="Facebook" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg"><noscript><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg" alt="Facebook"></noscript></a>
+
+
+
+                
+
+
+                
+
+
+                <a target="_blank" href="https://www.instagram.com/acontecendoaqui/"><img width="19" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2019%2020'%3E%3C/svg%3E" alt="Instagram" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/instagram.svg"><noscript><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/instagram.svg" alt="Instagram"></noscript></a>
+
+
+
+                
+
+
+                
+
+
+                <a target="_blank" href="https://www.youtube.com/channel/UCnWIf5t2aVwgbFOzgPvqMQg"><img width="20" height="18" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2018'%3E%3C/svg%3E" alt="youtube" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/youtube.svg"><noscript><img width="20" height="18" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/youtube.svg" alt="youtube"></noscript></a>
+
+
+
+                
+
+
+                
+
+
+            </div>
+
+
+
+        </nav>
+
+
+
+        <nav class="submenu-categorias">
+
+
+
+            <ul>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-1">
+
+
+
+                    <a href="/categorias/comunicacao">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-comunicacao" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-comunicacao.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-comunicacao.png" alt="categoria-comunicacao"></noscript>
+
+
+
+                        <span>comuni<br>cação</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-2">
+
+
+
+                    <a href="/categorias/marketing">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="Target-image-Shutterstock" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/Target-image-Shutterstock.jpeg"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/Target-image-Shutterstock.jpeg" alt="Target-image-Shutterstock"></noscript>
+
+
+
+                        <span>marke<br>ting</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-3">
+
+
+
+                    <a href="/categorias/tech">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-tech" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-tech.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-tech.png" alt="categoria-tech"></noscript>
+
+
+
+                        <span>tech</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-4">
+
+
+
+                    <a href="/categorias/inovacao">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-inovacao" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-inovacao.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-inovacao.png" alt="categoria-inovacao"></noscript>
+
+
+
+                        <span>inova<br>ção</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-5">
+
+
+
+                    <a href="/categorias/propaganda">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-propaganda" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-propaganda.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-propaganda.png" alt="categoria-propaganda"></noscript>
+
+
+
+                        <span>propa<br>ganda</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-6">
+
+
+
+                    <a href="/categorias/eventos">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-eventos" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-eventos.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-eventos.png" alt="categoria-eventos"></noscript>
+
+
+
+                        <span>eventos</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-7">
+
+
+
+                    <a href="/categorias/empreendedorismo">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-empreendedorismo" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-empreendedorismo.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-empreendedorismo.png" alt="categoria-empreendedorismo"></noscript>
+
+
+
+                        <span>empre<br>endedo<br>rismo</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <style></style>
+
+
+
+                <li class="categoria-8">
+
+
+
+                    <a href="/categorias/entrevistas">
+
+
+
+                        <img width="384" height="350" class="thumb-menu" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20384%20350'%3E%3C/svg%3E" alt="categoria-entrevistas" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-entrevistas.png"><noscript><img width="384" height="350" class="thumb-menu" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/categoria-entrevistas.png" alt="categoria-entrevistas"></noscript>
+
+
+
+                        <span>entre<br>vistas</span>
+
+
+
+                        <div class="seta-menu arrow-right icon"></div>
+
+
+
+                    </a>
+
+
+
+                </li>
+
+
+
+                
+
+
+                <li class="ads-menu">
+
+
+
+                
+
+<div class="ads ads-gbbl" data-hash="17956444792">
+
+    <div class="ads-container">
+
+        <a target="_blank" aria-label="Publicidade: SBT Credibilidade Geral" href="https://www.gruposcc.com.br/scc-sbt" data-post_id="257462">
+
+        <picture>
+
+            
+                <source width="336px" height="280px" media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif">
+
+            
+            <img width="336px" height="280px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20336%20280'%3E%3C/svg%3E" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif"><noscript><img 
+                width="336px" 
+                height="280px" 
+                src="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif" 
+                alt=""></noscript>
+
+        </picture>
+
+        </a>
+
+        <span class="">Publicidade</span>
+
+    </div>
+
+</div>
+
+
+
+
+                </li>
+
+
+
+            </ul>
+
+
+
+        </nav>
+
+
+
+    </div>
+
+
+
+    <div data-rocket-location-hash="1c847edf0ca8958111a6046bc327dd45" class="header-busca" style="display:none;">
+
+
+
+        <div data-rocket-location-hash="de11d2a2a6f5c8a8efb1e98723b37979" class="header-busca-box">
+
+
+
+            <div class="grid">
+
+
+
+                <form class="form-busca-header" action="https://acontecendoaqui.com.br/resultado-de-pesquisa/" data-din-capture="1">
+
+
+
+                    <input class="ipt-busca" type="text" name="q" placeholder="Procure no Acontecendo Aqui" required="" style="">
+
+
+
+                    <button class="submit-form-busca" type="submit">Buscar</button>
+
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+       
+
+
+
+</div></header>
+
+
+
+<div data-rocket-location-hash="63532dd9655927bf06ca19c30421b58d" class="bg-menu-active"></div>    <main data-rocket-location-hash="e7b31efa076e9de3cf7d7aaa017ccca1"><section class="main-banner  filter-banner">
+
+    <picture>
+        <source media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/2-23.jpg" srcset="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/2-23.jpg">
+        <img src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/1-24.jpg" alt="Chega em Ingleses a unidade física da Velox Soluções Financeiras" class="slide-img entered lazyloaded" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/1-24.jpg" data-ll-status="loaded"><noscript><img src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/1-24.jpg" alt="Chega em Ingleses a unidade física da Velox Soluções Financeiras" class="slide-img"></noscript>
+        <div class="filter-banner-inner">
+        </div>
+    </picture>
+
+    <div class="grid ">
+        <div class="container">
+                            <span class="data-publicacao">25 de Agosto de 2023</span>
+                        <div class="titulo-2">
+                                    <h1>Chega em Ingleses a unidade física da Velox Soluções Financeiras</h1>
+                                                    <h2 class="subtitulo">Empresa é correspondente multibancos e presta uma gama de serviços financeiros</h2>
+                            </div>
+        </div>
+    </div>
+    <span class="scroll">
+        <img width="32" height="18" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/down.svg" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/down.svg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="32" height="18" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/down.svg"></noscript>
+    </span>
+</section>
+
+
+
+
+<div class="ads ads-gbf" data-hash="17956444793">
+
+    
+    <style></style>
+
+    
+    <div class="ads-container">
+
+        <a target="_blank" aria-label="Publicidade: Alesc Full" href="https://www.alesc.sc.gov.br/agencia/" data-post_id="261839">
+
+        <picture>
+
+            
+            <img width="1140px" height="140px" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/BANNER-SAUDE-1140-x-140px.jpg" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/BANNER-SAUDE-1140-x-140px.jpg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img 
+                width="1140px" 
+                height="140px" 
+                src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/BANNER-SAUDE-1140-x-140px.jpg" 
+                alt=""></noscript>
+
+        </picture>
+
+        </a>
+
+
+
+        <span>Publicidade</span>
+
+    </div>
+
+</div>
+
+
+
+
+<article class="article" id="post-174139">
+
+    <div class="entry-content">
+
+        <div class="grid">
+
+            <div class="content-inner">
+
+                <div class="social-desktop posts-social">
+                    <div class="grid">
+
+                        
+                        <a target="_blank" href="https://twitter.com/intent/tweet?text=https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/"><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg" alt="Twitter" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg" alt="Twitter"></noscript></a>
+
+                        <a target="_blank" href="https://wa.me/?text=https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/"><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg" alt="Whatsapp" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg" alt="Whatsapp"></noscript></a>
+
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/"><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg" alt="Facebook" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg" alt="Facebook"></noscript></a>
+                    </div>
+                </div>
+
+                
+
+
+                
+                                    
+                
+                                <p>A Velox é correspondente multibancos e presta uma gama de serviços financeiros para pessoas físicas e jurídicas. Está no mercado financeiro desde 2004 e vem se tornando uma empresa sólida com seus mais de 700 franqueados.</p>
+<p>Dentre as instituições financeiras do país representadas pela Velox, estão: Itaú, Santander, Bradesco, Banco Pan, Banco BMG, Banco Safra, C6 Bank, Banco BV, Creditas, Banco do Brasil, e muito mais.</p><div class="ads ads-single ads-gbbl" data-hash="17956444794"><div class="ads-container"><a target="_blank" aria-label="Publicidade: SBT Credibilidade Geral" href="https://www.gruposcc.com.br/scc-sbt" data-post_id="257462"><picture><source width="336px" height="280px" media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif" srcset="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif"><img decoding="async" width="336px" height="280px" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif" data-ll-status="loaded" class="entered lazyloaded"><noscript><img decoding="async" 
+                        width="336px" 
+                        height="280px" 
+                        src="https://acontecendoaqui.com.br/wp-content/uploads/2026/07/BANNERS_AA_336X280.gif" 
+                        alt=""></noscript></picture></a><span>Publicidade</span></div></div>
+<h3><strong>Presta serviços financeiros como: </strong></h3>
+<p><strong>Financiamento imobiliário:</strong> representa Itaú, Bradesco, Santander, Banco do Brasil, dentre outros, e opera com taxas competitivas do mercado financeiro e menor burocracia.</p>
+<p><strong>Financiamento de automóveis:</strong> é parceira da BV Financeira, Creditas e Dryve. Oferece as melhores taxas do mercado.</p>
+<p><strong>Seguros </strong>de automóveis, vida, residencial, empresarial e 180+. Possui parceria com as maiores instituições do país, entre elas: Porto Seguro, Liberty Seguros, HDI Seguros, Azul Seguros, Tokio Seguros, SulAmérica, Suhai e mais uma série de seguradoras.</p>
+<p><strong>Crédito pessoal:</strong> é possível utilizar o seu automóvel ou imóvel como garantia para conseguir taxas reduzidas e prazos mais longos, ou então, fazer um empréstimo direto no seu cartão de crédito, liberando o dinheiro na hora.</p>
+<p><strong>Crédito Consignado</strong> para aposentados e Pensionistas do INSS / Forças armadas / Servidores Públicos municipais, estaduais e federais, e ainda Crédito Consignado Privado para empresas ofertarem como benefícios aos seus colaboradores.</p>
+<p><strong>Antecipação do saque aniversário do FGTS:</strong> antecipa até 10 anos do seu saque aniversário do FGTS, liberando o dinheiro na sua conta de forma praticamente imediata.</p>
+<p><strong>Consórcios</strong> de imóveis, carros, motos, veículos náuticos, eletrodomésticos e serviços. – Energia Solar: desde o projeto até o financiamento.</p>
+<p><strong>Limpa Nome:</strong> para quem precisa recuperar o seu crédito no mercado e aumentar o seu Score.</p>
+<p><strong>Soluções empresariais:</strong> capital de giro, revisão tributária, cartão de multibenefícios, entre outros. A Velox ajuda sua empresa a pensar em maximizar os benefícios oferecidos aos seus colaboradores.</p>
+<p><strong>Com o Cartão Multibenefícios do iFood:</strong> este cartão inovador não só facilita as transações diárias, mas também oferece uma variedade de vantagens, como descontos exclusivos em estabelecimentos parceiros, programas de incentivo à saúde e bem-estar, além de acesso a serviços de lazer e entretenimento.</p>
+<p>Imagine seus colaboradores desfrutando de refeições em seus restaurantes favoritos, pedindo refeição pelo iFood com descontos especiais ou ainda comprando em seu supermercado preferido? Isso tudo com um único cartão e ele mesmo podendo gerir o valor que utilizará para cada segmentação. O acesso é feito direto pelo seu APP a qualquer momento.</p>
+<p>Possui colaboradores onde não tem iFood? Não tem problemas, as transações ocorrem em qualquer estabelecimento que seja alimentício.</p>
+<p><strong>Crédito Consignado Privado:</strong> sabemos que uma preocupação frequente entre os colaboradores é a gestão de suas finanças pessoais. O Crédito Consignado surge como uma solução inteligente, permitindo que os funcionários acessem empréstimos com taxas de juros reduzidas e descontos diretos em folha de pagamento. Ao oferecer esse serviço, você proporciona a seus colaboradores a oportunidade de lidar com despesas inesperadas, investir em educação ou até mesmo consolidar dívidas, aliviando assim suas preocupações financeiras.</p>
+<p>Além disso, ao demonstrar esse compromisso com o bem-estar financeiro, você também estará fortalecendo o vínculo de confiança entre a equipe e a empresa. O Crédito Consignado não apenas oferece assistência financeira, mas também transmite a mensagem de que a organização se preocupa com o sucesso financeiro de seus funcionários.</p>
+<p><strong>Descontos em Contratação de Seguros:</strong> a segurança é primordial, seja no trabalho ou na vida pessoal. Por meio de nossa parceria de descontos em seguros, vocês podem proteger o que mais importa com tranquilidade, sabendo que estão obtendo as melhores opções a preços especiais.</p>
+<p>A Velox vai ter o serviço financeiro ideal para ajudar você, sua família e sua empresa.</p>
+<p>Katia Thiesen, sócia e diretora da Velox diz que, <em>“O mundo financeiro pode ser mais humanizado e burocrático, aqui na Velox nossa missão é ajudar pessoas a atingirem seus objetivos através de Soluções Financeiras aliado a um modelo de negócio justo e eficaz, criando vínculos de longo prazo. Queremos ser reconhecidos como a mais completa rede de varejo para produtos financeiros, através de um plano voltado ao sucesso de nossos parceiros e clientes. Prezamos pelo respeito, comprometimento, persistência, empatia, excelência e transparência”</em>, conclui.</p>
+<p><img decoding="async" class="aligncenter wp-image-174149" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20600%20343'%3E%3C/svg%3E" alt="" width="600" height="343" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-300x171.jpg 300w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-768x439.jpg 768w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-654x375.jpg 654w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-364x208.jpg 364w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-228x130.jpg 228w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-169x97.jpg 169w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33.jpg 875w" data-lazy-sizes="(max-width: 600px) 100vw, 600px" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-300x171.jpg"><noscript><img decoding="async" class="aligncenter wp-image-174149" src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-300x171.jpg" alt="" width="600" height="343" srcset="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-300x171.jpg 300w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-768x439.jpg 768w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-654x375.jpg 654w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-364x208.jpg 364w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-228x130.jpg 228w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33-169x97.jpg 169w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-33.jpg 875w" sizes="(max-width: 600px) 100vw, 600px" /></noscript></p>
+<p><img decoding="async" class="aligncenter wp-image-174150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20600%20343'%3E%3C/svg%3E" alt="" width="600" height="343" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-300x171.jpg 300w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-768x439.jpg 768w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-654x375.jpg 654w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-364x208.jpg 364w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-228x130.jpg 228w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-169x97.jpg 169w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34.jpg 875w" data-lazy-sizes="(max-width: 600px) 100vw, 600px" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-300x171.jpg"><noscript><img decoding="async" class="aligncenter wp-image-174150" src="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-300x171.jpg" alt="" width="600" height="343" srcset="https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-300x171.jpg 300w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-768x439.jpg 768w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-654x375.jpg 654w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-364x208.jpg 364w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-228x130.jpg 228w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34-169x97.jpg 169w, https://acontecendoaqui.com.br/wp-content/uploads/2023/08/3-34.jpg 875w" sizes="(max-width: 600px) 100vw, 600px" /></noscript></p>
+
+
+
+            </div>
+ 
+        </div>
+    </div><!-- .entry-content -->
+    <div style="margin: 0;" class="social-mobile entry-content">
+        <div class="grid" style="width: 100%;">
+            <div class="content-inner">
+                <div style="margin: 0;" class="social-mobile posts-social">
+                    <div class="grid">
+                                                <a target="_blank" href="https://twitter.com/intent/tweet?text=https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/"><img width="20" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3C/svg%3E" alt="Twitter" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg" alt="Twitter"></noscript></a>
+                        <a target="_blank" href="https://wa.me/?text=https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/"><img width="20" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3C/svg%3E" alt="Whatsapp" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg" alt="Whatsapp"></noscript></a>
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://acontecendoaqui.com.br/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/"><img width="19" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2019%2020'%3E%3C/svg%3E" alt="Facebook" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg"><noscript><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg" alt="Facebook"></noscript></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<div class="ads ads-gbf" data-hash="17956444795">
+
+    
+    <style></style>
+
+    
+    <div class="ads-container">
+
+        <a target="_blank" aria-label="Publicidade: Alesc Full" href="https://www.alesc.sc.gov.br/agencia/" data-post_id="261839">
+
+        <picture>
+
+            
+            <img width="1140px" height="140px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201140%20140'%3E%3C/svg%3E" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/BANNER-SAUDE-1140-x-140px.jpg"><noscript><img 
+                width="1140px" 
+                height="140px" 
+                src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/BANNER-SAUDE-1140-x-140px.jpg" 
+                alt=""></noscript>
+
+        </picture>
+
+        </a>
+
+
+
+        <span>Publicidade</span>
+
+    </div>
+
+</div>
+
+<section class="cta-whatsapp">
+    <div class="grid">
+        <div class="cta-whatsapp-inner">
+            <figure>
+                <img width="768" height="768" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20768%20768'%3E%3C/svg%3E" alt="WhatsApp" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2024/07/whatsapp-icon.png"><noscript><img width="768" height="768" src="https://acontecendoaqui.com.br/wp-content/uploads/2024/07/whatsapp-icon.png" alt="WhatsApp"></noscript>
+            </figure>
+            <span>
+                Junte-se a nós no WhatsApp para ficar por dentro das últimas novidades!            </span>
+            <a class="bt-whats" href="https://www.whatsapp.com/channel/0029VacOQP69RZAdeQrrpx0d" target="_blank">
+                Entre no grupo            </a>
+            <p>
+                </p><p>Ao entrar neste grupo do WhatsApp, você concorda com os <strong>termos</strong> e<strong> política de privacidade</strong> aplicáveis.</p>
+            <p></p>
+        </div>
+        <div class="cta-whatsapp-inner">
+            
+<div class="wpcf7 js" id="wpcf7-f120762-o1" lang="pt-BR" dir="ltr" data-wpcf7-id="120762">
+<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+<form action="/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/#wpcf7-f120762-o1" method="post" class="wpcf7-form init" aria-label="Formulários de contato" novalidate="novalidate" data-status="init" data-din-capture="1">
+<fieldset class="hidden-fields-container"><input type="hidden" name="_wpcf7" value="120762" style=""><input type="hidden" name="_wpcf7_version" value="6.2.6" style=""><input type="hidden" name="_wpcf7_locale" value="pt_BR" style=""><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f120762-o1" style=""><input type="hidden" name="_wpcf7_container_post" value="0" style=""><input type="hidden" name="_wpcf7_posted_data_hash" value="" style="">
+</fieldset>
+<p><strong class="titulo-newsletter" style="margin-top:20px">Newsletter</strong>
+</p>
+<p class="newsletter-text">Assine nossa newsletter e receba informações em primeira mão.
+</p>
+<div class="form-row-flex">
+	<p><span class="wpcf7-form-control-wrap" data-name="nome"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Seu nome" value="" type="text" name="nome" style=""></span><br>
+<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Insira seu e-mail" value="" type="email" name="email" style=""></span>
+	</p>
+</div>
+<div class="form-row">
+	<p><button type="submit" class="btn-newsletter"><img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" alt="Inscrever-se" data-lazy-src="/wp-content/themes/portal-aa/assets/svg/email-aberto.svg"><noscript><img width="24" height="24" src="/wp-content/themes/portal-aa/assets/svg/email-aberto.svg" alt="Inscrever-se" /></noscript> Inscrever-se</button>
+	</p>
+</div>
+<div class="newsletter-aceite">
+	<p><span class="wpcf7-form-control-wrap" data-name="termos"><span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><input aria-label="Aceito a política de privacidade" type="checkbox" name="termos" value="1" aria-invalid="false" style=""></span></span></span><label>Aceito a <a href="/politica-de-privacidade/">política de privacidade</a>.</label>
+	</p>
+</div><p style="display: none !important;" class="akismet-fields-container" data-prefix="_wpcf7_ak_"><label>Δ<textarea name="_wpcf7_ak_hp_textarea" cols="45" rows="8" maxlength="100" style=""></textarea></label><input type="hidden" id="ak_js_1" name="_wpcf7_ak_js" value="106" style=""><script type="text/rocketlazyloadscript">
+document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );
+</script>
+</p><div class="wpcf7-response-output" aria-hidden="true"></div>
+</form>
+</div>
+        </div>
+    </div>
+</section><section class="related">
+    <span class="related-background"></span>
+    <div class="grid">
+            <div class="related-header">
+                <h2 class="titulo-3">+ veja também</h2>
+                
+            </div>
+            <div class="related-loop">
+                                
+                <article class="related-item">
+                    <a href="https://acontecendoaqui.com.br/empreendedorismo/m%c2%b7a%c2%b7c-amplia-operacao-no-beiramar-shopping-com-inauguracao-de-loja/">
+                    <figure>
+                    <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="M·A·C amplia operação no Beiramar Shopping com inauguração de loja" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/M·A·C-Cosmetics2.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/M·A·C-Cosmetics2.jpg" alt="M·A·C amplia operação no Beiramar Shopping com inauguração de loja"></noscript>
+                    </figure>
+                    <strong>25 de Novembro</strong>
+                    <h2>M·A·C amplia operação no Beiramar Shopping com inauguração de loja</h2>
+                            <p>
+Foto: DivulgaçãoPublicidade
+A M·A·C Cosmetics inaugura, nesta quinta-feira, 26, uma loja no...</p>
+                    </a>
+                </article>
+                                
+                <article class="related-item">
+                    <a href="https://acontecendoaqui.com.br/empreendedorismo/florianopolis-recebe-startup-summit-2027-com-agenda-voltada-a-conexoes-internacionais/">
+                    <figure>
+                    <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Florianópolis recebe Startup Summit 2027 com agenda voltada a conexões internacionais" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/StartupsSEBRA3.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/StartupsSEBRA3.jpg" alt="Florianópolis recebe Startup Summit 2027 com agenda voltada a conexões internacionais"></noscript>
+                    </figure>
+                    <strong>25 de Novembro</strong>
+                    <h2>Florianópolis recebe Startup Summit 2027 com agenda voltada a conexões internacionais</h2>
+                            <p>
+Imagem: MagnificPublicidade
+Organizações e representantes de ecossistemas estrangeiros...</p>
+                    </a>
+                </article>
+                                
+                <article class="related-item">
+                    <a href="https://acontecendoaqui.com.br/empreendedorismo/rede-tudo-quinze-inaugura-3a-unidade-na-grande-florianopolis/">
+                    <figure>
+                    <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Rede Tudo Quinze inaugura 3ª unidade na Grande Florianópolis" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/Tudo-Quinze06.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/Tudo-Quinze06.jpg" alt="Rede Tudo Quinze inaugura 3ª unidade na Grande Florianópolis"></noscript>
+                    </figure>
+                    <strong>25 de Novembro</strong>
+                    <h2>Rede Tudo Quinze inaugura 3ª unidade na Grande Florianópolis</h2>
+                            <p>
+Foto: Divulgação/ Shopping ItaguaçuPublicidade
+A rede Tudo Quinze inaugura, na próxima...</p>
+                    </a>
+                </article>
+                            </div>
+           
+</div></section><style></style>
+<section class="artigos-colunas artigos-colunas-1">
+    <div class="grid">
+        <div class="col">
+            <div class="artigos-colunas-loop">
+                                                <article class="card-artigo-coluna-big">
+                    <a href="https://acontecendoaqui.com.br/empreendedorismo/unifique-alcanca-48a-posicao-no-ranking-100-open-startups-2026/">
+                        <figure>
+                            <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Unifique alcança 48ª posição no Ranking 100 Open Startups 2026" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/StartupsUNIFI0.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/StartupsUNIFI0.jpg" alt="Unifique alcança 48ª posição no Ranking 100 Open Startups 2026"></noscript>
+                        </figure>
+                        <div>
+                            <strong>24 de Novembro</strong>
+                            <h2>Unifique alcança 48ª posição no Ranking 100 Open Startups 2026</h2>
+                            <p>
+Foto: DivulgaçãoPublicidade
+A Unifique alcançou a 48ª posição na classificação geral e o segundo lugar na categoria Telecomunicações do Ranking 100 Open Startups 2026.
+O resultado foi anunciado ontem, 23/11, em São</p>
+                        </div>
+                    </a>
+                </article>
+                                                                <article class="card-artigo-coluna-small">
+                    <a href="https://acontecendoaqui.com.br/empreendedorismo/setores-pedem-prazo-para-adaptacao-a-escala-5x2/">
+                        <figure>
+                            <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Setores pedem prazo para adaptação à escala 5×2" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/333.jpeg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/333.jpeg" alt="Setores pedem prazo para adaptação à escala 5&#215;2"></noscript>
+                        </figure>
+                        <div>
+                            <strong>24 de Novembro</strong>
+                            <h2>Setores pedem prazo para adaptação à escala 5×2</h2>
+                            <p>
+Foto: Magnific
+A mudança na jornada de trabalho prevista para dezembro mobiliza diferentes setores da economia. Representantes do varejo, da construção civil, de bares e restaurantes e das telecomunicações afirmam que</p>
+                        </div>
+                    </a>
+                </article>
+                                                                <article class="card-artigo-coluna-small">
+                    <a href="https://acontecendoaqui.com.br/empreendedorismo/camara-de-sao-jose-passa-a-integrar-projeto-nacional-de-incentivo-ao-empreendedorismo/">
+                        <figure>
+                            <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Câmara de São José passa a integrar projeto nacional de incentivo ao empreendedorismo" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/CamaraEmpreendedora7.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/CamaraEmpreendedora7.jpg" alt="Câmara de São José passa a integrar projeto nacional de incentivo ao empreendedorismo"></noscript>
+                        </figure>
+                        <div>
+                            <strong>23 de Novembro</strong>
+                            <h2>Câmara de São José passa a integrar projeto nacional de incentivo ao empreendedorismo</h2>
+                            <p>
+Foto: DivulgaçãoPublicidade
+O município de São José terá a 1ª Câmara Empreendedora de Santa Catarina. A iniciativa será lançada nesta terça-feira, 24, às 19h, no Teatro Adolpho Mello, por meio de um convênio entre o</p>
+                        </div>
+                    </a>
+                </article>
+                                            </div>
+                        <div class="grid">
+            
+
+
+<div class="ads ads-gbbl" data-hash="179564448112">
+
+    <div class="ads-container">
+
+        <a target="_blank" aria-label="Publicidade: Instituto Bertol" href="https://www.ibertol.com.br/" data-post_id="201877">
+
+        <picture>
+
+            
+                <source width="410px" height="124px" media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/410-124.jpg">
+
+            
+            <img width="410px" height="124px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20410%20124'%3E%3C/svg%3E" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/410-124.jpg"><noscript><img 
+                width="410px" 
+                height="124px" 
+                src="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/410-124.jpg" 
+                alt=""></noscript>
+        </picture>
+
+        </a>
+
+        <span class="">Publicidade</span>
+
+    </div>
+
+</div>
+
+            </div>
+                    </div>
+        <div class="col">
+                                    <article class="card-artigo-coluna-medium">
+                <a href="https://acontecendoaqui.com.br/empreendedorismo/produtos-da-tramontina-recebem-reconhecimento-em-premiacoes-de-design/">
+                    <figure>
+                        <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Produtos da Tramontina recebem reconhecimento em premiações de design" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/TramontinaDESIGN3.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/TramontinaDESIGN3.jpg" alt="Produtos da Tramontina recebem reconhecimento em premiações de design"></noscript>
+                    </figure>
+                    <div class="card-artigo-coluna-body">
+                        <strong>23 de Novembro</strong>
+                        <h2>Produtos da Tramontina recebem reconhecimento em premiações de design</h2>
+                        <p>
+Na foto: Entrega do Prêmio Bornancini de Design, realizado na Sogipa, em Porto Alegre/RS. Crédito: Divulgação/ Design ÚnicoPublicidade
+A</p>
+                    </div>
+                </a>
+            </article>
+                                                <article class="card-artigo-coluna-nano">
+                <a href="https://acontecendoaqui.com.br/empreendedorismo/cdl-jovem-florianopolis-reconhece-empresarios-em-edicao-comemorativa/">
+                    <figure>
+                        <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="CDL Jovem Florianópolis reconhece empresários em edição comemorativa" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/JOVEMCDLsc4.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/JOVEMCDLsc4.jpg" alt="CDL Jovem Florianópolis reconhece empresários em edição comemorativa"></noscript>
+                    </figure>
+                    <div>
+                        <h2>CDL Jovem Florianópolis reconhece empresários em edição comemorativa</h2>
+                        <strong>19 de Novembro</strong>
+                        <p>
+Foto: DivulgaçãoPublicidade
+A CDL Jovem Florianópolis completou 20 anos de atuação e reconheceu três lideranças</p>
+                    </div>
+                </a>
+            </article>
+                                                <article class="card-artigo-coluna-nano">
+                <a href="https://acontecendoaqui.com.br/empreendedorismo/premio-anamaco-2026-reconhece-produtos-da-gerdau-em-duas-categorias/">
+                    <figure>
+                        <img width="875" height="500" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20875%20500'%3E%3C/svg%3E" alt="Prêmio Anamaco 2026 reconhece produtos da Gerdau em duas categorias" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/gerdauCATEG0.jpg"><noscript><img width="875" height="500" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/gerdauCATEG0.jpg" alt="Prêmio Anamaco 2026 reconhece produtos da Gerdau em duas categorias"></noscript>
+                    </figure>
+                    <div>
+                        <h2>Prêmio Anamaco 2026 reconhece produtos da Gerdau em duas categorias</h2>
+                        <strong>19 de Novembro</strong>
+                        <p>
+Foto: DivulgaçãoPublicidade
+A Gerdau foi premiada em duas categorias do Prêmio Anamaco 2026, realizado na noite da última</p>
+                    </div>
+                </a>
+            </article>
+                                                <div class="grid">
+            
+
+
+<div class="ads ads-gbbl" data-hash="179564448216">
+
+    <div class="ads-container">
+
+        <a target="_blank" aria-label="Publicidade: Instituto Bertol" href="https://www.ibertol.com.br/" data-post_id="201877">
+
+        <picture>
+
+            
+                <source width="410px" height="124px" media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/410-124.jpg">
+
+            
+            <img width="410px" height="124px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20410%20124'%3E%3C/svg%3E" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/410-124.jpg"><noscript><img 
+                width="410px" 
+                height="124px" 
+                src="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/410-124.jpg" 
+                alt=""></noscript>
+        </picture>
+
+        </a>
+
+        <span class="">Publicidade</span>
+
+    </div>
+
+</div>
+
+            </div>
+                    </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+    <section class="pre-footer">
+
+
+
+        <div class="grid">
+
+
+
+            <div class="col">
+
+
+
+                <div class="form-newsletter">
+
+
+
+                    
+<div class="wpcf7 js" id="wpcf7-f120762-o2" lang="pt-BR" dir="ltr" data-wpcf7-id="120762">
+<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+<form action="/empreendedorismo/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras/#wpcf7-f120762-o2" method="post" class="wpcf7-form init" aria-label="Formulários de contato" novalidate="novalidate" data-status="init" data-din-capture="1">
+<fieldset class="hidden-fields-container"><input type="hidden" name="_wpcf7" value="120762" style=""><input type="hidden" name="_wpcf7_version" value="6.2.6" style=""><input type="hidden" name="_wpcf7_locale" value="pt_BR" style=""><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f120762-o2" style=""><input type="hidden" name="_wpcf7_container_post" value="0" style=""><input type="hidden" name="_wpcf7_posted_data_hash" value="" style="">
+</fieldset>
+<p><strong class="titulo-newsletter" style="margin-top:20px">Newsletter</strong>
+</p>
+<p class="newsletter-text">Assine nossa newsletter e receba informações em primeira mão.
+</p>
+<div class="form-row-flex">
+	<p><span class="wpcf7-form-control-wrap" data-name="nome"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Seu nome" value="" type="text" name="nome" style=""></span><br>
+<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Insira seu e-mail" value="" type="email" name="email" style=""></span>
+	</p>
+</div>
+<div class="form-row">
+	<p><button type="submit" class="btn-newsletter"><img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" alt="Inscrever-se" data-lazy-src="/wp-content/themes/portal-aa/assets/svg/email-aberto.svg"><noscript><img width="24" height="24" src="/wp-content/themes/portal-aa/assets/svg/email-aberto.svg" alt="Inscrever-se" /></noscript> Inscrever-se</button>
+	</p>
+</div>
+<div class="newsletter-aceite">
+	<p><span class="wpcf7-form-control-wrap" data-name="termos"><span class="wpcf7-form-control wpcf7-acceptance"><span class="wpcf7-list-item"><input aria-label="Aceito a política de privacidade" type="checkbox" name="termos" value="1" aria-invalid="false" style=""></span></span></span><label>Aceito a <a href="/politica-de-privacidade/">política de privacidade</a>.</label>
+	</p>
+</div><p style="display: none !important;" class="akismet-fields-container" data-prefix="_wpcf7_ak_"><label>Δ<textarea name="_wpcf7_ak_hp_textarea" cols="45" rows="8" maxlength="100" style=""></textarea></label><input type="hidden" id="ak_js_2" name="_wpcf7_ak_js" value="145" style=""><script type="text/rocketlazyloadscript">
+document.getElementById( "ak_js_2" ).setAttribute( "value", ( new Date() ).getTime() );
+</script>
+</p><div class="wpcf7-response-output" aria-hidden="true"></div>
+</form>
+</div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="col">
+
+
+
+                <a href="/envie-sua-noticia/" class="envia-noticia">
+
+
+
+                    <div class="envia-noticia-text">
+
+
+
+                        <strong>Envie sua notícia</strong>
+
+
+
+                        <p>O que interessa pra você, interessa pra gente. Envie sua notícia e seja um colaborador do portal.</p>
+
+
+
+                    </div>
+
+
+
+                    <img width="284" height="233" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20284%20233'%3E%3C/svg%3E" alt="Envie sua noticia" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/admin-ajax-png1.png"><noscript><img width="284" height="233" src="https://acontecendoaqui.com.br/wp-content/uploads/2024/08/admin-ajax-png1.png" alt="Envie sua noticia"></noscript>
+
+
+
+                </a>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+<div class="grid">
+
+
+
+    
+    
+    <div class="ads ads-gbf" data-hash="179564448217">
+
+        <div class="ads-container">
+
+            <a target="_blank" aria-label="Publicidade: Casan Zera Dívida  Rodapé" href="https://online.casan.com.br/servico/zera-divida" data-post_id="261761">
+
+                <picture>
+
+                    
+                        <source width="300px" height="50px" media="(max-width:990px)" data-lazy-srcset="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/B7-0010-26-CASAN-ZERA-DIVIDA-BANNER-SITE_300x50px.jpg">
+
+                    
+                    <img width="1140px" height="140px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201140%20140'%3E%3C/svg%3E" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/B7-0010-26-CASAN-ZERA-DIVIDA-BANNER-SITE_1140-x-140px.jpg"><noscript><img width="1140px" height="140px" src="https://acontecendoaqui.com.br/wp-content/uploads/2026/11/B7-0010-26-CASAN-ZERA-DIVIDA-BANNER-SITE_1140-x-140px.jpg" alt=""></noscript>
+                </picture>
+
+            </a>
+
+
+
+            <span>Publicidade</span>
+
+        </div>
+
+    </div>
+
+
+
+
+</div></main>
+<footer class="footer">
+	<div class="grid">
+		<a href="#" class="footer-toggle" data-close="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/plus.svg" data-open="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/minimizar.svg">
+			<img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" alt="-" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/plus.svg"><noscript><img width="24" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/plus.svg" alt="-"></noscript>
+		</a>
+		<div class="footer-menu" style="display:none;">
+			<div class="col">
+				<a href="https://acontecendoaqui.com.br"><img width="230" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20230%2040'%3E%3C/svg%3E" alt="Acontecendo Aqui" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-rodape.svg"><noscript><img width="230" height="40" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-rodape.svg" alt="Acontecendo Aqui"></noscript></a>
+				<!-- <a class="voltar-topo" href="#"><img width="24" height="13" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2013'%3E%3C/svg%3E" alt="Labbo Digital" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/up.svg"><noscript><img width="24" height="13" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/up.svg" alt="Labbo Digital"></noscript></a> -->
+			</div>
+			<div class="col">
+				<div class="footer-nav">
+										<nav class="footer-nav-list">
+						<ul>
+														<li><a href="/categorias/comunicacao">Comunicação</a></li>
+														<li><a href="/categorias/marketing">Marketing</a></li>
+														<li><a href="/categorias/tech">Tech</a></li>
+														<li><a href="/categorias/inovacao">Inovação</a></li>
+														<li><a href="/categorias/propaganda">Propaganda</a></li>
+														<li><a href="/categorias/eventos">Eventos</a></li>
+													</ul>
+					</nav>
+										<nav class="footer-nav-list">
+						<ul>
+														<li><a href="/categorias/empreendedorismo">Empreendedorismo</a></li>
+														<li><a href="/categorias/entrevistas">Entrevistas</a></li>
+														<li><a href="/colunistas">Colunistas</a></li>
+														<li><a href="/categorias/cannes">Cannes</a></li>
+														<li><a href="/parceiros">Parceiros</a></li>
+														<li><a href="/contato">Contato</a></li>
+													</ul>
+					</nav>
+									</div>
+			</div>
+			<div class="col">
+				<a target="_blank" href="/acesso-ao-sistema/" class="btn-footer"><img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" alt="Acesso ao Sistema" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/seguranca.svg"><noscript><img width="24" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/seguranca.svg" alt="Acesso ao Sistema"></noscript>Acesso ao Sistema</a>
+				<a href="/envie-sua-noticia/" class="btn-footer"><img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" alt="Envie sua notícia" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/upload.svg"><noscript><img width="24" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/upload.svg" alt="Envie sua notícia"></noscript>Envie sua notícia</a>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom" style="border-color:#000">
+		<div class="grid">
+			<div class="col">
+
+				<a href="#" class="logo-footer"><img width="230" height="40" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20230%2040'%3E%3C/svg%3E" alt="Acontecendo Aqui" data-lazy-src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-rodape.svg"><noscript><img width="230" height="40" src="https://acontecendoaqui.com.br/wp-content/uploads/2021/11/logo-rodape.svg" alt="Acontecendo Aqui"></noscript></a>
+
+				<div class="footer-social">
+					<div class="grid">
+												<a target="_blank" href="https://twitter.com/acontecendoaqui"><img width="20" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3C/svg%3E" alt="Twitter" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/twitter.svg" alt="Twitter"></noscript></a>
+																								<a target="_blank" href="https://whatsapp.com/channel/0029VacOQP69RZAdeQrrpx0d"><img width="20" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%3E%3C/svg%3E" alt="Whatsapp" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg"><noscript><img width="20" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/whatsapp.svg" alt="Whatsapp"></noscript></a>
+																		<a target="_blank" href="https://www.facebook.com/acontecendo"><img width="19" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2019%2020'%3E%3C/svg%3E" alt="Facebook" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg"><noscript><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/facebook.svg" alt="Facebook"></noscript></a>
+																		<a target="_blank" href="https://www.instagram.com/acontecendoaqui/"><img width="19" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2019%2020'%3E%3C/svg%3E" alt="Instagram" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/instagram.svg"><noscript><img width="19" height="20" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/instagram.svg" alt="Instagram"></noscript></a>
+																		<a target="_blank" href="https://www.youtube.com/channel/UCnWIf5t2aVwgbFOzgPvqMQg"><img width="20" height="18" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2018'%3E%3C/svg%3E" alt="youtube" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/youtube.svg"><noscript><img width="20" height="18" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/youtube.svg" alt="youtube"></noscript></a>
+																	</div>
+				</div>
+			</div>
+			<div class="col links-flex">
+				<!-- <a class="voltar-topo-bottom" href="#"><img width="24" height="13" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2013'%3E%3C/svg%3E" alt="Voltar ao topo" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/up.svg"><noscript><img width="24" height="13" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/up.svg" alt="Voltar ao topo"></noscript></a> -->
+				<a href="/politica-de-privacidade/" class="footer-politica">Política de Privacidade</a>
+									<a href="https://acontecendoaqui.com.br/direitos-autorais/" class="footer-politica">Direitos Autorais</a>
+							</div>
+			<div class="col">
+				<span class="footer-direitos">Todos os direitos reservados <br>Acontecendo Aqui</span>
+				<a target="_blank" href="http://labbo.com.br/?utm_source=web&amp;utm_medium=site&amp;utm_campaign=acontecendo-aqui" class="labbo"><img width="19" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2019%2024'%3E%3C/svg%3E" alt="Labbo Digital" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/labbo.svg"><noscript><img width="19" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/labbo.svg" alt="Labbo Digital"></noscript></a>
+			</div>
+		</div>
+	</div>
+
+	<a class="btn-topo" style="display:none" href="#"><img width="24" height="24" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3C/svg%3E" alt="" data-lazy-src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/voltar-topo.svg"><noscript><img width="24" height="24" src="https://acontecendoaqui.com.br/wp-content/themes/portal-aa/assets/svg/voltar-topo.svg" alt=""></noscript></a>
+</footer>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/portal-aa/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="wp-hooks-js" src="https://acontecendoaqui.com.br/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255"></script>
+<script id="wp-i18n-js" src="https://acontecendoaqui.com.br/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script data-minify="1" id="swv-js" src="https://acontecendoaqui.com.br/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=1792714094" data-rocket-defer="" defer=""></script>
+<script type="text/rocketlazyloadscript" id="contact-form-7-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "contact-form-7", {"translation-revision-date":"2025-05-19 13:41:20+0000","generator":"GlotPress\/4.0.1","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=2; plural=n > 1;","lang":"pt_BR"},"Error:":["Erro:"]}},"comment":{"reference":"includes\/js\/index.js"}} );
+//# sourceURL=contact-form-7-js-translations
+</script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/acontecendoaqui.com.br\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    },
+    "cached": 1
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script data-minify="1" id="contact-form-7-js" src="https://acontecendoaqui.com.br/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/js/index.js?ver=1792714094" data-rocket-defer="" defer=""></script>
+<script data-minify="1" defer="" id="akismet-frontend-js" src="https://acontecendoaqui.com.br/wp-content/cache/min/1/wp-content/plugins/akismet/_inc/akismet-frontend.js?ver=1792714094"></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async="" src="https://acontecendoaqui.com.br/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script>
+<!-- Início dos Scripts de Campanha -->
+
+
+	<div id="scripts-de-campanha" style="display: none;">
+		<div class="grid">
+							
+							
+					</div>
+	</div>
+
+<!-- Fim dos Scripts de Campanha -->
+
+<script type="text/rocketlazyloadscript">window.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('load', function() {
+    // Cria um novo evento de teclado simulando a tecla para cima
+    let event = new KeyboardEvent('keydown', {
+        key: 'ArrowUp',  // A tecla para cima
+        keyCode: 38,     // O código da tecla para cima
+        code: 'ArrowUp', // O código de tecla para cima
+        which: 38,       // Também o código da tecla
+        bubbles: true,   // O evento pode ser propagado para outros elementos
+        cancelable: true // O evento pode ser cancelado
+    });
+
+    // Dispara o evento no elemento document
+    document.dispatchEvent(event);
+
+    jQuery(document).ready(function(){
+    	jQuery('body.single .article .entry-content a:not([target="_blank"])').attr('target', '_blank');
+    });
+});
+});</script>
+
+<script>var rocket_beacon_data = {"ajax_url":"https:\/\/acontecendoaqui.com.br\/wp-admin\/admin-ajax.php","nonce":"7136fb328d","url":"https:\/\/acontecendoaqui.com.br\/empreendedorismo\/chega-em-ingleses-a-unidade-fisica-da-velox-solucoes-financeiras","is_mobile":false,"width_threshold":1600,"height_threshold":700,"delay":500,"debug":null,"status":{"atf":false,"lrc":true,"preconnect_external_domain":true},"elements":"img, video, picture, p, main, div, li, svg, section, header, span","lrc_threshold":1800,"preconnect_external_domain_elements":["link","script","iframe"],"preconnect_external_domain_exclusions":["static.cloudflareinsights.com","rel=\"profile\"","rel=\"preconnect\"","rel=\"dns-prefetch\"","rel=\"icon\""]}</script><script data-name="wpr-wpr-beacon" src="https://acontecendoaqui.com.br/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js" async="" beacon-completed="true"></script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a6055c79ea05a593',t:'MTc5NTY1OTA3Mw=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a6055c79ea05a593',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+<script src="https://receiver.posclick.dinamize.com/forms/js/336543_5553.js"></script><div id="dinTargetFormStyle">
+   <style type="text/css">
+    .dinTargetFormDialog, .dinTargetFormContent, .dinTargetFormContent iframe { box-sizing: content-box; visibility: unset; opacity: unset; right: unset; left: unset; border-radius: unset; box-shadow: unset; }
+    @viewport { width: device-width; height: device-height; zoom: 1.0 ; }
+
+    @-ms-viewport { width: device-width; height: device-height; }
+
+    @media screen and (max-width: 500px) { .dinTargetFormDialog.popover { width: 80%; max-width: 90%; max-height: 80%; } .dinTargetFormDialog.scrollbox { max-width: 65%; } }
+    @media screen and (min-width: 501px) and (max-width: 850px) { .dinTargetFormDialog.popover { width: 80%; max-width: 90%; max-height: 80%; } .dinTargetFormDialog.scrollbox { max-width: 65%; } }
+    @media screen and (min-width: 851px) { .dinTargetFormDialog.popover { max-width: 90%; min-width: initial; max-height: 95vh} }
+    #dinTargetFormBackground { z-index: 999999998; position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background-color: #000000; opacity: 0.25; display: none; }
+    #dinTargetFormMessage { z-index: 999999998; position: fixed; text-align: center; font-family: Arial; font-size: 14px; margin: auto; top: 50%; left: 50%; display: none; width: 400px; height: 100px; margin-top: -50px; margin-left: -200px; background-color: #ccc; }
+    .dinTargetFormDialog:not(.embedded) { z-index: 999999999; position: fixed; display: none; -webkit-overflow-scrolling:touch!important; overflow-y: auto!important; overflow-x: hidden; }
+
+    .dinTargetFormDialog.popover { margin: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); border: none; background-color: transparent; padding: 10px; visibility: unset; opacity: unset; right: unset; border-radius: unset; box-shadow: unset; }
+
+    .dinTargetFormDialog.scrollbox { max-height: 90%; right: 0; bottom: 0; visibility: unset; opacity: unset; left: unset; border-radius: unset; box-shadow: unset; }
+    .dinTargetFormDialog.topbar { right: 0; top: 0; width: 100vw; max-height: 45vh; visibility: unset; opacity: unset; left: unset; border-radius: unset; box-shadow: unset; }
+    /* Botão de fechar */
+    .dinTargetFormCloseButtom { position: absolute; width: 22px; height: 22px; background-color: #ffffff; cursor: pointer; font-size: 13px; font-family: Arial; font-weight: bolder; line-height: 20px; text-align: center; }
+    .dinTargetFormDialog.popover .dinTargetFormCloseButtom, #dinTargetFormMessage .dinTargetFormCloseButtom { right: 0; top: 0; border-radius: 50%; border: 2px solid #ccc; }
+    .dinTargetFormDialog.scrollbox .dinTargetFormCloseButtom { right: 0; top: 0; }
+    .dinTargetFormDialog.topbar .dinTargetFormCloseButtom { right: 0; bottom: 0; position: absolute}
+    /* Fim botão */
+    .dinTargetFormDialog:not(.embedded) .dinTargetFormContent { width: 100%; height: 100%; }
+    .dinTargetFormContent iframe { border: 0px; width: 100%; height: 100%; position: absolute; top:0; left:0 !important; right:0 !important; bottom:0; margin: auto;}
+    .dinTargetFormDialog.popover .dinTargetFormContent iframe { width: calc(100% - 20px); height: calc(100% - 20px) }
+   </style></div><div id="dinTargetFormMessage"></div></body></html>

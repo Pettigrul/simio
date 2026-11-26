@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C52533f4043",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://br.polomap.com/mr/s%C3%A3o-gon%C3%A7alo/52660",
+  "final_url": "https://br.polomap.com/mr/s%C3%A3o-gon%C3%A7alo/52660",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.86.34",
+  "collected_at": "2026-11-26T01:57:04.181429+00:00",
+  "manifest_written_at": "2026-11-26T01:57:07.742107+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C52533f4043/attempt-1/viewport.png",
+      "sha256": "c3150823f50f3db61efe86db18c7c61cc8f457e800e8f304e4ac7b04e9edb6e5",
+      "size_bytes": 67536
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C52533f4043/attempt-1/fullpage.png",
+      "sha256": "525649cf619115958abcb5542b880850b7da6b8dea81270e1db1f2f720b0d6cf",
+      "size_bytes": 75904
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C52533f4043/attempt-1/page.html.txt",
+      "sha256": "b84f323717dfa612b83d89482927a4ff31a5f7145cf793adce3a4f2f1c4b656a",
+      "size_bytes": 5445
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C52533f4043/attempt-1/text.txt",
+      "sha256": "8df4c43f9c37ef72ca90af1415f4eaf0a567d605968edc86cf9d11895c50a765",
+      "size_bytes": 692
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C52533f4043/attempt-1/page.json",
+      "sha256": "073cc0bbbe74eae2ac0ebe8c805a7dae356516ed74a2164d0735bc6e47faa1b6",
+      "size_bytes": 2105
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

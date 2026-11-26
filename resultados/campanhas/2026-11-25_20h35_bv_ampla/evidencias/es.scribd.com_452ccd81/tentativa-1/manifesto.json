@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C452ccd81e5",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://es.scribd.com/",
+  "final_url": "https://pt.scribd.com/",
+  "redirect_chain": [
+    "https://es.scribd.com/"
+  ],
+  "http_status": 200,
+  "server_ip": "151.101.94.152",
+  "collected_at": "2026-11-26T03:06:24.552286+00:00",
+  "manifest_written_at": "2026-11-26T03:06:33.439748+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C452ccd81e5/attempt-1/viewport.png",
+      "sha256": "9e38b8d84ab3a91916d4300aabf862679491705e59e93281216c854338a718af",
+      "size_bytes": 487893
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C452ccd81e5/attempt-1/fullpage.png",
+      "sha256": "c454825525e0cc691436b545a6084f0e2690d1a0793f4cb3ca6227f43f94582a",
+      "size_bytes": 749364
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C452ccd81e5/attempt-1/page.html.txt",
+      "sha256": "8c76ea5e9bec54aca2b761524af5aa3191ac94f53ffbf0e57ed029f96bee408a",
+      "size_bytes": 432677
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C452ccd81e5/attempt-1/text.txt",
+      "sha256": "63a1d7504ea7e7fa6f0effa43ffc6f14fd0b33c4bfa12d005cee954ecc7087e7",
+      "size_bytes": 3256
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C452ccd81e5/attempt-1/page.json",
+      "sha256": "04e3f52bbe25e69c07245c1d369fadf39719d5fcd3fc20847d432895a913cf82",
+      "size_bytes": 21910
+    }
+  ],
+  "blocked_requests": [
+    "https://m.stripe.com/6 -> DNS resolution failed for m.stripe.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,760 @@
+<html lang="pt-BR"><head>
+    <!-- ⚠️ preconnect: o navegador so descobre o Analytics quando le a tag dele,
+         la embaixo. Avisando aqui, ele ja vai abrindo a conexao (DNS + TLS) em
+         paralelo com o resto -- o custo da conexao sai do caminho critico.
+         crossorigin e obrigatorio: sem ele o navegador abre UMA SEGUNDA conexao
+         para o mesmo dominio, e o preconnect vira desperdicio. -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CS Serviços - Energia Solar. Economia de até 90% na conta de energia. On-Grid, Off-Grid, híbrido e carregador veicular. BV Financeira: até 96x.">
+    <meta name="keywords" content="energia solar, painéis solares, placa solar, fotovoltaica, energia solar fotovoltaica, soluções energia solar, Rio de Janeiro, energia solar RJ, energia solar Brasil, financiamento energia solar, BV Financeira energia solar, sistema solar, On-Grid, Off-Grid, híbrido, carregador carro elétrico, niterói energia solar, duque de caxias energia solar">
+    <title>CS Serviços - Energia Solar | Fotovoltaica no Brasil</title>
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/logo-carousel.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="https://csservicosrj.com.br/">
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://csservicosrj.com.br/">
+    <meta property="og:title" content="CS Serviços - Energia Solar | Soluções Fotovoltaicas no Brasil">
+    <meta property="og:description" content="CS Serviços - Energia Solar. Soluções completas em energia solar fotovoltaica no Brasil. Economia de até 90% na conta de energia. Parceiros BV Financeira: até 96x com carência de até 120 dias.">
+    <meta property="og:image" content="https://csservicosrj.com.br/imagens/og-compartilhar.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CS Serviços">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Schema.org para Google (LocalBusiness) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EnergyBusiness",
+      "name": "CS Serviços e Projetos LTDA",
+      "image": "https://csservicosrj.com.br/imagens/logo_topo.webp",
+      "@id": "https://csservicosrj.com.br/",
+      "url": "https://csservicosrj.com.br/",
+      "telephone": "+5521969115520",
+      "email": "contato@csservicosrj.com.br",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rio de Janeiro",
+        "addressRegion": "RJ",
+        "addressCountry": "BR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "08:00",
+          "closes": "13:00"
+        }
+      ],
+      "sameAs": [
+        "https://instagram.com/csservicosrj/"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Soluções em Energia Solar",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Instalação de Sistema Solar On-Grid",
+              "description": "Sistema solar conectado à rede com créditos de energia. Economia de até 90% na conta de luz."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Instalação de Sistema Solar Off-Grid",
+              "description": "Sistema solar autônomo com baterias. Energia 24 horas por dia, mesmo em quedas de luz."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Financiamento Solar BV Financeira",
+              "description": "Financiamento de sistemas de energia solar em até 96 meses com até 120 dias de carência pela BV Financeira. Parceiro oficial."
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    <script defer="" src="/js/consentimento.js"></script></head>
+<body>
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="/" class="logo">
+                        <img loading="eager" src="imagens/logo_topo.webp" alt="CS Serviços - Energia Solar">
+                    </a>
+                    <button class="menu-toggle" aria-label="Abrir menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="https://csservicosrj.com.br/" class="active">Início</a></li>
+                        <li><a href="quem_somos/">Quem Somos</a></li>
+                        <li><a href="solucoes/">Soluções</a></li>
+                        <li><a href="obras/">Obras Realizadas</a></li>
+                        <li><a href="clientes/">Clientes</a></li>
+                        <li><a href="pagamento/">Formas de Pagamento</a></li>
+                        <li><a href="responsabilidade/">Responsabilidade Social</a></li>
+                        <li><a href="duvidas/">Dúvidas</a></li>
+                        <li><a href="contato/" class="btn-nav">Orçamento</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Vídeo de Fundo -->
+        <!-- ⚠️ O `poster` nao e enfeite: sem ele o topo da home fica PRETO
+             enquanto o video carrega, e o topo e a primeira coisa que o
+             visitante ve. No celular em rede ruim sao varios segundos de tela
+             vazia antes da frase "Economia de ate 90%". O poster e o primeiro
+             quadro do proprio video, em WebP (78 KB). -->
+        <video class="hero-video" autoplay="" muted="" loop="" playsinline="" poster="imagens/hero-poster.webp" src="videos/1.mp4">
+            <!-- Celular em pe (< 480px) recebe uma versao RECORTADA: ali so a faixa
+                 central do video aparece (226 a 310 dos 1280 px de largura, medido),
+                 e o resto era baixado para ninguem ver. Mesmos pixels visiveis, 1,1 MB
+                 a menos.
+                 ⚠️ O video INTEIRO vem primeiro, com a condicao: navegador antigo que
+                 ignora o atributo `media` pega o primeiro e fica com o inteiro -- so
+                 perde a economia, nunca a nitidez. Na ordem inversa, ele daria o
+                 recorte para o computador. -->
+            <source src="videos/1.mp4" type="video/mp4" media="(min-width: 480px)">
+            <source src="videos/1-celular.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" style="text-align: center">Economia de até <span class="highlight">90%</span> na
+                    sua Conta de Energia Elétrica</h1>
+                <p class="hero-subtitle" style="text-align: justify">Com a economia gerada pela Energia Solar, você pode
+                    investir no que realmente importa: viagens em família, educação dos filhos, reforma da casa. Ou
+                    simplesmente ter mais tranquilidade financeira.</p>
+                <div class="hero-buttons">
+                    <a href="contato/" class="btn btn-primary">Solicitar Orçamento Grátis</a>
+                </div>
+                <div class="hero-stats">
+                    <!-- Cada numero e uma FRASE em tres camadas: "Mais de / 21 / anos de
+                         experiencia". Pedido do Clayton em 26/out/2026.
+                         ⚠️ O terceiro nao tem texto em cima, mas leva o espaco reservado
+                         (stat-pre vazio): sem ele o 100% subiria e os tres numeros grandes
+                         deixariam de ficar na mesma linha. aria-hidden porque e so espaco.
+                         ⚠️ A camada de cima usa TAMBEM a classe stat-label, para herdar o
+                         tamanho do texto de baixo em todas as larguras de tela (o CSS ja
+                         reduz o stat-label em 4 pontos diferentes). -->
+                    <div class="stat-item">
+                        <span class="stat-label stat-pre">Mais de</span>
+                        <span class="stat-number animated" data-anos-desde="2005">21</span>
+                        <span class="stat-label">anos de experiência</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label stat-pre">Até</span>
+                        <span class="stat-number animated">90%</span>
+                        <span class="stat-label">de economia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label stat-pre stat-pre-vazio" aria-hidden="true">&nbsp;</span>
+                        <span class="stat-number animated">100%</span>
+                        <span class="stat-label">de garantia dos equipamentos e mão de obra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- App Showcase Section -->
+    <section class="app-showcase">
+        <div class="container">
+            <!-- Mockup do Celular -->
+            <div class="app-showcase-mockup">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="phone-app-content">
+                            <div class="phone-app-logo">
+                                <img loading="lazy" src="imagens/logo_topo.webp" alt="CS Serviços" style="width: 100%; height: auto; object-fit: contain;">
+                            </div>
+                            <div class="phone-app-subtitle"></div>
+                            <div class="phone-preview-cards">
+                                <div class="phone-preview-card">
+                                    <div class="phone-preview-card-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="phone-preview-card-text">
+                                        <strong>Documentos </strong>
+                                        <span>Notas Fiscais</span>
+                                    </div>
+                                </div>
+                                <div class="phone-preview-card">
+                                    <div class="phone-preview-card-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="phone-preview-card-text">
+                                        <strong>Suporte Técnico</strong>
+                                        <span>Em tempo real</span>
+                                    </div>
+                                </div>
+                                <div class="phone-preview-card">
+                                    <div class="phone-preview-card-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="phone-preview-card-text">
+                                        <strong>Seus Benefícios</strong>
+                                        <span>Veja quanto já economizou</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Conteúdo de Texto -->
+            <div class="app-showcase-content">
+                <div class="app-showcase-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    Exclusivo para nossos Clientes e 100% gratuito.
+                </div>
+                <h2>Conheça nosso <span>Aplicativo</span></h2>
+                <p class="app-showcase-description">
+                    Acompanhe toda a gestão do seu sistema solar na palma da mão.
+                    <br>Visualize seus benefícios, acesse documentos (notas fiscais, apólice de seguro, etc.), solicite
+                    suporte técnico e muito mais!
+                </p>
+                <ul class="app-features-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                            <path d="M22 4L12 14.01l-3-3"></path>
+                        </svg>
+                        Seus dados 100% protegidos e sempre atualizados
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                            <path d="M22 4L12 14.01l-3-3"></path>
+                        </svg>
+                        Registro de eventos e atividades (número de protocolos, sinistros de seguro, etc.)
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                            <path d="M22 4L12 14.01l-3-3"></path>
+                        </svg>
+                        Documentos armazenados na nuvem, com acesso rápido e seguro
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                            <path d="M22 4L12 14.01l-3-3"></path>
+                        </svg>
+                        Solicite suporte técnico e acompanhe seus chamados on-line
+                    </li>
+                </ul>
+                <div class="app-showcase-buttons">
+                    <a href="app/" class="btn-app">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <path d="M12 18h.01"></path>
+                        </svg>
+                        Acessar o Aplicativo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Vídeo Entrevista YouTube -->
+    <section class="video-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🎙️ Estivemos no Podcast Bora Trabalhar!</h2>
+                <p class="section-subtitle" style="font-weight: bold;">Assista à entrevista no link abaixo.</p>
+            </div>
+            <div class="video-wrapper">
+                <a href="https://www.youtube.com/watch?v=7TaHYBsc3_A" target="_blank" rel="noopener noreferrer" class="video-link-card">
+                    <div class="video-link-content">
+                        <img loading="lazy" src="imagens/logo_rodape.webp" alt="CS Serviços" class="video-link-logo">
+                        <div class="video-link-text"></div>
+                        <div class="video-link-play">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="youtube-icon">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
+                            </svg>
+                            <span>Assistir no YouTube</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Carrossel de Clientes -->
+    <section class="clients-carousel-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Clientes</h2>
+            </div>
+        </div>
+        <div class="logo-carousel-wrapper">
+            <div class="logo-carousel-track">
+                <!-- Primeira sequência de logos -->
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/smartfit.webp" alt="Smart Fit">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/bioritmo.webp" alt="Bio Ritmo">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/velocity.webp" alt="Velocity">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/betania.webp" alt="Igreja Presbiteriana Betânia">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/maranata.webp" alt="Igreja Cristã Maranata">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/billygrill.webp" alt="Billy The Grill">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/zeikou.webp" alt="Zeikou Restaurante Japonês">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/singleair.webp" alt="Single Air Climatização">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/climacode.webp" alt="ClimaCode">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/cmp.webp" alt="CMP Engenharia">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/sagres.webp" alt="Colégio Sagres">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/esfera.webp" alt="Esfera Formação Profissional">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/grandinox.webp" alt="Grandinox">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/tradicao.webp" alt="Tradição">
+                </div>
+                <!-- Duplicação para loop infinito -->
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/smartfit.webp" alt="Smart Fit">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/bioritmo.webp" alt="Bio Ritmo">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/velocity.webp" alt="Velocity">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/betania.webp" alt="Igreja Presbiteriana Betânia">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/maranata.webp" alt="Igreja Cristã Maranata">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/billygrill.webp" alt="Billy The Grill">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/zeikou.webp" alt="Zeikou Restaurante Japonês">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/singleair.webp" alt="Single Air Climatização">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/climacode.webp" alt="ClimaCode">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/cmp.webp" alt="CMP Engenharia">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/sagres.webp" alt="Colégio Sagres">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/esfera.webp" alt="Esfera Formação Profissional">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/grandinox.webp" alt="Grandinox">
+                </div>
+                <div class="logo-carousel-item">
+                    <img loading="lazy" src="imagens/clientes/tradicao.webp" alt="Tradição">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Depoimentos -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-grid">
+                <!-- ÁREA EDITÁVEL: Adicione ou edite depoimentos aqui -->
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Optei pelo sistema off-grid e foi a melhor decisão. Agora tenho energia
+                        24 horas por dia, mesmo durante as quedas de luz. A equipe da CS explicou tudo com paciência e a
+                        instalação foi impecável!"</p>
+                    <div class="testimonial-author">
+                        <strong>José</strong>
+                        <span>Boa Viagem - Niterói - RJ</span>
+                    </div>
+                </div>
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"A economia na conta de luz superou minhas expectativas. Estou
+                        economizando mais de R$ 900 por mês! A CS Serviços foi muito profissional do orçamento até a
+                        instalação final."</p>
+                    <div class="testimonial-author">
+                        <strong>Daniel</strong>
+                        <span>Icaraí - Niterói - RJ</span>
+                    </div>
+                </div>
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Fiz o investimento pensando no futuro e já estou colhendo os
+                        resultados. Minha conta de luz caiu drasticamente. Recomendo a CS Serviços para quem quer
+                        qualidade e economia!"</p>
+                    <div class="testimonial-author">
+                        <strong>Josselem</strong>
+                        <span>Centro - Duque de Caxias - RJ</span>
+                    </div>
+                </div>
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Pesquisei várias empresas antes de escolher a CS Serviços. O
+                        atendimento diferenciado e o conhecimento técnico me convenceram. Resultado: economia de mais de
+                        R$ 11 mil por ano!"</p>
+                    <div class="testimonial-author">
+                        <strong>Hermann</strong>
+                        <span>Centro - Duque de Caxias - RJ</span>
+                    </div>
+                </div>
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"A instalação foi rápida e bem feita. O sistema funciona perfeitamente e
+                        minha família já sente a diferença no bolso. Energia solar é o futuro e a CS entende do
+                        assunto!"</p>
+                    <div class="testimonial-author">
+                        <strong>Pedro</strong>
+                        <span>Vila São Luís - Duque de Caxias - RJ</span>
+                    </div>
+                </div>
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Estava com receio no início, mas a equipe me deu toda a segurança. Hoje
+                        economizo quase R$ 7 mil por ano e ainda contribuo com o meio ambiente. Nota 10!"</p>
+                    <div class="testimonial-author">
+                        <strong>Alex</strong>
+                        <span>Pendotiba - Niterói - RJ</span>
+                    </div>
+                </div>
+                <!-- FIM DA ÁREA EDITÁVEL -->
+            </div>
+        </div>
+    </section>
+    <!-- Serviços Principais -->
+    <section class="services-highlight">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Soluções em Energia Solar</h2>
+                <p class="section-subtitle"></p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card featured" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="featured-badge">Mais Popular</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Sistema <span class="sem-quebra">On-Grid</span></h3>
+                    <p class="service-description" style="font-weight: bold">Conectado à Light / Enel + Créditos de
+                        Energia</p>
+                    <ul class="service-benefits">
+                        <li>- Economia de até 90% na conta de energia mensal</li>
+                        <li>- Seu imóvel mais valorizado em até 20%</li>
+                        <li>- Produza sua própria energia pelos próximos 30 anos</li>
+                        <li>- Imunidade total contra inflação energética</li>
+                    </ul>
+                    <a href="solucoes/" class="service-link">Saiba Mais →</a>
+                </div>
+                <div class="service-card featured" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="featured-badge">Conforto e Segurança</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Sistema <span class="sem-quebra">Off-Grid</span></h3>
+                    <p class="service-description" style="font-weight: bold">Baterias e Geradores</p>
+                    <ul class="service-benefits">
+                        <li>- Nunca fique sem energia - funcionamento 24h/dia</li>
+                        <li>- Sistema autônomo e com monitoramento inteligente</li>
+                        <li>- Conforto para você e sua família</li>
+                        <li>- Segurança para você e sua empresa</li>
+                    </ul>
+                    <a href="solucoes/" class="service-link">Saiba Mais →</a>
+                </div>
+                <div class="service-card featured" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="featured-badge">Novidade</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Mercado Livre de Energia</h3>
+                    <p class="service-description" style="font-weight: bold">Até 40% de Economia e Sem Bandeiras
+                        Tarifárias</p>
+                    <ul class="service-benefits">
+                        <li>- Comece hoje mesmo - sem comprar ou instalar nada</li>
+                        <li>- Nunca mais pague bandeira amarela e vermelha</li>
+                        <li>- Saia do mercado cativo e seja um consumidor livre</li>
+                        <li>- Solução livre e sustentável</li>
+                    </ul>
+                    <a href="solucoes/" class="service-link">Saiba Mais →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Diferenciais -->
+    <section class="differentials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Por que somos a sua melhor escolha em Energia Solar?</h2>
+                <p class="section-subtitle">Qualidade + Preço Justo = Melhor Investimento!</p>
+            </div>
+            <div class="differentials-grid">
+                <div class="differential-item" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="differential-icon">⭐</div>
+                    <h3><span data-anos-desde="2005">21</span> Anos de Experiência</h3>
+                    <p>Desde 2005 entregando serviços de qualidade.</p>
+                </div>
+                <div class="differential-item" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="differential-icon">🛡️</div>
+                    <h3>Seguro Total</h3>
+                    <p>Incêndio, Raio, Explosão, Vendaval, Chuva de Granizo, Alagamento, Roubo e Furto, Acidentes e
+                        muito mais.</p>
+                </div>
+                <div class="differential-item" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="differential-icon">✅</div>
+                    <h3>Garantia Estendida</h3>
+                    <p>Ampla garantia de equipamentos e serviços.</p>
+                </div>
+                <div class="differential-item" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="differential-icon">💰</div>
+                    <h3>Facilidade de Pagamento</h3>
+                    <p>Diversas formas de pagamento disponíveis.</p>
+                </div>
+                <div class="differential-item" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="differential-icon">💳</div>
+                    <h3>Financiamento BV Financeira</h3>
+                    <p>Até 96 parcelas, com carência de até 120 dias para começar a pagar e possibilidade de 100% do projeto financiado, sem entrada.<br><br>Transforme o valor que você paga mensalmente na conta de energia em uma parcela fixa do financiamento e pode consumir energia com muito mais tranquilidade, pagando um valor mensal planejado e estável.</p>
+                </div>
+                <div class="differential-item" style="opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;">
+                    <div class="differential-icon">🔧</div>
+                    <h3>Pós-Venda</h3>
+                    <p>Suporte contínuo após a instalação do sistema.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BV Financeira Partner Section -->
+    <section class="bv-section-wrapper">
+        <div class="container">
+            <div class="bv-partner-section">
+                <div class="bv-partner-header">
+                    <div class="bv-logo-badge">
+                        <img src="imagens/bv-financeira-logo.webp" alt="BV Financeira" class="bv-logo-img">
+                    </div>
+                    <span class="bv-partner-badge">✓ Parceiro Oficial</span>
+                </div>
+                <h2 class="bv-partner-title">Financie seu Sistema Solar com a BV Financeira</h2>
+                <p class="bv-partner-subtitle">Como associados da BV Financeira, oferecemos condições exclusivas de financiamento para energia solar — diretamente, sem burocracia.</p>
+
+                <div class="bv-benefits-grid">
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">📅</div>
+                        <h4>Até 96 Meses</h4>
+                        <p>Parcele em até 8 anos com prestações que cabem no seu bolso.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">⏱️</div>
+                        <h4>Até 120 Dias de Carência</h4>
+                        <p>Sua primeira parcela só começa depois que o sistema estiver instalado.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">📋</div>
+                        <h4>Aprovação Rápida</h4>
+                        <p>Análise simplificada e resposta ágil — sem burocracia desnecessária.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">💸</div>
+                        <h4>Sem Entrada</h4>
+                        <p>100% do valor financiado — invista em energia solar sem desembolsar nada agora.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">📉</div>
+                        <h4>Taxas Competitivas</h4>
+                        <p>Condições especiais para projetos de energia solar fotovoltaica.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">✅</div>
+                        <h4>Parceria Direta</h4>
+                        <p>Somos associados BV — o processo é feito por nós, sem intermediários.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">🏠</div>
+                        <h4>Limite Pessoa Física</h4>
+                        <p>Financie até R$ 500.000,00 para projetos residenciais e de pequeno porte.</p>
+                    </div>
+                    <div class="bv-benefit-item">
+                        <div class="bv-benefit-icon">🏢</div>
+                        <h4>Limite Pessoa Jurídica</h4>
+                        <p>Financie até R$ 3.000.000,00 para empresas e projetos de grande escala.</p>
+                    </div>
+                </div>
+
+                <div class="bv-cta-row">
+                    <a href="contato/" class="btn-bv">Simular Financiamento BV →</a>
+                    <span class="bv-disclaimer">* Sujeito à análise de crédito. Condições conforme política da BV Financeira.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Tenha mais qualidade de vida; sua família merece este investimento.</h2>
+                <p class="cta-text">Solicite um orçamento gratuito e sem compromisso. Nossa equipe está pronta para te
+                    atender.</p>
+                <div class="cta-buttons">
+                    <a href="contato/" class="btn btn-primary2 btn-large">Solicitar Orçamento Grátis</a>
+                    <a href="https://wa.me/5521969115520" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-large">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+                        </svg>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img loading="lazy" src="imagens/logo_rodape.webp" alt="CS Serviços" class="footer-logo">
+                    <p class="footer-description">Desde 2005<br>Experiência e Qualidade</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/csservicosrj/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://csservicosrj.com.br/">Início</a></li>
+                        <li><a href="quem_somos/">Quem Somos</a></li>
+                        <li><a href="solucoes/">Soluções</a></li>
+                        <li><a href="obras/">Obras Realizadas</a></li>
+                        <li><a href="clientes/">Clientes e Parceiros</a></li>
+                        <li><a href="pagamento/">Formas de Pagamento</a></li>
+                        <li><a href="responsabilidade/">Responsabilidade Social</a></li>
+                        <li><a href="duvidas/">Dúvidas Frequentes</a></li>
+                        <li><a href="contato/">Contato e Orçamento</a></li>
+                        <li><a href="privacidade/">Política de Privacidade</a></li>
+                        <li><a href="#" data-cookies="">Preferências de Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contato</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor">
+                                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <a href="tel:+5521969115520">(21) 96911-5520</a>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <a href="mailto:contato@csservicosrj.com.br"><span class="" data-cfemail="">contato@csservicosrj.com.br</span></a>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor">
+                                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <span>Rio de Janeiro - RJ</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>CS Serviços e Projetos LTDA<br>© 2026 Todos os Direitos Reservados</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script><button type="button" class="btn-topo" aria-label="Voltar ao topo da página"><span aria-hidden="true">↑</span></button>
+    <!-- Botão Flutuante do App PWA -->
+    <a href="app/" class="app-float-btn" aria-label="Acessar App de Gestão Solar">
+        <span class="app-float-btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+            </svg>
+        </span>
+        <span class="app-float-btn-text">
+            <small>Área do Cliente</small>
+            <span>Acessar Aplicativo</span>
+        </span>
+    </a>
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5521969115520" class="whatsapp-float fab-oculto" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp" tabindex="-1">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+        </svg>
+    </a>
+
+
+
+
+
+<div id="avisoCookies" class="aviso-cookies" role="region" aria-label="Aviso de cookies"><p>Usamos o Google Analytics para entender quais páginas ajudam os visitantes. Ele só é ligado se você aceitar. <a href="/privacidade/">Política de Privacidade</a></p><div class="aviso-cookies-botoes"><button type="button" class="cookies-recusar">Recusar</button><button type="button" class="cookies-aceitar">Aceitar</button></div></div></body></html>

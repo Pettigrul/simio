@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cfddaa8afd9",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://bancariosma.org.br/paginas/pesquisa.asp",
+  "final_url": "https://bancariosma.org.br/paginas/pesquisa.asp",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "191.252.4.67",
+  "collected_at": "2026-11-26T02:12:48.857988+00:00",
+  "manifest_written_at": "2026-11-26T02:12:57.588669+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cfddaa8afd9/attempt-1/viewport.png",
+      "sha256": "93b16202384324d7a415b25e9f32d04100f8b89ec0e3f940730e94d03f879593",
+      "size_bytes": 274716
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cfddaa8afd9/attempt-1/fullpage.png",
+      "sha256": "4547bba1927585ea3db3c293ca5802c62b84b5b409130e99644609ad4976b298",
+      "size_bytes": 773778
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cfddaa8afd9/attempt-1/page.html.txt",
+      "sha256": "c7fcac2befd88329c3d8cc44447d5560caa8f6585dd942cfbc8ce033dd9f1c50",
+      "size_bytes": 2000000
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cfddaa8afd9/attempt-1/text.txt",
+      "sha256": "d014cdae7a3f51d59a751ab9dc82169c9af7a615efcd7ced7186c83a211ab4bc",
+      "size_bytes": 3994
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cfddaa8afd9/attempt-1/page.json",
+      "sha256": "62388f3ddaa8a545872aef6139718726a071a97e05ee04dd9af5758ed2dee2cd",
+      "size_bytes": 16990
+    }
+  ],
+  "blocked_requests": [
+    "https://s7.addthis.com/js/300/addthis_widget.js -> DNS resolution failed for s7.addthis.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "HTML truncated to 2000000 bytes"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

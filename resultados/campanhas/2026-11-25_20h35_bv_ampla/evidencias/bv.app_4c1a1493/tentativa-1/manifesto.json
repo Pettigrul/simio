@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C4c1a1493ac",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://bv.app/",
+  "final_url": "http://www.bookvalueappraisals.com/",
+  "redirect_chain": [
+    "http://bv.app/"
+  ],
+  "http_status": 522,
+  "server_ip": "104.21.69.101",
+  "collected_at": "2026-11-26T01:30:46.262812+00:00",
+  "manifest_written_at": "2026-11-26T01:31:09.936328+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C4c1a1493ac/attempt-1/viewport.png",
+      "sha256": "524347ef8db276b75c096a57127a3180bac6c67e14d93bd766e2b44fa51cadd8",
+      "size_bytes": 91509
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C4c1a1493ac/attempt-1/fullpage.png",
+      "sha256": "74293c64e068e38bed5ef89aa8dc52dfc1ba79987d5b5c7431607633d4326112",
+      "size_bytes": 99834
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C4c1a1493ac/attempt-1/page.html.txt",
+      "sha256": "63c27e1554e6da4f97c47f938b1dd82fab6a4255934048ee17b08e66ba775db4",
+      "size_bytes": 7032
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C4c1a1493ac/attempt-1/text.txt",
+      "sha256": "3b6acb9e6401fb97ddf2d2c8ce57129a864bc8d0f137d256a1723e9851e49716",
+      "size_bytes": 905
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C4c1a1493ac/attempt-1/page.json",
+      "sha256": "892cee94151ad59bb28a328ec255ecef0a5563667e4c16d2fef949f67856e72c",
+      "size_bytes": 3807
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 522: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

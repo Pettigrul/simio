@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cfdc97d0dc5",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://gp-repasse.vercel.app/",
+  "final_url": "https://gp-repasse.vercel.app/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "216.198.79.2",
+  "collected_at": "2026-11-26T01:41:54.936522+00:00",
+  "manifest_written_at": "2026-11-26T01:41:59.168608+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cfdc97d0dc5/attempt-1/viewport.png",
+      "sha256": "6a211eedeeda476c37de541e69f741657fd00ae4120a56d1d1dd6d12b097beb2",
+      "size_bytes": 124495
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cfdc97d0dc5/attempt-1/fullpage.png",
+      "sha256": "86e4a9d78807447de2fba05e44c4bb3864b348510c57bdff2cc409943383b425",
+      "size_bytes": 265813
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cfdc97d0dc5/attempt-1/page.html.txt",
+      "sha256": "0d69d0599f2dba6cd2ba8380c26a3671fd2c6936a14475b451a67220acc95eaa",
+      "size_bytes": 46766
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cfdc97d0dc5/attempt-1/text.txt",
+      "sha256": "aa2811f831cff060027f73a99f1b505b140b559c97854ea102b48f871a1223c2",
+      "size_bytes": 2575
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cfdc97d0dc5/attempt-1/page.json",
+      "sha256": "a4cc158e40007628f10b9074fd1b50561fc7410bb2677b5da47b3fe7a0436f95",
+      "size_bytes": 12183
+    }
+  ],
+  "blocked_requests": [
+    "https://mkquzbwyjoaqbbnsafuz.supabase.co/rest/v1/metrics -> DNS resolution failed for mkquzbwyjoaqbbnsafuz.supabase.co: [Errno -2] Name or service not known",
+    "https://mkquzbwyjoaqbbnsafuz.supabase.co/rest/v1/stock?select=*&order=created_at.asc -> DNS resolution failed for mkquzbwyjoaqbbnsafuz.supabase.co: [Errno -2] Name or service not known"
+  ],
+  "errors": [],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

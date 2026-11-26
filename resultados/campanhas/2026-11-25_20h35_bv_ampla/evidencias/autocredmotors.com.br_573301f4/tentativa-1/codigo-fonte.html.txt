@@ -1,0 +1,480 @@
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financiamento — Auto Cred Motors</title>
+<meta property="og:url" content="https://autocredmotors.com.br/financiamento.html">
+<meta property="og:image" content="https://autocredmotors.com.br/assets/marca/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Formas de pagamento na Auto Cred Motors: à vista, financiamento ou carro na troca. Simule sua parcela e fale conosco no WhatsApp.">
+<meta property="og:title" content="Financiamento — Auto Cred Motors">
+<meta property="og:description" content="Simule o financiamento do seu próximo carro e fale direto com a gente.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/marca/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="dados/veiculos.js?v=c65475eb99"></script>
+<style>
+  :root{
+    --bg:#080D17; --surface:#101A2B; --surface-2:#17243A;
+    --accent:#E3262B; --accent-light:#FF4A4F;
+    --text:#F2F3F5; --text-2:#8A9099; --border:#1E2C44;
+    --green:#3FA66A; --amber:#C9862A;
+  }
+  html,body{background:var(--bg); color:var(--text); font-family:'Barlow', system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}
+  .titulo{font-family:'Barlow Condensed', sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.005em;}
+  .rotulo{font-family:'Barlow Condensed', sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.2em; font-size:11px; color:var(--text-2); display:inline-flex; align-items:center; gap:10px;}
+  .rotulo::before{content:''; display:inline-block; width:30px; height:11px; background-image:repeating-linear-gradient(112deg, var(--accent) 0 4px, transparent 4px 8px);}
+  /* listras inclinadas da logo — assinatura da marca */
+  .listras{background-image:repeating-linear-gradient(112deg, var(--accent) 0 6px, transparent 6px 13px);}
+  .faixa-listras{height:10px; background-image:repeating-linear-gradient(112deg, var(--accent) 0 7px, transparent 7px 15px);}
+  .borda-listras{position:relative;}
+  .borda-listras::before{content:''; position:absolute; left:0; top:0; bottom:0; width:6px; background-image:repeating-linear-gradient(112deg, var(--accent) 0 5px, transparent 5px 11px);}
+  .fio{border-color:var(--border) !important; border-width:1px;}
+  .btn-primario{display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 24px; background:var(--accent); color:#fff; font-family:'Barlow Condensed', sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.16em; font-size:12px; border-radius:0; transition: background .2s ease; border:none; cursor:pointer;}
+  .btn-primario:hover{background:var(--accent-light);}
+  .btn-secundario{display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 24px; background:transparent; color:var(--text); border:1px solid rgba(242,243,245,.35); font-family:'Barlow Condensed', sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.16em; font-size:12px; border-radius:0; transition: border-color .2s ease, color .2s ease;}
+  .btn-secundario:hover{border-color:var(--text);}
+  .header-shell{background:rgba(8,13,23,.85); backdrop-filter: blur(12px); border-bottom:1px solid var(--border);}
+  .label-caps{font-family:'Barlow Condensed', sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.2em;}
+  .tabular{font-variant-numeric: tabular-nums; font-weight:700;}
+  ::-webkit-scrollbar{width:10px;height:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:6px;}
+  .nav-link{position:relative; padding-bottom:4px;}
+  .nav-link.nav-ativo{color:var(--text);}
+  .nav-link.nav-ativo::after{content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:var(--accent);}
+  .mobile-panel{transition: transform .3s ease;}
+  .campo{width:100%; background:var(--surface); border:1px solid var(--border); color:var(--text); padding:12px 14px; font-size:14px; border-radius:0;}
+  .campo:focus{outline:none; border-color:var(--accent);}
+  .rotulo-campo{display:block; font-size:12px; color:var(--text-2); margin-bottom:6px;}
+  details.faq-item{border-bottom:1px solid var(--border);}
+  details.faq-item summary{cursor:pointer; padding:16px 0; list-style:none; display:flex; justify-content:space-between; align-items:center; font-weight:500; color:var(--text);}
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  details.faq-item summary::after{content:'+'; font-size:20px; color:var(--accent); margin-left:16px; flex-shrink:0;}
+  details.faq-item[open] summary::after{content:'–';}
+  details.faq-item p{padding-bottom:16px; color:var(--text-2); font-size:14px; line-height:1.6;}
+  .fade-in{animation: fadeIn .5s ease both;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+  /* Verde = abre o WhatsApp. Vermelho fica para as ações do próprio site. */
+  .btn-zap{background:#25D366 !important; color:#fff !important;}
+  .btn-zap:hover{background:#1FBE5B !important;}
+  .btn-zap-linha{display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 24px;
+    background:transparent; color:#25D366; border:1px solid #25D366;
+    font-family:'Barlow Condensed', sans-serif; font-weight:600; text-transform:uppercase;
+    letter-spacing:.16em; font-size:12px; border-radius:0; transition:background .2s ease, color .2s ease;}
+  .btn-zap-linha:hover{background:#25D366; color:#fff;}
+  .banco{background:#fff; border-radius:6px; height:78px; display:flex; align-items:center; justify-content:center; padding:14px 18px;}
+  .banco img{max-width:100%; max-height:30px; width:auto; height:auto; object-fit:contain;}
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.relative{position:relative}.inset-0{inset:0px}.bottom-6{bottom:1.5rem}.left-0{left:0px}.right-0{right:0px}.right-6{right:1.5rem}.top-0{top:0px}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-6{margin-left:1.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-11{height:2.75rem}.h-16{height:4rem}.h-\[34px\]{height:34px}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-72{width:18rem}.w-auto{width:auto}.w-full{width:100%}.max-w-7xl{max-width:80rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.shrink-0{flex-shrink:0}.translate-x-full{--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.self-start{align-self:flex-start}.overflow-hidden{overflow:hidden}.whitespace-nowrap{white-space:nowrap}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-\[var\(--border\)\]{border-color:var(--border)}.bg-\[var\(--bg\)\]{background-color:var(--bg)}.bg-\[var\(--surface\)\]{background-color:var(--surface)}.bg-black\/60{background-color:rgb(0 0 0 / 0.6)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pt-16{padding-top:4rem}.pt-6{padding-top:1.5rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-\[12px\]{font-size:12px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.text-\[var\(--text\)\]{color:var(--text)}.text-\[var\(--text-2\)\]{color:var(--text-2)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:text-\[var\(--text\)\]:hover{color:var(--text)}@media (min-width: 640px){.sm\:inline-flex{display:inline-flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:p-7{padding:1.75rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}}@media (min-width: 768px){.md\:h-11{height:2.75rem}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:py-20{padding-top:5rem;padding-bottom:5rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-6{grid-column:span 6 / span 6}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:w-72{width:18rem}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:gap-10{gap:2.5rem}.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (min-width: 1280px){.xl\:flex{display:flex}.xl\:hidden{display:none}}</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como funciona o financiamento?","acceptedAnswer":{"@type":"Answer","text":"A aprovação e as condições dependem de análise de crédito. Fale com a gente pelo WhatsApp para simular seu financiamento."}},{"@type":"Question","name":"Vocês aceitam meu carro na troca?","acceptedAnswer":{"@type":"Answer","text":"Sim. Envie os dados do seu veículo pelo WhatsApp e, na negociação, consideramos outro valor."}},{"@type":"Question","name":"O simulador acima é um financiamento aprovado?","acceptedAnswer":{"@type":"Answer","text":"Não. É apenas uma simulação ilustrativa para você ter uma ideia da parcela. O valor final depende de análise de crédito."}}]}</script></head>
+<body class="min-h-screen">
+
+<!-- HEADER -->
+<header class="header-shell fixed top-0 left-0 right-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="assets/marca/logo-horizontal.png" alt="Auto Cred Motors" class="h-[34px] md:h-11 w-auto flex-shrink-0">
+    </a>
+    <nav class="hidden xl:flex items-center gap-6 ml-6 text-[12px] label-caps text-[var(--text-2)] whitespace-nowrap">
+      <a href="estoque.html" class="nav-link hover:text-[var(--text)] transition-colors">Estoque</a>
+      <a href="financiamento.html" class="nav-link nav-ativo hover:text-[var(--text)] transition-colors">Financiamento</a>
+      <a href="vender.html" class="nav-link hover:text-[var(--text)] transition-colors">Vender meu carro</a>
+      <a href="sobre.html" class="nav-link hover:text-[var(--text)] transition-colors">Sobre</a>
+      <a href="contato.html" class="nav-link hover:text-[var(--text)] transition-colors">Contato</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/556798006848" target="_blank" rel="noopener" class="hidden sm:inline-flex btn-primario btn-zap" style="height:40px; padding:0 16px; border:1px solid var(--accent);">WHATSAPP</a>
+      <button id="menuBtn" aria-label="Abrir menu" class="xl:hidden text-[var(--text)] p-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE PANEL -->
+<div id="mobilePanel" class="mobile-panel fixed top-0 right-0 h-full w-72 bg-[var(--surface)] border-l border-[var(--border)] z-50 translate-x-full">
+  <div class="flex justify-end p-4">
+    <button id="closeMenuBtn" aria-label="Fechar menu" class="text-[var(--text)] p-2">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-1 px-6 text-[12px] label-caps text-[var(--text-2)]">
+    <a href="estoque.html" class="nav-link py-3 border-b border-[var(--border)]">Estoque</a>
+    <a href="financiamento.html" class="nav-link nav-ativo py-3 border-b border-[var(--border)]">Financiamento</a>
+    <a href="vender.html" class="nav-link py-3 border-b border-[var(--border)]">Vender meu carro</a>
+    <a href="sobre.html" class="nav-link py-3 border-b border-[var(--border)]">Sobre</a>
+    <a href="contato.html" class="nav-link py-3 border-b border-[var(--border)]">Contato</a>
+    <a href="https://wa.me/556798006848" target="_blank" rel="noopener" class="btn-primario btn-zap text-center mt-4">WHATSAPP</a>
+  </nav>
+</div>
+<div id="menuOverlay" class="hidden fixed inset-0 bg-black/60 z-40"></div>
+
+<main class="pt-16">
+
+  <!-- TOPO -->
+  <section class="relative overflow-hidden" style="background:linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); border-bottom:1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-6 fade-in">
+        <p class="rotulo">FINANCIAMENTO</p>
+        <h1 class="titulo text-4xl md:text-5xl mt-3" style="line-height:1.06;">Saia de carro novo<br>do jeito que couber no seu bolso</h1>
+        <p class="text-base md:text-lg mt-5 max-w-xl leading-relaxed" style="color:var(--text-2);">À vista, financiado, com seu carro na troca ou deixando o seu em consignação. A gente encaminha a ficha e acompanha a aprovação com você.</p>
+        <div class="flex flex-col sm:flex-row gap-3 mt-8">
+          <a href="#simulador" class="btn-primario text-center">Simular parcela</a>
+          <a href="https://wa.me/556798006848?text=Ol%C3%A1!%20Quero%20simular%20um%20financiamento." target="_blank" rel="noopener" class="btn-zap-linha text-center">Simular pelo WhatsApp</a>
+        </div>
+      </div>
+      <div class="lg:col-span-6 grid grid-cols-2 gap-2"><img src="assets/veiculos/ram-2500-laramie-2024-night-edition-6-7tdi-24v-4x4-c-d-1.jpg" alt="" aria-hidden="true" class="w-full aspect-square object-cover" loading="lazy"><img src="assets/veiculos/toyota-hilux-sw4-2025-srx-platinum-d4-d-2-8tdi-16v-4x4-1.jpg" alt="" aria-hidden="true" class="w-full aspect-square object-cover" loading="lazy"><img src="assets/veiculos/land-rover-range-rover-velar-2020-sv-autobiography-5-0-v8-32-1.jpg" alt="" aria-hidden="true" class="w-full aspect-square object-cover" loading="lazy"><img src="assets/veiculos/bmw-x2-2025-xdrive-m35i-2-0t-16v-1.jpg" alt="" aria-hidden="true" class="w-full aspect-square object-cover" loading="lazy"></div>
+    </div>
+  </section>
+
+<!-- BANCOS PARCEIROS (pedido do cliente: bancos com que a loja trabalha) -->
+<section id="bancos" class="relative py-12 sm:py-14 px-4 sm:px-6 lg:px-8" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+      <div class="lg:w-72 shrink-0">
+        <p class="rotulo mb-2">Financiamento</p>
+        <h2 class="titulo text-2xl sm:text-3xl" style="color:var(--text);">Trabalhamos com os principais bancos</h2>
+      </div>
+      <ul class="bancos-grade flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <li class="banco"><img src="assets/bancos/itau.svg" alt="Itaú" loading="lazy" style="max-height:46px;"></li>
+        <li class="banco"><img src="assets/bancos/santander.svg" alt="Santander" loading="lazy"></li>
+        <li class="banco"><img src="assets/bancos/bradesco.png" alt="Bradesco" loading="lazy" style="max-height:34px;"></li>
+        <li class="banco"><img src="assets/bancos/bv.svg" alt="Banco BV" loading="lazy" style="max-height:38px;"></li>
+        <li class="banco"><img src="assets/bancos/c6.svg" alt="C6 Bank" loading="lazy"></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- FORMAS DE PAGAMENTO -->
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
+    <p class="rotulo mb-2">FORMAS DE PAGAMENTO</p>
+    <h2 class="titulo text-2xl md:text-3xl mb-10">Quatro caminhos até a chave na mão</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-6 sm:p-7 flex flex-col" style="background:var(--surface); border-top:3px solid var(--accent);">
+        <p class="titulo tabular text-4xl" style="color:var(--accent);">01</p>
+        <p class="titulo text-lg mt-4" style="color:var(--text);">À vista</p>
+        <p class="text-sm leading-relaxed mt-2" style="color:var(--text-2);">Transferência bancária ou Pix, com negociação direta no valor.</p>
+      </div>
+      <div class="p-6 sm:p-7 flex flex-col" style="background:var(--surface); border-top:3px solid var(--accent);">
+        <p class="titulo tabular text-4xl" style="color:var(--accent);">02</p>
+        <p class="titulo text-lg mt-4" style="color:var(--text);">Financiamento</p>
+        <p class="text-sm leading-relaxed mt-2" style="color:var(--text-2);">A gente encaminha a ficha, acompanha a análise de crédito e te avisa da aprovação.</p>
+      </div>
+      <div class="p-6 sm:p-7 flex flex-col" style="background:var(--surface); border-top:3px solid var(--accent);">
+        <p class="titulo tabular text-4xl" style="color:var(--accent);">03</p>
+        <p class="titulo text-lg mt-4" style="color:var(--text);">Carro na troca</p>
+        <p class="text-sm leading-relaxed mt-2" style="color:var(--text-2);">Seu carro ou moto entra como parte do pagamento. Mande os dados pelo WhatsApp.</p>
+      </div>
+      <div class="p-6 sm:p-7 flex flex-col" style="background:var(--surface); border-top:3px solid var(--accent);">
+        <p class="titulo tabular text-4xl" style="color:var(--accent);">04</p>
+        <p class="titulo text-lg mt-4" style="color:var(--text);">Consignação</p>
+        <p class="text-sm leading-relaxed mt-2" style="color:var(--text-2);">Deixe seu veículo no nosso pátio e a gente vende para você.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULADOR -->
+  <section id="simulador" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20">
+      <p class="rotulo mb-2">SIMULADOR</p>
+      <h2 class="titulo text-2xl md:text-3xl mb-8">Simule sua parcela</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-5 p-6 sm:p-8" style="background:var(--bg); border:1px solid var(--border);">
+        <div class="mb-5">
+          <label class="rotulo-campo" for="simVeiculo">Veículo do estoque</label>
+          <select class="campo" id="simVeiculo">
+            <option value="">Selecione ou digite um valor abaixo</option>
+          <option value="bmw-x2-2025-xdrive-m35i-2-0t-16v" data-preco="449000">BMW X2 xDrive M35i 2.0T 16v — R$ 449.000</option><option value="ram-2500-laramie-2024-night-edition-6-7tdi-24v-4x4-c-d" data-preco="419900">RAM 2500 Laramie Night Edition 6.7TDi 24v 4x4 C.D. — R$ 419.900</option><option value="ram-2500-laramie-2023-night-edition-6-7tdi-24v-4x4-c-d" data-preco="379900">RAM 2500 Laramie Night Edition 6.7TDi 24v 4x4 C.D. — R$ 379.900</option><option value="bmw-320i-2015-sport-2-0t-16v" data-preco="98900">BMW 320i Sport 2.0T 16v — R$ 98.900</option><option value="bmw-320i-2017-sport-gp-2-0t-16v" data-preco="115900">BMW 320i Sport GP 2.0T 16v — R$ 115.900</option><option value="mercedes-benz-c-180-2011-classic-special-1-8t-16v" data-preco="56900">Mercedes-Benz C 180 Classic Special 1.8T 16v — R$ 56.900</option><option value="mercedes-benz-c-250-2015-sport-2-0t-16v" data-preco="134900">Mercedes-Benz C 250 Sport 2.0T 16v — R$ 134.900</option><option value="chevrolet-captiva-sport-2015-2-4-16v" data-preco="49900">Chevrolet Captiva Sport 2.4 16v — R$ 49.900</option><option value="honda-cbr-1000rr-2012-fireblade" data-preco="46900">Honda CBR 1000RR Fireblade — R$ 46.900</option><option value="mercedes-benz-cla-200-2025-amg-line-1-3t-16v" data-preco="249900">Mercedes-Benz CLA 200 AMG Line 1.3T 16v — R$ 249.900</option><option value="mercedes-benz-cla-200-2015-first-edition-1-6t-16v" data-preco="99999">Mercedes-Benz CLA 200 First Edition 1.6T 16v — R$ 99.999</option><option value="mercedes-benz-cla-250-2020-2-0t-16v" data-preco="199900">Mercedes-Benz CLA 250 2.0T 16v — R$ 199.900</option><option value="jeep-commander-2022-overland-2-0-16v-td380-4x4" data-preco="157900">Jeep Commander Overland 2.0 16v TD380 4x4 — R$ 157.900</option><option value="jeep-compass-2022-trailhawk-2-0-16v-td350-4x4" data-preco="124900">Jeep Compass Trailhawk 2.0 16v TD350 4x4 — R$ 124.900</option><option value="jaguar-f-pace-2023-r-dynamic-se-3-0-v6-24v-supercharged" data-preco="339900">Jaguar F-Pace R-Dynamic SE 3.0 V6 24v Supercharged — R$ 339.900</option><option value="ford-fusion-2017-titanium-2-0t-16v-awd" data-preco="98900">Ford Fusion Titanium 2.0T 16v AWD — R$ 98.900</option><option value="mercedes-benz-gla-200-2017-advance-1-6t-16v" data-preco="104900">Mercedes-Benz GLA 200 Advance 1.6T 16v — R$ 104.900</option><option value="mercedes-benz-gla-200-2018-style-1-6t-16v" data-preco="114900">Mercedes-Benz GLA 200 Style 1.6T 16v — R$ 114.900</option><option value="toyota-hilux-2022-srv-d4-d-2-8tdi-16v-4x4-c-d" data-preco="214900">Toyota Hilux SRV D4-D 2.8TDi 16v 4x4 C.D. — R$ 214.900</option><option value="toyota-hilux-2011-srv-d4-d-3-0tdi-16v-4x4-c-d" data-preco="109900">Toyota Hilux SRV D4-D 3.0TDi 16v 4x4 C.D. — R$ 109.900</option><option value="toyota-hilux-2016-srx-d4-d-2-8tdi-16v-4x4-c-d" data-preco="164900">Toyota Hilux SRX D4-D 2.8TDi 16v 4x4 C.D. — R$ 164.900</option><option value="toyota-hilux-sw4-2025-srx-platinum-d4-d-2-8tdi-16v-4x4" data-preco="349900">Toyota Hilux SW4 SRX Platinum D4-D 2.8TDi 16v 4x4 — R$ 349.900</option><option value="honda-hr-v-2019-ex-1-8-16v" data-preco="99900">Honda HR-V EX 1.8 16v — R$ 99.900</option><option value="mitsubishi-l200-2015-triton-hpe-3-2tdi-16v-4x4-c-d" data-preco="114900">Mitsubishi L200 Triton HPE 3.2TDi 16v 4x4 C.D. — R$ 114.900</option><option value="mitsubishi-pajero-2019-full-hpe-3-2tdi-16v-awc-r" data-preco="199000">Mitsubishi Pajero Full HPE 3.2TDi 16v AWC-R — R$ 199.000</option><option value="ram-rampage-2024-laramie-2-0tdi-16v-4x4" data-preco="179900">RAM Rampage Laramie 2.0TDi 16v 4x4 — R$ 179.900</option><option value="audi-rs7-2015-sportback-4-0-v8-tfsi-32v-quattro" data-preco="399900">Audi RS7 Sportback 4.0 V8 TFSi 32v Quattro — R$ 399.900</option><option value="chevrolet-s10-2022-lt-2-8ctdi-16v-4x4-c-d" data-preco="149900">Chevrolet S10 LT 2.8CTDi 16v 4x4 C.D. — R$ 149.900</option><option value="chevrolet-s10-2020-ltz-2-8ctdi-16v-4x4-c-d" data-preco="149900">Chevrolet S10 LTZ 2.8CTDi 16v 4x4 C.D. — R$ 149.900</option><option value="chevrolet-s10-2014-ltz-2-8ctdi-16v-4x4-c-d" data-preco="109900">Chevrolet S10 LTZ 2.8CTDi 16v 4x4 C.D. — R$ 109.900</option><option value="hyundai-santa-fe-2015-gls-3-3-v6-24v-awd" data-preco="79900">Hyundai Santa Fe GLS 3.3 V6 24v AWD — R$ 79.900</option><option value="volkswagen-saveiro-cross-2015-1-6-16v-c-e" data-preco="59900">Volkswagen Saveiro Cross 1.6 16v C.E. — R$ 59.900</option><option value="byd-song-plus-2024-1-5-16v" data-preco="169900">BYD Song Plus 1.5 16v — R$ 169.900</option><option value="kia-sportage-2012-lx-2-0-16v" data-preco="62900">Kia Sportage LX 2.0 16v — R$ 62.900</option><option value="fiat-strada-2022-endurance-1-4-c-s" data-preco="68900">Fiat Strada Endurance 1.4 C.S. — R$ 68.900</option><option value="fiat-strada-2015-hard-working-1-4-c-e" data-preco="49900">Fiat Strada Hard Working 1.4 C.E. — R$ 49.900</option><option value="volkswagen-tera-2026-high-1-0-12v-tsi" data-preco="129900">Volkswagen Tera High 1.0 12v TSi — R$ 129.900</option><option value="fiat-toro-2017-freedom-2-4-16v" data-preco="82900">Fiat Toro Freedom 2.4 16v — R$ 82.900</option><option value="fiat-toro-2022-ranch-2-0tdi-16v-4x4" data-preco="129900">Fiat Toro Ranch 2.0TDi 16v 4x4 — R$ 129.900</option><option value="fiat-toro-2022-volcano-2-0tdi-16v-4x4" data-preco="119900">Fiat Toro Volcano 2.0TDi 16v 4x4 — R$ 119.900</option><option value="fiat-toro-2020-volcano-2-0tdi-16v-4x4" data-preco="104900">Fiat Toro Volcano 2.0TDi 16v 4x4 — R$ 104.900</option><option value="fiat-toro-2019-volcano-2-0tdi-16v-4x4" data-preco="99900">Fiat Toro Volcano 2.0TDi 16v 4x4 — R$ 99.900</option><option value="toyota-yaris-2020-xl-plus-connect-1-5-16v" data-preco="78900">Toyota Yaris XL Plus Connect 1.5 16v — R$ 78.900</option><option value="toyota-sw4-2019-srx" data-preco="229900">Toyota Sw4 SRX 2.8 AT — R$ 229.900</option></select>
+        </div>
+        <div class="mb-5">
+          <label class="rotulo-campo" for="simValor">Ou valor do veículo (R$)</label>
+          <input class="campo" type="text" id="simValor" inputmode="numeric" placeholder="Ex.: 80.000" style="">
+        </div>
+        <div class="mb-5">
+          <label class="rotulo-campo" for="simEntrada">Entrada (R$)</label>
+          <input class="campo" type="text" id="simEntrada" inputmode="numeric" placeholder="Ex.: 16.000" style="">
+          <p id="simEntradaAviso" class="hidden text-xs mt-2" style="color:var(--amber);">Sugestão de entrada para esta simulação: 20% do valor do veículo.</p>
+        </div>
+        <div>
+          <label class="rotulo-campo" for="simPrazo">Prazo</label>
+          <select class="campo" id="simPrazo">
+            <option value="24">24 meses</option>
+            <option value="36">36 meses</option>
+            <option value="48" selected="">48 meses</option>
+            <option value="60">60 meses</option>
+          </select>
+        </div>
+        <p class="text-xs text-[var(--text-2)] mt-5">Taxa estimada usada apenas para esta simulação: 1,49% a.m. As condições reais dependem de análise de crédito.</p>
+      </div>
+
+      <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-center" style="background:var(--bg); border:1px solid var(--border); border-top:3px solid var(--accent);">
+          <p class="label-caps text-[10px] text-[var(--text-2)]">PARCELA ESTIMADA</p>
+          <p id="simParcela" class="titulo tabular mt-2" style="font-size:clamp(2.6rem,5vw,4rem); color:var(--accent-light); line-height:1;">—</p>
+          <div class="grid grid-cols-2 gap-6 mt-8 pt-6" style="border-top:1px solid var(--border);">
+            <div>
+              <p class="label-caps text-[10px] text-[var(--text-2)]">TOTAL FINANCIADO</p>
+              <p id="simFinanciado" class="titulo tabular text-2xl mt-1">—</p>
+            </div>
+            <div>
+              <p class="label-caps text-[10px] text-[var(--text-2)]">TOTAL PAGO</p>
+              <p id="simTotalPago" class="titulo tabular text-2xl mt-1">—</p>
+            </div>
+          </div>
+          <p class="text-xs text-[var(--text-2)] mt-6">Simulação ilustrativa. Taxas e aprovação dependem de análise de crédito.</p>
+          <a href="https://wa.me/556798006848?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20no%20site%20e%20quero%20falar%20sobre%20financiamento." target="_blank" rel="noopener" class="btn-primario text-center mt-6 self-start">Quero essa condição</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCUMENTOS + PERGUNTAS -->
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-5">
+      <p class="rotulo mb-2">O QUE VOCÊ PRECISA</p>
+      <h2 class="titulo text-2xl mb-6">Documentos para a ficha</h2>
+      <ul class="space-y-3">
+        <li class="flex gap-3 p-4" style="background:var(--surface);"><span class="titulo" style="color:var(--accent);">1</span><span class="text-sm">Documento de identidade e CPF</span></li>
+        <li class="flex gap-3 p-4" style="background:var(--surface);"><span class="titulo" style="color:var(--accent);">2</span><span class="text-sm">Comprovante de residência atualizado</span></li>
+        <li class="flex gap-3 p-4" style="background:var(--surface);"><span class="titulo" style="color:var(--accent);">3</span><span class="text-sm">Comprovante de renda ou faturamento (PJ)</span></li>
+        <li class="flex gap-3 p-4" style="background:var(--surface);"><span class="titulo" style="color:var(--accent);">4</span><span class="text-sm">Documento do veículo na troca, se houver</span></li>
+      </ul>
+    </div>
+    <div class="lg:col-span-7">
+      <p class="rotulo mb-2">PERGUNTAS FREQUENTES</p>
+      <h2 class="titulo text-2xl mb-6">Tire suas dúvidas</h2>
+    <div id="faqLista">
+      <details class="faq-item">
+        <summary>Como funciona o financiamento?</summary>
+        <p>A aprovação e as condições dependem de análise de crédito. Fale com a gente pelo WhatsApp para simular seu financiamento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Vocês aceitam meu carro na troca?</summary>
+        <p>Sim. Envie os dados do seu veículo pelo WhatsApp e, na negociação, consideramos outro valor.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O simulador acima é um financiamento aprovado?</summary>
+        <p>Não. É apenas uma simulação ilustrativa para você ter uma ideia da parcela. O valor final depende de análise de crédito.</p>
+      </details>
+    </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--accent);">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="titulo text-2xl md:text-3xl" style="color:#fff;">Ficou com dúvida sobre uma condição?</h2>
+        <p class="mt-2" style="color:rgba(255,255,255,.85);">Chame no WhatsApp e simule seu financiamento com a gente.</p>
+      </div>
+      <a href="https://wa.me/556798006848" target="_blank" rel="noopener" class="inline-block text-center px-7 py-3.5 font-semibold label-caps text-xs" style="background:#080D17; color:#fff;">Falar no WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- RODAPÉ -->
+<footer class="bg-[var(--bg)] border-t border-[var(--border)]">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-3">
+        <img src="assets/marca/logo-horizontal.png" alt="Auto Cred Motors" class="h-11 w-auto">
+      </a>
+      <p class="text-[var(--text-2)] text-sm leading-relaxed">Carros, picapes e motos seminovos em Dourados/MS desde 2007. Av. Weimar Gonçalves Torres, 1200, Centro.</p>
+    </div>
+    <div class="flex flex-col gap-2 text-sm text-[var(--text-2)]">
+      <p class="rotulo mb-1">Menu</p>
+      <a href="estoque.html" class="hover:text-[var(--text)]">Estoque</a>
+      <a href="financiamento.html" class="hover:text-[var(--text)]">Financiamento</a>
+      <a href="vender.html" class="hover:text-[var(--text)]">Vender meu carro</a>
+      <a href="sobre.html" class="hover:text-[var(--text)]">Sobre</a>
+      <a href="contato.html" class="hover:text-[var(--text)]">Contato</a>
+    </div>
+    <div class="flex flex-col gap-2 text-sm text-[var(--text-2)]">
+      <p class="rotulo mb-1">Contato</p>
+      <p>Av. Weimar Gonçalves Torres, 1200 — Dourados/MS</p>
+      <p>(67) 9800-6848</p>
+      <p>Seg a sex: 8h–18h · Sáb: 9h–18h</p>
+    </div>
+    <div class="flex flex-col gap-2 text-sm text-[var(--text-2)]">
+      <p class="rotulo mb-1">A Auto Cred</p>
+      <p>Carros, picapes e motos seminovos</p>
+      <p>Simulação de financiamento no site</p>
+      <p>Na Av. Weimar Gonçalves Torres desde 2007</p>
+      <div class="flex gap-3 mt-1">
+        <a href="https://www.instagram.com/autocredmotors/" target="_blank" rel="noopener" class="hover:text-[var(--text)]">Instagram</a>
+        <a href="https://www.facebook.com/autocredmotors" target="_blank" rel="noopener" class="hover:text-[var(--text)]">Facebook</a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-[var(--border)]">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-[var(--text-2)]">
+      <p>CNPJ 08.717.780/0001-05 · Auto Cred Motors</p>
+      <div class="flex gap-4">
+        <a href="privacidade.html" class="hover:text-[var(--text)]">Política de Privacidade</a>
+        <a href="termos.html" class="hover:text-[var(--text)]">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÃO WHATSAPP FLUTUANTE -->
+<a id="floatingWhats" href="https://wa.me/556798006848" target="_blank" rel="noopener" aria-label="Falar no WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center justify-center shadow-lg" style="width:66px; height:66px; background:#25D366; border-radius:50%; box-shadow:0 10px 26px -6px rgba(0,0,0,.65);">
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2Zm5.76 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.13.11-1.82-.12-.42-.14-.96-.32-1.65-.63-2.9-1.26-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.11.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.68-.17 1.36Z"></path></svg>
+</a>
+
+<script>
+(function(){
+  var menuBtn = document.querySelector('#menuBtn');
+  var closeMenuBtn = document.querySelector('#closeMenuBtn');
+  var mobilePanel = document.querySelector('#mobilePanel');
+  var menuOverlay = document.querySelector('#menuOverlay');
+  function openMenu(){
+    if (!mobilePanel || !menuOverlay) return;
+    mobilePanel.classList.remove('translate-x-full');
+    menuOverlay.classList.remove('hidden');
+  }
+  function closeMenu(){
+    if (!mobilePanel || !menuOverlay) return;
+    mobilePanel.classList.add('translate-x-full');
+    menuOverlay.classList.add('hidden');
+  }
+  if (menuBtn) menuBtn.addEventListener('click', openMenu);
+  if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+  if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+})();
+</script>
+
+<script>
+(function(){
+  var estoque = (window.ESTOQUE && window.ESTOQUE.veiculos) ? window.ESTOQUE.veiculos : [];
+  var disponiveis = estoque.filter(function(v){ return v.status !== 'vendido'; });
+
+  var simVeiculo = document.querySelector('#simVeiculo');
+  var simValor = document.querySelector('#simValor');
+  var simEntrada = document.querySelector('#simEntrada');
+  var simEntradaAviso = document.querySelector('#simEntradaAviso');
+  var simPrazo = document.querySelector('#simPrazo');
+  var simParcela = document.querySelector('#simParcela');
+  var simFinanciado = document.querySelector('#simFinanciado');
+  var simTotalPago = document.querySelector('#simTotalPago');
+
+  var params = new URLSearchParams(window.location.search);
+  var carroPreSelecionado = params.get('carro');
+
+  if (simVeiculo) {
+    disponiveis.filter(function(v){ return v.preco !== null && v.preco !== undefined; }).forEach(function(v){
+      var opt = document.createElement('option');
+      opt.value = v.id;
+      opt.setAttribute('data-preco', v.preco);
+      opt.textContent = v.marca + ' ' + v.modelo + (v.versao ? ' ' + v.versao : '') + ' — R$ ' + Number(v.preco).toLocaleString('pt-BR');
+      simVeiculo.appendChild(opt);
+    });
+    if (carroPreSelecionado) {
+      var achado = disponiveis.find(function(v){ return v.id === carroPreSelecionado; });
+      if (achado) {
+        simVeiculo.value = achado.id;
+        if (simValor) simValor.value = Number(achado.preco).toLocaleString('pt-BR');
+      }
+    }
+  }
+
+  function parseMilhar(str){
+    if (!str) return 0;
+    var limpo = String(str).replace(/[^\d]/g, '');
+    return limpo ? parseInt(limpo, 10) : 0;
+  }
+  function fmtMilhar(num){
+    if (!num && num !== 0) return '';
+    return Number(num).toLocaleString('pt-BR');
+  }
+  function fmtPreco(v){
+    return 'R$ ' + Number(Math.round(v)).toLocaleString('pt-BR');
+  }
+
+  function aplicarMascara(input){
+    if (!input) return;
+    input.addEventListener('input', function(){
+      var num = parseMilhar(input.value);
+      input.value = num ? fmtMilhar(num) : '';
+      calcular();
+    });
+  }
+  aplicarMascara(simValor);
+  aplicarMascara(simEntrada);
+
+  if (simVeiculo) {
+    simVeiculo.addEventListener('change', function(){
+      var opt = simVeiculo.options[simVeiculo.selectedIndex];
+      var preco = opt ? Number(opt.getAttribute('data-preco')) : 0;
+      if (preco && simValor) {
+        simValor.value = fmtMilhar(preco);
+      }
+      calcular();
+    });
+  }
+  if (simPrazo) simPrazo.addEventListener('change', calcular);
+
+  function calcular(){
+    var valorVeiculo = parseMilhar(simValor ? simValor.value : 0);
+    var entrada = parseMilhar(simEntrada ? simEntrada.value : 0);
+    var prazo = simPrazo ? Number(simPrazo.value) : 48;
+    var taxa = 0.0149;
+
+    if (!valorVeiculo) {
+      if (simParcela) simParcela.textContent = '—';
+      if (simFinanciado) simFinanciado.textContent = '—';
+      if (simTotalPago) simTotalPago.textContent = '—';
+      if (simEntradaAviso) simEntradaAviso.classList.add('hidden');
+      return;
+    }
+
+    var minEntrada = valorVeiculo * 0.2;
+    if (simEntradaAviso) {
+      if (entrada < minEntrada) simEntradaAviso.classList.remove('hidden');
+      else simEntradaAviso.classList.add('hidden');
+    }
+
+    var financiado = Math.max(valorVeiculo - entrada, 0);
+    var parcela = 0;
+    if (financiado > 0) {
+      parcela = financiado * taxa / (1 - Math.pow(1 + taxa, -prazo));
+    }
+    var totalPago = parcela * prazo + entrada;
+
+    if (simParcela) simParcela.textContent = financiado > 0 ? fmtPreco(parcela) : 'R$ 0';
+    if (simFinanciado) simFinanciado.textContent = fmtPreco(financiado);
+    if (simTotalPago) simTotalPago.textContent = fmtPreco(totalPago);
+  }
+
+  calcular();
+
+  try {
+    var faqEls = document.querySelectorAll('#faqLista details');
+    var mainEntity = [];
+    faqEls.forEach(function(d){
+      var pergunta = d.querySelector('summary');
+      var resposta = d.querySelector('p');
+      if (!pergunta || !resposta) return;
+      mainEntity.push({
+        "@type": "Question",
+        "name": pergunta.textContent.trim(),
+        "acceptedAnswer": { "@type": "Answer", "text": resposta.textContent.trim() }
+      });
+    });
+    var jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": mainEntity };
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+  } catch(e){}
+})();
+</script>
+
+
+
+</body></html>

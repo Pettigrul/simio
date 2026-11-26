@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C0d5cb91ea3",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.cnmp.mp.br/",
+  "final_url": "https://www.cnmp.mp.br/",
+  "redirect_chain": [],
+  "http_status": 500,
+  "server_ip": "200.142.14.29",
+  "collected_at": "2026-11-26T03:06:09.422538+00:00",
+  "manifest_written_at": "2026-11-26T03:06:15.047889+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C0d5cb91ea3/attempt-1/viewport.png",
+      "sha256": "3e06f936e08746968bb5dd37e256894fd455a21e57b0af76c74b01229c8f6493",
+      "size_bytes": 33124
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C0d5cb91ea3/attempt-1/fullpage.png",
+      "sha256": "3e06f936e08746968bb5dd37e256894fd455a21e57b0af76c74b01229c8f6493",
+      "size_bytes": 33124
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C0d5cb91ea3/attempt-1/page.html.txt",
+      "sha256": "24fdb7de45d5a883edafbbf24b0e630f0d308e4af1353f5a91d143907d2745b3",
+      "size_bytes": 60183
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C0d5cb91ea3/attempt-1/text.txt",
+      "sha256": "80362ea26d88c7814a4a9986c45af27460b069c4779948725d054dc5539812a6",
+      "size_bytes": 156
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C0d5cb91ea3/attempt-1/page.json",
+      "sha256": "9d2c64a4e6241493241e8eef1b67ec693ce2d470044a0545a68cc84abadfe34c",
+      "size_bytes": 793
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 500: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

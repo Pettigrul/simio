@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C00c2a0fba5",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://br.polomap.com/te/s%C3%A3o-gon%C3%A7alo/r-jovelino-de-oliveira-viana",
+  "final_url": "https://br.polomap.com/te/s%C3%A3o-gon%C3%A7alo/r-jovelino-de-oliveira-viana",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.86.34",
+  "collected_at": "2026-11-26T03:11:30.192161+00:00",
+  "manifest_written_at": "2026-11-26T03:11:36.405176+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C00c2a0fba5/attempt-1/viewport.png",
+      "sha256": "c3150823f50f3db61efe86db18c7c61cc8f457e800e8f304e4ac7b04e9edb6e5",
+      "size_bytes": 67536
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C00c2a0fba5/attempt-1/fullpage.png",
+      "sha256": "92c5ae846d3837f610f3e99ec56c969cba22fdc1f917472717794915651f6861",
+      "size_bytes": 75880
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C00c2a0fba5/attempt-1/page.html.txt",
+      "sha256": "058e3d36faecbac746793f7903c3fb7036e2392f88f3f5dd08bfc1324a82f229",
+      "size_bytes": 5445
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C00c2a0fba5/attempt-1/text.txt",
+      "sha256": "563d8d1b6fb5ea321d8591ec0be8193b6aa2d2bd4d7b7e8cfd0c76ca02799208",
+      "size_bytes": 692
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C00c2a0fba5/attempt-1/page.json",
+      "sha256": "f5514ba58c8f57c537d70551f535d2af1a438de399d475f1860a35e849429f86",
+      "size_bytes": 2105
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,3105 @@
+<html lang="pt-BR" x-data="themeManager()" :class="currentTheme" class="" style="--cnpjcheck-vid: &quot;f9e1c7fba9884c4b83eed1f48bd48169&quot;;"><head>
+    <!-- CRITICAL: Preconnect hints FIRST - establishes early connections before any resource requests -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="">
+    <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin="">
+    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin="">
+
+    <!-- Preload critical fonts IMMEDIATELY after preconnects -->
+    <link rel="preload" href="/fonts/saira-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="/fonts/saira-latin-ext.woff2" as="font" type="font/woff2" crossorigin="">
+
+    <!-- Prevent theme flash: apply saved theme immediately before CSS loads -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            // Legacy themes collapsed into the single dark theme
+            if (theme === 'dark-golden' || theme === 'dark-night') {
+                theme = 'dark-emerald';
+                localStorage.setItem('theme', theme);
+            }
+            if (theme) document.documentElement.classList.add(theme);
+        })();
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Greencar Campinas - CNPJ 61.366.390/0001-02 - CNPJCheck</title>
+    <meta name="description" content="CNPJ 61.366.390/0001-02 (61366390000102) - Greencar Campinas Ltda, CAMPINAS/SP. Situação cadastral, sócios, endereço e mais.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://cnpjcheck.com.br/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102">
+
+    <!-- Pagination Links -->
+
+    
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Greencar Campinas - CNPJ 61.366.390/0001-02">
+    <meta property="og:description" content="CNPJ 61.366.390/0001-02 (61366390000102) - Greencar Campinas Ltda, CAMPINAS/SP. Situação cadastral, sócios, endereço e mais.">
+    <meta property="og:url" content="https://cnpjcheck.com.br/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102">
+    <meta property="og:site_name" content="CNPJCheck">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:image" content="https://cnpjcheck.com.br/images/og-default.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Greencar Campinas - CNPJ 61.366.390/0001-02">
+    <meta name="twitter:description" content="CNPJ 61.366.390/0001-02 (61366390000102) - Greencar Campinas Ltda, CAMPINAS/SP. Situação cadastral, sócios, endereço e mais.">
+    <meta name="twitter:image" content="https://cnpjcheck.com.br/images/og-default.png">
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="pt-BR" href="https://cnpjcheck.com.br/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102">
+    <link rel="alternate" hreflang="x-default" href="https://cnpjcheck.com.br/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102">
+
+        <link rel="alternate" type="text/markdown" href="https://cnpjcheck.com.br/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102.md">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.pmfffi3k6e.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.8jchuuj2ih.png">
+
+    <!-- DNS Prefetch for secondary/analytics origins (lower priority) -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://www.clarity.ms">
+    <link rel="dns-prefetch" href="https://us.i.posthog.com">
+
+    <!-- Analytics Scripts (GA4, Clarity, PostHog) -->
+    
+
+    <script>
+        (function() {
+            // Only run analytics on production domain
+            var isProduction = window.location.hostname === 'cnpjcheck.com.br' ||
+                               window.location.hostname === 'www.cnpjcheck.com.br';
+            if (!isProduction) {
+                console.log('[Analytics] Disabled - not production domain:', window.location.hostname);
+                return;
+            }
+
+            // Check opt-out flag
+            if (localStorage.getItem('disableAnalytics') === 'true') {
+                console.log('[Analytics] Disabled via localStorage flag');
+                return;
+            }
+
+            // Lazy load analytics after user interaction (improves TBT/LCP by ~200KB)
+            var analyticsLoaded = false;
+            function loadAnalytics() {
+                if (analyticsLoaded) return;
+                analyticsLoaded = true;
+
+                // Remove listeners
+                document.removeEventListener('scroll', loadAnalytics);
+                document.removeEventListener('click', loadAnalytics);
+                document.removeEventListener('touchstart', loadAnalytics);
+                document.removeEventListener('keydown', loadAnalytics);
+
+                    // Google Analytics 4
+                    var gtagScript = document.createElement('script');
+                    gtagScript.async = true;
+                    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-7VRGCJ93Y1';
+                    document.head.appendChild(gtagScript);
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-7VRGCJ93Y1');
+
+                    // Microsoft Clarity
+                    (function(c,l,a,r,i,t,y){
+                        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                    })(window, document, "clarity", "script", "utq6u9w8g5");
+
+                    // PostHog
+                    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties people.set people.set_once".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+                    posthog.init('phc_VNaCpVSpewhiUuPMdiWuvSWUgwO6z9aye5SKm2ZdWwr',{api_host:'https://us.i.posthog.com', person_profiles: 'identified_only'});
+
+                console.log('[Analytics] Loaded after user interaction');
+            }
+
+            // Load on user interaction (scroll, click, touch, keyboard)
+            document.addEventListener('scroll', loadAnalytics, { once: true, passive: true });
+            document.addEventListener('click', loadAnalytics, { once: true });
+            document.addEventListener('touchstart', loadAnalytics, { once: true, passive: true });
+            document.addEventListener('keydown', loadAnalytics, { once: true });
+
+            // Fallback: load after 5 seconds if no interaction (for bounce rate tracking)
+            setTimeout(function() {
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(loadAnalytics, { timeout: 3000 });
+                } else {
+                    loadAnalytics();
+                }
+            }, 5000);
+        })();
+    </script>
+
+
+    <!-- Critical CSS inline for faster FCP - contains enough styles to render above-the-fold without FOUC -->
+    <style>
+        /* Declare Tailwind's layer order up front and slot the critical styles
+           into `base`. Unlayered rules outrank every layered rule, so an
+           unlayered copy of this reset would permanently beat the utilities
+           in output.css (button padding, hidden + sm:block, etc.). */
+        @layer properties, theme, base, components, utilities;
+        @layer base {
+        /* Reset and base */
+        *,::after,::before{box-sizing:border-box;border:0 solid}
+        html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:'Saira','Saira Fallback',system-ui,sans-serif}
+        body{margin:0;line-height:inherit;min-height:100vh;display:flex;flex-direction:column;background:#f5f7f7;color:#374151}
+        img,video{max-width:100%}
+        a{color:inherit;text-decoration:inherit}
+        button,input,select,textarea{font-family:inherit;font-size:100%;line-height:inherit;color:inherit;margin:0;padding:0}
+        button{cursor:pointer;background:transparent}
+
+        /* Layout */
+        .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+        @media(min-width:1280px){.container{max-width:1280px}}
+        .flex{display:flex}.flex-col{flex-direction:column}.flex-1{flex:1 1 0%}
+        .items-center{align-items:center}.justify-between{justify-content:space-between}
+        .gap-2{gap:.5rem}.gap-5{gap:1.25rem}
+        .hidden{display:none}
+        @media(min-width:1280px){.xl\:flex{display:flex}}
+
+        /* Header */
+        header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+        nav{display:flex;align-items:center;justify-content:space-between;height:4rem}
+
+        /* Dark theme - critical styles to prevent flash (brand color.dark tokens) */
+        .dark-emerald{background:#15171C;color:#E8E9EC}
+        .dark-emerald body{background:#15171C;color:#E8E9EC}
+        .dark-emerald header{background:#1D2026;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+        .dark-emerald .card,.dark-emerald .bg-white,.dark-emerald .bg-gray-50,.dark-emerald .bg-blue-50{background:#1D2026;border-color:#2E333C}
+        .dark-emerald input[type="text"],.dark-emerald input[type="search"],.dark-emerald select,.dark-emerald textarea{background:#15171C!important;border-color:#2E333C!important;color:#E8E9EC!important}
+
+        /* Main */
+        main{flex:1}
+        .py-2{padding-top:.5rem;padding-bottom:.5rem}
+        .py-3{padding-top:.75rem;padding-bottom:.75rem}
+        .pt-2{padding-top:.5rem}.pt-3{padding-top:.75rem}.pb-12{padding-bottom:3rem}
+        .px-4{padding-left:1rem;padding-right:1rem}
+        .mx-auto{margin-left:auto;margin-right:auto}
+
+        /* Typography */
+        .text-sm{font-size:.875rem;line-height:1.25rem}
+        .text-base{font-size:1rem;line-height:1.5rem}
+        .text-gray-700{color:#374151}.text-gray-800{color:#1f2937}
+        .font-medium{font-weight:500}
+
+        /* Buttons */
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:.5rem 1rem;font-weight:500;border-radius:.375rem;transition:all .15s}
+        .btn-primary{background:#FCC52C;color:#1f2937}
+        .btn-primary:hover{background:#c99503}
+
+        /* Cards */
+        .card{background:#fff;border-radius:.5rem;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+
+        /* Search input base */
+        input[type="text"],input[type="search"]{padding:.5rem .75rem;border:1px solid #d1d5db;border-radius:.375rem;width:100%}
+        input:focus{outline:none;border-color:#2A9D9C;box-shadow:0 0 0 3px rgba(42,157,156,.1)}
+
+        /* Logo and icon sizing */
+        .h-10{height:2.5rem}.w-\[136px\]{width:136px}.object-contain{object-fit:contain}
+        .w-16{width:4rem}.h-16{height:4rem}.w-12{width:3rem}.h-12{height:3rem}
+        }
+
+        /* Alpine cloak - unlayered on purpose: must always beat utilities */
+        [x-cloak]{display:none!important}
+
+        /* Self-hosted Saira font with font-display:swap */
+        @font-face{font-family:'Saira';font-style:normal;font-weight:100 900;font-display:swap;src:url('/fonts/saira-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+        @font-face{font-family:'Saira Fallback';src:local('Arial');size-adjust:98%;ascent-override:110%;descent-override:30%;line-gap-override:0%}
+    </style>
+
+    <!-- Tailwind CSS - async load to unblock rendering (critical styles are inlined above) -->
+    <link rel="preload" href="/css/output.64nqoyk6qk.css" as="style">
+    <link rel="stylesheet" href="/css/output.64nqoyk6qk.css" media="all" onload="this.media='all'">
+    <noscript b-w10u0bj3rm=""><link rel="stylesheet" href="/css/output.64nqoyk6qk.css" /></noscript>
+
+    <!-- Leaflet CSS - eager render-blocking load (~14KB, cached aggressively
+         by jsdelivr). The print-media + onload trick that the other CDN
+         sheets use does NOT actually trigger a network request fast enough
+         here in Chromium (verified via Playwright: no fetch logged for the
+         file). Without this CSS the .leaflet-tile rule (position:absolute)
+         never applies and tiles stack vertically instead of forming a 2D
+         grid. Worth blocking the head for. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- FontAwesome CSS - async load with font-display:swap override (non-critical icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="all" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="all" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="all" onload="this.media='all'">
+    <!-- FontAwesome font-display override - ensures swap behavior -->
+    <style>@font-face{font-family:'Font Awesome 6 Free';font-display:swap}@font-face{font-family:'Font Awesome 6 Brands';font-display:swap}</style>
+    <noscript b-w10u0bj3rm="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" />
+    </noscript>
+
+    <!-- HTMX -->
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" defer=""></script>
+
+    <!-- Alpine.js (local to avoid CDN blocking) -->
+    <script defer="" src="/js/alpine.min.a6iv1o89pw.js"></script>
+
+    <!-- Cloudflare Turnstile (anti-bot protection) -->
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async="" defer=""></script>
+        <script>
+            // Turnstile token manager - refreshes token automatically
+            window.turnstileManager = {
+                token: null,
+                siteKey: '0x4AAAAAACHm0W5i-SdohWI8',
+                widgetId: null,
+
+                init: function() {
+                    if (!this.siteKey) return;
+
+                    // Wait for Turnstile API to load
+                    if (typeof turnstile === 'undefined') {
+                        setTimeout(() => this.init(), 100);
+                        return;
+                    }
+
+                    // Render invisible widget
+                    this.widgetId = turnstile.render('#turnstile-container', {
+                        sitekey: this.siteKey,
+                        callback: (token) => {
+                            this.token = token;
+                            console.debug('Turnstile token obtained');
+                        },
+                        'expired-callback': () => {
+                            this.token = null;
+                            turnstile.reset(this.widgetId);
+                        },
+                        'error-callback': () => {
+                            console.warn('Turnstile error');
+                            this.token = null;
+                        }
+                    });
+                },
+
+                getToken: function() {
+                    return this.token;
+                },
+
+                refresh: function() {
+                    if (this.widgetId && typeof turnstile !== 'undefined') {
+                        turnstile.reset(this.widgetId);
+                    }
+                }
+            };
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                window.turnstileManager.init();
+            });
+
+            // Add Turnstile token to HTMX requests for protected endpoints
+            document.addEventListener('htmx:configRequest', function(evt) {
+                var path = evt.detail.path || '';
+                // Only add token for protected endpoints
+                if (path.includes('/api/network') || path.includes('/api/feedback') || path.includes('/api/empresa') && path.includes('/export')) {
+                    var token = window.turnstileManager?.getToken();
+                    if (token) {
+                        evt.detail.headers['X-Turnstile-Token'] = token;
+                    }
+                }
+            });
+
+            // Refresh token after successful request (tokens are single-use)
+            document.addEventListener('htmx:afterRequest', function(evt) {
+                var path = evt.detail.pathInfo?.requestPath || '';
+                if (path.includes('/api/network') || path.includes('/api/feedback') || path.includes('/api/empresa') && path.includes('/export')) {
+                    window.turnstileManager?.refresh();
+                }
+            });
+        </script>
+
+    <!-- Visitor Tracking -->
+    <script src="/js/tracker.min.d4ts69xhaf.js" defer=""></script>
+
+    
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Greencar Campinas Ltda",
+            "alternateName": "Greencar Campinas",
+        "identifier": [
+            {"@type":"PropertyValue","propertyID":"CNPJ","value":"61.366.390/0001-02"},
+            {"@type":"PropertyValue","propertyID":"CNPJ","value":"61366390000102"}
+        ],
+        "taxID": "61.366.390/0001-02",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "PAULA BUENO, 1179",
+            "addressLocality": "CAMPINAS",
+            "addressRegion": "SP",
+            "postalCode": "13076-061",
+            "addressCountry": "BR"
+        }
+            ,"telephone": "(19) 7130-6108"
+            ,"email": "GREENCARCAMPINAS@GMAIL.COM"
+    }
+    </script>
+
+    <!-- LinkedIn Company Search Script -->
+    <script>
+        function linkedInCompanySearch() {
+            return {
+                showModal: false,
+                loading: false,
+                companyName: '',
+                result: null,
+                error: null,
+                async searchCompany(name) {
+                    this.companyName = name;
+                    this.showModal = true;
+                    this.loading = true;
+                    this.result = null;
+                    this.error = null;
+                    try {
+                        const params = new URLSearchParams({ name });
+                        const response = await fetch('/api/linkedin/company?' + params);
+                        if (!response.ok) throw new Error('Erro ao buscar perfil da empresa');
+                        this.result = await response.json();
+                    } catch (e) {
+                        console.error('[LinkedIn Company] Erro:', e);
+                        this.error = e.message || 'Erro ao buscar perfil da empresa no LinkedIn';
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+                closeModal() {
+                    this.showModal = false;
+                    this.result = null;
+                    this.error = null;
+                }
+            };
+        }
+        window.linkedInCompanySearch = linkedInCompanySearch;
+    </script>
+
+<style>.htmx-indicator{opacity:0;visibility: hidden} .htmx-request .htmx-indicator, .htmx-request.htmx-indicator{opacity:1;visibility: visible;transition: opacity 200ms ease-in}</style><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script><style id="cnpjcheck-fp-style">:root { --cnpjcheck-vid: "f9e1c7fba9884c4b83eed1f48bd48169"; }</style></head>
+
+<body class="min-h-screen flex flex-col bg-background text-gray-700" x-data="{ mobileMenuOpen: false }">
+
+    <!-- Production database warning banner -->
+    
+
+
+    <!-- Turnstile invisible container (anti-bot protection) -->
+        <div b-w10u0bj3rm="" id="turnstile-container" class="hidden"><div><div></div><input type="hidden" name="cf-turnstile-response" id="cf-chl-widget-z629l_response" style=""></div></div>
+
+    <!-- Header -->
+    <header b-w10u0bj3rm="" class="sticky top-0 z-1000 bg-white shadow-sm overflow-visible">
+        <div b-w10u0bj3rm="" class="container mx-auto px-4">
+            <nav b-w10u0bj3rm="" class="flex items-center justify-between h-16" aria-label="Navegacao principal">
+                <!-- Logo (switches based on theme) -->
+                <a b-w10u0bj3rm="" href="/" class="flex items-center shrink-0 mr-6" aria-label="CNPJCheck - Ir para pagina inicial" data-nav-id="home" data-nav-surface="header">
+                    <img src="/images/cnpjcheck-lockup-horizontal-fundo-claro.8nbyhn1d6h.svg" alt="CNPJCheck" width="184" height="40" class="h-10 w-[184px] max-w-none logo-light">
+                    <img src="/images/cnpjcheck-lockup-horizontal-fundo-escuro.n5bip85fy3.svg" alt="CNPJCheck" width="184" height="40" class="h-10 w-[184px] max-w-none logo-dark">
+                </a>
+
+                <!-- Desktop Menu -->
+                <div b-w10u0bj3rm="" class="hidden xl:flex items-center gap-5 2xl:gap-7">
+                    <a b-w10u0bj3rm="" href="/empresas" class="text-gray-800 hover:text-teal-600 text-base font-medium whitespace-nowrap" data-nav-id="empresas" data-nav-surface="desktop">
+                        <i b-w10u0bj3rm="" class="fas fa-building mr-1"></i> Empresas
+                    </a>
+                    <a b-w10u0bj3rm="" href="/socios" class="text-gray-800 hover:text-teal-600 text-base font-medium whitespace-nowrap" data-nav-id="socios" data-nav-surface="desktop">
+                        <i b-w10u0bj3rm="" class="fas fa-users mr-1"></i> Sócios
+                    </a>
+                    <a b-w10u0bj3rm="" href="/cnae" class="text-gray-800 hover:text-teal-600 text-base font-medium whitespace-nowrap" data-nav-id="cnae" data-nav-surface="desktop">
+                        <i b-w10u0bj3rm="" class="fas fa-th-list mr-1"></i> CNAEs
+                    </a>
+                    <a b-w10u0bj3rm="" href="/ranking" class="text-gray-800 hover:text-teal-600 text-base font-medium whitespace-nowrap" data-nav-id="ranking" data-nav-surface="desktop">
+                        <i b-w10u0bj3rm="" class="fas fa-trophy mr-1"></i> Ranking
+                    </a>
+                    <a b-w10u0bj3rm="" href="/buscar" class="text-gray-800 hover:text-teal-600 text-base font-medium whitespace-nowrap" data-nav-id="buscar" data-nav-surface="desktop">
+                        <i b-w10u0bj3rm="" class="fas fa-search mr-1"></i> Buscar
+                    </a>
+                    <!-- Theme Toggle (light/dark) -->
+                    <button b-w10u0bj3rm="" @click="setTheme(currentTheme === 'dark-emerald' ? '' : 'dark-emerald')" class="theme-toggle" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">
+                        <i b-w10u0bj3rm="" class="fas fa-sun icon-sun" aria-hidden="true"></i>
+                        <i b-w10u0bj3rm="" class="fas fa-moon icon-moon" aria-hidden="true"></i>
+                    </button>
+
+                    <a b-w10u0bj3rm="" href="https://exato.digital/?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=button_header" target="_blank" rel="noopener" class="btn btn-primary whitespace-nowrap" data-cta-id="header-teste-gratis" data-cta-name="Teste Grátis (Header)" data-nav-id="teste-gratis" data-nav-surface="desktop">
+                        Teste Grátis
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button b-w10u0bj3rm="" @click="mobileMenuOpen = !mobileMenuOpen" class="xl:hidden p-2 text-gray-700" aria-label="Abrir menu" aria-expanded="false">
+                    <i b-w10u0bj3rm="" class="fas fa-bars text-xl" aria-hidden="true"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div b-w10u0bj3rm="" x-show="mobileMenuOpen" class="xl:hidden pb-4 border-t" style="display: none;">
+                <div b-w10u0bj3rm="" class="flex flex-col gap-3 pt-4">
+                    <!-- Menu Principal -->
+                    <a b-w10u0bj3rm="" href="/buscar" class="text-gray-800 hover:text-teal-600 text-sm font-medium" data-nav-id="buscar" data-nav-surface="mobile">
+                        <i b-w10u0bj3rm="" class="fas fa-search mr-1"></i> Buscar
+                    </a>
+                    <a b-w10u0bj3rm="" href="/empresas" class="text-gray-800 hover:text-teal-600 text-sm font-medium" data-nav-id="empresas" data-nav-surface="mobile">
+                        <i b-w10u0bj3rm="" class="fas fa-building mr-1"></i> Empresas
+                    </a>
+                    <a b-w10u0bj3rm="" href="/socios" class="text-gray-800 hover:text-teal-600 text-sm font-medium" data-nav-id="socios" data-nav-surface="mobile">
+                        <i b-w10u0bj3rm="" class="fas fa-users mr-1"></i> Sócios
+                    </a>
+                    <a b-w10u0bj3rm="" href="/cnae" class="text-gray-800 hover:text-teal-600 text-sm font-medium" data-nav-id="cnae" data-nav-surface="mobile">
+                        <i b-w10u0bj3rm="" class="fas fa-th-list mr-1"></i> CNAEs
+                    </a>
+                    <a b-w10u0bj3rm="" href="/ranking" class="text-gray-800 hover:text-teal-600 text-sm font-medium" data-nav-id="ranking" data-nav-surface="mobile">
+                        <i b-w10u0bj3rm="" class="fas fa-trophy mr-1"></i> Ranking
+                    </a>
+                    <!-- Theme Toggle Mobile -->
+                    <div b-w10u0bj3rm="" class="flex items-center gap-2 py-2 border-t mt-2">
+                        <span b-w10u0bj3rm="" class="text-sm text-gray-500">Tema:</span>
+                        <button b-w10u0bj3rm="" @click="setTheme('')" class="px-3 py-1 text-xs rounded-full transition-colors bg-teal-100 text-teal-700" :class="currentTheme === '' ? 'bg-teal-100 text-teal-700' : 'bg-gray-100 text-gray-600'">
+                            <i b-w10u0bj3rm="" class="fas fa-sun mr-1"></i> Claro
+                        </button>
+                        <button b-w10u0bj3rm="" @click="setTheme('dark-emerald')" class="px-3 py-1 text-xs rounded-full transition-colors bg-gray-100 text-gray-600" :class="currentTheme === 'dark-emerald' ? 'bg-teal-100 text-teal-700' : 'bg-gray-100 text-gray-600'">
+                            <i b-w10u0bj3rm="" class="fas fa-moon mr-1"></i> Escuro
+                        </button>
+                    </div>
+                    <a b-w10u0bj3rm="" href="https://exato.digital/?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=button_header_mobile" target="_blank" rel="noopener" class="btn btn-primary text-center" data-cta-id="header-teste-gratis-mobile" data-cta-name="Teste Grátis (Mobile)" data-nav-id="teste-gratis" data-nav-surface="mobile">
+                        Teste Grátis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main b-w10u0bj3rm="" class="flex-1 relative">
+        <div b-w10u0bj3rm="" class="container mx-auto px-4 pt-2 lg:pt-3 pb-12">
+            
+
+<!-- Breadcrumb with city for better internal linking -->
+<nav class="mb-2 text-sm" aria-label="Breadcrumb">
+    <ol class="flex items-center gap-2 text-gray-600" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+            <a href="/" itemprop="item" class="hover:text-teal-800 transition-colors">
+                <span itemprop="name">Inicio</span>
+            </a>
+            <meta itemprop="position" content="1">
+        </li>
+        <li><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i></li>
+        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+            <a href="/empresas/sp" itemprop="item" class="hover:text-teal-800 transition-colors">
+                <span itemprop="name">São Paulo</span>
+            </a>
+            <meta itemprop="position" content="2">
+        </li>
+            <li><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i></li>
+            <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <a href="/empresas/sp/campinas" itemprop="item" class="hover:text-teal-800 transition-colors">
+                    <span itemprop="name">CAMPINAS</span>
+                </a>
+                <meta itemprop="position" content="3">
+            </li>
+        <li><i class="fas fa-chevron-right text-xs" aria-hidden="true"></i></li>
+        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="text-gray-800 font-medium truncate max-w-50">
+            <span itemprop="name">Greencar Campinas</span>
+            <meta itemprop="position" content="4">
+        </li>
+    </ol>
+</nav>
+
+<!-- Company Info Card -->
+
+    
+<section class="hero-v2 card mb-6">
+    <div class="hero-v2__inner">
+        <!-- TITLE ROW: icon + name + status pill | actions -->
+        <div class="hero-v2__title-row">
+            <div class="hero-v2__identity">
+                <div class="hero-v2__icon-tile" aria-hidden="true">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="hero-v2__title-block">
+                    <div class="hero-v2__name-line">
+                        <h1 class="hero-v2__name">Greencar Campinas</h1>
+                        <span class="hero-v2__status badge badge-ativa">
+                                <span class="hero-v2__pulse" aria-hidden="true"></span>
+                            Ativa
+                        </span>
+                    </div>
+                        <p class="hero-v2__razao">Greencar Campinas Ltda</p>
+                </div>
+            </div>
+
+            <!-- ACTIONS TOOLBAR -->
+            <div class="hero-v2__actions">
+
+                <a href="/empresa/pdf/61366390000102?token=CfDJ8INLD2PBp5pPmOfMKqNPufsLOjX8um1O5EAUaXO6x9Sc7VtajwOd6RXd8DwILhfRktXslLpKkvC8V74q6VBrP3M2cNQUt-H0NqMXLNhWV2vgOQPizWlaTvyEEL0SG6X_XEt9Fxh0lEmyXZWyllB8B4A" class="hero-v2__action" title="Download PDF">
+                    <i class="fas fa-file-pdf hero-v2__action-icon--pdf"></i>
+                    <span class="hero-v2__action-label">PDF</span>
+                </a>
+
+                <div x-data="downloadManager('61366390000102')" class="contents">
+                    <button @click="downloadCsv()" :disabled="downloading === 'csv'" class="hero-v2__action" title="Download CSV">
+                        <i class="fas fa-file-csv hero-v2__action-icon--csv" :class="downloading === 'csv' ? 'fa-spinner fa-spin' : 'fa-file-csv hero-v2__action-icon--csv'"></i>
+                        <span class="hero-v2__action-label">CSV</span>
+                    </button>
+                    <button @click="downloadJson()" :disabled="downloading === 'json'" class="hero-v2__action" title="Download JSON">
+                        <i class="fas fa-file-code hero-v2__action-icon--json" :class="downloading === 'json' ? 'fa-spinner fa-spin' : 'fa-file-code hero-v2__action-icon--json'"></i>
+                        <span class="hero-v2__action-label">JSON</span>
+                    </button>
+                </div>
+
+
+                <div x-data="shareButton('https://cnpjcheck.com.br/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102', 'Greencar Campinas - CNPJ 61.366.390/0001-02')" class="relative">
+                    <button @click="share()" class="hero-v2__action" title="Compartilhar">
+                        <i class="fas fa-share-alt"></i>
+                        <span class="hero-v2__action-label">Compartilhar</span>
+                    </button>
+                    <div x-show="showMenu" x-transition="" @click.away="showMenu = false" class="helper-share-menu" style="display: none;">
+                        <button @click="copyLink()" class="helper-share-item">
+                            <i class="fas fa-link" :class="copied ? 'fa-check text-green-500' : 'fa-link'"></i>
+                            <span x-text="copied ? 'Link copiado!' : 'Copiar link'">Copiar link</span>
+                        </button>
+                        <button @click="shareWhatsApp()" class="helper-share-item">
+                            <i class="fab fa-whatsapp text-green-500"></i><span>WhatsApp</span>
+                        </button>
+                        <button @click="shareEmail()" class="helper-share-item">
+                            <i class="fas fa-envelope text-gray-500"></i><span>E-mail</span>
+                        </button>
+                        <button @click="shareLinkedIn()" class="helper-share-item">
+                            <i class="fab fa-linkedin text-blue-600"></i><span>LinkedIn</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HAIRLINE DIVIDER -->
+        <div class="hero-v2__rule" aria-hidden="true"></div>
+
+        <!-- META STRIP 1 — identity facts -->
+        <ul class="hero-v2__meta">
+            <li class="hero-v2__meta-item hero-v2__meta-item--cnpj">
+                <span class="hero-v2__meta-label">CNPJ</span>
+                <span class="hero-v2__meta-value font-mono">61.366.390/0001-02</span>
+                <button x-data="copyButton('61366390000102')" @click="copy()" class="hero-v2__copy" :class="{ 'hero-v2__copy--ok': copied }" :title="copied ? 'Copiado!' : 'Copiar CNPJ'" aria-label="Copiar CNPJ" title="Copiar CNPJ">
+                    <i class="fas text-xs fa-copy" :class="copied ? 'fa-check' : 'fa-copy'"></i>
+                </button>
+            </li>
+
+                <li class="hero-v2__meta-item" title="Início de atividade: 18/06/2025">
+                    <i class="far fa-calendar-alt hero-v2__meta-glyph"></i>
+                    <span class="hero-v2__meta-value">
+                        <strong>1 ano</strong>
+                        <span class="hero-v2__meta-sub">desde 18/06/2025</span>
+                    </span>
+                </li>
+
+                <li class="hero-v2__meta-item">
+                    <i class="fas fa-sitemap hero-v2__meta-glyph"></i>
+                    <span class="hero-v2__meta-value">Matriz</span>
+                </li>
+
+                <li class="hero-v2__meta-item" title="Capital social: R$ 200.000,00">
+                    <i class="fas fa-coins hero-v2__meta-glyph"></i>
+                    <span class="hero-v2__meta-value">
+                        <strong>200 mil</strong>
+                        <span class="hero-v2__meta-sub">capital</span>
+                    </span>
+                </li>
+
+                <li class="hero-v2__meta-item">
+                    <i class="fas fa-layer-group hero-v2__meta-glyph"></i>
+                    <span class="hero-v2__meta-value">Empresa de Pequeno Porte</span>
+                </li>
+
+                <li class="hero-v2__meta-item hero-v2__meta-item--truncate">
+                    <i class="fas fa-balance-scale hero-v2__meta-glyph"></i>
+                    <span class="hero-v2__meta-value">Sociedade Empresária Limitada</span>
+                </li>
+
+                <li class="hero-v2__meta-item">
+                    <i class="fas fa-map-marker-alt hero-v2__meta-glyph"></i>
+                    <span class="hero-v2__meta-value">CAMPINAS/SP</span>
+                </li>
+        </ul>
+
+        <!-- META STRIP 2 — CNAE primário -->
+            <a href="/cnae/4511102" class="hero-v2__cnae no-underline" title="Ver outras empresas com este CNAE">
+                <span class="hero-v2__cnae-tag">45.11-1-02</span>
+                <span class="hero-v2__cnae-desc">Comércio a varejo de automóveis, camionetas e utilitários usados</span>
+                <i class="fas fa-arrow-right hero-v2__cnae-arrow"></i>
+            </a>
+
+    </div>
+</section>
+
+
+
+<!-- Trust Score Badge (when enabled) -->
+
+<!-- Predictive / FlashCheck teasers render below the cadastral cards and
+     map (further down) so the user sees the data they came for first. -->
+
+<!-- Premium Teasers disabled - API calls to Exato not in v0 scope -->
+
+<!-- Indicadores de Risco - Apenas para usuarios logados -->
+
+<!-- Info Cards Grid -->
+<div class="grid md:grid-cols-2 gap-6 mb-6">
+
+
+    <!-- Endereco -->
+    <section class="card p-5" x-data="copyBlock()">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+                <i class="fas fa-map-marker-alt text-teal-700"></i>
+                Endereco
+            </span>
+            <button @click="copyField('PAULA BUENO, 1179 - TAQUARAL, CAMPINAS/SP', 'endereco')" class="helper-btn" :class="{ 'helper-btn-copied': isCopied('endereco') }" title="Copiar endereco completo">
+                <i class="fas fa-copy" :class="isCopied('endereco') ? 'fa-check' : 'fa-copy'"></i>
+                <span x-text="isCopied('endereco') ? 'Copiado!' : 'Copiar'" class="hidden sm:inline">Copiar</span>
+            </button>
+        </h2>
+        <address class="not-italic text-sm space-y-1">
+                <p class="text-gray-800 font-medium uppercase">
+                    PAULA BUENO, 1179
+                </p>
+                <p class="text-gray-600 uppercase">TAQUARAL</p>
+            <p class="text-gray-600">
+                    <span>CAMPINAS</span>
+                    <span>/</span>
+                <span class="font-medium">SP</span>
+            </p>
+                <p class="text-gray-600 flex items-center gap-2">
+                    CEP: 13076-061
+                    <button @click="copyField('13076-061', 'cep')" class="helper-btn text-xs" :class="{ 'helper-btn-copied': isCopied('cep') }" title="Copiar CEP">
+                        <i class="fas fa-copy" :class="isCopied('cep') ? 'fa-check' : 'fa-copy'"></i>
+                    </button>
+                </p>
+        </address>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=PAULA%20BUENO%2C%201179%2C%20TAQUARAL%2C%20CAMPINAS%2C%20SP%2C%2013076061" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-4 text-sm text-teal-800 hover:text-teal-900 underline transition-colors">
+                <i class="fas fa-external-link-alt text-xs"></i>
+                Ver no Google Maps
+            </a>
+    </section>
+
+    <!-- Contato -->
+    <section class="card p-5" x-data="copyBlock()">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <i class="fas fa-phone-alt text-teal-700"></i>
+            Contato
+        </h2>
+        <dl class="space-y-3 text-sm">
+                <div>
+                    <dt class="text-gray-600">Telefone</dt>
+                    <dd class="text-gray-800 font-medium flex items-center gap-2 flex-wrap">
+                        <a href="tel:+551971306108" class="hover:text-teal-800">
+                            (19) 7130-6108
+                        </a>
+                        <button @click="copyField('(19) 7130-6108', 'telefone')" class="helper-btn text-xs" :class="{ 'helper-btn-copied': isCopied('telefone') }" title="Copiar telefone">
+                            <i class="fas fa-copy" :class="isCopied('telefone') ? 'fa-check' : 'fa-copy'"></i>
+                        </button>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="text-gray-600">E-mail</dt>
+                    <dd class="text-gray-800 font-medium break-all flex items-center gap-2 flex-wrap">
+                        <a href="mailto:GREENCARCAMPINAS@GMAIL.COM" class="hover:text-teal-800">
+                            GREENCARCAMPINAS@GMAIL.COM
+                        </a>
+                        <button @click="copyField('GREENCARCAMPINAS@GMAIL.COM', 'email')" class="helper-btn text-xs" :class="{ 'helper-btn-copied': isCopied('email') }" title="Copiar e-mail">
+                            <i class="fas fa-copy" :class="isCopied('email') ? 'fa-check' : 'fa-copy'"></i>
+                        </button>
+                    </dd>
+                </div>
+        </dl>
+
+        <div class="mt-4 pt-3 border-t border-gray-100 text-xs text-gray-500 leading-relaxed">
+            <p>
+                Dados de origem pública (Receita Federal). <a href="/dados-publicos" class="text-gray-500 hover:text-teal-700 transition-colors">Saiba mais em /dados-publicos.</a>
+            </p>
+        </div>
+    </section>
+</div>
+
+<!-- Informações Tributárias section removed: every field was Premium-locked,
+     so the section was 100% paywall and added friction without value.
+     Tributário data is still surfaced through the Análise Completa teaser
+     and the relatório completo CTA further down the page. -->
+
+<!-- Enriched Data removed - API calls to Exato not in v0 scope -->
+
+<!-- CNAE + Mapa lado a lado em telas grandes (lg+); empilha no mobile.
+     CNAE ocupa 7/12 (mais relevante para o leitor — atividade economica
+     orienta a leitura toda da empresa). Mapa ocupa 5/12, à direita.
+     Mapa carrega via HTMX (geocoding com rate limit 1.1s no Nominatim);
+     CNAE renderiza inline (dados ja vieram com a empresa). -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+    <!-- Atividades (CNAEs) -->
+    <section class="card p-5 lg:col-span-7" x-data="{ ...copyBlock(), ...expandablePanel() }" :class="{ 'panel-expanded-state': expanded }">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <i class="fas fa-briefcase text-teal-700"></i>
+                Atividades Econômicas (CNAE)
+            </h2>
+            <button type="button" @click="toggle()" class="panel-fullscreen-btn" :aria-label="expanded ? 'Fechar tela cheia' : 'Expandir em tela cheia'" :aria-expanded="expanded.toString()" aria-label="Expandir em tela cheia" aria-expanded="false">
+                <i class="fas text-xs fa-expand" :class="expanded ? 'fa-compress' : 'fa-expand'"></i>
+            </button>
+        </div>
+
+        <div class="panel-body">
+
+    <!-- CNAE Principal -->
+    <div class="mb-4">
+        <h3 class="text-sm font-medium text-gray-600 mb-2">Atividade Principal</h3>
+        <div class="flex items-center gap-3 p-3 bg-teal-50 rounded-lg border border-teal-100 group">
+            <span class="px-2.5 py-1 bg-teal-700 text-white text-xs font-mono leading-none rounded shrink-0">
+                45.11-1-02
+            </span>
+            <span class="text-gray-800 flex-1">Comércio a varejo de automóveis, camionetas e utilitários usados</span>
+            <button @click="copyField('4511102 - Comércio a varejo de automóveis, camionetas e utilitários usados', 'cnae')" class="helper-btn text-xs opacity-0 group-hover:opacity-100" :class="{ 'helper-btn-copied opacity-100': isCopied('cnae') }" title="Copiar CNAE">
+                <i class="fas fa-copy" :class="isCopied('cnae') ? 'fa-check' : 'fa-copy'"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- CNAEs Secundarios -->
+        <div x-data="{ expanded: false }">
+            <h3 class="text-sm font-medium text-gray-600 mb-2">
+                Atividades Secundarias (11)
+            </h3>
+            <div class="space-y-1">
+                    <a href="/cnae/4511101" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.11-1
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Comércio a varejo de automóveis, camionetas e utilitários novos
+                        </span>
+                    </a>
+                    <a href="/cnae/4511103" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.11-1
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Comércio por atacado de automóveis, camionetas e utilitários novos e usados
+                        </span>
+                    </a>
+                    <a href="/cnae/4512901" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.12-9
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Representantes comerciais e agentes do comércio de veículos automotores
+                        </span>
+                    </a>
+                    <a href="/cnae/4512902" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.12-9
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Comércio sob consignação de veículos automotores
+                        </span>
+                    </a>
+                    <a href="/cnae/4541201" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.41-2
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Comércio por atacado de motocicletas e motonetas
+                        </span>
+                    </a>
+                    <a href="/cnae/4541203" x-show="expanded" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group" style="display: none;">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.41-2
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Comércio a varejo de motocicletas e motonetas novas
+                        </span>
+                    </a>
+                    <a href="/cnae/4541204" x-show="expanded" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group" style="display: none;">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            45.41-2
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Comércio a varejo de motocicletas e motonetas usadas
+                        </span>
+                    </a>
+                    <a href="/cnae/7490104" x-show="expanded" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group" style="display: none;">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            74.90-1
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Atividades de intermediação e agenciamento de serviços e negócios em geral, exceto imobiliários
+                        </span>
+                    </a>
+                    <a href="/cnae/8211300" x-show="expanded" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group" style="display: none;">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            82.11-3
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Serviços combinados de escritório e apoio administrativo
+                        </span>
+                    </a>
+                    <a href="/cnae/8219999" x-show="expanded" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group" style="display: none;">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            82.19-9
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Preparação de documentos e serviços especializados de apoio administrativo não especificados anteriormente
+                        </span>
+                    </a>
+                    <a href="/cnae/8291100" x-show="expanded" class="flex items-start gap-2 p-2 bg-gray-50 hover:bg-teal-50 rounded transition-colors group" style="display: none;">
+                        <span class="px-1.5 py-0.5 bg-gray-200 group-hover:bg-teal-200 text-gray-700 text-xs font-mono rounded shrink-0">
+                            82.91-1
+                        </span>
+                        <span class="text-sm text-gray-700 group-hover:text-teal-800">
+                            Atividades de cobrança e informações cadastrais
+                        </span>
+                    </a>
+            </div>
+                <button x-show="!expanded" @click="expanded = true" class="mt-2 text-xs text-teal-700 hover:text-teal-800 underline">
+                    Ver todas as 11 atividades
+                </button>
+                <button x-show="expanded" @click="expanded = false" class="mt-2 text-xs text-gray-600 hover:text-gray-800 underline" style="display: none;">
+                    Mostrar menos
+                </button>
+        </div>
+
+        <!-- CTA: Explore CNAEs -->
+        <div class="mt-5 pt-4 border-t border-gray-100">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <p class="text-sm text-gray-600">
+                    <i class="fas fa-lightbulb text-gold-500 mr-1"></i>
+                    Encontre outras empresas do mesmo setor
+                </p>
+                <div class="flex flex-wrap gap-2">
+                        <a href="/cnae/4511102" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-teal-700 bg-teal-50 hover:bg-teal-100 rounded-lg transition-colors">
+                            <i class="fas fa-building"></i>
+                            Ver empresas deste CNAE
+                        </a>
+                    <a href="/ferramentas/cnae" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                        <i class="fas fa-search"></i>
+                        Explorar CNAEs
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div><!-- /panel-body -->
+
+    </section>
+
+    <!-- Map placeholder com skeleton enquanto HTMX carrega -->
+    
+<section class="card p-5 lg:col-span-5" x-data="expandablePanel" :class="{ 'panel-expanded-state': expanded }">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+            <i class="fas fa-map text-teal-700"></i>
+            Localizacao
+        </h2>
+        <button type="button" @click="toggle()" class="panel-fullscreen-btn" :aria-label="expanded ? 'Fechar tela cheia' : 'Expandir em tela cheia'" :aria-expanded="expanded.toString()" aria-label="Expandir em tela cheia" aria-expanded="false">
+            <i class="fas text-xs fa-expand" :class="expanded ? 'fa-compress' : 'fa-expand'"></i>
+        </button>
+    </div>
+
+    <div class="panel-body">
+            <div class="h-64" :class="{ '!h-[70vh]': expanded }">
+                
+<div id="map-empresa-location" class="h-full rounded-lg border border-gray-200 leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://c.tile.openstreetmap.org/15/12100/18526.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(94px, -74px, 0px); opacity: 1;"><img alt="" src="https://a.tile.openstreetmap.org/15/12100/18527.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(94px, 182px, 0px); opacity: 1;"><img alt="" src="https://b.tile.openstreetmap.org/15/12099/18526.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-162px, -74px, 0px); opacity: 1;"><img alt="" src="https://a.tile.openstreetmap.org/15/12101/18526.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(350px, -74px, 0px); opacity: 1;"><img alt="" src="https://c.tile.openstreetmap.org/15/12099/18527.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-162px, 182px, 0px); opacity: 1;"><img alt="" src="https://b.tile.openstreetmap.org/15/12101/18527.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(350px, 182px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"><div class="leaflet-marker-icon custom-marker leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button" style="margin-left: -12px; margin-top: -12px; width: 24px; height: 24px; transform: translate3d(231px, 127px, 0px); z-index: 127;"><div style="background:#2A9D9C;width:24px;height:24px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div></div></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(3.09774e+06px, 4.74286e+06px, 0px) scale(16384);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true">−</span></a></div><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true">|</span> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div></div></div></div>
+
+<script>
+(function() {
+    // Lazy load Leaflet when map container is visible
+    const mapContainer = document.getElementById('map-empresa-location');
+    if (!mapContainer) return;
+
+    let mapInitialized = false;
+
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !mapInitialized) {
+            mapInitialized = true;
+            observer.disconnect();
+            initMap();
+        }
+    }, { rootMargin: '100px' });
+
+    observer.observe(mapContainer);
+
+    function loadLeaflet() {
+        // CSS e JS precisam estar AMBOS prontos antes do L.map(). Sem o
+        // `overflow: hidden` que vem na leaflet.css, os .leaflet-tile
+        // (position:absolute) vazam por cima do resto da página — visivel
+        // sobretudo em mobile, onde a rede demora mais para entregar a CSS
+        // do que o JS.
+
+        const cssPromise = new Promise((resolve) => {
+            const existing = document.querySelector('link[href*="leaflet"]');
+            if (existing) {
+                if (existing.sheet) { resolve(); return; }
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', resolve, { once: true }); // não bloquear
+                return;
+            }
+            const css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.href = 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css';
+            css.onload = resolve;
+            css.onerror = resolve; // não bloquear se a CSS falhar
+            document.head.appendChild(css);
+        });
+
+        const jsPromise = new Promise((resolve, reject) => {
+            if (window.L) { resolve(); return; }
+            const existing = document.querySelector('script[src*="leaflet"]');
+            if (existing) {
+                const interval = setInterval(() => {
+                    if (window.L) { clearInterval(interval); resolve(); }
+                }, 50);
+                return;
+            }
+            // No SRI: jsdelivr re-bundles pinned versions occasionally, which
+            // would mismatch any frozen hash and silently fail this load.
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js';
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+
+        return Promise.all([cssPromise, jsPromise]);
+    }
+
+
+    async function initMap() {
+        try {
+            await loadLeaflet();
+
+            const map = L.map('map-empresa-location').setView([-22.9056391, -47.059564], 15);
+
+            // OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Custom marker icon with teal color
+            const markerIcon = L.divIcon({
+                className: 'custom-marker',
+                html: '<div style="background:#2A9D9C;width:24px;height:24px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -12]
+            });
+
+                // Single marker mode
+                const marker = L.marker([-22.9056391, -47.059564], { icon: markerIcon })
+                    .addTo(map);
+                    marker.bindPopup('<strong>GREENCAR CAMPINAS</strong>&lt;br&gt;PAULA BUENO, 1179 - TAQUARAL, CAMPINAS/SP');
+
+            // Add zoom controls
+            map.zoomControl.setPosition('bottomright');
+
+            // Defensive size sync: Leaflet calcula _size + _origin a partir
+            // do clientHeight do container no momento do init. Em swap HTMX
+            // + CSS Grid responsivo, o container pode ainda estar settling
+            // quando L.map() roda — produzindo tiles renderizadas off-center
+            // ou em parte do container. invalidateSize() sozinho não força
+            // re-tile no viewport novo; setView com mesmo center/zoom força
+            // Leaflet a re-projetar tudo para o tamanho atual.
+            const resyncSize = () => {
+                map.invalidateSize({ animate: false });
+                map.setView(map.getCenter(), map.getZoom(), { animate: false });
+            };
+
+            requestAnimationFrame(resyncSize);
+            setTimeout(resyncSize, 200);
+            setTimeout(resyncSize, 800);
+
+            // Recalcular tiles quando o container muda de tamanho:
+            //  - expandablePanel toggle (panel:resize)
+            //  - viewport resize ou orientation change (window resize)
+            //  - qualquer outra mutação de tamanho (ResizeObserver)
+            window.addEventListener('panel:resize', resyncSize);
+            window.addEventListener('resize', resyncSize);
+            mapContainer.closest('[x-data]')?.addEventListener('panel:resize', resyncSize);
+            if (typeof ResizeObserver !== 'undefined') {
+                new ResizeObserver(resyncSize).observe(mapContainer);
+            }
+
+        } catch (error) {
+            console.error('Error initializing map:', error);
+            mapContainer.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500"><p>Erro ao carregar mapa</p></div>';
+        }
+    }
+})();
+</script>
+
+            </div>
+
+        <div class="mt-4 text-sm">
+            <p class="text-gray-700">PAULA BUENO, 1179 - TAQUARAL, CAMPINAS/SP</p>
+            <p class="text-gray-500">CEP: 13076-061</p>
+
+                <p class="mt-2 text-amber-600 flex items-center gap-1">
+                    <i class="fas fa-exclamation-triangle text-xs"></i>
+                    Localizacao aproximada (nivel cidade)
+                </p>
+        </div>
+
+
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=PAULA%20BUENO%2C%201179%2C%20TAQUARAL%2C%20CAMPINAS%2C%20SP%2C%2013076061" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-teal-700 hover:text-teal-800">
+                    <i class="fas fa-external-link-alt"></i>
+                    Abrir no Google Maps
+                </a>
+            </div>
+    </div>
+
+</section>
+
+</div><!-- /grid cnae+mapa -->
+
+<!-- Socios -->
+    <section class="card p-5 mb-6" x-data="{ ...copyBlock(), ...linkedInSearch() }">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <i class="fas fa-users text-teal-700"></i>
+            Quadro Societario (1)
+        </h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="text-left py-3 px-2 text-gray-600 font-medium">Nome</th>
+                        <th class="text-left py-3 px-2 text-gray-600 font-medium">CPF/CNPJ</th>
+                        <th class="text-left py-3 px-2 text-gray-600 font-medium">Qualificacao</th>
+                        <th class="text-left py-3 px-2 text-gray-600 font-medium">Entrada</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 group">
+                            <td class="py-3 px-2 text-gray-800 font-medium">
+                                <span class="flex items-center gap-2">
+                                    ROGER DE LIMA
+                                        <button @click="copyField('ROGER DE LIMA', 'socio_0')" class="helper-btn text-xs opacity-0 group-hover:opacity-100" :class="{ 'helper-btn-copied opacity-100': isCopied('socio_0') }" title="Copiar nome">
+                                            <i class="fas fa-copy" :class="isCopied('socio_0') ? 'fa-check' : 'fa-copy'"></i>
+                                        </button>
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-gray-600 font-mono text-xs">
+                                <span class="flex items-center gap-2">
+                                    ***
+                                    <button @click="copyField('***', 'socio_0_doc')" class="helper-btn text-xs opacity-0 group-hover:opacity-100" :class="{ 'helper-btn-copied opacity-100': isCopied('socio_0_doc') }" title="Copiar CPF/CNPJ">
+                                        <i class="fas fa-copy" :class="isCopied('socio_0_doc') ? 'fa-check' : 'fa-copy'"></i>
+                                    </button>
+                                </span>
+                            </td>
+                            <td class="py-3 px-2 text-gray-600">Sócio-Administrador</td>
+                            <td class="py-3 px-2 text-gray-600">2025-06-18</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Grupo empresarial - lazy loaded via HTMX (nested OpenSearch query) -->
+        <div hx-get="/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102?handler=Grupo" hx-trigger="revealed once" hx-swap="outerHTML"></div>
+
+        <style>
+            .grupo-empresarial {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 14px;
+                background: #fef9e7;
+                border: 1px solid #f3e7c4;
+                border-radius: 6px;
+                color: #4b5563;
+                transition: background 0.15s;
+            }
+            .grupo-empresarial:hover { background: #fdf3d3; }
+            .grupo-empresarial__icon {
+                width: 32px; height: 32px;
+                background: #fff;
+                border: 1px solid #f3e7c4;
+                border-radius: 6px;
+                display: flex; align-items: center; justify-content: center;
+                color: #b8860b;
+                flex-shrink: 0;
+            }
+            .grupo-empresarial__body { flex: 1; min-width: 0; }
+            .grupo-empresarial__title { font-size: 14px; color: #374151; margin: 0; }
+            .grupo-empresarial__title strong { font-size: 15px; color: #111827; font-weight: 700; }
+            .grupo-empresarial__subtitle { font-size: 12px; color: #6b7280; margin: 2px 0 0; }
+
+            :where(.dark-emerald, .dark-golden, .dark-night) .grupo-empresarial {
+                background: rgba(184, 134, 11, 0.10);
+                border-color: rgba(184, 134, 11, 0.25);
+            }
+            :where(.dark-emerald, .dark-golden, .dark-night) .grupo-empresarial:hover {
+                background: rgba(184, 134, 11, 0.18);
+            }
+            :where(.dark-emerald, .dark-golden, .dark-night) .grupo-empresarial__icon {
+                background: rgba(0, 0, 0, 0.20);
+                border-color: rgba(184, 134, 11, 0.25);
+            }
+            :where(.dark-emerald, .dark-golden, .dark-night) .grupo-empresarial__title { color: #e5e7eb; }
+            :where(.dark-emerald, .dark-golden, .dark-night) .grupo-empresarial__title strong { color: #fef3c7; }
+            :where(.dark-emerald, .dark-golden, .dark-night) .grupo-empresarial__subtitle { color: #9ca3af; }
+            </style>
+
+
+
+        <!-- LinkedIn Search Modal -->
+        <div x-show="showModal" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 overflow-y-auto" @keydown.escape.window="closeModal()" style="display: none;">
+            <!-- Backdrop -->
+            <div class="fixed inset-0 bg-black/50" @click="closeModal()"></div>
+
+            <!-- Modal Content -->
+            <div class="relative min-h-screen flex items-center justify-center p-4">
+                <div x-show="showModal" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="relative bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden" @click.stop="" style="display: none;">
+
+                    <!-- Header -->
+                    <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-linear-to-r from-blue-50 to-white">
+                        <h3 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                            <i class="fab fa-linkedin text-blue-600"></i>
+                            Busca no LinkedIn
+                        </h3>
+                        <button @click="closeModal()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="p-6">
+                        <!-- Loading State -->
+                        <div x-show="loading" class="text-center py-8" style="display: none;">
+                            <i class="fab fa-linkedin text-4xl text-blue-500 animate-pulse"></i>
+                            <p class="mt-3 text-gray-600">Buscando perfil de <strong x-text="searchName"></strong>...</p>
+                        </div>
+
+                        <!-- Result Found -->
+                        <div x-show="!loading &amp;&amp; result?.found" class="space-y-4" style="display: none;">
+                            <!-- Profile Card -->
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                                <template x-if="result?.profile?.imageUrl">
+                                    <img :src="result.profile.imageUrl" :alt="result.profile.name" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow">
+                                </template>
+                                <template x-if="!result?.profile?.imageUrl">
+                                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i class="fas fa-user text-2xl text-blue-400"></i>
+                                    </div>
+                                </template><div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i class="fas fa-user text-2xl text-blue-400"></i>
+                                    </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-semibold text-gray-800" x-text="result?.profile?.name"></h4>
+                                    <p class="text-sm text-gray-600" x-text="result?.profile?.headline"></p>
+                                </div>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="space-y-2 text-sm">
+                                <template x-if="result?.profile?.location">
+                                    <p class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-map-marker-alt text-gray-400 w-4"></i>
+                                        <span x-text="result.profile.location"></span>
+                                    </p>
+                                </template>
+                                <template x-if="result?.profile?.experience">
+                                    <p class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-briefcase text-gray-400 w-4"></i>
+                                        <span x-text="result.profile.experience"></span>
+                                    </p>
+                                </template>
+                                <template x-if="result?.profile?.education">
+                                    <p class="flex items-center gap-2 text-gray-600">
+                                        <i class="fas fa-graduation-cap text-gray-400 w-4"></i>
+                                        <span x-text="result.profile.education"></span>
+                                    </p>
+                                </template>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
+                                <a :href="result?.profileUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary flex-1 text-center justify-center" href="">
+                                    <i class="fab fa-linkedin mr-2"></i>
+                                    Ver perfil completo
+                                </a>
+                                <button @click="closeModal()" class="btn btn-outline flex-1">
+                                    Fechar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Not Found -->
+                        <div x-show="!loading &amp;&amp; result &amp;&amp; !result.found" class="text-center py-6" style="display: none;">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-amber-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-search text-2xl text-amber-500"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-800 mb-2">Perfil nao encontrado automaticamente</h4>
+                            <p class="text-sm text-gray-600 mb-4" x-text="result?.message || 'Tente buscar manualmente no LinkedIn.'">Tente buscar manualmente no LinkedIn.</p>
+
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <a :href="result?.searchUrl || ('https://www.linkedin.com/search/results/people/?keywords=' + encodeURIComponent(searchName))" target="_blank" rel="noopener noreferrer" class="btn btn-primary flex-1 text-center justify-center" href="https://www.linkedin.com/search/results/people/?keywords=">
+                                    <i class="fab fa-linkedin mr-2"></i>
+                                    Buscar manualmente
+                                </a>
+                                <button @click="closeModal()" class="btn btn-outline flex-1">
+                                    Fechar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Error -->
+                        <div x-show="!loading &amp;&amp; error" class="text-center py-6" style="display: none;">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-red-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-exclamation-triangle text-2xl text-red-500"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-800 mb-2">Erro na busca</h4>
+                            <p class="text-sm text-gray-600 mb-4" x-text="error"></p>
+                            <button @click="closeModal()" class="btn btn-outline">
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Grafo de Socios -->
+    <section class="card p-5 mb-6" x-data="grafoSocios('61366390000102')" :class="{ 'fixed inset-4 z-50 m-0 overflow-auto': fullscreen }">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <i class="fas fa-project-diagram text-teal-700"></i>
+                Rede de Relacionamentos
+            </h2>
+            <div class="flex items-center gap-2">
+                <button @click="toggleFullscreen()" class="text-sm text-gray-600 hover:text-gray-700 flex items-center gap-1 ml-2">
+                    <i class="fas fa-expand" :class="fullscreen ? 'fa-compress' : 'fa-expand'"></i>
+                    <span x-text="fullscreen ? 'Sair' : 'Tela cheia'">Tela cheia</span>
+                </button>
+                    <a href="/network/61366390000102" class="text-sm text-teal-700 hover:text-teal-800 flex items-center gap-1 ml-2 border-l pl-2 border-gray-300">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver pagina completa
+                    </a>
+            </div>
+        </div>
+
+        <!-- Legenda -->
+        <div class="flex flex-wrap gap-4 mb-4 text-xs text-gray-600">
+            <div class="flex items-center gap-1">
+                <span class="w-3 h-3 rounded bg-gold-500"></span>
+                <span>Empresa central</span>
+            </div>
+            <div class="flex items-center gap-1">
+                <span class="w-3 h-3 rounded bg-teal-500"></span>
+                <span>Empresas relacionadas</span>
+            </div>
+            <div class="flex items-center gap-1">
+                <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                <span>Pessoas fisicas</span>
+            </div>
+        </div>
+
+        <!-- Container do Grafo -->
+        <div id="grafo-container" class="w-full border border-gray-200 rounded-lg bg-gray-50 transition-all duration-300 h-96" :class="fullscreen ? 'h-[calc(100vh-200px)]' : 'h-96'" x-ref="container">
+            <div x-show="loading" class="flex items-center justify-center h-full">
+                <div class="text-center text-gray-600">
+                    <svg class="animate-spin h-8 w-8 mx-auto text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p class="mt-3 text-sm">Carregando grafo...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info do no selecionado -->
+        <div x-show="selectedNode" class="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200" style="display: none;">
+            <div class="flex items-start justify-between">
+                <div>
+                    <p class="font-medium text-gray-800" x-text="selectedNode?.label"></p>
+                    <p class="text-sm text-gray-600" x-text="selectedNode?.cnpj || selectedNode?.cpfCnpjMascarado"></p>
+                    <p class="text-xs text-gray-600 mt-1" x-text="selectedNode?.situacao"></p>
+                </div>
+                <template x-if="selectedNode?.type === 'empresa' &amp;&amp; !selectedNode?.central">
+                    <a :href="'/empresa/' + selectedNode?.id.replace('E_', '')" class="text-sm text-teal-700 hover:text-teal-800 flex items-center gap-1">
+                        <i class="fas fa-external-link-alt"></i>
+                        Ver empresa
+                    </a>
+                </template>
+            </div>
+        </div>
+    </section>
+
+<!-- Linha do Tempo -->
+
+    <section class="card p-5 mb-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-6 flex items-center gap-2">
+            <i class="fas fa-clock text-teal-700"></i>
+            Linha do Tempo
+        </h2>
+
+        <div class="timeline">
+            <!-- Indicador compacto "Agora" no topo, alinhado com a linha do tempo -->
+            <div class="relative flex items-center gap-2 mb-4 -ml-8 text-xs text-gray-400 dark:text-gray-500">
+                <span class="w-6 flex justify-center">
+                    <span class="w-2.5 h-2.5 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"></span>
+                </span>
+                <span class="uppercase tracking-wider font-medium">Agora</span>
+            </div>
+                <div class="timeline-item timeline-opening">
+                    <div class="timeline-marker">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">
+                            jun./2025
+                        </div>
+                        <p class="timeline-title font-semibold">Empresa aberta</p>
+                            <p class="timeline-description">Capital inicial: R$ 200.000,00 | Socios: ROGER DE LIMA</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+
+<!-- Matriz e Filiais — lazy via HTMX so crawlers (no JS) skip the OpenSearch prefix query -->
+<div hx-get="/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102?handler=Filiais" hx-trigger="revealed once" hx-swap="outerHTML"></div>
+
+<!-- Empresas Similares — lazy via HTMX so crawlers (no JS) skip the OpenSearch similarity query -->
+<div hx-get="/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102?handler=Similares" hx-trigger="revealed once" hx-swap="outerHTML"></div>
+
+<!-- Who Viewed This Also Viewed - lazy loaded via HTMX (Postgres tracking query) -->
+<div hx-get="/empresa/greencar-campinas-ltda-greencar-campinas-61366390000102?handler=AlsoViewed" hx-trigger="revealed once" hx-swap="outerHTML"></div>
+
+<!-- Predictive Analysis / FlashCheck teaser — placed at the bottom of the
+     content stream so the page leads with cadastral data and the teaser
+     reads as "want more?" once the user has consumed everything else.
+     PredictiveTeaser takes precedence when enabled; FlashCheckTeaser is
+     the legacy fallback. -->
+    
+<section class="card p-5 mb-6">
+    <div class="flex items-center justify-between mb-4">
+        <div>
+            <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                <i class="fas fa-chart-line text-teal-700"></i>
+                Análise Completa
+            </h2>
+            <p class="text-xs text-gray-600">
+                Análise de risco financeiro, fiscal, encerramento e chances de recuperação
+            </p>
+        </div>
+        <div class="flex flex-col items-end gap-1">
+            <span class="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">Preview</span>
+            <span class="text-[10px] text-gray-500">
+                powered by <span class="font-semibold text-teal-700">Exato</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="predictive-teaser-frame">
+        <img src="/images/marketing/predictive-teaser.png" alt="Análise de risco financeiro, fiscal, encerramento e chances de recuperação" class="predictive-teaser-img" loading="lazy" width="1100" height="1513">
+        <div class="predictive-teaser-overlay" aria-hidden="true"></div>
+        <div class="predictive-teaser-cta">
+            <div class="predictive-teaser-cta-panel">
+                <p class="text-sm text-gray-700 mb-2 max-w-md mx-auto">
+                    Veja a análise completa de risco financeiro, fiscal, encerramento — e, para empresas em
+                    situação especial, das chances de recuperação. Com os principais fatores de cada cenário.
+                </p>
+                <p class="text-[11px] text-gray-500 mb-3 max-w-md mx-auto italic">
+                    Estimativas estatísticas baseadas em dados públicos — não constituem rating de crédito ou avaliação individualizada.
+                </p>
+                <a href="https://exato.digital/cadastro/CNPJ/eyJDbnBqIjoiNjEuMzY2LjM5MC8wMDAxLTAyIn0=?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=empresa_predictive_teaser" target="_blank" rel="noopener" class="btn btn-primary inline-flex items-center" data-cta-id="empresa-predictive-teaser" data-cta-name="Análise Completa" data-cnpj="61366390000102">
+                    <i class="fas fa-unlock-alt mr-2"></i>
+                    Desbloquear análise completa
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.predictive-teaser-frame {
+    position: relative;
+    border: 1px solid #E0E4E2;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #FFFFFF;
+    max-height: 280px;
+}
+
+.predictive-teaser-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Deliberately heavy: the screenshot carries the old wording. The correct
+       fix is to regenerate the asset; this blur is the temporary safeguard. */
+    filter: blur(6px);
+}
+
+.predictive-teaser-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 255, 255, 0.45) 35%,
+        rgba(255, 255, 255, 0.92) 70%,
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+
+.predictive-teaser-cta {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 18px 16px 22px;
+    text-align: center;
+}
+
+/* Frosted panel so the CTA copy stays readable regardless of where it
+   lands over the blurred screenshot behind it. */
+.predictive-teaser-cta-panel {
+    display: inline-block;
+    max-width: 36rem;
+    padding: 14px 20px 16px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.10);
+}
+
+/* Dark themes: invert the white-document image so it blends with the
+   dark card background while keeping tier badge colors recognizable.
+   Mirror the gradient overlay so the fade-out matches the (now dark)
+   image background instead of clashing white-on-dark. */
+:where(.dark-emerald, .dark-golden, .dark-night) .predictive-teaser-frame {
+    background: var(--card-bg, #1f2937);
+    border-color: var(--card-border, #374151);
+}
+:where(.dark-emerald, .dark-golden, .dark-night) .predictive-teaser-img {
+    filter: blur(6px) invert(0.92) hue-rotate(180deg);
+}
+:where(.dark-emerald, .dark-golden, .dark-night) .predictive-teaser-cta-panel {
+    background: rgba(17, 24, 39, 0.9);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+:where(.dark-emerald, .dark-golden, .dark-night) .predictive-teaser-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(17, 24, 39, 0.10) 0%,
+        rgba(17, 24, 39, 0.45) 35%,
+        rgba(17, 24, 39, 0.92) 70%,
+        rgba(17, 24, 39, 1) 100%
+    );
+}
+
+@media (max-width: 640px) {
+    .predictive-teaser-frame { max-height: 240px; }
+    .predictive-teaser-img { filter: blur(4px); }
+    :where(.dark-emerald, .dark-golden, .dark-night) .predictive-teaser-img {
+        filter: blur(4px) invert(0.92) hue-rotate(180deg);
+    }
+}
+</style>
+
+
+<!-- Data source & freshness disclaimer -->
+<aside class="mt-6 mb-4 px-4 py-3 border-l-2 border-gray-200 text-xs text-gray-500 leading-relaxed">
+    <strong class="text-gray-600">Fonte:</strong> Receita Federal do Brasil, via Exato Digital.
+ Dados referentes a <strong class="text-gray-600">01/11/2026</strong>.    Informações cadastrais, sócios e situação podem ter sido alteradas desde então.
+    Para verificação em tempo real com processos judiciais, protestos e score de crédito,
+    <a href="https://exato.digital/safecheck?cnpj=61366390000102&amp;utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=empresa_footer_disclaimer" target="_blank" rel="noopener" class="text-teal-700 hover:text-teal-800">emita o relatório completo online</a>.
+</aside>
+
+<!-- CTAs -->
+<section class="card p-6 bg-linear-to-r from-teal-50 to-gold-50 border-teal-100">
+    <h2 class="text-lg font-semibold text-gray-800 mb-2">Precisa de mais informações?</h2>
+    <p class="text-gray-600 mb-6">Acesse dados completos e monitore mudanças em tempo real.</p>
+    <div class="flex flex-wrap gap-4">
+        <a href="/empresa/pdf/61366390000102?token=CfDJ8INLD2PBp5pPmOfMKqNPufudzzHxq7CGM8YOLrNO9Z-5ecbAYQhpWXaMH75DpIp8QFebcT6p9bnirQ0U8UX6BNRNzFubFeJ6RhAC9UB52T70ziJC4Ywd1PpdXK9FDKtDCp-dvwhmXmte0RoUrNgCGr0" class="btn btn-outline">
+            <i class="fas fa-file-pdf mr-2"></i>
+            Download PDF
+        </a>
+        <a href="https://exato.digital/cadastro/CNPJ/eyJDbnBqIjoiNjEuMzY2LjM5MC8wMDAxLTAyIn0=?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=empresa_more_info" target="_blank" class="btn btn-primary">
+            <i class="fas fa-lock mr-2"></i>
+            Consulta Completa
+        </a>
+    </div>
+</section>
+
+
+<!-- Helper Snippets (copy, download, share) -->
+
+<script>
+// ============================================
+// HELPER SNIPPETS - Alpine.js Components
+// ============================================
+
+document.addEventListener('alpine:init', () => {
+
+    // --------------------------------------------
+    // COPY TO CLIPBOARD - Botao simples de copiar
+    // Uso: <button x-data="copyButton('texto')" @click="copy()" ...>
+    // --------------------------------------------
+    Alpine.data('copyButton', (text, successMessage = 'Copiado!') => ({
+        text: text,
+        copied: false,
+        successMessage: successMessage,
+
+        async copy() {
+            window.CNPJTracker?.trackCopy?.(this.text, 'copy_button');
+            try {
+                await navigator.clipboard.writeText(this.text);
+                this.copied = true;
+                setTimeout(() => this.copied = false, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = this.text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                this.copied = true;
+                setTimeout(() => this.copied = false, 2000);
+            }
+        }
+    }));
+
+    // --------------------------------------------
+    // COPY BLOCK - Bloco com multiplos campos
+    // Uso: <div x-data="copyBlock()" ...>
+    // --------------------------------------------
+    Alpine.data('copyBlock', () => ({
+        copiedField: null,
+
+        async copyField(text, fieldName) {
+            window.CNPJTracker?.trackCopy?.(text, fieldName);
+            try {
+                await navigator.clipboard.writeText(text);
+                this.copiedField = fieldName;
+                setTimeout(() => this.copiedField = null, 2000);
+            } catch (err) {
+                console.error('Erro ao copiar:', err);
+            }
+        },
+
+        isCopied(fieldName) {
+            return this.copiedField === fieldName;
+        }
+    }));
+
+    // --------------------------------------------
+    // DOWNLOAD MANAGER - Gerencia downloads CSV/JSON
+    // Uso: <div x-data="downloadManager(cnpj)" ...>
+    // --------------------------------------------
+    Alpine.data('downloadManager', (cnpj, empresaData = null) => ({
+        cnpj: cnpj,
+        data: empresaData,
+        downloading: null,
+
+        // Helper to fetch with Turnstile token
+        async fetchProtected(url) {
+            const maxWaitMs = 5000;
+            const checkIntervalMs = 100;
+            let waited = 0;
+
+            // Wait for Turnstile token if enabled
+            while (window.turnstileManager?.siteKey && !window.turnstileManager?.getToken() && waited < maxWaitMs) {
+                await new Promise(resolve => setTimeout(resolve, checkIntervalMs));
+                waited += checkIntervalMs;
+            }
+
+            const token = window.turnstileManager?.getToken();
+            const headers = token ? { 'X-Turnstile-Token': token } : {};
+
+            const response = await fetch(url, { headers });
+
+            // Refresh token after use
+            if (token && window.turnstileManager?.refresh) {
+                window.turnstileManager.refresh();
+            }
+
+            return response;
+        },
+
+        async downloadCsv() {
+            this.downloading = 'csv';
+            try {
+                const response = await this.fetchProtected(`/api/empresa/${this.cnpj}/export?format=csv`);
+                if (!response.ok) throw new Error('Erro no download');
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `empresa-${this.cnpj}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (err) {
+                console.error('Erro no download CSV:', err);
+                alert('Erro ao baixar CSV. Tente novamente.');
+            } finally {
+                this.downloading = null;
+            }
+        },
+
+        async downloadJson() {
+            this.downloading = 'json';
+            try {
+                const response = await this.fetchProtected(`/api/empresa/${this.cnpj}/export?format=json`);
+                if (!response.ok) throw new Error('Erro no download');
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `empresa-${this.cnpj}.json`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (err) {
+                console.error('Erro no download JSON:', err);
+                alert('Erro ao baixar JSON. Tente novamente.');
+            } finally {
+                this.downloading = null;
+            }
+        }
+    }));
+
+    // --------------------------------------------
+    // SHARE BUTTON - Compartilhar via Web Share API ou fallback
+    // Uso: <div x-data="shareButton(url, title)" ...>
+    // --------------------------------------------
+    Alpine.data('shareButton', (url, title) => ({
+        url: url,
+        title: title,
+        showMenu: false,
+        copied: false,
+        canShare: typeof navigator.share === 'function',
+
+        async share() {
+            if (this.canShare) {
+                try {
+                    await navigator.share({
+                        title: this.title,
+                        url: this.url
+                    });
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        this.showMenu = true;
+                    }
+                }
+            } else {
+                this.showMenu = !this.showMenu;
+            }
+        },
+
+        async copyLink() {
+            window.CNPJTracker?.trackCopy?.(this.url, 'share_link');
+            try {
+                await navigator.clipboard.writeText(this.url);
+                this.copied = true;
+                setTimeout(() => {
+                    this.copied = false;
+                    this.showMenu = false;
+                }, 1500);
+            } catch (err) {
+                console.error('Erro ao copiar link:', err);
+            }
+        },
+
+        shareWhatsApp() {
+            window.open(`https://wa.me/?text=${encodeURIComponent(this.title + ' ' + this.url)}`, '_blank');
+            this.showMenu = false;
+        },
+
+        shareEmail() {
+            window.location.href = `mailto:?subject=${encodeURIComponent(this.title)}&body=${encodeURIComponent(this.url)}`;
+            this.showMenu = false;
+        },
+
+        shareLinkedIn() {
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.url)}`, '_blank');
+            this.showMenu = false;
+        }
+    }));
+
+    // --------------------------------------------
+    // EXPANDABLE PANEL - Toggle a card to fullscreen overlay
+    // Uso: <section class="card p-5" x-data="expandablePanel" :class="expanded && '...'">
+    //   - Botao com @click="toggle()" alterna estado
+    //   - ESC fecha
+    //   - Lock no scroll do body enquanto expandido
+    //   - Dispara CustomEvent('panel:resize') pra subcomponentes (Leaflet, etc.)
+    //     reflowarem dimensoes apos a transicao
+    // --------------------------------------------
+    Alpine.data('expandablePanel', () => ({
+        expanded: false,
+
+        toggle() {
+            this.expanded = !this.expanded;
+            document.body.classList.toggle('panel-expanded', this.expanded);
+            // Aguarda o frame da transicao antes de notificar — Leaflet
+            // calcula viewport com getBoundingClientRect, que so ve o tamanho
+            // novo apos a animacao iniciar.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    this.$el.dispatchEvent(new CustomEvent('panel:resize', { bubbles: true }));
+                    window.dispatchEvent(new Event('resize'));
+                });
+            });
+        },
+
+        init() {
+            this._escHandler = (e) => {
+                if (e.key === 'Escape' && this.expanded) {
+                    e.preventDefault();
+                    this.toggle();
+                }
+            };
+            document.addEventListener('keydown', this._escHandler);
+        },
+
+        destroy() {
+            if (this._escHandler) document.removeEventListener('keydown', this._escHandler);
+            document.body.classList.remove('panel-expanded');
+        }
+    }));
+
+    // --------------------------------------------
+    // COPY ALL DATA - Copia todos os dados formatados
+    // Uso: <button x-data="copyAllData(dados)" @click="copy()" ...>
+    // --------------------------------------------
+    Alpine.data('copyAllData', (dados) => ({
+        dados: dados,
+        copied: false,
+
+        async copy() {
+            const text = this.formatData();
+            window.CNPJTracker?.trackCopy?.(text, 'all_data');
+            try {
+                await navigator.clipboard.writeText(text);
+                this.copied = true;
+                setTimeout(() => this.copied = false, 2500);
+            } catch (err) {
+                console.error('Erro ao copiar:', err);
+            }
+        },
+
+        formatData() {
+            const d = this.dados;
+            let text = '';
+
+            // Header
+            text += `=== ${d.nomeEmpresarial || d.nomeFantasia} ===\n\n`;
+
+            // Identificacao
+            text += `CNPJ: ${d.cnpjFormatado}\n`;
+            if (d.nomeFantasia && d.nomeFantasia !== d.nomeEmpresarial) {
+                text += `Nome Fantasia: ${d.nomeFantasia}\n`;
+            }
+            text += `Razao Social: ${d.nomeEmpresarial}\n`;
+            text += `Situacao: ${d.situacaoCadastral}\n\n`;
+
+            // Dados Cadastrais
+            text += `--- Dados Cadastrais ---\n`;
+            if (d.naturezaJuridica) text += `Natureza Juridica: ${d.naturezaJuridica}\n`;
+            if (d.dataAbertura) text += `Data de Abertura: ${d.dataAbertura}\n`;
+            if (d.capitalSocial) text += `Capital Social: ${d.capitalSocial}\n`;
+            if (d.porte) text += `Porte: ${d.porte}\n`;
+            text += '\n';
+
+            // Endereco
+            text += `--- Endereco ---\n`;
+            if (d.endereco) text += `${d.endereco}\n`;
+            if (d.cep) text += `CEP: ${d.cep}\n`;
+            text += '\n';
+
+            // Contato
+            if (d.telefone || d.email) {
+                text += `--- Contato ---\n`;
+                if (d.telefone) text += `Telefone: ${d.telefone}\n`;
+                if (d.email) text += `E-mail: ${d.email}\n`;
+                text += '\n';
+            }
+
+            // CNAE
+            if (d.cnaePrincipal) {
+                text += `--- Atividade Principal ---\n`;
+                text += `${d.cnaePrincipal}\n\n`;
+            }
+
+            // Footer
+            text += `---\n`;
+            text += `Consultado em: ${new Date().toLocaleDateString('pt-BR')}\n`;
+            text += `Fonte: CNPJCheck.com.br\n`;
+
+            return text;
+        }
+    }));
+});
+</script>
+
+
+        </div>
+    </main>
+
+    
+
+
+    <!-- Footer - Exato Digital Style -->
+    <footer b-w10u0bj3rm="" class="site-footer text-gray-400 text-sm w-full">
+        <!-- Disclaimer LGPD -->
+        <div b-w10u0bj3rm="" class="bg-gray-800 border-t border-gray-700">
+            <div b-w10u0bj3rm="" class="container mx-auto px-4 py-6">
+                <p b-w10u0bj3rm="" class="font-medium text-white mb-1">Dados de fontes públicas</p>
+                <p b-w10u0bj3rm="" class="text-gray-400">
+                    Os dados disponibilizados pelo Exato Digital estão disponíveis na internet nos portais governamentais a qualquer pessoa que deseje verificar as informações.
+                    Leia mais sobre <a b-w10u0bj3rm="" href="https://exato.digital/lgpd?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=disclaimer_lgpd" class="text-yellow-400 hover:text-yellow-300 underline font-medium">LGPD</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div b-w10u0bj3rm="" class="bg-gray-900 py-8">
+            <div b-w10u0bj3rm="" class="container mx-auto px-4">
+                <div b-w10u0bj3rm="" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                    <!-- Corporate Column -->
+                    <div b-w10u0bj3rm="" class="sm:col-span-2 md:col-span-1">
+                        <p b-w10u0bj3rm="" class="text-white font-medium uppercase mb-4">Corporate</p>
+                        <div b-w10u0bj3rm="" class="space-y-3">
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_corporate" class="flex items-center gap-2 text-gray-400 hover:text-yellow-400 font-medium uppercase">
+                                Nossas Soluções <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                            </a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/background-check?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_background_check" class="block text-gray-400 hover:text-yellow-400">Background Check</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/flashcheck?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_flashcheck" class="block text-gray-400 hover:text-yellow-400">FlashCheck</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/doccheck?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_doccheck" class="block text-gray-400 hover:text-yellow-400">DocCheck</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/safecheck?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_safecheck" class="block text-gray-400 hover:text-yellow-400">SafeCheck</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/automacao-consultas?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_automation" class="block text-gray-400 hover:text-yellow-400">Automação de Consultas</a>
+                            <p b-w10u0bj3rm="" class="font-medium uppercase text-gray-400 pt-2">Cases de Sucesso</p>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/planos-sla?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_plans_sla" class="block font-medium uppercase text-gray-400 hover:text-yellow-400">Planos e SLA</a>
+                        </div>
+                    </div>
+
+                    <!-- Segmentos Column -->
+                    <div b-w10u0bj3rm="">
+                        <p b-w10u0bj3rm="" class="text-white font-medium uppercase mb-4">Segmentos</p>
+                        <div b-w10u0bj3rm="" class="space-y-3">
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/background-check-recrutamento-selecao?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_segment_recruiting" class="block text-gray-400 hover:text-yellow-400">Recrutamento e Seleção</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/background-check-prevencao-lavagem-dinheiro?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_segment_aml" class="block text-gray-400 hover:text-yellow-400">Prevenção à Lavagem de Dinheiro</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/background-check-verificacao-fornecedores?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_segment_suppliers" class="block text-gray-400 hover:text-yellow-400">Verificação de Fornecedores</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/background-check-compliance?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_segment_compliance" class="block text-gray-400 hover:text-yellow-400">Compliance</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/api-verificacao-cpf?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_segment_user_verification" class="block text-gray-400 hover:text-yellow-400">Verificação de Usuários</a>
+                            <a b-w10u0bj3rm="" href="https://exato.digital/corporate/validacao-identidade-apostadores?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_segment_igaming" class="block text-gray-400 hover:text-yellow-400">Plataforma de iGaming (Bet)</a>
+                        </div>
+                    </div>
+
+                    <!-- Recursos Column -->
+                    <div b-w10u0bj3rm="">
+                        <p b-w10u0bj3rm="" class="text-white font-medium uppercase mb-4">Recursos</p>
+                        <div b-w10u0bj3rm="" class="space-y-3">
+                            <p b-w10u0bj3rm="" class="font-medium uppercase text-gray-400">Integrações</p>
+                            <a b-w10u0bj3rm="" href="https://api.exato.digital/swagger-ui/" class="block text-gray-400 hover:text-yellow-400">Documentação das APIs</a>
+                            <a b-w10u0bj3rm="" href="https://help.exato.digital/pt/articles/5860451-documentacao-da-api" target="_blank" class="block text-gray-400 hover:text-yellow-400">Guia de Integração</a>
+                            <a b-w10u0bj3rm="" href="/" class="block font-medium text-yellow-400 pt-2">CNPJCheck <span b-w10u0bj3rm="" class="text-xs font-normal text-gray-400">(você está aqui)</span></a>
+                            <a b-w10u0bj3rm="" href="https://blog.exato.digital/?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_blog" class="block font-medium uppercase text-gray-400 hover:text-yellow-400">Blog</a>
+                            <a b-w10u0bj3rm="" href="https://44616254.hs-sites.com/central-de-ajuda-exato-digital" target="_blank" class="block font-medium uppercase text-gray-400 hover:text-yellow-400">Central de Ajuda</a>
+                        </div>
+                    </div>
+
+                    <!-- Entrar/Contato Column -->
+                    <div b-w10u0bj3rm="">
+                        <a b-w10u0bj3rm="" href="https://exato.digital/?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_login" class="block text-white font-medium uppercase mb-4 hover:text-yellow-400">Entrar</a>
+                        <a b-w10u0bj3rm="" href="https://exato.digital/?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_signup" class="block text-white font-medium uppercase mb-4 hover:text-yellow-400">Teste Grátis</a>
+                        <p b-w10u0bj3rm="" class="text-white font-medium uppercase mb-2">Contato</p>
+                        <div b-w10u0bj3rm="" class="space-y-2 mb-4">
+                            <a b-w10u0bj3rm="" href="mailto:fale@exato.digital" class="block text-gray-400 hover:text-yellow-400">fale@exato.digital</a>
+                            <a b-w10u0bj3rm="" href="https://44616254.hs-sites.com/central-de-ajuda-exato-digital" target="_blank" class="block text-gray-400 hover:text-yellow-400">Suporte</a>
+                        </div>
+                        <p b-w10u0bj3rm="" class="font-medium uppercase text-gray-400 mb-2">Social</p>
+                        <div b-w10u0bj3rm="" class="flex gap-4">
+                            <a b-w10u0bj3rm="" href="https://twitter.com/exato_digital" target="_blank" class="text-gray-400 hover:text-yellow-400" aria-label="Twitter da Exato Digital"><i b-w10u0bj3rm="" class="fab fa-x-twitter text-lg" aria-hidden="true"></i></a>
+                            <a b-w10u0bj3rm="" href="https://www.facebook.com/exatodig" target="_blank" class="text-gray-400 hover:text-yellow-400" aria-label="Facebook da Exato Digital"><i b-w10u0bj3rm="" class="fab fa-facebook text-lg" aria-hidden="true"></i></a>
+                            <a b-w10u0bj3rm="" href="https://www.linkedin.com/company/exatodigital" target="_blank" class="text-gray-400 hover:text-yellow-400" aria-label="LinkedIn da Exato Digital"><i b-w10u0bj3rm="" class="fab fa-linkedin text-lg" aria-hidden="true"></i></a>
+                            <a b-w10u0bj3rm="" href="https://www.instagram.com/exatodigital/" target="_blank" class="text-gray-400 hover:text-yellow-400" aria-label="Instagram da Exato Digital"><i b-w10u0bj3rm="" class="fab fa-instagram text-lg" aria-hidden="true"></i></a>
+                            <a b-w10u0bj3rm="" href="https://youtube.com/channel/UCabCiMV3qAwMXrMAg3vvfww" target="_blank" class="text-gray-400 hover:text-yellow-400" aria-label="YouTube da Exato Digital"><i b-w10u0bj3rm="" class="fab fa-youtube text-lg" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Brand -->
+        <div b-w10u0bj3rm="" class="bg-black py-8">
+            <div b-w10u0bj3rm="" class="container mx-auto px-4">
+                <div b-w10u0bj3rm="" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+                    <!-- Logo & Company Info -->
+                    <div b-w10u0bj3rm="">
+                        <a b-w10u0bj3rm="" href="https://exato.digital?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_logo" class="inline-block mb-4">
+                            <img b-w10u0bj3rm="" src="/images/logo-exato-white.svg" alt="Exato Digital" class="h-5" onerror="this.outerHTML='&lt;span class=\'text-white font-bold text-lg\'&gt;EXATO DIGITAL&lt;/span&gt;'">
+                        </a>
+                        <div b-w10u0bj3rm="" class="text-gray-400 text-xs leading-relaxed">
+                            CNPJ: 12.387.530/0001-13<br b-w10u0bj3rm="">
+                            Rua Ceará, 1513<br b-w10u0bj3rm="">
+                            Praia da Costa - Vila Velha - ES<br b-w10u0bj3rm=""><br b-w10u0bj3rm="">
+                            Exato Digital - Copyright 2019-2026<br b-w10u0bj3rm="">
+                            <span b-w10u0bj3rm="" class="opacity-40" title="1.0.0+a443930e5f363763090060dd201b4d4dad40ac6a">build a443930</span>
+                        </div>
+                    </div>
+
+                    <!-- Investors -->
+                    <div b-w10u0bj3rm="">
+                        <p b-w10u0bj3rm="" class="font-medium uppercase text-gray-400 mb-4">Investida por</p>
+                        <div b-w10u0bj3rm="" class="space-y-4">
+                            <img b-w10u0bj3rm="" src="/images/logo-bradesco-private-equity-white.svg" alt="Bradesco Private Equity" class="h-8 w-auto" onerror="this.outerHTML='&lt;span class=\'text-gray-400 text-xs\'&gt;Bradesco Private Equity&lt;/span&gt;'">
+                            <img b-w10u0bj3rm="" src="/images/logo-niu-ventures-white.svg" alt="Niu Ventures" class="h-4 w-auto" onerror="this.outerHTML='&lt;span class=\'text-gray-400 text-xs\'&gt;Niu Ventures&lt;/span&gt;'">
+                        </div>
+                    </div>
+
+                    <!-- Legal Links 1 -->
+                    <div b-w10u0bj3rm="" class="space-y-2">
+                        <a b-w10u0bj3rm="" href="https://exato.digital/corporate/sobre-nos?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_about" class="block text-gray-400 hover:text-yellow-400">Sobre Nós</a>
+                        <a b-w10u0bj3rm="" href="https://exato.digital/politica-privacidade?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_privacy" class="block text-gray-400 hover:text-yellow-400">Política de Privacidade</a>
+                        <a b-w10u0bj3rm="" href="https://exato.digital/termos-condicoes?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_terms" class="block text-gray-400 hover:text-yellow-400">Termos de Uso</a>
+                    </div>
+
+                    <!-- Legal Links 2 -->
+                    <div b-w10u0bj3rm="" class="space-y-2">
+                        <a b-w10u0bj3rm="" href="/dados-publicos" class="block text-gray-400 hover:text-yellow-400">Dados Públicos e Privacidade</a>
+                        <a b-w10u0bj3rm="" href="https://exato.digital/lgpd?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_lgpd" class="block text-gray-400 hover:text-yellow-400">LGPD</a>
+                        <a b-w10u0bj3rm="" href="https://exato.digital/politica-cookie?utm_source=cnpjcheck&amp;utm_medium=referral&amp;utm_campaign=consulta_cnpj&amp;utm_content=footer_cookies" class="block text-gray-400 hover:text-yellow-400">Política de Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Command Palette Trigger (subtle, right side top) -->
+    <button b-w10u0bj3rm="" x-data="" @click="$dispatch('open-command-palette')" class="cmd-fab hidden md:flex fixed top-24 right-4 z-40 items-center gap-2 px-3 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-200 group" title="Busca rápida (Ctrl+K)">
+        <i b-w10u0bj3rm="" class="fas fa-search transition-colors"></i>
+        <kbd b-w10u0bj3rm="" class="text-xs font-medium transition-colors">⌘K</kbd>
+    </button>
+
+    <!-- Command Palette Modal -->
+    <div b-w10u0bj3rm="" x-data="commandPalette()">
+        <!-- Backdrop -->
+        <div b-w10u0bj3rm="" x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="cmd-palette-backdrop" @click="close()" style="display: none;">
+        </div>
+
+        <!-- Modal -->
+        <div b-w10u0bj3rm="" x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95 -translate-y-4" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-95 -translate-y-4" class="cmd-palette-modal" style="display: none;">
+
+            <!-- Search Input -->
+            <div b-w10u0bj3rm="" class="cmd-palette-input-wrapper">
+                <!-- Back button when in search mode -->
+                <button b-w10u0bj3rm="" x-show="searchMode !== 'commands'" @click="backToCommands()" class="cmd-palette-back-btn" title="Voltar (Backspace)" style="display: none;">
+                    <i b-w10u0bj3rm="" class="fas fa-arrow-left"></i>
+                </button>
+
+                <!-- Search mode badge -->
+                <span b-w10u0bj3rm="" x-show="searchMode !== 'commands'" class="cmd-palette-mode-badge" style="display: none;">
+                    <template b-w10u0bj3rm="" x-if="searchMode === 'empresas'"><span b-w10u0bj3rm=""><i b-w10u0bj3rm="" class="fas fa-building mr-1"></i> Empresas</span></template>
+                    <template b-w10u0bj3rm="" x-if="searchMode === 'socios'"><span b-w10u0bj3rm=""><i b-w10u0bj3rm="" class="fas fa-user-tie mr-1"></i> Sócios</span></template>
+                    <template b-w10u0bj3rm="" x-if="searchMode === 'cnae'"><span b-w10u0bj3rm=""><i b-w10u0bj3rm="" class="fas fa-industry mr-1"></i> CNAE</span></template>
+                </span>
+
+                <i b-w10u0bj3rm="" class="fas fa-search cmd-palette-search-icon" x-show="searchMode === 'commands'"></i>
+
+                <input b-w10u0bj3rm="" type="text" x-ref="commandInput" x-model="query" :placeholder="placeholder" @keydown="handleKeydown" @input.debounce.300ms="performSearch()" class="cmd-palette-input" autocomplete="off" spellcheck="false" placeholder="Buscar comandos, empresas, CNAEs..." style="">
+
+                <!-- Loading spinner -->
+                <i b-w10u0bj3rm="" x-show="isSearching" class="fas fa-spinner fa-spin cmd-palette-spinner" style="display: none;"></i>
+
+                <!-- Keyboard hint -->
+                <kbd b-w10u0bj3rm="" class="cmd-palette-kbd hidden sm:inline-flex">ESC</kbd>
+            </div>
+
+            <!-- Results List -->
+            <div b-w10u0bj3rm="" x-ref="resultsList" class="cmd-palette-results">
+                <!-- Commands Mode -->
+                <template b-w10u0bj3rm="" x-if="searchMode === 'commands'">
+                    <div b-w10u0bj3rm="">
+                        <!-- Empty state -->
+                        <div b-w10u0bj3rm="" x-show="filteredCommands.length === 0" class="cmd-palette-empty">
+                            <i b-w10u0bj3rm="" class="fas fa-search text-2xl text-gray-300 mb-2"></i>
+                            <p b-w10u0bj3rm="">Nenhum comando encontrado</p>
+                        </div>
+
+                        <!-- Grouped commands (use flat index for selection) -->
+                        <template b-w10u0bj3rm="" x-for="(cmd, flatIdx) in filteredCommands" :key="cmd.id">
+                            <div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category"></div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name"></span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+                </template><div b-w10u0bj3rm="">
+                        <!-- Empty state -->
+                        <div b-w10u0bj3rm="" x-show="filteredCommands.length === 0" class="cmd-palette-empty" style="display: none;">
+                            <i b-w10u0bj3rm="" class="fas fa-search text-2xl text-gray-300 mb-2"></i>
+                            <p b-w10u0bj3rm="">Nenhum comando encontrado</p>
+                        </div>
+
+                        <!-- Grouped commands (use flat index for selection) -->
+                        <template b-w10u0bj3rm="" x-for="(cmd, flatIdx) in filteredCommands" :key="cmd.id">
+                            <div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category"></div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name"></span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </template><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item cmd-item-selected" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="home">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-home"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Ir para Home</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="buscar">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-search"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Ir para Busca</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="empresas">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-building"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Ver Empresas</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="socios">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-users"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Ver Sócios</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="cnae">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-th-list"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Ver CNAEs</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="ranking">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-trophy"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Ver Ranking</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Navegação</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="comparar">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-balance-scale"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Comparar Empresas</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category">Busca Rápida</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="buscar-empresa">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon text-teal-500" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-building"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Buscar Empresa</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Busca Rápida</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="buscar-socio">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon text-teal-500" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-user-tie"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Buscar Sócio</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Busca Rápida</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="buscar-cnae">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon text-teal-500" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-industry"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Buscar CNAE</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category">Ações</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="tema-claro">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-sun"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Tema Claro</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div><div b-w10u0bj3rm="">
+                                <!-- Show category header when first item or category changes -->
+                                <div b-w10u0bj3rm="" x-show="flatIdx === 0 || filteredCommands[flatIdx - 1]?.category !== cmd.category" class="cmd-palette-group-title" x-text="cmd.category" style="display: none;">Ações</div>
+                                <button b-w10u0bj3rm="" @click="selectedIndex = flatIdx; executeSelected()" @mouseenter="selectedIndex = flatIdx" class="cmd-palette-item" :data-nav-id="cmd.navId" data-nav-surface="command-palette" :class="{ 'cmd-item-selected': selectedIndex === flatIdx }" data-nav-id="tema-escuro">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-icon" :class="cmd.isSearch ? 'text-teal-500' : ''">
+                                        <i b-w10u0bj3rm="" :class="'fas ' + cmd.icon" class="fas fa-moon"></i>
+                                    </span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="cmd.name">Tema Escuro</span>
+                                    <span b-w10u0bj3rm="" x-show="cmd.isSearch" class="cmd-palette-item-hint" style="display: none;">
+                                        <i b-w10u0bj3rm="" class="fas fa-chevron-right text-xs"></i>
+                                    </span>
+                                </button>
+                            </div>
+                    </div>
+
+                <!-- Search Mode (empresas, socios, cnae) -->
+                <template b-w10u0bj3rm="" x-if="searchMode !== 'commands'">
+                    <div b-w10u0bj3rm="">
+                        <!-- Initial state -->
+                        <div b-w10u0bj3rm="" x-show="query.length &lt; 2 &amp;&amp; !isSearching" class="cmd-palette-empty">
+                            <i b-w10u0bj3rm="" class="fas fa-keyboard text-2xl text-gray-300 mb-2"></i>
+                            <p b-w10u0bj3rm="">Digite pelo menos 2 caracteres para buscar</p>
+                        </div>
+
+                        <!-- No results -->
+                        <div b-w10u0bj3rm="" x-show="query.length &gt;= 2 &amp;&amp; !isSearching &amp;&amp; searchResults.length === 0" class="cmd-palette-empty">
+                            <i b-w10u0bj3rm="" class="fas fa-inbox text-2xl text-gray-300 mb-2"></i>
+                            <p b-w10u0bj3rm="">Nenhum resultado encontrado</p>
+                        </div>
+
+                        <!-- Search results -->
+                        <template b-w10u0bj3rm="" x-for="(result, idx) in searchResults" :key="result.url || idx">
+                            <button b-w10u0bj3rm="" @click="selectSearchResult(result, idx)" @mouseenter="selectedIndex = idx" class="cmd-palette-item" :class="{ 'cmd-item-selected': selectedIndex === idx }">
+                                <span b-w10u0bj3rm="" class="cmd-palette-item-icon">
+                                    <i b-w10u0bj3rm="" :class="'fas ' + (result.icon || 'fa-building')"></i>
+                                </span>
+                                <div b-w10u0bj3rm="" class="cmd-palette-item-content">
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-name" x-text="result.name"></span>
+                                    <span b-w10u0bj3rm="" class="cmd-palette-item-detail" x-text="result.detail" x-show="result.detail"></span>
+                                </div>
+                            </button>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Footer -->
+            <div b-w10u0bj3rm="" class="cmd-palette-footer">
+                <div b-w10u0bj3rm="" class="cmd-palette-footer-hints">
+                    <span b-w10u0bj3rm=""><kbd b-w10u0bj3rm="">↑↓</kbd> navegar</span>
+                    <span b-w10u0bj3rm=""><kbd b-w10u0bj3rm="">↵</kbd> selecionar</span>
+                    <span b-w10u0bj3rm=""><kbd b-w10u0bj3rm="">esc</kbd> fechar</span>
+                </div>
+                <div b-w10u0bj3rm="" class="cmd-palette-footer-brand">
+                    <span b-w10u0bj3rm="" class="text-teal-600 font-medium">CNPJCheck</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        <!-- vis.js Network loaded lazily when graph section is visible -->
+        <script>
+            // Lazy load vis-network only when needed (saves ~124KB on initial load)
+            let visNetworkLoaded = false;
+            function loadVisNetwork() {
+                return new Promise((resolve, reject) => {
+                    if (visNetworkLoaded || window.vis?.Network) {
+                        resolve();
+                        return;
+                    }
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/vis-network@9.1.9/dist/vis-network.min.js';
+                    script.onload = () => { visNetworkLoaded = true; resolve(); };
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+            }
+
+            // Alpine.js component for Grafo de Socios
+            // Register immediately if Alpine is ready, otherwise wait for alpine:init
+            function registerGrafoSocios() {
+                console.log('[Grafo] registerGrafoSocios() chamado');
+                Alpine.data('grafoSocios', (cnpj) => ({
+                    cnpj: cnpj,
+                    nivel: 1,
+                    loading: true,
+                    network: null,
+                    nodesData: null,
+                    edgesData: null,
+                    selectedNode: null,
+                    fullscreen: false,
+                    centralNodeId: null,
+                    visLoaded: false,
+
+                    async init() {
+                        console.log('[Grafo] init() chamado, cnpj:', this.cnpj);
+
+                        // Lazy load: only load vis-network when section is visible
+                        const observer = new IntersectionObserver(async (entries) => {
+                            if (entries[0].isIntersecting && !this.visLoaded) {
+                                this.visLoaded = true;
+                                observer.disconnect();
+                                console.log('[Grafo] Section visible, loading vis-network...');
+                                await loadVisNetwork();
+                                await this.carregarGrafo();
+                            }
+                        }, { rootMargin: '100px' }); // Start loading 100px before visible
+
+                        observer.observe(this.$refs.container);
+
+                        // ESC para sair do fullscreen
+                        document.addEventListener('keydown', (e) => {
+                            if (e.key === 'Escape' && this.fullscreen) {
+                                this.fullscreen = false;
+                                this.$nextTick(() => this.network?.fit());
+                            }
+                        });
+                    },
+
+                    async carregarGrafo() {
+                        console.log('[Grafo] carregarGrafo() iniciado');
+                        this.loading = true;
+                        this.selectedNode = null;
+
+                        try {
+                            const url = `/api/empresa/${this.cnpj}/grafo?nivel=${this.nivel}`;
+                            console.log('[Grafo] Fetching:', url);
+                            const response = await fetch(url);
+                            console.log('[Grafo] Response status:', response.status);
+                            if (!response.ok) throw new Error('Erro ao carregar grafo');
+
+                            const data = await response.json();
+                            console.log('[Grafo] Data recebida:', data.nodes?.length, 'nodes,', data.edges?.length, 'edges');
+                            this.renderizarGrafo(data);
+                        } catch (error) {
+                            console.error('[Grafo] Erro:', error);
+                            this.$refs.container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-600"><p>Erro ao carregar grafo</p></div>';
+                        } finally {
+                            this.loading = false;
+                            console.log('[Grafo] loading = false');
+                        }
+                    },
+
+                    renderizarGrafo(data) {
+                        console.log('[Grafo] renderizarGrafo() iniciado');
+                        // Encontrar no central
+                        const centralNode = data.nodes.find(n => n.central);
+                        this.centralNodeId = centralNode?.id || null;
+
+                        // Mapear nodes para formato vis.js
+                        const nodes = data.nodes.map(node => ({
+                            id: node.id,
+                            label: this.truncateLabel(node.label),
+                            shape: node.type === 'pessoa' ? 'ellipse' : 'box',
+                            color: this.getNodeColor(node),
+                            font: {
+                                size: node.central ? 14 : 12,
+                                color: '#374151',
+                                face: 'Saira, sans-serif'
+                            },
+                            borderWidth: node.central ? 3 : 1,
+                            borderWidthSelected: 3,
+                            margin: 10,
+                            // Dados customizados para tooltip
+                            _data: node
+                        }));
+
+                        // Mapear edges para formato vis.js
+                        const edges = data.edges.map(edge => ({
+                            from: edge.from,
+                            to: edge.to,
+                            label: this.truncateLabel(edge.label, 15),
+                            font: {
+                                size: 10,
+                                color: '#9ca3af',
+                                strokeWidth: 0,
+                                align: 'middle'
+                            },
+                            arrows: {
+                                to: { enabled: true, scaleFactor: 0.5 }
+                            },
+                            color: {
+                                color: '#d1d5db',
+                                highlight: '#2A9D9C',
+                                hover: '#2A9D9C'
+                            },
+                            smooth: {
+                                type: 'curvedCW',
+                                roundness: 0.2
+                            }
+                        }));
+
+                        this.nodesData = new vis.DataSet(nodes);
+                        this.edgesData = new vis.DataSet(edges);
+
+                        const container = this.$refs.container;
+                        const graphData = {
+                            nodes: this.nodesData,
+                            edges: this.edgesData
+                        };
+
+                        const options = {
+                            nodes: {
+                                shape: 'box',
+                                font: {
+                                    size: 12,
+                                    face: 'Saira, sans-serif'
+                                }
+                            },
+                            edges: {
+                                smooth: {
+                                    type: 'curvedCW',
+                                    roundness: 0.2
+                                }
+                            },
+                            physics: {
+                                enabled: true,
+                                solver: 'forceAtlas2Based',
+                                forceAtlas2Based: {
+                                    gravitationalConstant: -50,
+                                    centralGravity: 0.01,
+                                    springLength: 150,
+                                    springConstant: 0.08
+                                },
+                                stabilization: {
+                                    enabled: true,
+                                    iterations: 100,
+                                    updateInterval: 25
+                                }
+                            },
+                            interaction: {
+                                hover: true,
+                                tooltipDelay: 200,
+                                zoomView: true,
+                                dragView: true
+                            },
+                            layout: {
+                                improvedLayout: true
+                            }
+                        };
+
+                        // Destroy previous network if exists
+                        if (this.network) {
+                            this.network.destroy();
+                        }
+
+                        this.network = new vis.Network(container, graphData, options);
+
+                        // Event handlers
+                        this.network.on('click', (params) => {
+                            if (params.nodes.length > 0) {
+                                const nodeId = params.nodes[0];
+                                const node = this.nodesData.get(nodeId);
+                                this.selectedNode = node._data;
+                            } else {
+                                this.selectedNode = null;
+                            }
+                        });
+
+                        this.network.on('doubleClick', (params) => {
+                            if (params.nodes.length > 0) {
+                                const nodeId = params.nodes[0];
+                                const node = this.nodesData.get(nodeId);
+                                if (node._data.type === 'empresa' && !node._data.central) {
+                                    window.location.href = `/empresa/${nodeId.replace('E_', '')}`;
+                                }
+                            }
+                        });
+
+                        // Focus na empresa central apos estabilizacao
+                        this.network.once('stabilizationIterationsDone', () => {
+                            console.log('[Grafo] Estabilizacao concluida, focando na empresa central');
+                            if (this.centralNodeId) {
+                                this.network.focus(this.centralNodeId, {
+                                    scale: 1.2,
+                                    animation: {
+                                        duration: 500,
+                                        easingFunction: 'easeInOutQuad'
+                                    }
+                                });
+                            }
+                        });
+                    },
+
+                    getNodeColor(node) {
+                        if (node.central) {
+                            return {
+                                background: '#fcc52c',
+                                border: '#c99503',
+                                highlight: { background: '#fcd34d', border: '#c99503' },
+                                hover: { background: '#fcd34d', border: '#c99503' }
+                            };
+                        }
+                        if (node.type === 'empresa') {
+                            return {
+                                background: '#2A9D9C',
+                                border: '#2A9D9C',
+                                highlight: { background: '#5eead4', border: '#2A9D9C' },
+                                hover: { background: '#5eead4', border: '#2A9D9C' }
+                            };
+                        }
+                        // Pessoa
+                        return {
+                            background: '#9ca3af',
+                            border: '#6b7280',
+                            highlight: { background: '#d1d5db', border: '#6b7280' },
+                            hover: { background: '#d1d5db', border: '#6b7280' }
+                        };
+                    },
+
+                    truncateLabel(text, maxLength = 25) {
+                        if (!text) return '';
+                        if (text.length <= maxLength) return text;
+                        return text.substring(0, maxLength - 3) + '...';
+                    },
+
+                    async expandirRede() {
+                        if (this.nivel < 2) {
+                            this.nivel = 2;
+                            await this.carregarGrafo();
+                        }
+                    },
+
+                    async resetarRede() {
+                        if (this.nivel > 1) {
+                            this.nivel = 1;
+                            await this.carregarGrafo();
+                        }
+                    },
+
+                    toggleFullscreen() {
+                        this.fullscreen = !this.fullscreen;
+                        // Aguarda o DOM atualizar e redimensiona o grafo
+                        this.$nextTick(() => {
+                            if (this.network) {
+                                this.network.fit();
+                                // Se saiu do fullscreen, foca na empresa central
+                                if (!this.fullscreen && this.centralNodeId) {
+                                    setTimeout(() => {
+                                        this.network.focus(this.centralNodeId, {
+                                            scale: 1.2,
+                                            animation: { duration: 300 }
+                                        });
+                                    }, 100);
+                                }
+                            }
+                        });
+                    }
+                }));
+            }
+
+            // Check if Alpine is already initialized
+            console.log('[Grafo] Script executando, window.Alpine:', !!window.Alpine);
+            if (window.Alpine) {
+                console.log('[Grafo] Alpine ja existe, registrando componente...');
+                registerGrafoSocios();
+                // Alpine already processed the DOM, need to reinitialize this component
+                const grafoElement = document.querySelector('[x-data^="grafoSocios"]');
+                console.log('[Grafo] grafoElement encontrado:', !!grafoElement, 'tem _x_dataStack:', !!grafoElement?._x_dataStack);
+                if (grafoElement && !grafoElement._x_dataStack) {
+                    console.log('[Grafo] Chamando Alpine.initTree()');
+                    Alpine.initTree(grafoElement);
+                }
+            } else {
+                console.log('[Grafo] Alpine nao existe, registrando listener alpine:init');
+                document.addEventListener('alpine:init', registerGrafoSocios);
+            }
+
+            // LinkedIn Search component
+            function linkedInSearch() {
+                return {
+                    showModal: false,
+                    loading: false,
+                    searchName: '',
+                    searchCity: '',
+                    result: null,
+                    error: null,
+
+                    async searchLinkedIn(name, city) {
+                        this.searchName = name;
+                        this.searchCity = city;
+                        this.showModal = true;
+                        this.loading = true;
+                        this.result = null;
+                        this.error = null;
+
+                        try {
+                            const params = new URLSearchParams({ name });
+                            if (city) params.append('city', city);
+
+                            const response = await fetch(`/api/linkedin/person?${params}`);
+                            if (!response.ok) {
+                                throw new Error('Erro ao buscar perfil');
+                            }
+                            this.result = await response.json();
+                        } catch (e) {
+                            console.error('[LinkedIn] Erro:', e);
+                            this.error = e.message || 'Erro ao buscar perfil no LinkedIn';
+                        } finally {
+                            this.loading = false;
+                        }
+                    },
+
+                    closeModal() {
+                        this.showModal = false;
+                        this.result = null;
+                        this.error = null;
+                    }
+                };
+            }
+
+            // Make linkedInSearch available globally for Alpine
+            window.linkedInSearch = linkedInSearch;
+        </script>
+    
+
+    <!-- Smart Search Component - reusable loading/lock pattern for search inputs -->
+    <script>
+        /**
+         * Smart Search Alpine.js component
+         * Provides loading states, timeout protection, and visual feedback for search inputs.
+         *
+         * Usage: x-data="smartSearch({ placeholder: 'Buscar...', lockAfterMs: 2000 })"
+         *
+         * States:
+         * - Normal: Idle state
+         * - Loading (0-2s): Glow animation, "Buscando..." placeholder
+         * - Locked (>2s): Input disabled, cursor wait, stronger background
+         * - Unlocked: After response or 10s timeout
+         */
+        function smartSearch(options = {}) {
+            const defaults = {
+                placeholder: 'Buscar...',
+                lockAfterMs: 2000,
+                unlockTimeoutMs: 10000
+            };
+            const config = { ...defaults, ...options };
+
+            return {
+                query: '',
+                showResults: false,
+                isLoading: false,
+                isLocked: false,
+                _lockTimeout: null,
+                _unlockTimeout: null,
+                _placeholder: config.placeholder,
+
+                get placeholder() {
+                    return this.isLoading ? 'Buscando...' : this._placeholder;
+                },
+
+                init() {
+                    // Cleanup on navigation
+                    window.addEventListener('beforeunload', () => this._cleanup());
+                },
+
+                _cleanup() {
+                    if (this._lockTimeout) clearTimeout(this._lockTimeout);
+                    if (this._unlockTimeout) clearTimeout(this._unlockTimeout);
+                },
+
+                onBeforeRequest() {
+                    this.isLoading = true;
+
+                    // Schedule lock if request takes too long
+                    this._lockTimeout = setTimeout(() => {
+                        this.isLocked = true;
+
+                        // Safety unlock after max timeout
+                        this._unlockTimeout = setTimeout(() => {
+                            this._unlock();
+                        }, config.unlockTimeoutMs);
+                    }, config.lockAfterMs);
+                },
+
+                onAfterRequest() {
+                    this._unlock();
+                },
+
+                _unlock() {
+                    this.isLoading = false;
+                    this.isLocked = false;
+
+                    if (this._lockTimeout) {
+                        clearTimeout(this._lockTimeout);
+                        this._lockTimeout = null;
+                    }
+                    if (this._unlockTimeout) {
+                        clearTimeout(this._unlockTimeout);
+                        this._unlockTimeout = null;
+                    }
+                }
+            };
+        }
+    </script>
+
+    <!-- Command Palette Component - Global Quick Command Menu (Ctrl+K / Cmd+K) -->
+    <script>
+        // Feature flags from server
+        const cmdPaletteFeatures = {
+            ferramentas: false
+        };
+
+        /**
+         * Command Palette - Quick command menu like Raycast/Spotlight
+         *
+         * Usage: Opens with Ctrl+K (Windows/Linux) or Cmd+K (Mac)
+         *
+         * Features:
+         * - Fuzzy search across commands
+         * - Live company search via HTMX
+         * - Keyboard navigation (arrows, Enter, Escape)
+         * - Recent searches stored in localStorage
+         * - Categories: Navegação, Buscar, Ferramentas, Ações
+         */
+        function commandPalette() {
+            // Build commands list based on feature flags
+            const allCommands = [
+                // Navegação
+                { id: 'nav-home', navId: 'home', name: 'Ir para Home', category: 'Navegação', icon: 'fa-home', action: () => window.location.href = '/', keywords: 'inicio principal' },
+                { id: 'nav-buscar', navId: 'buscar', name: 'Ir para Busca', category: 'Navegação', icon: 'fa-search', action: () => window.location.href = '/buscar', keywords: 'pesquisar procurar' },
+                { id: 'nav-empresas', navId: 'empresas', name: 'Ver Empresas', category: 'Navegação', icon: 'fa-building', action: () => window.location.href = '/empresas', keywords: 'listar companhias' },
+                { id: 'nav-socios', navId: 'socios', name: 'Ver Sócios', category: 'Navegação', icon: 'fa-users', action: () => window.location.href = '/socios', keywords: 'pessoas quadro societario' },
+                { id: 'nav-cnae', navId: 'cnae', name: 'Ver CNAEs', category: 'Navegação', icon: 'fa-th-list', action: () => window.location.href = '/cnae', keywords: 'atividade economica codigo' },
+                { id: 'nav-ranking', navId: 'ranking', name: 'Ver Ranking', category: 'Navegação', icon: 'fa-trophy', action: () => window.location.href = '/ranking', keywords: 'top maiores melhores' },
+                { id: 'nav-comparar', navId: 'comparar', name: 'Comparar Empresas', category: 'Navegação', icon: 'fa-balance-scale', action: () => window.location.href = '/comparar', keywords: 'versus diferenca' },
+
+                // Busca Rápida
+                { id: 'search-empresa', navId: 'buscar-empresa', name: 'Buscar Empresa', category: 'Busca Rápida', icon: 'fa-building', keywords: 'cnpj razao social nome fantasia', isSearch: true },
+                { id: 'search-socio', navId: 'buscar-socio', name: 'Buscar Sócio', category: 'Busca Rápida', icon: 'fa-user-tie', keywords: 'cpf pessoa quadro societario', isSearch: true },
+                { id: 'search-cnae', navId: 'buscar-cnae', name: 'Buscar CNAE', category: 'Busca Rápida', icon: 'fa-industry', keywords: 'atividade codigo setor', isSearch: true },
+
+                // Ferramentas (feature flagged)
+                ...(cmdPaletteFeatures.ferramentas ? [
+                    { id: 'tool-validar', navId: 'validar-cnpj', name: 'Validar CNPJ', category: 'Ferramentas', icon: 'fa-check-circle', action: () => window.location.href = '/ferramentas/validar-cnpj', keywords: 'verificar checar' },
+                    { id: 'tool-formatar', navId: 'formatar-cnpj', name: 'Formatar CNPJ', category: 'Ferramentas', icon: 'fa-magic', action: () => window.location.href = '/ferramentas/formatar-cnpj', keywords: 'mascara pontuacao' },
+                    { id: 'tool-gerar', navId: 'gerar-cnpj', name: 'Gerar CNPJ', category: 'Ferramentas', icon: 'fa-random', action: () => window.location.href = '/ferramentas/gerar-cnpj', keywords: 'aleatorio teste mock' },
+                ] : []),
+
+                // Ações
+                { id: 'action-theme-light', navId: 'tema-claro', name: 'Tema Claro', category: 'Ações', icon: 'fa-sun', keywords: 'claro branco dia light' },
+                { id: 'action-theme-emerald', navId: 'tema-escuro', name: 'Tema Escuro', category: 'Ações', icon: 'fa-moon', keywords: 'escuro dark noite' },
+            ];
+
+            return {
+                open: false,
+                query: '',
+                selectedIndex: 0,
+                searchMode: 'commands', // 'commands' | 'empresas' | 'socios' | 'cnae'
+                isSearching: false,
+                searchResults: [],
+                recentSearches: [],
+
+                // Commands filtered by feature flags
+                commands: allCommands,
+
+                setTheme(theme) {
+                    // Remove existing theme classes
+                    document.documentElement.classList.remove('dark-emerald', 'dark-golden');
+                    // Add new theme class if not light
+                    if (theme) {
+                        document.documentElement.classList.add(theme);
+                    }
+                    // Save to localStorage
+                    localStorage.setItem('theme', theme);
+                    // Update meta theme-color
+                    const meta = document.querySelector('meta[name="theme-color"]');
+                    if (meta) {
+                        meta.content = theme === 'dark-emerald' ? '#15171C' : '#ffffff';
+                    }
+                    this.close();
+                },
+
+                init() {
+                    // Load recent searches from localStorage
+                    this.loadRecentSearches();
+
+                    // Global keyboard shortcut: Ctrl+K or Cmd+K
+                    document.addEventListener('keydown', (e) => {
+                        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.toggle();
+                        }
+                        // Also allow Escape to close
+                        if (e.key === 'Escape' && this.open) {
+                            e.preventDefault();
+                            this.close();
+                        }
+                    });
+
+                    // Listen for custom event from trigger button
+                    window.addEventListener('open-command-palette', () => {
+                        this.openPalette();
+                    });
+                },
+
+                toggle() {
+                    this.open ? this.close() : this.openPalette();
+                },
+
+                openPalette() {
+                    this.open = true;
+                    this.query = '';
+                    this.selectedIndex = 0;
+                    this.searchMode = 'commands';
+                    this.searchResults = [];
+                    // Focus input after Alpine renders
+                    this.$nextTick(() => {
+                        this.$refs.commandInput?.focus();
+                    });
+                },
+
+                close() {
+                    this.open = false;
+                    this.query = '';
+                    this.searchMode = 'commands';
+                    this.searchResults = [];
+                },
+
+                setSearchMode(mode) {
+                    this.searchMode = mode;
+                    this.query = '';
+                    this.selectedIndex = 0;
+                    this.searchResults = [];
+                    this.$nextTick(() => {
+                        this.$refs.commandInput?.focus();
+                    });
+                },
+
+                backToCommands() {
+                    this.searchMode = 'commands';
+                    this.query = '';
+                    this.selectedIndex = 0;
+                    this.searchResults = [];
+                },
+
+                get placeholder() {
+                    switch (this.searchMode) {
+                        case 'empresas': return 'Digite o nome ou CNPJ da empresa...';
+                        case 'socios': return 'Digite o nome do sócio...';
+                        case 'cnae': return 'Digite o código ou descrição do CNAE...';
+                        default: return 'Buscar comandos, empresas, CNAEs...';
+                    }
+                },
+
+                get filteredCommands() {
+                    if (this.searchMode !== 'commands') return [];
+                    if (!this.query.trim()) return this.commands;
+
+                    const q = this.query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    return this.commands.filter(cmd => {
+                        const name = cmd.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        const keywords = (cmd.keywords || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        const category = cmd.category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        return name.includes(q) || keywords.includes(q) || category.includes(q);
+                    });
+                },
+
+                get groupedCommands() {
+                    const groups = {};
+                    for (const cmd of this.filteredCommands) {
+                        if (!groups[cmd.category]) groups[cmd.category] = [];
+                        groups[cmd.category].push(cmd);
+                    }
+                    return groups;
+                },
+
+                get flatItems() {
+                    if (this.searchMode === 'commands') {
+                        return this.filteredCommands;
+                    }
+                    return this.searchResults;
+                },
+
+                get selectedCommandId() {
+                    const cmd = this.filteredCommands[this.selectedIndex];
+                    return cmd?.id || null;
+                },
+
+                getCommandIndex(id) {
+                    return this.filteredCommands.findIndex(cmd => cmd.id === id);
+                },
+
+                handleKeydown(e) {
+                    const items = this.flatItems;
+                    const len = items.length;
+
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        this.selectedIndex = (this.selectedIndex + 1) % Math.max(len, 1);
+                        this.scrollToSelected();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        this.selectedIndex = (this.selectedIndex - 1 + Math.max(len, 1)) % Math.max(len, 1);
+                        this.scrollToSelected();
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.executeSelected();
+                    } else if (e.key === 'Backspace' && !this.query && this.searchMode !== 'commands') {
+                        this.backToCommands();
+                    }
+                },
+
+                scrollToSelected() {
+                    this.$nextTick(() => {
+                        const selected = this.$refs.resultsList?.querySelector('.cmd-item-selected');
+                        selected?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    });
+                },
+
+                executeSelected() {
+                    const items = this.flatItems;
+                    if (items.length === 0) return;
+
+                    const item = items[this.selectedIndex];
+                    if (!item) return;
+
+                    if (this.searchMode === 'commands') {
+                        // Handle search mode commands
+                        if (item.isSearch) {
+                            const modeMap = { 'search-empresa': 'empresas', 'search-socio': 'socios', 'search-cnae': 'cnae' };
+                            if (modeMap[item.id]) {
+                                this.setSearchMode(modeMap[item.id]);
+                                return;
+                            }
+                        }
+                        // Handle theme commands
+                        if (item.id.startsWith('action-theme-')) {
+                            const themeMap = { 'action-theme-light': '', 'action-theme-emerald': 'dark-emerald' };
+                            this.setTheme(themeMap[item.id] || '');
+                            this.close();
+                            return;
+                        }
+                        // Handle navigation/tool commands with action
+                        if (item.action) {
+                            item.action();
+                            this.close();
+                        }
+                    } else {
+                        // Search result - navigate to it
+                        this.saveRecentSearch(item);
+                        window.location.href = item.url;
+                    }
+                },
+
+                executeCommand(cmd, index) {
+                    this.selectedIndex = index;
+                    if (cmd.isSearch) {
+                        cmd.action();
+                    } else {
+                        cmd.action();
+                        this.close();
+                    }
+                },
+
+                selectSearchResult(result, index) {
+                    this.selectedIndex = index;
+                    this.saveRecentSearch(result);
+                    window.location.href = result.url;
+                },
+
+                // HTMX Search Integration
+                async performSearch() {
+                    if (this.searchMode === 'commands' || this.query.length < 2) {
+                        this.searchResults = [];
+                        return;
+                    }
+
+                    this.isSearching = true;
+                    const endpoint = this.getSearchEndpoint();
+
+                    try {
+                        const response = await fetch(endpoint);
+                        if (!response.ok) throw new Error('Search failed');
+                        const html = await response.text();
+                        this.searchResults = this.parseSearchResults(html);
+                    } catch (error) {
+                        console.error('Command palette search error:', error);
+                        this.searchResults = [];
+                    } finally {
+                        this.isSearching = false;
+                        this.selectedIndex = 0;
+                    }
+                },
+
+                getSearchEndpoint() {
+                    const q = encodeURIComponent(this.query);
+                    switch (this.searchMode) {
+                        case 'empresas': return `/api/command-palette/empresas?q=${q}`;
+                        case 'socios': return `/api/command-palette/socios?q=${q}`;
+                        case 'cnae': return `/api/command-palette/cnae?q=${q}`;
+                        default: return '';
+                    }
+                },
+
+                parseSearchResults(html) {
+                    // Parse JSON response from API
+                    try {
+                        return JSON.parse(html);
+                    } catch {
+                        return [];
+                    }
+                },
+
+                // Recent searches
+                loadRecentSearches() {
+                    try {
+                        this.recentSearches = JSON.parse(localStorage.getItem('cmdPaletteRecent') || '[]').slice(0, 5);
+                    } catch {
+                        this.recentSearches = [];
+                    }
+                },
+
+                saveRecentSearch(item) {
+                    const recent = this.recentSearches.filter(r => r.url !== item.url);
+                    recent.unshift({ name: item.name, url: item.url, type: this.searchMode });
+                    this.recentSearches = recent.slice(0, 5);
+                    localStorage.setItem('cmdPaletteRecent', JSON.stringify(this.recentSearches));
+                },
+
+                clearRecentSearches() {
+                    this.recentSearches = [];
+                    localStorage.removeItem('cmdPaletteRecent');
+                }
+            };
+        }
+    </script>
+
+    <!-- Theme Manager Script -->
+    <script>
+        // Theme manager for Alpine.js
+        function themeManager() {
+            return {
+                currentTheme: localStorage.getItem('theme') || '',
+
+                init() {
+                    // Apply saved theme on load
+                    this.applyTheme(this.currentTheme);
+
+                    // Watch for system preference changes
+                    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                        if (!localStorage.getItem('theme')) {
+                            this.currentTheme = e.matches ? 'dark-emerald' : '';
+                            this.applyTheme(this.currentTheme);
+                        }
+                    });
+                },
+
+                setTheme(theme) {
+                    this.currentTheme = theme;
+                    localStorage.setItem('theme', theme);
+                    this.applyTheme(theme);
+                },
+
+                applyTheme(theme) {
+                    // Remove all theme classes
+                    document.documentElement.classList.remove('dark-emerald', 'dark-golden');
+
+                    // Add new theme class if not light
+                    if (theme) {
+                        document.documentElement.classList.add(theme);
+                    }
+
+                    // Update meta theme-color for mobile browsers
+                    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+                    if (metaThemeColor) {
+                        metaThemeColor.content = theme === 'dark-emerald' ? '#15171C' : '#ffffff';
+                    }
+                }
+            };
+        }
+
+        // Prevent flash of wrong theme by applying immediately
+        (function () {
+            const theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.classList.add(theme);
+            }
+        })();
+    </script>
+
+    <!-- Lead Tracker - CTA click tracking for Exato Digital -->
+    <script src="/js/lead-tracker.8occ73qxc9.js" defer=""></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;82e6e69884e74aff8196caf7d91901b1&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+
+</body></html>

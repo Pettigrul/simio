@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C3d751bb342",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.catho.com.br/",
+  "final_url": "https://www.catho.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "13.218.252.164",
+  "collected_at": "2026-11-26T03:06:15.185573+00:00",
+  "manifest_written_at": "2026-11-26T03:06:19.329500+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C3d751bb342/attempt-1/viewport.png",
+      "sha256": "518e5e7de201198e34a792eea1e29a011108230b22c68ac8684c344f20acd838",
+      "size_bytes": 9745
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C3d751bb342/attempt-1/fullpage.png",
+      "sha256": "518e5e7de201198e34a792eea1e29a011108230b22c68ac8684c344f20acd838",
+      "size_bytes": 9745
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C3d751bb342/attempt-1/page.html.txt",
+      "sha256": "82d3edd2b884067e419a2caab78b38d42a8785821b77aa10064a0044d23d3f0a",
+      "size_bytes": 117
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C3d751bb342/attempt-1/text.txt",
+      "sha256": "58404bdf6dc25c24fedd979469e69bfb8dc9ebca64a469929a858a12b12b9c30",
+      "size_bytes": 13
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C3d751bb342/attempt-1/page.json",
+      "sha256": "a80cd1aca95579461f741d46ef2db044cf185294cbffcdb84328291a1c9698d2",
+      "size_bytes": 384
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

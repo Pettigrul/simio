@@ -1,0 +1,375 @@
+<html lang="en"><head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Restaurant Technology Advisors: POS and restaurant technology selection, RFP procurement, project management, and rollout for multi-unit food service brands.">
+<title>Restaurant Technology Advisors</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: steel-grey service-line page; one kitchen-ticket motif carries the track record; rollout phases as a real sequence */
+:root{
+  --bg:#F5F7F9; --surface:#FFFFFF; --ink:#0E3654; --muted:#6B6B6B; --line:#D9DEE4;
+  --steel:#0E3654; --amber:#F56600; --band:#0E3654; --band-ink:#EEF2F7; --ticket:#FFFDF8; --on-amber:#0E3654;
+  --display:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --body:"Montserrat","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --logo-bg:transparent; --logo-pad:0;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A1826; --surface:#102335; --ink:#EEF2F7; --muted:#A7B1BC; --line:#22394F;
+  --steel:#8DB0D6; --amber:#F56600; --band:#0E3654; --band-ink:#EEF2F7; --ticket:#13283E; --on-amber:#0E3654;
+  --logo-bg:#FFFFFF; --logo-pad:4px 8px; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A1826; --surface:#102335; --ink:#EEF2F7; --muted:#A7B1BC; --line:#22394F;
+  --steel:#8DB0D6; --amber:#F56600; --band:#0E3654; --band-ink:#EEF2F7; --ticket:#13283E; --on-amber:#0E3654;
+  --logo-bg:#FFFFFF; --logo-pad:4px 8px; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.1;font-weight:800}
+h3{font-size:20px;font-weight:700;line-height:1.25}
+p{margin:0}
+a{color:var(--steel)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.lede{color:var(--muted);max-width:62ch;font-size:18px}
+section{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:grid;gap:14px;margin-bottom:40px}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px;flex-wrap:wrap}
+.nav img{height:56px;width:auto;display:block;background:var(--logo-bg);padding:var(--logo-pad);border-radius:6px;box-sizing:content-box}
+.nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;flex-wrap:wrap}
+.nav ul a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+.nav ul a:hover{color:var(--steel)}
+.btn{display:inline-block;background:var(--steel);color:var(--surface);font:600 15px/1 var(--body);padding:13px 20px;border-radius:4px;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+@media (max-width:760px){.nav ul{display:none}}
+
+/* hero */
+.hero{padding-block:clamp(48px,7vw,88px) clamp(40px,6vw,72px)}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,5.6vw,64px);line-height:1.02;font-weight:800;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero .cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+/* ticket */
+.ticket{background:var(--ticket);border:1px solid var(--line);font-family:var(--mono);font-size:14px;padding:22px 22px 26px;position:relative;max-width:400px;justify-self:end;width:100%;
+  box-shadow:0 18px 40px -24px rgba(0,0,0,.35);
+  -webkit-mask:radial-gradient(circle 7px at 50% 100%,transparent 6.5px,#000 7px) 0 0/18px 100% repeat-x;
+          mask:radial-gradient(circle 7px at 50% 100%,transparent 6.5px,#000 7px) 0 0/18px 100% repeat-x}
+.ticket .t-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;border-bottom:1px dashed var(--line);padding-bottom:10px;margin-bottom:12px;letter-spacing:.06em}
+.ticket .row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-variant-numeric:tabular-nums}
+.ticket .row b{font-weight:500;color:var(--ink)}
+.ticket .row span{color:var(--muted);white-space:nowrap}
+.ticket .total{border-top:1px dashed var(--line);margin-top:10px;padding-top:12px;display:flex;justify-content:space-between;font-weight:500;color:var(--amber)}
+@media (max-width:860px){.ticket{justify-self:start}}
+
+/* proof strip */
+.proof{background:var(--band);color:var(--band-ink)}
+.proof .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-block:40px}
+.stat .n{font:800 clamp(36px,4.6vw,52px)/1 var(--display);font-variant-numeric:tabular-nums}
+.stat .n sup{font-size:.5em;color:var(--amber)}
+.stat p{margin-top:10px;opacity:.82;max-width:30ch}
+@media (max-width:700px){.proof .wrap{grid-template-columns:1fr;gap:24px}}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.svc{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px;display:grid;gap:12px;align-content:start}
+.svc:nth-child(4),.svc:nth-child(5){grid-column:span 3}
+.svc .code{font:500 12px/1 var(--mono);color:var(--muted);letter-spacing:.08em}
+.svc p{color:var(--muted)}
+.svc ul{margin:0;padding-left:18px;color:var(--muted);font-size:15.5px}
+@media (max-width:900px){.services{grid-template-columns:1fr 1fr}.svc,.svc:nth-child(4),.svc:nth-child(5){grid-column:span 1}.svc:nth-child(5){grid-column:span 2}}
+@media (max-width:600px){.services{grid-template-columns:1fr}.svc:nth-child(5){grid-column:span 1}}
+
+/* process */
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.phases{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:ph}
+.phases li{counter-increment:ph;padding:22px 20px 24px 0;border-top:2px solid var(--line);position:relative;display:grid;gap:8px;align-content:start;min-width:0}
+.phases li::before{content:counter(ph,decimal-leading-zero);font:500 13px/1 var(--mono);color:var(--amber)}
+.phases li::after{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--steel)}
+.phases li p{color:var(--muted);font-size:15.5px}
+.phases-label{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:40px 0 18px}
+.engage{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.opt{border:1px solid var(--line);border-radius:6px;padding:22px;display:grid;gap:8px;align-content:start;background:var(--bg)}
+.opt.primary{border-color:var(--steel);border-width:2px}
+.opt .tag{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
+.opt p{color:var(--muted);font-size:15.5px}
+@media (max-width:800px){.engage{grid-template-columns:1fr}}
+@media (max-width:900px){.phases{grid-template-columns:1fr 1fr;row-gap:8px}}
+@media (max-width:520px){.phases{grid-template-columns:1fr}}
+
+/* work table */
+.table-box{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:15.5px}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 12px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.brand{font-weight:600}
+td .sub{display:block;color:var(--muted);font-size:14px;font-weight:400}
+.clients{margin-top:44px}
+.clients h3{margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px 10px;list-style:none;margin:0;padding:0}
+.chips li{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:3px;font-size:15px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+.about-grid .copy{display:grid;gap:18px;max-width:64ch}
+.about-grid .copy p{color:var(--muted)}
+.person{border:1px solid var(--line);border-radius:6px;padding:26px;background:var(--bg);display:grid;gap:10px}
+.person .role{font:500 13px/1.4 var(--mono);color:var(--amber)}
+.person p{color:var(--muted);font-size:15.5px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:32px}}
+
+/* contact */
+.contact{background:var(--band);color:var(--band-ink)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px}
+.contact h2{color:var(--band-ink)}
+.contact .lede{color:var(--band-ink);opacity:.8}
+form{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+form .full{grid-column:1/-1}
+label{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--band-ink)}
+input,textarea,select{font:400 16px/1.4 var(--body);padding:11px 12px;border-radius:4px;border:1px solid #2E4A72;background:#102C52;color:#EEF1F3;width:100%}
+textarea{min-height:110px;resize:vertical}
+.contact .btn{background:var(--amber);color:var(--on-amber)}
+.note{font-size:14px;opacity:.75}
+#sent{color:var(--amber);font-weight:600}
+@media (max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:32px}}
+@media (max-width:520px){form{grid-template-columns:1fr}}
+
+.direct{display:grid;gap:6px;margin-top:20px}
+.addr{font-family:var(--mono);font-size:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;user-select:all}
+.copy{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--band-ink);border:1px solid #2E4A72;border-radius:3px;padding:7px 10px;cursor:pointer;user-select:none}
+footer{padding-block:28px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" aria-label="Restaurant Technology Advisors home"><img src="data:image/png;base64,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" alt="RTA Restaurant Technology Advisors"></a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="/portal/">Client Login</a></li>
+    </ul>
+    <a class="btn" href="#contact">Start a project</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Technology consulting for food service</span>
+        <h1>Restaurant technology, <em>rolled out on time and on budget.</em></h1>
+        <p class="lede">We help restaurant brands choose the right POS and back-of-house systems, then run the rollout across every location. Clear requirements, a fair vendor selection, and a deployment plan your operators can live with.</p>
+        <div class="cta">
+          <a class="btn" href="#contact">Talk to us about your rollout</a>
+          <a class="btn ghost" href="#experience">See our track record</a>
+        </div>
+      </div>
+      <div class="ticket" aria-label="Sample rollout summary">
+        <div class="t-top"><span>ROLLOUT SUMMARY</span><span>RTA</span></div>
+        <div class="row"><b>Quick Serve Restaurants</b><span>1,500+ locations</span></div>
+        <div class="row"><b>Casual Dining</b><span>700+ locations</span></div>
+        <div class="row"><b>Table Service</b><span>1,100+ locations</span></div>
+        <div class="row"><b>Snack Brands</b><span>1,000+ locations</span></div>
+        <div class="row"><b>Pizza</b><span>500+ locations</span></div>
+        <div class="total"><span>LOCATIONS DEPLOYED</span><span>4,800+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof">
+    <div class="wrap">
+      <div class="stat"><div class="n">4,800<sup>+</sup></div><p>Corporate and franchise locations taken live on new POS</p></div>
+      <div class="stat"><div class="n">8,000<sup>+</sup></div><p>Locations represented in our software and hardware selections</p></div>
+      <div class="stat"><div class="n">20<sup>+</sup></div><p>POS and BOH requirements documents written for client initiatives</p></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Services</span>
+        <h2>From the first requirement to the last install</h2>
+        <p class="lede">Bring us in for the full program, selection only, or deployment only. Every engagement is research-driven and built around how your restaurants actually operate.</p>
+      </div>
+      <div class="services">
+        <article class="svc">
+          <span class="code">SELECT</span>
+          <h3>System Selection &amp; RFP Procurement</h3>
+          <p>We define your business requirements, write and publish the RFP, score responses, and run vendor demos so your selection committee picks with confidence.</p>
+        </article>
+        <article class="svc">
+          <span class="code">PLAN</span>
+          <h3>Technology Consulting</h3>
+          <p>Road maps for POS, inventory, labor, cash management, and online ordering, benchmarked against what works across the industry.</p>
+        </article>
+        <article class="svc">
+          <span class="code">MANAGE</span>
+          <h3>Project Management</h3>
+          <p>One plan across your POS provider, installation company, franchisees, and help desk, with daily deployment updates and monthly leadership reviews.</p>
+        </article>
+        <article class="svc">
+          <span class="code">DEPLOY</span>
+          <h3>Implementation &amp; Roll-Out</h3>
+          <ul>
+            <li>System preparation and integration testing: BOH, accounting, HR, purchasing</li>
+            <li>Regional training plans for restaurant teams</li>
+            <li>Technical support for install teams through every night of the rollout</li>
+          </ul>
+        </article>
+        <article class="svc">
+          <span class="code">ANALYZE</span>
+          <h3>Market &amp; Customer Analysis</h3>
+          <p>Market and customer research that shows where technology will lower cost, improve efficiency, and lift revenue before you commit budget.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Approach</span>
+        <h2>A selection process you can defend, and a rollout you can schedule</h2>
+        <p class="lede">Hire us for the whole program, or only the part you need. Each step has clear outputs, so leadership always knows where the project stands and what comes next.</p>
+      </div>
+      <div class="engage">
+        <div class="opt primary"><span class="tag">Full program</span><h3>Selection through rollout</h3><p>We manage the entire process, from requirements to the last location live.</p></div>
+        <div class="opt"><span class="tag">Selection only</span><h3>Choose the right system</h3><p>Requirements, RFP, vendor demos, and a committee decision. Your team takes it from there.</p></div>
+        <div class="opt"><span class="tag">Deployment only</span><h3>Roll out a system you've chosen</h3><p>Lab, pilot, and rollout management for a system already selected.</p></div>
+      </div>
+      <p class="phases-label">Selection · available on its own</p>
+      <ol class="phases">
+        <li><h3>Define requirements</h3><p>Document business needs and identify potential partners.</p></li>
+        <li><h3>Create &amp; publish the RFP</h3><p>Turn requirements into an RFP vendors can answer precisely.</p></li>
+        <li><h3>Evaluate responses</h3><p>Review sessions with each vendor, scored submissions, and a top-three shortlist.</p></li>
+        <li><h3>Demo &amp; select</h3><p>Scripted demonstrations, consolidated scores, and a committee decision.</p></li>
+      </ol>
+      <p class="phases-label">Deployment · available on its own</p>
+      <ol class="phases" style="counter-reset:ph 4">
+        <li><h3>Lab</h3><p>Test one or two finalist systems against your menu, integrations, and workflows.</p></li>
+        <li><h3>Pilot</h3><p>Go live in a small set of restaurants and refine training and support.</p></li>
+        <li><h3>Rollout</h3><p>Schedule installs, coordinate install teams, and support every location through go-live.</p></li>
+        <li><h3>Stabilize</h3><p>Work issues to resolution with the help desk and report results to leadership.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Experience</span>
+        <h2>Enterprise POS deployments</h2>
+        <p class="lede">A selection of national programs our team has supported, from corporate fleets to franchise systems of more than a thousand units. Client names available on request.</p>
+      </div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Segment</th><th>Locations</th><th>Scope</th></tr></thead>
+          <tbody>
+            <tr><td class="brand">Quick-service pizza</td><td class="num">500+ corporate</td><td>POS hardware and software, inventory, labor, and cash management; integrations with BOH, accounting, HR, and purchasing</td></tr>
+            <tr><td class="brand">Casual dining</td><td class="num">119 corporate</td><td>POS, inventory, labor, cash management, electronic ordering, and online ordering; BOH, accounting, and HR integrations</td></tr>
+            <tr><td class="brand">Sports bar &amp; grill</td><td class="num">343 corporate<br>~560 franchise</td><td>POS, inventory, labor, and cash management; BOH and HR integrations; franchise POS deployment</td></tr>
+            <tr><td class="brand">Franchise snack &amp; bakery<span class="sub">Two brands, one program</span></td><td class="num">~1,100 franchise</td><td>Program plan for deployment, training, and support; coordination across the POS provider, installation company, franchisees, and help desk; support for 10 install teams</td></tr>
+            <tr><td class="brand">Casual dining</td><td class="num">72 corporate</td><td>POS hardware and software; BOH and HR integrations</td></tr>
+            <tr><td class="brand">Fast-casual burger</td><td class="num">70 corporate</td><td>POS hardware and software; online ordering app deployment</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="clients">
+        <h3>Segments we serve</h3>
+        <ul class="chips">
+          <li>Quick service</li><li>Fast casual</li><li>Casual dining</li><li>Pizza &amp; delivery</li><li>Bakery &amp; snack</li><li>Beverage &amp; smoothie</li><li>Family entertainment</li><li>Franchise systems</li><li>Convenience &amp; fuel</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="alt">
+    <div class="wrap about-grid">
+      <div class="copy">
+        <span class="eyebrow">About RTA</span>
+        <h2>Built for the realities of food service</h2>
+        <p>Restaurant Technology Advisors helps food service companies find practical ways to run more efficient restaurants and grow profit. Margins are thin and every location counts, so technology has to earn its place.</p>
+        <p>We give clients a detailed road map for bringing technology-driven processes into their operations on target and within budget. Our approach combines market analysis, benchmarked technology practices, and years of hands-on deployment experience.</p>
+        <p>The result is simpler business processes, lower operating costs, and a stronger competitive position for the brands we serve.</p>
+      </div>
+      <aside class="person">
+        <span class="eyebrow">Leadership</span>
+        <h3>Mary Beth Badgett</h3>
+        <span class="role">Business Analyst · Project Manager</span>
+        <p>Mary Beth has led and supported POS selections and rollouts for national restaurant brands, coordinating vendors, installers, franchisees, and help desks from kickoff to the last go-live.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Contact</span>
+        <h2>Planning a system change or a rollout?</h2>
+        <p class="lede">Tell us about your brand and what you're trying to fix. We'll set up a short call to talk through scope and timing.</p>
+        <div class="direct">
+          <span class="eyebrow">Or reach out directly</span>
+          <p><strong>Mary Beth Badgett</strong></p>
+          <p class="addr"><span id="addr">mbbadgett@rtadvisors.com</span> <button type="button" class="copy" id="copy-btn">Copy</button></p>
+          <p class="addr"><span>979-574-9582</span></p>
+        </div>
+      </div>
+      <form id="contact-form">
+        <label>Name<input id="f-name" required="" autocomplete="name" style=""></label>
+        <label>Company<input id="f-company" autocomplete="organization" style=""></label>
+        <label>Email<input id="f-email" type="email" required="" autocomplete="email" style=""></label>
+        <label>Number of locations
+          <select id="f-units"><option>Under 50</option><option>50–250</option><option>250–1,000</option><option>1,000+</option></select>
+        </label>
+        <label class="full">How can we help?<textarea id="f-msg" style=""></textarea></label>
+        <div class="full" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <button class="btn" type="submit">Send message</button>
+          <span id="sent" hidden="">Your email app should open with your message. If it doesn't, email mbbadgett@rtadvisors.com.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Restaurant Technology Advisors</span>
+    <span>mbbadgett@rtadvisors.com · 979-574-9582 · rtadvisors.com</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copy-btn').addEventListener('click',function(){
+  var b=this,t=document.getElementById('addr').textContent;
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('addr'));var s=getSelection();s.removeAllRanges();s.addRange(r);}
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';},sel);}catch(e){sel();}
+});
+document.getElementById('contact-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var v=function(id){return document.getElementById(id).value;};
+  var body='Name: '+v('f-name')+'\nCompany: '+v('f-company')+'\nEmail: '+v('f-email')+'\nLocations: '+v('f-units')+'\n\n'+v('f-msg');
+  location.href='mailto:mbbadgett@rtadvisors.com?subject='+encodeURIComponent('Website inquiry from '+v('f-name'))+'&body='+encodeURIComponent(body);
+  document.getElementById('sent').hidden=false;
+});
+</script>
+
+
+</body></html>

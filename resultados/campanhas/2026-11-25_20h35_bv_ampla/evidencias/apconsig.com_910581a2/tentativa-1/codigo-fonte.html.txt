@@ -1,0 +1,1774 @@
+<html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Consig | Crédito Consignado Digital, INSS e Servidores Públicos</title>
+    <meta name="description" content="Simulação rápida e contratação de crédito consignado para aposentados e pensionistas do INSS, servidores públicos e forças armadas.">
+    <link rel="canonical" href="https://apconsig.com/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AP Consig - Crédito Consignado Fácil e Seguro">
+    <meta property="og:description" content="Simule e contrate crédito consignado online com as melhores taxas do Brasil.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://apconsig.com/">
+    <meta property="og:image" content="https://apconsig.com/wp-content/uploads/2023/01/cropped-Logo_FinalSite2-01-1.png">
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0F52BA;
+            --primary-dark: #0A387E;
+            --primary-light: #EBF3FF;
+            --secondary: #10B981;
+            --secondary-dark: #059669;
+            --accent: #F59E0B;
+            --dark: #0F172A;
+            --slate: #475569;
+            --light-bg: #F8FAFC;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 35px -10px rgba(15, 82, 186, 0.15);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .top-contact {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .top-contact a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .top-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3px 12px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22C55E;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand-logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 6px;
+            align-items: center;
+        }
+        .nav-item {
+            position: relative;
+        }
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .nav-link:hover, .nav-item.active > .nav-link {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        /* ========================================================
+           DROPDOWN INTERATIVO COM ACORDEÃO PARA O MENU "LINKS"
+           ======================================================== */
+        .links-dropdown-panel {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 360px;
+            max-height: 540px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: none;
+            flex-direction: column;
+            z-index: 2000;
+            overflow: hidden;
+            animation: fadeInMenu 0.18s ease-out forwards;
+        }
+        .nav-item:hover .links-dropdown-panel,
+        .nav-item.open-click .links-dropdown-panel {
+            display: flex;
+        }
+        @keyframes fadeInMenu {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-search-wrap {
+            padding: 12px 14px;
+            background: #F8FAFC;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+        .dropdown-search-wrap i {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94A3B8;
+            font-size: 0.85rem;
+        }
+        .dropdown-search-input {
+            width: 100%;
+            padding: 8px 12px 8px 34px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.86rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .dropdown-search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(15, 82, 186, 0.15);
+        }
+
+        .dropdown-scroll-body {
+            padding: 8px 0;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* Listas do Acordeão */
+        .acc-list {
+            list-style: none;
+        }
+        .acc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: var(--transition);
+            user-select: none;
+        }
+        .acc-header:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .acc-header .acc-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .acc-icon {
+            font-size: 0.95rem;
+            color: var(--primary);
+        }
+        .acc-arrow {
+            font-size: 0.75rem;
+            color: #94A3B8;
+            transition: transform 0.2s ease;
+        }
+        .acc-item.is-open > .acc-header .acc-arrow {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+        .acc-item.is-open > .acc-header {
+            background: #F1F5F9;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .acc-content {
+            display: none;
+            background: #F8FAFC;
+            border-left: 2px solid var(--primary-light);
+            margin-left: 14px;
+        }
+        .acc-item.is-open > .acc-content {
+            display: block;
+        }
+
+        /* Níveis internos */
+        .acc-level-2 .acc-header {
+            padding: 8px 16px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #334155;
+        }
+        .acc-level-3 .acc-header {
+            padding: 7px 14px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .acc-leaf {
+            list-style: none;
+        }
+        .acc-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .acc-link i {
+            font-size: 0.72rem;
+            color: var(--primary);
+        }
+        .acc-link:hover {
+            background: var(--primary);
+            color: var(--white);
+            padding-left: 22px;
+        }
+        .acc-link:hover i {
+            color: var(--white);
+        }
+
+        .btn-header {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: var(--white);
+            padding: 10px 18px;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+            transition: var(--transition);
+        }
+        .btn-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+        }
+
+        /* Hero */
+        .hero {
+            background: radial-gradient(circle at top right, rgba(15, 82, 186, 0.08) 0%, transparent 60%),
+                        linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+            padding: 60px 20px 70px;
+        }
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 18px;
+        }
+        .hero-title span {
+            color: var(--primary);
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--slate);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 13px 26px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.98rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(15, 82, 186, 0.25);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(15, 82, 186, 0.35);
+        }
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark);
+            border: 1px solid var(--border);
+            padding: 13px 24px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.98rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Simulator Card */
+        .simulator-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(15, 82, 186, 0.12);
+        }
+        .sim-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .sim-badge {
+            background: #FEF3C7;
+            color: #B45309;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+        }
+        .sim-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-top: 6px;
+        }
+        .sim-form-group {
+            margin-bottom: 18px;
+        }
+        .sim-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--slate);
+            margin-bottom: 6px;
+        }
+        .sim-val-display {
+            color: var(--primary);
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+        .sim-range {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #E2E8F0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .sim-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 3px solid var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .sim-select {
+            width: 100%;
+            padding: 11px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            font-size: 0.92rem;
+            font-family: inherit;
+            background-color: #F8FAFC;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .sim-result-box {
+            background: linear-gradient(135deg, #F8FAFC, var(--primary-light));
+            border: 1px dashed rgba(15, 82, 186, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sim-result-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1.1;
+        }
+        .sim-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: var(--white);
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: var(--transition);
+        }
+        .sim-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Bancos Parceiros */
+        .partners-bar {
+            background: var(--white);
+            padding: 35px 20px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+        .partners-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--slate);
+            margin-bottom: 25px;
+        }
+        .banks-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .bank-item {
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            min-width: 140px;
+            transition: var(--transition);
+        }
+        .bank-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        .bank-item img {
+            max-height: 38px;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        /* Serviços */
+        .section {
+            padding: 80px 20px;
+        }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+        .section-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 5px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+        .service-header {
+            padding: 22px;
+            background: linear-gradient(135deg, #F8FAFC, #FFFFFF);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .service-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .service-desc {
+            font-size: 0.92rem;
+            color: var(--slate);
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+        .service-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        .service-card:hover .service-btn {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Sobre e Contato */
+        .about-section {
+            background: var(--white);
+            padding: 80px 20px;
+        }
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img-box img {
+            width: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-item {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .contact-item-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0B132B;
+            color: #94A3B8;
+            padding: 60px 20px 25px;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-brand img {
+            height: 44px;
+            margin-bottom: 14px;
+        }
+        .footer-col-title {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 0.88rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Botão Flutuante WhatsApp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            background: #25D366;
+            color: var(--white);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===================================================
+           SPINNER PADRÃO OBRIGATÓRIO (USER RULE COMPLIANCE)
+           =================================================== */
+        .global-spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(13, 27, 42, 0.82);
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .global-spinner-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .spinner-box {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .custom-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--primary-light);
+            border-top: 4px solid var(--primary);
+            border-right: 4px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinner-message {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+        .spinner-submessage {
+            font-size: 0.85rem;
+            color: var(--slate);
+        }
+
+        @media (max-width: 900px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .about-container { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SPINNER PADRÃO (RULE COMPLIANCE) -->
+    <div class="global-spinner-overlay" id="globalSpinner">
+        <div class="spinner-box">
+            <div class="custom-spinner"></div>
+            <div class="spinner-message" id="spinnerMessage">Processando...</div>
+            <div class="spinner-submessage" id="spinnerSubmessage">Aguarde um instante.</div>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-contact">
+                <a href="tel:9621010021"><i class="fa-solid fa-phone"></i> (96) 2101-0021</a>
+                <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es." target="_blank"><i class="fa-brands fa-whatsapp"></i> (96) 99173-8720</a>
+                <span><i class="fa-regular fa-clock"></i> Seg a Sex: 08h às 18h</span>
+            </div>
+            <div class="top-badge">
+                <span class="live-dot"></span>
+                <span>Atendimento Online Ativo</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR COM O MENU DE LINKS DA VERSÃO ANTERIOR (ACORDEÃO COMPLETO) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand-logo">
+                <img src="/wp-content/uploads/2023/01/cropped-Logo_FinalSite2-01-1.png" alt="AP Consig - Crédito Consignado">
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#inicio" class="nav-link">Home</a></li>
+                
+                <!-- MENU "LINKS" DA VERSÃO ANTERIOR -->
+                <li class="nav-item" id="navItemLinks">
+                    <div class="nav-link" onclick="toggleLinksDropdown(event)">
+                        <span>Links</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i>
+                    </div>
+                    
+                    <!-- PAINEL COM ACORDEÃO INTERATIVO E BUSCA -->
+                    <div class="links-dropdown-panel" id="linksPanel">
+                        <div class="dropdown-search-wrap">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="menuSearch" class="dropdown-search-input" placeholder="Filtrar por banco, sistema..." onkeyup="filterMenuAccordion(this.value)" onclick="event.stopPropagation()" style="">
+                        </div>
+                        
+                        <div class="dropdown-scroll-body">
+                            <ul class="acc-list acc-level-1">
+            <li class="acc-item is-open" data-level="1">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Bancos</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-2">
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Bancos (PIC PAY / BRB)</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="https://consignado.picpay.com/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://consignado.picpay.com/', 'PIC PAY')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>PIC PAY</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://esteira.digital/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://esteira.digital/login', 'BRB Esteira')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>BRB Esteira</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://simulador.incontadigital.com.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://simulador.incontadigital.com.br/login', 'BRB IncontaDigital')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>BRB IncontaDigital</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://credforyou.consig360.com.br/dashboard" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://credforyou.consig360.com.br/dashboard', 'BRB 360 -credforyou')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>BRB 360 -credforyou</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Banco PAN</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="http://panconsig.pansolucoes.com.br/WebAutorizador" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'http://panconsig.pansolucoes.com.br/WebAutorizador', 'PAN - Função')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>PAN - Função</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://gopan.bancopan.com.br/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://gopan.bancopan.com.br/', 'GO PAN')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>GO PAN</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://www.p3store.com.br/allstore/Login.aspx" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://www.p3store.com.br/allstore/Login.aspx', 'P3')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>P3</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://netbank-pj.bancopan.com.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://netbank-pj.bancopan.com.br/login', 'InterntBank')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>InterntBank</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">DIVERSOS</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="https://queromaiscredito.app/WebFIMenuMVC/Login/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://queromaiscredito.app/WebFIMenuMVC/Login/', 'Quero +')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Quero +</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://www.portalseguro.srv.br/Login.aspx?ReturnUrl=%2fDefault.aspx" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://www.portalseguro.srv.br/Login.aspx?ReturnUrl=%2fDefault.aspx', 'Sabemi')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Sabemi</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://corban.icred.digital/home" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://corban.icred.digital/home', 'ICRED')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>ICRED</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://portal.presencabank.com.br/sign-in?redirectURL=%2Fdashboards" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://portal.presencabank.com.br/sign-in?redirectURL=%2Fdashboards', 'Presença Bank')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Presença Bank</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://cba.consigcaixaaqui.com.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://cba.consigcaixaaqui.com.br/login', 'Caixa CBA')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Caixa CBA</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://bibcred.com.br/Funcao.FIMenu/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://bibcred.com.br/Funcao.FIMenu/', 'BI')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>BI</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://admin.container.bancocdc.com.br/login/index?session" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://admin.container.bancocdc.com.br/login/index?session', 'CDC - AFAP')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>CDC - AFAP</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://correspondente.bb.com.br/cbo-portal-acesso/#/validacao" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://correspondente.bb.com.br/cbo-portal-acesso/#/validacao', 'Banco do Brasil')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Banco do Brasil</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://sistemaprowebnovo.progestor21.com.br/sistema/login_glnegocios/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://sistemaprowebnovo.progestor21.com.br/sistema/login_glnegocios/', 'Banco INTER')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Banco INTER</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://desenv.facta.com.br/sistemaNovo/login.php" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://desenv.facta.com.br/sistemaNovo/login.php', 'FACTA')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>FACTA</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://plataforma-vendas.bancomaster.com.br/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://plataforma-vendas.bancomaster.com.br/', 'Banco Master')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Banco Master</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://c6.c6consig.com.br/WEBAUTORIZADOR/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://c6.c6consig.com.br/WEBAUTORIZADOR/', 'C6 Consignado')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>C6 Consignado</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://c6auto.com.br/originacaolojista/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://c6auto.com.br/originacaolojista/login', 'C6 - Auto')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>C6 - Auto</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://webagente.eaglecred.com.br/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://webagente.eaglecred.com.br/', 'Futuro')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Futuro</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://app1.gerencialcredito.com.br/CREFISA/default.asp" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://app1.gerencialcredito.com.br/CREFISA/default.asp', 'CREFISA - Crédito Pessoal')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>CREFISA - Crédito Pessoal</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://sfc.sistemascr.com.br/fimenu/Login/AC.UI.LOGIN.aspx?FISession=d4356e7df22d" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://sfc.sistemascr.com.br/fimenu/Login/AC.UI.LOGIN.aspx?FISession=d4356e7df22d', 'CREFISA - Consignado')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>CREFISA - Consignado</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://bemweb.bempromotora.com.br/autenticacao/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://bemweb.bempromotora.com.br/autenticacao/login', 'Banrisul')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Banrisul</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://consignado.daycoval.com.br/AUTORIZADOR/LOGIN/AC.UI.LOGIN.ASPX" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://consignado.daycoval.com.br/AUTORIZADOR/LOGIN/AC.UI.LOGIN.ASPX', 'Daycoval Função')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Daycoval Função</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://portaldecredito.daycoval.com.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://portaldecredito.daycoval.com.br/login', 'Daycoval - Portal')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Daycoval - Portal</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Santander</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="https://ola.oleconsignado.com.br/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://ola.oleconsignado.com.br/', 'Santander - OLE')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Santander - OLE</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://www.parceirosantander.com.br/spa-base/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://www.parceirosantander.com.br/spa-base/', 'Santander - FVE')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Santander - FVE</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">DIGIO</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="https://funcaoconsig.digio.com.br/WebAutorizador" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://funcaoconsig.digio.com.br/WebAutorizador', 'Digitação')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Digitação</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://digiocorbans.topdesk.net/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://digiocorbans.topdesk.net/', 'Topdesk')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Topdesk</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://allstore2.accesscorp.com.br/#/interno/intranet/inicio" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://allstore2.accesscorp.com.br/#/interno/intranet/inicio', 'Nota Fiscal')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Nota Fiscal</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://webmail-seguro.com.br/digiocorrespondentes.com.br" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://webmail-seguro.com.br/digiocorrespondentes.com.br', 'WebMail')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>WebMail</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">BMG</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="https://www.bmgconsig.com.br/principal/fsconsignataria.jsp" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://www.bmgconsig.com.br/principal/fsconsignataria.jsp', 'BMGCONSIG')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>BMGCONSIG</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://bancobmg.virtual360.io/users/sign_in" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://bancobmg.virtual360.io/users/sign_in', 'Nota Fiscal')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Nota Fiscal</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://juridico.bancobmg.com.br/Paginas/Principal/_FSet_Abertura.asp" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://juridico.bancobmg.com.br/Paginas/Principal/_FSet_Abertura.asp', 'Gestor e-Xyon')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Gestor e-Xyon</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://www.bancobmg.com.br/internetbank" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://www.bancobmg.com.br/internetbank', 'NetBank')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>NetBank</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="2">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">ITAU</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-3">
+            <li class="acc-leaf">
+                <a href="https://ic360.com.br/#/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://ic360.com.br/#/', 'IC360')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>IC360</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://www.ibconsigweb.com.br/Index.do?method=prepare" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://www.ibconsigweb.com.br/Index.do?method=prepare', 'IBCONSIG')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>IBCONSIG</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://portal.icconsig.com.br/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://portal.icconsig.com.br/', 'IC Digital - Formalização')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>IC Digital - Formalização</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://consignado.interfile.com.br/econtent/pages/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://consignado.interfile.com.br/econtent/pages/login', 'Portal ITAU')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Portal ITAU</span>
+                </a>
+            </li></ul>
+                </div>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="1">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Sistema</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-2">
+            <li class="acc-leaf">
+                <a href="https://cpc.apconsigconsultoria.com/cpc/open.do?sys=CAL" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://cpc.apconsigconsultoria.com/cpc/open.do?sys=CAL', 'SIC WEB')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>SIC WEB</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://gftcredmais.workbankvirtual.com.br/login.aspx?pdc=true" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://gftcredmais.workbankvirtual.com.br/login.aspx?pdc=true', 'GFT')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>GFT</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://consigna.credforyou.com.br/Account/Login.aspx?ReturnUrl=%2f" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://consigna.credforyou.com.br/Account/Login.aspx?ReturnUrl=%2f', 'CREDFORYOU')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>CREDFORYOU</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://sistema.unicapromotora.com.br/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://sistema.unicapromotora.com.br/', 'UNICA')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>UNICA</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="1">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Estado AP</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-2">
+            <li class="acc-leaf">
+                <a href="https://portaldoservidor.ap.gov.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://portaldoservidor.ap.gov.br/login', 'GOV - ContraCheque')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>GOV - ContraCheque</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://consignataria.apconsig.ap.gov.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://consignataria.apconsig.ap.gov.br/login', 'GOV - Margem Consignatária')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>GOV - Margem Consignatária</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://servidor.apconsig.ap.gov.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://servidor.apconsig.ap.gov.br/login', 'GOV - Margem Servidor')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>GOV - Margem Servidor</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://segurado.amprev.ap.gov.br/portalsegurado/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://segurado.amprev.ap.gov.br/portalsegurado/login', 'AMPREV - ContraCheque')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>AMPREV - ContraCheque</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="http://consignataria.amprev.consig.ap.gov.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'http://consignataria.amprev.consig.ap.gov.br/login', 'AMPREV - Margem Consignatára')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>AMPREV - Margem Consignatára</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="http://servidor.amprev.consig.ap.gov.br/login" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'http://servidor.amprev.consig.ap.gov.br/login', 'AMPREV - Margem Servidor')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>AMPREV - Margem Servidor</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://saec.consiglog.com.br/Login.aspx" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://saec.consiglog.com.br/Login.aspx', 'Pref. Macapá Margem')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Pref. Macapá Margem</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://saec.consiglog.com.br/Login.aspx" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://saec.consiglog.com.br/Login.aspx', 'Macapá Prev. Margem')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Macapá Prev. Margem</span>
+                </a>
+            </li></ul>
+                </div>
+            </li>
+            <li class="acc-item" data-level="1">
+                <div class="acc-header" onclick="toggleAccItem(event, this)">
+                    <span class="acc-title">Federal</span>
+                    <i class="fa-solid fa-chevron-right acc-arrow"></i>
+                </div>
+                <div class="acc-content">
+                    <ul class="acc-list acc-level-2">
+            <li class="acc-leaf">
+                <a href="https://meu.inss.gov.br/#/login?redirectUrl=/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://meu.inss.gov.br/#/login?redirectUrl=/', 'Meu INSS')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Meu INSS</span>
+                </a>
+            </li>
+            <li class="acc-leaf">
+                <a href="https://sougov.sigepe.gov.br/sougov/" target="_blank" rel="noopener noreferrer" class="acc-link" onclick="triggerSpinnerLink(event, 'https://sougov.sigepe.gov.br/sougov/', 'SIAPE - SouGov')">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>SIAPE - SouGov</span>
+                </a>
+            </li></ul>
+                </div>
+            </li></ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item"><a href="#simulador" class="nav-link">Simulador</a></li>
+                <li class="nav-item"><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li class="nav-item"><a href="#bancos" class="nav-link">Bancos</a></li>
+                <li class="nav-item"><a href="#sobre" class="nav-link">Sobre Nós</a></li>
+                <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+
+            <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20proposta%20de%20cr%C3%A9dito." target="_blank" class="btn-header" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')">
+                <i class="fa-brands fa-whatsapp"></i> Simular Agora
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-shield-halved"></i> Correspondente Bancário Autorizado
+                </div>
+                <h1 class="hero-title">
+                    Crédito Consignado Digital: <span>Rápido, Fácil e Seguro.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A inovadora tecnologia dos maiores Bancos Parceiros para você contratar seu crédito consignado online, com as melhores taxas e liberação direta na sua conta.
+                </p>
+                <div class="hero-actions">
+                    <a href="#simulador" class="btn-primary">
+                        <i class="fa-solid fa-calculator"></i> Simular Empréstimo
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="btn-secondary" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')">
+                        <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
+                    </a>
+                </div>
+            </div>
+
+            <!-- SIMULADOR INTERATIVO -->
+            <div class="simulator-card" id="simulador">
+                <div class="sim-header">
+                    <span class="sim-badge">Simulação Expressa</span>
+                    <h2 class="sim-title">Quanto você precisa?</h2>
+                </div>
+
+                <div class="sim-form-group">
+                    <label class="sim-label">Selecione o seu perfil:</label>
+                    <select class="sim-select" id="sim-convenio" onchange="calcularSimulacao()">
+                        <option value="inss">Aposentado ou Pensionista INSS</option>
+                        <option value="publico">Servidor Público Estadual / Municipal</option>
+                        <option value="federal">Servidor Público Federal (SIAPE)</option>
+                        <option value="militares">Forças Armadas (Militares)</option>
+                        <option value="fgts">Antecipação Saque-Aniversário FGTS</option>
+                    </select>
+                </div>
+
+                <div class="sim-form-group">
+                    <div class="sim-label">
+                        <span>Valor do Crédito:</span>
+                        <span class="sim-val-display" id="val-credito-display">R$&nbsp;10.000</span>
+                    </div>
+                    <input type="range" class="sim-range" id="val-credito" min="1000" max="150000" step="500" value="10000" oninput="calcularSimulacao()" style="">
+                </div>
+
+                <div class="sim-form-group">
+                    <div class="sim-label">
+                        <span>Prazo em Meses:</span>
+                        <span class="sim-val-display" id="val-prazo-display">84x</span>
+                    </div>
+                    <input type="range" class="sim-range" id="val-prazo" min="12" max="84" step="6" value="84" oninput="calcularSimulacao()" style="">
+                </div>
+
+                <div class="sim-result-box">
+                    <div style="font-size:0.85rem; color:var(--slate); font-weight:600; margin-bottom:4px;">Parcela mensal estimada:</div>
+                    <div class="sim-result-value" id="val-parcela">R$&nbsp;223,03</div>
+                </div>
+
+                <button type="button" class="sim-submit" onclick="enviarSimulacaoWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> Solicitar no WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANCOS PARCEIROS (IMAGENS EXISTENTES REAIS) -->
+    <div class="partners-bar" id="bancos">
+        <div class="partners-title">Principais Instituições Financeiras Parceiras</div>
+        <div class="banks-grid">
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-itau.png" alt="Itaú"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-santander.png" alt="Santander"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-banco-pan.png" alt="Banco Pan"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-banco-bmg.png" alt="Banco BMG"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-banrisul.png" alt="Banrisul"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-c6bank.png" alt="C6 Bank"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-daycoval.png" alt="Daycoval"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-bb-mais.png" alt="Banco do Brasil"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-bv.png" alt="BV Financeira"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-mercantil.png" alt="Mercantil"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-ole.png" alt="Olé Consignado"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/ico-sabemi.png" alt="Sabemi"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/master-ib-logo.png" alt="Banco Master"></div>
+            <div class="bank-item"><img src="/wp-content/uploads/2023/01/pagbank.jpg" alt="PagBank"></div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section class="section" id="servicos">
+        <div class="section-header">
+            <span class="section-tag">Nossas Linhas</span>
+            <h2 class="section-title">Crédito Sob Medida</h2>
+            <p style="color:var(--slate);">Condições diferenciadas e contratação 100% digital.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon"><i class="fa-solid fa-person-cane"></i></div>
+                    <span style="background:#DCFCE7; color:#166534; padding:3px 8px; border-radius:999px; font-size:0.75rem; font-weight:700;">Melhor Taxa</span>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Aposentados e Pensionistas INSS</h3>
+                    <p class="service-desc">Taxas atrativas com desconto em folha e liberação sem burocracia.</p>
+                    <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20INSS" target="_blank" class="service-btn" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')">
+                        <span>Simular INSS</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon"><i class="fa-solid fa-building-user"></i></div>
+                    <span style="background:#E0E7FF; color:#3730A3; padding:3px 8px; border-radius:999px; font-size:0.75rem; font-weight:700;">Até 96 Meses</span>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Servidores Públicos (AP &amp; Federal)</h3>
+                    <p class="service-desc">Prazos diferenciados para servidores do Governo do Amapá e SIAPE.</p>
+                    <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20para%20Servidor%20P%C3%BAblico" target="_blank" class="service-btn" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')">
+                        <span>Simular Servidor</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <span style="background:#FEF3C7; color:#92400E; padding:3px 8px; border-radius:999px; font-size:0.75rem; font-weight:700;">Sem Mensalidade</span>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Antecipação FGTS Saque-Aniversário</h3>
+                    <p class="service-desc">Antecipe seu saldo FGTS sem parcelas mensais e com liberação em minutos.</p>
+                    <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20antecipar%20meu%20FGTS" target="_blank" class="service-btn" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')">
+                        <span>Antecipar FGTS</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section class="about-section" id="sobre">
+        <div class="about-container">
+            <div class="about-img-box">
+                <img src="/wp-content/uploads/2023/01/about_img.png" alt="Sobre a AP Consig">
+            </div>
+            <div class="about-content">
+                <span class="section-tag">Nossa Trajetória</span>
+                <h2 class="section-title">Solidez e Confiança em Crédito</h2>
+                <p style="color:var(--slate); margin-bottom:18px;">
+                    A <strong>AP Consig</strong> atua como correspondente bancário autorizado no Estado do Amapá e em todo o Brasil, intermediando operações com máxima segurança, agilidade e melhores condições.
+                </p>
+                <p style="color:var(--slate); margin-bottom:20px;">
+                    Oferecemos suporte completo para aposentados, servidores públicos e trabalhadores em todas as etapas da contratação.
+                </p>
+                <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                    <div>
+                        <div style="font-size:1.8rem; font-weight:800; color:var(--primary);">+10.000</div>
+                        <div style="font-size:0.85rem; color:var(--slate); font-weight:600;">Atendimentos</div>
+                    </div>
+                    <div>
+                        <div style="font-size:1.8rem; font-weight:800; color:var(--secondary);">16+</div>
+                        <div style="font-size:0.85rem; color:var(--slate); font-weight:600;">Bancos Parceiros</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section" id="contato" style="background:#F8FAFC;">
+        <div class="section-header">
+            <span class="section-tag">Atendimento</span>
+            <h2 class="section-title">Fale Conosco</h2>
+            <p style="color:var(--slate);">Canais diretos para atendimento rápido e personalizado.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-card">
+                <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:18px; color:var(--dark);">Canais Oficiais</h3>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <strong style="color:var(--dark);">Endereço:</strong>
+                        <p style="color:var(--slate); font-size:0.92rem;">Av. Pres. Vargas, 42 - Centro, Macapá - AP</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <strong style="color:var(--dark);">Telefone:</strong>
+                        <p style="color:var(--slate); font-size:0.92rem;"><a href="tel:9621010021" style="color:inherit; text-decoration:none;">(96) 2101-0021</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <strong style="color:var(--dark);">WhatsApp:</strong>
+                        <p style="color:var(--slate); font-size:0.92rem;"><a href="https://api.whatsapp.com/send?phone=5596991738720" target="_blank" style="color:inherit; text-decoration:none;">(96) 99173-8720</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <strong style="color:var(--dark);">E-mail:</strong>
+                        <p style="color:var(--slate); font-size:0.92rem;">comercial@apconsig.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card" style="display:flex; flex-direction:column; justify-content:center; text-align:center; padding:35px 25px;">
+                <div style="width:64px; height:64px; background:var(--primary-light); color:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; margin:0 auto 16px;">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 style="font-size:1.45rem; font-weight:800; color:var(--dark); margin-bottom:10px;">Atendimento Especializado</h3>
+                <p style="color:var(--slate); margin-bottom:24px; font-size:0.95rem;">
+                    Nossa equipe está conectada pronta para realizar sua simulação em instantes.
+                </p>
+                <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20atendimento." target="_blank" class="btn-primary" style="justify-content:center;" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')">
+                    <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <img src="/wp-content/uploads/2023/01/cropped-Logo_FinalSite2-01-1.png" alt="AP Consig">
+                <p style="font-size:0.86rem; line-height:1.6; margin-top:8px;">
+                    AP Consig - Correspondente bancário autorizado nos termos da Resolução CMN nº 3.954 do Banco Central do Brasil.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Home</a></li>
+                    <li><a href="#simulador">Simulador</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#bancos">Bancos</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Contato</h4>
+                <p style="font-size:0.88rem; margin-bottom:8px;"><i class="fa-solid fa-location-dot"></i> Macapá - AP</p>
+                <p style="font-size:0.88rem; margin-bottom:8px;"><i class="fa-solid fa-phone"></i> (96) 2101-0021</p>
+                <p style="font-size:0.88rem;"><i class="fa-brands fa-whatsapp"></i> (96) 99173-8720</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 AP Consig - Todos os direitos reservados.</div>
+            <div><a href="/wp-login.php" style="color:#64748B; text-decoration:none;"><i class="fa-solid fa-lock"></i> Painel Administrativo</a></div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="floating-whatsapp" onclick="triggerSpinnerLink(event, this.href, 'WhatsApp')" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS JAVASCRIPT -->
+    <script>
+        // SPINNER PADRÃO (RULE COMPLIANCE)
+        function showGlobalSpinner(message = "Processando...", submessage = "Aguarde um instante...") {
+            const spinner = document.getElementById('globalSpinner');
+            const msgEl = document.getElementById('spinnerMessage');
+            const subEl = document.getElementById('spinnerSubmessage');
+            if (msgEl) msgEl.textContent = message;
+            if (subEl) subEl.textContent = submessage;
+            if (spinner) spinner.classList.add('active');
+        }
+
+        function hideGlobalSpinner() {
+            const spinner = document.getElementById('globalSpinner');
+            if (spinner) spinner.classList.remove('active');
+        }
+
+        function triggerSpinnerLink(event, url, name = "Portal") {
+            event.preventDefault();
+            showGlobalSpinner("Acessando " + name + "...", "Redirecionando com segurança...");
+            setTimeout(() => {
+                hideGlobalSpinner();
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }, 400);
+        }
+
+        // CONTROLE DO DROPDOWN "LINKS"
+        function toggleLinksDropdown(event) {
+            event.stopPropagation();
+            const navItem = document.getElementById('navItemLinks');
+            navItem.classList.toggle('open-click');
+        }
+
+        // Fecha ao clicar fora
+        document.addEventListener('click', (e) => {
+            const navItem = document.getElementById('navItemLinks');
+            if (navItem && !navItem.contains(e.target)) {
+                navItem.classList.remove('open-click');
+            }
+        });
+
+        // CONTROLE DOS ITENS DO ACORDEÃO (CLIQUE PARA EXPANDIR / RECOLHER)
+        function toggleAccItem(event, el) {
+            event.stopPropagation();
+            const item = el.closest('.acc-item');
+            if (!item) return;
+
+            // Se for do mesmo nível, podemos opcionalmente fechar os irmãos
+            const parent = item.parentElement;
+            const siblings = parent.querySelectorAll(':scope > .acc-item');
+            siblings.forEach(sib => {
+                if (sib !== item) sib.classList.remove('is-open');
+            });
+
+            item.classList.toggle('is-open');
+        }
+
+        // FILTRO DE BUSCA NO DROPDOWN
+        function filterMenuAccordion(term) {
+            const filter = term.toLowerCase().trim();
+            const items = document.querySelectorAll('.links-dropdown-panel .acc-item, .links-dropdown-panel .acc-leaf');
+            
+            if (!filter) {
+                // Reseta estado
+                items.forEach(el => {
+                    el.style.display = '';
+                    if (el.classList.contains('acc-item')) {
+                        el.classList.remove('is-open');
+                    }
+                });
+                return;
+            }
+
+            // Se houver busca, abre tudo que tiver match e mostra
+            document.querySelectorAll('.links-dropdown-panel .acc-leaf').forEach(leaf => {
+                const text = leaf.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    leaf.style.display = '';
+                    // Abre todos os pais
+                    let p = leaf.closest('.acc-item');
+                    while (p) {
+                        p.classList.add('is-open');
+                        p.style.display = '';
+                        p = p.parentElement.closest('.acc-item');
+                    }
+                } else {
+                    leaf.style.display = 'none';
+                }
+            });
+        }
+
+        // SIMULADOR
+        function calcularSimulacao() {
+            const valor = parseFloat(document.getElementById('val-credito').value);
+            const meses = parseInt(document.getElementById('val-prazo').value);
+            const convenio = document.getElementById('sim-convenio').value;
+
+            document.getElementById('val-credito-display').textContent = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+            document.getElementById('val-prazo-display').textContent = meses + 'x';
+
+            let taxa = 0.0185;
+            if (convenio === 'inss') taxa = 0.0168;
+            else if (convenio === 'publico') taxa = 0.0175;
+            else if (convenio === 'fgts') taxa = 0.0149;
+
+            const parcela = (valor * (taxa * Math.pow(1 + taxa, meses))) / (Math.pow(1 + taxa, meses) - 1);
+            document.getElementById('val-parcela').textContent = parcela.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function enviarSimulacaoWhatsApp() {
+            const valor = document.getElementById('val-credito').value;
+            const meses = document.getElementById('val-prazo').value;
+            const convenioEl = document.getElementById('sim-convenio');
+            const convenioNome = convenioEl.options[convenioEl.selectedIndex].text;
+            const parcela = document.getElementById('val-parcela').textContent;
+
+            const texto = `Olá! Gostaria de solicitar uma proposta de empréstimo:
+
+` +
+                          `• Perfil: ${convenioNome}
+` +
+                          `• Valor: R$ ${parseFloat(valor).toLocaleString('pt-BR')}
+` +
+                          `• Prazo: ${meses}x
+` +
+                          `• Parcela estimada: ${parcela}`;
+
+            const url = "https://api.whatsapp.com/send?phone=5596991738720&text=" + encodeURIComponent(texto);
+            triggerSpinnerLink(event, url, "WhatsApp");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            calcularSimulacao();
+            
+            // Abre o item "Bancos" por padrão para facilitar o primeiro acesso
+            const firstBancos = document.querySelector('.links-dropdown-panel .acc-item');
+            if (firstBancos) {
+                firstBancos.classList.add('is-open');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a605ac6d29088fcb',t:'MTc5NTY2MjM0OA=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a605ac6d29088fcb',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;f60913323a0a4a74a833ba22fd3f5e7a&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+</body></html>

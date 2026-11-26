@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cd98ffa04be",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://bvportal.com/",
+  "final_url": "http://bvportal.com/",
+  "redirect_chain": [],
+  "http_status": 502,
+  "server_ip": null,
+  "collected_at": "2026-11-26T01:49:25.607465+00:00",
+  "manifest_written_at": "2026-11-26T01:49:44.015670+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cd98ffa04be/attempt-1/viewport.png",
+      "sha256": "04b0c3a97d1e964cf90d07281be117f571828c78bb11ec35eb03373dc4dc77aa",
+      "size_bytes": 8606
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cd98ffa04be/attempt-1/fullpage.png",
+      "sha256": "04b0c3a97d1e964cf90d07281be117f571828c78bb11ec35eb03373dc4dc77aa",
+      "size_bytes": 8606
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cd98ffa04be/attempt-1/page.html.txt",
+      "sha256": "77d74fa89ccf01eb2eb3e7196a1f42a3d41c1d08c9657e51f39a92d96308f6ba",
+      "size_bytes": 191
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cd98ffa04be/attempt-1/text.txt",
+      "sha256": "52ba6947455178a0eee1fe28ce66a380bdc316e71f177da7d8329b40d0c31139",
+      "size_bytes": 40
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cd98ffa04be/attempt-1/page.json",
+      "sha256": "2af55d31fe04c7e72dcba043fe077f77ca2300f57e03b8d91a269734a27c3c2a",
+      "size_bytes": 438
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 502: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}
