@@ -8,6 +8,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from simio.nucleo import traducao_legado as legado
 from simio.nucleo.urls import dominio_corresponde, hostname_de, normalizar_url
 
 DIR_MARCAS = Path(__file__).parent
@@ -283,4 +284,9 @@ def carregar_marca(marca: str, arquivo_marca: Path | None = None) -> PerfilMarca
         )
     with caminho.open("rb") as arq:
         dados = tomllib.load(arq)
+    # Perfil personalizado escrito antes da tradução (display_name, strong_terms...).
+    dados = legado.traduzir_modelo(PerfilMarca, dados)
+    dados["referencias_logo_antiga"] = [
+        legado.ASSETS_MARCA.get(r, r) for r in dados.get("referencias_logo_antiga", [])
+    ]
     return PerfilMarca(**dados)

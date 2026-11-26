@@ -434,6 +434,20 @@ FAMILIAS_HIPOTESE: dict[str, Any] = {
 
 FONTES: dict[str, Any] = {"import:text": "importacao:texto"}
 
+# Arquivo de requisitos contratuais (SIMIO_CAMINHO_REQUISITOS_CONTRATUAIS) no formato antigo.
+REQUISITO_CONTRATUAL: dict[str, str] = {
+    "requirement": "requisito",
+    "citation": "citacao",
+    "text": "texto",
+    "source": "fonte",
+    "dimensions": "dimensoes",
+    "hypothesis": "hipotese",
+    "addressed_to": "destinatario",
+}
+
+# Imagens que mudaram de nome junto com a pasta da marca.
+ASSETS_MARCA: dict[str, str] = {"assets/bv_legacy_logo.png": "assets/bv_logo_antiga.png"}
+
 TIPO_ARTEFATO: dict[str, Any] = {
     "screenshot_viewport": "captura_viewport",
     "screenshot_full": "captura_completa",
@@ -952,9 +966,8 @@ def _por_tipo(anotacao: Any, valor: Any) -> Any:
     return valor
 
 
-# O percurso segue os modelos pydantic: chaves por classe, valores de enum pelo tipo do campo e os
-# poucos códigos em texto livre por campo (ESPECIAIS). Payload de terceiros e texto de página não
-# são tocados. Idempotente: o que já está no vocabulário novo volta igual.
+# Segue os campos do modelo pydantic; payload de terceiros e texto de página não são tocados.
+# Idempotente: o que já está no vocabulário novo volta igual.
 def traduzir_modelo(cls: type[BaseModel], dados: Any) -> Any:
     if not isinstance(dados, dict):
         return dados

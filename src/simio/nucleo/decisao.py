@@ -28,6 +28,7 @@ from simio.nucleo.modelos import (
     StatusColeta,
     SuficienciaEvidencia,
 )
+from simio.nucleo.traducao_legado import traduzir_modelo
 
 C = ClassificacaoFinal
 
@@ -60,7 +61,15 @@ class ConfigPontuacao(BaseModel):
         if caminho is None or not caminho.is_file():
             return cls()
         with caminho.open("rb") as fh:
-            return cls(**tomllib.load(fh))
+            dados = tomllib.load(fh)
+        # scoring.toml antigo: w_* e threshold_* viram p_* e limiar_*.
+        dados = traduzir_modelo(cls, dados)
+        desconhecidas = sorted(set(dados) - set(cls.model_fields))
+        if desconhecidas:
+            raise ValueError(
+                f"{caminho}: pesos desconhecidos: {', '.join(desconhecidas)} (lista em docs/metodologia.md)"
+            )
+        return cls(**dados)
 
 
 PADROES_POR_CASO: dict[CasoCenario, tuple[C, Prioridade]] = {

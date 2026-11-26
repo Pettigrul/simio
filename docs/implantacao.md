@@ -82,7 +82,7 @@ SIMIO_PAGINAS_SERPER=1      # páginas de 10 resultados por dork, 1 crédito cad
 - Quando o Google esconde a maior parte dos resultados de um dork atrás de links opacos, o SIMIO busca até `SIMIO_VARIANTES_SIMPLES_SERPER` versões sem operadores (padrão 3, 1 crédito cada, `0` desliga). Na prática uma campanha ampla gasta de 2 a 4 vezes o número de dorks, algo entre 400 e 700 créditos.
 - A busca reversa de imagem (`lens`) usa a mesma chave. As imagens ficam em `urls_busca_logo_antiga` no `bv.toml` (3 créditos cada, até 60 resultados por imagem). Precisam ser URLs públicas que o Google consiga abrir; a da Wikimedia, por exemplo, não traz resultado.
 - Candidatas com pontuação abaixo de `SIMIO_PONTUACAO_MINIMA_FILA` (padrão `-10`) não são analisadas; as outras entram em ordem de pontuação até o `--limite`.
-- Parte dos resultados vem como `google.com/goto?url=...`. Quando há domínio de destino, a página inicial entra na fila; o registro de cada consulta mostra quantos foram recuperados e quantos ficaram sem destino ([security.md](security.md#descoberta)).
+- Parte dos resultados vem como `google.com/goto?url=...`. Quando há domínio de destino, a página inicial entra na fila; o registro de cada consulta mostra quantos foram recuperados e quantos ficaram sem destino ([seguranca.md](seguranca.md#descoberta)).
 
 Consumo típico por modo:
 
@@ -175,10 +175,11 @@ O que o script faz:
 - Dá a cada campanha o id novo (`AAAA-MM-DD_HHhMM_marca_modo`, a partir da data de criação) e grava o de/para em `resultados/ids_campanhas.json` e no campo `id_anterior` dos parâmetros da campanha.
 - Move as evidências para `evidencias/<host>_<id>/tentativa-N/` com os nomes novos (`viewport.png` vira `tela-inicial.png`, `fullpage.png` vira `pagina-inteira.png`, `page.html.txt` vira `codigo-fonte.html.txt`, `text.txt` vira `texto-visivel.txt`, `page.json` vira `dados-da-pagina.json`, `manifest.json` vira `manifesto.json`). O conteúdo não muda. Como os manifestos antigos citam os nomes antigos, a lista de/para fica em `evidencias/renomeacoes.json`.
 - Move `domain-intel.json` para `dominios.json`, os relatórios antigos (`output/reports/<id>/`) para `anteriores/legado/` e o log para `resultados/registros/simio.jsonl`.
+- Se a versão nova já tiver gravado campanhas dentro da pasta antiga (`output/campanhas/<id>/`, por ter rodado com `-o output`), elas vão inteiras para `resultados/campanhas/<id>/`, com o mesmo id.
 - Nunca sobrescreve arquivo com conteúdo diferente. Pode ser rodado de novo se parar no meio.
 - No final confere o SHA-256 de cada arquivo contra o manifesto e o do manifesto contra o banco, roda `PRAGMA integrity_check`, lista o que ficou para trás em `output/` e sugere os comandos `simio relatorio -c <id>` para gerar os relatórios no layout novo.
 
-Os nomes das variáveis de ambiente, comandos e opções também mudaram. O `.env` antigo não dá erro: as variáveis com nome antigo são simplesmente ignoradas, então confira o `.env` com `simio diagnostico` depois de renomear.
+Os nomes das variáveis de ambiente, comandos e opções também mudaram. Se o `.env` ou o ambiente ainda tiver variável com nome antigo, os comandos param e dizem o nome novo de cada uma (só os nomes; os valores nunca aparecem). O `simio diagnostico` aponta as mesmas variáveis sem parar.
 
 | Antes | Agora |
 |---|---|
@@ -198,6 +199,10 @@ Os nomes das variáveis de ambiente, comandos e opções também mudaram. O `.en
 | `SIMIO_COBAN_SEED_LIMIT`, `SIMIO_COBAN_SEED_BATCH` | `SIMIO_LIMITE_SEMENTES_COBAN`, `SIMIO_LOTE_SEMENTES_COBAN` |
 | `SIMIO_CONTRACT_REQUIREMENTS_PATH`, `SIMIO_LOG_LEVEL` | `SIMIO_CAMINHO_REQUISITOS_CONTRATUAIS`, `SIMIO_NIVEL_LOG` |
 
-Comandos: `hunt` virou `investigar`, `resume` virou `retomar`, `enrich` virou `enriquecer`, `report` virou `relatorio`, `doctor` virou `diagnostico` e `test` virou `testar`. Opções: `--brand` é `--marca`, `--limit` é `--limite`, `--workers` é `--paralelismo`, `--focus` é `--foco`, `--sources` é `--fontes`, `--urls-file` é `--arquivo-urls`, `--max-queries` é `--max-consultas`, `--max-llm-requests` é `--max-requisicoes-llm`, `--campaign` é `--campanha`, `--retry-failed` é `--repetir-falhas`, `--refresh` é `--atualizar` e `--live` é `--real`.
+Comandos: `hunt` virou `investigar`, `resume` virou `retomar`, `enrich` virou `enriquecer`, `report` virou `relatorio`, `doctor` virou `diagnostico` e `test` virou `testar`. Opções: `--brand` é `--marca`, `--limit` é `--limite`, `--workers` é `--paralelismo`, `--focus` é `--foco`, `--sources` é `--fontes`, `--urls-file` é `--arquivo-urls`, `--max-queries` é `--max-consultas`, `--max-llm-requests` é `--max-requisicoes-llm`, `--campaign` é `--campanha`, `--retry-failed` é `--repetir-falhas`, `--refresh` é `--atualizar`, `--live` é `--real`, `--output-dir` é `--dir-saida`, `--no-report` é `--sem-relatorio`, `--review-all` é `--revisar-todas`, `--all-dossiers` é `--todos-dossies`, `--list` é `--listar`, `--version` é `--versao`, `--model` é `--modelo` e `--review-model` é `--modelo-revisao`.
 
-No perfil de marca, as chaves também foram traduzidas (por exemplo `legacy_logo_references` é `referencias_logo_antiga` e `typosquat_seeds` é `sementes_typosquat`). O arquivo de pesos antigo (`scoring.toml`) ainda é lido se não houver `pontuacao.toml`, mas os nomes dos pesos mudaram (`w_multi_bank_context` agora é `p_contexto_multibanco`, por exemplo) e nomes antigos são ignorados sem aviso. A lista atual está em [methodology.md](methodology.md#pesos-da-heurística).
+As chaves dos arquivos de configuração também foram traduzidas, mas os arquivos antigos continuam funcionando:
+
+- Perfil de marca personalizado (`SIMIO_ARQUIVO_MARCA`): `legacy_logo_references` vira `referencias_logo_antiga`, `typosquat_seeds` vira `sementes_typosquat` e assim por diante, na leitura.
+- Pesos (`scoring.toml`, lido se não houver `pontuacao.toml`): `w_multi_bank_context` vira `p_contexto_multibanco`, `threshold_b` vira `limiar_b` etc. Peso com nome desconhecido faz a campanha parar com erro, em vez de ser ignorado. A lista atual está em [metodologia.md](metodologia.md#pesos-da-heurística).
+- Requisitos contratuais (`SIMIO_CAMINHO_REQUISITOS_CONTRATUAIS`): o formato antigo (`[[requirement]]`, `citation`, `text`, dimensões em inglês) é traduzido. Chave desconhecida num requisito é erro, e um arquivo sem nenhum requisito não conta como carregado.

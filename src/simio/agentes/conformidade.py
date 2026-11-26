@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import logging
 import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from simio.nucleo import traducao_legado as legado
 from simio.nucleo.modelos import (
     AchadoConformidade,
     AtribuicaoIdentidade,
@@ -16,6 +18,8 @@ from simio.nucleo.modelos import (
     Sinal,
     StatusAchado,
 )
+
+log = logging.getLogger(__name__)
 
 DIR_CONHECIMENTO = Path(__file__).resolve().parent.parent / "conhecimento"
 
@@ -60,23 +64,51 @@ class CatalogoRequisitos:
             {"id": c["id"], "citacao": c["citacao"], "texto": c["texto"].strip()} for c in dados.get("controle", [])
         ]
         if caminho_contrato is not None:
-            with caminho_contrato.open("rb") as fh:
-                dados_contrato = tomllib.load(fh)
-            for r in dados_contrato.get("requisito", []):
-                fonte = FonteRequisito(r.get("fonte", "CONTRATUAL"))
-                cat.requisitos.append(
-                    Requisito(
-                        id=r["id"],
-                        citacao=r["citacao"],
-                        texto=r["texto"].strip(),
-                        fonte=fonte,
-                        dimensoes=[Dimensao(d) for d in r["dimensoes"]],
-                        hipotese=r.get("hipotese", "Possível descumprimento de requisito contratual"),
-                        destinatario=r.get("destinatario", ""),
-                    )
-                )
-            cat.contratuais_carregados = True
+            contratuais = carregar_requisitos_contratuais(caminho_contrato)
+            cat.requisitos.extend(contratuais)
+            cat.contratuais_carregados = bool(contratuais)
+            if not contratuais:
+                log.warning("nenhum requisito em %s; o mapeamento fica só no texto normativo", caminho_contrato)
         return cat
+
+
+_CHAVES_REQUISITO = {"id", "citacao", "texto", "fonte", "dimensoes", "hipotese", "destinatario"}
+
+
+def carregar_requisitos_contratuais(caminho: Path) -> list[Requisito]:
+    # Aceita também o formato antigo ([[requirement]], citation, text, dimensões em inglês).
+    with caminho.open("rb") as fh:
+        dados = tomllib.load(fh)
+    blocos = [*dados.get("requisito", []), *dados.get("requirement", [])]
+    requisitos = []
+    for n, bruto in enumerate(blocos, 1):
+        r = {legado.REQUISITO_CONTRATUAL.get(k, k): v for k, v in bruto.items()}
+        desconhecidas = sorted(set(r) - _CHAVES_REQUISITO)
+        faltando = sorted({"id", "citacao", "texto", "dimensoes"} - set(r))
+        if desconhecidas or faltando:
+            problemas = []
+            if desconhecidas:
+                problemas.append(f"chaves desconhecidas: {', '.join(desconhecidas)}")
+            if faltando:
+                problemas.append(f"faltam: {', '.join(faltando)}")
+            raise ValueError(f"{caminho}: requisito {bruto.get('id', n)} inválido ({'; '.join(problemas)})")
+        try:
+            fonte = FonteRequisito(legado.enum(r.get("fonte", "CONTRATUAL")))
+            dimensoes = [Dimensao(legado.enum(d)) for d in r["dimensoes"]]
+        except ValueError as exc:
+            raise ValueError(f"{caminho}: requisito {r['id']}: {exc}") from exc
+        requisitos.append(
+            Requisito(
+                id=r["id"],
+                citacao=r["citacao"],
+                texto=r["texto"].strip(),
+                fonte=fonte,
+                dimensoes=dimensoes,
+                hipotese=r.get("hipotese", "Possível descumprimento de requisito contratual"),
+                destinatario=r.get("destinatario", ""),
+            )
+        )
+    return requisitos
 
 
 _HIPOTESES = (

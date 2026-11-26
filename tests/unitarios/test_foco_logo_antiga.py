@@ -77,7 +77,7 @@ def test_pistas_de_logo_por_nome_de_arquivo_ou_alt_curto() -> None:
     falta = [
         img("https://loja.example/img/bvx-banner.png"),
         img("https://loja.example/img/ilustracao.png", alt="Por que contratar o crédito da BV financeira com a gente"),
-        InfoImagem(src="https://loja.example/bv.png", alt="", largura=8, altura=8),  # invisible pixel
+        InfoImagem(src="https://loja.example/bv.png", alt="", largura=8, altura=8),  # pixel invisível
     ]
     assert len(pistas_logo_antiga(_ev_com(resultado))) == 4
     assert pistas_logo_antiga(_ev_com(falta)) == []

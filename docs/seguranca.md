@@ -8,7 +8,7 @@ Uma página investigada pode tentar levar o navegador, por redirecionamento, `<i
 
 A primeira é a interceptação de rotas no Playwright (`_GuardaPagina`). Ela recusa esquemas não permitidos, limita as requisições por página (`SIMIO_MAX_REQUISICOES_POR_PAGINA`, padrão 400), aborta mídia pesada e valida cada URL e WebSocket contra a `PoliticaUrl`.
 
-A segunda é um proxy local por página (`ProxySaida`). Ela existe porque o `route()` do Playwright não é chamado nos saltos intermediários de redirecionamento HTTP (301, 302, 307). Todo o tráfego do Chromium é forçado a passar pelo proxy (`--proxy-bypass-list=<-loopback>`, `--disable-quic` e UDP fora do proxy bloqueado no WebRTC). O proxy:
+A segunda é um proxy local por página (`ProxySaida`). Ele existe porque o `route()` do Playwright não é chamado nos saltos intermediários de redirecionamento HTTP (301, 302, 307). Todo o tráfego do Chromium é forçado a passar pelo proxy (`--proxy-bypass-list=<-loopback>`, `--disable-quic` e UDP fora do proxy bloqueado no WebRTC). O proxy:
 
 - aplica a `PoliticaUrl`, resolve o DNS por conta própria e exige que todos os IPs devolvidos sejam públicos;
 - conecta direto no IP validado (DNS fixado), o que impede DNS rebinding entre a checagem e a conexão;

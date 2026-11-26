@@ -12,11 +12,8 @@ from PIL import Image
 
 from simio.nucleo.modelos import CorrespondenciaVisual, Evidencia
 
-# A logo atual e a antiga têm o mesmo monograma ("B" com traço + "V"); só muda a cor: na antiga o "B"
-# é vermelho e o "V" azul, na atual tudo é azul. Por isso a comparação é feita por canal de cor
-# (máscara vermelha e máscara azul contra a referência, IoU suave numa grade) e os dois precisam bater.
-# As regiões saem das capturas com hash (caixas dos <img>/svg visíveis e janelas ancoradas em
-# componentes azuis com proporção de "V"), então qualquer achado é reproduzível a partir da evidência.
+# A logo atual e a antiga têm o mesmo monograma; só a cor muda (na antiga o "B" é vermelho). Por isso
+# a comparação é por canal de cor, vermelho e azul, e os dois precisam bater.
 GRADE = 24
 MIN_TINTA_PX = 120  # abaixo disso não há tinta suficiente para formar o desenho
 MIN_LADO_PX = 14

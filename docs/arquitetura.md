@@ -6,7 +6,7 @@ O SIMIO é Python 3.11+ com `asyncio` e SQLite, sem framework de orquestração 
 
 Cada transição de estado, consulta de busca, evidência e chamada ao LLM é gravada na hora em `resultados/simio.db`. Por isso uma campanha interrompida pode ser retomada com `simio retomar` sem pagar de novo pelo que já foi analisado.
 
-O Chromium nunca sai direto para a internet. Cada página ganha um proxy local (`ProxySaida`) que valida a URL, resolve o DNS, recusa IP privado e conecta no IP já validado. Detalhes em [security.md](security.md).
+O Chromium nunca sai direto para a internet. Cada página ganha um proxy local (`ProxySaida`) que valida a URL, resolve o DNS, recusa IP privado e conecta no IP já validado. Detalhes em [seguranca.md](seguranca.md).
 
 ## Módulos
 
@@ -159,7 +159,7 @@ O esquema tem versão em `schema_migrations`. Um banco novo já nasce no esquema
 - v1 e v2: esquema original, com tabelas e valores em inglês.
 - v3: `traducao_legado.migrar_v3()` renomeia tabelas, colunas e índices e reescreve o conteúdo gravado (JSON das evidências e avaliações, códigos como `STRONG_INDICATION` para `INDICIO_FORTE`, famílias de hipótese como `H1-identity` para `H1-identidade`). Roda numa transação com as chaves estrangeiras desligadas e confere as referências no final.
 
-A migração do banco não move arquivos. Para trazer pastas do layout antigo (`output/`) use `scripts/migrar_resultados.py`; veja [deployment.md](deployment.md#migrar-do-layout-antigo).
+A migração do banco não move arquivos. Para trazer pastas do layout antigo (`output/`) use `scripts/migrar_resultados.py`; veja [implantacao.md](implantacao.md#migrar-do-layout-antigo).
 
 ## Layout de saída (`nucleo/caminhos.py`)
 

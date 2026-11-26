@@ -31,21 +31,29 @@ def mascarar(texto: str) -> str:
     return texto
 
 
+NIVEIS = {"WARNING": "AVISO", "ERROR": "ERRO", "CRITICAL": "CRÍTICO"}
+
+
+def _nivel(registro: logging.LogRecord) -> str:
+    return NIVEIS.get(registro.levelname, registro.levelname)
+
+
 class FormatadorJson(logging.Formatter):
     def format(self, registro: logging.LogRecord) -> str:
         payload = {
-            "ts": datetime.fromtimestamp(registro.created, UTC).isoformat(timespec="milliseconds"),
-            "level": registro.levelname,
-            "logger": registro.name,
-            "msg": mascarar(registro.getMessage()),
+            "em": datetime.fromtimestamp(registro.created, UTC).isoformat(timespec="milliseconds"),
+            "nivel": _nivel(registro),
+            "origem": registro.name,
+            "mensagem": mascarar(registro.getMessage()),
         }
         if registro.exc_info:
-            payload["exc"] = mascarar(self.formatException(registro.exc_info))[-4000:]
+            payload["excecao"] = mascarar(self.formatException(registro.exc_info))[-4000:]
         return json.dumps(payload, ensure_ascii=False)
 
 
 class FormatadorMascarador(logging.Formatter):
     def format(self, registro: logging.LogRecord) -> str:
+        registro.nivel = _nivel(registro)
         return mascarar(super().format(registro))
 
 
@@ -67,7 +75,7 @@ def configurar_logging(nivel: str, arquivo_log: Path | None) -> None:
     filtro_ruido = _FiltroRuidoBenigno()
     console = logging.StreamHandler()
     console.addFilter(filtro_ruido)
-    console.setFormatter(FormatadorMascarador("%(asctime)s %(levelname)-7s %(name)s: %(message)s", "%H:%M:%S"))
+    console.setFormatter(FormatadorMascarador("%(asctime)s %(nivel)-7s %(name)s: %(message)s", "%H:%M:%S"))
     raiz.addHandler(console)
     if arquivo_log is not None:
         arquivo_log.parent.mkdir(parents=True, exist_ok=True)
