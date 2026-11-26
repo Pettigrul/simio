@@ -351,7 +351,7 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # Pacotes do dorks.md que ficaram de fora dos grupos acima.
+    # Pacotes da lista de dorks de referência que ficaram de fora dos grupos acima.
     adicionar_h(
         "H2-produto:bancos-parceiros",
         "Lojas e integradores que listam a marca entre 'bancos parceiros' (logotipo em vitrine multibanco)",

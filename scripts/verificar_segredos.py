@@ -33,7 +33,7 @@ NOMES_PROIBIDOS = re.compile(
     r"coban_registry[^/]*\.csv|cadastro_coban[^/]*\.csv)$"
 )
 NOMES_DADOS = re.compile(r"(?i)\.(db|sqlite3?|xlsx|jsonl|log)$")
-DIRS_BINARIOS_PERMITIDOS = ("tests/fixtures/", "src/simio/marcas/assets/", "assets/", "design-system/")
+DIRS_BINARIOS_PERMITIDOS = ("tests/fixtures/", "src/simio/marcas/assets/", "assets/")
 # Pastas de resultados versionadas de propósito (git add -f): nelas só valem as regras de segredo.
 DIRS_RESULTADOS_VERSIONADOS = ("resultados/", "output/")
 PRAGMAS_PERMISSAO = ("pragma: segredo permitido", "pragma: allowlist secret")

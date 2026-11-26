@@ -1,4 +1,4 @@
-# --- Python ---
+# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -8,13 +8,21 @@ dist/
 .venv/
 venv/
 .python-version
+
+# Caches de ferramentas
 .mypy_cache/
 .ruff_cache/
 .pytest_cache/
+.cache/
 .coverage
+.coverage.*
 htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.ipynb_checkpoints/
 
-# --- Secrets / credentials (NEVER commit) ---
+# Segredos e credenciais (nunca versionar)
 .env
 .env.*
 !.env.example
@@ -32,7 +40,8 @@ gcloud/
 *.token
 secrets/
 
-# --- Investigation data (must stay on the execution machine) ---
+# Dados de investigação: ficam na máquina que roda as campanhas.
+# Os resultados entram no git só com add -f de caminhos explícitos.
 output/
 outputs/
 evidence/
@@ -57,16 +66,46 @@ dossies/
 !tests/fixtures/**/*.png
 !assets/**/*.png
 !assets/*.png
-!design-system/**/*.png
 !src/simio/marcas/assets/*.png
 registry/
 coban_registry*.csv
 data/
 
-# --- Editors / OS ---
+# Material de apoio e rascunhos fora do código
+design-system/
+refs/
+dorks.md
+rascunhos/
+notas/
+*.bak
+*.orig
+*.tmp
+*~
+
+# Assistentes de código e arquivos gerados por eles
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+claude.md
+AGENTS.md
+GEMINI.md
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurfrules
+.aider*
+.continue/
+.codex/
+.gemini/
+.copilot/
+.github/copilot-instructions.md
+.mcp.json
+*.prompt.md
+
+# Editores e sistema
 .idea/
 .vscode/
 *.swp
 .DS_Store
 Thumbs.db
-.claude/settings.local.json
