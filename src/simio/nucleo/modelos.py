@@ -171,7 +171,7 @@ class Artefato(Estrito):
 class ItemEvidencia(Estrito):
     ref: str
     tipo: str  # titulo | meta | texto | cabecalho_secao | nav | cta | link | contato | imagem | captura | ...
-    local: str  # ex.: "viewport", "header", "footer", "page", "url"
+    local: str  # ex.: "area_visivel", "topo", "rodape", "pagina", "url"
     conteudo: str
     acima_dobra: bool | None = None
 
@@ -179,13 +179,13 @@ class ItemEvidencia(Estrito):
 class InfoLink(Estrito):
     texto: str
     href: str
-    local: str = "page"
+    local: str = "pagina"
 
 
 class InfoImagem(Estrito):
     alt: str
     src: str
-    local: str = "page"
+    local: str = "pagina"
     acima_dobra: bool = False
     largura: int = 0
     altura: int = 0
@@ -307,7 +307,7 @@ class FatoIdentidade(Estrito):
 
 class CorrespondenciaCadastro(Estrito):
     fonte: str
-    casado_por: str  # cnpj | cnpj_root | name
+    casado_por: str  # cnpj | raiz_cnpj | nome
     registro: dict[str, str]
     oficial: bool
 
