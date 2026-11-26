@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""Pre-publication audit: secrets and forbidden files.
-
-Usage:
-  python scripts/verificar_segredos.py              # files tracked/staged in git
-  python scripts/verificar_segredos.py --historico   # also every commit reachable in local history
-  python scripts/verificar_segredos.py --caminhos a b  # specific files
-
-Exit code 1 if anything suspicious is found.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -44,7 +34,7 @@ NOMES_PROIBIDOS = re.compile(
 )
 DIRS_BINARIOS_PERMITIDOS = ("tests/fixtures/", "src/simio/marcas/assets/")
 PRAGMA_PERMISSAO = "pragma: allowlist secret"
-DIRS_PRAGMA_PERMISSAO = ("tests/",)  # the pragma is honoured only in test code
+DIRS_PRAGMA_PERMISSAO = ("tests/",)  # o pragma só vale em código de teste
 DIRS_DADOS = re.compile(
     r"(^|/)(output|outputs|evidence|reports|dossiers|registry|resultados|campanhas|evidencias|dossies)/"
 )
@@ -54,13 +44,12 @@ def git(*args: str) -> str:
     return subprocess.run(["git", *args], capture_output=True, text=True, check=False).stdout
 
 
-# Obvious documentation placeholders inside *test* code (sequential digits, RFC 2606 example
-# domains, user:pass). Real secrets never look like this; anywhere else they are still reported.
+# Marcadores óbvios em código de teste (dígitos em sequência, domínios example da RFC 2606, user:pass).
+# Segredo de verdade não tem essa cara; fora de tests/ continuam sendo apontados.
 SINTETICO = re.compile(r"(?i)1234567890|user:pass|@(?:[\w-]+\.)*example(?:\.(?:com|org|net))?(?=[:/\s'\"]|$)")
 
 
 def _permitido(caminho: str, texto_linha: str, rx: re.Pattern[str]) -> bool:
-    """Synthetic fixture in test code: explicit pragma, or every match on the line is a placeholder."""
     if not caminho.startswith(DIRS_PRAGMA_PERMISSAO):
         return False
     if PRAGMA_PERMISSAO in texto_linha:
@@ -73,31 +62,35 @@ def varrer_texto(nome: str, texto: str) -> list[str]:
     resultados = []
     for rotulo, rx in PADROES_CONTEUDO.items():
         for m in rx.finditer(texto):
-            if nome.endswith("verificar_segredos.py") or (nome.endswith(".env.example") and rotulo == "env-secret-value"):
+            exemplo_env = nome.endswith(".env.example") and rotulo == "env-secret-value"
+            if nome.endswith("verificar_segredos.py") or exemplo_env:
                 continue
             linha_txt = texto.count("\n", 0, m.start()) + 1
             texto_linha = texto.splitlines()[linha_txt - 1] if texto else ""
             if _permitido(nome, texto_linha, rx):
                 continue
-            resultados.append(f"{nome}:{linha_txt}: possible {rotulo}")
+            resultados.append(f"{nome}:{linha_txt}: possível {rotulo}")
     return resultados
 
 
 def varrer_nome(nome: str) -> list[str]:
     saida = []
     if NOMES_PROIBIDOS.search(nome):
-        saida.append(f"{nome}: forbidden file type/name")
+        saida.append(f"{nome}: tipo ou nome de arquivo proibido")
     if DIRS_DADOS.search(nome):
-        saida.append(f"{nome}: investigation data directory must not be versioned")
+        saida.append(f"{nome}: pasta de dados de investigação não pode ser versionada")
     if re.search(r"(?i)\.(png|jpe?g|webp)$", nome) and not nome.startswith(DIRS_BINARIOS_PERMITIDOS):
-        saida.append(f"{nome}: image outside {', '.join(DIRS_BINARIOS_PERMITIDOS)} (possible evidence screenshot)")
+        saida.append(f"{nome}: imagem fora de {', '.join(DIRS_BINARIOS_PERMITIDOS)} (pode ser captura de evidência)")
     return saida
 
 
 def principal() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--caminhos", nargs="*")
-    ap.add_argument("--historico", action="store_true")
+    ap = argparse.ArgumentParser(
+        description="Procura segredos e arquivos proibidos antes de publicar. Sem opções, confere os "
+        "arquivos rastreados e preparados no git. Sai com código 1 se achar algo."
+    )
+    ap.add_argument("--caminhos", nargs="*", help="confere só estes arquivos")
+    ap.add_argument("--historico", action="store_true", help="confere também todos os commits do histórico local")
     args = ap.parse_args()
     achados: list[str] = []
     if args.caminhos:
@@ -115,23 +108,23 @@ def principal() -> int:
         if args.historico:
             for nome in sorted(set(git("log", "--all", "--pretty=format:", "--name-only").split("\n"))):
                 if nome:
-                    achados += [f"[history] {f}" for f in varrer_nome(nome)]
+                    achados += [f"[histórico] {f}" for f in varrer_nome(nome)]
             for rev in filter(None, git("rev-list", "--all").split("\n")):
                 for rotulo, rx in PADROES_CONTEUDO.items():
                     if rotulo in ("assigned-secret", "env-secret-value"):
-                        continue  # covered by working-tree scan; regex too broad for git grep -P portability
+                        continue  # já coberto na varredura da árvore; regex largo demais para o git grep -P
                     saida = git("grep", "-I", "-n", "-P", rx.pattern, rev, "--", ".", ":!scripts/verificar_segredos.py")
                     for linha_txt in saida.splitlines():
-                        # format: <rev>:<path>:<lineno>:<content>
+                        # <rev>:<caminho>:<linha>:<conteúdo>
                         partes = linha_txt.split(":", 3)
                         if len(partes) == 4 and _permitido(partes[1], partes[3], rx):
                             continue
                         if linha_txt:
-                            achados.append(f"[history {rev[:8]}] {linha_txt} ({rotulo})")
+                            achados.append(f"[histórico {rev[:8]}] {linha_txt} ({rotulo})")
     achados = sorted(set(achados))
     for f in achados:
         print(f)
-    print(f"{len(achados)} finding(s)")
+    print(f"{len(achados)} achado(s)")
     return 1 if achados else 0
 
 

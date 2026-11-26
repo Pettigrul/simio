@@ -1,5 +1,3 @@
-"""Structured logging: human-readable console + JSON lines file (local only, no telemetry)."""
-
 from __future__ import annotations
 
 import json
@@ -9,10 +7,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 _PADROES_SEGREDO = [
-    # header-style credentials: keep the scheme word, drop the credential (Basic/Bearer + token)
+    # cabeçalho de autenticação: mantém o nome do cabeçalho e tira a credencial (Basic/Bearer + token)
     re.compile(r"(?i)((?:proxy-)?authorization)(\"?\s*[:=]\s*\"?)(?:(?:basic|bearer|negotiate|ntlm)\s+)?[^\s\",]+"),
-    # key=value credentials, English and Portuguese names (SIMIO_SERPER_API_KEY / SIMIO_CHAVE_API_SERPER,
-    # serper_api_key / chave_api_serper, token, secret/segredo, password/senha)
+    # chave=valor com nomes em inglês e em português (SIMIO_SERPER_API_KEY / SIMIO_CHAVE_API_SERPER,
+    # token, secret/segredo, password/senha)
     re.compile(
         r"(?i)([\w-]*(?:api[_-]?key|token|secret|segredo|password|passwd|senha)|[\w-]*chave[_-]?api[\w-]*)"
         r"(\"?\s*[:=]\s*\"?)[^\s\",]+"
@@ -52,8 +50,7 @@ class FormatadorMascarador(logging.Formatter):
 
 
 class _FiltroRuidoBenigno(logging.Filter):
-    """Filter out benign Windows Proactor socket-close noise and SDK AFC reminder."""
-
+    # Ruído sem importância: fechamento de socket do Proactor no Windows e o aviso de AFC do SDK.
     def filter(self, registro: logging.LogRecord) -> bool:
         msg = registro.getMessage()
         if "_ProactorBasePipeTransport._call_connection_lost" in msg:
@@ -74,9 +71,9 @@ def configurar_logging(nivel: str, arquivo_log: Path | None) -> None:
     raiz.addHandler(console)
     if arquivo_log is not None:
         arquivo_log.parent.mkdir(parents=True, exist_ok=True)
-        fh = logging.FileHandler(arquivo_log, encoding="utf-8")
-        fh.addFilter(filtro_ruido)
-        fh.setFormatter(FormatadorJson())
-        raiz.addHandler(fh)
+        arquivo = logging.FileHandler(arquivo_log, encoding="utf-8")
+        arquivo.addFilter(filtro_ruido)
+        arquivo.setFormatter(FormatadorJson())
+        raiz.addHandler(arquivo)
     for ruidoso in ("httpx", "httpcore", "google_genai", "urllib3", "asyncio"):
         logging.getLogger(ruidoso).setLevel(logging.WARNING)

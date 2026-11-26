@@ -16,7 +16,7 @@ FORMATO_ID = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}h\d{2}_[a-z0-9.-]+_(ampla|amea
 
 def test_carimbo_usa_horario_de_brasilia() -> None:
     assert caminhos.carimbo(datetime(2026, 11, 25, 22, 5, 19, tzinfo=UTC)) == "2026-11-25_19h05"
-    assert caminhos.carimbo(datetime(2026, 11, 26, 1, 30)) == "2026-11-25_22h30"  # naive = UTC
+    assert caminhos.carimbo(datetime(2026, 11, 26, 1, 30)) == "2026-11-25_22h30"  # sem fuso = UTC
 
 
 def test_formato_do_id_da_campanha() -> None:
@@ -47,7 +47,7 @@ def test_campanhas_no_mesmo_minuto_ganham_sufixo(configuracoes, monkeypatch: pyt
             "2026-11-25_17h45_bv_logo-antiga-3",
         ]
         assert st.criar_campanha("bv", {}) == "2026-11-25_17h45_bv_ampla"
-        # a folder left on disk without a database row is not reused either
+        # pasta que ficou no disco sem linha no banco também não é reaproveitada
         caminhos.dir_campanha(configuracoes.dir_saida, "2026-11-25_17h45_bv_ameacas").mkdir(parents=True)
         assert st.criar_campanha("bv", {"foco": "ameacas"}) == "2026-11-25_17h45_bv_ameacas-2"
         assert all(FORMATO_ID.match(i) for i in ids)

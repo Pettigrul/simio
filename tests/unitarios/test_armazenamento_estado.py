@@ -34,7 +34,7 @@ def test_esquema_mais_novo_eh_recusado(configuracoes) -> None:
     con.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (999, 'x')")
     con.commit()
     con.close()
-    with pytest.raises(RuntimeError, match="newer"):
+    with pytest.raises(RuntimeError, match="mais novo"):
         Armazenamento(configuracoes.caminho_db)
 
 
@@ -99,7 +99,7 @@ async def test_orcamento_persiste_e_bloqueia(armazenamento: Armazenamento) -> No
     await b.efetivar("a", "m", Uso(10, 5, 15))
     with pytest.raises(OrcamentoEsgotado):
         await b.reservar()
-    # A new Budget object (e.g. after resume) sees persisted usage.
+    # Um Orcamento novo (ex.: depois da retomada) enxerga o uso já gravado.
     b2 = Orcamento(armazenamento, camp, max_requisicoes=10, max_tokens=20)
     with pytest.raises(OrcamentoEsgotado, match="token"):
         await b2.reservar()

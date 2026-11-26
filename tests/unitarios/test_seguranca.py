@@ -113,7 +113,7 @@ def test_segredos_sao_mascarados_em_logs_e_configuracoes() -> None:
     assert "k3y" not in mascarar('{"X-API-KEY": "k3y-value-123"}')  # pragma: allowlist secret
     s = Configuracoes(chave_api_brave="super-" + "secret-value", proxy_navegador=PROXY_FALSO)
     serializado = json.dumps(s.mascarada())
-    assert "super-secret-value" not in serializado and "***set***" in serializado
+    assert "super-secret-value" not in serializado and "***definida***" in serializado
     assert "Winter2026" not in serializado
     assert "super-secret-value" not in repr(s)
 
@@ -196,7 +196,7 @@ def test_varredor_de_segredos_barra_pastas_de_resultados() -> None:
         "x/evidencias/a_1/tentativa-1/texto-visivel.txt",
         "dossies/a_1.html",
     ):
-        assert any("must not be versioned" in f for f in mod.varrer_nome(nome)), nome
+        assert any("não pode ser versionada" in f for f in mod.varrer_nome(nome)), nome
     assert mod.varrer_nome("src/simio/marcas/assets/bv_logo_antiga.png") == []
     assert mod.varrer_nome("src/simio/nucleo/caminhos.py") == []
     assert mod.varrer_nome("docs/print.png")
@@ -217,7 +217,7 @@ def test_varredor_de_segredos_detecta_segredo_plantado(tmp_path: Path) -> None:
         capture_output=True,
         text=True,
     )
-    assert r3.returncode == 1 and "forbidden" in r3.stdout
+    assert r3.returncode == 1 and "proibido" in r3.stdout
     limpo = tmp_path / "ok.py"
     limpo.write_text("x = 1\n", encoding="utf-8")
     r2 = subprocess.run(

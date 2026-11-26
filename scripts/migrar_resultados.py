@@ -71,7 +71,7 @@ def normalizar(caminho: str) -> str:
 
 
 def novo_caminho(caminho: str, hosts: dict[str, str]) -> str | None:
-    """Old artifact path (relative to the campaign folder) in the new layout; None when unknown."""
+    # Caminho antigo do artefato (relativo à pasta da campanha) no layout novo; None se não reconhecer.
     caminho = normalizar(caminho)
     if caminho.startswith(caminhos.DIR_EVIDENCIAS + "/"):
         return caminho
@@ -82,7 +82,6 @@ def novo_caminho(caminho: str, hosts: dict[str, str]) -> str | None:
     return str(pasta / NOMES_NOVOS.get(m["arquivo"], m["arquivo"]))
 
 
-# ---- database -------------------------------------------------------------------------------
 def abrir_banco(caminho: Path, simular: bool) -> sqlite3.Connection:
     if simular:
         con = sqlite3.connect(f"{caminho.resolve().as_uri()}?mode=ro", uri=True, isolation_level=None)
@@ -214,14 +213,13 @@ def mover_banco(origem: Path, destino: Path, relato: Relato) -> None:
             mover(a, destino.with_name(destino.name + sufixo), relato)
 
 
-# ---- files ----------------------------------------------------------------------------------
 def mover(origem: Path, destino: Path, relato: Relato) -> bool:
-    """Rename (copy then delete only across file systems). Never overwrites a different file."""
+    # Renomeia (só copia e apaga entre sistemas de arquivos diferentes) e nunca sobrescreve outro arquivo.
     if relato.simular:
         return True
     if destino.exists():
         if destino.is_file() and origem.is_file() and sha256(destino) == sha256(origem):
-            origem.unlink()  # an earlier run copied it and stopped before deleting the original
+            origem.unlink()  # uma execução anterior copiou e parou antes de apagar a origem
             relato.ja_no_lugar += 1
             return True
         relato.problemas.append(f"destino já existe com outro conteúdo, origem mantida: {origem} -> {destino}")
@@ -303,7 +301,6 @@ def remover_vazias(raiz: Path) -> None:
         raiz.rmdir()
 
 
-# ---- verification ---------------------------------------------------------------------------
 def _entradas_manifesto(manifesto: dict) -> list[tuple[str, str]]:
     itens = manifesto.get("artefatos") or manifesto.get("artifacts") or []
     return [(normalizar(i.get("caminho") or i.get("path") or ""), i.get("sha256") or "") for i in itens]
@@ -344,7 +341,6 @@ def verificar(destino: Path, con: sqlite3.Connection, mapa: dict[str, str], rela
                 relato.divergencias.append(f"{r['id_campanha']}/{caminho}: citado no banco e não encontrado")
 
 
-# ---- main -----------------------------------------------------------------------------------
 def sugestoes_relatorio(con: sqlite3.Connection, origem: Path, destino: Path, mapa: dict[str, str]) -> list[str]:
     saida = []
     for antigo, novo in sorted(mapa.items(), key=lambda x: x[1]):
@@ -363,8 +359,10 @@ def sugestoes_relatorio(con: sqlite3.Connection, origem: Path, destino: Path, ma
 
 def principal() -> int:
     ap = argparse.ArgumentParser(description="Move as campanhas gravadas em output/ para o layout de resultados/.")
-    ap.add_argument("--origem", type=Path, default=Path("output"))
-    ap.add_argument("--destino", type=Path, default=Path(caminhos.DIR_SAIDA_PADRAO))
+    ap.add_argument("--origem", type=Path, default=Path("output"), help="pasta antiga (padrão: output)")
+    ap.add_argument(
+        "--destino", type=Path, default=Path(caminhos.DIR_SAIDA_PADRAO), help="pasta nova (padrão: resultados)"
+    )
     ap.add_argument("--simular", action="store_true", help="Mostra o plano sem alterar nada")
     args = ap.parse_args()
     origem, destino, simular = args.origem, args.destino, args.simular

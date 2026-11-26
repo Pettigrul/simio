@@ -1,5 +1,4 @@
-"""Shared test fixtures. Everything is local and synthetic: no real companies, no network."""
-
+# Tudo aqui é local e sintético: nenhuma empresa real, nenhum acesso à rede.
 from __future__ import annotations
 
 import os
@@ -21,9 +20,9 @@ SITES = FIXTURES / "sites"
 
 class _Tratador(BaseHTTPRequestHandler):
     porta = 0
-    resultados: ClassVar[list[tuple[str, str]]] = []  # (Host header, path) of every request received
+    resultados: ClassVar[list[tuple[str, str]]] = []  # (cabeçalho Host, caminho) de cada requisição
 
-    def log_message(self, *args: object) -> None:  # silence
+    def log_message(self, *args: object) -> None:
         pass
 
     def _enviar(
@@ -59,7 +58,7 @@ class _Tratador(BaseHTTPRequestHandler):
                 cabecalhos={"Content-Disposition": "attachment; filename=x.exe"},
             )
         if caminho.startswith("/static/"):
-            # 1x1 transparent PNG
+            # PNG 1x1 transparente
             png = bytes.fromhex(
                 "89504e470d0a1a0a0000000d4948445200000001000000010806000000"
                 "1f15c4890000000d49444154789c6360000002000154a24f5d0000000049454e44ae426082"
@@ -90,7 +89,7 @@ def site() -> Iterator[str]:
 
 @pytest.fixture
 def configuracoes(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Configuracoes:
-    # Isolate from any developer .env / environment variables.
+    # Isola do .env e das variáveis de ambiente de quem está rodando.
     for chave in list(os.environ):
         if chave.startswith("SIMIO_"):
             monkeypatch.delenv(chave, raising=False)
@@ -144,14 +143,14 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
         _NAVEGADOR = navegador_disponivel()
     for item in items:
         if "live" in item.keywords and not real:
-            item.add_marker(pytest.mark.skip(reason="live test: set SIMIO_TESTES_REAIS=1 in an authorised environment"))
+            item.add_marker(pytest.mark.skip(reason="teste real: defina SIMIO_TESTES_REAIS=1 num ambiente autorizado"))
         if "browser" in item.keywords and not _NAVEGADOR:
-            item.add_marker(pytest.mark.skip(reason="Playwright Chromium not installed"))
+            item.add_marker(pytest.mark.skip(reason="Chromium do Playwright não instalado"))
 
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_pyfunc_call(pyfuncitem: pytest.Function) -> bool | None:
-    """Fallback runner for async tests when pytest-asyncio is not installed in the environment."""
+    # Roda os testes async quando o pytest-asyncio não está instalado.
     import asyncio
     import inspect
 

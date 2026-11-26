@@ -30,7 +30,7 @@ def _modulo():  # type: ignore[no-untyped-def]
     spec = importlib.util.spec_from_file_location("migrar_resultados", RAIZ / "scripts" / "migrar_resultados.py")
     assert spec and spec.loader
     mod = importlib.util.module_from_spec(spec)
-    sys.modules[spec.name] = mod  # dataclasses look their module up
+    sys.modules[spec.name] = mod  # dataclasses procuram o próprio módulo
     spec.loader.exec_module(mod)
     return mod
 
@@ -40,7 +40,7 @@ def _sha(dados: bytes) -> str:
 
 
 def _coleta_antiga(pasta: Path, cid: str, url: str, tentativa: int, sep: str = "/") -> tuple[Evidencia, bytes]:
-    """Attempt folder as the English-named collector wrote it; ``sep="\\\\"`` mimics a Windows run."""
+    """Pasta de tentativa como o coletor antigo gravava; ``sep="\\\\"`` imita uma execução no Windows."""
     rel = f"evidence{sep}{cid}{sep}attempt-{tentativa}"
     (pasta / "evidence" / cid / f"attempt-{tentativa}").mkdir(parents=True)
     artefatos = []
@@ -172,7 +172,7 @@ def _conferir_resultado(raiz: Path, manifestos: dict[str, bytes]) -> None:
         assert ev.caminho_manifesto.startswith("evidencias/") and ev.caminho_manifesto.endswith("/manifesto.json")
         manifesto = (pasta / ev.caminho_manifesto).read_bytes()
         chave = f"{next(a for a, n in mapa.items() if n == r['id_campanha'])}/{ev.id_candidata}/{ev.tentativa}"
-        assert manifesto == manifestos[chave]  # byte-identical: the stored hash still matches
+        assert manifesto == manifestos[chave]  # byte a byte igual: o hash gravado continua batendo
         assert _sha(manifesto) == r["sha256_manifesto"]
         for a in ev.artefatos:
             assert "\\" not in a.caminho and "/tentativa-" in a.caminho
