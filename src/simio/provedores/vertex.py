@@ -1,10 +1,3 @@
-"""Gemini on Vertex AI via the official ``google-genai`` SDK.
-
-Authentication uses Application Default Credentials (``gcloud auth application-default login``
-or a service account configured by the organisation). No credentials are read or stored by
-SIMIO itself, and no unofficial session extraction (e.g. from Antigravity) is performed.
-"""
-
 from __future__ import annotations
 
 import inspect
@@ -39,21 +32,23 @@ def _uso(resposta: Any) -> Uso:
     return Uso(tokens_prompt=p, tokens_saida=o, tokens_total=t)
 
 
+# Autenticação só por ADC (`gcloud auth application-default login` ou conta de serviço da organização).
+# O SIMIO não lê nem guarda credencial e não reaproveita sessão de outras ferramentas (ex.: Antigravity).
 def montar_cliente(configuracoes: Configuracoes) -> Any:
     try:
         from google import genai
         from google.genai import types
     except ImportError as exc:  # pragma: no cover
-        raise LLMIndisponivel("google-genai is not installed") from exc
+        raise LLMIndisponivel("google-genai não está instalado") from exc
     if not configuracoes.projeto_gcp:
-        raise LLMIndisponivel("SIMIO_PROJETO_GCP is not set")
+        raise LLMIndisponivel("SIMIO_PROJETO_GCP não definido")
     kwargs: dict[str, Any] = {
         "project": configuracoes.projeto_gcp,
         "location": configuracoes.local_gcp,
         "http_options": types.HttpOptions(timeout=int(configuracoes.llm_timeout_s * 1000)),
     }
     parametros = inspect.signature(genai.Client.__init__).parameters
-    # google-genai >= 3 names the Vertex backend "enterprise"; older releases use "vertexai".
+    # google-genai >= 3 chama o backend Vertex de "enterprise"; as versões antigas usam "vertexai".
     if "enterprise" in parametros:
         kwargs["enterprise"] = True
     else:
@@ -83,15 +78,15 @@ class ProvedorVertex:
             if codigo in CODIGOS_TRANSITORIOS:
                 return ErroTransitorioLLM(f"{codigo}: {getattr(exc, 'message', exc)}")
             if codigo in (401, 403):
-                return LLMIndisponivel(f"{codigo}: permission/auth error: {getattr(exc, 'message', exc)}")
+                return LLMIndisponivel(f"{codigo}: erro de permissão/autenticação: {getattr(exc, 'message', exc)}")
             if codigo == 404:
-                return LLMIndisponivel(f"404: model or endpoint not found: {getattr(exc, 'message', exc)}")
+                return LLMIndisponivel(f"404: modelo ou endpoint não encontrado: {getattr(exc, 'message', exc)}")
             return exc
         nome = type(exc).__name__.lower()
         if "timeout" in nome or "connect" in nome:
             return ErroTransitorioLLM(f"{type(exc).__name__}: {exc}")
         if "defaultcredentials" in nome or "refresherror" in nome:
-            return LLMIndisponivel(f"credentials error: {exc}")
+            return LLMIndisponivel(f"erro de credenciais: {exc}")
         return exc
 
     @staticmethod
@@ -138,11 +133,9 @@ class ProvedorVertex:
                 config=types.GenerateContentConfig(**cfg),
             )
         except errors.ClientError as exc:
-            # Some model versions reject parts of JSON Schema; fall back to SDK schema conversion.
+            # Algumas versões do modelo recusam partes do JSON Schema; aí usa a conversão do próprio SDK.
             if exc.code == 400 and "response_json_schema" in cfg and esquema_pydantic is not None:
-                log.warning(
-                    "response_json_schema rejected (%s); falling back to response_schema", getattr(exc, "message", exc)
-                )
+                log.warning("response_json_schema recusado (%s); usando response_schema", getattr(exc, "message", exc))
                 self._usar_json_schema = False
                 cfg.pop("response_json_schema")
                 cfg["response_schema"] = esquema_pydantic
@@ -163,7 +156,7 @@ class ProvedorVertex:
             motivo = None
             if getattr(resposta, "candidates", None):
                 motivo = getattr(resposta.candidates[0], "finish_reason", None)
-            raise ErroTransitorioLLM(f"empty response (finish_reason={motivo})")
+            raise ErroTransitorioLLM(f"resposta vazia (finish_reason={motivo})")
         return texto, _uso(resposta)
 
     async def busca_grounding(self, *, modelo: str, prompt: str, dominios_excluidos: list[str]) -> ResultadoGrounding:
@@ -185,7 +178,7 @@ class ProvedorVertex:
 
 
 def interpretar_resposta_grounding(resposta: Any, modelo: str) -> ResultadoGrounding:
-    """Extract sources ONLY from grounding metadata (never from free model text)."""
+    # Fontes só dos metadados de grounding, nunca do texto livre do modelo (que pode inventar URL).
     fontes: list[FonteGrounding] = []
     consultas: list[str] = []
     html_entrada: str | None = None

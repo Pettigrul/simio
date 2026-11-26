@@ -1,5 +1,3 @@
-"""Provider-neutral LLM interface, budget enforcement and retry policy."""
-
 from __future__ import annotations
 
 import asyncio
@@ -19,19 +17,19 @@ M = TypeVar("M", bound=BaseModel)
 
 
 class OrcamentoEsgotado(RuntimeError):
-    """The campaign's LLM request or token budget is exhausted."""
+    """Acabou o orçamento de requisições ou de tokens do LLM da campanha."""
 
 
 class LLMIndisponivel(RuntimeError):
-    """The provider is not configured / not reachable (non-transient)."""
+    """Provedor não configurado ou inacessível (erro que não passa tentando de novo)."""
 
 
 class ErroTransitorioLLM(RuntimeError):
-    """Retryable provider error (rate limit, 5xx, timeout)."""
+    """Erro que vale tentar de novo (limite de taxa, 5xx, timeout)."""
 
 
 class SaidaLLMInvalida(RuntimeError):
-    """The model output did not satisfy the contract even after a repair attempt."""
+    """A saída do modelo não respeitou o esquema nem depois da tentativa de reparo."""
 
 
 @dataclass
@@ -95,7 +93,7 @@ def remover_cercas(texto: str) -> str:
 
 
 class Orcamento:
-    """Per-campaign request/token budget persisted in SQLite (survives resume)."""
+    # Fica no SQLite para valer também depois de `simio retomar`.
 
     def __init__(self, armazenamento: Armazenamento, id_campanha: str, max_requisicoes: int, max_tokens: int):
         self.armazenamento = armazenamento
@@ -110,16 +108,18 @@ class Orcamento:
         return self.armazenamento.totais_uso(self.id_campanha)
 
     async def reservar(self, tokens_est: int = 0) -> None:
-        """Reserve one request and an *estimated* token cost before calling, so concurrent workers
-        cannot overshoot the token cap (the estimate is settled on commit/release)."""
+        # Reserva antes da chamada uma requisição e o custo estimado de tokens, para que workers em
+        # paralelo não estourem o teto. A estimativa é acertada em efetivar/liberar.
         async with self._trava:
             requisicoes, tokens = self.usado()
             if requisicoes + self._reservadas >= self.max_requisicoes:
-                raise OrcamentoEsgotado(f"LLM request budget exhausted ({requisicoes}/{self.max_requisicoes})")
+                raise OrcamentoEsgotado(
+                    f"orçamento de requisições ao LLM esgotado ({requisicoes}/{self.max_requisicoes})"
+                )
             if tokens + self._tokens_reservados + tokens_est > self.max_tokens:
                 raise OrcamentoEsgotado(
-                    f"LLM token budget insufficient ({tokens} used + {self._tokens_reservados} reserved + "
-                    f"~{tokens_est} estimated > {self.max_tokens})"
+                    f"orçamento de tokens do LLM insuficiente ({tokens} usados + {self._tokens_reservados} "
+                    f"reservados + ~{tokens_est} estimados > {self.max_tokens})"
                 )
             self._reservadas += 1
             self._tokens_reservados += tokens_est
@@ -144,8 +144,7 @@ class Orcamento:
 
 
 def estimar_tokens(partes: list[Parte] | str, max_tokens_saida: int) -> int:
-    """Conservative pre-call estimate: ~3 chars/token for text, a fixed cost per image, plus the
-    maximum output allowed."""
+    # Estimativa conservadora: ~3 caracteres por token, custo fixo por imagem e a saída máxima.
     if isinstance(partes, str):
         partes = [partes]
     texto = sum(len(p) for p in partes if isinstance(p, str))
@@ -154,7 +153,7 @@ def estimar_tokens(partes: list[Parte] | str, max_tokens_saida: int) -> int:
 
 
 class GatewayLLM:
-    """Single entry point used by agents: budget + retries + schema validation + logging."""
+    # Toda chamada dos agentes passa por aqui: orçamento, novas tentativas e validação do esquema.
 
     def __init__(
         self,
@@ -181,12 +180,12 @@ class GatewayLLM:
                 async with self._semaforo:
                     retorno = await fn()
             except ErroTransitorioLLM as exc:
-                await self.orcamento.efetivar(agente, modelo, Uso(), est)  # a failed call still counts
+                await self.orcamento.efetivar(agente, modelo, Uso(), est)  # chamada que falhou também conta
                 tentativa += 1
                 if tentativa > self.max_retentativas:
                     raise
                 atraso = self.atraso_base_s * (2 ** (tentativa - 1)) + random.uniform(0, 1)  # noqa: S311
-                log.warning("transient LLM error (%s), retry %d in %.1fs", exc, tentativa, atraso)
+                log.warning("erro transitório no LLM (%s), nova tentativa %d em %.1fs", exc, tentativa, atraso)
                 await asyncio.sleep(atraso)
                 continue
             except BaseException:
@@ -214,7 +213,7 @@ class GatewayLLM:
         try:
             return esquema.model_validate_json(remover_cercas(texto))
         except ValidationError as exc:
-            log.warning("%s: invalid structured output, attempting one repair", agente)
+            log.warning("%s: saída estruturada inválida, tentando um reparo", agente)
             reparo = (
                 "A resposta anterior não respeitou o esquema JSON exigido. Erros de validação:\n"
                 f"{_erros_resumidos(exc)}\n"
@@ -245,7 +244,7 @@ class GatewayLLM:
 
 def _erros_resumidos(exc: ValidationError) -> str:
     try:
-        errs = exc.errors()[:10]
-        return json.dumps([{"loc": e.get("loc"), "msg": e.get("msg")} for e in errs], ensure_ascii=False, default=str)
+        erros = exc.errors()[:10]
+        return json.dumps([{"loc": e.get("loc"), "msg": e.get("msg")} for e in erros], ensure_ascii=False, default=str)
     except Exception:  # pragma: no cover
         return str(exc)[:2000]

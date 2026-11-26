@@ -1,10 +1,3 @@
-"""Deterministic guardrails and final decision composition.
-
-Model outputs are *proposals*. These rules enforce consistency between scenario, classification,
-evidence references and collection status, and keep classification, priority, extraction
-confidence, attribution confidence and evidence sufficiency as separate axes.
-"""
-
 from __future__ import annotations
 
 import tomllib
@@ -40,10 +33,7 @@ C = ClassificacaoFinal
 
 
 class ConfigPontuacao(BaseModel):
-    """Weights for the offline heuristic analyst and STRONG-indication requirements.
-
-    Scores only *order and route* cases for human review; they never confirm an infraction.
-    """
+    # Pesos da heurística offline. A pontuação só ordena e encaminha casos; nunca confirma infração.
 
     p_marca_no_dominio: float = 2.0
     p_marca_no_titulo: float = 1.5
@@ -93,6 +83,8 @@ def _filtrar_refs(refs: list[str], valido: set[str], descartadas: list[str]) -> 
     return saida
 
 
+# A saída do modelo é só proposta: as regras daqui garantem coerência entre cenário, classificação,
+# referências e status da coleta, e mantêm classificação, prioridade e confianças como eixos separados.
 def aplicar_salvaguardas_marca(
     saida: SaidaAnaliseMarca,
     *,
@@ -280,8 +272,8 @@ def precisa_revisao(avaliacao: AvaliacaoMarca, revisar_todas: bool = False) -> b
 
 
 def aplicar_revisao(avaliacao: AvaliacaoMarca, revisao: Revisao | None) -> tuple[C, Prioridade, list[str]]:
-    """Combine analyst + reviewer. The reviewer may confirm or lower; it may not escalate to
-    STRONG on its own (escalations become REQUER_REVISAO for a human)."""
+    # O revisor pode confirmar ou rebaixar, mas não sobe sozinho para INDICIO_FORTE: nesse caso fica
+    # REQUER_REVISAO e a decisão é humana.
     notas: list[str] = []
     cls, prio = avaliacao.classificacao, avaliacao.prioridade
     if revisao is None:
@@ -305,6 +297,7 @@ def aplicar_revisao(avaliacao: AvaliacaoMarca, revisao: Revisao | None) -> tuple
     if (
         rc == C.SEM_INDICIO
         and avaliacao.possivel_injecao_prompt
+        # texto gravado por marca.verificacao_cruzada; se mudar lá, mude aqui
         and any("divergência modelo × regras" in n for n in avaliacao.notas_salvaguarda)
     ):
         notas.append(
@@ -323,7 +316,7 @@ ROTA_NENHUMA = "Sem encaminhamento (amostrar para controle de qualidade)"
 
 
 def sugerir_encaminhamento(cls: C, identidade: ClasseIdentidade) -> list[str]:
-    """Suggested follow-up owner(s). Identity drives *who* acts; classification drives *whether*."""
+    # A identidade define quem age; a classificação define se alguém precisa agir.
     if cls == C.SEM_INDICIO:
         return [ROTA_NENHUMA]
     if cls == C.INCONCLUSIVA:
@@ -352,7 +345,7 @@ def compor_final(
     cls, prio, notas = aplicar_revisao(avaliacao, revisao)
     notas = [*avaliacao.notas_salvaguarda, *notas]
     if avaliacao.identidade_visual_antiga and not avaliacao.logo_antiga_isenta:
-        # Use of the discontinued visual identity is never cleared automatically (not even by the reviewer).
+        # Logo descontinuada nunca é liberada automaticamente, nem pelo revisor.
         if cls == C.SEM_INDICIO:
             cls = C.REQUER_REVISAO
             notas.append(
@@ -361,7 +354,7 @@ def compor_final(
         prio = max(prio, Prioridade.ALTA, key=lambda p: ORDEM_PRIORIDADE[p])
     sensiveis = getattr(avaliacao, "dados_sensiveis_solicitados", [])
     if sensiveis:
-        # A brand page asking for credentials is never cleared automatically (not even by the reviewer).
+        # Página com a marca pedindo credencial nunca é liberada automaticamente, nem pelo revisor.
         if cls in (C.SEM_INDICIO, C.INCONCLUSIVA):
             notas.append(
                 f"resultado revisado para {cls.value}, mas a página usa a marca e pede "

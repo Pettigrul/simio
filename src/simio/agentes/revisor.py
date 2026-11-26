@@ -1,12 +1,6 @@
-"""Reviewer Agent: independent, sceptical second look at suspicious conclusions.
-
-It receives raw evidence plus the analyst's output explicitly framed as a *hypothesis to be
-challenged*. Deterministic checks always run (also offline); the LLM reviewer adds a critical
-reading when available. Recollection requests are bounded by the orchestrator.
-"""
-
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from simio.agentes.evidencia import SinaisPagina
@@ -44,17 +38,20 @@ def contestacoes_deterministicas(
     ):
         ch.append(
             Contestacao(
-                topico="domain_attribution",
+                topico="atribuicao_dominio",
                 severidade=Nivel.MEDIA,
                 preocupacao="Responsável pela página não identificado; a conclusão sobre a marca "
                 "não pode ser atribuída a um estabelecimento específico.",
                 refs_evidencia=["E-URL"],
             )
         )
-    if ev.status == StatusColeta.PARCIAL or any("challenge" in e or "CAPTCHA" in e for e in ev.erros):
+    # O texto vem do coletor (navegador.py); aceita a mensagem antiga, em inglês, e a nova.
+    if ev.status == StatusColeta.PARCIAL or any(
+        t in e.lower() for e in ev.erros for t in ("challenge", "captcha", "desafio anti-bot")
+    ):
         ch.append(
             Contestacao(
-                topico="evidence_sufficiency",
+                topico="suficiencia_evidencia",
                 severidade=Nivel.ALTA,
                 preocupacao="Coleta parcial ou desafio anti-bot: conteúdo pode estar incompleto.",
                 refs_evidencia=["E-COLLECT"] if ev.erros else ["E-URL"],
@@ -63,7 +60,7 @@ def contestacoes_deterministicas(
     if sig.declaracoes and a.classificacao == C.INDICIO_FORTE:
         ch.append(
             Contestacao(
-                topico="legitimate_disclosure",
+                topico="declaracao_legitima",
                 severidade=Nivel.ALTA,
                 preocupacao="Há declaração de correspondente/independência na página; avaliar se "
                 "o destaque é suficiente antes de manter indício forte.",
@@ -78,7 +75,7 @@ def contestacoes_deterministicas(
     ):
         ch.append(
             Contestacao(
-                topico="multi_bank_intermediation",
+                topico="intermediacao_multibanco",
                 severidade=Nivel.ALTA,
                 preocupacao="A página menciona múltiplas instituições financeiras concorrentes "
                 f"({', '.join(sig.bancos_concorrentes[:4])}) sem domínio próprio da marca nem alegação "
@@ -89,7 +86,7 @@ def contestacoes_deterministicas(
     if sig.contexto_editorial and not sig.marca_no_dominio and a.classificacao == C.INDICIO_FORTE:
         ch.append(
             Contestacao(
-                topico="editorial_or_third_party_platform",
+                topico="editorial_ou_plataforma_terceiros",
                 severidade=Nivel.ALTA,
                 preocupacao="A URL/página aparenta ser conteúdo editorial, portal de reclamações, processo "
                 "judicial ou documentação de terceiros, não um canal de captação passando-se pelo banco.",
@@ -99,16 +96,18 @@ def contestacoes_deterministicas(
     if a.indicadores_confusao_marca and all(i.forca == Nivel.BAIXA for i in a.indicadores_confusao_marca):
         ch.append(
             Contestacao(
-                topico="over_interpretation",
+                topico="interpretacao_excessiva",
                 severidade=Nivel.MEDIA,
                 preocupacao="Todos os indícios de confusão têm força baixa.",
                 refs_evidencia=[r for i in a.indicadores_confusao_marca for r in i.refs_evidencia][:5],
             )
         )
+    # TODO: comparar com marca.ID_HEURISTICA (e o legado "heuristic-v1") em vez do prefixo; hoje
+    # funciona só porque "heuristica-v1" começa com "heuristic".
     if a.analisador.startswith("heuristic") and a.classificacao != C.SEM_INDICIO:
         ch.append(
             Contestacao(
-                topico="unanalyzed_visual_context",
+                topico="contexto_visual_nao_analisado",
                 severidade=Nivel.MEDIA,
                 preocupacao="Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.",
                 refs_evidencia=["E-SHOT-VIEWPORT"] if ev.artefato("captura_viewport") else ["E-URL"],
@@ -117,7 +116,7 @@ def contestacoes_deterministicas(
     if sig.declaracoes and a.indicadores_confusao_marca:
         ch.append(
             Contestacao(
-                topico="contradictory_evidence",
+                topico="evidencias_contraditorias",
                 severidade=Nivel.BAIXA,
                 preocupacao="Coexistem declaração de correspondente e indícios de confusão.",
                 refs_evidencia=sorted({h.ref for h in sig.declaracoes})[:3],
@@ -132,7 +131,7 @@ def revisao_heuristica(
     ch = contestacoes_deterministicas(a, ev, sig, identidade)
     topicos = {c.topico for c in ch}
     cls, prio = a.classificacao, a.prioridade
-    if "evidence_sufficiency" in topicos and pode_recoletar and ev.repetivel:
+    if "suficiencia_evidencia" in topicos and pode_recoletar and ev.repetivel:
         return SaidaRevisao(
             decisao=DecisaoRevisao.RECOLETAR,
             classificacao_revisada=cls,
@@ -142,7 +141,7 @@ def revisao_heuristica(
             resumo_raciocinio="Nova coleta solicitada antes de concluir.",
         )
     if (
-        topicos & {"legitimate_disclosure", "multi_bank_intermediation", "editorial_or_third_party_platform"}
+        topicos & {"declaracao_legitima", "intermediacao_multibanco", "editorial_ou_plataforma_terceiros"}
         and cls == C.INDICIO_FORTE
     ):
         return SaidaRevisao(
@@ -150,11 +149,11 @@ def revisao_heuristica(
             classificacao_revisada=C.REQUER_REVISAO,
             prioridade_revisada=Prioridade.ALTA,
             contestacoes=ch,
-            evidencias_contraditorias=[c.preocupacao for c in ch if c.topico == "contradictory_evidence"],
+            evidencias_contraditorias=[c.preocupacao for c in ch if c.topico == "evidencias_contraditorias"],
             resumo_raciocinio="Indício forte rebaixado: existem sinais de transparência, intermediação "
             "multimarcas ou contexto editorial a serem ponderados por auditor.",
         )
-    if "over_interpretation" in topicos and prio == Prioridade.ALTA:
+    if "interpretacao_excessiva" in topicos and prio == Prioridade.ALTA:
         return SaidaRevisao(
             decisao=DecisaoRevisao.REBAIXAR,
             classificacao_revisada=cls,
@@ -192,7 +191,7 @@ class Revisor:
         self.dir_campanha = dir_campanha
         self.gateway = gateway
         self.modelo = modelo
-        self.modo = modo  # campaign-mode prompt addendum (e.g. "modo_ameacas")
+        self.modo = modo
 
     async def revisar(
         self,
@@ -221,8 +220,6 @@ class Revisor:
                 },
                 mode="json",
             )
-            import json
-
             partes: list[Parte] = [
                 "## Contexto da coleta\n" + bloco_contexto(self.marca, ev, sig, identidade),
                 "## Catálogo de evidências (dados não confiáveis)\n" + bloco_nao_confiavel(catalogo),

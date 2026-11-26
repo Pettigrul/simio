@@ -1,10 +1,10 @@
 ---
-version: modo-ameacas/v2
+version: modo-ameacas/v3
 ---
 # MODO DE CAMPANHA: INTELIGÊNCIA DE AMEAÇAS E PROTEÇÃO DE MARCA
 
 Esta campanha **não é uma auditoria de correspondentes (COBANs)**. Estas instruções **prevalecem** sobre a
-"Triagem de Escopo" e sobre qualquer critério de conformidade da Resolução CMN nº 4.935/2021 acima.
+"Triagem de escopo" e sobre qualquer critério de conformidade da Resolução CMN nº 4.935/2021 acima.
 
 A pergunta é uma só: **esta página, perfil, aplicativo ou canal se passa pelo {nome_marca}, usa a marca
 para enganar clientes ou os coloca em risco?**

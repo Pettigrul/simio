@@ -1,6 +1,3 @@
-"""Brand Analyst Agent: multimodal (Gemini) assessment of brand-identity confusion, with a
-deterministic heuristic analyst used in offline mode or when the model is unavailable."""
-
 from __future__ import annotations
 
 import json
@@ -43,20 +40,20 @@ _DELIM_RE = re.compile(r"(?i)<(\s*/?\s*)(conteudo_nao_confiavel)")
 
 
 def _envolver_nao_confiavel(corpo: str) -> str:
-    # Neutralise attempts (any case/spacing) to open or close the delimiter from inside the data.
+    # Impede que o conteúdo da página abra ou feche o delimitador (qualquer caixa/espaçamento).
     corpo = _DELIM_RE.sub(lambda m: "‹" + m.group(1) + m.group(2), corpo)
     return f"<conteudo_nao_confiavel>\n{corpo}\n</conteudo_nao_confiavel>"
 
 
 def bloco_nao_confiavel(catalogo: list[ItemEvidencia]) -> str:
-    payload = [item.model_dump(exclude_none=True) for item in catalogo]
-    return _envolver_nao_confiavel(json.dumps(payload, ensure_ascii=False, indent=1))
+    itens = [item.model_dump(exclude_none=True) for item in catalogo]
+    return _envolver_nao_confiavel(json.dumps(itens, ensure_ascii=False, indent=1))
 
 
 def bloco_contexto(
     marca: PerfilMarca, ev: Evidencia, sinais: SinaisPagina, identidade: AtribuicaoIdentidade | None
 ) -> str:
-    # URLs and collection errors are attacker-influenced: they go inside the untrusted delimiter.
+    # URL e erros de coleta podem ser controlados pelo site, então vão dentro do delimitador.
     coleta = {
         "url_original": ev.url_original,
         "url_final": ev.url_final,
@@ -88,9 +85,9 @@ _CASOS_COM_SINAL = (
 
 
 def verificacao_cruzada(avaliacao: AvaliacaoMarca, heuristica: SaidaAnaliseMarca) -> AvaliacaoMarca:
-    """Model vs deterministic rules. Page content (or text inside screenshots) may persuade the model
-    to clear a page: when the rules see B/C/D signals and the model says SEM_INDICIO, the case is
-    forced to human review instead of being silently cleared, preserving the deterministic indicators."""
+    # O conteúdo da página (ou texto dentro das capturas) pode convencer o modelo a liberar a página.
+    # Se as regras veem sinal B/C/D e o modelo diz SEM_INDICIO, vai para revisão humana e os
+    # indicadores das regras são mantidos.
     if avaliacao.classificacao != ClassificacaoFinal.SEM_INDICIO or heuristica.caso not in _CASOS_COM_SINAL:
         return avaliacao
     nota = (
@@ -134,11 +131,9 @@ NOTA_LOGO_ANTIGA_ISENTA = (
 def aplicar_regra_logo_antiga(
     avaliacao: AvaliacaoMarca, catalogo: list[ItemEvidencia], *, isento: bool = False
 ) -> AvaliacaoMarca:
-    """Legacy logo seen by the model and/or by the deterministic image comparison (``E-VIS-LEGACY-*``):
-    record the source, make sure a USO_LOGO indicator cites it and floor the result at
-    REQUER_REVISAO / ALTA. Clearing such a page is a human decision.
-
-    ``isento`` (site that only catalogues or reports the logo): record the finding, keep the result."""
+    # Logo antiga vista pelo modelo e/ou pela comparação de imagem (E-VIS-LEGACY-*): piso
+    # REQUER_REVISAO / ALTA; liberar uma página dessas é decisão humana. Com `isento` (site que só
+    # cataloga ou noticia a logo) o achado é registrado sem mexer na classificação.
     refs_vis = [i.ref for i in catalogo if i.tipo == "visual"]
     por_modelo = avaliacao.identidade_visual_antiga
     if not por_modelo and not refs_vis:
@@ -186,7 +181,7 @@ def aplicar_regra_logo_antiga(
 
 
 NOTA_DADOS_SENSIVEIS = (
-    "página fora dos domínios oficiais que usa a marca e pede {kinds}: possível coleta de credenciais "
+    "página fora dos domínios oficiais que usa a marca e pede {tipos}: possível coleta de credenciais "
     "(phishing/painel falso); mantido no mínimo REQUER_REVISAO com prioridade ALTA"
 )
 
@@ -195,22 +190,20 @@ MAX_PALAVRAS_PAGINA_LOGIN = 250
 
 
 def aplicar_regra_dados_sensiveis(avaliacao: AvaliacaoMarca, sinais: SinaisPagina) -> AvaliacaoMarca:
-    """A page that uses the brand and asks for credentials (password, card, CVV, token, bank account)
-    is a possible phishing page: record what it asks for and floor at REQUER_REVISAO / ALTA."""
-    creds = sinais.campos_credencial
-    # The page must *present itself* with the brand, not merely cite it: news portals, multi-bank sites
-    # and partner portals cite the brand and have an ordinary login box. Brand in the domain or the legacy
-    # logo is enough; brand in the title/header/a brand-named image only counts on a short, login-like page.
+    credenciais = sinais.campos_credencial
+    # A página tem que se apresentar com a marca, não só citá-la: portais de notícia, multibancos e
+    # portais de parceiro citam a marca e têm login comum. Marca no domínio ou logo antiga bastam;
+    # marca no título/cabeçalho/imagem só conta em página curta com cara de login.
     parece_login = sinais.palavras_visiveis <= MAX_PALAVRAS_PAGINA_LOGIN
     usa_marca = bool(
         sinais.marca_no_dominio
         or sinais.logo_antiga_visual
         or (parece_login and (sinais.marca_no_titulo or sinais.marca_no_cabecalho or sinais.imagens_nomeadas_marca))
     )
-    if not creds or not usa_marca or sinais.canal_oficial:
+    if not credenciais or not usa_marca or sinais.canal_oficial:
         return avaliacao
     tipos = sorted({h.valor for h in sinais.campos_sensiveis})
-    refs = list(dict.fromkeys([h.ref for h in creds] + [h.ref for h in sinais.acao_formulario_externa]))[:5]
+    refs = list(dict.fromkeys([h.ref for h in credenciais] + [h.ref for h in sinais.acao_formulario_externa]))[:5]
     confusao = list(avaliacao.indicadores_confusao_marca)
     if not any(set(refs) & set(ind.refs_evidencia) for ind in confusao):
         confusao.append(
@@ -228,7 +221,7 @@ def aplicar_regra_dados_sensiveis(avaliacao: AvaliacaoMarca, sinais: SinaisPagin
         cls = ClassificacaoFinal.REQUER_REVISAO
     prio = max(prio, Prioridade.ALTA, key=lambda p: ORDEM_PRIORIDADE[p])
     if (cls, prio) != (avaliacao.classificacao, avaliacao.prioridade):
-        notas.append(NOTA_DADOS_SENSIVEIS.format(kinds=", ".join(tipos)))
+        notas.append(NOTA_DADOS_SENSIVEIS.format(tipos=", ".join(tipos)))
     return avaliacao.model_copy(
         update={
             "dados_sensiveis_solicitados": tipos,
@@ -252,6 +245,8 @@ def carregar_imagens(ev: Evidencia, dir_campanha: Path) -> list[ParteImagem]:
         if art is None:
             continue
         p = dir_campanha / art.caminho
+        # TODO: registrar em nao_inspecionado quando a captura passa de MAX_BYTES_IMAGEM; hoje o modelo
+        # simplesmente não recebe a imagem e nada fica anotado.
         if p.is_file() and p.stat().st_size <= MAX_BYTES_IMAGEM:
             partes.append(ParteImagem(dados=p.read_bytes(), tipo_mime="image/png", rotulo=rotulo))
     return partes
@@ -270,7 +265,7 @@ class AnalistaMarca:
         self.marca = marca
         self.config_pontuacao = config_pontuacao
         self.dir_campanha = dir_campanha
-        self.modo = modo  # campaign-mode prompt addendum (e.g. "modo_ameacas"), overriding the COBAN scope
+        self.modo = modo  # adendo de prompt do modo (ex.: "modo_ameacas"); substitui o escopo COBAN
         self.gateway = gateway
         self.modelo = modelo
 
@@ -326,9 +321,6 @@ class AnalistaMarca:
         return aplicar_regra_dados_sensiveis(avaliacao, sinais)
 
 
-# --------------------------------------------------------------------------------------
-# Offline heuristic analyst
-# --------------------------------------------------------------------------------------
 def analise_heuristica(
     sig: SinaisPagina,
     sc: ConfigPontuacao,
@@ -442,8 +434,8 @@ def analise_heuristica(
                 refs_evidencia=sorted({h.ref for h in sig.alegacoes_oficiais})[:5],
             )
         )
-    # Absence of a disclosure only matters when the brand is *used* (prominence or official claims);
-    # a plain mention in body text is not, by itself, a transparency problem.
+    # Falta de declaração só pesa quando a marca é usada (destaque ou oficialidade); uma menção
+    # simples no texto não é problema de transparência.
     if not sig.declaracoes and (destacado or sig.alegacoes_ligadas_marca):
         pontuacao_c += sc.p_sem_declaracao
         confusao.append(
@@ -575,7 +567,7 @@ def analise_heuristica(
                 refs_evidencia=refs_cnpj[:2] or escolher("E-FTR"),
             )
         )
-    # A bare "parceiro" mention does not resolve the analysis: noted as uncertainty, not scored.
+    # "parceiro" sozinho não resolve a análise: vira incerteza, não pontua.
 
     rede = pontuacao_c - pontuacao_l
     relevantes = (
@@ -586,13 +578,12 @@ def analise_heuristica(
         or bool(sig.imagens_marca)
         or bool(sig.alegacoes_ligadas_marca)
     )
-    # The page presents *itself* with the brand (vs. a news article or review that talks about it).
+    # A página se apresenta com a marca (e não é uma notícia ou resenha falando dela).
     autoapresentado = bool(sig.marca_no_dominio) or sig.marca_no_cabecalho or (
         sig.marca_no_titulo and not sig.pagina_artigo and not sig.contexto_editorial
     )
-    # Only a disclosure that names the institution (Art. 14, III) and is not contradicted in the same
-    # sentence, or a clear multi-bank intermediary listing without official claims/domain, counts as
-    # sufficient context to avoid treating brand mentions as impersonation.
+    # Só afasta a leitura de personificação uma declaração que nomeia a instituição (art. 14, III) sem
+    # contradição na mesma frase, ou uma lista multibanco clara sem alegação de oficialidade nem domínio.
     declaracao_nomeada = sig.declaracao_acima_dobra and sig.declaracao_nomeia_instituicao
     transparente = declaracao_nomeada or multibanco_transparente
     so_editorial = (
@@ -639,9 +630,8 @@ def analise_heuristica(
         )
         or (rede >= sc.limiar_c and sig.marca_no_dominio and (sig.marca_no_titulo or sig.marca_no_cabecalho))
     ):
-        # C needs a signal of *direct service by the institution* (official language, sensitive
-        # post-sale capture, or the brand used as the site's own domain + identity); brand prominence
-        # alone is case B.
+        # C exige sinal de atendimento direto pela instituição (linguagem oficial, captação de pós-venda
+        # sensível ou a marca como domínio e identidade do site). Só destaque da marca é B.
         caso = CasoCenario.C_POSSIVEL_CANAL_OFICIAL
     elif rede >= sc.limiar_b or (destacado and not transparente):
         caso = CasoCenario.B_COMUNICACAO_AMBIGUA
@@ -726,8 +716,6 @@ _TEXTO_CASO = {
 
 
 def _explicar(caso: CasoCenario, confusao: list[Indicador], legitimos: list[Indicador], sc: float, sl: float) -> str:
-    """Plain-language rationale: which elements could lead a consumer to believe they deal directly
-    with the institution, and which point the other way."""
     partes = [f"Triagem heurística — cenário {caso.value}: {_TEXTO_CASO[caso]}."]
     if confusao:
         partes.append(

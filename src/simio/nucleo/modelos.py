@@ -1,5 +1,3 @@
-"""Typed data contracts shared by all agents (validated with Pydantic)."""
-
 from __future__ import annotations
 
 from datetime import UTC, datetime
@@ -17,9 +15,6 @@ class Estrito(BaseModel):
     model_config = ConfigDict(extra="forbid", use_enum_values=False)
 
 
-# --------------------------------------------------------------------------------------
-# Enumerations
-# --------------------------------------------------------------------------------------
 class StatusCandidata(StrEnum):
     DESCOBERTA = "DESCOBERTA"
     NA_FILA = "NA_FILA"
@@ -57,7 +52,7 @@ ORDEM_PRIORIDADE = {Prioridade.BAIXA: 0, Prioridade.MEDIA: 1, Prioridade.ALTA: 2
 
 
 class Nivel(StrEnum):
-    """Qualitative confidence level. NOT a probability of irregularity."""
+    """Nível qualitativo de confiança. NÃO é probabilidade de irregularidade."""
 
     ALTA = "ALTA"
     MEDIA = "MEDIA"
@@ -71,7 +66,7 @@ class CasoCenario(StrEnum):
     C_POSSIVEL_CANAL_OFICIAL = "C_POSSIVEL_CANAL_OFICIAL"
     D_PERSONIFICACAO_FORTE = "D_PERSONIFICACAO_FORTE"
     E_EVIDENCIA_INSUFICIENTE = "E_EVIDENCIA_INSUFICIENTE"
-    NAO_RELEVANTE = "NAO_RELEVANTE"  # brand not observed at all
+    NAO_RELEVANTE = "NAO_RELEVANTE"  # a marca nem aparece
 
 
 class SuficienciaEvidencia(StrEnum):
@@ -107,15 +102,12 @@ class Sinal(StrEnum):
 
 class StatusColeta(StrEnum):
     OK = "OK"
-    PARCIAL = "PARCIAL"  # page loaded but something (e.g. full screenshot) failed
-    FALHOU = "FALHOU"  # could not load the page (timeout, DNS, HTTP error...)
-    BLOQUEADA = "BLOQUEADA"  # refused by the URL security policy
+    PARCIAL = "PARCIAL"  # a página carregou, mas algo falhou (ex.: captura completa)
+    FALHOU = "FALHOU"  # timeout, DNS, erro HTTP...
+    BLOQUEADA = "BLOQUEADA"  # recusada pela política de URLs
     NAO_COLETADA = "NAO_COLETADA"
 
 
-# --------------------------------------------------------------------------------------
-# Discovery
-# --------------------------------------------------------------------------------------
 class HipoteseBusca(Estrito):
     id: str
     descricao: str
@@ -124,8 +116,7 @@ class HipoteseBusca(Estrito):
 
 
 class ResultadoDescoberta(Estrito):
-    """One URL observed by one discovery source. Never invented: always from source data."""
-
+    # Sempre vem dos dados da fonte; nunca é inventada.
     fonte: str
     url_original: str
     consulta: str | None = None
@@ -141,7 +132,7 @@ class RegistroConsulta(Estrito):
     fonte: str
     consulta: str
     id_hipotese: str | None = None
-    status: str = "OK"  # OK | ERROR | EMPTY | SKIPPED
+    status: str = "OK"  # OK | ERRO | VAZIA | PULADA
     qtd_resultados: int = 0
     erro: str | None = None
     metadados: dict[str, Any] = Field(default_factory=dict)
@@ -170,22 +161,17 @@ class Candidata(Estrito):
     ultimo_erro: str | None = None
 
 
-# --------------------------------------------------------------------------------------
-# Evidence
-# --------------------------------------------------------------------------------------
 class Artefato(Estrito):
-    tipo: str  # screenshot_viewport | screenshot_full | html | text | page_data
-    caminho: str  # relative to the campaign directory
+    tipo: str  # captura_viewport | captura_completa | html | texto | dados_pagina
+    caminho: str  # relativo à pasta da campanha
     sha256: str
     tamanho_bytes: int
 
 
 class ItemEvidencia(Estrito):
-    """An addressable piece of evidence the analysts must cite (e.g. ``E-TXT-003``)."""
-
     ref: str
-    tipo: str  # title | meta | text | heading | nav | cta | link | contact | image | screenshot | domain | network
-    local: str  # e.g. "viewport", "header", "footer", "page", "url"
+    tipo: str  # titulo | meta | texto | cabecalho_secao | nav | cta | link | contato | imagem | captura | ...
+    local: str  # ex.: "viewport", "header", "footer", "page", "url"
     conteudo: str
     acima_dobra: bool | None = None
 
@@ -203,16 +189,14 @@ class InfoImagem(Estrito):
     acima_dobra: bool = False
     largura: int = 0
     altura: int = 0
-    pagina_x: int | None = None  # document coordinates (match the full-page screenshot)
+    pagina_x: int | None = None  # coordenadas no documento (batem com a captura completa)
     pagina_y: int | None = None
 
 
 class CorrespondenciaVisual(Estrito):
-    """A region of a hashed screenshot that matches a reference logo (deterministic, no model)."""
-
-    tipo: str  # "legacy_logo"
+    tipo: str  # "logo_antiga"
     ref_captura: str  # E-SHOT-VIEWPORT | E-SHOT-FULL
-    bbox: list[int]  # x, y, width, height in screenshot pixels
+    bbox: list[int]  # x, y, largura, altura em pixels da captura
     pontuacao: float
     src_imagem: str | None = None
     acima_dobra: bool = False
@@ -226,8 +210,8 @@ class InteligenciaRdap(Estrito):
     idade_dias: int | None = None
     status: list[str] = Field(default_factory=list)
     servidores_nomes: list[str] = Field(default_factory=list)
-    titular: str | None = None  # only for legal entities (LGPD)
-    documento_titular: str | None = None  # CNPJ, when published (Registro.br)
+    titular: str | None = None  # só pessoa jurídica (LGPD)
+    documento_titular: str | None = None  # CNPJ, quando publicado (Registro.br)
     tipo_titular: str = "não publicado"
     emails_abuso: list[str] = Field(default_factory=list)
 
@@ -241,8 +225,6 @@ class InteligenciaIp(Estrito):
 
 
 class InteligenciaDominio(Estrito):
-    """Registration, DNS and hosting facts of a flagged page's host (see ``agents/domain_intel.py``)."""
-
     hostname: str
     dominio_registrado: str
     plataforma: str | None = None
@@ -259,8 +241,7 @@ class InteligenciaDominio(Estrito):
 
 
 class InfoCampoEntrada(Estrito):
-    """A form field the page asks for (recorded, never filled)."""
-
+    # Campo que a página pede; só registrado, nunca preenchido.
     tipo_campo: str = ""
     nome: str = ""
     id: str = ""
@@ -316,18 +297,12 @@ class Evidencia(Estrito):
         return next((a for a in self.artefatos if a.tipo == tipo), None)
 
 
-# --------------------------------------------------------------------------------------
-# Identity
-# --------------------------------------------------------------------------------------
 class FatoIdentidade(Estrito):
-    """Something literally observed in the evidence."""
-
-    tipo: str  # cnpj | legal_name | trade_name | phone | email | address | social_profile |
-    # partnership_declaration | correspondent_declaration | domain | whatsapp
+    tipo: str  # cnpj | telefone | email | whatsapp | perfil_social | dominio | declaracao_correspondente | ...
     valor: str
     ref_evidencia: str | None = None
     contexto: str | None = None
-    valido: bool | None = None  # e.g. CNPJ check digits
+    valido: bool | None = None  # ex.: dígitos verificadores do CNPJ
 
 
 class CorrespondenciaCadastro(Estrito):
@@ -352,9 +327,7 @@ class AtribuicaoIdentidade(Estrito):
     fundamentacao: str = ""
 
 
-# --------------------------------------------------------------------------------------
-# Brand analysis (LLM contract + metadata)
-# --------------------------------------------------------------------------------------
+# Contrato com o LLM: as docstrings das classes viram description no JSON schema.
 class Indicador(Estrito):
     dimensao: Dimensao
     descricao: str
@@ -370,7 +343,7 @@ class AvaliacaoDimensao(Estrito):
 
 
 class SaidaAnaliseMarca(Estrito):
-    """Schema the multimodal model must return (validated before use)."""
+    """Resposta que o modelo multimodal deve devolver (validada antes do uso)."""
 
     caso: CasoCenario
     classificacao: ClassificacaoFinal
@@ -386,26 +359,23 @@ class SaidaAnaliseMarca(Estrito):
     confianca_extracao: Nivel = Nivel.MEDIA
     suficiencia_evidencia: SuficienciaEvidencia = SuficienciaEvidencia.PARCIAL
     possivel_injecao_prompt: bool = False
-    # The legacy brand logo (Banco BV: red "B" over a blue "V") is visible in the screenshots.
+    # Logo antiga visível nas capturas (Banco BV: "B" vermelho sobre "V" azul).
     identidade_visual_antiga: bool = False
 
 
 class AvaliacaoMarca(SaidaAnaliseMarca):
-    analisador: str  # model id or "heuristic-v1"
-    correspondencias_visuais: list[CorrespondenciaVisual] = Field(default_factory=list)  # deterministic logo matches
-    fonte_identidade_visual_antiga: str = ""  # "modelo", "comparação de imagem" or both
-    # Logo repository / image bank / press: finding recorded without the REVIEW_REQUIRED/HIGH floor.
+    analisador: str  # id do modelo ou "heuristica-v1"
+    correspondencias_visuais: list[CorrespondenciaVisual] = Field(default_factory=list)
+    fonte_identidade_visual_antiga: str = ""  # "modelo", "comparação de imagem" ou os dois
+    # Repositório de logos, banco de imagens, imprensa: registra o achado sem o piso REQUER_REVISAO/ALTA.
     logo_antiga_isenta: bool = False
-    # Credential-type data the page asks for (senha, cartão, token...) while using the brand.
+    # Dados de credencial que a página pede usando a marca (senha, cartão, token...).
     dados_sensiveis_solicitados: list[str] = Field(default_factory=list)
     versao_prompt: str | None = None
     referencias_descartadas: list[str] = Field(default_factory=list)
     notas_salvaguarda: list[str] = Field(default_factory=list)
 
 
-# --------------------------------------------------------------------------------------
-# Compliance mapping
-# --------------------------------------------------------------------------------------
 class FonteRequisito(StrEnum):
     NORMATIVO = "NORMATIVO"
     CONTRATUAL = "CONTRATUAL"
@@ -414,8 +384,8 @@ class FonteRequisito(StrEnum):
 
 class StatusAchado(StrEnum):
     HIPOTESE_NAO_CONFORMIDADE = "HIPOTESE_NAO_CONFORMIDADE"
-    # The page *declares* or suggests a correspondent link that is not confirmed in an authoritative
-    # registry: the hypothesis only applies if the link is confirmed.
+    # A página declara ou sugere vínculo de correspondente que não consta em cadastro oficial:
+    # a hipótese só vale se o vínculo for confirmado.
     HIPOTESE_CONDICIONADA_VINCULO = "HIPOTESE_CONDICIONADA_VINCULO"
     SEM_INDICIO_OBSERVADO = "SEM_INDICIO_OBSERVADO"
     NAO_AVALIAVEL = "NAO_AVALIAVEL"
@@ -428,7 +398,7 @@ class AchadoConformidade(Estrito):
     citacao: str
     texto_requisito: str
     status: StatusAchado
-    evidencias_observadas: list[str] = Field(default_factory=list)  # evidence refs
+    evidencias_observadas: list[str] = Field(default_factory=list)  # refs de evidência
     hipotese: str = ""
     informacoes_faltantes: list[str] = Field(default_factory=list)
     exige_revisao_humana: bool = True
@@ -445,9 +415,6 @@ class AvaliacaoConformidade(Estrito):
     )
 
 
-# --------------------------------------------------------------------------------------
-# Review
-# --------------------------------------------------------------------------------------
 class DecisaoRevisao(StrEnum):
     CONFIRMAR = "CONFIRMAR"
     REBAIXAR = "REBAIXAR"
@@ -457,7 +424,7 @@ class DecisaoRevisao(StrEnum):
 
 
 class Contestacao(Estrito):
-    topico: str  # domain_attribution | evidence_sufficiency | over_interpretation | ...
+    topico: str  # atribuicao_dominio | suficiencia_evidencia | interpretacao_excessiva | ...
     preocupacao: str
     refs_evidencia: list[str] = Field(default_factory=list)
     severidade: Nivel = Nivel.MEDIA
@@ -479,9 +446,6 @@ class Revisao(SaidaRevisao):
     versao_prompt: str | None = None
 
 
-# --------------------------------------------------------------------------------------
-# Final decision
-# --------------------------------------------------------------------------------------
 class DecisaoFinal(Estrito):
     id_candidata: str
     classificacao: ClassificacaoFinal
@@ -497,7 +461,7 @@ class DecisaoFinal(Estrito):
     evidencias_chave: list[str] = Field(default_factory=list)
     limitacoes: list[str] = Field(default_factory=list)
     notas_salvaguarda: list[str] = Field(default_factory=list)
-    encaminhamento: list[str] = Field(default_factory=list)  # suggested owner(s) of the follow-up
+    encaminhamento: list[str] = Field(default_factory=list)  # área(s) sugerida(s) para o tratamento
     resumo_conformidade: list[str] = Field(default_factory=list)
     identidade_visual_antiga: bool = False
     fonte_identidade_visual_antiga: str = ""

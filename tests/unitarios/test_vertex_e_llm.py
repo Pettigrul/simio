@@ -1,5 +1,3 @@
-"""Vertex provider and LLM gateway, exercised with a fake google-genai client (no network)."""
-
 from __future__ import annotations
 
 from types import SimpleNamespace as NS
@@ -92,8 +90,8 @@ async def test_chamada_estruturada_sem_ferramentas_e_envia_imagens() -> None:
         esquema_pydantic=SaidaAnaliseMarca,
     )
     cfg = modelos.chamadas[0]["config"]
-    # Analysis calls never get tools (no search, no function calling): page content cannot
-    # trigger outbound actions or data exfiltration through the model.
+    # Chamada de análise nunca recebe ferramentas (nem busca nem function calling), para o conteúdo
+    # da página não conseguir disparar ação externa ou vazar dados pelo modelo.
     assert not cfg.tools
     assert cfg.response_mime_type == "application/json"
     partes = modelos.chamadas[0]["contents"][0].parts
@@ -148,7 +146,7 @@ async def test_gateway_repete_erro_transitorio_e_depois_sucede(armazenamento) ->
     )
     saida = await gw.estruturada(agente="t", modelo="m", sistema="s", partes=["x"], esquema=SaidaAnaliseMarca)
     assert saida.caso == CasoCenario.B_COMUNICACAO_AMBIGUA
-    assert armazenamento.totais_uso(cid)[0] == 2  # failed attempts count towards the budget
+    assert armazenamento.totais_uso(cid)[0] == 2  # tentativa que falhou também conta no orçamento
 
 
 async def test_gateway_repara_json_invalido_uma_vez(armazenamento) -> None:

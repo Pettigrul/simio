@@ -1,22 +1,3 @@
-"""Deterministic detection of the brand's *legacy* logo in the collected screenshots.
-
-The current Banco BV logo and the legacy one share the same monogram (a "B" with a crossbar and a
-"V"); what changed is the colour: the legacy logo has a **red/crimson "B" and a blue "V"**, the
-current one is monochrome blue. A shape-only hash would therefore confuse them, so every candidate
-region is compared **per colour channel**: the red-ink mask and the blue-ink mask are each matched
-against the reference logo (soft IoU on a normalised grid), and both must agree.
-
-Candidate regions come from two places, all cut out of the hashed screenshots (so a match is fully
-reproducible from the evidence):
-
-* the bounding box of every visible ``<img>``/``svg`` element recorded by the collector;
-* windows anchored on blue connected components with the proportions of the reference "V"
-  (covers logos inside banners, social-media creatives and CSS backgrounds).
-
-Nothing here calls a model or the network. The result is an independent confirmation of what the
-multimodal analyst sees, and a safety net when the analyst misses a small logo.
-"""
-
 from __future__ import annotations
 
 import math
@@ -31,20 +12,25 @@ from PIL import Image
 
 from simio.nucleo.modelos import CorrespondenciaVisual, Evidencia
 
+# A logo atual e a antiga têm o mesmo monograma ("B" com traço + "V"); só muda a cor: na antiga o "B"
+# é vermelho e o "V" azul, na atual tudo é azul. Por isso a comparação é feita por canal de cor
+# (máscara vermelha e máscara azul contra a referência, IoU suave numa grade) e os dois precisam bater.
+# As regiões saem das capturas com hash (caixas dos <img>/svg visíveis e janelas ancoradas em
+# componentes azuis com proporção de "V"), então qualquer achado é reproduzível a partir da evidência.
 GRADE = 24
-MIN_TINTA_PX = 120  # ignore regions with too little coloured ink to carry a shape
+MIN_TINTA_PX = 120  # abaixo disso não há tinta suficiente para formar o desenho
 MIN_LADO_PX = 14
-MAX_PIXELS_COMPONENTE = 400_000  # bound on BFS work per screenshot (after downscaling)
+MAX_PIXELS_COMPONENTE = 400_000  # limita a BFS por captura (depois de reduzir a imagem)
 LIMIAR_PADRAO = 0.62
 
-# PIL HSV uses 0-255 for hue. Legacy red/crimson ~ 225-255 (+ wrap to 0-6); legacy blue ~ 125-151.
-# The current BV blue sits at ~152-159 and is deliberately outside the blue band's core, but the
-# decisive criterion is the red "B": a monochrome logo has no red ink and never matches.
+# No HSV do PIL o matiz vai de 0 a 255. Vermelho da logo antiga ~225-255 (e 0-6); azul ~125-151.
+# O azul atual fica em ~152-159, fora do miolo da faixa azul, mas quem decide é o "B" vermelho:
+# logo monocromática não tem tinta vermelha e nunca casa.
 _MATIZES_VERMELHOS = ((222, 256), (0, 7))
 _MATIZES_AZUIS = ((122, 154),)
 _S_MIN, _V_MIN = 80, 60
 
-Image.MAX_IMAGE_PIXELS = 60_000_000  # full-page screenshots are capped by the collector
+Image.MAX_IMAGE_PIXELS = 60_000_000  # o coletor já limita o tamanho da captura completa
 
 
 def _mascara_matiz(h: np.ndarray, faixas: tuple[tuple[int, int], ...]) -> np.ndarray:
@@ -55,7 +41,7 @@ def _mascara_matiz(h: np.ndarray, faixas: tuple[tuple[int, int], ...]) -> np.nda
 
 
 def mascaras_cor(img: Image.Image) -> tuple[np.ndarray, np.ndarray]:
-    """(red_mask, blue_mask) of saturated, reasonably bright pixels."""
+    # (vermelho, azul) só com pixels saturados e com brilho razoável
     hsv = np.asarray(img.convert("RGB").convert("HSV"), dtype=np.int16)
     h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
     vivo = (s >= _S_MIN) & (v >= _V_MIN)
@@ -63,7 +49,7 @@ def mascaras_cor(img: Image.Image) -> tuple[np.ndarray, np.ndarray]:
 
 
 def _componentes(mascara: np.ndarray, *, min_pixels: int = 1) -> list[tuple[int, int, int, int, int]]:
-    """4-connected components of a boolean mask -> [(x0, y0, x1, y1, n_pixels)] (x1/y1 exclusive)."""
+    # componentes 4-conexos -> [(x0, y0, x1, y1, n_pixels)], x1/y1 exclusivos
     h, w = mascara.shape
     vistos = np.zeros_like(mascara)
     saida: list[tuple[int, int, int, int, int]] = []
@@ -90,7 +76,7 @@ def _componentes(mascara: np.ndarray, *, min_pixels: int = 1) -> list[tuple[int,
 
 
 def _descartar_componentes_borda(mascara: np.ndarray) -> np.ndarray:
-    """Remove ink connected to the crop border (page background bleeding into an element crop)."""
+    # Tira a tinta que encosta na borda do recorte (fundo da página vazando para dentro do elemento).
     h, w = mascara.shape
     manter = mascara.copy()
     borda = np.zeros_like(mascara)
@@ -110,10 +96,10 @@ def _descartar_componentes_borda(mascara: np.ndarray) -> np.ndarray:
 
 @dataclass(frozen=True)
 class Assinatura:
-    vermelho: np.ndarray  # GRID x GRID coverage in [0, 1]
+    vermelho: np.ndarray  # cobertura GRADE x GRADE em [0, 1]
     azul: np.ndarray
-    proporcao: float  # width / height of the ink bounding box
-    fracao_vermelho: float  # red ink / all ink
+    proporcao: float  # largura / altura da caixa da tinta
+    fracao_vermelho: float  # tinta vermelha / tinta total
 
 
 def _redimensionar(mascara: np.ndarray) -> np.ndarray:
@@ -151,8 +137,7 @@ def similaridade(candidata: Assinatura, referencia: Assinatura) -> float:
 
 
 def correspondencia_regiao(img: Image.Image, referencia: Assinatura) -> tuple[float, tuple[int, int, int, int] | None]:
-    """Best similarity of a crop (with and without ink touching the crop border) and the bounding
-    box (x0, y0, x1, y1) of the matching ink inside the crop."""
+    # Melhor similaridade do recorte (com e sem a tinta da borda) e a caixa (x0, y0, x1, y1) da tinta.
     vermelho, azul = mascaras_cor(img)
     melhor: tuple[float, tuple[int, int, int, int] | None] = (0.0, None)
     for r, b in ((vermelho, azul), (_descartar_componentes_borda(vermelho), _descartar_componentes_borda(azul))):
@@ -173,8 +158,8 @@ def pontuacao_regiao(img: Image.Image, referencia: Assinatura) -> float:
 @dataclass(frozen=True)
 class Referencia:
     assinatura: Assinatura
-    # Geometry of the logo box relative to the blue "V" component (largest blue blob), used to
-    # turn a blue component found on a page into a candidate window.
+    # Geometria da logo em relação ao "V" azul (maior mancha azul): transforma um componente azul
+    # achado na página em janela candidata.
     proporcao_v: float
     esquerda: float
     topo: float
@@ -187,7 +172,7 @@ def carregar_referencia(caminho: Path) -> Referencia:
     vermelho, azul = mascaras_cor(img)
     sig = assinatura(vermelho, azul)
     if sig is None:
-        raise ValueError(f"reference logo has no red and blue ink: {caminho}")
+        raise ValueError(f"a logo de referência não tem tinta vermelha e azul: {caminho}")
     tinta = vermelho | azul
     ys, xs = np.nonzero(tinta)
     lx0, ly0, lx1, ly1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
@@ -206,7 +191,6 @@ def carregar_referencia(caminho: Path) -> Referencia:
 def _recortar(
     img: Image.Image, caixa: tuple[float, float, float, float], margem: float = 0.12
 ) -> tuple[Image.Image, int, int] | None:
-    """Padded crop of ``caixa`` and its top-left offset in the screenshot."""
     x0, y0, x1, y1 = caixa
     pw, ph = (x1 - x0) * margem, (y1 - y0) * margem
     x0, y0 = max(0, int(x0 - pw)), max(0, int(y0 - ph))
@@ -217,7 +201,6 @@ def _recortar(
 
 
 def _janelas_ancora(img: Image.Image, ref: Referencia) -> list[tuple[float, float, float, float]]:
-    """Candidate logo boxes derived from blue components shaped like the reference "V"."""
     escala = 1.0
     trabalho = img
     _, azul = mascaras_cor(trabalho)
@@ -230,7 +213,7 @@ def _janelas_ancora(img: Image.Image, ref: Referencia) -> list[tuple[float, floa
         w, h = (x1 - x0) * escala, (y1 - y0) * escala
         if h < MIN_LADO_PX or abs(math.log((w / h) / ref.proporcao_v)) > 0.5:
             continue
-        if n * escala * escala < 0.15 * w * h:  # a "V" stroke fills a fair share of its box
+        if n * escala * escala < 0.15 * w * h:  # o traço do "V" ocupa boa parte da caixa
             continue
         lx, ly = x0 * escala + ref.esquerda * w, y0 * escala + ref.topo * h
         caixas.append((lx, ly, lx + ref.largura * w, ly + ref.altura * h))
@@ -246,7 +229,6 @@ def detectar_logo_antiga(
     max_correspondencias: int = 5,
     altura_viewport: int = 900,
 ) -> list[CorrespondenciaVisual]:
-    """Legacy-logo matches in the evidence screenshots, best first (deduplicated by position)."""
     correspondencias: list[CorrespondenciaVisual] = []
     capturas = [("captura_viewport", "E-SHOT-VIEWPORT"), ("captura_completa", "E-SHOT-FULL")]
     imagens = ev.pagina.imagens if ev.pagina else []
@@ -266,7 +248,7 @@ def detectar_logo_antiga(
             candidatas.append(
                 ((im.pagina_x, im.pagina_y, im.pagina_x + im.largura, im.pagina_y + im.altura), im.src or None, 0.02)
             )
-        # anchor windows are estimates: crop generously, the ink bounding box gives the real position
+        # janela ancorada é estimativa: recorta com folga, a caixa da tinta dá a posição real
         candidatas += [(caixa, None, 0.3) for caixa in _janelas_ancora(captura, referencia)]
         for caixa, src, margem in candidatas:
             corte = _recortar(captura, caixa, margem)
@@ -302,9 +284,6 @@ def detectar_logo_antiga(
     return saida
 
 
-# ---------------------------------------------------------------------------------------------
-# Hints and crops (focused legacy-logo campaigns and reports)
-# ---------------------------------------------------------------------------------------------
 _PISTA_ARQUIVO_RE = re.compile(
     r"(?i)(?:^|[^a-z0-9])(?:bv|bancobv|bvfinanceira|votorantim)(?:[^a-z0-9]|$)|banco[-_ ]?bv|bv[-_ ]?financeira"
 )
@@ -315,10 +294,9 @@ _PISTA_ALT_RE = re.compile(
 
 
 def pistas_logo_antiga(ev: Evidencia) -> list[str]:
-    """Visible ``<img>`` elements whose file name or short alt text names the brand (``logo-bv-financeira.png``,
-    ``bv.png``, alt="BV"). The brand's logo is on the page in *some* form that the colour comparison may not
-    confirm (grayscale partner carousel, logo over a crimson background), so a focused campaign still sends
-    the page to the multimodal analyst."""
+    # <img> visíveis cujo nome de arquivo ou alt curto cita a marca (logo-bv-financeira.png, bv.png, alt="BV").
+    # A logo está na página de alguma forma que a comparação de cor pode não confirmar (carrossel em
+    # cinza, logo sobre fundo carmim); na campanha focada a página vai para o analista multimodal mesmo assim.
     saida: list[str] = []
     for im in ev.pagina.imagens if ev.pagina else []:
         if im.largura < MIN_LADO_PX or im.altura < MIN_LADO_PX:
@@ -332,7 +310,6 @@ def pistas_logo_antiga(ev: Evidencia) -> list[str]:
 def recortar_correspondencia(
     ev: Evidencia, dir_campanha: Path, correspondencia: CorrespondenciaVisual, margem: float = 0.6
 ) -> Image.Image | None:
-    """The matched region (with context around it) cut from the hashed screenshot, for reports."""
     tipo = {"E-SHOT-VIEWPORT": "captura_viewport", "E-SHOT-FULL": "captura_completa"}.get(correspondencia.ref_captura)
     art = ev.artefato(tipo) if tipo else None
     caminho = dir_campanha / art.caminho if art else None
