@@ -57,6 +57,9 @@ ROTULOS: dict[str, str] = {
     "REVISANDO": "Revisando",
     "CONCLUIDA": "Concluída",
     "EM_EXECUCAO": "Em execução",
+    "INTERROMPIDA": "Interrompida",
+    "PAUSADA": "Pausada",
+    "PAUSADA_ORCAMENTO": "Pausada (limite de uso)",
     # conformidade
     "NORMATIVO": "Normativo",
     "CONTRATUAL": "Contratual",
@@ -73,7 +76,16 @@ ROTULOS: dict[str, str] = {
     "REVISAO_HUMANA": "Revisão humana",
     "PENDENTE": "Pendente",
     "NAO_EXIGIDA": "Não exigida",
-    # temas das contestações do revisor (gravados em inglês pelas versões antigas)
+    # temas das contestações do revisor
+    "atribuicao_dominio": "Atribuição do domínio",
+    "suficiencia_evidencia": "Suficiência da evidência",
+    "interpretacao_excessiva": "Interpretação excessiva",
+    "evidencias_contraditorias": "Evidência contraditória",
+    "declaracao_legitima": "Divulgação legítima",
+    "contexto_visual_nao_analisado": "Contexto visual não analisado",
+    "editorial_ou_plataforma_terceiros": "Conteúdo editorial ou plataforma de terceiros",
+    "intermediacao_multibanco": "Intermediação de vários bancos",
+    # os mesmos temas, como as versões antigas gravaram
     "domain_attribution": "Atribuição do domínio",
     "evidence_sufficiency": "Suficiência da evidência",
     "over_interpretation": "Interpretação excessiva",
@@ -129,6 +141,9 @@ ROTULOS: dict[str, str] = {
     "declaracao_parceria": "Declaração de parceria",
     "declaracao_correspondente": "Declaração de correspondente",
     "nome_instituicao_exibido": "Nome da instituição exibido",
+    # como a página foi casada com o cadastro de correspondentes
+    "cnpj_root": "raiz do CNPJ",
+    "name": "nome",
 }
 
 # Tom de cor de cada valor: crit, alto, medio, baixo, ok. Valores sem tom ficam neutros.

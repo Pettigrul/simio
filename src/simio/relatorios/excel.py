@@ -27,6 +27,7 @@ from simio.relatorios.dados import RegistroCandidata
 from simio.relatorios.dados_logo import LOGO_BV_AZUL_BASE64
 from simio.relatorios.paginas import data_br
 from simio.relatorios.rotulos import COR_MARCA, PALETA, rotulo, tom
+from simio.relatorios.textos_antigos import traduzir
 
 FONTE = "Calibri"
 PREENCHIMENTO_CABECALHO = PatternFill("solid", fgColor=COR_MARCA)
@@ -427,7 +428,7 @@ def gravar_planilha(
         ["Fontes de descoberta usadas", ", ".join(disc.get("fontes_usadas", []))],
         ["Consultas executadas (fonte:situação)",
          ", ".join(f"{k}: {n}" for k, n in (disc.get("consultas") or {}).items())],
-        ["Diagnóstico da descoberta", "\n".join(disc.get("diagnosticos", []))],
+        ["Diagnóstico da descoberta", "\n".join(traduzir(d) for d in disc.get("diagnosticos", []))],
         ["Analisadores usados", ", ".join(f"{k}: {n}" for k, n in analisadores.most_common())],
         ["Chamadas ao modelo / tokens", f"{req} / {tok}"],
         ["Parâmetros", json.dumps(camp.get("parametros", {}), ensure_ascii=False)],
@@ -651,8 +652,9 @@ def gravar_planilha(
         {4: 28, 5: 60, 6: 66, 9: 50, 10: 66},
     )
 
+    # No registro bruto os valores do JSON são códigos: os antigos em inglês viram o código atual, não o rótulo.
     linhas_log = [
-        [d["em"], d["id_candidata"] or "", d["agente"], d["decisao"], d["detalhe_json"]]
+        [d["em"], d["id_candidata"] or "", d["agente"], d["decisao"], traduzir(d["detalhe_json"], rotulos=False)]
         for d in armazenamento.decisoes(id_campanha)
     ]
     for q in armazenamento.listar_consultas(id_campanha):
@@ -669,7 +671,7 @@ def gravar_planilha(
                         "consulta": q["texto_consulta"],
                         "hipotese": q["id_hipotese"],
                         "retornos": q["qtd_resultados"],
-                        "erro": q["erro"],
+                        "erro": traduzir(q["erro"], rotulos=False) or q["erro"],
                         **meta,
                     },
                     ensure_ascii=False,
@@ -682,7 +684,7 @@ def gravar_planilha(
     _aba(wb, ABA_REGISTRO, ["Quando", "Candidato", "Agente", "Decisão", "Detalhe"], linhas_log, {1: 22, 5: 120})
 
     linhas_erro = [
-        [data_br(e["em"], segundos=True), e["id_candidata"] or "", e["etapa"], e["tipo_erro"], e["mensagem"]]
+        [data_br(e["em"], segundos=True), e["id_candidata"] or "", e["etapa"], e["tipo_erro"], traduzir(e["mensagem"])]
         for e in armazenamento.erros(id_campanha)
     ]
     for r in registros:
@@ -707,7 +709,7 @@ def gravar_planilha(
                 ]
             )
     for diag in disc.get("diagnosticos", []):
-        linhas_erro.append(["", "", "descoberta", "diagnóstico", diag])
+        linhas_erro.append(["", "", "descoberta", "diagnóstico", traduzir(diag)])
     _aba(wb, ABA_ERROS, ["Quando", "Candidato", "Etapa", "Tipo", "Mensagem"], linhas_erro, {1: 22, 5: 120})
     _aba(wb, ABA_GLOSSARIO, ["Termo", "Significado"], GLOSSARIO, {1: 36, 2: 120})
 

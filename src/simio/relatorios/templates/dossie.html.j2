@@ -154,7 +154,7 @@
       <dt>Categoria</dt><dd>{{ idn.classificacao|rotulo }}</dd>
       <dt>Entidade</dt><dd>{{ idn.nome_exibicao or '—' }} <span class="mono muted">{{ idn.chave_entidade }}</span></dd>
       <dt>Confiança</dt><dd>{{ idn.confianca_atribuicao|rotulo }}</dd>
-      <dt>Cadastro de correspondentes</dt><dd>{% if idn.correspondencia_cadastro %}{{ idn.correspondencia_cadastro.fonte }} (por {{ idn.correspondencia_cadastro.casado_por }}){% else %}sem correspondência{% endif %}</dd>
+      <dt>Cadastro de correspondentes</dt><dd>{% if idn.correspondencia_cadastro %}{{ idn.correspondencia_cadastro.fonte }} (por {{ idn.correspondencia_cadastro.casado_por|rotulo }}){% else %}sem correspondência{% endif %}</dd>
     </dl>
     {% if idn.fundamentacao %}<div class="texto" style="margin-top:10px">{{ idn.fundamentacao }}</div>{% endif %}
     {% if idn.fatos %}
