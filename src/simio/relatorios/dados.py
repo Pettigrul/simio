@@ -1,5 +1,3 @@
-"""Assemble per-candidate report records straight from persisted, validated data."""
-
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -62,8 +60,8 @@ class RegistroCandidata:
 def carregar_registros(armazenamento: Armazenamento, id_campanha: str, marca: PerfilMarca) -> list[RegistroCandidata]:
     saida: list[RegistroCandidata] = []
     for cand in armazenamento.listar_candidatas(id_campanha):
-        # Report one consistent round: the evidence that produced the final decision and the
-        # assessments computed from it (not, e.g., a RECOLLECT review from an earlier round).
+        # Uma rodada coerente: a evidência que gerou a decisão final e as avaliações feitas sobre ela
+        # (e não, por exemplo, uma revisão RECOLETAR de uma rodada anterior).
         id_ev = armazenamento.id_evidencia_avaliacao(cand.id, "final")
         ev = (
             armazenamento.evidencia_por_id(id_ev)

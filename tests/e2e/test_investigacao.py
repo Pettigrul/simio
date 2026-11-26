@@ -76,16 +76,16 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
 
     relatorio = gerar_relatorios(configuracoes, armazenamento, resumo.id_campanha)
     wb = load_workbook(relatorio.planilha)
-    assert wb.sheetnames[:2] == ["Executive Summary", "Candidates"]
+    assert wb.sheetnames[:2] == ["Resumo", "Candidatos"]
     for nome in (
-        "Strong Indications",
-        "Identity Attribution",
-        "Evidence Index",
-        "Investigation Log",
-        "Errors and Limitations",
+        "Indícios fortes",
+        "Responsáveis",
+        "Evidências",
+        "Registro da investigação",
+        "Erros e limitações",
     ):
         assert nome in wb.sheetnames
-    cand = wb["Candidates"]
+    cand = wb["Candidatos"]
     cabecalhos = [c.value for c in cand[1]]
     for h in (
         "ID",
@@ -101,12 +101,12 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
         "Principais evidências",
         "Limitações",
         "Revisão humana",
-        "Screenshot (viewport)",
+        "Captura (área visível)",
         "Data da coleta",
     ):
         assert h in cabecalhos
     assert cand.max_row == len(PAGINAS) + 1
-    assert wb["Strong Indications"].max_row >= 2
+    assert wb["Indícios fortes"].max_row >= 2
     # Dossiês das prioritárias: abrem offline, com escape e sem script.
     assert relatorio.dossies
     html = relatorio.dossies[next(iter(relatorio.dossies))].read_text(encoding="utf-8")

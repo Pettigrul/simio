@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+{% block cabeca %}{% endblock %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}SIMIO{% endblock %}</title>
+<style>
+  :root { --ink:#101828; --muted:#475467; --line:#E4E7EC; --bg:#F9FAFB; --brand:#{{ cor_marca }}; --brand-bg:#EEF2FF; --brand-ink:#2D3A8C;
+          {% for t, (cor, fundo) in paleta.items() %}--{{ t }}:#{{ cor }}; --{{ t }}-bg:#{{ fundo }}; {% endfor %}}
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color:var(--ink); background:var(--bg);
+         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  a { color:var(--brand); }
+  code, .mono { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12.5px; }
+  .muted { color:var(--muted); }
+  .peq { font-size:12.5px; }
+
+  header.faixa { background:var(--brand); color:#fff; padding:24px 40px; }
+  .faixa-int { max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .faixa-int .logo { height:38px; width:auto; }
+  .faixa-txt { flex:1; min-width:240px; }
+  header.faixa h1 { margin:0 0 4px; font-size:22px; font-weight:650; word-break:break-word; }
+  header.faixa p { margin:0; opacity:.85; }
+  header.faixa nav { display:flex; gap:8px; flex-wrap:wrap; }
+  header.faixa nav a { color:#fff; text-decoration:none; font-size:13px; border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:4px 12px; }
+  header.faixa nav a:hover { background:rgba(255,255,255,.12); }
+
+  main { max-width:1180px; margin:0 auto; padding:24px 40px 60px; }
+  h2 { font-size:17px; margin:28px 0 12px; }
+  h3 { font-size:14px; margin:18px 0 6px; }
+  p { margin:6px 0; }
+
+  .numeros { display:flex; gap:12px; flex-wrap:wrap; margin:0 0 8px; }
+  .tile { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 16px; min-width:120px; }
+  .tile b { display:block; font-size:24px; font-variant-numeric:tabular-nums; }
+  .linha { color:var(--muted); margin:6px 0 20px; }
+  .nota { background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:8px; padding:10px 14px; color:var(--muted); margin:0 0 24px; }
+  .nota.alerta { border-left-color:var(--alto); color:var(--ink); }
+
+  .card { display:grid; grid-template-columns:300px 1fr; gap:18px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; }
+  .card.sem-captura { grid-template-columns:1fr; }
+  .card > * { min-width:0; }
+  .bloco { background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-bottom:14px; }
+  .bloco > :first-child { margin-top:0; }
+  .shot { display:block; width:300px; height:200px; object-fit:cover; object-position:top; border:1px solid var(--line); border-radius:8px; background:var(--bg); }
+  .noshot { width:300px; height:200px; display:flex; align-items:center; justify-content:center; color:var(--muted); border:1px dashed var(--line); border-radius:8px; font-size:12px; text-align:center; padding:12px; }
+  .titulo-card { font-weight:650; font-size:15px; margin:2px 0 0; word-break:break-word; }
+  .url { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; word-break:break-all; margin:4px 0 8px; color:var(--muted); }
+  ul.fatos { margin:6px 0 10px 18px; padding:0; }
+  ul.fatos li { margin-bottom:2px; }
+
+  .pill { display:inline-block; font-size:11px; font-weight:650; letter-spacing:.02em; border-radius:999px; padding:2px 10px; margin:0 6px 6px 0; background:var(--baixo-bg); color:var(--baixo); white-space:nowrap; }
+  .pill.cat { background:var(--brand-bg); color:var(--brand-ink); font-weight:550; }
+  {% for t in paleta %}
+  .tile.{{ t }} b { color:var(--{{ t }}); }
+  .card.{{ t }} { border-left:5px solid var(--{{ t }}); }
+  .pill.{{ t }} { background:var(--{{ t }}-bg); color:var(--{{ t }}); }
+  .txt-{{ t }} { color:var(--{{ t }}); font-weight:600; }
+  {% endfor %}
+
+  .kv { display:grid; grid-template-columns:190px 1fr; gap:2px 12px; font-size:13px; margin:0; }
+  .kv dt { color:var(--muted); }
+  .kv dd { margin:0; word-break:break-word; }
+  .texto { white-space:pre-wrap; background:var(--bg); border-radius:8px; padding:10px 12px; margin:6px 0; }
+  details { margin-top:8px; font-size:13px; }
+  details > summary { cursor:pointer; color:var(--muted); }
+  details[open] > summary { margin-bottom:6px; }
+  details.secao { background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 14px; margin-bottom:14px; }
+  details.secao > summary { font-weight:600; color:var(--ink); }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; font-size:13px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--bg); color:var(--muted); font-weight:600; }
+  td { word-break:break-word; }
+  td.mono { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; word-break:break-all; }
+  .bloco table, details table { border-radius:8px; }
+  .rolagem { overflow-x:auto; }
+  .capturas { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .capturas figure { margin:0; }
+  .capturas img { width:100%; border:1px solid var(--line); border-radius:8px; }
+  .capturas figcaption { color:var(--muted); font-size:12px; margin-top:4px; word-break:break-all; }
+  {% block estilo %}{% endblock %}
+
+  @media screen and (max-width:800px) {
+    header.faixa { padding:20px 16px; }
+    main { padding:16px; }
+    .card { grid-template-columns:1fr; }
+    .shot, .noshot { width:100%; }
+    .kv { grid-template-columns:1fr; }
+    .kv dd { margin-bottom:6px; }
+    .capturas { grid-template-columns:1fr; }
+  }
+  @page { size:A4; }
+  @media print {
+    body { background:#fff; font-size:11.5px; }
+    header.faixa { padding:14px 18px; }
+    header.faixa nav { display:none; }
+    main { max-width:none; padding:12px 0 0; }
+    h2 { break-after:avoid; margin-top:18px; }
+    .card { grid-template-columns:210px 1fr; gap:14px; padding:12px; }
+    .shot, .noshot { width:210px; height:140px; }
+    .card, .tile, .nota, tr, figure { break-inside:avoid; }
+    thead { display:table-header-group; }
+    a { color:inherit; text-decoration:none; }
+    details > summary { color:var(--ink); font-weight:600; }
+    .rolagem { overflow:visible; }
+    .tile { flex:1 1 0; min-width:0; padding:8px 10px; }
+    .tile b { font-size:20px; }
+    table { font-size:10.5px; }
+    th, td { padding:5px 7px; }
+    td .peq { font-size:10px; }
+    td .url { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin:2px 0 0; font-size:10px; }
+    .kv { grid-template-columns:150px 1fr; font-size:11.5px; }
+    .texto { padding:8px 10px; }
+  }
+</style>
+</head>
+<body>
+<header class="faixa">
+  <div class="faixa-int">
+    {% if uri_logo %}<img class="logo" alt="" src="{{ uri_logo }}">{% endif %}
+    <div class="faixa-txt">
+      <h1>{% block h1 %}{% endblock %}</h1>
+      <p>{% block subtitulo %}{% endblock %}</p>
+    </div>
+    {% if nav %}<nav>{% for texto, href in nav %}<a href="{{ href }}">{{ texto }}</a>{% endfor %}</nav>{% endif %}
+  </div>
+</header>
+<main>
+{% block conteudo %}{% endblock %}
+</main>
+</body>
+</html>

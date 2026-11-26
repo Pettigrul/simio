@@ -1,32 +1,19 @@
-"""Threat-intelligence briefing (HTML): what impersonates the bank or endangers its customers, with the
-facts behind each level, the domain intelligence and the takedown contacts.
-
-URLs of suspicious pages are *defanged* (``hxxps://exemplo[.]com``) so nobody opens them by accident."""
-
 from __future__ import annotations
 
 import re
 from collections import Counter
-from datetime import UTC, datetime
 from pathlib import Path
-
-from jinja2 import Environment, PackageLoader, select_autoescape
 
 from simio.agentes.inteligencia_dominio import resumir as resumir_inteligencia
 from simio.agentes.triagem_ameacas import NIVEIS, VisaoAmeaca
 from simio.nucleo import caminhos
 from simio.nucleo.modelos import InteligenciaDominio
 from simio.relatorios.dados import RegistroCandidata
-
-_env = Environment(
-    loader=PackageLoader("simio.relatorios", "templates"),
-    autoescape=select_autoescape(["html", "j2"], default=True),
-    trim_blocks=True,
-    lstrip_blocks=True,
-)
+from simio.relatorios.paginas import agora_br, ambiente, logo_marca
 
 
 def desarmar_url(url: str) -> str:
+    """``https://golpe.com/x`` -> ``hxxps://golpe[.]com/x``, para ninguém abrir a página sem querer."""
     saida = re.sub(r"^http", "hxxp", url, flags=re.IGNORECASE)
     fim_host = saida.find("/", saida.find("://") + 3) if "://" in saida else -1
     host = saida[: fim_host if fim_host > 0 else len(saida)]
@@ -40,6 +27,8 @@ def gravar_html_ameacas(
     dir_campanha: Path,
     caminhos_dossies: dict[str, Path],
     defensivos: list[tuple[str, str]] | None = None,
+    id_marca: str = "bv",
+    nome_marca: str = "",
 ) -> Path:
     fichas = []
     for t, r, item in linhas:
@@ -69,9 +58,16 @@ def gravar_html_ameacas(
         )
     niveis = Counter(c["nivel"] for c in fichas)
     categorias = Counter(cat for c in fichas for cat in c["categorias"])
-    html = _env.get_template("relatorio_ameacas.html.j2").render(
+    rel = caminhos.relatorios(dir_campanha)
+    html = ambiente.get_template("relatorio_ameacas.html.j2").render(
         id_campanha=id_campanha,
-        gerado_em=datetime.now(UTC).strftime("%d/%m/%Y %H:%M UTC"),
+        nome_marca=nome_marca or id_marca.upper(),
+        uri_logo=logo_marca(id_marca),
+        nav=[
+            ("Relatório da campanha", caminhos.link(caminho, rel.html)),
+            ("Planilha", caminhos.link(caminho, rel.planilha)),
+        ],
+        gerado_em=agora_br(),
         fichas=fichas,
         niveis=[(nv, niveis.get(nv, 0)) for nv in NIVEIS[:-1]],
         categorias=categorias.most_common(),

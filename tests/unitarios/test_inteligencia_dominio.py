@@ -1,5 +1,3 @@
-"""Domain intelligence of flagged pages: RDAP (registration/holder/abuse), DNS over HTTPS and hosting."""
-
 from __future__ import annotations
 
 from datetime import UTC, datetime
@@ -109,7 +107,7 @@ async def test_coletor_pagina_de_plataforma_informa_abuso_da_plataforma_nao_o_re
         caminhos_rdap.append(requisicao.url.path)
         if requisicao.url.path.startswith("/ip/"):
             return httpx.Response(
-                429 if len(caminhos_rdap) == 1 else 200,  # first call rate-limited, then retried
+                429 if len(caminhos_rdap) == 1 else 200,  # a primeira chamada leva 429 e é repetida
                 json={
                     "name": "WEEBLY",
                     "entities": [
@@ -132,7 +130,7 @@ async def test_coletor_pagina_de_plataforma_informa_abuso_da_plataforma_nao_o_re
     )
     intel = await col.coletar("bv.weebly.com")
     assert intel.plataforma == "weebly.com" and intel.rdap is None and not intel.erros
-    assert not any(p.startswith("/domain/") for p in caminhos_rdap)  # the platform's registration is irrelevant
+    assert not any(p.startswith("/domain/") for p in caminhos_rdap)  # o registro da plataforma não interessa
     s = resumir(intel)
     assert s["abuso"] == "abuse@weebly.example" and s["criado"] == "" and "plataforma" in s["titular"]
     assert s["hospedagem"] == "Weebly, Inc. (74.115.51.8)" and s["resolve"] == "sim"

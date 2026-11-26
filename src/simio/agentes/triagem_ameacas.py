@@ -1,22 +1,3 @@
-"""Threat-intelligence triage of an analysed campaign, without new searches, collection or model calls.
-
-The brand analyst judges pages as a correspondent (COBAN) auditor: shops and partners are its targets
-and much of the rest is "out of scope". A threat analyst asks something else: *does this page impersonate
-the bank or put its customers at risk?* This module re-reads what is already stored (the model's
-scenario case, the page signals, discovery hypotheses, the domain intelligence) and scores each page
-with explicit, auditable facts:
-
-* credential harvesting (password/card/token fields on a page presenting the brand);
-* impersonation or fake official channel, as the model itself recorded in the scenario case;
-* the brand in a non-official domain or a lookalike (typosquatting);
-* APK distribution outside the official stores;
-* free/ephemeral hosting, recently registered domains;
-* boleto / Pix / quitação / 2ª via services offered with the brand.
-
-Legitimate businesses (an identified correspondent or third party communicating as itself) score down:
-they are a compliance matter, not a threat.
-"""
-
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -28,7 +9,7 @@ from simio.marcas import PerfilMarca
 from simio.nucleo.modelos import CasoCenario, ClasseIdentidade, ClassificacaoFinal, InteligenciaDominio
 from simio.nucleo.urls import dominio_corresponde, hostname_de
 
-if TYPE_CHECKING:  # reporting imports this module
+if TYPE_CHECKING:  # relatorios importa este módulo (evita import circular)
     from simio.relatorios.dados import RegistroCandidata
 
 NIVEIS = ("CRÍTICO", "ALTO", "MÉDIO", "BAIXO", "SEM AMEAÇA")
@@ -71,6 +52,10 @@ def _nivel(pontuacao: float) -> str:
 
 
 def triar(rec: RegistroCandidata, marca: PerfilMarca, intel: InteligenciaDominio | None = None) -> VisaoAmeaca:
+    """Nível de ameaça de uma página já analisada, sem busca, coleta nem chamada ao modelo.
+
+    Cada ponto vem de um fato conferível. Empresa identificada falando em nome próprio perde pontos:
+    é tema de conformidade, não ameaça."""
     f = rec.final
     if f is None:
         return VisaoAmeaca(0, "SEM AMEAÇA", fatos=["não analisado"])
@@ -94,7 +79,7 @@ def triar(rec: RegistroCandidata, marca: PerfilMarca, intel: InteligenciaDominio
 
     host_titulo = f"{pagina.titulo if pagina else ''} {host} " + " ".join(h.titulo or "" for h in rec.resultados)
     apresenta_marca = bool(marca.mencoes_fortes(host_titulo) or marca.correspondencia_marca_dominio(host))
-    descartado = f.classificacao == ClassificacaoFinal.SEM_INDICIO  # the final verdict (after review)
+    descartado = f.classificacao == ClassificacaoFinal.SEM_INDICIO  # veredito final, depois da revisão
     creds = [k for k in f.dados_sensiveis_solicitados if k in TIPOS_CREDENCIAL]
     if creds:
         adicionar(
@@ -102,7 +87,7 @@ def triar(rec: RegistroCandidata, marca: PerfilMarca, intel: InteligenciaDominio
         )
     caso = f.caso
     if descartado:
-        pass  # the reviewer discarded it (homonym, directory, the bank's own channel...): the case does not count
+        pass  # o revisor descartou (homônimo, diretório, canal do próprio banco...): o caso não conta
     elif caso == CasoCenario.D_PERSONIFICACAO_FORTE:
         adicionar(4, "o analisador registrou personificação da instituição", "Personificação da marca")
     elif caso == CasoCenario.C_POSSIVEL_CANAL_OFICIAL:
@@ -127,6 +112,7 @@ def triar(rec: RegistroCandidata, marca: PerfilMarca, intel: InteligenciaDominio
         and marca.mencoes(texto)
     ):
         adicionar(1, "o domínio com a marca tem conteúdo que cita a instituição")
+    # TODO: "apk" in host também pega nomes como napkin.com; checar só rótulos do host (apk., -apk).
     eh_apk = dominio_corresponde(host, _HOSTS_APK) or url.lower().split("?")[0].endswith(".apk") or "apk" in host
     if eh_apk and apresenta_marca and not descartado:
         adicionar(3, "distribui aplicativo (APK) com a marca fora das lojas oficiais", "App falso / APK")

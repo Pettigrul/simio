@@ -1,5 +1,3 @@
-"""Threat triage: re-reading an analysed campaign as a threat analyst, with no new model calls."""
-
 from __future__ import annotations
 
 from simio.agentes.triagem_ameacas import triar
@@ -91,7 +89,7 @@ def test_parceiro_identificado_com_marca_propria_nao_eh_ameaca() -> None:
 
 
 def test_caso_descartado_nao_conta() -> None:
-    # The reviewer discarded the analyst's "impersonation" (a directory of bank branches).
+    # O revisor descartou a "personificação" do analista (era um diretório de agências).
     r = _registro(
         "https://agencias.example/bv-financeira/sp",
         ClassificacaoFinal.SEM_INDICIO,
@@ -109,7 +107,7 @@ def test_semelhante_registrado_pelo_proprio_banco_eh_defensivo() -> None:
         metadados={"semelhante_a": "bv.com.br", "fuzzer": "combosquatting"},
     )
     r = _registro("http://bvcartao.com.br/", ClassificacaoFinal.INCONCLUSIVA, CasoCenario.E_EVIDENCIA_INSUFICIENTE, resultados=[resultado])
-    assert triar(r, MARCA).eh_ameaca  # without registration data it is worth watching
+    assert triar(r, MARCA).eh_ameaca  # sem dados de registro, vale monitorar
     intel = InteligenciaDominio(
         hostname="bvcartao.com.br",
         dominio_registrado="bvcartao.com.br",

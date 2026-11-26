@@ -1,412 +1,73 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIMIO — Relatório Consolidado de Campanha {{ id_campanha }}</title>
-<style>
-  :root {
-    --bv-blue-primary: #0B5FFF;
-    --bv-blue-primary-hover: #0047D4;
-    --bv-blue-dark: #001A6B;
-    --bv-blue-medium: #003087;
-    --bv-text-primary: #272833;
-    --bv-text-secondary: #6B6C7E;
-    --bv-text-heading: #20262C;
-    --bv-text-white: #FFFFFF;
-    --bv-bg-main: #FFFFFF;
-    --bv-bg-light: #F5F5F5;
-    --bv-bg-blue-light: #EFF4FB;
-    --bv-surface-border: #E7E7ED;
-    --bv-radius-sm: 4px;
-    --bv-radius-md: 8px;
-    --bv-radius-lg: 12px;
-    --bv-radius-pill: 999px;
-    --strong: #b42318;
-    --strong-bg: #fce8e6;
-    --review: #b54708;
-    --review-bg: #fef3d6;
-    --inc: #475467;
-    --inc-bg: #e7e7ed;
-    --none: #067647;
-    --none-bg: #e6f4ea;
-  }
-  * { box-sizing: border-box; }
-  body {
-    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--bv-text-primary);
-    background: var(--bv-bg-light);
-    margin: 0;
-    padding: 0 0 64px;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  .header-banner {
-    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
-    color: var(--bv-text-white);
-    padding: 28px 36px;
-    box-shadow: 0 4px 16px rgba(0, 26, 107, 0.15);
-  }
-  .header-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .header-brand {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .header-brand img {
-    height: 44px;
-    width: auto;
-    object-fit: contain;
-  }
-  .header-titles h1 {
-    font-family: "BV Leve Titulos", "Inter", sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0;
-    color: var(--bv-text-white);
-    letter-spacing: -0.01em;
-  }
-  .header-titles p {
-    font-size: 13px;
-    margin: 4px 0 0;
-    color: #cadcff;
-  }
-  .header-meta {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-end;
-  }
-  .meta-tag {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 5px 14px;
-    border-radius: var(--bv-radius-pill);
-    font-size: 12px;
-    color: var(--bv-text-white);
-    display: inline-block;
-  }
-  .exec-date {
-    font-size: 12px;
-    color: #e0edff;
-    font-weight: 500;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 28px auto 0;
-    padding: 0 20px;
-  }
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .metric-card {
-    background: var(--bv-bg-main);
-    border: 1px solid var(--bv-surface-border);
-    border-radius: var(--bv-radius-lg);
-    padding: 18px 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    position: relative;
-    overflow: hidden;
-  }
-  .metric-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--bv-blue-primary);
-  }
-  .metric-card.strong::before { background: var(--strong); }
-  .metric-card.review::before { background: var(--review); }
-  .metric-card.inc::before { background: var(--inc); }
-  .metric-card.none::before { background: var(--none); }
-  .metric-title {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    color: var(--bv-text-secondary);
-    margin-bottom: 6px;
-  }
-  .metric-value {
-    font-family: "BV Leve Titulos", "Inter", sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--bv-text-heading);
-    line-height: 1.1;
-  }
-  .metric-desc {
-    font-size: 11px;
-    color: var(--bv-text-secondary);
-    margin-top: 4px;
-  }
-  .card {
-    background: var(--bv-bg-main);
-    border: 1px solid var(--bv-surface-border);
-    border-radius: var(--bv-radius-lg);
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    page-break-inside: avoid;
-  }
-  h2 {
-    font-family: "BV Leve Titulos", "Inter", sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--bv-blue-dark);
-    border-bottom: 2px solid var(--bv-bg-blue-light);
-    padding-bottom: 10px;
-    margin: 0 0 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    border-radius: var(--bv-radius-md);
-    overflow: hidden;
-    font-size: 12px;
-  }
-  th, td {
-    border: 1px solid var(--bv-surface-border);
-    padding: 10px 12px;
-    text-align: left;
-    vertical-align: top;
-  }
-  th {
-    background: var(--bv-bg-blue-light);
-    color: var(--bv-blue-dark);
-    font-weight: 600;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  td { word-break: break-word; }
-  tr:nth-child(even) td {
-    background-color: #fafbfc;
-  }
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: var(--bv-radius-pill);
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-  .INDICIO_FORTE { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
-  .REQUER_REVISAO { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
-  .INCONCLUSIVA { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
-  .SEM_INDICIO { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
-  .pill {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: var(--bv-radius-pill);
-    font-size: 11px;
-    font-weight: 500;
-    background: #edf2f7;
-    color: #4a5568;
-  }
-  .pill.priority {
-    background: #fee2e2;
-    color: #991b1b;
-    font-weight: 600;
-  }
-  .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; }
-  .link { color: var(--bv-blue-primary); text-decoration: none; font-weight: 500; }
-  .link:hover { text-decoration: underline; color: var(--bv-blue-primary-hover); }
-  .audit-box {
-    background: var(--bv-bg-blue-light);
-    border-left: 4px solid var(--bv-blue-primary);
-    padding: 14px 18px;
-    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
-    margin: 16px 0;
-    font-size: 12px;
-  }
-  .audit-box b { color: var(--bv-blue-dark); }
-  .footer-note {
-    text-align: center;
-    font-size: 11px;
-    color: var(--bv-text-secondary);
-    margin-top: 36px;
-    padding-top: 16px;
-    border-top: 1px solid var(--bv-surface-border);
-  }
+{% extends "base.html.j2" %}
+{% block titulo %}Relatório da campanha {{ id_campanha }}{% endblock %}
+{% block h1 %}Relatório da campanha{% endblock %}
+{% block subtitulo %}Campanha {{ id_campanha }} · {{ nome_marca }} · gerado em {{ gerado_em }}{% endblock %}
+{% block estilo %}
+  th.cenario { width:200px; }
+  th.revisao { width:120px; }
+  th.dossie, td.dossie { width:70px; text-align:center; }
   @media print {
-    body { background: #FFFFFF; padding: 0; }
-    .container { max-width: 100%; margin: 0; padding: 12px; }
-    .header-banner { padding: 16px 20px; box-shadow: none; }
-    .card { box-shadow: none; border: 1px solid #ddd; margin-bottom: 16px; padding: 16px; }
-    @page {
-      size: A4 portrait;
-      margin: 10mm;
-    }
+    table.paginas { table-layout:fixed; }
+    th.pagina { width:40%; } th.cenario { width:19%; } th.revisao { width:11%; } th.dossie { width:8%; }
   }
-</style>
-</head>
-<body>
+{% endblock %}
+{% block conteudo %}
+  <div class="numeros">
+    <div class="tile"><b>{{ total }}</b>páginas analisadas</div>
+    {% for cls in ["INDICIO_FORTE", "REQUER_REVISAO", "INCONCLUSIVA", "SEM_INDICIO"] %}
+    <div class="tile {{ cls|tom }}"><b>{{ contagens[cls] or 0 }}</b>{{ cls|rotulo }}</div>
+    {% endfor %}
+    {% if contagens[""] %}<div class="tile"><b>{{ contagens[""] }}</b>não analisadas</div>{% endif %}
+    <div class="tile"><b>{{ revisoes_pendentes }}</b>aguardam revisão humana</div>
+  </div>
+  <div class="linha">
+    {{ status_campanha|rotulo }}{% if periodo %} · execução de {{ periodo }}{% endif %}{% if foco %} · foco: {{ foco }}{% endif %}
+    · fontes: {{ fontes_usadas|join(", ") if fontes_usadas else "URLs importadas" }}
+    · modelo: {{ requisicoes_llm }} chamadas, {{ "{:,}".format(tokens_llm).replace(",", ".") }} tokens
+  </div>
+  <div class="nota">A classificação descreve o que foi observado no material coletado (capturas, texto da página e resultados de busca). Não é conclusão regulatória: cada achado precisa ser confirmado por um analista a partir do dossiê. Pontuações e níveis de confiança não são probabilidade de irregularidade.</div>
 
-<header class="header-banner">
-  <div class="header-inner">
-    <div class="header-brand">
-      <img src="{{ uri_logo_bv_branca }}" alt="Banco BV">
-      <div class="header-titles">
-        <h1>SIMIO · Relatório Executivo Consolidado</h1>
-        <p>Sistema de Investigação de Marca e Identidade Online — Res. CMN 4.935/2021</p>
-      </div>
+  {% if destaques %}
+  <h2>Achados que pedem atenção ({{ destaques|length }})</h2>
+  {% for c in destaques %}
+  <div class="card {{ c.classificacao|tom }}">
+    <div>
+      {% if c.captura %}<img class="shot" src="{{ c.captura }}" alt="Captura de {{ c.host }}" loading="lazy">{% else %}<div class="noshot">sem captura: página fora do ar ou bloqueada na coleta</div>{% endif %}
     </div>
-    <div class="header-meta">
-      <div class="meta-tag">Campanha: <span class="mono">{{ id_campanha }}</span> · Marca: {{ id_marca|upper }}</div>
-      <div class="exec-date">📅 Data de Execução: <strong>{{ executada_em }}</strong></div>
+    <div>
+      <span class="pill {{ c.classificacao|tom }}">{{ c.classificacao|rotulo }}</span>{% if c.prioridade %}<span class="pill {{ c.prioridade|tom }}">Prioridade {{ c.prioridade|rotulo|lower }}</span>{% endif %}{% if c.caso %}<span class="pill cat">{{ c.caso|rotulo }}</span>{% endif %}{% if c.logo_antiga %}<span class="pill alto">Logo antiga</span>{% endif %}{% if c.dados_sensiveis %}<span class="pill crit">Pede {{ c.dados_sensiveis }}</span>{% endif %}
+      <div class="titulo-card">{{ c.host }}</div>
+      <div class="url">{{ c.url }}</div>
+      <dl class="kv">
+        <dt>Responsável</dt><dd>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %} · {{ c.nome_entidade }}{% endif %}</dd>
+        {% if c.revisao_critica %}<dt>Revisão crítica</dt><dd>{{ c.revisao_critica|rotulo }}</dd>{% endif %}
+        <dt>Revisão humana</dt><dd>{{ c.revisao_humana|rotulo or "—" }}</dd>
+        <dt>Dossiê</dt><dd>{% if c.dossie %}<a href="{{ c.dossie }}">abrir dossiê</a>{% else %}—{% endif %}</dd>
+      </dl>
+      {% if c.justificativa %}<details><summary>Justificativa</summary><div class="texto">{{ c.justificativa }}</div></details>{% endif %}
     </div>
   </div>
-</header>
+  {% endfor %}
+  {% endif %}
 
-<main class="container">
-  <section class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-title">Total de Candidatos</div>
-      <div class="metric-value">{{ total_candidatas }}</div>
-      <div class="metric-desc">Alvos coletados e analisados</div>
-    </div>
-    <div class="metric-card strong">
-      <div class="metric-title">Forte Indício</div>
-      <div class="metric-value" style="color: var(--strong);">{{ contagens.INDICIO_FORTE or 0 }}</div>
-      <div class="metric-desc">Possível confusão grave</div>
-    </div>
-    <div class="metric-card review">
-      <div class="metric-title">Requer Análise</div>
-      <div class="metric-value" style="color: var(--review);">{{ contagens.REQUER_REVISAO or 0 }}</div>
-      <div class="metric-desc">Revisão pericial humana</div>
-    </div>
-    <div class="metric-card inc">
-      <div class="metric-title">Inconclusivos</div>
-      <div class="metric-value" style="color: var(--inc);">{{ contagens.INCONCLUSIVA or 0 }}</div>
-      <div class="metric-desc">Falha de coleta ou bloqueio</div>
-    </div>
-    <div class="metric-card none">
-      <div class="metric-title">Sem Indício</div>
-      <div class="metric-value" style="color: var(--none);">{{ contagens.SEM_INDICIO or 0 }}</div>
-      <div class="metric-desc">Sem indício observado</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-title">Revisão Humana Pendente</div>
-      <div class="metric-value">{{ revisoes_pendentes }}</div>
-      <div class="metric-desc">Casos em auditoria</div>
-    </div>
-  </section>
-
-  <div class="audit-box">
-    <b>Aviso Legal e Metodologia Pericial:</b> Este relatório consolidado sumariza as evidências periciais coletadas
-    e a auditoria automatizada de conformidade regulatória segundo os padrões do Banco BV e as diretrizes da Resolução CMN nº 4.935/2021.
-    As classificações refletem o estado do material coletado e não constituem atestado definitivo de ilicitude sem prévia validação dos papéis de trabalho por analista credenciado.
+  {% for g in grupos %}
+  {% if g.fechado %}<details class="secao"><summary>{{ g.titulo }} ({{ g.linhas|length }})</summary>{% else %}<h2>{{ g.titulo }} ({{ g.linhas|length }})</h2>{% endif %}
+  <div class="rolagem">
+  <table class="paginas">
+    <thead><tr><th class="pagina">Página</th><th>Responsável</th><th class="cenario">Cenário</th><th class="revisao">Revisão humana</th><th class="dossie">Dossiê</th></tr></thead>
+    <tbody>
+    {% for c in g.linhas %}
+    <tr>
+      <td><b>{{ c.host }}</b><div class="url">{{ c.url }}</div>{% if c.andamento %}<span class="muted peq">andamento: {{ c.andamento|rotulo|lower }}</span>{% endif %}</td>
+      <td>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %}<br><span class="muted peq">{{ c.nome_entidade }}</span>{% endif %}</td>
+      <td>{{ c.caso|rotulo or "—" }}</td>
+      <td>{{ c.revisao_humana|rotulo or "—" }}</td>
+      <td class="dossie">{% if c.dossie %}<a href="{{ c.dossie }}">abrir</a>{% else %}—{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
   </div>
-
-  <section class="card">
-    <h2>
-      <span>Resultados da Campanha (Todos os Candidatos)</span>
-      <span style="font-size: 12px; font-weight: normal; color: var(--bv-text-secondary);">Exibindo {{ candidatas|length }} registros</span>
-    </h2>
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 140px;">Classificação</th>
-          <th>Candidato / Domínio / URL</th>
-          <th style="width: 90px;">Prioridade</th>
-          <th style="width: 130px;">Identidade</th>
-          <th style="width: 130px;">Cenário Marca</th>
-          <th style="width: 140px;">Revisão Humana</th>
-          <th style="width: 90px; text-align: center;">Dossiê</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in candidatas %}
-        <tr>
-          <td>
-            <span class="badge {{ row.classificacao }}">{{ row.rotulo_classificacao }}</span>
-          </td>
-          <td>
-            <strong>{{ row.dominio }}</strong>{% if row.logo_antiga %} <span class="pill priority">LOGO ANTIGA</span>{% endif %}{% if row.dados_sensiveis %} <span class="pill priority">PEDE {{ row.dados_sensiveis|upper }}</span>{% endif %}<br>
-            <span class="mono" style="color: var(--bv-text-secondary); font-size: 10px;">{{ row.url }}</span><br>
-            {% if row.resumo %}
-            <span style="font-size: 11px; color: #4b5563;">{{ row.resumo }}</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if row.eh_prioritaria %}
-            <span class="pill priority">PRIORITÁRIO</span>
-            {% else %}
-            <span class="pill">NORMAL</span>
-            {% endif %}
-          </td>
-          <td>
-            <span style="font-weight: 500;">{{ row.tipo_entidade }}</span><br>
-            {% if row.nome_entidade %}
-            <span style="font-size: 11px; color: var(--bv-text-secondary);">{{ row.nome_entidade }}</span>
-            {% endif %}
-          </td>
-          <td>
-            <span style="font-size: 11px;">{{ row.cenario_marca or '—' }}</span>
-          </td>
-          <td>
-            <span class="pill">{{ row.status_revisao }}</span>
-          </td>
-          <td style="text-align: center;">
-            {% if row.dossie_rel %}
-            <a class="link" href="{{ row.dossie_rel }}" target="_blank">Abrir</a>
-            {% else %}
-            <span class="muted">—</span>
-            {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
-
-  <section class="card">
-    <h2>Informações da Execução e Parâmetros</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
-      <div style="background: var(--bv-bg-blue-light); padding: 12px 16px; border-radius: var(--bv-radius-md);">
-        <strong style="color: var(--bv-blue-dark); display: block; margin-bottom: 4px;">Campanha</strong>
-        <span class="mono">{{ id_campanha }}</span> (Status: {{ status_campanha }})
-      </div>
-      <div style="background: var(--bv-bg-blue-light); padding: 12px 16px; border-radius: var(--bv-radius-md);">
-        <strong style="color: var(--bv-blue-dark); display: block; margin-bottom: 4px;">Data/Hora da Execução</strong>
-        <span>{{ executada_em }}</span>
-      </div>
-      <div style="background: var(--bv-bg-blue-light); padding: 12px 16px; border-radius: var(--bv-radius-md);">
-        <strong style="color: var(--bv-blue-dark); display: block; margin-bottom: 4px;">Fontes Utilizadas</strong>
-        <span>{{ fontes_usadas|join(', ') if fontes_usadas else 'Importação direta' }}</span>
-      </div>
-      <div style="background: var(--bv-bg-blue-light); padding: 12px 16px; border-radius: var(--bv-radius-md);">
-        <strong style="color: var(--bv-blue-dark); display: block; margin-bottom: 4px;">Consumo de IA</strong>
-        <span>{{ requisicoes_llm }} requisições / {{ tokens_llm }} tokens</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="footer-note">
-    Documento gerado automaticamente por <strong>SIMIO</strong> · Sistema de Investigação de Marca e Identidade Online<br>
-    Identidade Visual conforme Design System Banco BV · {{ executada_em }}
-  </div>
-</main>
-
-</body>
-</html>
+  {% if g.fechado %}</details>{% endif %}
+  {% endfor %}
+{% endblock %}
