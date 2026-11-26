@@ -1,31 +1,61 @@
-"""Consolidated HTML campaign report aligned with Banco BV Design System."""
-
 from __future__ import annotations
 
 from collections import Counter
-from datetime import UTC, datetime
 from pathlib import Path
-
-from jinja2 import Environment, PackageLoader, select_autoescape
+from typing import Any
 
 from simio.nucleo import caminhos
 from simio.nucleo.armazenamento import Armazenamento
+from simio.nucleo.modelos import ClassificacaoFinal
+from simio.nucleo.urls import hostname_de
 from simio.relatorios.dados import RegistroCandidata
-from simio.relatorios.dados_logo import LOGO_BV_BRANCA_DATA_URI
+from simio.relatorios.paginas import agora_br, ambiente, data_br, logo_marca
 
-_env = Environment(
-    loader=PackageLoader("simio.relatorios", "templates"),
-    autoescape=select_autoescape(["html", "j2"], default=True),
-    trim_blocks=True,
-    lstrip_blocks=True,
+# Ordem das tabelas da segunda parte do relatório; as fechadas viram <details> (abertas no PDF).
+GRUPOS_TABELA = (
+    ("REQUER_REVISAO", "Requer revisão", False),
+    ("INCONCLUSIVA", "Inconclusivas", True),
+    ("SEM_INDICIO", "Sem indício", True),
+    ("", "Não analisadas", True),
 )
 
-MAPA_ROTULOS = {
-    "INDICIO_FORTE": "Forte Indício",
-    "REQUER_REVISAO": "Requer Análise",
-    "INCONCLUSIVA": "Inconclusivo",
-    "SEM_INDICIO": "Sem Indício",
-}
+
+def _em_destaque(rec: RegistroCandidata) -> bool:
+    """Achados que ganham cartão com captura; o resto vai para as tabelas."""
+    f = rec.final
+    if f is None:
+        return False
+    return (
+        f.classificacao == ClassificacaoFinal.INDICIO_FORTE
+        or (f.classificacao == ClassificacaoFinal.REQUER_REVISAO and f.prioridade.value == "ALTA")
+        or f.identidade_visual_antiga
+        or bool(f.dados_sensiveis_solicitados)
+    )
+
+
+def _linha(rec: RegistroCandidata, caminho_html: Path, dir_campanha: Path, dossies: dict[str, Path]) -> dict[str, Any]:
+    f, ev, idn = rec.final, rec.evidencia, rec.identidade
+    dossie = dossies.get(rec.candidata.id)
+    captura = ev.artefato("captura_viewport") if ev else None
+    url = (ev.url_final if ev else None) or rec.candidata.url
+    return {
+        "id": rec.candidata.id,
+        "host": hostname_de(url) or rec.candidata.hostname,
+        "url": url,
+        "classificacao": f.classificacao.value if f else "",
+        "andamento": "" if f else rec.candidata.status.value,
+        "prioridade": f.prioridade.value if f else "",
+        "caso": f.caso.value if f else "",
+        "identidade": idn.classificacao.value if idn else "",
+        "nome_entidade": (idn.nome_exibicao or "") if idn else "",
+        "revisao_critica": rec.revisao.decisao.value if rec.revisao else "",
+        "revisao_humana": f.status_revisao_humana if f else "",
+        "justificativa": (f.justificativa if f else rec.candidata.ultimo_erro) or "",
+        "logo_antiga": bool(f and f.identidade_visual_antiga),
+        "dados_sensiveis": ", ".join(f.dados_sensiveis_solicitados) if f else "",
+        "captura": caminhos.link(caminho_html, dir_campanha / captura.caminho) if captura else None,
+        "dossie": caminhos.link(caminho_html, dossie) if dossie else "",
+    }
 
 
 def renderizar_relatorio_campanha(
@@ -33,73 +63,47 @@ def renderizar_relatorio_campanha(
     armazenamento: Armazenamento,
     id_campanha: str,
     dossies: dict[str, Path],
-    caminho_html_relatorio: Path,
+    caminho_html: Path,
+    nome_marca: str = "",
+    relatorio_ameacas: Path | None = None,
 ) -> str:
     camp = armazenamento.obter_campanha(id_campanha) or {}
-    id_marca = camp.get("marca", "bv")
-    status_camp = camp.get("status", "CONCLUIDA")
-    
-    # Execution date formatted in Brazilian standard
-    agora = datetime.now(UTC)
-    executada_em = agora.strftime("%d/%m/%Y %H:%M:%S UTC")
-
-    contagens = Counter()
-    revisoes_pendentes = 0
-    linhas_candidatas = []
-
-    for rec in registros:
-        f = rec.final
-        status_c = f.classificacao.value if f else "INCONCLUSIVA"
-        contagens[status_c] += 1
-
-        if f and f.exige_revisao_humana:
-            revisoes_pendentes += 1
-
-        dossie = dossies.get(rec.candidata.id)
-        dossie_rel = caminhos.link(caminho_html_relatorio, dossie) if dossie else ""
-
-        status_revisao = f.status_revisao_humana if f else "NAO_EXIGIDA"
-        if rec.revisao:
-            status_revisao = f"{rec.revisao.decisao.value} ({status_revisao})"
-
-        linhas_candidatas.append({
-            "id": rec.candidata.id,
-            "dominio": rec.candidata.dominio_registravel or rec.candidata.hostname,
-            "url": (rec.evidencia.url_final if rec.evidencia else None) or rec.candidata.url,
-            "classificacao": status_c,
-            "rotulo_classificacao": MAPA_ROTULOS.get(status_c, status_c),
-            "eh_prioritaria": rec.eh_prioritaria,
-            "tipo_entidade": rec.identidade.classificacao.value if rec.identidade else "DESCONHECIDO",
-            "nome_entidade": (rec.identidade.nome_exibicao or rec.identidade.chave_entidade) if rec.identidade else "",
-            "cenario_marca": rec.marca.caso.value if rec.marca else "",
-            "status_revisao": status_revisao,
-            "resumo": f.justificativa if f else "",
-            "logo_antiga": bool(f and f.identidade_visual_antiga),
-            "dados_sensiveis": ", ".join(f.dados_sensiveis_solicitados) if f else "",
-            "dossie_rel": dossie_rel,
-        })
-
-    # Sort candidates by priority & classification (STRONG_INDICATION first)
-    ordem = {"INDICIO_FORTE": 0, "REQUER_REVISAO": 1, "INCONCLUSIVA": 2, "SEM_INDICIO": 3}
-    linhas_candidatas.sort(key=lambda r: (0 if r["eh_prioritaria"] else 1, ordem.get(r["classificacao"], 9)))
+    id_marca = camp.get("marca") or "bv"
+    dir_campanha = caminho_html.parent
+    contagens = Counter((r.final.classificacao.value if r.final else "") for r in registros)
+    destaques = [_linha(r, caminho_html, dir_campanha, dossies) for r in registros if _em_destaque(r)]
+    restantes = [_linha(r, caminho_html, dir_campanha, dossies) for r in registros if not _em_destaque(r)]
+    grupos = []
+    for cls, titulo, fechado in GRUPOS_TABELA:
+        linhas = [x for x in restantes if x["classificacao"] == cls]
+        if linhas:
+            grupos.append({"titulo": titulo, "fechado": fechado, "linhas": linhas})
 
     disc = armazenamento.obter_checkpoint(id_campanha, "descoberta", {}) or {}
-    fontes_usadas = disc.get("fontes_usadas", [])
-    reqs_llm, toks_llm = armazenamento.totais_uso(id_campanha)
-
-    return _env.get_template("relatorio_campanha.html.j2").render(
+    requisicoes, tokens = armazenamento.totais_uso(id_campanha)
+    rel = caminhos.relatorios(dir_campanha)
+    nav = []
+    if relatorio_ameacas is not None:
+        nav.append(("Ameaças", caminhos.link(caminho_html, relatorio_ameacas)))
+    nav.append(("Planilha", caminhos.link(caminho_html, rel.planilha)))
+    inicio, fim = camp.get("criado_em"), camp.get("finalizado_em")
+    return ambiente.get_template("relatorio_campanha.html.j2").render(
         id_campanha=id_campanha,
-        id_marca=id_marca,
-        status_campanha=status_camp,
-        executada_em=executada_em,
-        total_candidatas=len(registros),
+        nome_marca=nome_marca or id_marca.upper(),
+        uri_logo=logo_marca(id_marca),
+        nav=nav,
+        status_campanha=camp.get("status") or "",
+        foco=(camp.get("parametros") or {}).get("foco") or "",
+        periodo=" a ".join(x for x in (data_br(inicio), data_br(fim)) if x),
+        gerado_em=agora_br(),
+        total=len(registros),
         contagens=contagens,
-        revisoes_pendentes=revisoes_pendentes,
-        candidatas=linhas_candidatas,
-        fontes_usadas=fontes_usadas,
-        requisicoes_llm=reqs_llm,
-        tokens_llm=toks_llm,
-        uri_logo_bv_branca=LOGO_BV_BRANCA_DATA_URI,
+        revisoes_pendentes=sum(1 for r in registros if r.final and r.final.exige_revisao_humana),
+        destaques=destaques,
+        grupos=grupos,
+        fontes_usadas=disc.get("fontes_usadas", []),
+        requisicoes_llm=requisicoes,
+        tokens_llm=tokens,
     )
 
 
@@ -109,8 +113,12 @@ def gravar_html_campanha(
     armazenamento: Armazenamento,
     id_campanha: str,
     dossies: dict[str, Path],
+    nome_marca: str = "",
+    relatorio_ameacas: Path | None = None,
 ) -> Path:
     arquivo_relatorio.parent.mkdir(parents=True, exist_ok=True)
-    conteudo = renderizar_relatorio_campanha(registros, armazenamento, id_campanha, dossies, arquivo_relatorio)
+    conteudo = renderizar_relatorio_campanha(
+        registros, armazenamento, id_campanha, dossies, arquivo_relatorio, nome_marca, relatorio_ameacas
+    )
     arquivo_relatorio.write_text(conteudo, encoding="utf-8")
     return arquivo_relatorio

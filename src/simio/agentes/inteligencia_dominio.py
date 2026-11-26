@@ -1,22 +1,3 @@
-"""Domain intelligence for flagged pages: who registered the domain, when, where it is hosted and whom
-to contact for a takedown.
-
-Public, unauthenticated sources only:
-
-* RDAP (the structured successor of WHOIS) via the ``rdap.org`` bootstrap redirector: registrar,
-  registration/expiry dates, status, name servers, registrant *when it is a company* and the abuse
-  contact of the registrar. ``.br`` answers come from Registro.br, which publishes the holder's CNPJ.
-* DNS over HTTPS (JSON API): A/AAAA/CNAME of the host, NS/MX of the registered domain.
-* RDAP of the server IP: network name, hosting organisation and its abuse contact.
-
-LGPD: when the holder is a natural person (CPF, ``kind: individual``) no name, e-mail or document is
-kept, only "pessoa física". Personal contacts (administrative/technical) are never kept; only role
-mailboxes of organisations (abuse) are.
-
-Pages on shared platforms (``*.weebly.com``, ``*.lovable.app``...) are flagged as such: RDAP/DNS of the
-platform says nothing about the page owner, who is known only to the platform (abuse report).
-"""
-
 from __future__ import annotations
 
 import asyncio
@@ -43,7 +24,7 @@ if TYPE_CHECKING:
 log = logging.getLogger(__name__)
 
 _TIPOS_DNS = {"A": 1, "AAAA": 28, "CNAME": 5, "NS": 2, "MX": 15}
-# Platforms where the page owner never shows up in RDAP/DNS (besides the Public Suffix List private part).
+# Plataformas em que o dono da página nunca aparece no RDAP/DNS (além da parte privada da Public Suffix List).
 _HOSTS_PLATAFORMA = (
     "weebly.com", "wixsite.com", "site123.me", "lovable.app", "vercel.app", "netlify.app", "pages.dev",
     "github.io", "web.app", "firebaseapp.com", "blogspot.com", "wordpress.com", "godaddysites.com",
@@ -62,7 +43,7 @@ def _extrator_privado() -> tldextract.TLDExtract:
 
 
 def plataforma_hospedagem(hostname: str) -> str | None:
-    """The shared platform a host is a tenant of (``x.weebly.com`` -> ``weebly.com``), if any."""
+    """Plataforma compartilhada que hospeda o host (``x.weebly.com`` -> ``weebly.com``), se houver."""
     host = hostname.lower().rstrip(".")
     reg = dominio_registravel(host)
     if host != reg and dominio_corresponde(host, _HOSTS_PLATAFORMA):
@@ -103,6 +84,8 @@ def _emails_abuso(entidades: list[dict[str, Any]] | None) -> list[str]:
 
 
 def interpretar_rdap_dominio(dados: dict[str, Any], agora: datetime | None = None) -> InteligenciaRdap:
+    # LGPD: de pessoa física (CPF, kind "individual") não guardamos nome, e-mail nem documento, só
+    # "pessoa física". Contatos pessoais (administrativo/técnico) nunca entram; só caixas de abuso.
     eventos = {e.get("eventAction"): e.get("eventDate") for e in dados.get("events") or []}
     criado = eventos.get("registration")
     idade = None
@@ -166,6 +149,8 @@ def _erro(exc: Exception) -> str:
     return type(exc).__name__
 
 
+# Só fontes públicas e sem autenticação: RDAP pelo redirecionador rdap.org (o Registro.br publica o CNPJ do
+# titular) e DNS sobre HTTPS.
 class ColetorInteligenciaDominio:
     def __init__(
         self,
@@ -180,7 +165,7 @@ class ColetorInteligenciaDominio:
     ) -> None:
         self.retentativas = retentativas
         self.espera_s = espera_s
-        # Registries (Registro.br, ARIN, RIPE...) throttle bursts: RDAP calls are spaced out globally.
+        # Registro.br, ARIN, RIPE... limitam rajadas: as chamadas RDAP são espaçadas para o processo todo.
         self.intervalo_rdap_s = intervalo_rdap_s
         self._trava_rdap = asyncio.Lock()
         self._ultimo_rdap = 0.0
@@ -202,7 +187,7 @@ class ColetorInteligenciaDominio:
         )
 
     async def _json(self, c: httpx.AsyncClient, url: str, **kw: Any) -> dict[str, Any]:
-        """GET with retries: RDAP redirectors and registries rate-limit bursts (429) and flap (5xx)."""
+        """GET com novas tentativas: redirecionador e registros RDAP devolvem 429 em rajadas e 5xx às vezes."""
         for tentativa in range(self.retentativas + 1):
             if url.startswith(self.base_rdap):
                 async with self._trava_rdap:
@@ -218,7 +203,7 @@ class ColetorInteligenciaDominio:
                 continue
             r.raise_for_status()
             return r.json()
-        raise AssertionError("unreachable")  # pragma: no cover
+        raise AssertionError("inalcançável")  # pragma: no cover
 
     async def _dns(self, c: httpx.AsyncClient, nome: str, tipo_registro: str) -> list[str]:
         dados = await self._json(
@@ -281,7 +266,7 @@ class ColetorInteligenciaDominio:
             intel.a, intel.aaaa, intel.cname, intel.ns, intel.mx = a, aaaa, cname, ns, mx
             if not (a or aaaa or cname):
                 intel.notas.append("O nome não resolve hoje (domínio fora do ar, suspenso ou expirado).")
-            if not plataforma:  # a platform's registration says nothing about the page owner
+            if not plataforma:  # o registro da plataforma não diz nada sobre o dono da página
                 rdap = await self._rdap_dominio(c, dominio)
                 if isinstance(rdap, str):
                     (intel.notas if "não publica RDAP" in rdap else intel.erros).append(rdap)
@@ -297,8 +282,8 @@ class ColetorInteligenciaDominio:
 
 
 def resumir(intel: InteligenciaDominio) -> dict[str, str]:
-    """Flat, human-readable fields for spreadsheets and dossiers."""
-    # On a shared platform the registration data belongs to the platform, not to the page owner.
+    """Campos legíveis, em texto, para planilha e dossiês."""
+    # Em plataforma compartilhada o registro é da plataforma, não do dono da página.
     r = None if intel.plataforma else intel.rdap
     criado = ""
     if r and r.criado:
@@ -335,26 +320,26 @@ def caminho_inteligencia(dir_saida: Path, id_campanha: str) -> Path:
 
 
 def carregar_inteligencia(dir_saida: Path, id_campanha: str) -> dict[str, InteligenciaDominio]:
-    """``hostname -> DomainIntel`` of a campaign (empty when it was never enriched)."""
+    """``hostname -> InteligenciaDominio`` da campanha (vazio se nunca foi enriquecida)."""
     caminho = caminho_inteligencia(dir_saida, id_campanha)
     if not caminho.exists():
         return {}
     bruto = json.loads(caminho.read_text(encoding="utf-8"))
-    # Files written by the English-named builds are read through the legacy translation (never rewritten here).
+    # Arquivos gravados pelas versões com nomes em inglês passam pela tradução legada (sem regravar aqui).
     return {h: InteligenciaDominio.model_validate(traduzir_modelo(InteligenciaDominio, v)) for h, v in bruto.items()}
 
 
 async def enriquecer_campanha(
     configuracoes: Configuracoes, armazenamento: Armazenamento, id_campanha: str, atualizar: bool = False
 ) -> dict[str, InteligenciaDominio]:
-    """Collect domain intelligence for every flagged page of a campaign (STRONG/REVIEW, asking for
-    credentials, a lookalike or a domain carrying the brand), one lookup per host. Social profiles are
-    skipped (the owner is the profile). Results already collected are kept unless ``atualizar``."""
-    # Hosts whose lookup failed (rate limits, timeouts) are tried again on every run.
+    """Consulta RDAP/DNS de cada página sinalizada da campanha (indício forte ou revisão, pede credenciais,
+    domínio parecido ou com a marca), uma vez por host. Perfis de rede social ficam de fora (o dono é o
+    perfil). O que já foi coletado é mantido, a não ser com ``atualizar``; hosts que falharam (limite de
+    requisições, timeout) são consultados de novo a cada execução."""
     camp = armazenamento.obter_campanha(id_campanha) or {}
     try:
         marca = carregar_marca(camp.get("marca") or "bv", configuracoes.arquivo_marca)
-    except Exception:  # an unknown brand only narrows the targets
+    except Exception:  # marca desconhecida só reduz os alvos
         marca = None
     conhecidos = (
         {}
@@ -385,8 +370,8 @@ async def enriquecer_campanha(
     async def um(host: str, ip: str | None) -> tuple[str, InteligenciaDominio]:
         try:
             return host, await coletor.coletar(host, ip)
-        except Exception as exc:  # one host never stops the others
-            log.warning("domain intel failed for %s: %s", host, exc)
+        except Exception as exc:  # um host com erro não para os outros
+            log.warning("falha na inteligência de domínio de %s: %s", host, exc)
             return host, InteligenciaDominio(
                 hostname=host, dominio_registrado=dominio_registravel(host), erros=[str(exc)[:300]]
             )

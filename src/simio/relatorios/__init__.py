@@ -1,5 +1,3 @@
-"""Report generation entry point."""
-
 from __future__ import annotations
 
 import re
@@ -36,8 +34,8 @@ _LINK_EVIDENCIA = re.compile(r'(?P<attr>\b(?:src|href)=")(?P<sobe>(?:\.\./)*)(?=
 
 
 def arquivar_relatorios_anteriores(dir_campanha: Path) -> Path | None:
-    """Move the reports of the previous generation (and their dossiers and crops) to
-    ``anteriores/<carimbo>/``, the time being when that generation was written."""
+    """Move os relatórios da geração anterior (com dossiês e recortes) para ``anteriores/<carimbo>/``,
+    com a hora em que aquela geração foi gravada."""
     presentes = [
         dir_campanha / nome
         for nome in (*caminhos.ARQUIVOS_RELATORIO, *caminhos.DIRS_RELATORIO)
@@ -61,7 +59,7 @@ def arquivar_relatorios_anteriores(dir_campanha: Path) -> Path | None:
                 "Se o arquivo estiver aberto em outro programa, feche-o e gere o relatório de novo."
             ) from exc
         movidos.append(p)
-    # The archived pages sit two folders deeper: keep their links to the evidence working.
+    # As páginas arquivadas ficam duas pastas abaixo: os links para as evidências precisam subir mais.
     for html in [*destino.glob("*.html"), *destino.glob(f"{caminhos.DIR_DOSSIES}/*.html")]:
         texto = html.read_text(encoding="utf-8")
         novo = _LINK_EVIDENCIA.sub(r"\g<attr>../../\g<sobe>", texto)
@@ -71,7 +69,7 @@ def arquivar_relatorios_anteriores(dir_campanha: Path) -> Path | None:
 
 
 def gravar_recortes_logo_antiga(registros: list[RegistroCandidata], dir_campanha: Path) -> dict[str, Path]:
-    """PNG cut-outs of the best legacy-logo match of each page (``logo-antiga/<host>_<id>.png``)."""
+    """Recorte em PNG da melhor correspondência com a logo antiga de cada página (``logo-antiga/<host>_<id>.png``)."""
     saida: dict[str, Path] = {}
     for r in registros:
         correspondencias = r.marca.correspondencias_visuais if r.marca else []
@@ -96,26 +94,20 @@ def gerar_relatorios(
 ) -> ResultadoRelatorios:
     camp = armazenamento.obter_campanha(id_campanha)
     if camp is None:
-        raise KeyError(f"campaign not found: {id_campanha}")
+        raise KeyError(f"campanha não encontrada: {id_campanha}")
     marca = carregar_marca(camp["marca"], configuracoes.arquivo_marca)
     registros = carregar_registros(armazenamento, id_campanha, marca)
     dir_campanha = caminhos.dir_campanha(configuracoes.dir_saida, id_campanha)
     arquivos = caminhos.relatorios(dir_campanha)
     intel = carregar_inteligencia(configuracoes.dir_saida, id_campanha)
     anteriores = arquivar_relatorios_anteriores(dir_campanha)
-    dossies = gravar_dossies(registros, dir_campanha, todas_candidatas=todos_dossies, inteligencia_dominio=intel)
-
-    # 1. Excel Workbook (.xlsx)
+    dossies = gravar_dossies(
+        registros, dir_campanha, todas_candidatas=todos_dossies, inteligencia_dominio=intel, id_marca=marca.id
+    )
     recortes = gravar_recortes_logo_antiga(registros, dir_campanha)
     planilha = gravar_planilha(arquivos.planilha, armazenamento, id_campanha, registros, dossies, recortes, intel)
 
-    # 2. Consolidated Campaign HTML Report (.html)
-    relatorio_html = gravar_html_campanha(arquivos.html, registros, armazenamento, id_campanha, dossies)
-
-    # 3. Consolidated Campaign PDF Report (.pdf)
-    relatorio_pdf = gerar_pdf_campanha(relatorio_html, arquivos.pdf)
-
-    # 4. Threat-intelligence briefing (.html), when the campaign has threats
+    # O relatório de ameaças sai antes do da campanha, que aponta para ele.
     foco = (camp.get("parametros") or {}).get("foco")
     linhas = linhas_ameacas(registros, marca, foco, intel)
     relatorio_ameacas = None
@@ -129,8 +121,12 @@ def gerar_relatorios(
             )
         )
         relatorio_ameacas = gravar_html_ameacas(
-            arquivos.ameacas, linhas, id_campanha, dir_campanha, dossies, defensivos
+            arquivos.ameacas, linhas, id_campanha, dir_campanha, dossies, defensivos, marca.id, marca.nome_exibicao
         )
+    relatorio_html = gravar_html_campanha(
+        arquivos.html, registros, armazenamento, id_campanha, dossies, marca.nome_exibicao, relatorio_ameacas
+    )
+    relatorio_pdf = gerar_pdf_campanha(relatorio_html, arquivos.pdf)
 
     return ResultadoRelatorios(
         planilha=planilha,
