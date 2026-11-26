@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê {{ c.id }}</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .INDICIO_FORTE { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REQUER_REVISAO { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVA { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .SEM_INDICIO { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSAO { color: var(--strong); font-weight: 600; }
+  .LEGITIMO { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>{{ c.id_campanha }}</b> · Gerado em: {{ gerado_em }}
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">{{ c.id }} — {{ c.dominio_registravel }}</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">{{ c.url }}</p>
+      </div>
+      {% if f %}
+      <div>
+        <span class="badge {{ f.classificacao.value }}">{{ f.classificacao.value }}</span>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if f %}
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>{{ f.prioridade.value }}</b> · Cenário: <b>{{ f.caso.value }}</b> · Revisão humana: <b>{{ f.status_revisao_humana }}</b>
+    </p>
+    {% endif %}
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    {% if f %}
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>{{ f.classificacao.value }}</div>
+      <div class="kv"><b>Prioridade</b>{{ f.prioridade.value }}</div>
+      <div class="kv"><b>Identidade visual antiga</b>{% if f.identidade_visual_antiga %}SIM — logotipo descontinuado ({{ f.fonte_identidade_visual_antiga }}){% else %}não identificada{% endif %}</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>{% if f.dados_sensiveis_solicitados %}{{ f.dados_sensiveis_solicitados|join(', ') }} — possível coleta de credenciais{% else %}nenhum campo de senha, cartão ou token{% endif %}</div>
+      {% if di %}
+      {% if di.plataforma %}<div class="kv"><b>Plataforma</b>{{ di.plataforma }} — o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</div>{% endif %}
+      {% if di.criado %}<div class="kv"><b>Domínio criado em</b>{{ di.criado }}{% if di.registrador %} · {{ di.registrador }}{% endif %}</div>{% endif %}
+      {% if di.titular %}<div class="kv"><b>Titular do domínio</b>{{ di.titular }}</div>{% endif %}
+      <div class="kv"><b>Resolve hoje</b>{{ di.resolve }}{% if di.hospedagem %} · hospedagem: {{ di.hospedagem }}{% endif %}</div>
+      {% if di.ns %}<div class="kv"><b>DNS (NS / MX)</b>{{ di.ns }}{% if di.mx %} / {{ di.mx }}{% endif %}</div>{% endif %}
+      {% if di.abuso %}<div class="kv"><b>Contatos de abuso (takedown)</b>{{ di.abuso }}</div>{% endif %}
+      {% endif %}
+      <div class="kv"><b>Identidade (categoria)</b>{{ f.classe_identidade.value }}</div>
+      <div class="kv"><b>Confiança da atribuição</b>{{ f.confianca_atribuicao.value }}</div>
+      <div class="kv"><b>Confiança da extração</b>{{ f.confianca_extracao.value }}</div>
+      <div class="kv"><b>Suficiência da evidência</b>{{ f.suficiencia_evidencia.value }}</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">{{ f.justificativa }}</p>
+    {% if f.notas_salvaguarda %}
+    <h3>Regras de consistência aplicadas</h3>
+    <ul>{% for n in f.notas_salvaguarda %}<li>{{ n }}</li>{% endfor %}</ul>
+    {% endif %}
+    <h3>Limitações</h3>
+    <ul>{% for n in f.limitacoes %}<li>{{ n }}</li>{% else %}<li>—</li>{% endfor %}</ul>
+    {% else %}
+    <p>Sem decisão final (status do pipeline: {{ c.status.value }}; {{ c.ultimo_erro or '' }}).</p>
+    {% endif %}
+  </div>
+
+  {% if b and b.correspondencias_visuais %}
+  <div class="card">
+    <h2>Logotipo antigo — comparação de imagem</h2>
+    <p class="muted">Regiões dos screenshots comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de IA.</p>
+    <table>
+      <thead><tr><th>Screenshot</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem</th></tr></thead>
+      <tbody>
+      {% for m in b.correspondencias_visuais %}
+        <tr><td>{{ m.ref_captura }}</td><td>{{ m.bbox[0] }}, {{ m.bbox[1] }}</td><td>{{ m.bbox[2] }}×{{ m.bbox[3] }} px</td><td>{{ '%.2f'|format(m.pontuacao) }}</td><td class="mono">{{ m.src_imagem or '—' }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+    {% for s in capturas %}
+      <figure>
+        <img src="{{ s.src }}" alt="{{ s.rotulo }}">
+        <figcaption class="muted" style="margin-top:6px;">{{ s.rotulo }} · <span class="mono">sha256 {{ s.sha }}</span></figcaption>
+      </figure>
+    {% else %}
+      <p>Nenhum screenshot disponível.</p>
+    {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      {% for i in catalogo %}
+      <tr id="{{ i.ref }}"><td class="mono"><b>{{ i.ref }}</b></td><td>{{ i.tipo }}</td><td>{{ i.local }}{% if i.acima_dobra %} (acima da dobra){% endif %}</td><td>{{ i.conteudo }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {% if b %}
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">({{ b.analisador }}{% if b.versao_prompt %}, {{ b.versao_prompt }}{% endif %})</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      {% for d in b.dimensoes %}
+      <tr><td>{{ d.dimensao.value }}</td><td class="{{ d.sinal.value }}">{{ d.sinal.value }}</td><td>{{ d.constatacao }}</td><td class="mono">{% for r in d.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</td></tr>
+      {% endfor %}
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul>{% for ind in b.indicadores_confusao_marca %}<li>[{{ ind.forca.value }}] {{ ind.dimensao.value }}: {{ ind.descricao }} — <span class="mono">{% for r in ind.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</span></li>{% else %}<li>Nenhum</li>{% endfor %}</ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul>{% for ind in b.indicadores_relacao_legitima %}<li>[{{ ind.forca.value }}] {{ ind.dimensao.value }}: {{ ind.descricao }} — <span class="mono">{% for r in ind.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</span></li>{% else %}<li>Nenhum</li>{% endfor %}</ul>
+    <h3>Fatos Observados</h3>
+    <ul>{% for x in b.fatos_observados %}<li>{{ x }}</li>{% endfor %}</ul>
+    <h3>Incertezas</h3>
+    <ul>{% for x in b.incertezas %}<li>{{ x }}</li>{% else %}<li>—</li>{% endfor %}</ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">{{ b.resumo_raciocinio }}</p>
+    {% if b.possivel_injecao_prompt %}<p class="note" style="border-left-color:var(--strong);"><b>Atenção:</b> o conteúdo coletado contém padrões de instrução direcionados a modelos de IA (possível prompt injection).</p>{% endif %}
+    {% if b.referencias_descartadas %}<p class="muted">Referências citadas pelo modelo e inexistentes no catálogo (descartadas): {{ b.referencias_descartadas|join(', ') }}</p>{% endif %}
+  </div>
+  {% endif %}
+
+  {% if idn %}
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>{{ idn.classificacao.value }}</div>
+      <div class="kv"><b>Entidade</b>{{ idn.nome_exibicao or '—' }}<br><span class="mono">{{ idn.chave_entidade }}</span></div>
+      <div class="kv"><b>Confiança</b>{{ idn.confianca_atribuicao.value }}</div>
+      <div class="kv"><b>Cadastro autorizado</b>{% if idn.correspondencia_cadastro %}{{ idn.correspondencia_cadastro.fonte }} ({{ idn.correspondencia_cadastro.casado_por }}){% else %}sem correspondência{% endif %}</div>
+    </div>
+    <p style="margin-top:12px;">{{ idn.fundamentacao }}</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      {% for x in idn.fatos %}
+      <tr><td>{{ x.tipo }}</td><td>{{ x.valor }}{% if x.valido == false %} <b>(dígito inválido)</b>{% endif %}</td><td class="mono">{% if x.ref_evidencia %}<a href="#{{ x.ref_evidencia }}">{{ x.ref_evidencia }}</a>{% endif %}</td><td>{{ x.contexto or '' }}</td></tr>
+      {% endfor %}
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul>{% for x in idn.inferencias %}<li>{{ x }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  {% if comp %}
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">{{ comp.ressalva }}</p>
+    {% for fd in comp.achados %}
+    <h3>{{ fd.citacao }} — {{ fd.status.value }}</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: {{ fd.fonte_requisito.value }}</p>
+    <blockquote class="kv" style="margin:8px 0;">{{ fd.texto_requisito }}</blockquote>
+    {% if fd.hipotese %}<p><b>Hipótese:</b> {{ fd.hipotese }}</p>{% endif %}
+    <p><b>Evidência observada:</b> <span class="mono">{% for r in fd.evidencias_observadas %}<a href="#{{ r }}">{{ r }}</a> {% else %}—{% endfor %}</span></p>
+    {% if fd.informacoes_faltantes %}<p><b>Informação faltante:</b></p><ul>{% for m in fd.informacoes_faltantes %}<li>{{ m }}</li>{% endfor %}</ul>{% endif %}
+    {% endfor %}
+    {% for n in comp.notas_fora_escopo %}<p class="note">{{ n }}</p>{% endfor %}
+    {% if comp.controles_relacionados %}<h3>Controles da contratante relacionados</h3><ul>{% for n in comp.controles_relacionados %}<li>{{ n }}</li>{% endfor %}</ul>{% endif %}
+    {% if comp.limitacoes %}<p class="muted">Limitações: {{ comp.limitacoes|join('; ') }}</p>{% endif %}
+  </div>
+  {% endif %}
+
+  {% if rv %}
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">({{ rv.revisor }})</span></h2>
+    <p>Decisão: <b>{{ rv.decisao.value }}</b> → {{ rv.classificacao_revisada.value }} / {{ rv.prioridade_revisada.value }}</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">{{ rv.resumo_raciocinio }}</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      {% for ch in rv.contestacoes %}
+      <tr><td>{{ ch.topico }}</td><td>{{ ch.severidade.value }}</td><td>{{ ch.preocupacao }}</td><td class="mono">{% for r in ch.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</td></tr>
+      {% else %}
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+      {% endfor %}
+    </table>
+    {% if rv.evidencias_contraditorias %}<h3>Evidências contraditórias</h3><ul>{% for x in rv.evidencias_contraditorias %}<li>{{ x }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      {% for h in resultados %}
+      <tr><td>{{ h.fonte }}</td><td>{{ h.consulta or '' }}<br><span class="muted">{{ h.id_hipotese or '' }}</span></td><td class="mono">{{ h.url_original }}</td><td>{{ h.titulo or '' }}<br><span class="muted">{{ h.trecho or '' }}</span></td></tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {% if ev %}
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>{{ ev.status.value }} (HTTP {{ ev.status_http }})</div>
+      <div class="kv"><b>Coletado em (UTC)</b>{{ ev.coletada_em }}</div>
+      <div class="kv"><b>IP do servidor</b>{{ ev.ip_servidor or '—' }}</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">{{ ev.caminho_manifesto }}<br>sha256 {{ ev.sha256_manifesto }}</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: {{ ev.url_original }}<br>Final: {{ ev.url_final }}</p>
+    {% if ev.cadeia_redirecionamentos %}<p class="mono">Redirecionamentos: {{ ev.cadeia_redirecionamentos|join(' → ') }}</p>{% endif %}
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      {% for a in ev.artefatos %}
+      <tr><td>{{ a.tipo }}</td><td class="mono">{{ a.caminho }}</td><td class="mono">{{ a.sha256 }}</td><td>{{ a.tamanho_bytes }}</td></tr>
+      {% endfor %}
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul>{% for e in ev.erros %}<li>{{ e }}</li>{% endfor %}{% for e in ev.nao_inspecionado %}<li>{{ e }}</li>{% endfor %}</ul>
+    {% if ev.requisicoes_bloqueadas %}<h3>Requisições bloqueadas pela política de rede</h3><ul class="mono">{% for b in ev.requisicoes_bloqueadas[:30] %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      {% for t in transicoes %}
+      <tr><td>{{ t.em }}</td><td>{{ t.status_origem }}</td><td>{{ t.status_destino }}</td><td>{{ t.nota or '' }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+"""Prepare the authorised-correspondent (COBAN) registry used by the Identity agent.
+
+Reads the operator's export (``.xlsx`` or ``.csv`` with columns ``cnpj``, ``nmpessoa``,
+``dtcadastro``, ``login_parceiro``) and writes the CSV expected by ``CadastroCoban``:
+
+* one row per CNPJ (duplicates from multiple partner logins are merged);
+* the institution's own entities are removed (CNPJ roots from the brand profile, plus any row
+  whose name is an institution name, e.g. internal accounts such as "COMISSAO PARCERIA");
+* invalid CNPJs are dropped; mojibake in names (``COM√ÇRCIO``) is repaired when possible.
+
+The output contains partner data and MUST stay on the execution machine (``data/`` is
+git-ignored). Usage::
+
+    python scripts/preparar_cadastro_coban.py Todos_Cobans_Ativos.xlsx \
+        --saida data/coban_registry_bv.csv --marca bv --data-referencia 2026-10-06
+"""
+
+from __future__ import annotations
+
+import argparse
+import contextlib
+import csv
+import re
+import sys
+from collections import Counter
+from dataclasses import dataclass, field
+from pathlib import Path
+
+RAIZ = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(RAIZ / "src"))
+
+from simio.agentes.identidade import cnpj_valido, normalizar_cnpj  # noqa: E402
+from simio.marcas import normalizar_texto, carregar_marca  # noqa: E402
+
+CAMPOS = [
+    "cnpj",
+    "nome",
+    "nomes_alternativos",
+    "data_cadastro_inicial",
+    "data_cadastro_recente",
+    "qtd_cadastros",
+    "logins_parceiro",
+    "fonte",
+    "data_referencia",
+]
+_MOJIBAKE = re.compile(r"[√∫ƒ≈ŒœÀÃÕ]")
+_DATA = re.compile(r"\d{4}-\d{2}-\d{2}")
+
+
+def reparar_nome(bruto: object) -> str:
+    """Trim, collapse spaces and undo UTF-8-read-as-MacRoman mojibake (``COM√ÇRCIO`` -> ``COMÉRCIO``)."""
+    nome = re.sub(r"\s+", " ", str(bruto or "")).strip()
+    if _MOJIBAKE.search(nome):
+        with contextlib.suppress(UnicodeEncodeError, UnicodeDecodeError):
+            nome = nome.encode("mac_roman").decode("utf-8")
+    if nome.replace(".", "").isdigit():  # a bare number is not a name
+        return ""
+    return nome
+
+
+def _qualidade_nome(nome: str) -> tuple[int, int, int]:
+    return (0 if ("?" in nome or _MOJIBAKE.search(nome)) else 1, 0 if nome.isupper() else 1, len(nome))
+
+
+@dataclass
+class Entrada:
+    cnpj: str
+    nomes: Counter[str] = field(default_factory=Counter)
+    datas: list[str] = field(default_factory=list)
+    logins: list[str] = field(default_factory=list)
+
+    def linha(self, fonte: str, data_referencia: str) -> dict[str, str]:
+        ranqueados = sorted(self.nomes, key=lambda n: (_qualidade_nome(n), self.nomes[n]), reverse=True)
+        melhor = ranqueados[0] if ranqueados else ""
+        alts = [n for n in ranqueados[1:] if normalizar_texto(n) != normalizar_texto(melhor)]
+        datas = sorted(self.datas)
+        return {
+            "cnpj": self.cnpj,
+            "nome": melhor,
+            "nomes_alternativos": " | ".join(alts),
+            "data_cadastro_inicial": datas[0] if datas else "",
+            "data_cadastro_recente": datas[-1] if datas else "",
+            "qtd_cadastros": str(len(self.logins) or len(self.datas) or 1),
+            "logins_parceiro": " | ".join(sorted(set(self.logins))),
+            "fonte": fonte,
+            "data_referencia": data_referencia,
+        }
+
+
+def ler_linhas(caminho: Path) -> list[dict[str, object]]:
+    if caminho.suffix.lower() in (".xlsx", ".xlsm"):
+        import openpyxl
+
+        ws = openpyxl.load_workbook(caminho, read_only=True).worksheets[0]
+        it = ws.iter_rows(values_only=True)
+        cabecalho = [str(h or "").strip().lower() for h in next(it)]
+        return [dict(zip(cabecalho, r, strict=False)) for r in it]
+    texto = caminho.read_text(encoding="utf-8-sig")
+    delim = ";" if texto.splitlines()[0].count(";") > texto.splitlines()[0].count(",") else ","
+    leitor = csv.DictReader(texto.splitlines(), delimiter=delim)
+    return [{(k or "").strip().lower(): v for k, v in r.items()} for r in leitor]
+
+
+def preparar(
+    linhas: list[dict[str, object]], id_marca: str
+) -> tuple[dict[str, Entrada], Counter[str], list[tuple[str, str]]]:
+    marca = carregar_marca(id_marca, None)
+    raizes = {normalizar_cnpj(c)[:8] for c in marca.cnpjs_instituicao}
+    nomes_inst = {normalizar_texto(n).strip(" .") for n in marca.nomes_instituicao}
+    estatisticas: Counter[str] = Counter()
+    removidos: list[tuple[str, str]] = []
+    entradas: dict[str, Entrada] = {}
+    for r in linhas:
+        estatisticas["linhas_lidas"] += 1
+        cnpj = normalizar_cnpj(str(r.get("cnpj") or ""))
+        nome = reparar_nome(r.get("nmpessoa") or r.get("nome") or r.get("name"))
+        if len(cnpj) != 14 or not cnpj_valido(cnpj):
+            estatisticas["removidas_cnpj_invalido"] += 1
+            continue
+        normalizado = normalizar_texto(nome).strip(" .")
+        if cnpj[:8] in raizes or any(normalizado == n or normalizado.startswith(n + " ") for n in nomes_inst if len(n) > 6):
+            estatisticas["removidas_entidade_da_instituicao"] += 1
+            removidos.append((cnpj, nome))
+            continue
+        e = entradas.setdefault(cnpj, Entrada(cnpj))
+        if nome:
+            e.nomes[nome] += 1
+        if m := _DATA.search(str(r.get("dtcadastro") or "")):
+            e.datas.append(m.group(0))
+        if r.get("login_parceiro") not in (None, ""):
+            e.logins.append(str(r["login_parceiro"]))
+    estatisticas["cnpjs_unicos"] = len(entradas)
+    mantidos = estatisticas["linhas_lidas"] - estatisticas["removidas_cnpj_invalido"] - estatisticas["removidas_entidade_da_instituicao"]
+    estatisticas["linhas_duplicadas_mescladas"] = mantidos - len(entradas)
+    estatisticas["cnpjs_com_nomes_divergentes"] = sum(1 for e in entradas.values() if len({normalizar_texto(n) for n in e.nomes}) > 1)
+    return entradas, estatisticas, removidos
+
+
+def principal() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("origem", type=Path)
+    ap.add_argument("--saida", type=Path, default=RAIZ / "data" / "coban_registry_bv.csv")
+    ap.add_argument("--marca", default="bv")
+    ap.add_argument("--data-referencia", default="", help="data de referência da extração (AAAA-MM-DD)")
+    args = ap.parse_args()
+
+    ref = args.data_referencia
+    pistas = [args.origem.stem]
+    if args.origem.suffix.lower() in (".xlsx", ".xlsm"):
+        import openpyxl
+
+        pistas.append(openpyxl.load_workbook(args.origem, read_only=True).worksheets[0].title)
+    for pista in pistas if not ref else []:
+        if m := re.search(r"(20\d{2})(\d{2})(\d{2})", pista):
+            ref = "-".join(m.groups())
+            break
+    entradas, estatisticas, removidos = preparar(ler_linhas(args.origem), args.marca)
+    args.saida.parent.mkdir(parents=True, exist_ok=True)
+    with args.saida.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=CAMPOS, delimiter=";")
+        w.writeheader()
+        for cnpj in sorted(entradas):
+            w.writerow(entradas[cnpj].linha(args.origem.name, ref))
+    for k, v in estatisticas.items():
+        print(f"{k}: {v}")
+    print("entidades da instituição removidas:")
+    for (cnpj, nome), n in Counter(removidos).most_common():
+        print(f"  {cnpj}  {nome}  ({n} linha(s))")
+    print(f"gravado: {args.saida}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(principal())

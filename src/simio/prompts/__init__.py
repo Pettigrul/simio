@@ -5,27 +5,27 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-PROMPTS_DIR = Path(__file__).parent
+DIR_PROMPTS = Path(__file__).parent
 
 
 @lru_cache(maxsize=16)
-def load_prompt(name: str) -> tuple[str, str]:
+def carregar_prompt(nome: str) -> tuple[str, str]:
     """Return (version, template) for ``prompts/<name>.md``."""
-    raw = (PROMPTS_DIR / f"{name}.md").read_text(encoding="utf-8")
-    version = "unversioned"
-    body = raw
-    if raw.startswith("---"):
-        _, header, body = raw.split("---", 2)
-        for line in header.strip().splitlines():
-            key, _, value = line.partition(":")
-            if key.strip() == "version":
-                version = value.strip()
-    return version, body.strip()
+    bruto = (DIR_PROMPTS / f"{nome}.md").read_text(encoding="utf-8")
+    versao = "unversioned"
+    corpo = bruto
+    if bruto.startswith("---"):
+        _, cabecalho, corpo = bruto.split("---", 2)
+        for linha_txt in cabecalho.strip().splitlines():
+            chave, _, valor = linha_txt.partition(":")
+            if chave.strip() == "version":
+                versao = valor.strip()
+    return versao, corpo.strip()
 
 
-def render(name: str, **values: str) -> tuple[str, str]:
-    version, template = load_prompt(name)
-    out = template
-    for key, val in values.items():
-        out = out.replace("{" + key + "}", val)
-    return version, out
+def renderizar(nome: str, **valores: str) -> tuple[str, str]:
+    versao, template = carregar_prompt(nome)
+    saida = template
+    for chave, val in valores.items():
+        saida = saida.replace("{" + chave + "}", val)
+    return versao, saida
