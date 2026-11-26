@@ -1,0 +1,1710 @@
+<html lang="pt-br"><!-- Head --><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- metadados importados da página antiga do Detran RR  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Departamento de Trânsito de Roraima-RR">
+    <meta name="keywords" content="DETRAN,RORAIMA,RR,DEPARTAMENTO DE TRANSITO">
+    <meta name="author" content="Search Tecnologia">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="DETRAN-RR"> 
+    <meta property="og:url" content="http://www.detran.rr.gov.br">
+    <meta property="og:image" content="../../../images/detranRoraima_logo.png">
+    <meta property="og:title" content="Departamento de Trânsito de Roraima-RR">
+    <meta property="og:description" content="Departamento de Trânsito de Roraima-RR">
+
+    <!-- favicon provisorio, pretendo melhorar a legibilidade do mesmo -->
+    <link rel="icon" type="image/x-icon" href="../../../images/favicon.ico">
+
+    <title>Detran Roraima</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/style-main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/habilitacao.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/consulta_cfcs_credenciadas.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/marcar_reteste_teorico.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/cnh_definitiva.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/segunda_via_cnh.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../js/jquery-bundle/jquery-ui.theme.css">
+    <link rel="stylesheet" href="../../js/jquery-bundle/jquery-ui.css" type="text/css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../node_modules/@fortawesome/fontawesome-free/css/all.css">
+
+    <!-- Alto contraste -->
+    <link rel="stylesheet" href="../../../css/contrast.css">
+    
+    <style type="text/css">
+		.tg  {border-collapse:collapse;
+			  border-spacing:0;
+		}
+		.tg td{overflow:hidden;
+		  	   padding:10px 5px;
+		  	   word-break:normal;
+		}
+		.tg th{font-weight:normal;
+		  	   overflow:hidden;
+		  	   padding:10px 5px;
+		  	   word-break:normal;
+		}
+		.tg .tg-cabecalho{background-color:#0066ff0d;
+					 font-weight:bold;
+					 text-align:left;
+					 vertical-align:top
+		}
+		.tg .tg-cg1m{text-align:left;
+		             vertical-align:top
+		}
+	</style>
+    
+    </head><body><object classid="CLSID:F66B9251-67CA-4d78-90A3-28C2BFAE89BF" codebase="NBioBSPCOM.cab#version=1,0,0,1" height="0" width="0" id="objNBioBSP" name="objNBioBSP" viewastext="">
+    </object>    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap" rel="stylesheet">
+
+
+    <!-- Estilo do cabeçalho -->
+    <style>
+      :root {
+        --cor-principal: #1496db;
+        --cor-principal-dark: #174884;
+        --cor-secundaria: #ffcd00;
+        --cor-veiculos: #3a68d5;
+        --cor-habilitacao: #349636;
+        --cor-agendamento: #C3A500;
+        --cor-infracao: #A33128;
+        --fonte-principal: 'Poppins', sans-serif;
+        --pcbg-cl: #efefef;
+        --pcctain: 1170px;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--pcbg-cl);
+        font-family: Raleway, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      section,
+      .header{
+        padding:0!important;
+      }
+
+      /* Geral */
+      ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+      }
+      a {
+        text-decoration: none;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      div {
+        margin: 0;
+        padding: 0;
+        outline: none;
+      }
+      .general-wrapper {
+        background-color: #e8e8e8;
+      }
+
+      .wrapp {
+        width: auto;
+        background: #fff;
+        display: block;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .header {
+        height: auto;
+        position: relative;
+        background: var(--pcbg-cl);
+      }
+
+      .header .inner-head {
+        width: 100%;
+        background-size: cover;
+        position: relative;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: auto;
+      }
+
+
+      div .logo {
+        display: table;
+        padding: 30px 0;
+        position: relative;
+        overflow: hidden;
+        max-width: 1140px;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      /* Responsive icon */
+
+      .butao-bars {
+        display: none;
+        float: left;
+        line-height: 60px;
+        text-align: center;
+        font-size: 21px;
+        cursor: pointer;
+        transition: color 0.3s;
+        -webkit-transition: color 0.3s;
+        color: #ffffff;
+      }
+
+      .fa {
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+      }
+
+      .penci-faicon {
+        font-family: 'FontAwesome';
+        font-weight: normal;
+      }
+
+
+
+
+      /* nav */
+
+      #menu {
+        background: var(--cor-principal);
+        color: #FFF;
+        height: 61px;
+        /*padding-left: 18px;*/
+        border-radius: 0px;
+
+      }
+      #menu ul, #menu li {
+        margin: 0 auto;
+        padding: 0;
+        list-style: none
+      }
+      #menu ul {
+        width: 100%;
+      }
+      #menu li {
+        float: left;
+        display: inline;
+        position: relative;
+      }
+      #menu a {
+        display: block;
+        line-height: 60px;
+        padding: 0 14px;
+        text-decoration: none;
+        color: #FFFFFF;
+        font-size: 14px;
+      }
+      #menu a.dropdown-arrow:after {
+        content: "\f107";
+        margin-left: 5px;
+        font-family: FontAwesome;
+      }
+      #menu li a:hover {
+        color: var(--cor-secundaria);
+        background: var(--cor-principal-dark);
+      }
+      #menu input {
+        display: none;
+        margin: 0;
+        padding: 0;
+        height: 60px;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer
+      }
+      #menu label {
+        display: none;
+        line-height: 60px;
+        text-align: center;
+        position: absolute;
+        left: 35px;
+        font-size: 21px;
+      }
+      #menu label:before {
+        font-size: 1.6em;
+        content: "\2261";
+        margin-left: 20px;
+      }
+      #menu ul.sub-menus{
+        height: auto;
+        overflow: hidden;
+        width: 170px;
+        background-color: #f2f2f2;
+        z-index: 99;
+        display: none;
+        border-top: 4px solid #E0E0E0;
+        padding: 8px 0;
+        border-color: #d8d8d8;
+        left: 0;
+        transition: all 0.27s ease-in-out;
+        box-shadow: 0px 3px 3px rgb(190 190 190 );
+        margin-top: 0;
+      }
+      #menu ul.sub-menus li {
+        display: block;
+        width: 100%;
+      }
+      #menu ul.sub-menus a {
+        color: #000000;
+        font-size: 12px;
+      }
+      #menu li:hover ul.sub-menus {
+        display: block;
+        /* remove display bellow to show sub-menus on hover */
+        display: none;
+      }
+      #menu ul.sub-menus a:hover{
+        background: #DBDBDB;
+        color: #00388A;
+      }
+      @media screen and (max-width: 800px){
+        #menu {
+          position:relative
+        }
+        #menu ul {
+          background:#111;
+          position:absolute;
+          top:100%;
+          right:0;
+          left:0;
+          z-index:3;
+          height:auto;
+          display:none
+        }
+        #menu ul.sub-menus {
+          width:100%;
+          position:static;
+        }
+        #menu ul.sub-menus a {
+          padding-left:30px;
+        }
+        #menu li {
+          display:block;
+          float:none;
+          width:auto;
+        }
+        #menu input, #menu label {
+          position:absolute;
+          top:0;
+          left:0;
+          display:block
+        }
+        #menu input {
+          z-index:4
+        }
+        #menu input:checked + label {
+          color:white
+        }
+        #menu input:checked + label:before {
+          content:"\00d7"
+        }
+        #menu input:checked ~ ul {/*display:block;*/
+          display: none;
+        }
+      }
+
+
+      .navigation-container {
+        max-width: 1140px;
+        position: relative;
+        /*display: table;*/
+        text-align: center;
+
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      #menu a.dropdown-arrow::after {
+        content: "\f107";
+        margin-left: 5px;
+        font-family: FontAwesome;
+        /* font-size: 10px; */
+        color: inherit;
+        font-size: 10px;
+        font-weight: normal;
+        width: auto;
+        display: inline-block;
+      }
+
+
+      /* Footer */
+
+
+      #footer section {
+        padding: 0;
+        background: #212121;
+        text-align: center;
+        color: #999;
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        height: 100%;
+      }
+
+      #footer {
+        height: 92.8px;
+        background: #313131;
+        clear: both;
+        text-align: center;
+      }
+
+      .footer-container {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .copy-wrap {
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      .menu-footer {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .menu-footer .ul-menu-footer {
+        list-style: none;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .ul-menu-footer li {
+        display: inline-block;
+        padding: 0 15px;
+        position: relative;
+        margin-bottom: 5px;
+        list-style: none;
+      }
+
+      .ul-menu-footer li a {
+        text-decoration: none;
+        color: #999;
+        font-size: 14px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        transition: color 0.3s;
+
+      }
+
+      .ul-menu-footer li a:hover {
+        color: #FFCD00;
+      }
+
+      .menu-footer::after {
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+        content: "";
+      }
+
+      .footer-copyright a {
+        color: #FFCD00;
+
+      }
+      .footer-copyright a:hover {
+        text-decoration: underline;
+      }
+      .footer-copyright {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .footer-copyright p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        color: #999;
+      }
+
+
+
+
+
+
+      .clear-footer {
+        height: 1px;
+        margin-bottom: 29px;
+        clear: both;
+        display: block;
+        width: 100%;
+        background:#fff;
+      }
+
+      #widget-area {
+        overflow: hidden;
+        margin: 0;
+        padding: 60px 0;
+        background: #ffffff;
+        position: relative;
+        border-top: 1px solid #ECECEC;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      #widget-area {
+        border-color: #dedede;
+        background-color: #174884;
+      }
+
+      #widget-area > .container {
+        position: relative;
+        z-index: 3;
+        width: var(--pcctain);
+        margin: 0 auto;
+      }
+
+      .footer-widget-wrapper {
+        width: 31%;
+        margin-right: 3.5%;
+        float: left;
+      }
+
+      .footer-widget-wrapper.footer-widget-style-3 {
+        width: 64.3334%;
+      }
+
+      .footer-widget-wrapper .widget {
+        margin-bottom: 30px;
+      }
+
+      .footer-widget-wrapper > .widget:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .wp-block-image {
+        margin: 0 0 1em;
+      }
+
+      .wp-block-image img {
+        height: auto;
+        max-width: 100%;
+        vertical-align: bottom;
+      }
+
+      .wp-block-image .alignright {
+        float: right;
+        margin: .5em 0 .5em 1em;
+      }
+
+      #widget-area .footer-widget-wrapper.last {
+        margin-right: 0;
+      }
+
+      .footer-widget-wrapper.footer-widget-style-3.last {
+        width: 32.1666%;
+      }
+
+      .widget_text p{
+        font-size: 14px;
+
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+        color: var(--pcbg-cl);
+      }
+
+      #footer-section, .penci-footer-social-moved {
+        background-color: #133156;
+      }
+      .footer-socials-section, .penci-footer-social-moved {
+        border-color: #144b77;
+      }
+      .penci-footer-social-moved {
+        background: #313131;
+        border-top: 1px solid #ECECEC;
+      }
+
+      .penci-footer-social-moved .footer-socials-section {
+        border-bottom: none;
+      }
+      .footer-socials-section, .penci-footer-social-moved {
+        border-color: #144b77;
+      }
+      .footer-socials-section {
+        padding: 30px 0 15px;
+        border-bottom: 1px solid #4A4A4A;
+        text-align: center;
+      }
+
+      ul.footer-socials {
+        list-style: none;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      ul.footer-socials li {
+        float: none;
+        display: inline-block;
+        margin-right: 30px;
+        margin-bottom: 15px;
+      }
+
+      ul.footer-socials li a i {
+        color: #e8e8e8;
+      }
+
+      ul.footer-socials li:last-child {
+        margin-right: 0;
+      }
+
+      #footer-section, .penci-footer-social-moved {
+        background-color: #133156;
+      }
+      #footer-section {
+        padding: 0;
+        text-align: center;
+        color: #999;
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .footer-logo-copyright.footer-not-logo.footer-not-gotop {
+        padding: 20px 0;
+      }
+
+      .footer-menu-wrap {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      #footer-section, #footer-copyright * {
+        color: #b5b5b5;
+      }
+      #footer-copyright * {
+        font-style: normal;
+      }
+      #footer-copyright * {
+        font-size: 12px;
+      }
+
+      #footer-section a {
+        color: #f2c100;
+      }
+
+
+
+
+      /* Responsivo */
+
+      @media only screen and (min-width: 480px) and (max-width: 767px) {
+        .wrapp {
+          max-width: 520px;
+        }
+      }
+
+      @media only screen and (max-width: 420px)
+      {
+        .wrapp {
+          max-width: 100%;
+        }
+      }
+
+
+      @media only screen and (max-width: 960px) {
+        .logo #logo {
+          text-align: center;
+          display: block;
+          width: auto;
+        }
+        div .logo {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      @media only screen and (max-width: 479px)
+      {
+
+        .footer-container {
+          width: 100%;
+          margin: 0 auto;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        #footer {
+          height: 100%;
+        }
+      }
+
+      @media only screen and (min-width: 768px) and (max-width: 960px)
+      {
+        .wrapp {
+          max-width: 766px;
+        }
+      }
+
+      @media only screen and (max-width: 960px)
+      {
+        #menu li {
+          display: block;
+          float: none;
+          width: auto;
+        }
+        #menu ul {
+          background: #111;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          left: 0;
+          z-index: 3;
+          height: auto;
+          display: none;
+        }
+
+      }
+
+      @media only screen and (max-width: 960px)
+      {
+        #menu label {
+          display: inline-block;
+          left: 0px;
+        }
+      }
+
+      @media only screen and (min-width: 961px) and (max-width: 1169px) {
+        .wrapp {
+          max-width: 1000px;
+        }
+      }
+
+
+      /* Sidebar-nav */
+
+      #sidebar-nav {
+        position: fixed;
+        top: 0;
+        height: 100%;
+        z-index: 99997;
+        width: 270px;
+        overflow-y: auto;
+        padding: 30px 20px 20px;
+        background: #ffffff;
+        left: 0px;
+        transition: all 0.5s;
+        visibility: hidden;
+        transform: translate3d(-100%, 0, 0);
+      }
+
+      #sidebar-nav-logo {
+        padding: 0 0px 0px;
+        text-align: center;
+        margin: 0 0 0px 0;
+        position: relative;
+      }
+
+      #close-sidebar-nav {
+        position: fixed;
+        visibility: hidden;
+        opacity: 0;
+        text-decoration: none;
+        top: 0;
+        left: 0;
+        font-size: 1.4em;
+        color: #313131;
+        padding: 10px;
+        height: 100%;
+        background: rgba(0, 0, 0, .8);
+        right: 0;
+        z-index: 99996;
+        cursor: pointer;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+      }
+      #menu-side .ul-sidebar {
+        display: block;
+        position: unset;
+        background: #fff;
+        top: 20%;
+      }
+      #menu-side .li-sidebar {
+        border-bottom: 1px solid #DEDEDE;
+        display: flex;
+        flex-direction: row;
+      }
+      #menu-side .ul-sidebar li:last-child {
+        border-bottom: none;
+      }
+      #menu-side .li-sidebar a {
+        font-size: 13px;
+        font-weight: normal;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: #313131;
+        margin: 0;
+        position: relative;
+        padding: 13px 0 13px 0;
+        display: block;
+        line-height: 1.3em;
+        font-family: 'Raleway',sans-serif;
+      }
+
+
+      @media screen and (max-width: 800px)
+      {
+        #menu input:checked ~ #sidebar-nav {
+          visibility: visible;
+          transform: translate3d(0, 0, 0);
+        }
+        #menu input:checked ~ #close-sidebar-nav {
+          left: 270px;
+          opacity: 1;
+          visibility: visible;
+        }
+        #menu input:checked {
+          z-index: 99997;
+          position: fixed;
+          top: 0;
+          left: 0;
+          padding: 10px;
+          height: 100%;
+          right: 0;
+          cursor: pointer;
+        }
+      }
+
+      .indicator {
+
+        text-decoration: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        z-index: 20;
+        font-size: 17px;
+        font-style: normal;
+        text-align: right;
+        padding: 11px 0 11px 5px;
+        line-height: 1;
+        color: inherit !important;
+        opacity: 0.85;
+      }
+
+
+
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #111;
+        border-radius: 10px;
+        transition: all 5s;
+      }
+      ::-webkit-scrollbar-thumb:hover{
+        background: #FFCC00;
+        transition: all 5s;
+      }
+      ::-webkit-scrollbar-track{
+        background: #333;
+        border-radius: 0px;
+        box-shadow: inset 7px 10px 12px #666;
+      }
+
+      div[vw] {
+        top: 63%;
+      }
+
+      [vw] [vw-access-button] .access-button {
+        width: 40%;
+        filter: hue-rotate(305deg);
+      }
+    </style>
+  
+  
+    <div class="general-wrapper">
+      <div class="wrapp">
+        <header class="header">
+
+          <section class="inner-head">
+
+            <div class="logo">
+              <div id="logo">
+                <a href="https://www.detran.rr.gov.br/" role="link"><img class="penci-mainlogo" src="https://www.detran.rr.gov.br/wp-content/uploads/2021/09/logotipo-detran-rr.png" alt="Detran RR"></a>
+              </div>
+            </div>
+
+          </section>
+          <nav id="menu">
+            <div class="navigation-container">
+              <input type="checkbox" id="responsive-menu" onclick="updatemenu()" style=""><label></label>
+              <ul>
+                <li><a class="dropdown-arrow" href="https://www.detran.rr.gov.br/institucional/diretoria-e-equipe/">Institucional</a>
+                </li>
+                <li><a class="dropdown-arrow" href="https://www.detran.rr.gov.br/habilitacao-cnh/consultas/cfcs-credenciadas/">Habilitação (CNH)</a>
+                </li>
+                <li><a class="dropdown-arrow" href="https://www.detran.rr.gov.br/veiculo/informacoes-gerais/">Veículos</a>
+                </li>
+                <li><a class="dropdown-arrow" href="https://www.detran.rr.gov.br/infracoes/informacoes/tabela-de-pontuacao-e-valores-de-multas/">Infrações</a>
+                </li>
+                <li><a class="dropdown-arrow" href="https://www.detran.rr.gov.br/educacao/informacoes-gerais/">Educação</a>
+                </li>
+                <li><a href="https://www.rr.getran.com.br/site/apps/agendamento/agendamento_atendimento.jsp">Atendimento</a></li>
+                <li id="menu-item-14568" class="menu-item menu-item-type-post_type menu-item-object-page ajax-mega-menu menu-item-14568"><a href="https://www.detran.rr.gov.br/renavam/" role="link">Renavam/Renagrav</a></li>
+              </ul>
+
+            </div>
+          </nav>
+
+
+        </header>
+        <main style="height: 30px;"></main>
+        <footer>
+
+        </footer>
+      </div>
+
+    </div>
+  
+
+
+
+      <section id="" class="bg-white text-dark">
+      	<div class="container">
+      		<div class="row">
+      			<div class="col-md-12">
+            		<h1 class="pb-3 mb-4 border-bottom">
+              			Empresas Financeiras/Credoras Credenciadas
+            		</h1>
+            	</div>
+            	
+	              <div class="tab-pane fade show active col-md-12" id="nav-com-foto" role="tabpanel" aria-labelledby="nav-com-foto-tab">
+	              	
+              			
+							<table class="tg table table-striped">
+								<thead>
+								  <tr>
+								    <th class="tg-cabecalho" style="width: 80%;">EMPRESA</th>
+								    <th class="tg-cabecalho" style="width: 200px;">TELEFONE</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO CNH IND CAPITAL SA</td>
+									    <td class="tg-cg1m">(41)2107-7665</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SANTANDER S DE CREDITO F I SA</td>
+									    <td class="tg-cg1m">NÃO INFORMADO</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ITAU UNIBANCO SA</td>
+									    <td class="tg-cg1m">11 22255269</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CAIXA ECONOMICA FEDERAL</td>
+									    <td class="tg-cg1m">95 36214201</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">KIRTON BANK S.A  BANCO  MULTIPLO</td>
+									    <td class="tg-cg1m">11 3684-9574</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">DISAL ADM CONSORCIOS  LTDA</td>
+									    <td class="tg-cg1m">(11)5079-5089</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO BRADESCO FINANC S A</td>
+									    <td class="tg-cg1m">(11)3267-3877</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO ITAU VEICULOS S.A.</td>
+									    <td class="tg-cg1m">11 22255269</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BB ADM DE CONSORCIO S.A</td>
+									    <td class="tg-cg1m">95 36232523</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO J SAFRA S/A</td>
+									    <td class="tg-cg1m">(11)3175-7880</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">GMAC ADM DE CONSORC LTDA</td>
+									    <td class="tg-cg1m">1150797421</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SANTANDER BRASIL ADM CONS</td>
+									    <td class="tg-cg1m">(11)5635-9442</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO HONDA S/A</td>
+									    <td class="tg-cg1m">(11)5576-3814</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO PAN S.A.</td>
+									    <td class="tg-cg1m">(11)4030101</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO GM S.A</td>
+									    <td class="tg-cg1m">1150797095</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO BRADESCO SA</td>
+									    <td class="tg-cg1m">(11)3684-3411</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO ITAUCARD S/A</td>
+									    <td class="tg-cg1m">11 22255269</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BCO YAMAHA MOTOR DO BRASIL  SA</td>
+									    <td class="tg-cg1m">(11)2431-6013</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CNP CONSORCIO S.A. ADMIN. DE CONSOR</td>
+									    <td class="tg-cg1m">(61)21922400</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BRADESCO ADM DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">(11)3684-2577</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO MONEO S.A</td>
+									    <td class="tg-cg1m">(54)2991-1048</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO SANTANDER BRASIL S/A</td>
+									    <td class="tg-cg1m">NÃO INFORMADO</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CNF ADM DE CONS NACIONAL LTDA</td>
+									    <td class="tg-cg1m">(17)21363666</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">KSK ADMIN DE CONS LTDA</td>
+									    <td class="tg-cg1m">11 34108100</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO DO BRASIL SA</td>
+									    <td class="tg-cg1m">95 36232523</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ITAU UNIBANCO VEIC ADM DE CONS LTDA</td>
+									    <td class="tg-cg1m">11 22255269</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO BV S/A</td>
+									    <td class="tg-cg1m">(11)3268-3002</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO RCI BRASIL S.A</td>
+									    <td class="tg-cg1m">41 30251513</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CONSORCIO NACIONAL VOLKSWAGEN</td>
+									    <td class="tg-cg1m">(11)5582-5380</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">DIBENS LEASING SA ARR  MERCANTIL</td>
+									    <td class="tg-cg1m">11 22255269</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SCANIA ADM CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">1146135024</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">YAMAHA ADM DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">(11)2431-6013</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CANOPUS ADM CONS LTDA</td>
+									    <td class="tg-cg1m">(65)2123-6000</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO LUSO BRASILEIRO S/A</td>
+									    <td class="tg-cg1m">011 30391500</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO GUANABARA SA</td>
+									    <td class="tg-cg1m">021 25629600</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ADM CONSORCIO RCI BRASIL LTDA</td>
+									    <td class="tg-cg1m">4130251505</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">VOLVO ADM DE CONS LTDA</td>
+									    <td class="tg-cg1m">(41)3317-7357</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">PRIMO ROSSI ADM DE CONS LTDA</td>
+									    <td class="tg-cg1m">(34)3239-6417</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CARUANA SA SOC CRED FINANC INVESTIM</td>
+									    <td class="tg-cg1m">11 5504 7857</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">PORTO SEGURO ADM CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">1123930545</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">COOP DE CREDITO DA AMAZONIA</td>
+									    <td class="tg-cg1m">69 3238 3561</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">PORTOSEG SA CRED FINANC E INVESTIME</td>
+									    <td class="tg-cg1m">(11)3803-2632</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ADMIN CONSORCIOS NAC GAZIN LTDA</td>
+									    <td class="tg-cg1m">44 36663800</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SAFRA LEASING S/A ARREND MERCANTIL</td>
+									    <td class="tg-cg1m">1131757575</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SERVOPA ADM DE CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">4133302313</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO PACCAR S A</td>
+									    <td class="tg-cg1m">42 3122 9204</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BMP SOCIED DE CRED AO EMPREED E EMP</td>
+									    <td class="tg-cg1m">11 3810-9313</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO XCMG BRASIL S.A.</td>
+									    <td class="tg-cg1m">(035)3112-1900</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CREDITAS SOC DE CREDITO DIRETO SA</td>
+									    <td class="tg-cg1m">11 35228009</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">MERCEDES-BENZ LEASING DO BRASIL S/A</td>
+									    <td class="tg-cg1m">(11)3792-988</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">PORTOBENS ADM CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">(17)) 2136-3666</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BR CONSORCIOS ADM CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">4333777475</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BRQUALY ADM CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">(17) 98225-0225</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO RANDON S/A</td>
+									    <td class="tg-cg1m">(54)3239-4641</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO VOLVO (BRASIL) S.A.</td>
+									    <td class="tg-cg1m">(41)3317-7257</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SICOOB ADMINISTRADORA DE CONSORCIOS</td>
+									    <td class="tg-cg1m">61 32175200</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CECM DOS FUNCIONARIOS DO ATACADAO</td>
+									    <td class="tg-cg1m">11 2967-8394</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">MAGGI ADM. DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">011-4023-0001</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO HYUNDAI CAPITAL BRASIL S A</td>
+									    <td class="tg-cg1m">1135531865</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ADEMICON ADM DE CONSORCIOS S/A</td>
+									    <td class="tg-cg1m">41 33108046</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO C6 S A</td>
+									    <td class="tg-cg1m">11 2832-6039</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">TOYOTA ADM DE CONS DO BRASIL LTDA</td>
+									    <td class="tg-cg1m">(11) 972064031</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">PROMOVE ADMINISTRADORA DE CONSORCIO</td>
+									    <td class="tg-cg1m">(83) 4009-4000</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO BRASILEIRO DE CRÉDITO S.A.</td>
+									    <td class="tg-cg1m">(11) 3152-1020</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SCANIA BANCO S.A</td>
+									    <td class="tg-cg1m">(11) 4344-8284</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">MASSEY FERGU ADM CONS LTDA</td>
+									    <td class="tg-cg1m">1140229900</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">VALTRA ADM CON LTDA</td>
+									    <td class="tg-cg1m">1121185000</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">MULTIMARCAS ADM DE CONS LTDA</td>
+									    <td class="tg-cg1m">31 3036-1666</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BMP SOCIEDADE DE CREDITO DIRETO S/A</td>
+									    <td class="tg-cg1m">11 3810 9333</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">KLUBI ADMINISTRADORA DE CONSORCIOS</td>
+									    <td class="tg-cg1m">(17) 991519466</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SAFRA CRED. FINANC. E INV. S.A.</td>
+									    <td class="tg-cg1m">(11) 3175-7305</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">RODOBENS ADMIN DE CONS LTDA</td>
+									    <td class="tg-cg1m">(17)2136-3666</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SERELLO ADM DE CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">(51)35419000</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BRADESCO LEASING SA ARREND MERCANTI</td>
+									    <td class="tg-cg1m">(11)3684-3411</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO SAFRA SA</td>
+									    <td class="tg-cg1m">(11)3175-9501</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">SANTANDER LEASING S/A ARREND MERCAN</td>
+									    <td class="tg-cg1m">11 35538209</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ITAU ADM DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">11 22255269</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO TOYOTA DO BRASIL SA</td>
+									    <td class="tg-cg1m">(11)5504-2019</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">MYCON ADM DE CONSORCIOS SA</td>
+									    <td class="tg-cg1m">11-4858.5280</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">DEUSTSCHE S LEASING DO BRASIL S.A</td>
+									    <td class="tg-cg1m">(11)49495145</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BCO MERCEDES-BENZ DO BRASIL SA</td>
+									    <td class="tg-cg1m">(11)3792-9838</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BMW FINANCEIRA S.A. CFI</td>
+									    <td class="tg-cg1m">01108000199</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">RECON ADM DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">(35)3539-8170</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">EMBRACON ADM CONS LTDA</td>
+									    <td class="tg-cg1m">(11)2185-3114</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">FUND HABITACIONAL DO EXERCITO</td>
+									    <td class="tg-cg1m">6133147680</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO STELLANTIS S/A</td>
+									    <td class="tg-cg1m">(31)38885975</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">TRADICAO ADM DE CONS LTDA</td>
+									    <td class="tg-cg1m">(11) 29284800</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">LUIZA ADM DE CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">(16)3711-1116</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">STELLANTIS FINANC SOC DE CRED FIN</td>
+									    <td class="tg-cg1m">(11)2536-3065</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">COOP MISTA ROMA</td>
+									    <td class="tg-cg1m">11 4810 3399</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">UNIFISA ADM NAC DE CONS LTDA</td>
+									    <td class="tg-cg1m">11 3039 2323</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO VOTORANTIM S.A.</td>
+									    <td class="tg-cg1m">1151712801</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BAMAQ ADMINIS DE CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">3133691680</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">HS ADMINISTRADORA DE CONSORCIOS LTD</td>
+									    <td class="tg-cg1m">(51) 3564-8400</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ADMINISTRADORA DE CONS SICREDI</td>
+									    <td class="tg-cg1m">(51)3358-4814</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ADM DE CONS NAC HONDA LTD</td>
+									    <td class="tg-cg1m">(11)5576-3805</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO VOLKSWAGEN S.A</td>
+									    <td class="tg-cg1m">(11)5582-5821</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ANCORA ADMIN CONSORCIOS SA</td>
+									    <td class="tg-cg1m">16 21033535</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">RANDON ADM DE CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">(54)32394521</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">OMNI S/A CRED FINANC E INVESTIMENTO</td>
+									    <td class="tg-cg1m">1133653500</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO RODOBENS S.A</td>
+									    <td class="tg-cg1m">(11) 2192-3036</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">OMNI BANCO S.A</td>
+									    <td class="tg-cg1m">(11)33653500</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ADMINIS DE CONSORCIO UNICOOB LTDA</td>
+									    <td class="tg-cg1m">44 30327800</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">XS5 ADM DE CONSORCIOS S.A</td>
+									    <td class="tg-cg1m">(61) 3521-6673</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">COOP CRED POUP INVEST SORRISO</td>
+									    <td class="tg-cg1m">(66)3545-5250</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO SENFF S.A</td>
+									    <td class="tg-cg1m">(041) 3313 1801</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">APICE ADM DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">11 4858-2720</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO COOPERATIVO SICOOB S.A.</td>
+									    <td class="tg-cg1m">(61) 3217-8001</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">NOVOTEMPO ADMINISTRADORA DE CONSORC</td>
+									    <td class="tg-cg1m">(19) 3407-5356</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">GAPLAN ADMINISTRADORA DE CONSORCIO</td>
+									    <td class="tg-cg1m">(11) 4023-1001</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO BTG PACTUAL SA</td>
+									    <td class="tg-cg1m">(21) 3262-9600</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">QI SOCIEDADE DE CREDITO DIRETO S.A.</td>
+									    <td class="tg-cg1m">(11) 2626-3225</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">EVOY ADMINISTRADORA DE CONSÓRCIOS</td>
+									    <td class="tg-cg1m">(11) 3786-1900</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">REDFACTOR FAC E FOM COMERCIAL SA</td>
+									    <td class="tg-cg1m">(11) 3038-5855</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">VINAC ADMINISTRADORA DE CONSORCIO</td>
+									    <td class="tg-cg1m">(12) 3928-7800</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">GIRO SOCIEDADE DE CREDITO DIRETO SA</td>
+									    <td class="tg-cg1m">(41) 4042-0480</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ALPHA ADM DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">(54) 3520-4000</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO BS2 S.A.</td>
+									    <td class="tg-cg1m">(31) 30788800</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BRISA ADM CONSORCIOS LTDA</td>
+									    <td class="tg-cg1m">(11) 93008-6077</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">COOP DE CRED DE LIVRE ADM DO CENT</td>
+									    <td class="tg-cg1m">6233113810</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CONSCLIC ADMINISTR DE CONSOR  LTDA</td>
+									    <td class="tg-cg1m">(41) 3073-984</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BAMAQ CAPITAL SOC DE CRED DIR S/A</td>
+									    <td class="tg-cg1m">313369-1000</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">INDUSTRIA DE C M IBIPORÃ LTDA</td>
+									    <td class="tg-cg1m">43 99147-8378</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ZEMA ADM. DE CONSORCIO LTDA</td>
+									    <td class="tg-cg1m">(34)36699700</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">COOP DE CRED- TRANSPOCRED</td>
+									    <td class="tg-cg1m">(48) 3248-4111</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">DAYCOVAL LEASING SOC ARREND MERC</td>
+									    <td class="tg-cg1m">(11) 4166-1674</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">VANGUARDA ADMINISTRADORA DE CONS¿RC</td>
+									    <td class="tg-cg1m">(11) 99301-4609</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">ITAU UNIBANCO HOLDING SA</td>
+									    <td class="tg-cg1m">1150191879</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO COOPERATIVO SICREDI SA</td>
+									    <td class="tg-cg1m">51-3358-4700</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">BANCO TRATON BRASIL S.A.</td>
+									    <td class="tg-cg1m">(24) 9943-2097</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">MORUMBI INDUSTRIAL LTDA</td>
+									    <td class="tg-cg1m">(22) 2737-7350</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">UY3 SOCIEDADE DE C DIRETO SA</td>
+									    <td class="tg-cg1m">11998569997</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CONBR ADMINISTRADORA DE CONSORCIO S</td>
+									    <td class="tg-cg1m">(17) 9818-1326</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">CELCOIN SOCIEDADE DE C D S.A</td>
+									    <td class="tg-cg1m">3125168696</td>
+									  </tr>
+								  
+									  <tr>
+									    <td class="tg-cg1m">COOPERATIVA DE ECONOMIA E CREDITO M</td>
+									    <td class="tg-cg1m">(51) 2108-5000</td>
+									  </tr>
+								  
+								</tbody>
+							</table>
+						
+						
+					 
+	              </div>
+      		</div>
+      	</div>
+      </section>
+      
+
+
+
+
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<title>Footer</title>-->
+  
+  
+    <!-- Rodapé -->
+    <div class="clear-footer"></div>
+    <div id="widget-area">
+      <div class="container">
+        <div class="footer-widget-wrapper footer-widget-style-3">
+          <aside id="block-5" class="widget widget_block widget_media_image">
+            <figure class="wp-block-image size-full"><img decoding="async" width="375" height="81" src="https://sitenew.searchtecnologia.com.br/detranrr/wp-content/uploads/2021/09/dark-logotipo-detran-rr.png" alt="" class="wp-image-11978" srcset="https://www.detran.rr.gov.br/wp-content/uploads/2021/09/dark-logotipo-detran-rr.png 375w, https://www.detran.rr.gov.br/wp-content/uploads/2021/09/dark-logotipo-detran-rr-300x65.png 300w" sizes="(max-width: 375px) 100vw, 375px"></figure>
+          </aside><aside id="block-6" class="widget widget_block widget_text">
+            <p>Departamento Estadual de Trânsito de Roraima -&nbsp;<strong>DETRAN - RR</strong></p>
+          </aside><aside id="block-7" class="widget widget_block widget_text">
+            <p>Av. Brg. Eduardo Gomes, 4214 - Aeroporto, Boa Vista - RR, 69310-005<br>Contato: (95) 3621-3701</p>
+          </aside>                                </div>
+        <div class="footer-widget-wrapper footer-widget-style-3 last">
+          <aside id="block-13" class="widget widget_block"><div class="wp-block-image rodapeLogoCenter">
+              <figure class="alignright size-full"><a href="https://esic.cgu.gov.br/sistema/site/index.aspx" target="_blank" role="link"><img width="256" height="80" src="https://www.detran.rr.gov.br/wp-content/uploads/2022/10/transparencia-bg-branco-80.png" alt="" class="wp-image-11979"></a></figure>
+            </div>
+            <p><br></p></aside>                                
+        </div>
+      </div>
+    </div>
+    <div class="penci-footer-social-media penci-footer-social-moved footer-social-remove-circle footer-social-remove-text">
+      <div class="container">
+        <div class="footer-socials-section">
+          <ul class="footer-socials">
+            <li><a href="https://www.facebook.com/detranrr/" aria-label="Facebook" rel="noreferrer" target="_blank" role="link"><i class="penci-faicon fa fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/detranrr/" aria-label="Instagram" rel="noreferrer" target="_blank" role="link"><i class="penci-faicon fa fa-instagram"></i></a></li>
+            <li><a href="mailto:detranrr@gov.br" aria-label="Email" rel="noreferrer" target="_blank" role="link"><i class="penci-faicon fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer id="footer-section" class="penci-footer-social-media penci-lazy footer-social-remove-circle footer-social-remove-text lazyloaded" itemscope="" itemtype="https://schema.org/WPFooter" data-ll-status="entered">
+      <div class="container">
+        <div class="footer-logo-copyright footer-not-logo footer-not-gotop">
+
+          <div class="footer-menu-wrap" role="navigation" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+          </div>
+
+          <div id="footer-copyright">
+            <p>
+              <span id="year">2026</span> <a href="https://www.detran.rr.gov.br/painel-administrativo/">©</a> DETRAN-RR. Todos os direitos reservados. - Por <a href="https://www.searchtecnologia.com.br/" target="_blank">Search Tecnologia</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>document.getElementById("year").innerHTML = new Date().getFullYear();</script>
+
+<!--    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>-->
+
+  
+
+	
+  
+
+</body></html>

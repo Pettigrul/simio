@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C11a44587b1",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://rj.olx.com.br/",
+  "final_url": "https://rj.olx.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.18.42.220",
+  "collected_at": "2026-11-26T03:07:28.864688+00:00",
+  "manifest_written_at": "2026-11-26T03:07:35.438312+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C11a44587b1/attempt-1/viewport.png",
+      "sha256": "7c6dd75026171c490d0001a4b2be73d63944a7f1f575c20bb6ca6032a690b57a",
+      "size_bytes": 66906
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C11a44587b1/attempt-1/fullpage.png",
+      "sha256": "3be4987b7a18d4557fcc45a2624ea0cfdaab0b53bd457b7d645cea9e72c629bb",
+      "size_bytes": 75113
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C11a44587b1/attempt-1/page.html.txt",
+      "sha256": "87fc325f046ef34b3c3b1a9bc13ddc45c960c36a69d3b3af063f1d6493662c68",
+      "size_bytes": 5901
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C11a44587b1/attempt-1/text.txt",
+      "sha256": "1a32ea2eca74e34767c1128161e9fd9e252ab0ac83f52780274700157f77c715",
+      "size_bytes": 691
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C11a44587b1/attempt-1/page.json",
+      "sha256": "ec14f16ca748251d706d16bba83260ed41220161ab4a0f0c1f9c1da58fb2c9a8",
+      "size_bytes": 2102
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

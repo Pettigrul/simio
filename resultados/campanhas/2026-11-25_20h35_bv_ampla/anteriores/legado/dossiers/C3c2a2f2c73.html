@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C3c2a2f2c73</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C3c2a2f2c73 — auraenergypalmas.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://auraenergypalmas.com/casa</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2026-05-25 (185 dias) · GoDaddy.com, LLC</div><div class="kv"><b>Titular do domínio</b>não publicado</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Vercel, Inc (76.76.21.21)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ns17.domaincontrol.com, ns18.domaincontrol.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@vercel.com, abuse@godaddy.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Aura Energy) que divulga linhas de financiamento de múltiplos bancos para viabilizar seus serviços, citando com frequência a &#39;BV Financeira&#39; como parceira preferencial. Não há tentativa de se passar pelo banco e a identidade comercial própria é evidente. Contudo, a ausência de CNPJ explícito e a falta da declaração regulatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021 configuram comunicação de parceria ambígua, demandando revisão operacional.
+[Revisor: CONFIRM] A página pertence a uma empresa integradora de energia solar (Aura Energy) que divulga ativamente opções de financiamento com a &#39;BV Financeira&#39; (apontada como opção preferencial e com prazos de até 120 meses). Embora a identidade visual da Aura Energy prevaleça e não haja tentativa de personificação do banco, a empresa atua na oferta/intermediação de crédito sem divulgar CNPJ, razão social formal ou os avisos regulatórios obrigatórios de correspondente bancário previstos na Resolução CMN nº 4.935/2021. Conforme as diretrizes, o uso da marca com vínculo/parceria comercial não devidamente esclarecido ao consumidor sustenta a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <h3>Limitações</h3>
+    <ul><li>screenshot completo limitado a 12000px (página com 24496px); texto integral preservado em text.txt</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C3c2a2f2c73/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 fe51eb3cf87d0b6c4edca2f254f3f0b9757e3fe8c0bae6dd968809d951bc2499</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C3c2a2f2c73/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 4128e86d22276165d94875852b5d3c0564700515925a77ea77101e7df1782d38</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://auraenergypalmas.com/casa (domínio: auraenergypalmas.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Energia solar pra sua casa em Palmas-TO | Aura Energy — Engenheiro responsável (CREA-TO), instalação rápida, financiamento BV Financeira + 5 bancos parceiros ... Tocantins tem irradiação solar de 5,9 kWh/m²/dia ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C3c2a2f2c73/attempt-1/viewport.png (sha256 fe51eb3cf87d0b6c…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C3c2a2f2c73/attempt-1/fullpage.png (sha256 4128e86d22276165…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Energia solar pra sua casa em Palmas-TO | Aura Energy</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Sua conta de luz pode cair significativamente · sistema com vida útil de 25 anos · garantia 12 anos painel. Engenheiro responsável (CREA-TO), instalação rápida, financiamento BV Financeira + 5 bancos parceiros até 120x. Programa Palmas Solar (40% desconto IPTU · 5 anos · LC 327/2015). Aura Energy.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Energia solar pra sua casa em Palmas-TO | Aura Energy</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Sua conta cai 85-95%. Sistema paga em 4-5 anos. Engenheiro responsável pelo seu projeto.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://auraenergypalmas.com/casa</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Sua casa em Palmas pode gerar a própria energia. E parar de depender da Energisa.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>O que te incomoda hoje vira ganho amanhã.</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>O que dói hoje</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>O que muda em 30-40 dias</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Casas em Tocantins economizando agora.</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Sua casa nao apaga quando a Energisa cai.</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Apagao? Sua casa nao para</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Solar de dia, banco a noite · conta perto de zero</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Carro eletrico carrega de graca</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Independencia da Energisa</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Sua casa em Palmas pode pagar 40% menos de IPTU por 5 anos ao instalar solar.</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Da primeira visita à primeira economia em até 30 dias.</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Visita técnica gratuita</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Projeto + homologação Energisa</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Instalação rápida</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Aura Energy ENERGIA ELÉTRICA ESPECIALIZADA Casa Comércio Indústria Rural Sobre FAQ Falar com especialista</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Aura Energy Energia Elétrica Especializada Casa Comércio Indústria Rural Sobre FAQ Falar com especialista Pra sua casa · Palmas-TO Sua casa em Palmas pode gerar a própria energia . E parar de depender da Energisa. A conta de luz vira um sistema que se paga em 4-5 anos e gera por 25 . O sol de Palmas é um dos mais fortes do país — aqui o retorno é mais rápido. Simule grátis em 1 minuto. Conta cai significativamente Vida útil 25 anos BV Financeira · 120x 40% menos IPTU · 5 anos Simulação ao vivo Energisa-TO 2026 Quanto você paga por mês na conta de luz? R$ /mês R$ 150 R$ 1.500 R$ 3.000 ↑ arraste o slider ou digite o valor da sua conta Você economiza R$ 492 /mês Em 25 anos R$ 147.600 Sistema ideal 5,03 kWp 9 painéis Se paga em 2,5 anos Estimativa baseada em tarifa Energisa-TO (R$ 0,95/kWh com tributos), Lei 14.300 (Fio B 60% em 2026) e irradiação solar média de Palmas (5,9 kWh/m²/dia). O orçamento exato depende de visita técnica gratuita. Agendar visita técnica gratuita Falar com especialista</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Aura Energy ENERGIA ELÉTRICA ESPECIALIZADA Sistemas solares fotovoltaicos com homologação Energisa, equipamentos Tier 1 e atendimento direto com o Renato Edson. (63) 9 9270-6284 NAVEGAÇÃO Simulador de economia Como funciona Diferenciais Instalações Recursos / Blog Dúvidas frequentes CONTATO WhatsApp (63) 9 9270-6284 Atendemos Palmas-TO e região Renato Edson Especialista em energia solar Política de Privacidade · Termos de Uso © 2026 Aura Energy · Todos os direitos reservados Desenvolvido por Impulso Digital</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Aura Energy ENERGIA ELÉTRICA ESPECIALIZADA &lt;https://auraenergypalmas.com/casa#top&gt; | Casa &lt;https://auraenergypalmas.com/casa&gt; | Comércio &lt;https://auraenergypalmas.com/comercio&gt; | Indústria &lt;https://auraenergypalmas.com/industria&gt; | Rural &lt;https://auraenergypalmas.com/rural&gt; | Sobre &lt;https://auraenergypalmas.com/#sobre-renato&gt; | FAQ &lt;https://auraenergypalmas.com/#faq&gt; | Falar com especialista &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20vim%20pela%20LP%20da%20Aura%20Energy.%20Quero%20falar%20com%20um%20especialista.&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Falar com especialista &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20vim%20pela%20LP%20da%20Aura%20Energy.%20Quero%20falar%20com%20um%20especialista.&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Agendar visita técnica gratuita &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20simulei%20na%20sua%20LP%20da%20Aura%20Energy.%0A%0AMinha%20conta%20de%20luz%3A%20R%24%C2%A0600%2Fm%C3%AAs%0ASistema%20sugerido%3A%205%2C03%20kWp%20(9%20pain%C3%A9is)%0AInvestimento%20estimado%3A%20R%24%C2%A015.032%0AEconomia%2Fm%C3%AAs%3A%20R%24%C2%A0492%0A%0AQuero%20agendar%20a%20visita%20t%C3%A9cnica%20gratuita.&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Mini%20(3%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Padr%C3%A3o%20(5%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Plus%20(8%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Premium%20(10%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Garantir instalação ainda em 2026 &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20quero%20garantir%20minha%20instala%C3%A7%C3%A3o%20ainda%20em%202026%20antes%20do%20Fio%20B%20subir.&gt;</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Conversar direto com o Renato &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Vi%20sua%20LP%20da%20Aura%20Energy%20e%20quero%20conversar%20com%20voc%C3%AA.&gt;</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Agendar visita técnica gratuita &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Cheguei%20at%C3%A9%20o%20final%20do%20site%20e%20quero%20agendar%20minha%20visita%20t%C3%A9cnica%20gratuita.&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Falar com especialista &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20vim%20pela%20LP%20da%20Aura%20Energy.%20Quero%20falar%20com%20um%20especialista.&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Agendar visita técnica gratuita &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20simulei%20na%20sua%20LP%20da%20Aura%20Energy.%0A%0AMinha%20conta%20de%20luz%3A%20R%24%C2%A0600%2Fm%C3%AAs%0ASistema%20sugerido%3A%205%2C03%20kWp%20(9%20pain%C3%A9is)%0AInvestimento%20estimado%3A%20R%24%C2%A015.032%0AEconomia%2Fm%C3%AAs%3A%20R%24%C2%A0492%0A%0AQuero%20agendar%20a%20visita%20t%C3%A9cnica%20gratuita.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Mini%20(3%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Padr%C3%A3o%20(5%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Plus%20(8%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Premium%20(10%20kWp).%20Atende%20em%20Palmas%3F&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Quero simular PIX + financiamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20quero%20simular%20PIX%20entrada%20%2B%20financiamento%20pra%20minha%20casa.&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Garantir instalação ainda em 2026 &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20quero%20garantir%20minha%20instala%C3%A7%C3%A3o%20ainda%20em%202026%20antes%20do%20Fio%20B%20subir.&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>Conversar direto com o Renato &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Vi%20sua%20LP%20da%20Aura%20Energy%20e%20quero%20conversar%20com%20voc%C3%AA.&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>Pergunte no WhatsApp → &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20energia%20solar.&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>Agendar visita técnica gratuita &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Cheguei%20at%C3%A9%20o%20final%20do%20site%20e%20quero%20agendar%20minha%20visita%20t%C3%A9cnica%20gratuita.&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>footer</td><td>(63) 9 9270-6284 &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20vim%20pela%20LP%20da%20Aura%20Energy.&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>footer</td><td>(63) 9 9270-6284 &lt;https://wa.me/5563992706284&gt;</td></tr>
+      <tr id="E-CONTACT-14"><td class="mono"><b>E-CONTACT-14</b></td><td>contact</td><td>page</td><td>Falar com especialista &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20falar%20com%20um%20especialista%20t%C3%A9cnico%20da%20Aura%20Energy.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Aura Energy&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=96&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (80x80, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=1920&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (593x593, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=64&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (64x64, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=1920&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (593x593, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Aura Energy&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=384&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (144x144, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=64&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (28x28, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=1920&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (474x474, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Aura Energy&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=96&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (80x80, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura.png&amp;w=1920&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (712x712, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Aura Energy&#39; src=https://auraenergypalmas.com/_next/image?url=%2Flogo-aura-perfil.png&amp;w=128&amp;q=75&amp;dpl=dpl_3fAzKUd7UBQSoLfpGBmngfZvYhZo (56x56, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>BV Financeira · 120x</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Hidráulica esvazia, bandeira vermelha sobe, conta dispara sem aviso. Você não controla quanto sua casa vai pagar · só recebe o boleto e ajusta o orçamento do mês.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>BV Financeira + 6 bancos · até 120 meses · entrada zero. Em muitos casos, a parcela do financiamento entra menor que a conta atual de luz. Renato simula o seu caso antes da decisão.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Solar gera de dia, banco armazena, sua casa usa quando precisa. Apagao nao desliga a geladeira, conta de luz quase zera no fim do mes, carro eletrico carrega de graca. Voce decide quando a Energisa importa.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Energisa cai (acontece em Palmas). Luz, geladeira, freezer, ar-condicionado, internet, alarme, portao continuam funcionando. Banco entrega energia ate a rede voltar.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Solar de dia, banco a noite · conta perto de zero</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Solar gera o dia inteiro · banco armazena o que sobra · sua casa usa essa energia ate o sol voltar. Autoconsumo total. Voce nao depende de credito Energisa no fim do mes.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Pretende comprar um carro eletrico? Carrega de madrugada com energia armazenada do banco solar. Sem aumentar conta, sem usar tarifa cheia. V2H/V2G entrega autonomia total casa+carro.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>· Com banco 5 kWh: apagao zero impacto</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>BV Financeira · 6 bancos · entrada zero</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Parcela sob simulação · BV Financeira + 5 bancos</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Parcela sob simulação · BV Financeira + 5 bancos</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Parcela sob simulação · BV Financeira + 5 bancos</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Parcela sob simulação · BV Financeira + 5 bancos</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>* Faixa &#34;a partir de&#34; · valor final calculado sob medida na visita técnica conforme complexidade do telhado, distância e logística. Financiamento via BV Financeira (preferido) + Solfácil · Sicredi · Sicoob · Santander · BB Programa Agro Energia. Sujeito a análise.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Parcela BV 96m</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Parcela BV 96m</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Entrada PIX sinaliza compromisso · análise BV cai pra 24-48h</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Não vendedor terceirizado. Renato Edson na obra, no projeto, na revisão e no WhatsApp. Você sempre fala com quem assina o laudo.</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Financiamento sem entrada · 6 bancos</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>BV Financeira (preferido) + Solfácil, Sicredi, Sicoob, Santander, BB Programa Agro Energia. Pra agro, Pronaf 0,5% a.m. em 12 anos. Em muitos casos a parcela pode ficar menor que a conta atual · simulação sob medida.</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>WhatsApp por 25 anos</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Solar é decisão longa. Sistema dura mais que muito carro novo. Aqui você não vira só boleto pago — quando precisar, fala comigo direto.</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>A Aura nasceu pra resolver um problema que vejo todo dia: empresas vendem solar como produto, esquecem que é um serviço de longo prazo. Cliente fica órfão depois da instalação. Comigo é diferente — você tem meu WhatsApp pessoal e suporte direto pelos próximos 25 anos.</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Atendimento direto comigo</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>o meu WhatsApp</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Equipamentos Tier 1 entregues no endereço</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Acompanhamento diário pelo WhatsApp do Renato</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Empresa registrada, CNPJ ativo, ART em todo projeto, garantia validada pelos fabricantes Tier 1.</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>* Imagens ilustrativas. Galeria real será publicada conforme projetos entregues — solicite portfolio completo no atendimento.</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>“Financiei via banco parceiro. Parcela do financiamento ficou na mesma faixa do que pagava de luz · troquei custo recorrente por ativo de 25 anos.”</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>Programa Palmas Solar, Lei 14.300, financiamento BV Financeira + 5 bancos — sem enrolação.</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>Sua dúvida não está aqui? Pergunte no WhatsApp →</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>Tabela oficial Aura Energy 2026: R$ 7 mil (3 kWp) até R$ 20,5 mil (10 kWp), com equipamento Tier 1, projeto, ART e homologação Energisa inclusos.</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>Atendimento Palmas e região</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>Sistemas solares fotovoltaicos com homologação Energisa, equipamentos Tier 1 e atendimento direto com o Renato Edson.</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual do site pertence integralmente à Aura Energy, utilizando logotipo e paleta de cores próprios, sem imitação gráfica ou apropriação do layout institucional do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A empresa se identifica como integradora de energia solar em Palmas-TO com foco no engenheiro/responsável Renato Edson, mas omite o número de CNPJ no rodapé.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-TXT-019">E-TXT-019</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência de declaração expressa da condição de correspondente bancário do Banco BV e ausência de canal de ouvidoria da instituição parceira.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-015">E-TXT-015</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O estabelecimento comunica-se em terceira pessoa a respeito das instituições financeiras, apresentando-se como instalador solar que intermedeia o crédito para viabilizar os projetos.</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-021">E-TXT-021</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>A menção à &#39;BV Financeira&#39; ocorre principalmente de forma textual como alternativa de parcelamento, sem evidência de aplicação indevida ou ostensiva de logomarcas oficiais.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-010">E-TXT-010</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os pontos de contato e simuladores direcionam para agendamento de visita técnica e conversas no WhatsApp com o especialista técnico, sem captura indevida de credenciais bancárias.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-2">E-CTA-2</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato diretos com o integrador solar local (telefone com DDD 63 e link de WhatsApp para Renato Edson).</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O contexto multibanco reduz o risco de impersonação direta, mas a menção de &#39;BV Financeira (preferido)&#39; sem os avisos regulatórios de correspondência bancária gera ambiguidade quanto à natureza da relação jurídica.</td><td class="mono"><a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-021">E-TXT-021</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página oferece financiamento solar com destaque para a &#39;BV Financeira&#39; (indicada como opção preferida), porém não apresenta a declaração formal de correspondente bancário nem as informações regulatórias exigidas pela Resolução CMN nº 4.935/2021 (art. 14). — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-021">E-TXT-021</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Embora a empresa se identifique pelo nome comercial &#39;Aura Energy&#39; e pelo responsável Renato Edson, o CNPJ e a razão social completa não estão disponíveis de forma explícita no rodapé ou no texto da página. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-029">E-TXT-029</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] CONSUMER_CONFUSION: Contexto multibanco explícito onde a BV Financeira é citada ao lado de outras instituições como Solfácil, Sicredi, Sicoob, Santander e Banco do Brasil. — <span class="mono"><a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-021">E-TXT-021</a> </span></li><li>[HIGH] VISUAL_IDENTITY: Predomínio claro da marca própria da empresa (Aura Energy) em toda a estrutura do site, logotipo e comunicação institucional. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-HDR">E-HDR</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página promove serviços de energia solar fotovoltaica residencial em Palmas-TO pela empresa Aura Energy.</li><li>A marca BV Financeira é citada em múltiplos trechos de texto como opção de financiamento em até 120x e qualificada como &#39;preferido&#39;.</li><li>Há menção concomitante a outras instituições financeiras e fintechs de energia solar (Solfácil, Sicredi, Sicoob, Santander, BB).</li><li>Não foi identificada a presença do logotipo descontinuado (B vermelho + V azul) nem logotipo oficial em imagem isolada do banco.</li><li>A página não exibe o CNPJ no rodapé nem traz o aviso regulatório formal de correspondente bancário (Res. CMN nº 4.935/2021).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não é possível confirmar se a Aura Energy possui contrato formal ativo de correspondente bancário ou integrador credenciado junto ao Banco BV/Meu Financiamento Solar.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Aura Energy) que divulga linhas de financiamento de múltiplos bancos para viabilizar seus serviços, citando com frequência a &#39;BV Financeira&#39; como parceira preferencial. Não há tentativa de se passar pelo banco e a identidade comercial própria é evidente. Contudo, a ausência de CNPJ explícito e a falta da declaração regulatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021 configuram comunicação de parceria ambígua, demandando revisão operacional.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:auraenergypalmas.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>auraenergypalmas.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com especialista &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20vim%20pela%20LP%20da%20Aura%20Energy.%20Quero%20falar%20com%20um%20especialista.&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Agendar visita técnica gratuita &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato%2C%20simulei%20na%20sua%20LP%20da%20Aura%20Energy.%0A%0AMinha%20conta%20de%20luz%3A%20R%24%C2%A0600%2Fm%C3%AAs%0ASis</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Mini%20(3%20kWp).%20Atende%20em%20Palmas%3F&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Padr%C3%A3o%20(5%20kWp).%20Atende%20em%20Palmas%3F&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Pedir orçamento &lt;https://wa.me/5563992706284?text=Ol%C3%A1%20Renato!%20Quero%20or%C3%A7amento%20do%20kit%20Plus%20(8%20kWp).%20Atende%20em%20Palmas%3F&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>bancos parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Engenheiro responsável (CREA-TO), instalação rápida, financiamento BV Financeira + 5 bancos parceiros ...</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-015">E-TXT-015</a> <a href="#E-TXT-021">E-TXT-021</a> <a href="#E-TXT-029">E-TXT-029</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-12">E-CONTACT-12</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CTA-2">E-CTA-2</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma empresa integradora de energia solar (Aura Energy) que divulga ativamente opções de financiamento com a &#39;BV Financeira&#39; (apontada como opção preferencial e com prazos de até 120 meses). Embora a identidade visual da Aura Energy prevaleça e não haja tentativa de personificação do banco, a empresa atua na oferta/intermediação de crédito sem divulgar CNPJ, razão social formal ou os avisos regulatórios obrigatórios de correspondente bancário previstos na Resolução CMN nº 4.935/2021. Conforme as diretrizes, o uso da marca com vínculo/parceria comercial não devidamente esclarecido ao consumidor sustenta a classificação REVIEW_REQUIRED com prioridade MEDIUM.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;bv financeira&#34; &#34;bancos parceiros&#34; veículos &#34;Tocantins&#34;<br><span class="muted">H5-establishment:regiao-Norte</span></td><td class="mono">https://auraenergypalmas.com/casa</td><td>Energia solar pra sua casa em Palmas-TO | Aura Energy<br><span class="muted">Engenheiro responsável (CREA-TO), instalação rápida, financiamento BV Financeira + 5 bancos parceiros ... Tocantins tem irradiação solar de 5,9 kWh/m²/dia ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 02:08:17.344754+00:00</div>
+      <div class="kv"><b>IP do servidor</b>76.76.21.21</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C3c2a2f2c73/attempt-1/manifest.json<br>sha256 9ba7864e75feb782c9a9b2af0f20603570ecf7a78d4150a1b237bcbc7dc148c9</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://auraenergypalmas.com/casa<br>Final: https://auraenergypalmas.com/casa</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C3c2a2f2c73/attempt-1/viewport.png</td><td class="mono">fe51eb3cf87d0b6c4edca2f254f3f0b9757e3fe8c0bae6dd968809d951bc2499</td><td>518072</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C3c2a2f2c73/attempt-1/fullpage.png</td><td class="mono">4128e86d22276165d94875852b5d3c0564700515925a77ea77101e7df1782d38</td><td>2071312</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C3c2a2f2c73/attempt-1/page.html.txt</td><td class="mono">57575f924c3d16af4fe711d022d2b94fd998251f53fc9c98394ce87587c4b2d2</td><td>578394</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C3c2a2f2c73/attempt-1/text.txt</td><td class="mono">f6e8fdd6c4db7e034741cad1dd18239a156476f3556fc6dd24b56c676bae2b4f</td><td>23084</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C3c2a2f2c73/attempt-1/page.json</td><td class="mono">0fe9044f18bb91e7ce0e4684e9690abea3305b5cd8f8c2588a1c7d60bfed246a</td><td>55062</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>screenshot completo limitado a 12000px (página com 24496px); texto integral preservado em text.txt</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:37+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-26T02:08:17+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T02:08:25+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T02:08:25+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T02:10:31+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T02:10:39+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

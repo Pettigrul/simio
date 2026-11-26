@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C1306ecb58d</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C1306ecb58d — querofinanciar.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://querofinanciar.com/contato/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2016-02-09 (3942 dias) · Cloudflare, Inc.</div><div class="kv"><b>Titular do domínio</b>não publicado</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (172.66.43.41); Cloudflare, Inc. (172.66.40.215)</div>
+<div class="kv"><b>DNS (NS / MX)</b>koa.ns.cloudflare.com, shaz.ns.cloudflare.com / aspmx.l.google.com, alt1.aspmx.l.google.com, alt2.aspmx.l.google.com, aspmx2.googlemail.com, aspmx3.googlemail.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com, registrar-abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>HIGH</div>
+      <div class="kv"><b>Confiança da extração</b>LOW</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-DISC-001]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-DISC-001, E-DISC-001]. (Pontuação de triagem: confusão 1.5, transparência 0.5; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>acesso direto no navegador local bloqueado/indisponível; avaliação baseada nas evidências indexadas na descoberta (E-DISC-*)</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>acesso direto pelo navegador indisponível/bloqueado; identidade examinada apenas a partir das evidências indexadas na descoberta (E-DISC-*)</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem</li><li>LLM indisponível nesta execução: brand: 403: permission/auth error: There are issues with your billing account, please resolve / pay your outstanding balance for project: projects/525969080967</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C1306ecb58d/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 1466e9f96dfcab06d1fd9753107eeab42e77882b36bf0df8eb594dc8dbc61c97</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C1306ecb58d/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 09974523b6e796b85d5ed799c3410c5f15bfb96991efd27327e8f664de794b0f</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://querofinanciar.com/contato/ (domínio: querofinanciar.com)</td></tr>
+      <tr id="E-REDIR"><td class="mono"><b>E-REDIR</b></td><td>network</td><td>url</td><td>Cadeia de redirecionamento: https://querofinanciar.com/contato/ -&gt; https://querofinanciar.com/contato/</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: FAILED; HTTP 403; ocorrências: HTTP 403: page content is an error page</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): querofinanciar.com — **URL:** `https://querofinanciar.com/` | **Segmento:** Portal de simulação e financiamento/refinanciamento com garantia de veículos | **Uso da Marca / Apelo:** Oferece simulação online e intermediação | Declara parceria com o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03) | Divulga adequadamente a Razão Social, seu CNPJ (14.439.116/0001-36), aviso de que não é instituição financeira e lista o Banco Votorantim | Entretanto, ainda cita conformidade com a antiga **Resolução CMN nº 3.954/2011**, demandando atualização expressa para a **Resolução CMN nº 4.935/2021**</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C1306ecb58d/attempt-1/viewport.png (sha256 1466e9f96dfcab06…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C1306ecb58d/attempt-1/fullpage.png (sha256 09974523b6e796b8…)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-v1)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Empresa responsável identificada por CNPJ</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Nenhuma declaração de correspondente/independência observada no conteúdo coletado</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Empresa responsável identificada por CNPJ — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>menções à marca no texto visível: 2</li><li>marca no título: não</li><li>padrão da marca no domínio: não</li><li>marca no cabeçalho: não</li><li>marca na área visível inicial: sim</li><li>imagens possivelmente de logotipo/marca: 0 (0 acima da dobra)</li><li>indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): nenhum identificado</li><li>logotipo antigo confirmado por comparação de imagem: não</li><li>expressões de oficialidade: nenhuma</li><li>expressões de oficialidade próximas à marca: nenhuma</li><li>serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: nenhum</li><li>declarações de correspondente/independência: nenhuma encontrada; locais: -; na área visível inicial/cabeçalho: não; nomeia a instituição: não (tamanho, contraste e legibilidade não medidos automaticamente)</li><li>menções a parceria: &#39;parceria&#39; [E-DISC-001] (associadas à marca: 1)</li><li>contexto multimarcas/multibancos (outras instituições financeiras na página): não</li><li>expressões de oficialidade em discurso de terceiros (notícia/alerta): nenhuma</li><li>página do tipo artigo/notícia (og:type): não; contexto editorial/informativo/reclamação: não</li><li>ouvidoria mencionada: não</li><li>links para domínio oficial da instituição: não</li><li>contatos WhatsApp: 0; telefones: 0</li><li>CNPJs: 59.588.111/0001-03 [E-DISC-001], 14.439.116/0001-36 [E-DISC-001]</li><li>formulários na página: 0</li><li>campos que pedem dados sensíveis: nenhum</li><li>formulário que envia dados para outro domínio: não</li><li>acesso direto pelo navegador indisponível/bloqueado; sinais extraídos das evidências indexadas na descoberta (E-DISC-*)</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>análise heurística sem avaliação visual por modelo; identidade visual e logotipo inferidos apenas por textos alternativos e nomes de arquivos</li><li>menção a &#39;parceiro&#39; sem declaração de correspondente: não resolve a análise</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-DISC-001]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-DISC-001, E-DISC-001]. (Pontuação de triagem: confusão 1.5, transparência 0.5; ordena casos, não prova.)</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Entidade</b>UNI SERVICOS DE APOIO ADMINISTRATIVO LTDA<br><span class="mono">cnpj:14439116000136</span></div>
+      <div class="kv"><b>Confiança</b>HIGH</div>
+      <div class="kv"><b>Cadastro autorizado</b>coban_registry_bv.csv (ref. 2026-10-06) (cnpj)</div>
+    </div>
+    <p style="margin-top:12px;">CNPJ 14.439.116/0001-36 observado na página consta do cadastro autorizado &#39;coban_registry_bv.csv (ref. 2026-10-06)&#39;.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>querofinanciar.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>59.588.111/0001-03</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Uso da Marca / Apelo:** Oferece simulação online e intermediação | Declara parceria com o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03</td></tr>
+      <tr><td>cnpj</td><td>14.439.116/0001-36</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>) | Divulga adequadamente a Razão Social, seu CNPJ (14.439.116/0001-36</td></tr>
+      <tr><td>institution_name_displayed</td><td>Banco Votorantim S.A</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>parceria</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Declara parceria com o Banco Votorantim S.A.</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro CNPJ presente na página, tratados como referência à contratante: 59.588.111/0001-03</li><li>a página se apresenta com o nome da instituição (Banco Votorantim S.A); isso é identidade declarada/visual, não a identidade do responsável</li><li>associação página→CNPJ baseada na publicação do CNPJ na própria página</li><li>um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o domínio é seu</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>unanalyzed_visual_context</td><td>MEDIUM</td><td>Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Correspondentes bancários e promotoras que declaram vínculo com a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;correspondente bancário&#34; OR &#34;Correspondente no País&#34; OR &#34;correspondente do Banco BV&#34;) &#34;Banco BV&#34; -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;correspondente BV&#34; OR &#34;Somos correspondente&#34; &#34;Banco BV&#34; OR &#34;correspondente&#34; &#34;bv financeira&#34;) financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - &#34;correspondente&#34; &#34;Banco Votorantim&#34; financiamento -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H3-service:correspondente-vinculo</span></td><td class="mono">https://querofinanciar.com/contato/</td><td>querofinanciar.com<br><span class="muted">**URL:** `https://querofinanciar.com/` | **Segmento:** Portal de simulação e financiamento/refinanciamento com garantia de veículos | **Uso da Marca / Apelo:** Oferece simulação online e intermediação | Declara parceria com o Banco Votorantim S.A. (CNPJ 59.588.111/0001-03) | Divulga adequadamente a Razão Social, seu CNPJ (14.439.116/0001-36), aviso de que não é instituição financeira e lista o Banco Votorantim | Entretanto, ainda cita conformidade com a antiga **Resolução CMN nº 3.954/2011**, demandando atualização expressa para a **Resolução CMN nº 4.935/2021**</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>FAILED (HTTP 403)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 03:09:55.668992+00:00</div>
+      <div class="kv"><b>IP do servidor</b>172.66.40.215</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C1306ecb58d/attempt-1/manifest.json<br>sha256 b8c1dc71fe7808a54127284adcbdcc3e0471762d4792c0850e268debf65a5aa0</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://querofinanciar.com/contato/<br>Final: https://querofinanciar.com/contato/</p>
+<p class="mono">Redirecionamentos: https://querofinanciar.com/contato/</p>    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C1306ecb58d/attempt-1/viewport.png</td><td class="mono">1466e9f96dfcab06d1fd9753107eeab42e77882b36bf0df8eb594dc8dbc61c97</td><td>38994</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C1306ecb58d/attempt-1/fullpage.png</td><td class="mono">09974523b6e796b85d5ed799c3410c5f15bfb96991efd27327e8f664de794b0f</td><td>38700</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C1306ecb58d/attempt-1/page.html.txt</td><td class="mono">62964118dabbefc2b369c733cf9e5204a6ea9a9066c79076cc2f317eb2df8c81</td><td>44875</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C1306ecb58d/attempt-1/text.txt</td><td class="mono">10338fa08ff82aeb98d34d49c57ae0fda1bf7f2efd6427fafdd4532fcba74075</td><td>292</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C1306ecb58d/attempt-1/page.json</td><td class="mono">d2602c4fc29cc4ddc4ade64443e25836892b5c3b2a59597da4dab6559f0a0a26</td><td>1450</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>HTTP 403: page content is an error page</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:53+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-26T03:09:55+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T03:10:00+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T03:10:00+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T03:10:00+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T03:10:00+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C910581a259</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C910581a259 — apconsig.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://apconsig.com/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (comparação de imagem)</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2013-04-12 (4976 dias) · Cloudflare, Inc.</div><div class="kv"><b>Titular do domínio</b>não publicado</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (172.67.213.121); Cloudflare, Inc. (104.21.61.195)</div>
+<div class="kv"><b>DNS (NS / MX)</b>dara.ns.cloudflare.com, mitch.ns.cloudflare.com / mail.apconsig.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com, registrar-abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem [E-VIS-LEGACY-001]; Atendimento por WhatsApp sob identidade destacada da marca [E-DISC-001, E-CONTACT-2, E-CONTACT-3]. Elementos de transparência/identificação do terceiro: Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante) [E-FOLD, E-FTR, E-TXT-003]. (Pontuação de triagem: confusão 2.5, transparência 1.0; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem</li><li>LLM indisponível nesta execução: brand: 403: permission/auth error: There are issues with your billing account, please resolve / pay your outstanding balance for project: projects/525969080967</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>Logotipo antigo — comparação de imagem</h2>
+    <p class="muted">Regiões dos screenshots comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de IA.</p>
+    <table>
+      <thead><tr><th>Screenshot</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem</th></tr></thead>
+      <tbody>
+        <tr><td>E-SHOT-FULL</td><td>321, 979</td><td>52×38 px</td><td>0.88</td><td class="mono">https://apconsig.com/wp-content/uploads/2023/01/ico-bv.png</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C910581a259/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 98af84e427d749f848f94bacb88d2e38c298e98739ddfea7528c29965d2bdcfd</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C910581a259/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 00027e930515720b587b764780550fc6194e5c555f9820f1cb205ea07ef30f99</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-VIS-LEGACY-001"><td class="mono"><b>E-VIS-LEGACY-001</b></td><td>visual</td><td>page</td><td>Comparação de imagem (determinística, sem IA): logotipo ANTIGO de Banco BV (B vermelho sobre V azul) em E-SHOT-FULL, posição x=321 y=979, 52x38px, similaridade 0.88; imagem: https://apconsig.com/wp-content/uploads/2023/01/ico-bv.png</td></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://apconsig.com/ (domínio: apconsig.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): apconsig.com — **URL:** `https://apconsig.com` | **Uso da Marca BV:** Utiliza o logotipo da &#34;BV Financeira&#34; na vitrine de instituições financeiras parceiras autorizadas e oferece uma ferramenta de *&#34;Simulação Expressa&#34;* integrada que direciona o proponente para atendimento via WhatsApp | Declara-se de modo genérico como &#34;Correspondente Bancário Autorizado&#34;</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C910581a259/attempt-1/viewport.png (sha256 98af84e427d749f8…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C910581a259/attempt-1/fullpage.png (sha256 00027e930515720b…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>AP Consig | Crédito Consignado Digital, INSS e Servidores Públicos</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Simulação rápida e contratação de crédito consignado para aposentados e pensionistas do INSS, servidores públicos e forças armadas.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: AP Consig - Crédito Consignado Fácil e Seguro</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Simule e contrate crédito consignado online com as melhores taxas do Brasil.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://apconsig.com/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Crédito Consignado Digital: Rápido, Fácil e Seguro.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Quanto você precisa?</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Crédito Sob Medida</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Aposentados e Pensionistas INSS</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Servidores Públicos (AP &amp; Federal)</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Antecipação FGTS Saque-Aniversário</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Solidez e Confiança em Crédito</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Fale Conosco</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Canais Oficiais</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Atendimento Especializado</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Processando... Aguarde um instante. (96) 2101-0021 (96) 99173-8720 Seg a Sex: 08h às 18h Atendimento Online Ativo Home Links Simulador Serviços Bancos Sobre Nós Contato Simular Agora Correspondente Bancário Autorizado Crédito Consignado Digital: Rápido, Fácil e Seguro. A inovadora tecnologia dos maiores Bancos Parceiros para você contratar seu crédito consignado online, com as melhores taxas e liberação direta na sua conta. Simular Empréstimo Falar com Especialista Simulação Expressa Quanto você precisa? Selecione o seu perfil: Valor do Crédito: R$ 10.000 Prazo em Meses: 84x Parcela mensal estimada: R$ 223,03 Solicitar no WhatsApp Principais Instituições Financeiras Parceiras</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>AP Consig - Correspondente bancário autorizado nos termos da Resolução CMN nº 3.954 do Banco Central do Brasil. Links Rápidos Home Simulador Serviços Bancos Sobre Nós Contato Macapá - AP (96) 2101-0021 (96) 99173-8720 © 2026 AP Consig - Todos os direitos reservados. Painel Administrativo</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://apconsig.com/&gt; | Home &lt;https://apconsig.com/#inicio&gt; | Simulador &lt;https://apconsig.com/#simulador&gt; | Serviços &lt;https://apconsig.com/#servicos&gt; | Bancos &lt;https://apconsig.com/#bancos&gt; | Sobre Nós &lt;https://apconsig.com/#sobre&gt; | Contato &lt;https://apconsig.com/#contato&gt; | Simular Agora &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20proposta%20de%20cr%C3%A9dito.&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>nav</td><td>Simular Agora &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20proposta%20de%20cr%C3%A9dito.&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Simular Empréstimo &lt;https://apconsig.com/#simulador&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Falar com Especialista &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20especialista.&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Solicitar no WhatsApp</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Simular INSS &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20INSS&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Simular Servidor &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20para%20Servidor%20P%C3%BAblico&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Antecipar FGTS &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20antecipar%20meu%20FGTS&gt;</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Chamar no WhatsApp &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20atendimento.&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>(96) 2101-0021 &lt;tel:9621010021&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>(96) 99173-8720 &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>nav</td><td>Simular Agora &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20proposta%20de%20cr%C3%A9dito.&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Falar com Especialista &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20especialista.&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Simular INSS &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20INSS&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Simular Servidor &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20para%20Servidor%20P%C3%BAblico&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Antecipar FGTS &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20antecipar%20meu%20FGTS&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>(96) 2101-0021 &lt;tel:9621010021&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>(96) 99173-8720 &lt;https://api.whatsapp.com/send?phone=5596991738720&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>Chamar no WhatsApp &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20atendimento.&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>WhatsApp &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>nav (acima da dobra)</td><td>imagem alt=&#39;AP Consig - Crédito Consignado&#39; src=https://apconsig.com/wp-content/uploads/2023/01/cropped-Logo_FinalSite2-01-1.png (163x48, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;BV Financeira&#39; src=https://apconsig.com/wp-content/uploads/2023/01/ico-bv.png (52x38, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Banco Master&#39; src=https://apconsig.com/wp-content/uploads/2023/01/master-ib-logo.png (120x30, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;AP Consig&#39; src=https://apconsig.com/wp-content/uploads/2023/01/cropped-Logo_FinalSite2-01-1.png (255x75, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Atendimento Online Ativo</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Bancos</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Correspondente Bancário Autorizado</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>A inovadora tecnologia dos maiores Bancos Parceiros para você contratar seu crédito consignado online, com as melhores taxas e liberação direta na sua conta.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Solicitar no WhatsApp</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>PRINCIPAIS INSTITUIÇÕES FINANCEIRAS PARCEIRAS</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A AP Consig atua como correspondente bancário autorizado no Estado do Amapá e em todo o Brasil, intermediando operações com máxima segurança, agilidade e melhores condições.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Atendimentos</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Bancos Parceiros</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>ATENDIMENTO</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Canais diretos para atendimento rápido e personalizado.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Endereço:</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Telefone:</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>WhatsApp:</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Atendimento Especializado</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Chamar no WhatsApp</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>AP Consig - Correspondente bancário autorizado nos termos da Resolução CMN nº 3.954 do Banco Central do Brasil.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Bancos</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-v1)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante)</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-017">E-TXT-017</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Imagem possivelmente de logotipo da marca acima da dobra; Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="CONFUSION">CONFUSION</td><td>Atendimento por WhatsApp sob identidade destacada da marca</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></li><li>[HIGH] LOGO_USAGE: Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem — <span class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] CORRESPONDENT_TRANSPARENCY: Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante) — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-TXT-017">E-TXT-017</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>menções à marca no texto visível: 0</li><li>marca no título: não</li><li>padrão da marca no domínio: não</li><li>marca no cabeçalho: não</li><li>marca na área visível inicial: não</li><li>imagens possivelmente de logotipo/marca: 4 (1 acima da dobra)</li><li>indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): &#39;logotipo antigo (comparação de imagem)&#39; [E-VIS-LEGACY-001]</li><li>logotipo antigo confirmado por comparação de imagem: [E-VIS-LEGACY-001] em E-SHOT-FULL, posição x=321 y=979, 52x38px, similaridade 0.88; imagem: https://apconsig.com/wp-content/uploads/2023/01</li><li>expressões de oficialidade: nenhuma</li><li>expressões de oficialidade próximas à marca: nenhuma</li><li>serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: nenhum</li><li>declarações de correspondente/independência: &#39;Correspondente Bancário Autorizado&#39; [E-FOLD], &#39;Correspondente bancário autorizado&#39; [E-FTR], &#39;Correspondente Bancário Autorizado&#39; [E-TXT-003], &#39;correspondente bancário autorizado&#39; [E-TXT-007], &#39;Correspondente bancário autorizado&#39; [E-TXT-017]; locais: footer, page, viewport; na área visível inicial/cabeçalho: sim; nomeia a instituição: não (tamanho, contraste e legibilidade não medidos automaticamente)</li><li>menções a parceria: &#39;financeiras parceiras&#39; [E-DISC-001], &#39;Autorizado&#39; [E-DISC-001], &#39;Autorizado&#39; [E-FOLD], &#39;Bancos Parceiros&#39; [E-FOLD], &#39;Financeiras Parceiras&#39; [E-FOLD] (associadas à marca: 1)</li><li>contexto multimarcas/multibancos (outras instituições financeiras na página): não</li><li>expressões de oficialidade em discurso de terceiros (notícia/alerta): nenhuma</li><li>página do tipo artigo/notícia (og:type): não; contexto editorial/informativo/reclamação: não</li><li>ouvidoria mencionada: não</li><li>links para domínio oficial da instituição: não</li><li>contatos WhatsApp: 10; telefones: 10</li><li>CNPJs: nenhum</li><li>formulários na página: 0</li><li>campos que pedem dados sensíveis: nenhum</li><li>formulário que envia dados para outro domínio: não</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>análise heurística sem avaliação visual por modelo; identidade visual e logotipo inferidos apenas por textos alternativos e nomes de arquivos</li><li>evidências contraditórias: há declaração de correspondente e indícios de confusão</li><li>declaração de correspondente/independência sem nomear a instituição contratante</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem [E-VIS-LEGACY-001]; Atendimento por WhatsApp sob identidade destacada da marca [E-DISC-001, E-CONTACT-2, E-CONTACT-3]. Elementos de transparência/identificação do terceiro: Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante) [E-FOLD, E-FTR, E-TXT-003]. (Pontuação de triagem: confusão 2.5, transparência 1.0; ordena casos, não prova.)</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:apconsig.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>apconsig.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>phone</td><td>(96) 2101-0021</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>(96) 99173-8720</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>9621010021</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): apconsig.com — **URL:** `https://apconsig.com` | **Uso da Marca BV:** Utiliza o logotipo da &#34;BV Financeira&#34; na vitrine de instituições financeiras parceiras autorizadas e </td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>(96) 99173-8720 &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es.&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Simular Agora &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20proposta%20de%20cr%C3%A9dito.&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar com Especialista &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20especialista.&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Simular INSS &lt;https://api.whatsapp.com/send?phone=5596991738720&amp;text=Gostaria%20de%20simular%20cr%C3%A9dito%20INSS&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Correspondente Bancário Autorizado</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>Processando... Aguarde um instante. (96) 2101-0021 (96) 99173-8720 Seg a Sex: 08h às 18h Atendimento Online Ativo Home Links Simulador Serviços Bancos Sobre Nós Contato Simular Agora Correspondente Ba</td></tr>
+      <tr><td>partnership_declaration</td><td>financeiras parceiras</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>**Uso da Marca BV:** Utiliza o logotipo da &#34;BV Financeira&#34; na vitrine de instituições financeiras parceiras autorizadas e oferece uma ferramenta de *&#34;Simulação Expressa&#34;* integrada que direciona o pro</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> <a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (CONTACT_CHANNELS) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-DISC-001">E-DISC-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-DISC-001">E-DISC-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul><h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → REVIEW_REQUIRED / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>unanalyzed_visual_context</td><td>MEDIUM</td><td>Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Promotoras, correspondentes e corretoras oferecendo refinanciamento, crédito consignado, empréstimo pessoal e garantia com a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - &#34;Banco BV&#34; (&#34;crédito com garantia&#34; OR &#34;home equity&#34; OR refinanciamento) (correspondente OR promotora OR financeira) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) (&#34;crédito consignado&#34; OR &#34;empréstimo consignado&#34; OR consignado) (promotora OR correspondente OR &#34;taxas&#34; OR simulação) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;BV Financeira&#34; OR &#34;Banco BV&#34;) (&#34;Daycoval&#34; OR &#34;Pan&#34; OR &#34;Safra&#34; OR &#34;BMG&#34;) (consignado OR refinanciamento OR empréstimo OR promotora) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:refinanciamento e crédito com garantia</span></td><td class="mono">https://apconsig.com/</td><td>apconsig.com<br><span class="muted">**URL:** `https://apconsig.com` | **Uso da Marca BV:** Utiliza o logotipo da &#34;BV Financeira&#34; na vitrine de instituições financeiras parceiras autorizadas e oferece uma ferramenta de *&#34;Simulação Expressa&#34;* integrada que direciona o proponente para atendimento via WhatsApp | Declara-se de modo genérico como &#34;Correspondente Bancário Autorizado&#34;</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 03:05:47.937467+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.61.195</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C910581a259/attempt-1/manifest.json<br>sha256 854eb4eb19ab7cbee82a14410b0158d268ee845a7e19d548833cb7260e6d424b</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://apconsig.com/<br>Final: https://apconsig.com/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C910581a259/attempt-1/viewport.png</td><td class="mono">98af84e427d749f848f94bacb88d2e38c298e98739ddfea7528c29965d2bdcfd</td><td>324171</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C910581a259/attempt-1/fullpage.png</td><td class="mono">00027e930515720b587b764780550fc6194e5c555f9820f1cb205ea07ef30f99</td><td>754495</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C910581a259/attempt-1/page.html.txt</td><td class="mono">9f918822a73c09226eceebe2960e5101e320c3142b6ee5863ab30e49dfa300de</td><td>82623</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C910581a259/attempt-1/text.txt</td><td class="mono">20dae0ad16e641f086ea95f35025070296e469b7090489c02ada6aff653e984f</td><td>2456</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C910581a259/attempt-1/page.json</td><td class="mono">c32b5128991a952e927b71781435d1c7d6f9029714f8723183b18b5d811e86f2</td><td>17523</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:49+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-26T03:05:47+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T03:05:57+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T03:05:57+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T03:05:58+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T03:05:58+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

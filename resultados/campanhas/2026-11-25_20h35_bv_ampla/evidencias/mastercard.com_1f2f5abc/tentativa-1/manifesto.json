@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1f2f5abc1b",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.mastercard.com/content/dam/mccom/lac/br/participantes-arranjo-mastercard/pdf/082026-lista-de-participantes-do-arranjo-mastercard-brasil.csv",
+  "final_url": "https://www.mastercard.com/content/dam/mccom/lac/br/participantes-arranjo-mastercard/pdf/082026-lista-de-participantes-do-arranjo-mastercard-brasil.csv",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "184.85.142.102",
+  "collected_at": "2026-11-26T03:00:27.298110+00:00",
+  "manifest_written_at": "2026-11-26T03:00:30.566590+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C1f2f5abc1b/attempt-1/viewport.png",
+      "sha256": "cb5fe4881e433e940aedc996f32aa1591585dbe950e6aee6c520dc7609ae53a4",
+      "size_bytes": 27469
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C1f2f5abc1b/attempt-1/fullpage.png",
+      "sha256": "cb5fe4881e433e940aedc996f32aa1591585dbe950e6aee6c520dc7609ae53a4",
+      "size_bytes": 27469
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C1f2f5abc1b/attempt-1/page.html.txt",
+      "sha256": "3535594335e7601705896921a44b07eb561038b597bd3dcbb0c9b5f28a2c9c9a",
+      "size_bytes": 420
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C1f2f5abc1b/attempt-1/text.txt",
+      "sha256": "0234f6a2ebc9c05edcdf0264279b8872f4f95eb9855cee8dd6ae637fc907a433",
+      "size_bytes": 324
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C1f2f5abc1b/attempt-1/page.json",
+      "sha256": "c6f94bd101f3821998690fcc388be6bab8e9605a757298f4d975776b485482da",
+      "size_bytes": 1013
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

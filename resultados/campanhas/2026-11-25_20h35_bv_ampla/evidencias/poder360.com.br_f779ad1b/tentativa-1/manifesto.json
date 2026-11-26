@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cf779ad1bbf",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.poder360.com.br/economia/banco-bv-vai-a-justica-contra-decisao-que-protege-americanas/",
+  "final_url": "https://www.poder360.com.br/economia/banco-bv-vai-a-justica-contra-decisao-que-protege-americanas/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.20.30.50",
+  "collected_at": "2026-11-26T03:02:49.428724+00:00",
+  "manifest_written_at": "2026-11-26T03:02:59.306612+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cf779ad1bbf/attempt-1/viewport.png",
+      "sha256": "6ed6ab7bfeb97477941cce16c158cb86898cc9c39ef187ffaa435284676544fd",
+      "size_bytes": 600160
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cf779ad1bbf/attempt-1/fullpage.png",
+      "sha256": "81eb3ef6d3574268f5936797e8aa3feca139ac19eb5f1624c710d5bfc5e3eed8",
+      "size_bytes": 1062229
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cf779ad1bbf/attempt-1/page.html.txt",
+      "sha256": "fc656b9e446fe88822b26e6d51c4b3156b80b96800bb69958cddad6568695fc0",
+      "size_bytes": 287664
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cf779ad1bbf/attempt-1/text.txt",
+      "sha256": "0b863e55b3c4c7cbbe943a5498eefee3162eeb4abdafdfff593a82c548e1d88d",
+      "size_bytes": 8715
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cf779ad1bbf/attempt-1/page.json",
+      "sha256": "2f792d0e5078dd5d41722cd9c4c63da48f68337b3969d171ac0bf8ed94c58477",
+      "size_bytes": 88944
+    }
+  ],
+  "blocked_requests": [
+    "https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -> DNS resolution failed for invstatic101.creativecdn.com: [Errno -2] Name or service not known",
+    "https://i.liadm.com/s/88342?bidder_id=246498&bidder_uuid=4657572554047527662804 -> DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known",
+    "https://i.liadm.com/s/88342?bidder_id=246498&bidder_uuid=4657572554047527662804&gpp_s=&gpp_as= -> DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

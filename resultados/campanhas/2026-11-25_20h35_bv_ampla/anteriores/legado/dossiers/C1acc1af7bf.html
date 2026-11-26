@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C1acc1af7bf</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C1acc1af7bf — facebook.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento Vitória Seminovos (loja de veículos dentro do escopo) publicou vídeo com arte e marca do Banco BV veiculando oferta de prorrogação de parcelas em primeira pessoa (&#39;com a gente&#39;), sem qualquer declaração de correspondente bancário e sem CNPJ. O formato gera severa ambiguidade e aparência de canal oficial, enquadrando-se em STRONG_INDICATION com prioridade HIGH.
+[Revisor: CONFIRM] A página pertence a uma loja de veículos (&#39;Vitória Seminovos&#39;), público-alvo prioritário da investigação (revenda/COBAN de veículos). O post no Facebook utiliza a identidade visual e o logotipo do Banco BV para divulgar condições contratuais e renegociação de parcelas, empregando linguagem em primeira pessoa (&#39;com a gente&#39;), sem apresentar CNPJ, razão social, declaração de correspondente bancário ou contato de ouvidoria, em violação ao art. 14 da Res. CMN nº 4.935/2021. Mantém-se STRONG_INDICATION com prioridade HIGH.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C1acc1af7bf/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 f3ea522acaacad8dcdd8ca65dcba4ae9a5d584c0af1cdf6e672e2955e6c2a64e</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C1acc1af7bf/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a2f836ec76c8557278b1050b709a9f20693e28058ce92c80b4c53faa83252a73</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/ (domínio: www.facebook.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Recado da BV Financeira pra vocês. Você que tem contrato em ... — Recado da BV Financeira pra vocês. Você que tem ... Recado da BV Financeira pra vocês. ... Siga Uniao Promotora®/credito consignado/ INSS • GOV• Pref Se você é.</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C1acc1af7bf/attempt-1/viewport.png (sha256 f3ea522acaacad8d…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C1acc1af7bf/attempt-1/fullpage.png (sha256 a2f836ec76c85572…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Facebook</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Vitória Seminovos</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Reproduzir</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Silenciar</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Entrar em modo de tela cheia</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Reproduzir o vídeo</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Clique para assistir no Facebook &lt;https://www.facebook.com/vitoriaseminovos/videos/1598876713596178/?t=0&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td> &lt;https://www.facebook.com/watch/vitoriaseminovos/?ref=embed_video&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Vitória Seminovos &lt;https://www.facebook.com/watch/vitoriaseminovos/?ref=embed_video&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>Saiba mais &lt;https://www.facebook.com/help/396404120401278/list?ref=embed_video&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Ver mais &lt;https://www.facebook.com/vitoriaseminovos/videos/1598876713596178/?ref=embed_video&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Comentar &lt;https://www.facebook.com/vitoriaseminovos/videos/1598876713596178/?ref=embed_video&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Compartilhar &lt;https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fvitoriaseminovos%2Fvideos%2F1598876713596178%2F&amp;display=popup&amp;ref=embed_video&amp;src=post&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://scontent.fcgh22-1.fna.fbcdn.net/v/t15.5256-10/903360541_3769145819902579_7956138320828798895_n.avif?stp=dst-jpg_p526x296_tt6&amp;_nc_cat=105&amp;_nc_map=urlgen_bucketless&amp;ccb=1-7&amp;_nc_sid=3a9e82&amp;_nc_oh (1364x1642, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Recado da BV Financeira pra vocês.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O conteúdo visual do vídeo utiliza as cores e elementos gráficos padronizados da identidade visual do Banco BV, obscurecendo a identidade do estabelecimento de revenda de veículos.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O perfil é denominado &#39;Vitória Seminovos&#39;, mas a postagem omite razão social, CNPJ e dados de localização da empresa, apresentando-se em nome da BV Financeira.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência total de declaração explícita de correspondente bancário e ausência de identificação do papel de intermediação.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso de linguagem institucional na primeira pessoa do plural (&#39;com a gente&#39;) vinculando o contrato financeiro diretamente ao emissor da postagem.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Exibição do logotipo oficial atual do Banco BV no material de vídeo sem identificação da condição jurídica da parceria.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>O post informa sobre prorrogação de parcelas de financiamento sem direcionamento a formulários ou links externos de coleta de dados.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Apenas os botões de interação padrão da plataforma Facebook estão disponíveis.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Risco considerável de induzir o cliente a crer que o perfil de rede social é um canal oficial da instituição financeira para renegociação/prorrogação de contratos.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] INSTITUTIONAL_LANGUAGE: A publicação utiliza comunicação em primeira pessoa associando-se diretamente à instituição (&#39;Você que tem contrato em dia com a gente pode solicitar 60 dias para pagar as próximas parcelas&#39;), gerando a impressão de se tratar de um canal oficial de atendimento ou representação direta do Banco BV. — <span class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: A publicação não apresenta declaração de correspondente bancário independente, não identifica razão social ou CNPJ do estabelecimento divulgador e não disponibiliza canais regulamentares da ouvidoria, descumprindo os deveres de transparência da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </span></li><li>[MEDIUM] LOGO_USAGE: O vídeo publicado é composto pela identidade visual oficial do Banco BV, exibindo o logotipo institucional em destaque no canto inferior direito sem demarcação clara de relação de parceria por parte da loja Vitória Seminovos. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: A publicação está hospedada na página da loja de veículos &#39;Vitória Seminovos&#39;, indicando ser um terceiro do setor automotivo. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-URL">E-URL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Publicação de vídeo na página Vitória Seminovos no Facebook sob a URL &#39;https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-vocês...&#39;.</li><li>A legenda textual afirma: &#39;Recado da BV Financeira pra vocês. Você que tem contrato em dia com a gente pode solicitar 60 dias para pagar as próximas parcelas, sem pagar nada a mais por isso.&#39;</li><li>O vídeo traz a identidade visual oficial atual e o logotipo &#39;BV&#39; em cor branca sobre fundo azul no canto inferior direito.</li><li>Não foi identificada menção a CNPJ, razão social da loja ou declaração obrigatória de correspondente bancário da Resolução CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível apurar se a publicação é um repost/reprodução integral não autorizada de campanha institucional anterior do Banco BV ou se foi produzida autonomamente pela loja.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento Vitória Seminovos (loja de veículos dentro do escopo) publicou vídeo com arte e marca do Banco BV veiculando oferta de prorrogação de parcelas em primeira pessoa (&#39;com a gente&#39;), sem qualquer declaração de correspondente bancário e sem CNPJ. O formato gera severa ambiguidade e aparência de canal oficial, enquadrando-se em STRONG_INDICATION com prioridade HIGH.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:facebook.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>facebook.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/vitoriaseminovos/videos/1598876713596178/?t=0</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/watch/vitoriaseminovos/?ref=embed_video</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/help/396404120401278/list?ref=embed_video</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/vitoriaseminovos/videos/1598876713596178/?ref=embed_video</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fvitoriaseminovos%2Fvideos%2F1598876713596178%2F&amp;display=popup&amp;ref=embed_video&amp;src=post</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → STRONG_INDICATION / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma loja de veículos (&#39;Vitória Seminovos&#39;), público-alvo prioritário da investigação (revenda/COBAN de veículos). O post no Facebook utiliza a identidade visual e o logotipo do Banco BV para divulgar condições contratuais e renegociação de parcelas, empregando linguagem em primeira pessoa (&#39;com a gente&#39;), sem apresentar CNPJ, razão social, declaração de correspondente bancário ou contato de ouvidoria, em violação ao art. 14 da Res. CMN nº 4.935/2021. Mantém-se STRONG_INDICATION com prioridade HIGH.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;bv financeira&#34; &#34;crédito consignado&#34; promotora<br><span class="muted">H2-product:refinanciamento e crédito com garantia</span></td><td class="mono">https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/</td><td>Recado da BV Financeira pra vocês. Você que tem contrato em ...<br><span class="muted">Recado da BV Financeira pra vocês. Você que tem ... Recado da BV Financeira pra vocês. ... Siga Uniao Promotora®/credito consignado/ INSS • GOV• Pref Se você é.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 02:26:07.633361+00:00</div>
+      <div class="kv"><b>IP do servidor</b>57.144.88.1</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C1acc1af7bf/attempt-1/manifest.json<br>sha256 0310056b8cfbc17ca5388a4858f066226e06bc6f868c48749412ec1c6eff70d5</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/<br>Final: https://www.facebook.com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C1acc1af7bf/attempt-1/viewport.png</td><td class="mono">f3ea522acaacad8dcdd8ca65dcba4ae9a5d584c0af1cdf6e672e2955e6c2a64e</td><td>118759</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C1acc1af7bf/attempt-1/fullpage.png</td><td class="mono">a2f836ec76c8557278b1050b709a9f20693e28058ce92c80b4c53faa83252a73</td><td>222310</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C1acc1af7bf/attempt-1/page.html.txt</td><td class="mono">662836d83d7581552ddb338b98f6755c6007126eb943687ead0d2cac8bf5f001</td><td>212467</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C1acc1af7bf/attempt-1/text.txt</td><td class="mono">93c3c1815882056095f7c1a40a819916f6b3207b69af6d1adef147a75b3cb418</td><td>395</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C1acc1af7bf/attempt-1/page.json</td><td class="mono">20cc6f767aa33194ac9008736809b7f0b761d3a09b128c19fcc7bef130b28e61</td><td>4752</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:40+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-26T02:26:07+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T02:26:12+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T02:26:12+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T02:26:34+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T02:26:41+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

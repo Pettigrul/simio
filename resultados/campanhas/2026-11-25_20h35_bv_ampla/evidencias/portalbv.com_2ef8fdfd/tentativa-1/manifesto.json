@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C2ef8fdfd49",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://portalbv.com/",
+  "final_url": "https://www.hugedomains.com/domain_profile.cfm?d=portalbv.com",
+  "redirect_chain": [
+    "http://portalbv.com/",
+    "https://www.hugedomains.com/domain_profile.cfm?d=portalbv.com",
+    "http://portalbv.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.26.6.37",
+  "collected_at": "2026-11-26T01:54:17.233595+00:00",
+  "manifest_written_at": "2026-11-26T01:54:24.232370+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C2ef8fdfd49/attempt-1/viewport.png",
+      "sha256": "acf6b1ff54a656a51d94ca2417115ef1c3bff1d6ed5bbd00747ea67dfb5e0044",
+      "size_bytes": 40706
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C2ef8fdfd49/attempt-1/fullpage.png",
+      "sha256": "acf6b1ff54a656a51d94ca2417115ef1c3bff1d6ed5bbd00747ea67dfb5e0044",
+      "size_bytes": 40706
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C2ef8fdfd49/attempt-1/page.html.txt",
+      "sha256": "62b5d080659e0b44bf1d0b35b10985d2f6ffbf3baeb2ab4fe86a40239553b024",
+      "size_bytes": 44991
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C2ef8fdfd49/attempt-1/text.txt",
+      "sha256": "95ae7ba0de390e4cf89a96d3700dd7d4a549dc2ec31f348b78f949163836e1c1",
+      "size_bytes": 293
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C2ef8fdfd49/attempt-1/page.json",
+      "sha256": "dbb2f3ca44d9843df9ff161d6da6ceee3d980d5bd1a548ce8530527265472e47",
+      "size_bytes": 1453
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

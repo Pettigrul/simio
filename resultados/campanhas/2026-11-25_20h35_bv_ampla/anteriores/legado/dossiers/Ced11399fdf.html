@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Ced11399fdf</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Ced11399fdf — semparar.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.semparar.com.br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>D_STRONG_IMPERSONATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2003-05-23 (8587 dias)</div><div class="kv"><b>Titular do domínio</b>Sem Parar Instituição de Pagamento Ltda</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Incapsula Inc (45.60.17.233)</div>
+<div class="kv"><b>DNS (NS / MX)</b>a3-66.akam.net, a1-247.akam.net, a8-67.akam.net, a22-65.akam.net, a24-66.akam.net, a13-64.akam.net / mx1.hc2524-96.iphmx.com, mx2.hc2524-96.iphmx.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>ww.dis.abuse@thalesgroup.com</div>      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário D_STRONG_IMPERSONATION: apresentação consistente como a própria instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-CONTACT-3, E-CONTACT-4, E-CONTACT-7]; Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: 2ª via do boleto [E-FTR]. Elementos de transparência/identificação do terceiro: Menção a ouvidoria (não verificado se é a da instituição contratante) [E-FTR]; Empresa responsável identificada por CNPJ [E-FTR]. (Pontuação de triagem: confusão 7.0, transparência 1.0; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem</li><li>LLM indisponível nesta execução: brand: 403: permission/auth error: There are issues with your billing account, please resolve / pay your outstanding balance for project: projects/525969080967</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Ced11399fdf/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 b147a18604b976fa7630d33e81d9b792d54ce5b6ce406795fe0f9bda2249da07</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Ced11399fdf/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 968b76056602744e9afc953678ab77171ab3ff3dbdfe2c50c679e64f20aea00c</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.semparar.com.br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf (domínio: www.semparar.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Tag BV ou Sem Parar: qual compensa mais? — Acesse sua conta ou assine um plano ... Os dados da Tag BV vêm do comunicado oficial do banco BV sobre o lançamento da tag e do regulamento de campanha do banco.</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Ced11399fdf/attempt-1/viewport.png (sha256 b147a18604b976fa…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Ced11399fdf/attempt-1/fullpage.png (sha256 968b76056602744e…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Tag BV ou Sem Parar: qual compensa mais? | Sem Parar</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Tag BV ou Sem Parar? Entenda o que é a Tag BV, o que muda por ela depender da Conta BV, as opções sem mensalidade e onde cada tag é aceita.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.semparar.com.br/tag-bv-ou-sem-parar</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>TAG BV OU SEM PARAR: QUAL COMPENSA MAIS?</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Tag BV ou Tag Sem Parar: a resposta rápida</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>O que é a Tag BV</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Por onde começar a comparação?</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Não tenho conta no BV</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Quero pagar zero de mensalidade</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Uso a tag na cidade</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Três coisas que mudam entre elas</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>A porta de entrada</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>De onde sai o dinheiro</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>O tamanho da rede na cidade</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Abrir uma conta para ter a tag, ou contratar a tag direto</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Caminho da Tag BV</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Caminho da Tag Sem Parar</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>A Tag BV nas campanhas de financiamento de veículos</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Minha Conta Tag TAG Planos Ativar a tag Parcerias e montadoras Onde usar Como funciona Condomínio Clube de Benefícios Sem Parar Shop Indique e Ganhe Free Flow Sem Parar Mais Seguros SEGUROS Planos Simulador Seguro Auto Acionar meu seguro ou assistência Sem Parar Guincho Regulamentos Sem Parar Guincho Contato CONTATO Televendas Atendimento das 8:00 às 21:00 3003-7367 Capitais e regiões metropolitanas 0800 721 7367 Demais localidades (11) 9 9315-8147 Suporte ao cliente (11) 9 8991-2822 Perguntas frequentes Envio de documentos Nossas lojas Empresarial MENU Para sua empresa Para credenciados</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Minha Conta Tag TAG Planos Ativar a tag Parcerias e montadoras Onde usar Como funciona Condomínio Clube de Benefícios Sem Parar Shop Indique e Ganhe Free Flow Sem Parar Mais Seguros SEGUROS Planos Simulador Seguro Auto Acionar meu seguro ou assistência Sem Parar Guincho Regulamentos Sem Parar Guincho Contato CONTATO Televendas Atendimento das 8:00 às 21:00 Empresarial MENU Tag BV ou Sem Parar: qual compensa mais? A Tag BV é um benefício para quem tem conta no banco BV. A Tag Sem Parar você contrata sem abrir conta em lugar nenhum. Veja o que pesa na escolha. Entender a Tag BV Conhecer os planos Sem Parar Este comparativo é feito por nós, do Sem Parar, com dados dos sites oficiais das duas empresas. Tag BV ou Tag Sem Parar: a resposta rápida A Tag BV, chamada pelo banco de Tag BV Veloe, é oferecida a correntistas do banco BV sem adesão e sem mensalidade, segundo o próprio banco. As passagens saem da Conta BV, e tudo é acompanhado pelo app do BV. A Tag Sem Parar não exige conta em banco: você escolhe entre plano com mensalidade, só nos meses de uso, pré-pago ou só para Free Flow. O Livre Free Flow, por exemplo, não tem mensalidade nem taxa de recarga. E a nossa tag é aceita em mais de 4.000 estacionamentos, 3.200 postos, 600 drive-thrus e 170 lava-rápidos. O que é a Tag BV É a tag de pedágio e estacionamento do banco BV, desenvolvida com tecnologia Veloe e oferecida como benefício da conta digital do banco. Utilizamos cookies para melhorar a sua experiência no site. Saiba mais em nossa Política de Privacidade Configurar cookies Aceitar cookies</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Sem Parar Instituição de Pagamento LTDA - 04.088.208/0001-65 Avenida Dra. Ruth Cardoso, nº 7221 | 05425-902 - Pinheiros/SP Sem Parar Blog Como funciona Minha conta Nossas lojas Sobre nós Produtos Sem Parar Condomínio Sem Parar Empresas Sem Parar Pay Sem Parar Seguros Sem Parar Tag Serviços 2ª via do boleto Onde usar SuperApp Trace sua rota Envio de documentos Institucional Ajuda Assessoria de imprensa Canal de Ética Canal de ética Canal da mulher Canal de ética Sem Parar Compliance Código de Conduta de Ética Política anticorrupção Transparência Compliance PLD-FT ESG – Grupo ESG – Conglomerado SCD Relatório de transparência salarial Sem Parar - 1º Semestre - 2024 Relatório de transparência salarial Sem Parar - 2º Semestre - 2024 Relatório de transparência salarial Sem Parar - 1º Semestre - 2025 Relatório de transparência salarial Sem Parar - 2º Semestre - 2025 Relatório de transparência salarial Sem Parar - 1º Semestre - 2026 Relatório de transparência salarial Sem Parar - 2º Semestre - 2026 Demonstrações financeiras Licitações Ouvidoria Parceiros licenciados Política de Segurança da Informação e Cibernética SCR Curso de educação financeira Termos e política Aviso de privacidade Trabalhe conosco Mapa do site WhatsApp Atendimento: (11) 9 8991-2822 Central de relacionamento: 4002 1552 (Capitais) 0800 015 0252 (Demais localidades) SAC: 0800 723 2245 0800 722 0270 (deficientes auditivos) Ouvidoria Sem Parar: 0800 770 0686</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://www.semparar.com.br/&gt; | Minha Conta &lt;https://minhaconta.semparar.com.br/&gt; | Planos &lt;https://www.semparar.com.br/planos&gt; | Ativar a tag &lt;https://www.semparar.com.br/ative&gt; | Parcerias e montadoras &lt;https://semparar.com.br/parcerias&gt; | Onde usar &lt;https://www.semparar.com.br/onde-usar&gt; | Como funciona &lt;https://www.semparar.com.br/como-funciona&gt; | Condomínio &lt;https://www.semparar.com.br/sem-parar-condominio&gt; | Clube de Benefícios &lt;https://www.semparar.com.br/clube-de-beneficios&gt; | Sem Parar Shop &lt;https://www.semparar.com.br/sem-parar-shop&gt; | Indique e Ganhe &lt;https://www.semparar.com.br/indique-e-ganhe?bl_ref=R1344&amp;utm_source=clubedebeneficios&amp;utm_medium=mgm&amp;utm_campaign=clube_de_beneficios_page_salesforce_2024&gt; | Free Flow &lt;https://www.semparar.com.br/free-flow&gt; | Sem Parar Mais &lt;https://semparar.com.br/sem-parar-mais&gt; | Planos &lt;https://www.semparar.com.br/seguros&gt; | Simulador Seguro Auto &lt;https://www.semparar.com.br/simulador-seguro-auto&gt; | Acionar meu seguro ou assistência &lt;https://www.semparar.com.br/acionamento-seguros&gt; | Sem Parar Guincho &lt;https://www.semparar.com.br/sem-parar-agora&gt; | Regulamentos &lt;https://www.semparar.com.br/regulamentos-seguros&gt; | Sem Parar Guincho &lt;https://semparar.com.br/sem-parar-agora&gt; | 3003-7367 Capitais e regiões metropolitanas &lt;tel:30037367&gt; | 0800 721 7367 Demais localidades &lt;tel:08007217367&gt; | (11) 9 9315-8147 &lt;https://api.whatsapp.com/send?phone=5511993158147&amp;text=Ola!&gt; | (11) 9 8991-2822 &lt;https://api.whatsapp.com/send?phone=551198991</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Entender a Tag BV &lt;https://www.semparar.com.br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf#o-que-e&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Conhecer os planos Sem Parar &lt;https://www.semparar.com.br/planos&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Configurar cookies</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Aceitar cookies</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Fechar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>3003-7367 Capitais e regiões metropolitanas &lt;tel:30037367&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>0800 721 7367 Demais localidades &lt;tel:08007217367&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>header</td><td>(11) 9 9315-8147 &lt;https://api.whatsapp.com/send?phone=5511993158147&amp;text=Ola!&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>header</td><td>(11) 9 8991-2822 &lt;https://api.whatsapp.com/send?phone=5511989912822&amp;text=Ola!&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/sempararoficial&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/sempararoficial&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>(11) 9 8991-2822 &lt;https://api.whatsapp.com/send?phone=5511989912822&amp;text=Ola!&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?1=pt_BR&amp;phone=551142000442&amp;text=Ol%C3%A1!%20Quero%20solicitar%20minha%20Tag%20Sem%20Parar.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dwdfa3a4ba/images/logo.png (40x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dw7cf5bf53/footer/logo_semparar.svg (80x67, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dw60c9a157/footer/socials/logo_blog.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dwad5ca56f/footer/socials/logo_carreiras.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dwed652c1b/footer/socials/logo_instagram.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dwfa48dc82/footer/socials/logo_tiktok.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dw0ea17fed/footer/socials/logo_youtube.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dw31ab576a/footer/socials/logo_facebook.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Sem Parar&#39; src=https://www.semparar.com.br/on/demandware.static/-/Sites-SemParar-Library/default/dw855bc27d/footer/socials/logo_x.svg (48x48, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Atendimento das 8:00 às 21:00</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Para sua empresa Para credenciados</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>TAG BV OU SEM PARAR: QUAL COMPENSA MAIS?</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>A Tag BV é um benefício para quem tem conta no banco BV. A Tag Sem Parar você contrata sem abrir conta em lugar nenhum. Veja o que pesa na escolha.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Entender a Tag BV</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Tag BV ou Tag Sem Parar: a resposta rápida</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A Tag BV, chamada pelo banco de Tag BV Veloe, é oferecida a correntistas do banco BV sem adesão e sem mensalidade, segundo o próprio banco. As passagens saem da Conta BV, e tudo é acompanhado pelo app do BV. A Tag Sem Parar não exige conta em banco: você escolhe entre plano com mensalidade, só nos meses de uso, pré-pago ou só para Free Flow. O Livre Free Flow, por exemplo, não tem mensalidade nem</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>O que é a Tag BV</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>É a tag de pedágio e estacionamento do banco BV, desenvolvida com tecnologia Veloe e oferecida como benefício da conta digital do banco.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Tag BV e Tag Sem Parar: quem oferece, para quem e como cobra.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Tag BV</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Banco BV, com tecnologia Veloe</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Correntistas do banco BV</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Sem adesão e sem mensalidade, segundo o BV</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Descontadas da Conta BV</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>App do BV</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Fontes: comunicado oficial do banco BV e regulamento de campanha do BV. Planos do Sem Parar.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Não tenho conta no BV</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>A Tag BV vem com a Conta BV. A Tag Sem Parar se contrata sozinha, sem produto bancário junto.</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Na Tag BV, as passagens saem do saldo da conta no banco. Com a nossa tag, saem da fatura do plano ou do saldo da própria tag.</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>O BV informa mais de 2,6 mil pontos conveniados. A Tag Sem Parar soma mais de 4.000 estacionamentos, além de postos, drive-thrus e lava-rápidos.</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Caminho da Tag BV</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Você abre ou mantém a Conta BV, que é a condição para ter a tag sem custo.</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Pedido, ativação e acompanhamento são feitos no app do banco.</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Você contrata só a tag, sem abrir conta nem mudar de banco.</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>A Tag BV nas campanhas de financiamento de veículos</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>O BV lançou a Tag BV no Feirão BV, seu evento de financiamento de veículos, e a tag aparece em campanhas do banco que combinam crédito para o carro com a abertura da Conta BV. Nessas campanhas, as regras são as de cada regulamento, e os detalhes da tag ficam no termo de adesão disponível no app do BV.</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Se você comprou ou vai comprar o carro com outro banco, ou à vista, a Tag Sem Parar pode ser contratada da mesma forma, sem depender de financiamento.</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Tanto a Tag BV quanto alguns planos Sem Parar não cobram mensalidade. O que muda é o que cada um pede em troca. Os valores atualizados de cada plano ficam em planos Sem Parar.</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>Tag BV</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>Ter a Conta BV ativa, com saldo</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>Sem adesão e sem mensalidade, segundo o BV</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>Fontes: comunicado oficial do banco BV. Planos do Sem Parar.</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>Segundo o BV, a Tag BV funciona em 100% das rodovias pedagiadas e em mais de 2,6 mil pontos conveniados. A Tag Sem Parar cobre todas as rodovias pedagiadas e uma rede própria na cidade.</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>Só Free Flow: Tag BV ou Livre Free Flow?</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>Para quem só passa em pedágio eletrônico, a escolha é entre abrir a Conta BV para ter a Tag BV ou contratar o Livre Free Flow, que não tem mensalidade, não cobra taxa de recarga, tem adesão grátis e não pede conta em banco. Conheça o Livre Free Flow.</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>Escolha pelo seu jeito de dirigir, sem precisar de conta em banco.</td></tr>
+      <tr id="E-TXT-038"><td class="mono"><b>E-TXT-038</b></td><td>text</td><td>page</td><td>Da Tag BV para a Tag Sem Parar</td></tr>
+      <tr id="E-TXT-039"><td class="mono"><b>E-TXT-039</b></td><td>text</td><td>page</td><td>Cancele a Tag BV</td></tr>
+      <tr id="E-TXT-040"><td class="mono"><b>E-TXT-040</b></td><td>text</td><td>page</td><td>pelo app do BV e salve o protocolo.</td></tr>
+      <tr id="E-TXT-041"><td class="mono"><b>E-TXT-041</b></td><td>text</td><td>page</td><td>Passagens feitas antes do cancelamento ainda podem ser descontadas da Conta BV.</td></tr>
+      <tr id="E-TXT-042"><td class="mono"><b>E-TXT-042</b></td><td>text</td><td>page</td><td>Por que a Tag Sem Parar também serve a quem tem Conta BV</td></tr>
+      <tr id="E-TXT-043"><td class="mono"><b>E-TXT-043</b></td><td>text</td><td>page</td><td>A tag não depende do saldo nem da permanência na Conta BV.</td></tr>
+      <tr id="E-TXT-044"><td class="mono"><b>E-TXT-044</b></td><td>text</td><td>page</td><td>Os dados da Tag BV vêm do comunicado oficial do banco BV sobre o lançamento da tag e do regulamento de campanha do banco. As nossas informações vêm das páginas dos nossos planos. Cada dado tem sua data de checagem, os valores ficam de fora por mudarem com frequência, e a página passa por revisão mensal.</td></tr>
+      <tr id="E-TXT-045"><td class="mono"><b>E-TXT-045</b></td><td>text</td><td>page</td><td>Escolha um plano Sem Parar e receba a tag em casa, seja qual for o seu banco.</td></tr>
+      <tr id="E-TXT-046"><td class="mono"><b>E-TXT-046</b></td><td>text</td><td>page</td><td>Perguntas sobre a Tag BV</td></tr>
+      <tr id="E-TXT-047"><td class="mono"><b>E-TXT-047</b></td><td>text</td><td>page</td><td>O que é a Tag BV?</td></tr>
+      <tr id="E-TXT-048"><td class="mono"><b>E-TXT-048</b></td><td>text</td><td>page</td><td>É a tag de pedágio e estacionamento do banco BV, com tecnologia Veloe, oferecida a quem tem a Conta BV.</td></tr>
+      <tr id="E-TXT-049"><td class="mono"><b>E-TXT-049</b></td><td>text</td><td>page</td><td>A Tag BV é Veloe?</td></tr>
+      <tr id="E-TXT-050"><td class="mono"><b>E-TXT-050</b></td><td>text</td><td>page</td><td>Sim. O próprio banco chama o produto de Tag BV Veloe.</td></tr>
+      <tr id="E-TXT-051"><td class="mono"><b>E-TXT-051</b></td><td>text</td><td>page</td><td>A Tag BV tem mensalidade?</td></tr>
+      <tr id="E-TXT-052"><td class="mono"><b>E-TXT-052</b></td><td>text</td><td>page</td><td>Segundo o banco BV, a tag é oferecida a correntistas sem adesão e sem mensalidade. As passagens são descontadas da Conta BV.</td></tr>
+      <tr id="E-TXT-053"><td class="mono"><b>E-TXT-053</b></td><td>text</td><td>page</td><td>Preciso de conta no BV para ter a Tag BV?</td></tr>
+      <tr id="E-TXT-054"><td class="mono"><b>E-TXT-054</b></td><td>text</td><td>page</td><td>Sim, a tag é um benefício para correntistas do banco. Para ter a Tag Sem Parar, basta contratar o plano, sem abrir conta.</td></tr>
+      <tr id="E-TXT-055"><td class="mono"><b>E-TXT-055</b></td><td>text</td><td>page</td><td>A Tag BV vem com o financiamento do carro?</td></tr>
+      <tr id="E-TXT-056"><td class="mono"><b>E-TXT-056</b></td><td>text</td><td>page</td><td>O BV inclui a tag em campanhas ligadas ao financiamento de veículos, com regras próprias de cada campanha. Fora delas, a tag continua disponível para quem tem a Conta BV.</td></tr>
+      <tr id="E-TXT-057"><td class="mono"><b>E-TXT-057</b></td><td>text</td><td>page</td><td>Onde a Tag BV é aceita?</td></tr>
+      <tr id="E-TXT-058"><td class="mono"><b>E-TXT-058</b></td><td>text</td><td>page</td><td>Segundo o BV, em 100% das rodovias pedagiadas e em mais de 2,6 mil pontos conveniados. A Tag Sem Parar também é aceita em postos, drive-thrus e lava-rápidos.</td></tr>
+      <tr id="E-TXT-059"><td class="mono"><b>E-TXT-059</b></td><td>text</td><td>page</td><td>Como trocar a Tag BV pela Tag Sem Parar?</td></tr>
+      <tr id="E-TXT-060"><td class="mono"><b>E-TXT-060</b></td><td>text</td><td>page</td><td>Solicite a Tag Sem Parar, cancele a Tag BV pelo app do BV, remova o adesivo antigo e ative a nova tag.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-v1)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>sinais contraditórios</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Nenhuma declaração de correspondente/independência observada no conteúdo coletado</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Imagem possivelmente de logotipo da marca acima da dobra</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: 2ª via do boleto</td><td class="mono"><a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>sinais contraditórios</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Marca no título/nome do site — <span class="mono"><a href="#E-TITLE">E-TITLE</a> </span></li><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: 2ª via do boleto — <span class="mono"><a href="#E-FTR">E-FTR</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] CONTACT_CHANNELS: Menção a ouvidoria (não verificado se é a da instituição contratante) — <span class="mono"><a href="#E-FTR">E-FTR</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Empresa responsável identificada por CNPJ — <span class="mono"><a href="#E-FTR">E-FTR</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>menções à marca no texto visível: 10</li><li>marca no título: sim</li><li>padrão da marca no domínio: não</li><li>marca no cabeçalho: não</li><li>marca na área visível inicial: sim</li><li>imagens possivelmente de logotipo/marca: 9 (1 acima da dobra)</li><li>indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): nenhum identificado</li><li>logotipo antigo confirmado por comparação de imagem: não</li><li>expressões de oficialidade: nenhuma</li><li>expressões de oficialidade próximas à marca: nenhuma</li><li>serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: &#39;2ª via do boleto&#39; [E-FTR]</li><li>declarações de correspondente/independência: nenhuma encontrada; locais: -; na área visível inicial/cabeçalho: não; nomeia a instituição: não (tamanho, contraste e legibilidade não medidos automaticamente)</li><li>menções a parceria: &#39;Parceiros&#39; [E-FTR] (associadas à marca: 0)</li><li>contexto multimarcas/multibancos (outras instituições financeiras na página): não</li><li>expressões de oficialidade em discurso de terceiros (notícia/alerta): nenhuma</li><li>página do tipo artigo/notícia (og:type): não; contexto editorial/informativo/reclamação: não</li><li>ouvidoria mencionada: sim</li><li>links para domínio oficial da instituição: não</li><li>contatos WhatsApp: 4; telefones: 10</li><li>CNPJs: 04.088.208/0001-65 [E-FTR]</li><li>formulários na página: 0</li><li>campos que pedem dados sensíveis: nenhum</li><li>formulário que envia dados para outro domínio: não</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>análise heurística sem avaliação visual por modelo; identidade visual e logotipo inferidos apenas por textos alternativos e nomes de arquivos</li><li>menção a &#39;parceiro&#39; sem declaração de correspondente: não resolve a análise</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário D_STRONG_IMPERSONATION: apresentação consistente como a própria instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-CONTACT-3, E-CONTACT-4, E-CONTACT-7]; Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: 2ª via do boleto [E-FTR]. Elementos de transparência/identificação do terceiro: Menção a ouvidoria (não verificado se é a da instituição contratante) [E-FTR]; Empresa responsável identificada por CNPJ [E-FTR]. (Pontuação de triagem: confusão 7.0, transparência 1.0; ordena casos, não prova.)</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>Sem Parar Instituição de Pagamento LTDA<br><span class="mono">cnpj:04088208000165</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>semparar.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>04.088.208/0001-65</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Sem Parar Instituição de Pagamento LTDA - 04.088.208/0001-65</td></tr>
+      <tr><td>legal_name</td><td>Sem Parar Instituição de Pagamento LTDA</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/sempararoficial</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/sempararoficial</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>phone</td><td>00 3003-7367</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 721 7367</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 015 0252</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 723 2245</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 722 0270</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 770 0686</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>08007217367</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>(11) 9 9315-8147 &lt;https://api.whatsapp.com/send?phone=5511993158147&amp;text=Ola!&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>(11) 9 8991-2822 &lt;https://api.whatsapp.com/send?phone=5511989912822&amp;text=Ola!&gt;</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?1=pt_BR&amp;phone=551142000442&amp;text=Ol%C3%A1!%20Quero%20solicitar%20minha%20Tag%20Sem%20Parar.&gt;</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-CONTACT-7">E-CONTACT-7</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → STRONG_INDICATION / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>unanalyzed_visual_context</td><td>MEDIUM</td><td>Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;acesse sua conta&#34; &#34;Banco BV&#34;<br><span class="muted">H10-fraud:app-phishing</span></td><td class="mono">https://www.semparar.com.br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf</td><td>Tag BV ou Sem Parar: qual compensa mais?<br><span class="muted">Acesse sua conta ou assine um plano ... Os dados da Tag BV vêm do comunicado oficial do banco BV sobre o lançamento da tag e do regulamento de campanha do banco.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 03:04:25.950785+00:00</div>
+      <div class="kv"><b>IP do servidor</b>45.60.17.233</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Ced11399fdf/attempt-1/manifest.json<br>sha256 f9e2fc5c0830bbb137016eb816c7345c99e8d01a14416cd3dae147ddd8c29c1d</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.semparar.com.br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf<br>Final: https://www.semparar.com.br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Ced11399fdf/attempt-1/viewport.png</td><td class="mono">b147a18604b976fa7630d33e81d9b792d54ce5b6ce406795fe0f9bda2249da07</td><td>462957</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Ced11399fdf/attempt-1/fullpage.png</td><td class="mono">968b76056602744e9afc953678ab77171ab3ff3dbdfe2c50c679e64f20aea00c</td><td>1176713</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Ced11399fdf/attempt-1/page.html.txt</td><td class="mono">6b3f5c00c7ff1c623ff76a36048e7dbda0b60aea1cd245bd4ee47b27d423dc97</td><td>410959</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Ced11399fdf/attempt-1/text.txt</td><td class="mono">22241d226b2340a8322fa3fcde7b7ea9568ad766dfcb460e3e0e7cce658eadc9</td><td>10929</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Ced11399fdf/attempt-1/page.json</td><td class="mono">748420f29c0d0ec9cc9392a7da215954411a0efddb49a5e3410c33fa80c2348e</td><td>41573</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:48+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-26T03:04:25+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T03:04:38+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T03:04:38+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T03:04:39+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T03:04:39+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

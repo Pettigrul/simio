@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Ce1ed5887a2</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Ce1ed5887a2 — seebcgms.org.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo)</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2000-08-23 (9590 dias)</div><div class="kv"><b>Titular do domínio</b>SINDICATO DOS BANCARIOS DE CAMPO GRANDE/MS (CNPJ 03.270.741/0001-80)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (104.21.1.88); Cloudflare, Inc. (172.67.128.242)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ashton.ns.cloudflare.com, michelle.ns.cloudflare.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Página enquadrada na triagem como FORA DO ESCOPO (NOT_RELEVANT). Trata-se de portal de notícias de entidade sindical (Sindicato dos Bancários de Campo Grande-MS e Região) cobrindo acordos coletivos de trabalho da categoria. A citação à BV Financeira e o uso da imagem com o logotipo histórico têm caráter estritamente editorial/noticioso, sem oferta comercial ou intermediação de crédito.
+[Revisor: DOWNGRADE] A página analisada é uma publicação noticiosa do Sindicato dos Bancários de Campo Grande-MS e Região (SEEBCG-MS) informando sobre assembleia de aprovação de ACT dos empregados da BV Financeira. Não há oferta de crédito, captação de clientes ou atuação como COBAN, tratando-se exclusivamente de cobertura editorial/sindical protegida e fora do escopo de fiscalização de correspondentes bancários.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li><li>uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Ce1ed5887a2/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 2781f54b8a912ba4bebbc9c9456f4f3979a33bb81fb50e036c111b398326de00</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Ce1ed5887a2/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 4bfd188d3ef560d02b7432af69a6e0fddc6741e6afb7b29d5f31b1d4fd308996</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/ (domínio: seebcgms.org.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (lens): SindicarioNET - Bancários da BV Financeira aprovam ACT por ... — Imagem visualmente semelhante ao logotipo antigo (fonte: SindicarioNET)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Ce1ed5887a2/attempt-1/viewport.png (sha256 2781f54b8a912ba4…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Ce1ed5887a2/attempt-1/fullpage.png (sha256 4bfd188d3ef560d0…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>SindicarioNET - Bancários da BV Financeira aprovam ACT por assembleia eletrônica</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Sindicato dos Bancários de Campo Grande-MS e Região - SindicarioNET</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: SindicarioNET - Sindicato dos Bancários de Campo Grande-MS e Região</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Bancários da BV Financeira aprovam ACT por assembleia eletrônica</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Na última quinta-feira, 7, os bancários da BV Financeira, da base territorial do SEEBCG-MS, participaram da assembleia eletrônica. Na ocasião, os funcionários aprovaram as propostas do Acordo Coletivo de Trabalho com a BV Financeira, com validade durante a pandemia do coronavírus, e o processo de compensação das horas no banco ...</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: SindicarioNET</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>BV FINANCEIRA</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Bancários da BV Financeira aprovam ACT por assembleia eletrônica</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Veja principais pontos da proposta de acordo</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Banco de Horas</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Mais notícias</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Convênios saiba +</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Clube de campo saiba +</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Jogos/ Resultados saiba +</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Menu</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Serviços</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Mídias</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Redes Sociais</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Controle sua privacidade</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Institucional Meu Banco Acordos Filie-se Serviços Notícias Mídias Denúncia Contato BV FINANCEIRA 8 de Maio de 2020 às 12:04 Compartilhe Bancários da BV Financeira aprovam ACT por assembleia eletrônica Acordo Coletivo Na última quinta-feira, 7, os bancários da BV Financeira, da base territorial do SEEBCG-MS, participaram da assembleia eletrônica. Na ocasião, os funcionários aprovaram as propostas do Acordo Coletivo de Trabalho com a BV Financeira, com validade durante a pandemia do coronavírus, e o processo de compensação das horas no banco de horas de 18 meses. A proposta visa amenizar efeitos das Medidas Provisórias 927 e 936, que serão aplicadas pelo grupo financeiro, e garante empregos e renda durante a pandemia do coronavírus. Veja principais pontos da proposta de acordo Convênios saiba + Clube de campo saiba + Voltar ao topo Controle sua privacidade AdOpt Nosso site usa cookies para melhorar a navegação. Usamos cookies para compartilhar dados de análise, publicidade, dados de usuários e personalização de anúncios com o Google. Política de Privacidade - Termos de uso - Opt-out Customizar Rejeitar Aceitar</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Menu Estatuto Acordos Diretoria Secretarias Filie-se Carteirinha Contato Serviços Sindicato Atendimento Acesso Restrito Convênios Assessoria Jurídica Clube de Campo Pousada dos Bancários Salão de Festas/Eventos Convenções Coletivas Balanço/Balancetes Editais/Assembleias Denúncia Mídias Notícias Jogos / Resultados Publicações Galeria de Fotos Galeria de Vídeos Redes Sociais Facebook Youtube Twitter Instagram Endereço: Rua Barão do Rio Branco, 2652 - Jardim dos Estados - Campo Grande-MS - CEP:79002-172 Tel:(67) 3312-6100 Tel:(67) 99272-3287 CNPJ: 03.270.741/0001-80</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://seebcgms.org.br/&gt; |  &lt;http://www.cut.org.br/&gt; |  &lt;http://www.contrafcut.com.br/&gt; |  &lt;http://www.feteccn.com.br/&gt; |  &lt;https://seebcgms.org.br/&gt; | Acordos &lt;https://seebcgms.org.br/convencao&gt; | Filie-se &lt;https://seebcgms.org.br/documentos/ficha-de-filiacao&gt; | Notícias &lt;https://seebcgms.org.br/maisnoticias&gt; | Denúncia &lt;https://seebcgms.org.br/assedio_moral/denuncia&gt; | Contato &lt;https://seebcgms.org.br/contato&gt; |  &lt;https://www.youtube.com/channel/UC-DxekuQb51u_gQCo0HZpcQ&gt; |  &lt;https://www.facebook.com/seebcg/&gt; |  &lt;https://twitter.com/sindicario&gt; |  &lt;https://www.instagram.com/sindicario/&gt; |  &lt;http://webmail.sindicario.com.br/&gt; |  &lt;https://seebcgms.org.br/admin&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Carregar mais conteúdo sobre BV FINANCEIRA &lt;https://seebcgms.org.br/maisnoticias/bv-financeira&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>saiba + &lt;https://seebcgms.org.br/convenios&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>saiba + &lt;https://seebcgms.org.br/clube&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>saiba + &lt;https://seebcgms.org.br/esporte/campeonato-futebol&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Avalue Sistemas &lt;http://www.avaluesistemas.com.br/&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Customizar</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Rejeitar</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Aceitar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>nav</td><td> &lt;https://www.facebook.com/seebcg/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>nav</td><td> &lt;https://www.instagram.com/sindicario/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td> &lt;https://www.facebook.com/sharer.php?u=https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td> &lt;whatsapp://send?text=Banc%C3%A1rios%20da%20BV%20Financeira%20aprovam%20ACT%20por%20assembleia%20eletr%C3%B4nica:%20https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://www.facebook.com/seebcg/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/sindicario/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>Tel:(67) 3312-6100 &lt;tel:67 33126100&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td>Tel:(67) 99272-3287 &lt;tel:67 99272-3287&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://seebcgms.org.br/static/assets/img/logo-azul.png (477x70, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://seebcgms.org.br/static/assets/img/logos-1.png (70x25, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://seebcgms.org.br/static/assets/img/logos-2.png (80x10, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://seebcgms.org.br/static/assets/img/logos-3.png (88x14, acima da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://seebcgms.org.br/media/CACHE/images/media_noticias/bv-financeira_4LaQdGi/c7a7abdea0f454ec5899fe77f71c35aa.jpg (400x225, acima da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;&#39; src=https://seebcgms.org.br/static/assets/img/logo.png (350x60, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Meu Banco</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>BV FINANCEIRA</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Bancários da BV Financeira aprovam ACT por assembleia eletrônica</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Na última quinta-feira, 7, os bancários da BV Financeira, da base territorial do SEEBCG-MS, participaram da assembleia eletrônica. Na ocasião, os funcionários aprovaram as propostas do Acordo Coletivo de Trabalho com a BV Financeira, com validade durante a pandemia do coronavírus, e o processo de compensação das horas no banco de horas de 18 meses.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Banco de Horas</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Institui o banco de horas apenas durante o período da pandemia;</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>BV Financeira: assembleia para deliberar acordo do PPR está cancelada</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Trabalhadores da BV Financeira são convocados para deliberar acordo do PPR</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Devem votar empregados bancários, associados ou não, que prestam serviços na BV Financeira S/A</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Bancários da BV Financeira vão votar proposta de ACT por assembleia eletrônica</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Sindicato convoca funcionários da BV Financeira para discutir PPR e Ponto Eletrônico</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Carregar mais conteúdo sobre BV FINANCEIRA</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Sindicato Atendimento</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Endereço: Rua Barão do Rio Branco, 2652 - Jardim dos Estados - Campo Grande-MS - CEP:79002-172</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>CNPJ: 03.270.741/0001-80</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site pertence ao Sindicato dos Bancários de Campo Grande-MS e Região (SEEBCG-MS / SindicarioNET), com CNPJ 03.270.741/0001-80 claramente identificado no rodapé.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-META-2">E-META-2</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-016">E-TXT-016</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O texto consiste em matéria jornalística/sindical informando sobre a aprovação de Acordo Coletivo de Trabalho (ACT) pelos bancários da BV Financeira.</td><td class="mono"><a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página não oferta produtos financeiros, empréstimos ou intermediação de crédito, não se tratando de correspondente bancário ou estabelecimento comercial.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A marca e logotipo antigo da BV Financeira aparecem unicamente como foto editorial ilustrativa da notícia a respeito dos funcionários da instituição.</td><td class="mono"><a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Marca no título/nome do site — <span class="mono"><a href="#E-TITLE">E-TITLE</a> </span></li><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Entidade sindical legítima divulgando notícia de relações trabalhistas da categoria bancária. — <span class="mono"><a href="#E-META-1">E-META-1</a> <a href="#E-FTR">E-FTR</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Página publicada no domínio seebcgms.org.br pertencente ao Sindicato dos Bancários de Campo Grande-MS e Região (SindicarioNET).</li><li>A matéria noticia a aprovação de Acordo Coletivo de Trabalho (ACT) por assembleia eletrônica de bancários da BV Financeira.</li><li>A imagem ilustrativa da notícia (E-IMG-5) contém o logotipo legado da BV Financeira (B vermelho e V azul).</li><li>Não há oferta, simulação ou intermediação de serviços ou produtos de crédito.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Página enquadrada na triagem como FORA DO ESCOPO (NOT_RELEVANT). Trata-se de portal de notícias de entidade sindical (Sindicato dos Bancários de Campo Grande-MS e Região) cobrindo acordos coletivos de trabalho da categoria. A citação à BV Financeira e o uso da imagem com o logotipo histórico têm caráter estritamente editorial/noticioso, sem oferta comercial ou intermediação de crédito.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>SindicarioNET - Sindicato dos Bancários de Campo Grande-MS e Região<br><span class="mono">cnpj:03270741000180</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>seebcgms.org.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>03.270.741/0001-80</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>do Rio Branco, 2652 - Jardim dos Estados - Campo Grande-MS - CEP:79002-172 Tel:(67) 3312-6100 Tel:(67) 99272-3287 CNPJ: 03.270.741/0001-80</td></tr>
+      <tr><td>social_profile</td><td>https://www.youtube.com/channel/UC-DxekuQb51u_gQCo0HZpcQ</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/seebcg/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/sindicario/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/sharer.php?u=https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>BV Financeira S/A</td><td class="mono"><a href="#E-TXT-009">E-TXT-009</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>SindicarioNET - Sindicato dos Bancários de Campo Grande-MS e Região</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(67) 3312-6100</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(67) 99272-3287</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>phone</td><td>67 33126100</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+      <tr><td>phone</td><td>67 99272-3287</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;whatsapp://send?text=Banc%C3%A1rios%20da%20BV%20Financeira%20aprovam%20ACT%20por%20assembleia%20eletr%C3%B4nica:%20https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-as</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>a página se apresenta com o nome da instituição (BV Financeira S/A); isso é identidade declarada/visual, não a identidade do responsável</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página analisada é uma publicação noticiosa do Sindicato dos Bancários de Campo Grande-MS e Região (SEEBCG-MS) informando sobre assembleia de aprovação de ACT dos empregados da BV Financeira. Não há oferta de crédito, captação de clientes ou atuação como COBAN, tratando-se exclusivamente de cobertura editorial/sindical protegida e fora do escopo de fiscalização de correspondentes bancários.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Contexto Editorial e Sindical</td><td>HIGH</td><td>A página pertence ao Sindicato dos Bancários de Campo Grande-MS e Região (SEEBCG-MS) e veicula uma notícia de cunho estritamente trabalhista sobre acordo coletivo de trabalho (ACT), não exercendo nenhuma atividade de correspondente bancário ou oferta financeira.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-META-4">E-META-4</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-TITLE</li><li>E-META-1</li><li>E-META-2</li><li>E-META-4</li><li>E-FOLD</li><li>E-FTR</li><li>E-TXT-004</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>lens</td><td>https://logospng.org/wp-content/uploads/bv-financeira.png<br><span class="muted">H12-legacy-logo:lens</span></td><td class="mono">https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/</td><td>SindicarioNET - Bancários da BV Financeira aprovam ACT por ...<br><span class="muted">Imagem visualmente semelhante ao logotipo antigo (fonte: SindicarioNET)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 01:45:04.277479+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.1.88</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Ce1ed5887a2/attempt-1/manifest.json<br>sha256 76474b331e12d72a62813a30ecdb52c85c3b77831643e2ccf29207e1f00ea211</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/<br>Final: https://seebcgms.org.br/bv-financeira/bancarios-da-bv-financeira-aprovam-act-por-assembleia-eletronica/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Ce1ed5887a2/attempt-1/viewport.png</td><td class="mono">2781f54b8a912ba4bebbc9c9456f4f3979a33bb81fb50e036c111b398326de00</td><td>333972</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Ce1ed5887a2/attempt-1/fullpage.png</td><td class="mono">4bfd188d3ef560d02b7432af69a6e0fddc6741e6afb7b29d5f31b1d4fd308996</td><td>687388</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Ce1ed5887a2/attempt-1/page.html.txt</td><td class="mono">361bf4df70ff0222da506fdad8ea2d018fa1861a156afa91fa23abdb3719e162</td><td>616347</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Ce1ed5887a2/attempt-1/text.txt</td><td class="mono">f11bec29e0a597ef9ce56ae029c00f895ac10e1562e7c31e037a8a72454ae7ae</td><td>3985</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Ce1ed5887a2/attempt-1/page.json</td><td class="mono">177594a69c0e70c6dd9915ebe84a2a4796e540dd099f17b33744f8a17626cb83</td><td>28847</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:31+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 4.0)</td></tr>
+      <tr><td>2026-11-26T01:45:04+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T01:45:14+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T01:45:14+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T01:45:27+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T01:45:36+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

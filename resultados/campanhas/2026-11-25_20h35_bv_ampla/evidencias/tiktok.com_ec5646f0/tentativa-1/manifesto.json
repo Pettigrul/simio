@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cec5646f0a5",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.tiktok.com/@vncs.adv/video/7537280446074326277",
+  "final_url": "https://www.tiktok.com/@vncs.adv/video/7537280446074326277",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "2.18.127.68",
+  "collected_at": "2026-11-26T02:07:48.482053+00:00",
+  "manifest_written_at": "2026-11-26T02:07:57.462610+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cec5646f0a5/attempt-1/viewport.png",
+      "sha256": "e3b25a49acd5060f838a31bebb348ef0bb94e9deb0d973bdb2632a560112d7e0",
+      "size_bytes": 142753
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cec5646f0a5/attempt-1/fullpage.png",
+      "sha256": "53329e20ca574dfbfa1f31bb3a7aa359d0ce77a30f8f569fa9c198738750652b",
+      "size_bytes": 141104
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cec5646f0a5/attempt-1/page.html.txt",
+      "sha256": "925c64de15838177ecf61356edf6e5da7f80d51d4568ac696a16c2ca257ae7a1",
+      "size_bytes": 631763
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cec5646f0a5/attempt-1/text.txt",
+      "sha256": "d5117efd6d9b7385c3303d82f8707f1782e2b876e9322d7833265d649026aabf",
+      "size_bytes": 1094
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cec5646f0a5/attempt-1/page.json",
+      "sha256": "b3743d5c63b8fd5b18a460febc52cf3d43a96e55257b1b36aae2e062a2ef4622",
+      "size_bytes": 10118
+    }
+  ],
+  "blocked_requests": [
+    "https://mcs-sg.tiktokv.com/v1/list -> request cap reached",
+    "https://www.tiktok.com/tiktok/pns/privacy_headers?aid=1233 -> request cap reached",
+    "https://mon.tiktokv.com/monitor_browser/collect/batch/?biz_id=webmssdk -> request cap reached"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

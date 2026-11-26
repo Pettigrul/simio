@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C4f50c1f971",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.simplyhired.com.br/",
+  "final_url": "https://www.simplyhired.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.18.39.201",
+  "collected_at": "2026-11-26T03:08:46.487941+00:00",
+  "manifest_written_at": "2026-11-26T03:08:51.486333+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C4f50c1f971/attempt-1/viewport.png",
+      "sha256": "f9b73661c89d3ade00df5bcca7225f97c0dc2a16be342a239b97948b90fbc841",
+      "size_bytes": 68656
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C4f50c1f971/attempt-1/fullpage.png",
+      "sha256": "58120ed292a8209735a0e8a0fc0428c9503e1c8661259a316d48bfb501bd23ae",
+      "size_bytes": 76782
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C4f50c1f971/attempt-1/page.html.txt",
+      "sha256": "843dedf3aced093d1e2183e2518ec181ea0cb731b27aa8904562bbe4f112b593",
+      "size_bytes": 4263
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C4f50c1f971/attempt-1/text.txt",
+      "sha256": "dbc0c88b96b2e216100af5e5cd7b91e81840de653c0659b62fe8f76f4465b436",
+      "size_bytes": 699
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C4f50c1f971/attempt-1/page.json",
+      "sha256": "fc25df49ccc14a411bb978880ba26fdf0e8071887dbd777bf5afaa0e6ed29d9d",
+      "size_bytes": 2126
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

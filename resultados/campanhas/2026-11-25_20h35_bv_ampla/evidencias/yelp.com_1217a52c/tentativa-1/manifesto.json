@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1217a52cbb",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.yelp.com/",
+  "final_url": "https://www.yelp.com/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "151.101.0.116",
+  "collected_at": "2026-11-26T03:08:33.384181+00:00",
+  "manifest_written_at": "2026-11-26T03:08:38.214523+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C1217a52cbb/attempt-1/viewport.png",
+      "sha256": "fa0a2fff22b4c3e0dae2ab0f7c94c8899af611c97de7a159c2a927706b722ca0",
+      "size_bytes": 37525
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C1217a52cbb/attempt-1/fullpage.png",
+      "sha256": "fa0a2fff22b4c3e0dae2ab0f7c94c8899af611c97de7a159c2a927706b722ca0",
+      "size_bytes": 37525
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C1217a52cbb/attempt-1/page.html.txt",
+      "sha256": "72cf9e8355e76bdb1da9f93e2219a8d001de1f4f3c62c022926f15557ccebebd",
+      "size_bytes": 1473
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C1217a52cbb/attempt-1/text.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C1217a52cbb/attempt-1/page.json",
+      "sha256": "675a2a03f90d87326a78cebcdce3cd91332bee4f62c04afc5d7f8d8310c64c01",
+      "size_bytes": 392
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

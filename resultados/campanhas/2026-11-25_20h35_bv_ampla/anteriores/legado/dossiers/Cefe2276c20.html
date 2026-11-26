@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cefe2276c20</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cefe2276c20 — instagram.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.instagram.com/reel/DOGPp8OAJxM/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento (People Consultoria) atua como promotora/correspondente bancário no Instagram e anuncia abertamente parceria de intermediação de crédito com a BV Financeira. Não há tentativa de se passar pelo banco oficial, e a marca própria está presente. Contudo, em virtude do destaque conferido à marca do banco e da ausência de CNPJ e ouvidoria do contratante (Resolução CMN nº 4.935/2021), a postagem enquadra-se como comunicação ambígua com necessidade de revisão para averiguação de credenciamento e regularidade documental.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma assessoria/promotora de crédito (People Consultoria) que divulga atuar como correspondente bancário da BV Financeira para produtos de financiamento de veículos e energia solar. A peça gráfica (E-SHOT-VIEWPORT, E-SHOT-FULL) estampa o logotipo do Banco BV com destaque e menciona a parceria, contudo não apresenta os dados cadastrais obrigatórios (CNPJ) nem os canais de ouvidoria da instituição contratante (Res. CMN nº 4.935/2021). Como há identificação da marca própria (People Consult) e menção a correspondente/parceria sem evidente apropriação indébita da identidade do banco, a classificação REVIEW_REQUIRED com prioridade MEDIUM é adequada.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cefe2276c20/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 020c41595230713c3891cc6e449cd544aa24a1485e97efc73d7deab33ccd20be</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cefe2276c20/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 2c37cc326111c883d8a14a0425e4df3d085b8d56606c5dd48ae90ab0bbd4b94d</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.instagram.com/reel/DOGPp8OAJxM/ (domínio: www.instagram.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): A People Consultoria agora é correspondente bancário da BV ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cefe2276c20/attempt-1/viewport.png (sha256 020c41595230713c…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cefe2276c20/attempt-1/fullpage.png (sha256 2c37cc326111c883…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Instagram @peopleconsult - peopleconsult A People Consultoria agora é correspondente bancário da BV Financeira. Atuamos com os seguintes financiamentos e refinanciamentos: 🚗 Veículos 🏍️ Motos 💰Consignado para CLT (empresas privadas) 🔋 Energia Solar 🆘 Seguro de veículos</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>peopleconsult Adam Griffith · Tropic Dreams (Instrumental) Ver perfil</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>peopleconsult &lt;https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Ver perfil &lt;https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>peopleconsult 818 posts · 1K seguidores &lt;https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Ver mais no Instagram &lt;https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>Curtir &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Comentar &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>page</td><td>Compartilhar &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>page</td><td>Salvar &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-11"><td class="mono"><b>E-CONTACT-11</b></td><td>contact</td><td>page</td><td>peopleconsult &lt;https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-12"><td class="mono"><b>E-CONTACT-12</b></td><td>contact</td><td>page</td><td>Adicione um comentário... &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-CONTACT-13"><td class="mono"><b>E-CONTACT-13</b></td><td>contact</td><td>page</td><td>Instagram &lt;https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Post do Instagram compartilhado por @peopleconsult&#39; src=https://instagram.fcgh22-1.fna.fbcdn.net/v/t51.71878-15/541520337_1290849709718236_1081867717078746897_n.jpg?stp=dst-jpg_e15_tt6&amp;_nc_cat=110&amp;_nc_map=urlgen_bucketless&amp;ig_cache_key=MzcxMjcyMzc5NTY2OTE5 (1366x1708, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>A People Consultoria agora é correspondente bancário da BV Financeira.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O criativo publicitário utiliza as cores azul e branca e o logotipo contemporâneo do Banco BV, mas também exibe a logomarca própria da People Consult no rodapé da arte.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A entidade terceira se identifica claramente como People Consultoria (@peopleconsult / People Consult), divulgando site institucional próprio e número de contato.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Declara expressamente vínculo de correspondente bancário (&#39;Nova Parceria - Somos correspondentes da BV&#39; / &#39;A People Consultoria agora é correspondente bancário da BV Financeira&#39;), porém omite razão social completa, CNPJ e contato da ouvidoria do banco.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TITLE">E-TITLE</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A comunicação é formulada em terceira pessoa como parceira/correspondente (&#39;Somos correspondentes da BV&#39;, &#39;Nova Parceria&#39;), sem fingir ser o próprio banco.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso em destaque do logotipo oficial do Banco BV em formato de monograma estilizado no centro da arte promocional.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Oferta regular de intermediação de crédito (veículos, consignado CLT, energia solar) direcionando para atendimento da própria consultoria via WhatsApp e website.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Disponibiliza contato direto de WhatsApp e endereço web próprio da People Assessoria, sem canais oficiais da instituição financeira.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O usuário é informado de que se trata de uma parceria/correspondente, mas a falta de dados cadastrais (CNPJ) e ouvidoria dificulta a validação formal da autorização.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Embora a publicação e a arte gráfica declarem a condição de correspondente bancário da BV Financeira / BV, não são exibidos o CNPJ da intermediadora nem os canais de atendimento e ouvidoria da instituição contratante, descumprindo formalmente os requisitos da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> </span></li><li>[MEDIUM] LOGO_USAGE: O anúncio dá grande destaque visual ao monograma e à marca institucional do Banco BV em peça publicitária da promotora/consultoria nas redes sociais. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A empresa divulga seu nome fantasia &#39;People Consult&#39; e website próprio, diferenciando-se da instituição financeira. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[HIGH] INSTITUTIONAL_LANGUAGE: Declaração explícita de correspondente bancário e celebração de parceria (&#39;Nova Parceria&#39;), afastando a impersonação direta. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Publicação no Instagram do perfil @peopleconsult anunciando ser correspondente bancário da BV Financeira.</li><li>A arte gráfica exibe o título &#39;Nova Parceria - Somos correspondentes da BV&#39; com o logotipo moderno/monograma do Banco BV em evidência.</li><li>São ofertados financiamentos de veículos, refinanciamento, consignado privado e financiamento de energia solar.</li><li>O anúncio exibe o logotipo da People Consult, telefone WhatsApp com DDD 71 e link para peopleassessoria.com.br.</li><li>Não constam CNPJ nem informações de ouvidoria/SAC do Banco BV.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Confirmação se a People Consultoria possui contrato ativo de correspondente bancário homologado junto ao Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento (People Consultoria) atua como promotora/correspondente bancário no Instagram e anuncia abertamente parceria de intermediação de crédito com a BV Financeira. Não há tentativa de se passar pelo banco oficial, e a marca própria está presente. Contudo, em virtude do destaque conferido à marca do banco e da ausência de CNPJ e ouvidoria do contratante (Resolução CMN nº 4.935/2021), a postagem enquadra-se como comunicação ambígua com necessidade de revisão para averiguação de credenciamento e regularidade documental.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>@peopleconsult<br><span class="mono">social:instagram.com:peopleconsult</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>instagram.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/reel/DOGPp8OAJxM/</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/peopleconsult/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/reel/DOGPp8OAJxM/?utm_source=ig_embed&amp;ig_rid=AHABdUEweXQG4lII6g_ID01</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>@peopleconsult</td><td class="mono"><a href="#E-TITLE">E-TITLE</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>correspondente bancário</td><td class="mono"><a href="#E-TITLE">E-TITLE</a></td><td>Instagram @peopleconsult - peopleconsult A People Consultoria agora é correspondente bancário da BV Financeira. Atuamos com os seguintes financiamentos e refinanciamentos: 🚗 Veículos 🏍️ Motos 💰Consign</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: perfil em rede social</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A publicação em rede social pertence a uma assessoria/promotora de crédito (People Consultoria) que divulga atuar como correspondente bancário da BV Financeira para produtos de financiamento de veículos e energia solar. A peça gráfica (E-SHOT-VIEWPORT, E-SHOT-FULL) estampa o logotipo do Banco BV com destaque e menciona a parceria, contudo não apresenta os dados cadastrais obrigatórios (CNPJ) nem os canais de ouvidoria da instituição contratante (Res. CMN nº 4.935/2021). Como há identificação da marca própria (People Consult) e menção a correspondente/parceria sem evidente apropriação indébita da identidade do banco, a classificação REVIEW_REQUIRED com prioridade MEDIUM é adequada.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;correspondente&#34; &#34;bv financeira&#34; financiamento<br><span class="muted">H3-service:correspondente-vinculo</span></td><td class="mono">https://www.instagram.com/reel/DOGPp8OAJxM/</td><td>A People Consultoria agora é correspondente bancário da BV ...<br><span class="muted"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 01:53:34.251809+00:00</div>
+      <div class="kv"><b>IP do servidor</b>57.144.170.34</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cefe2276c20/attempt-1/manifest.json<br>sha256 b31a55d4f645e2fa8e43420ac429611f63d72ecb87559982431f46fed647fa0d</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.instagram.com/reel/DOGPp8OAJxM/<br>Final: https://www.instagram.com/reel/DOGPp8OAJxM/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cefe2276c20/attempt-1/viewport.png</td><td class="mono">020c41595230713c3891cc6e449cd544aa24a1485e97efc73d7deab33ccd20be</td><td>605746</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cefe2276c20/attempt-1/fullpage.png</td><td class="mono">2c37cc326111c883d8a14a0425e4df3d085b8d56606c5dd48ae90ab0bbd4b94d</td><td>1066193</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cefe2276c20/attempt-1/page.html.txt</td><td class="mono">b640f7edb84791d46b78296ccbaf82ed08a2785e6ccdf9aa7f0aad30b71deff6</td><td>257829</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cefe2276c20/attempt-1/text.txt</td><td class="mono">0da05590d50d5c4451be2ce484543282e1153cbe4d89d5080603cc6ddf6c0811</td><td>524</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cefe2276c20/attempt-1/page.json</td><td class="mono">3be9e3a02f7cd6ebc47938430488fa8d458cafb3a7fc07003d8b42b55a6cd2b7</td><td>9446</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:33+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 3.5)</td></tr>
+      <tr><td>2026-11-26T01:53:34+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T01:53:39+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T01:53:39+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T01:54:04+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T01:54:14+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

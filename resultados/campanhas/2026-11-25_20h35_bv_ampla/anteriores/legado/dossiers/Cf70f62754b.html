@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cf70f62754b</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cf70f62754b — jmsedae.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://jmsedae.com.br/linksuteis/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2016-01-22 (3960 dias) · LOCAWEB</div><div class="kv"><b>Titular do domínio</b>Sedae Serviços serviços de Desenvolvimento E Adm (CNPJ 02.983.474/0001-26)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Locaweb Serviços de Internet S/A (191.252.51.7, BR)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ns3.locaweb.com.br, ns2.locaweb.com.br, ns1.locaweb.com.br / mx.a.locaweb.com.br, mx.core.locaweb.com.br, mx.b.locaweb.com.br, mx.jk.locaweb.com.br</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@locaweb.com.br</div>      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]. Elementos de transparência/identificação do terceiro: Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante) [E-FOLD, E-HEAD-1, E-TXT-003]; Menção a ouvidoria (não verificado se é a da instituição contratante) [E-FOLD]. (Pontuação de triagem: confusão 1.0, transparência 1.5; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem</li><li>LLM indisponível nesta execução: brand: 403: permission/auth error: There are issues with your billing account, please resolve / pay your outstanding balance for project: projects/525969080967</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cf70f62754b/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 d06811cf519e5291ba758ba0aa39c8e87a5367475a8530209ecf8d9f96510929</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cf70f62754b/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 fa56630c8eba47136588f23ede461b23619ab01bcb140addfc57911d366b0356</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://jmsedae.com.br/linksuteis/ (domínio: jmsedae.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): jmsedae.com.br — | **7** | **JM Promotora de Vendas (JM Sedae)** | `https://jmsedae.com.br/` | **Portal B2B de Correspondentes:** Divulga convênio com *&#34;Banco BV&#34;* com telefones de suporte e ouvidoria, captando novos agentes e operadores de crédito para financiamento veicular | | **Em conformidade parcial:** Identifica dados corporativos e atuação como correspondente/promotora</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cf70f62754b/attempt-1/viewport.png (sha256 d06811cf519e5291…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cf70f62754b/attempt-1/fullpage.png (sha256 fa56630c8eba4713…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Links úteis – JM Promotora de Vendas</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://jmsedae.com.br/linksuteis/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Correspondente Autorizado.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Outros</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Produtos</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Links úteis</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Segurança</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Contato</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>LGPD</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>© Todos direitos reservados.</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Controle sua privacidade</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Fale Conosco Seja Parceiro Área do Parceiro Comercial Home Nexxa Filiais JM Capacita JM Connect JM Fintech JM Tech Workbank Links Úteis Carreiras Correspondente Autorizado. A JM atua como Correspondente Autorizado , em total conformidade com as normas e resoluções estabelecidas pelos órgãos reguladores competentes. Nosso compromisso é garantir a transparência, segurança e integridade em todas as operações realizadas, seguindo rigorosamente as diretrizes da legislação vigente. Central (71) 30459700 SAC (11) 4210-2496 WhatsApp (11) 96657-8829 E-mail sac@capitalconsig.com.br Central de Atendimento 0800 772-5271 Central 0800 031 8866 SAC 0800 979 9099 Ouvidoria 0800 723 2044 SAC 0800 729 0001 SAC 0800 775 0500 / 0800 775 2005 Central 0300 111 0500 Capital e Região 4002-1687 SAC 0800 775 8686 / 0800 776 8000 Ouvidoria 0800 776 9595 Central 3003-0511 SAC 0800 720 0011 WhatsApp (11) 4858-2603 SAC 0800 648 6161 Capital 3003 7728 / 0800 777 2828 E-mail produtoasaservice@byx.com.br Controle sua privacidade AdOpt Nosso site usa cookies para melhorar a navegação. Política de Privacidade - Opt-out Minhas opções Rejeitar Aceitar</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>© Todos direitos reservados. Instagram Facebook-f</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Home &lt;https://jmsedae.com.br/&gt; | Nexxa &lt;https://jmsedae.com.br/nexxa/&gt; | Filiais &lt;https://jmsedae.com.br/filiais-nossa-empresa/&gt; | JM Capacita &lt;https://jmsedae.com.br/capacita/&gt; | JM Connect &lt;https://jmsedae.com.br/jmconnect/&gt; | JM Fintech &lt;https://jmsedae.com.br/jmfintech/&gt; | JM Tech &lt;https://jmsedae.com.br/jmtech/&gt; | Workbank &lt;https://jmpromotora.workbankvirtual.com.br/login.aspx?pdc=true&gt; | Links Úteis &lt;https://jmsedae.com.br/linksuteis/&gt; | Carreiras &lt;https://jmsedae.com.br/carreiras/&gt; | Crédito consignado &lt;https://jmsedae.com.br/credito-consignado/&gt; | Débito em conta corrente &lt;https://jmsedae.com.br/vantagens-debito-conta-corrente-seguranca/&gt; | Consultar CEP &lt;http://www.buscacep.correios.com.br/sistemas/buscacep/default.cfm&gt; | Google Maps &lt;https://www.google.com.br/maps/@-22.1367064,-51.4047249,15z&gt; | Coelba &lt;http://www.coelba.com.br/Pages/Default.aspx&gt; | IBGE &lt;http://munic.ibge.gov.br/index.php?ano=2011&gt; | ANEPS &lt;http://www.aneps.org.br/main.asp?mexec=simpleimpr.asp&amp;tipo=N&amp;idimprensa=1771&gt; | Calculadora Cidadã &lt;https://www3.bcb.gov.br/CALCIDADAO/publico/exibirFormFinanciamentoPrestacoesFixas.do?method=exibirFormFinanciamentoPrestacoesFixas&gt; | PromoBank &lt;https://jmpromotora.promobank.com.br/sistema/&gt; | Meu INSS &lt;https://meu.inss.gov.br/#/login&gt; | Política de Privacidade &lt;https://jmsedae.com.br/politica-de-privacidade/&gt; | Política de Cookies &lt;https://jmsedae.com.br/politica-de-cookies/&gt; | Denúncias &lt;https://jmsedae.com.br/denuncias&gt; | Ouvidoria &lt;https://jmsedae.com.br/cont</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Fale Conosco &lt;https://jmsedae.com.br/linksuteis/#&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Seja Parceiro &lt;https://jmsedae.com.br/linksuteis/#&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Área do Parceiro &lt;https://jmsedae.com.br/linksuteis/#&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Comercial &lt;https://jmsedae.com.br/login/&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>footer</td><td>Instagram &lt;https://www.instagram.com/jmpromotoradevendas/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>footer</td><td>Facebook-f &lt;https://www.facebook.com/jmsedae/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;PAN&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/banco-pan-logo-2-1.png (117x55, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;BANCO BV&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/Logo_sem_banco_Digital-1.png (76x55, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;BYX CAPITAL&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/BYX-LOGOO.png (55x55, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;FACTA&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/LOGO-FACTA.png (155x55, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;HAPPY&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/08/logo-da-hapy-.png (93x55, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;J17&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/j17_logo@616w.70d2ba93.png (99x55, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;KARD BANK&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/logo-kdbsite-1-1024x516-1.png (109x55, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;SABEMI&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/logo-Sabemi-N1.png (208x55, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;VEM CARD&#39; src=https://jmsedae.com.br/wp-content/uploads/2026/05/LOGO.png (138x55, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;&#39; src=https://jmsedae.com.br/wp-content/uploads/2021/07/Logo-correspondente-bancario.png (185x37, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Seja Parceiro</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Área do Parceiro</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Correspondente Autorizado.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>A JM atua como Correspondente Autorizado, em total conformidade com as normas e resoluções estabelecidas pelos órgãos reguladores competentes. Nosso compromisso é garantir a transparência, segurança e integridade em todas as operações realizadas, seguindo rigorosamente as diretrizes da legislação vigente.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>sac@capitalconsig.com.br</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>CENTRAL DE ATENDIMENTO</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>OUVIDORIA E SAC</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>ouvidoria@qitech.com.br / qiajuda@qitech.com.br</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>ATENDIMENTO</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>falecom@pratadigital.com.br / quitacao@pratadigital.com.br</td></tr>
+      <tr id="E-TXT-038"><td class="mono"><b>E-TXT-038</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-039"><td class="mono"><b>E-TXT-039</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-040"><td class="mono"><b>E-TXT-040</b></td><td>text</td><td>page</td><td>sac@qualibanking.com.br / ouvidoria@qualibanking.com.br</td></tr>
+      <tr id="E-TXT-041"><td class="mono"><b>E-TXT-041</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-042"><td class="mono"><b>E-TXT-042</b></td><td>text</td><td>page</td><td>sac@capitalconsig.com.br</td></tr>
+      <tr id="E-TXT-043"><td class="mono"><b>E-TXT-043</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-044"><td class="mono"><b>E-TXT-044</b></td><td>text</td><td>page</td><td>SAC</td></tr>
+      <tr id="E-TXT-045"><td class="mono"><b>E-TXT-045</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-046"><td class="mono"><b>E-TXT-046</b></td><td>text</td><td>page</td><td>OUVIDORIA</td></tr>
+      <tr id="E-TXT-047"><td class="mono"><b>E-TXT-047</b></td><td>text</td><td>page</td><td>Busca de CEP e serviços logísticos nacionais.</td></tr>
+      <tr id="E-TXT-048"><td class="mono"><b>E-TXT-048</b></td><td>text</td><td>page</td><td>Gerenciamento de energia elétrica e segunda via.</td></tr>
+      <tr id="E-TXT-049"><td class="mono"><b>E-TXT-049</b></td><td>text</td><td>page</td><td>Informações sobre certificações para correspondentes.</td></tr>
+      <tr id="E-TXT-050"><td class="mono"><b>E-TXT-050</b></td><td>text</td><td>page</td><td>Simulações financeiras pelo Banco Central.</td></tr>
+      <tr id="E-TXT-051"><td class="mono"><b>E-TXT-051</b></td><td>text</td><td>page</td><td>Consulta de CPF/CNPJ e serviços fiscais.</td></tr>
+      <tr id="E-TXT-052"><td class="mono"><b>E-TXT-052</b></td><td>text</td><td>page</td><td>Portal oficial da Federação Brasileira de Bancos.</td></tr>
+      <tr id="E-TXT-053"><td class="mono"><b>E-TXT-053</b></td><td>text</td><td>page</td><td>Consultar CEP</td></tr>
+      <tr id="E-TXT-054"><td class="mono"><b>E-TXT-054</b></td><td>text</td><td>page</td><td>Ouvidoria</td></tr>
+      <tr id="E-TXT-055"><td class="mono"><b>E-TXT-055</b></td><td>text</td><td>page</td><td>Rua da Alfazema, 761, Edf. Iguatemi Business Flat, Loja 19, Caminho das Árvores Salvador/BA CEP 41.820-710</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-v1)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante)</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Imagem possivelmente de logotipo da marca acima da dobra</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Menção a ouvidoria (não verificado se é a da instituição contratante)</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] CORRESPONDENT_TRANSPARENCY: Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante) — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </span></li><li>[LOW] CONTACT_CHANNELS: Menção a ouvidoria (não verificado se é a da instituição contratante) — <span class="mono"><a href="#E-FOLD">E-FOLD</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>menções à marca no texto visível: 0</li><li>marca no título: não</li><li>padrão da marca no domínio: não</li><li>marca no cabeçalho: não</li><li>marca na área visível inicial: não</li><li>imagens possivelmente de logotipo/marca: 10 (3 acima da dobra)</li><li>indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): nenhum identificado</li><li>logotipo antigo confirmado por comparação de imagem: não</li><li>expressões de oficialidade: nenhuma</li><li>expressões de oficialidade próximas à marca: nenhuma</li><li>serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: nenhum</li><li>declarações de correspondente/independência: &#39;Correspondente Autorizado&#39; [E-HEAD-1], &#39;Correspondente Autorizado&#39; [E-FOLD], &#39;Correspondente Autorizado&#39; [E-FOLD], &#39;Correspondente Autorizado&#39; [E-TXT-003], &#39;Correspondente Autorizado&#39; [E-TXT-004]; locais: page, viewport; na área visível inicial/cabeçalho: sim; nomeia a instituição: não (tamanho, contraste e legibilidade não medidos automaticamente)</li><li>menções a parceria: &#39;Autorizado&#39; [E-HEAD-1], &#39;Parceiro&#39; [E-FOLD], &#39;Parceiro&#39; [E-FOLD], &#39;Autorizado&#39; [E-FOLD], &#39;Autorizado&#39; [E-FOLD] (associadas à marca: 0)</li><li>contexto multimarcas/multibancos (outras instituições financeiras na página): não</li><li>expressões de oficialidade em discurso de terceiros (notícia/alerta): nenhuma</li><li>página do tipo artigo/notícia (og:type): não; contexto editorial/informativo/reclamação: não</li><li>ouvidoria mencionada: sim</li><li>links para domínio oficial da instituição: não</li><li>contatos WhatsApp: 0; telefones: 17</li><li>CNPJs: nenhum</li><li>formulários na página: 0</li><li>campos que pedem dados sensíveis: nenhum</li><li>formulário que envia dados para outro domínio: não</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>análise heurística sem avaliação visual por modelo; identidade visual e logotipo inferidos apenas por textos alternativos e nomes de arquivos</li><li>evidências contraditórias: há declaração de correspondente e indícios de confusão</li><li>declaração de correspondente/independência sem nomear a instituição contratante</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]. Elementos de transparência/identificação do terceiro: Declaração de correspondente/independência na área visível inicial (sem nomear a instituição contratante) [E-FOLD, E-HEAD-1, E-TXT-003]; Menção a ouvidoria (não verificado se é a da instituição contratante) [E-FOLD]. (Pontuação de triagem: confusão 1.0, transparência 1.5; ordena casos, não prova.)</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:jmsedae.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Há declaração de correspondente ou de parceria, sem identificação suficiente ou sem confirmação cadastral.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>jmsedae.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>sac@capitalconsig.com.br</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>email</td><td>produtoasaservice@byx.com.br</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/jmpromotoradevendas/</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/jmsedae/</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>email</td><td>j17_logo@616w.70d2ba93.png</td><td class="mono"><a href="#E-IMG-6">E-IMG-6</a></td><td></td></tr>
+      <tr><td>email</td><td>ouvidoria@qitech.com.br</td><td class="mono"><a href="#E-TXT-029">E-TXT-029</a></td><td></td></tr>
+      <tr><td>email</td><td>qiajuda@qitech.com.br</td><td class="mono"><a href="#E-TXT-029">E-TXT-029</a></td><td></td></tr>
+      <tr><td>email</td><td>falecom@pratadigital.com.br</td><td class="mono"><a href="#E-TXT-037">E-TXT-037</a></td><td></td></tr>
+      <tr><td>email</td><td>quitacao@pratadigital.com.br</td><td class="mono"><a href="#E-TXT-037">E-TXT-037</a></td><td></td></tr>
+      <tr><td>email</td><td>sac@qualibanking.com.br</td><td class="mono"><a href="#E-TXT-040">E-TXT-040</a></td><td></td></tr>
+      <tr><td>email</td><td>ouvidoria@qualibanking.com.br</td><td class="mono"><a href="#E-TXT-040">E-TXT-040</a></td><td></td></tr>
+      <tr><td>phone</td><td>(71) 30459700</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 4210-2496</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 96657-8829</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 772-5271</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 031 8866</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 979 9099</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 723 2044</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 729 0001</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 775 0500</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 775 2005</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Correspondente Autorizado</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a></td><td>Correspondente Autorizado.</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-3">E-IMG-3</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>unanalyzed_visual_context</td><td>MEDIUM</td><td>Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-003">E-TXT-003</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Perfis no TikTok e páginas de empresas no LinkedIn apresentando-se como correspondentes ou parceiros da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - site:tiktok.com (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) financiamento -inurl:/@bancobv -inurl:/discover/ -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+  - site:linkedin.com/company &#34;correspondente&#34; (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) -inurl:/company/bancobv -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H6-platform:TikTok-LinkedIn</span></td><td class="mono">https://jmsedae.com.br/linksuteis/</td><td>jmsedae.com.br<br><span class="muted">| **7** | **JM Promotora de Vendas (JM Sedae)** | `https://jmsedae.com.br/` | **Portal B2B de Correspondentes:** Divulga convênio com *&#34;Banco BV&#34;* com telefones de suporte e ouvidoria, captando novos agentes e operadores de crédito para financiamento veicular | | **Em conformidade parcial:** Identifica dados corporativos e atuação como correspondente/promotora</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 03:01:30.999240+00:00</div>
+      <div class="kv"><b>IP do servidor</b>191.252.51.7</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cf70f62754b/attempt-1/manifest.json<br>sha256 682732f22ccead005b2400ad6dfa3883693c698278b1dc871510044de1849df3</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://jmsedae.com.br/linksuteis/<br>Final: https://jmsedae.com.br/linksuteis/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cf70f62754b/attempt-1/viewport.png</td><td class="mono">d06811cf519e5291ba758ba0aa39c8e87a5367475a8530209ecf8d9f96510929</td><td>112371</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cf70f62754b/attempt-1/fullpage.png</td><td class="mono">fa56630c8eba47136588f23ede461b23619ab01bcb140addfc57911d366b0356</td><td>389397</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cf70f62754b/attempt-1/page.html.txt</td><td class="mono">552ec8c950312740ba2c9a44d55e6fced3b42f24c9898567fa65008ee971d069</td><td>873628</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cf70f62754b/attempt-1/text.txt</td><td class="mono">14d03fc66af4242c8429f0138ee129adf90c010287a113658ff17ec56a583d01</td><td>4411</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cf70f62754b/attempt-1/page.json</td><td class="mono">1adc75d1b5ef59331444e7361b76e75d3a8e9a2167261a24705ae0fc8f3afd18</td><td>28675</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:46+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-26T03:01:30+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T03:01:43+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T03:01:43+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T03:01:43+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T03:01:43+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

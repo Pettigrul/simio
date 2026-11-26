@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C5e77a72334</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C5e77a72334 — mendescorreiaadv.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.mendescorreiaadv.com/duvidas/posso-vender-carro-financiado</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2026-09-05 (81 dias) · HOSTINGER operations, UAB</div><div class="kv"><b>Titular do domínio</b>não publicado</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: HOSTINGER-CDN (2.57.91.105, LT); Company 64d3454c4gqMnp2l (84.32.84.208, LT); Company 64d3454c4gqMnp2l (147.79.105.224, BR)</div>
+<div class="kv"><b>DNS (NS / MX)</b>byte.dns-parking.com, pixel.dns-parking.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@hostinger.com, report@abuseradar.com, abuse-tracker@hostinger.com</div>      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário C_POSSIBLE_OFFICIAL_CHANNEL: elementos que sugerem atendimento direto pela instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-CONTACT-1, E-CONTACT-2, E-CONTACT-3]; Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: quitação antecipada [E-FTR, E-TXT-005, E-TXT-006]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-TXT-029]. (Pontuação de triagem: confusão 5.5, transparência 0.5; ordena casos, não prova.)
+[Revisor: DOWNGRADE] Indício forte rebaixado: existem sinais de transparência, intermediação multimarcas ou contexto editorial a serem ponderados por auditor.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>uso destacado de logotipo/identidade visual ou linguagem da instituição sem CNPJ/declaração de correspondente: elevado a STRONG_INDICATION (HIGH)</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem</li><li>LLM indisponível nesta execução: brand: 403: permission/auth error: There are issues with your billing account, please resolve / pay your outstanding balance for project: projects/525969080967</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C5e77a72334/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 331122e7162ee26b201caeebc54e6a36d1dcbf2354b3b5b2ddb5e1141b652e48</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C5e77a72334/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 59d0bf056e02d29a1566b7a8186cd3367613647a2196859e15fbdd72dbd48ea1</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.mendescorreiaadv.com/duvidas/posso-vender-carro-financiado (domínio: www.mendescorreiaadv.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): mendescorreiaadv.com — Promove a circulação de bens alienados sem anuência prévia da instituição financeira | **Riscos de Proteção de Marca e Crédito:** Anúncios em agregadores e marketplaces (*OLX, Mercado Livre, Seminovos*) utilizam a marca BV Financeira para incentivar cessões de gaveta (&#34;aceito cartório&#34;, &#34;paga no meu nome&#34;), gerando risco de busca e apreensão e comprometendo a imagem institucional</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C5e77a72334/attempt-1/viewport.png (sha256 331122e7162ee26b…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C5e77a72334/attempt-1/fullpage.png (sha256 59d0bf056e02d29a…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Posso vender um carro financiado? | Mendes Correia Advogados</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Não sem a anuência do banco ou a quitação. Até lá, o veículo está em alienação fiduciária.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Mendes Correia Advogados</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Posso vender um carro financiado? | Mendes Correia Advogados</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Não sem a anuência do banco ou a quitação. Até lá, o veículo está em alienação fiduciária.</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: Mendes Correia Advogados</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.mendescorreiaadv.com/duvidas/posso-vender-carro-financiado</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Posso vender um carro financiado?</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Entenda a resposta</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Leia também</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Reconheceu o seu caso?</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Perguntas frequentes</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Posso quitar o financiamento antes do prazo com desconto?</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Pontos principais</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Outras áreas de atuação</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Busca e Apreensão de Veículos</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Busca e Apreensão de Caminhões, Ônibus e Máquinas Agrícolas</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Desbloqueio de Conta Bancária</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>A nota dos nossos clientes está no Google</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>NAVEGAÇÃO</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>ÁREAS DE ATUAÇÃO</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>CONTATO</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Soja (Paranaguá) R$ 170,05 /sc de 60kg Milho R$ 67,94 /sc de 60kg Boi gordo R$ 395,45 /@ Café arábica R$ 1.678,92 /sc de 60kg Dólar PTAX R$ 5,8825 Selic 13,75% a.a. Bitcoin R$ 354.001 ▲1,2% Ethereum R$ 9.895 ▲1,1% Solana R$ 414,37 ▲2,2% AGRO Secretária de Agricultura de Trump defende novas tarifas e acusa Brasil de &#39;práticas desleais&#39; contra agricultores dos EUA JURÍDICO TJ-SP inaugura nova etapa nos julgamentos na área de Família e Sucessões AGRO Após suspensão, JBS espera retomada das exportações de frango à UE em dezembro JURÍDICO TJ-SP mantém condenação de hospital que não informou paciente sobre câncer AGRO Tarifaço: açúcar brasileiro pode ter nova taxa para entrar nos EUA; veja o que pode mudar JURÍDICO Do autoritarismo ao totalitarismo digital AGRO É #FAKE que vídeo de descarte de c</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Soja (Paranaguá) R$ 170,05 / sc de 60kg Milho R$ 67,94 / sc de 60kg Boi gordo R$ 395,45 / @ Café arábica R$ 1.678,92 / sc de 60kg Dólar PTAX R$ 5,8825 Selic 13,75% a.a. Bitcoin R$ 354.001 ▲1,2% Ethereum R$ 9.895 ▲1,1% Solana R$ 414,37 ▲2,2% Agro Secretária de Agricultura de Trump defende novas tarifas e acusa Brasil de &#39;práticas desleais&#39; contra agricultores dos EUA Jurídico TJ-SP inaugura nova etapa nos julgamentos na área de Família e Sucessões Agro Após suspensão, JBS espera retomada das exportações de frango à UE em dezembro Jurídico TJ-SP mantém condenação de hospital que não informou paciente sobre câncer Agro Tarifaço: açúcar brasileiro pode ter nova taxa para entrar nos EUA; veja o que pode mudar Jurídico Do autoritarismo ao totalitarismo digital Agro É #FAKE que vídeo de descarte de cebolas na Bahia tenha a ver com alta de preços em 2026; cena há dois anos Jurídico Alternativas à transfusão de sangue no SUS devem ser aplicadas nacionalmente Agro Família gaúcha cria IA que &#39;degusta&#39; vinhos e ajuda a desenvolver novas receitas Agro Batatas espaciais: cientistas descobrem como cultivar alimento em solo semelhante ao da Lua Soja (Paranaguá) R$ 170,05 / sc de 60kg Milho R$ 67,94 / sc de 60kg Boi gordo R$ 395,45 / @ Café arábica R$ 1.678,92 / sc de 60kg Dólar PTAX R$ 5,8825 Selic 13,75% a.a. Bitcoin R$ 354.001 ▲1,2% Ethereum R$ 9.895 ▲1,1% Solana R$ 414,37 ▲2,2% Agro Secretária de Agricultura de Trump defende novas tarifas e acusa Brasil de &#39;práticas desleais&#39; contra agricultores dos EUA Jurídico TJ-SP inaugura nova etapa nos julgamentos na área de Família e Sucessões Agro Após suspensão, JBS espera retomada das exportações de frango à UE em dezembro Jurídico TJ-SP mantém condenação de hospital que não informou paciente sobre câncer Agro Tarifaço: açúcar brasileiro pode ter nova taxa para entrar nos EUA; veja o que pode mudar Jurídico Do autoritarismo ao totalitarismo digital Agro É #FAKE que vídeo de descarte de cebolas na Bahia tenha a ver com alta de preços em</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Mendes Correia ADVOGADOS Escritório especializado em Direito Bancário. Sede em Anápolis/GO e atendimento remoto em todo o Brasil. NAVEGAÇÃO Início Áreas de Atuação Quem Somos Advogado bancário em Anápolis Busca e apreensão em Anápolis Juros e contratos por banco Dúvidas frequentes Teses e jurisprudência Pré-atendimento em 1 minuto Guia gratuito: busca e apreensão Bloqueie ligações de bancos (Não Me Perturbe) Extrato de empréstimo no Meu INSS Registrato: empréstimos no seu CPF Consulta Tabela FIPE Agro: prorrogação de dívida rural Agro: recuperação judicial do produtor Agro: cotações de hoje Boletim mensal de juros Ranking de juros por banco Estou com problema com o banco Teste de superendividamento Calculadora de quitação antecipada Confira o seu contrato Modelo de pedido de cópia do contrato Juros para empresas Execução bancária e avalista Diagnóstico da dívida rural Regularização de imóvel rural Simulador de distrato de imóvel Plano Safra 2026/27 Calculadoras bancárias Calculadora de juros Calculadora de juros de empréstimo Prazos da busca e apreensão Verificador de bloqueio SISBAJUD Sobre Nós Portal News Contato Nosso blog Google Meu Negócio ÁREAS DE ATUAÇÃO Busca e Apreensão de Veículos Busca e Apreensão de Caminhões, Ônibus e Máquinas Agrícolas Desbloqueio de Conta Bancária Análise de Contrato Bancário Defesa em Execução Bancária Gestão de Passivos Bancários Distrato Imobiliário Superendividamento Revisão de Empréstimo Consignado e Pessoal Revisão de Financiamento de Veículos Advogado de Busca e Apreensão em Anápolis Revisão de Financiamento de Veículo em Anápolis Desbloqueio de Conta Bancária (SISBAJUD) em Anápolis Banco Pan: revisão de contrato e busca e apreensão BV (Banco Votorantim): revisão de contrato e busca e apreensão Santander (Aymoré): revisão de contrato e busca e apreensão Itaú: revisão de contrato e busca e apreensão Bradesco: revisão de contrato e busca e apreensão Banco do Brasil: revisão de contrato e busca e apreensão Caixa Econômica Federal:</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Soja (Paranaguá) R$ 170,05 /sc de 60kg &lt;https://www.mendescorreiaadv.com/cotacoes-agro&gt; | Milho R$ 67,94 /sc de 60kg &lt;https://www.mendescorreiaadv.com/cotacoes-agro&gt; | Boi gordo R$ 395,45 /@ &lt;https://www.mendescorreiaadv.com/cotacoes-agro&gt; | Café arábica R$ 1.678,92 /sc de 60kg &lt;https://www.mendescorreiaadv.com/cotacoes-agro&gt; | Dólar PTAX R$ 5,8825 &lt;https://www.mendescorreiaadv.com/cotacoes-agro&gt; | Selic 13,75% a.a. &lt;https://www.mendescorreiaadv.com/cotacoes-agro&gt; | Bitcoin R$ 354.001 ▲1,2% &lt;https://www.coingecko.com/pt/moedas/bitcoin&gt; | Ethereum R$ 9.895 ▲1,1% &lt;https://www.coingecko.com/pt/moedas/ethereum&gt; | Solana R$ 414,37 ▲2,2% &lt;https://www.coingecko.com/pt/moedas/solana&gt; | AGRO Secretária de Agricultura de Trump defende novas tarifas e acusa Brasil de &#39;práticas desleais&#39; contra agricultores dos EUA &lt;https://g1.globo.com/economia/agronegocios/noticia/2026/11/25/secretaria-de-agricultura-de-trump-defende-novas-tarifas-e-acusa-brasil-de-praticas-desleais-contra-agricultores-dos-eua.ghtml&gt; | JURÍDICO TJ-SP inaugura nova etapa nos julgamentos na área de Família e Sucessões &lt;https://conjur.com.br/2026-nov-25/tj-sp-inaugura-nova-etapa-de-julgamento-na-area-de-familia-e-sucessoes/&gt; | AGRO Após suspensão, JBS espera retomada das exportações de frango à UE em dezembro &lt;https://g1.globo.com/economia/agronegocios/noticia/2026/11/25/jbs-exportacao-frango-uniao-europeia.ghtml&gt; | JURÍDICO TJ-SP mantém condenação de hospital que não informou paciente sobre câncer &lt;https://conjur.com.br/</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Recusar</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Aceitar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>Fale Conosco &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Analisar meu caso &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Li%20a%20p%C3%A1gina%20%22Posso%20vender%20um%20carro%20financiado%3F%22%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20o%20meu%20caso.&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Analisar meu caso &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Li%20a%20p%C3%A1gina%20%22Posso%20vender%20um%20carro%20financiado%3F%22%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20o%20meu%20caso.&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>Instagram do Mendes Correia Advogados &lt;https://www.instagram.com/mendescorreiaadvogados/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td>Fale com um advogado &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista%20em%20Direito%20Banc%C3%A1rio.&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td>Ligar agora &lt;tel:+5562981217096&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td>WhatsApp &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista%20em%20Direito%20Banc%C3%A1rio.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo Mendes Correia Advogados&#39; src=https://horizons-cdn.hostinger.com/7339462f-0e74-4aa4-8aeb-2bc5dd853c18/ff127bb4c321952fa3e85cb3c3872168.png (44x44, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Logo Mendes Correia Advogados&#39; src=https://horizons-cdn.hostinger.com/7339462f-0e74-4aa4-8aeb-2bc5dd853c18/ff127bb4c321952fa3e85cb3c3872168.png (44x44, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Não sem a anuência do banco ou a quitação. Até lá, o veículo está em alienação fiduciária.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>No financiamento com alienação fiduciária, o veículo fica em nome do banco como garantia até a quitação. Por isso, a venda ou o repasse sem a concordância da instituição não transfere a propriedade de forma regular.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>O chamado &#34;repasse de financiamento&#34; ou &#34;venda de ágio&#34;, sem a participação do banco, é arriscado para os dois lados: quem vende continua responsável pela dívida, e quem compra pode perder o carro em uma busca e apreensão.</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Dispor de bem alienado fiduciariamente como se fosse próprio pode, em tese, gerar responsabilização inclusive na esfera criminal. As alternativas seguras são quitar o contrato, transferir o financiamento com aprovação do banco ou negociar a dívida.</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Calculadora de quitação antecipada</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Sim. A quitação antecipada dá direito ao abatimento proporcional dos juros. Use nossa calculadora para estimar o valor.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>O carro é garantia do banco até a quitação</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Alternativas: quitação, transferência aprovada ou negociação</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Avaliações verificadas diretamente no perfil oficial do Google.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Atendimento 100% remoto</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Escritório especializado em Direito Bancário. Sede em Anápolis/GO e atendimento remoto em todo o Brasil.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Juros e contratos por banco</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Pré-atendimento em 1 minuto</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Bloqueie ligações de bancos (Não Me Perturbe)</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Ranking de juros por banco</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Estou com problema com o banco</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Calculadora de quitação antecipada</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Banco Pan: revisão de contrato e busca e apreensão</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>BV (Banco Votorantim): revisão de contrato e busca e apreensão</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Banco do Brasil: revisão de contrato e busca e apreensão</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Banco BMG: revisão de contrato e busca e apreensão</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Banco Mercantil: revisão de contrato e busca e apreensão</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Quantas parcelas atrasadas para o banco pedir a busca e apreensão do carro?</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>O banco pode pegar o carro sem avisar?</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Juros abusivos e taxa média do Banco Central (REsp 1.061.530)</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>Perdi a safra. O que fazer com a dívida rural no banco?</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>O banco pode exigir seguro para liberar o crédito rural?</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>atendimento@mcorreiaadvogados.adv.br</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Mendes Correia Advogados · CNPJ 48.272.773/0001-53 · OAB/GO 5.272 · Dra. Mariana Correia — OAB/GO 38.742</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>Usamos cookies de análise (Google Analytics) para entender como o site é usado e melhorar o atendimento. Você pode aceitar ou recusar. Saiba mais na nossa Política de Privacidade.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-v1)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Empresa responsável identificada por CNPJ</td><td class="mono"><a href="#E-TXT-029">E-TXT-029</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Nenhuma declaração de correspondente/independência observada no conteúdo coletado</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Imagem possivelmente de logotipo da marca acima da dobra</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: quitação antecipada</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-017">E-TXT-017</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="CONFUSION">CONFUSION</td><td>Atendimento por WhatsApp sob identidade destacada da marca</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: quitação antecipada — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-017">E-TXT-017</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Empresa responsável identificada por CNPJ — <span class="mono"><a href="#E-TXT-029">E-TXT-029</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>menções à marca no texto visível: 1</li><li>marca no título: não</li><li>padrão da marca no domínio: não</li><li>marca no cabeçalho: não</li><li>marca na área visível inicial: não</li><li>imagens possivelmente de logotipo/marca: 2 (1 acima da dobra)</li><li>indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): nenhum identificado</li><li>logotipo antigo confirmado por comparação de imagem: não</li><li>expressões de oficialidade: nenhuma</li><li>expressões de oficialidade próximas à marca: nenhuma</li><li>serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: &#39;quitação antecipada&#39; [E-FTR], &#39;quitação antecipada&#39; [E-TXT-005], &#39;quitação antecipada&#39; [E-TXT-006], &#39;quitação antecipada&#39; [E-TXT-017]</li><li>declarações de correspondente/independência: nenhuma encontrada; locais: -; na área visível inicial/cabeçalho: não; nomeia a instituição: não (tamanho, contraste e legibilidade não medidos automaticamente)</li><li>menções a parceria: nenhuma (associadas à marca: 0)</li><li>contexto multimarcas/multibancos (outras instituições financeiras na página): sim (Banco Pan, Santander, Itaú, Bradesco, Banco do Brasil, Caixa Econômica)</li><li>expressões de oficialidade em discurso de terceiros (notícia/alerta): nenhuma</li><li>página do tipo artigo/notícia (og:type): não; contexto editorial/informativo/reclamação: não</li><li>ouvidoria mencionada: não</li><li>links para domínio oficial da instituição: não</li><li>contatos WhatsApp: 5; telefones: 0</li><li>CNPJs: 48.272.773/0001-53 [E-TXT-029]</li><li>formulários na página: 0</li><li>campos que pedem dados sensíveis: nenhum</li><li>formulário que envia dados para outro domínio: não</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>análise heurística sem avaliação visual por modelo; identidade visual e logotipo inferidos apenas por textos alternativos e nomes de arquivos</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário C_POSSIBLE_OFFICIAL_CHANNEL: elementos que sugerem atendimento direto pela instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-CONTACT-1, E-CONTACT-2, E-CONTACT-3]; Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: quitação antecipada [E-FTR, E-TXT-005, E-TXT-006]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-TXT-029]. (Pontuação de triagem: confusão 5.5, transparência 0.5; ordena casos, não prova.)</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>Mendes Correia Advogados<br><span class="mono">cnpj:48272773000153</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>mendescorreiaadv.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>48.272.773/0001-53</td><td class="mono"><a href="#E-TXT-029">E-TXT-029</a></td><td>Mendes Correia Advogados · CNPJ 48.272.773/0001-53</td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/mendescorreiaadvogados/</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>email</td><td>atendimento@mcorreiaadvogados.adv.br</td><td class="mono"><a href="#E-TXT-028">E-TXT-028</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Mendes Correia Advogados</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Fale Conosco &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Analisar meu caso &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Li%20a%20p%C3%A1gina%20%22Posso%20vender%20um%20carro%20financiado%3F%22%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20o%20meu%20</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Fale com um advogado &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista%20em%20Direito%20Banc%C3%A1rio.&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp &lt;https://wa.me/5562981217096?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista%20em%20Direito%20Banc%C3%A1rio.&gt;</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-017">E-TXT-017</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → REVIEW_REQUIRED / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Indício forte rebaixado: existem sinais de transparência, intermediação multimarcas ou contexto editorial a serem ponderados por auditor.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>multi_bank_intermediation</td><td>HIGH</td><td>A página menciona múltiplas instituições financeiras concorrentes (Banco Pan, Santander, Itaú, Bradesco) sem domínio próprio da marca nem alegação de canal oficial; provável intermediação multimarcas.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+      <tr><td>unanalyzed_visual_context</td><td>MEDIUM</td><td>Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Venda de ágio, repasse e &#39;assumo/passo financiamento&#39; de veículos financiados pela marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;assumo financiamento&#34; OR &#34;passo financiamento&#34; OR &#34;repasse de financiamento&#34; OR &#34;venda de ágio&#34; OR &#34;carro com ágio&#34; OR &#34;transfiro financiamento&#34;) (&#34;BV&#34; OR &#34;Banco BV&#34; OR &#34;bv financeira&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H10-fraud:agio-repasse</span></td><td class="mono">https://www.mendescorreiaadv.com/duvidas/posso-vender-carro-financiado</td><td>mendescorreiaadv.com<br><span class="muted">Promove a circulação de bens alienados sem anuência prévia da instituição financeira | **Riscos de Proteção de Marca e Crédito:** Anúncios em agregadores e marketplaces (*OLX, Mercado Livre, Seminovos*) utilizam a marca BV Financeira para incentivar cessões de gaveta (&#34;aceito cartório&#34;, &#34;paga no meu nome&#34;), gerando risco de busca e apreensão e comprometendo a imagem institucional</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 03:02:01.438943+00:00</div>
+      <div class="kv"><b>IP do servidor</b>147.79.105.224</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C5e77a72334/attempt-1/manifest.json<br>sha256 821779bec345e17155e2fbacb0d73a483b0e8b681312c80ac25edf632ab3bdfc</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.mendescorreiaadv.com/duvidas/posso-vender-carro-financiado<br>Final: https://www.mendescorreiaadv.com/duvidas/posso-vender-carro-financiado</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C5e77a72334/attempt-1/viewport.png</td><td class="mono">331122e7162ee26b201caeebc54e6a36d1dcbf2354b3b5b2ddb5e1141b652e48</td><td>451034</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C5e77a72334/attempt-1/fullpage.png</td><td class="mono">59d0bf056e02d29a1566b7a8186cd3367613647a2196859e15fbdd72dbd48ea1</td><td>907628</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C5e77a72334/attempt-1/page.html.txt</td><td class="mono">6e3cdc591a3213ea53915c41ae88feaeaca27b8d3a63de30c7fc1264bf4df868</td><td>101796</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C5e77a72334/attempt-1/text.txt</td><td class="mono">bc8aa310836d20fa71761dd4b4b7bb0e0115ad9964aa77ee1478df1b92fa95bf</td><td>10250</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C5e77a72334/attempt-1/page.json</td><td class="mono">7aca120d61e931ed93e1ba8ccfefebc3097c921cf532ac797c8eb4a7dc195309</td><td>66826</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:47+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-26T03:02:01+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T03:02:12+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T03:02:12+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T03:02:13+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T03:02:13+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

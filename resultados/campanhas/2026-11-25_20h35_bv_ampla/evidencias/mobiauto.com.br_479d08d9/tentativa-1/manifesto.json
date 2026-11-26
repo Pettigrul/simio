@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C479d08d983",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.mobiauto.com.br/",
+  "final_url": "https://www.mobiauto.com.br/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.21.82.16",
+  "collected_at": "2026-11-26T01:58:42.522383+00:00",
+  "manifest_written_at": "2026-11-26T01:58:51.818443+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C479d08d983/attempt-1/viewport.png",
+      "sha256": "f690413448806cb45caef6cc631d1a481d3c645b10118a82dc337537ea0d6218",
+      "size_bytes": 739611
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C479d08d983/attempt-1/fullpage.png",
+      "sha256": "2988e569f3b54fd2943d0e1673f7ff21a354b87356ecc80e78d520ffdf243608",
+      "size_bytes": 1563180
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C479d08d983/attempt-1/page.html.txt",
+      "sha256": "220f45a7c00dca1fb10cdd9ad403e6255f52139b917f6396aa461e2d8b17f395",
+      "size_bytes": 568361
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C479d08d983/attempt-1/text.txt",
+      "sha256": "68e6ddf8e6afe55f6967e543153bf0f45c4332b125e67d574b2eec283e9c4372",
+      "size_bytes": 5614
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C479d08d983/attempt-1/page.json",
+      "sha256": "5f36a0f358402ce1d94f5e756b19cb9b2f831c7d83d5567618525164ebce76ff",
+      "size_bytes": 107819
+    }
+  ],
+  "blocked_requests": [
+    "https://event.getblue.io/js/blue-tag.min.js -> DNS resolution failed for event.getblue.io: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

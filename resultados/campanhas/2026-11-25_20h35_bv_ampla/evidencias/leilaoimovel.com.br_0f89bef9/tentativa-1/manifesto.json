@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C0f89bef970",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.leilaoimovel.com.br/banco_leilao_de_imoveis/banco-bv",
+  "final_url": "https://www.leilaoimovel.com.br/banco_leilao_de_imoveis/banco-bv",
+  "redirect_chain": [
+    "https://www.leilaoimovel.com.br/banco_leilao_de_imoveis/banco-bv"
+  ],
+  "http_status": 403,
+  "server_ip": "104.26.10.55",
+  "collected_at": "2026-11-26T02:59:57.749671+00:00",
+  "manifest_written_at": "2026-11-26T03:00:03.232792+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C0f89bef970/attempt-1/viewport.png",
+      "sha256": "dd4ea37653cbb009a22a85472c4b0612199075c649889b8ee8563c87a351b3c1",
+      "size_bytes": 40509
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C0f89bef970/attempt-1/fullpage.png",
+      "sha256": "dd4ea37653cbb009a22a85472c4b0612199075c649889b8ee8563c87a351b3c1",
+      "size_bytes": 40509
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C0f89bef970/attempt-1/page.html.txt",
+      "sha256": "5d2cb5d413d313579ac192f9c6ca66c6a5b715b04706ceca1961004e4595392d",
+      "size_bytes": 44989
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C0f89bef970/attempt-1/text.txt",
+      "sha256": "6fa1247b510ee4340f13f09a5ebaac5d648dfba68a0003ada677f969f3684001",
+      "size_bytes": 297
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C0f89bef970/attempt-1/page.json",
+      "sha256": "79ab97d6f0beef4d9ab2b02997a077b17599b2707dcade596464f948e81f7ae7",
+      "size_bytes": 1465
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

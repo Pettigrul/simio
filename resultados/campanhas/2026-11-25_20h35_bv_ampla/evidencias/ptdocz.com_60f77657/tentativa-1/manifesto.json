@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C60f7765763",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://ptdocz.com/",
+  "final_url": "https://ptdocz.com/",
+  "redirect_chain": [
+    "https://ptdocz.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.21.51.133",
+  "collected_at": "2026-11-26T03:07:51.841441+00:00",
+  "manifest_written_at": "2026-11-26T03:07:57.010939+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C60f7765763/attempt-1/viewport.png",
+      "sha256": "50f7247dfeed6542e667ebe405cb3ac9da97623aa208ed6ebea214cd7d6d397e",
+      "size_bytes": 37426
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C60f7765763/attempt-1/fullpage.png",
+      "sha256": "f0a44996bfd35bca823a30c932584e9813fc92866435fb844100849bfc5a6452",
+      "size_bytes": 37387
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C60f7765763/attempt-1/page.html.txt",
+      "sha256": "65023d60d26af3dafa7f9d3f48510721b429e7e7d6f89405e8577a531de83848",
+      "size_bytes": 44776
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C60f7765763/attempt-1/text.txt",
+      "sha256": "de777b6074d1668558b7c6d9f4b442433b39dc65d40a4d0ab978b39467565ac7",
+      "size_bytes": 284
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C60f7765763/attempt-1/page.json",
+      "sha256": "e3eb2662e14ab324c70843b82cd681f32a19aa86068fc49bc4d71292b80fa777",
+      "size_bytes": 1426
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

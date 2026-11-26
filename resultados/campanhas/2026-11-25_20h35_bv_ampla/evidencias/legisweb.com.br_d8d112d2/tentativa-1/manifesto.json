@@ -1,0 +1,56 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cd8d112d2f6",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.legisweb.com.br/legislacao/?legislacao=498627",
+  "final_url": "https://www.legisweb.com.br/legislacao/?id=498627",
+  "redirect_chain": [
+    "https://www.legisweb.com.br/legislacao/?legislacao=498627"
+  ],
+  "http_status": 200,
+  "server_ip": "85.10.196.52",
+  "collected_at": "2026-11-26T03:01:24.691211+00:00",
+  "manifest_written_at": "2026-11-26T03:01:39.328818+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cd8d112d2f6/attempt-1/viewport.png",
+      "sha256": "1960392cf8f8364494ef070d07e45fba8c3a667fd2300cd07acb9cba5b89e708",
+      "size_bytes": 193770
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cd8d112d2f6/attempt-1/fullpage.png",
+      "sha256": "b8a8863a29c4f4915737bc9f395fd7a6a0a49a4a1967b7edda2f3c8cab3597e5",
+      "size_bytes": 1448061
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cd8d112d2f6/attempt-1/page.html.txt",
+      "sha256": "4cda63a710200c6d72725647c93fadbab9f13b1054844b1639af4233de81b431",
+      "size_bytes": 693551
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cd8d112d2f6/attempt-1/text.txt",
+      "sha256": "f71918041563044ed4a0fc83aa0560351506fa4805ed371974734741ed97bca5",
+      "size_bytes": 86252
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cd8d112d2f6/attempt-1/page.json",
+      "sha256": "e105827eec9ef8302781c21e6df7bcf73cee341d8d5eb105d4a516bd1f13c1f1",
+      "size_bytes": 122172
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "screenshot completo limitado a 12000px (página com 41501px); texto integral preservado em text.txt",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

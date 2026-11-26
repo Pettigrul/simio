@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C64d19434fa</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C64d19434fa — utua.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://utua.com.br/br-cc-bv-livre-p1/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2019-09-26 (2618 dias)</div><div class="kv"><b>Titular do domínio</b>Bernardo Starling Moss</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (172.66.151.100); Cloudflare, Inc. (104.20.45.250)</div>
+<div class="kv"><b>DNS (NS / MX)</b>lloyd.ns.cloudflare.com, robin.ns.cloudflare.com / aspmx.l.google.com, alt3.aspmx.l.google.com, alt4.aspmx.l.google.com, alt1.aspmx.l.google.com, alt2.aspmx.l.google.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>MEDIUM</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Marca no cabeçalho/navegação fora de declaração de correspondente [E-HDR, E-NAV]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1]. Elementos de transparência/identificação do terceiro: Declaração de correspondente/independência apenas fora da área inicial (ex.: rodapé) (sem nomear a instituição contratante) [E-FTR, E-TXT-011]; Empresa responsável identificada por CNPJ [E-FTR]. (Pontuação de triagem: confusão 3.5, transparência 1.5; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li><li>análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem</li><li>LLM indisponível nesta execução: brand: 403: permission/auth error: There are issues with your billing account, please resolve / pay your outstanding balance for project: projects/525969080967</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C64d19434fa/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 df03de0fbac6d172afeea386f09fe4ee324e77f492d7b97355ceca224f519b1d</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C64d19434fa/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 40153a5085ec3d7c9895ad8900006162b5f64eecba0e0a59da8aae7611acb3de</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://utua.com.br/br-cc-bv-livre-p1/ (domínio: utua.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): utua.com.br — **URL:** `https://utua.com.br` | **Uso da Marca:** Apresenta análise e divulgação do *&#34;Cartão de Crédito BV Livre Visa&#34;* | **Uso da Marca:** Apresenta análise e divulgação do *&#34;Cartão de Crédito BV Livre Visa&#34;*, associando a marca a termos como solicitação rápida, ausência de anuidade e categorias de cartões *&#34;sem consulta ao SPC/Serasa e aprovados na hora&#34;*</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Conheça o cartão BV livre Visa! — No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios ... sem consulta ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C64d19434fa/attempt-1/viewport.png (sha256 df03de0fbac6d172…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C64d19434fa/attempt-1/fullpage.png (sha256 40153a5085ec3d7c…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Conheça o cartão BV livre Visa!</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios!</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Utua</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Conheça o cartão BV livre Visa!</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios!</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://utua.com.br/br-cc-bv-livre-p1/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Conheça o cartão BV livre Visa!</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios!</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Por que recomendamos para você o cartão BV livre Visa?</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Opinião do escritor</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Principais vantagens do cartão</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Como solicitar o cartão BV livre Visa?</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Fique por dentro de tudo o que acontece!</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Sobre o Autor</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Cartão de crédito Empréstimo Financiamento Renda Extra Seguro Clube UTUA Sobre Nós Contato | Conheça o cartão BV livre Visa! No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios!</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Cartão de crédito Empréstimo Financiamento Renda Extra Seguro Clube UTUA Sobre Nós Contato Conheça o cartão BV livre Visa! No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios! 21/11/2023 13h53 ✔️ O cartão BV Livre é livre de anuidade para sempre! ✔️ Você consegue fazer pix utilizando o limite do cartão ✔️ Tenha acesso a uma conta digital 100% gratuita e completa! ✔️ Usufrua de benefícios da bandeira Visa Por que recomendamos para você o cartão BV livre Visa? O cartão de crédito BV livre Visa é um produto financeiro oferecido por um dos maiores bancos digitais em operação no Brasil atualmente. Existem mais de 1.200 opções de cartão de crédito disponíveis no Brasil hoje, por isso é importante escolher um que combine com seus interesses.</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Sobre Nós Entrar em contato Politica de Privacidade Termos e condições UTUA – CNPJ 65.836.872/0001-30 By Nexus International Ventures Brasil Ltda. Av. Afonso Pena, nº 3351, Sala 1101NIV – Belo Horizonte/MG – Brasil Contact Information: contato@utua.com.br | +55 31 99505-1491 Copyright © 2026 https://utua.com.br/br UTUA oferece conteúdo gratuito sobre cartões, bancos digitais, empréstimos e serviços financeiros de terceiros. Não somos instituição financeira, nem sempre afiliados, e não cobramos pelo acesso. Recomendações são informativas, não aconselhamento; consulte especialistas. Aprovações e termos (12-60 meses, APRs 3-22%) dependem do emissor. Exemplo: empréstimo de $10.000, 36 meses, 3% APR, custa $10.470. Podemos receber comissões por afiliados. Cumprimos LGPD, GDPR, CCPA; você pode acessar/excluir dados. Transferências usam salvaguardas. Veja nossa Política de Privacidade. Operado por Nexus International Ventures Brasil Ltda. (CNPJ: 65.836.872/0001-30). Av. Afonso Pena, nº 3351, Sala 1101NIV, Bairro Serra, Belo Horizonte/MG, CEP 30.130-008. Contato: help@utua.com.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://utua.com.br/&gt; | Cartão de crédito &lt;https://utua.com.br/category/cartao-de-credito/&gt; | Empréstimo &lt;https://utua.com.br/category/emprestimo/&gt; | Financiamento &lt;https://utua.com.br/category/financiamento/&gt; | Renda Extra &lt;https://utua.com.br/category/renda-extra/&gt; | Seguro &lt;https://utua.com.br/category/seguro/&gt; | Clube UTUA &lt;https://utua.com.br/#clube-utua&gt; | Sobre Nós &lt;https://utua.com.br/sobre-nos/&gt; | Contato &lt;https://utua.com.br/contato/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>MAIS INFORMAÇÕES! &lt;https://utua.com.br/br-cc-bv-livre-p2/&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Instagram &lt;https://www.instagram.com/clubeutua/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Cartão BV Livre&#39; src=https://bucket.utua.com.br/img/2023/11/f014ad8b-design-sem-nome-4-2-442x332.png (442x332, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Conheça o cartão BV livre Visa!</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios!</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>✔️ O cartão BV Livre é livre de anuidade para sempre!</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Por que recomendamos para você o cartão BV livre Visa?</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>O cartão de crédito BV livre Visa é um produto financeiro oferecido por um dos maiores bancos digitais em operação no Brasil atualmente.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Na nossa última atualização o cartão BV livre Visa foi selecionado como a melhor opção para você.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Como solicitar o cartão BV livre Visa?</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Para fazer a solicitação do seu cartão de crédito BV livre Visa é muito simples, rápido e seguro, e pode ser feito agora de forma 100% digital.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>UTUA – CNPJ 65.836.872/0001-30</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>By Nexus International Ventures Brasil Ltda.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>UTUA oferece conteúdo gratuito sobre cartões, bancos digitais, empréstimos e serviços financeiros de terceiros. Não somos instituição financeira, nem sempre afiliados, e não cobramos pelo acesso. Recomendações são informativas, não aconselhamento; consulte especialistas. Aprovações e termos (12-60 meses, APRs 3-22%) dependem do emissor. Exemplo: empréstimo de $10.000, 36 meses, 3% APR, custa</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>$10.470. Podemos receber comissões por afiliados. Cumprimos LGPD, GDPR, CCPA; você pode acessar/excluir dados. Transferências usam salvaguardas. Veja nossa Política de Privacidade. Operado por Nexus International Ventures Brasil Ltda. (CNPJ: 65.836.872/0001-30). Av. Afonso Pena, nº 3351, Sala 1101NIV, Bairro Serra, Belo Horizonte/MG, CEP 30.130-008. Contato: help@utua.com.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-v1)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>sinais contraditórios</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Declaração de correspondente/independência apenas fora da área inicial (ex.: rodapé) (sem nomear a instituição contratante)</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-011">E-TXT-011</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Imagem possivelmente de logotipo da marca acima da dobra</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>não avaliado pela heurística</td><td class="mono"></td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Marca no título/nome do site — <span class="mono"><a href="#E-TITLE">E-TITLE</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Marca no cabeçalho/navegação fora de declaração de correspondente — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> </span></li><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] CORRESPONDENT_TRANSPARENCY: Declaração de correspondente/independência apenas fora da área inicial (ex.: rodapé) (sem nomear a instituição contratante) — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-011">E-TXT-011</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Empresa responsável identificada por CNPJ — <span class="mono"><a href="#E-FTR">E-FTR</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>menções à marca no texto visível: 0</li><li>marca no título: sim</li><li>padrão da marca no domínio: não</li><li>marca no cabeçalho: sim</li><li>marca na área visível inicial: não</li><li>imagens possivelmente de logotipo/marca: 1 (1 acima da dobra)</li><li>indícios de logotipo antigo/legado (B vermelho / V azul ou termo legado): nenhum identificado</li><li>logotipo antigo confirmado por comparação de imagem: não</li><li>expressões de oficialidade: nenhuma</li><li>expressões de oficialidade próximas à marca: nenhuma</li><li>serviços sensíveis (2ª via de boleto/quitação/acordo) associados à marca: nenhum</li><li>declarações de correspondente/independência: &#39;Não somos instituição financeira&#39; [E-FTR], &#39;Não somos instituição financeira&#39; [E-TXT-011]; locais: footer, page; na área visível inicial/cabeçalho: não; nomeia a instituição: não (tamanho, contraste e legibilidade não medidos automaticamente)</li><li>menções a parceria: nenhuma (associadas à marca: 0)</li><li>contexto multimarcas/multibancos (outras instituições financeiras na página): não</li><li>expressões de oficialidade em discurso de terceiros (notícia/alerta): nenhuma</li><li>página do tipo artigo/notícia (og:type): sim; contexto editorial/informativo/reclamação: sim</li><li>ouvidoria mencionada: não</li><li>links para domínio oficial da instituição: não</li><li>contatos WhatsApp: 0; telefones: 1</li><li>CNPJs: 65.836.872/0001-30 [E-FTR], 65.836.872/0001-30 [E-FTR], 65.836.872/0001-30 [E-TXT-009], 65.836.872/0001-30 [E-TXT-012]</li><li>formulários na página: 0</li><li>campos que pedem dados sensíveis: nenhum</li><li>formulário que envia dados para outro domínio: não</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>análise heurística sem avaliação visual por modelo; identidade visual e logotipo inferidos apenas por textos alternativos e nomes de arquivos</li><li>evidências contraditórias: há declaração de correspondente e indícios de confusão</li><li>declaração de correspondente/independência sem nomear a instituição contratante</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Marca no cabeçalho/navegação fora de declaração de correspondente [E-HDR, E-NAV]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1]. Elementos de transparência/identificação do terceiro: Declaração de correspondente/independência apenas fora da área inicial (ex.: rodapé) (sem nomear a instituição contratante) [E-FTR, E-TXT-011]; Empresa responsável identificada por CNPJ [E-FTR]. (Pontuação de triagem: confusão 3.5, transparência 1.5; ordena casos, não prova.)</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>POSSIBLE_COBAN</div>
+      <div class="kv"><b>Entidade</b>0001-30 By Nexus International Ventures Brasil Ltda<br><span class="mono">cnpj:65836872000130</span></div>
+      <div class="kv"><b>Confiança</b>MEDIUM</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">A página declara atuação como correspondente/prestador e identifica a empresa, mas não houve confirmação em cadastro autorizado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>utua.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>65.836.872/0001-30</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Sobre Nós Entrar em contato Politica de Privacidade Termos e condições UTUA – CNPJ 65.836.872/0001-30</td></tr>
+      <tr><td>legal_name</td><td>0001-30 By Nexus International Ventures Brasil Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>Nexus International Ventures Brasil Ltda</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@utua.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>help@utua.com.</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/clubeutua/</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>By Nexus International Ventures Brasil Ltda</td><td class="mono"><a href="#E-TXT-010">E-TXT-010</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Utua</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>31 99505-1491</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>correspondent_declaration</td><td>Não somos instituição financeira</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>Sobre Nós Entrar em contato Politica de Privacidade Termos e condições UTUA – CNPJ 65.836.872/0001-30 By Nexus International Ventures Brasil Ltda. Av. Afonso Pena, nº 3351, Sala 1101NIV – Belo Horizon</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_CONDITIONAL_ON_LINK</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (DECLARED_COMMERCIAL_IDENTITY) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). Aplicável somente se confirmado o vínculo de correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-NAV">E-NAV</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>vínculo de correspondente não confirmado em cadastro autorizado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>unanalyzed_visual_context</td><td>MEDIUM</td><td>Identidade visual não foi avaliada por modelo multimodal; verificar screenshots.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>contradictory_evidence</td><td>LOW</td><td>Coexistem declaração de correspondente e indícios de confusão.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-011">E-TXT-011</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Investimentos com rendimento garantido e cartões &#39;aprovados na hora&#39; em nome da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;rendimento garantido&#34; OR &#34;CDB&#34; OR &#34;lucro&#34; OR &#34;renda fixa&#34;) (&#34;Banco BV&#34; OR &#34;BV Investimentos&#34;) (whatsapp OR telegram OR grupo OR invista) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;cartão BV&#34; OR &#34;cartão de crédito BV&#34; OR &#34;cartão Banco BV&#34;) (&#34;aprovado na hora&#34; OR &#34;sem consulta&#34; OR &#34;limite alto&#34; OR &#34;solicite já&#34; OR &#34;para negativados&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H10-fraud:investimento-cartao</span></td><td class="mono">https://utua.com.br/br-cc-bv-livre-p1/</td><td>utua.com.br<br><span class="muted">**URL:** `https://utua.com.br` | **Uso da Marca:** Apresenta análise e divulgação do *&#34;Cartão de Crédito BV Livre Visa&#34;* | **Uso da Marca:** Apresenta análise e divulgação do *&#34;Cartão de Crédito BV Livre Visa&#34;*, associando a marca a termos como solicitação rápida, ausência de anuidade e categorias de cartões *&#34;sem consulta ao SPC/Serasa e aprovados na hora&#34;*</span></td></tr>
+      <tr><td>serper</td><td>&#34;cartão de crédito BV&#34; &#34;sem consulta&#34;<br><span class="muted">H10-fraud:investimento-cartao</span></td><td class="mono">https://utua.com.br/br-cc-bv-livre-p1/</td><td>Conheça o cartão BV livre Visa!<br><span class="muted">No texto de hoje te contamos tudo sobre o cartão de crédito BV Livre, que concede anuidade gratuita e inúmeros benefícios ... sem consulta ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 03:08:50.655830+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.20.45.250</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C64d19434fa/attempt-1/manifest.json<br>sha256 c7ede036c08fcb905d2fe3dbb9cb3eb00d53d77cadda09cd64ab971ac4849277</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://utua.com.br/br-cc-bv-livre-p1/<br>Final: https://utua.com.br/br-cc-bv-livre-p1/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C64d19434fa/attempt-1/viewport.png</td><td class="mono">df03de0fbac6d172afeea386f09fe4ee324e77f492d7b97355ceca224f519b1d</td><td>94258</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C64d19434fa/attempt-1/fullpage.png</td><td class="mono">40153a5085ec3d7c9895ad8900006162b5f64eecba0e0a59da8aae7611acb3de</td><td>294051</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C64d19434fa/attempt-1/page.html.txt</td><td class="mono">979c7702b4b67b1fe0eb413d75d646b35dc2168555ab70fd21dc0667d7c62786</td><td>183202</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C64d19434fa/attempt-1/text.txt</td><td class="mono">eb34da267f5853dbb1857830c8d40095703ded14f2dece4b01a8b342b1fdebcd</td><td>4297</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C64d19434fa/attempt-1/page.json</td><td class="mono">592180defe2138e9b8200286acefd56d9921c624ab1a55bed2936f7f4fa9afec</td><td>13068</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:52+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.5)</td></tr>
+      <tr><td>2026-11-26T03:08:50+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T03:09:01+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T03:09:01+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T03:09:02+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T03:09:02+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

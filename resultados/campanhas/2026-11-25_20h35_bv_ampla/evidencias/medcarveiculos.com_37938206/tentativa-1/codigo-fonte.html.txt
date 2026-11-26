@@ -1,0 +1,470 @@
+<html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Simule seu financiamento na MedCar Veículos em Dourados-MS. Aprovação em até 24h, sem burocracia.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://medcarveiculos.com/financiamento.html">
+    <title>Simular Financiamento | MedCar Veículos – Dourados MS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .fin-hero {
+            background: linear-gradient(135deg, #0d0d0d 0%, #0a1a2e 50%, #0d0d0d 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .fin-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(26,86,219,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .fin-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
+        .fin-hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 520px; margin: 0 auto; }
+
+        .fin-section { padding: 60px 0 100px; background: var(--bg-dark); }
+
+        .fin-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 660px;
+            margin: 0 auto;
+        }
+        @media (max-width: 600px) { .fin-card { padding: 24px 16px; } }
+
+        .fin-card h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+        .fin-card .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 36px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block; font-size: 13px; font-weight: 600;
+            color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .form-group label span { color: var(--red); }
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"] {
+            width: 100%; padding: 14px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-size: 15px;
+            font-family: var(--font-body);
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a56db;
+            background: rgba(26,86,219,0.05);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+        /* Upload CNH */
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 32px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .upload-area:hover, .upload-area.dragover {
+            border-color: #1a56db;
+            background: rgba(26,86,219,0.05);
+        }
+        .upload-area input[type="file"] {
+            position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+        }
+        .upload-icon { font-size: 2rem; margin-bottom: 8px; }
+        .upload-text { font-size: 14px; color: var(--text-muted); }
+        .upload-text strong { color: var(--text-light); }
+        .upload-preview {
+            display: none; margin-top: 12px;
+            border-radius: 8px; overflow: hidden;
+            max-height: 200px;
+        }
+        .upload-preview img { width: 100%; object-fit: cover; max-height: 200px; }
+        .upload-preview .preview-name {
+            background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.3);
+            border-radius: 8px; padding: 10px 14px;
+            font-size: 13px; color: #60a5fa;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .optional-badge {
+            display: inline-block; font-size: 10px; font-weight: 600;
+            background: rgba(255,255,255,0.08); color: var(--text-muted);
+            border-radius: 4px; padding: 2px 6px; margin-left: 6px;
+            vertical-align: middle; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .btn-submit {
+            width: 100%; padding: 16px;
+            background: #1a56db;
+            color: white;
+            border: none; border-radius: 12px;
+            font-size: 16px; font-weight: 700;
+            cursor: pointer;
+            font-family: var(--font-main);
+            transition: all 0.2s;
+            margin-top: 8px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-submit:hover { background: #1e40af; transform: translateY(-1px); }
+        .btn-submit:disabled { background: #374151; cursor: not-allowed; transform: none; }
+
+        .privacy-note {
+            text-align: center; font-size: 12px; color: var(--text-muted);
+            margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+
+        /* Sucesso */
+        .success-state { display: none; text-align: center; padding: 20px 0; }
+        .success-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: rgba(34,197,94,0.1); border: 2px solid #22c55e;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; font-size: 2.5rem;
+        }
+        .success-state h3 { font-size: 1.6rem; margin-bottom: 12px; }
+        .success-state p { color: var(--text-muted); margin-bottom: 32px; }
+
+        /* Bancos */
+        .banks-strip {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            justify-content: center; margin: 40px 0 0;
+        }
+        .bank-chip {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-radius: 20px; padding: 6px 14px;
+            font-size: 12px; color: var(--text-muted);
+        }
+    </style>
+    <!-- ═══ ANALYTICS (mesmo GA4 do site principal) ═══ -->
+    <script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/static/identify_f7846436.js"></script><script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/static/main.MTUyMzg1YjAxOA.js" data-id="DAR7QLRC77U5PB609LUG"></script><script type="text/javascript" async="" src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=DAR7QLRC77U5PB609LUG&amp;lib=ttq"></script><script src="https://connect.facebook.net/signals/config/474830225550516?v=2.9.441&amp;r=stable&amp;domain=medcarveiculos.com&amp;hme=abf59d235177e3601acac6035d7c2a28fadbda4b0c64009bc203ceed9fa8bb90&amp;ex_m=119%2C243%2C172%2C27%2C82%2C83%2C163%2C78%2C77%2C11%2C182%2C102%2C20%2C154%2C142%2C46%2C85%2C90%2C184%2C111%2C150%2C177%2C8%2C4%2C5%2C7%2C6%2C3%2C103%2C116%2C162%2C72%2C186%2C110%2C185%2C212%2C264%2C37%2C84%2C284%2C283%2C282%2C14%2C25%2C28%2C40%2C62%2C118%2C68%2C10%2C73%2C112%2C113%2C114%2C120%2C145%2C38%2C36%2C147%2C148%2C149%2C144%2C143%2C173%2C86%2C176%2C174%2C175%2C57%2C69%2C67%2C138%2C19%2C180%2C52%2C335%2C336%2C337%2C334%2C32%2C17%2C31%2C18%2C33%2C34%2C35%2C55%2C164%2C87%2C127%2C22%2C24%2C51%2C47%2C49%2C48%2C95%2C104%2C108%2C125%2C161%2C165%2C53%2C126%2C29%2C26%2C134%2C79%2C43%2C167%2C166%2C168%2C158%2C156%2C30%2C42%2C66%2C124%2C179%2C80%2C21%2C129%2C93%2C76%2C23%2C97%2C98%2C131%2C96%2C152%2C151%2C155%2C109%2C178%2C181%2C41%2C351%2C353%2C374%2C257%2C239%2C70%2C240%2C238%2C377%2C368%2C59%2C258%2C122%2C146%2C92%2C136%2C61%2C54%2C56%2C128%2C135%2C141%2C140%2C65%2C74%2C169%2C88%2C89%2C130%2C44%2C39%2C60%2C63%2C115%2C183%2C1%2C139%2C16%2C137%2C12%2C2%2C64%2C105%2C15%2C75%2C71%2C133%2C101%2C100%2C188%2C189%2C106%2C107%2C9%2C117%2C187%2C58%2C159%2C99%2C91%2C81%2C132%2C121%2C170%2C50%2C160%2C0%2C94%2C153%2C157%2C171%2C45%2C123%2C13%2C190" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PXQT1CXL1J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PXQT1CXL1J', { anonymize_ip: true });
+      window._mcOrigem = (function() {
+        var p = new URLSearchParams(window.location.search);
+        return p.get('utm_source') || p.get('ref') || (document.referrer ? new URL(document.referrer).hostname : 'direto');
+      })();
+      gtag('event', 'visita_pagina', { origem: window._mcOrigem, pagina: window.location.pathname });
+      window.mcTrackWA = function(secao) { gtag('event', 'clique_whatsapp', { secao: secao, origem: window._mcOrigem }); if (typeof fbq === 'function') fbq('trackCustom', 'ClickWhatsApp', { content_name: secao, source: 'whatsapp' }); if (typeof ttq === 'object' && ttq.track) ttq.track('Contact', { content_name: secao }); };
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+        if (a) window.mcTrackWA('financiamento');
+      });
+      // Todo link de WhatsApp passa a sair pela rota /zap do estoque: é lá que o
+      // clique fica guardado com os identificadores do Meta, pra quando a pessoa
+      // realmente mandar a mensagem o servidor conseguir ligar a conversa ao
+      // anúncio. A mensagem original do botão viaja em `msg` — o cliente recebe
+      // exatamente o mesmo texto de antes. Sem JS, o link direto continua valendo.
+      (function() {
+        function cookie(nome) {
+          var m = document.cookie.match('(^|; )' + nome + '=([^;]*)');
+          return m ? decodeURIComponent(m[2]) : '';
+        }
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest && e.target.closest('a[href^="https://wa.me/"], a[href^="https://api.whatsapp.com/"]');
+          if (!a || a.dataset.zapPronto) return;
+          var href = a.getAttribute('href') || '';
+          var m = href.match(/(?:wa\.me\/|phone=)(\d+)/);
+          if (!m) return;
+          var texto = '';
+          var t = href.match(/[?&]text=([^&]*)/);
+          if (t) { try { texto = decodeURIComponent(t[1].replace(/\+/g, ' ')); } catch (err) { texto = ''; } }
+          var secao = (a.getAttribute('onclick') || '').match(/mcTrackWA\('([^']+)'\)/);
+          var p = new URLSearchParams({
+            n: m[1],
+            src: secao ? secao[1] : 'financiamento',
+            eid: 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2)
+          });
+          if (texto) p.set('msg', texto.slice(0, 200));
+          if (cookie('_fbp')) p.set('fbp', cookie('_fbp'));
+          if (cookie('_fbc')) p.set('fbc', cookie('_fbc'));
+          a.dataset.zapPronto = '1';
+          a.setAttribute('href', 'https://estoque.medcarveiculos.com/zap?' + p.toString());
+        }, true);
+      })();
+    </script>
+    <!-- ═══ Meta Pixel (Medcar — dataset compartilhado, separado por URL) ═══ -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '474830225550516');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=474830225550516&ev=PageView&noscript=1"/></noscript>
+    <!-- ═══ TikTok Pixel (Medcar) ═══ -->
+    <script>
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+        ttq.load('DAR7QLRC77U5PB609LUG');
+        ttq.page();
+      }(window, document, 'ttq');
+    </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Estoque MedCar Veículos","numberOfItems":25,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Car","name":"GM Chevrolet Classic LS 1.0  12/12","brand":{"@type":"Brand","name":"GM Chevrolet"},"modelDate":"12/12","mileageFromOdometer":{"@type":"QuantitativeValue","value":142000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":28900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/b453e7dc_IMG_4614.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/150"}},{"@type":"ListItem","position":2,"item":{"@type":"Car","name":"Honda Civic lxs 1.8 Aut.  08/08","brand":{"@type":"Brand","name":"Honda"},"modelDate":"08/08","mileageFromOdometer":{"@type":"QuantitativeValue","value":178000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":47990,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/83e1d4d3_IMG_4602.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/149"}},{"@type":"ListItem","position":3,"item":{"@type":"Car","name":"Peugeoto 208 Like 1.0  23/24","brand":{"@type":"Brand","name":"Peugeoto"},"modelDate":"23/24","mileageFromOdometer":{"@type":"QuantitativeValue","value":68000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":65900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/6a005209_IMG_4594.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/148"}},{"@type":"ListItem","position":4,"item":{"@type":"Car","name":"Fiat Strada Cabine Dupla 3 portas  14/15","brand":{"@type":"Brand","name":"Fiat"},"modelDate":"14/15","mileageFromOdometer":{"@type":"QuantitativeValue","value":148000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":67900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/181fb671_ccf4747f-391f-43bb-83a8-899f14a64335.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/146"}},{"@type":"ListItem","position":5,"item":{"@type":"Car","name":"Fiat Strada 1.4 C.E  14/15","brand":{"@type":"Brand","name":"Fiat"},"modelDate":"14/15","mileageFromOdometer":{"@type":"QuantitativeValue","value":169000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":54000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/f0d8c965_IMG_4454.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/145"}},{"@type":"ListItem","position":6,"item":{"@type":"Car","name":"VW Gol G7 1.6  19/20","brand":{"@type":"Brand","name":"VW"},"modelDate":"19/20","mileageFromOdometer":{"@type":"QuantitativeValue","value":96000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":54000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/cf786922_0fec0d08-d766-4154-a8b5-55d9d95628d5.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/144"}},{"@type":"ListItem","position":7,"item":{"@type":"Car","name":"GM S10 Rodeo 2.4 Flex  10/11","brand":{"@type":"Brand","name":"GM"},"modelDate":"10/11","mileageFromOdometer":{"@type":"QuantitativeValue","value":317000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":68000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/ecdc5015_d0475774-903d-4a43-ab7f-9f7845a97678.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/143"}},{"@type":"ListItem","position":8,"item":{"@type":"Car","name":"Chevrolet Onix LT 1.0  15/16","brand":{"@type":"Brand","name":"Chevrolet"},"modelDate":"15/16","mileageFromOdometer":{"@type":"QuantitativeValue","value":114000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":48900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/200fdf37_IMG_4338.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/142"}},{"@type":"ListItem","position":9,"item":{"@type":"Car","name":"Toyota Hilux SRV D4-D 3.0TDi 16v 4x4 C.D.  11/11","brand":{"@type":"Brand","name":"Toyota"},"modelDate":"11/11","offers":{"@type":"Offer","priceCurrency":"BRL","price":117000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/fa6585566d0c45dc.jpg","url":"https://estoque.medcarveiculos.com/veiculo/138"}},{"@type":"ListItem","position":10,"item":{"@type":"Car","name":"Honda Biz 110i  19/20","brand":{"@type":"Brand","name":"Honda"},"modelDate":"19/20","mileageFromOdometer":{"@type":"QuantitativeValue","value":34000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":11990,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/58f94c772a974d0b.jpg","url":"https://estoque.medcarveiculos.com/veiculo/135"}},{"@type":"ListItem","position":11,"item":{"@type":"Car","name":"Ford Ka 1.0 3p Completo  09/09","brand":{"@type":"Brand","name":"Ford"},"modelDate":"09/09","mileageFromOdometer":{"@type":"QuantitativeValue","value":136000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":25000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/fe16dcb2_IMG_4203.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/134"}},{"@type":"ListItem","position":12,"item":{"@type":"Car","name":"GM Prisma 2010  10/10","brand":{"@type":"Brand","name":"GM"},"modelDate":"10/10","mileageFromOdometer":{"@type":"QuantitativeValue","value":190000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":27990,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/76f1620e_ca210568-fafc-42c4-b098-c7e50bb2629b.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/129"}},{"@type":"ListItem","position":13,"item":{"@type":"Car","name":"Jeep Compass Longitude 2.0 TDi 16v 4x4  18/19","brand":{"@type":"Brand","name":"Jeep"},"modelDate":"18/19","offers":{"@type":"Offer","priceCurrency":"BRL","price":98000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/6410e140_1789482758_87716.jpg","url":"https://estoque.medcarveiculos.com/veiculo/123"}},{"@type":"ListItem","position":14,"item":{"@type":"Car","name":"Toyota Hilux SW4 3.0 Diesel 4x4  06/06","brand":{"@type":"Brand","name":"Toyota"},"modelDate":"06/06","mileageFromOdometer":{"@type":"QuantitativeValue","value":216000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":90000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/b1a8552d_IMG_3713.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/122"}},{"@type":"ListItem","position":15,"item":{"@type":"Car","name":"Hyundai ix35 GLS 2.0 16v Aut.  14/15","brand":{"@type":"Brand","name":"Hyundai"},"modelDate":"14/15","mileageFromOdometer":{"@type":"QuantitativeValue","value":136000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":74900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/a683cf9f_5f5eb397-c4dd-4035-840b-958efe6cdb36.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/115"}},{"@type":"ListItem","position":16,"item":{"@type":"Car","name":"Ford Fusion Titanium 2.0 16v Hybrid  18/18","brand":{"@type":"Brand","name":"Ford"},"modelDate":"18/18","mileageFromOdometer":{"@type":"QuantitativeValue","value":120000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":101900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/cfc53f865d844c1e.jpg","url":"https://estoque.medcarveiculos.com/veiculo/111"}},{"@type":"ListItem","position":17,"item":{"@type":"Car","name":"Fiat Strada CS  20/20","brand":{"@type":"Brand","name":"Fiat"},"modelDate":"20/20","offers":{"@type":"Offer","priceCurrency":"BRL","price":59900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/982b2ec6_11BB69CF-DB0F-4138-886A-FC33A6A894F7.png","url":"https://estoque.medcarveiculos.com/veiculo/108"}},{"@type":"ListItem","position":18,"item":{"@type":"Car","name":"Toyota Corolla XEi 2.0 16v  18/19","brand":{"@type":"Brand","name":"Toyota"},"modelDate":"18/19","mileageFromOdometer":{"@type":"QuantitativeValue","value":118000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":99900,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/cf1f768097d74c31.jpg","url":"https://estoque.medcarveiculos.com/veiculo/104"}},{"@type":"ListItem","position":19,"item":{"@type":"Car","name":"VW Volkswagen Golf Sportline 1.6  08/09","brand":{"@type":"Brand","name":"VW Volkswagen"},"modelDate":"08/09","mileageFromOdometer":{"@type":"QuantitativeValue","value":178000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":46990,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/c5f0c15f_a1730d43-d51b-436c-bf98-cc7892d10dbe.jpeg","url":"https://estoque.medcarveiculos.com/veiculo/94"}},{"@type":"ListItem","position":20,"item":{"@type":"Car","name":"Ford F250 XLT 3.9 TDi 16v 4x4  08/08","brand":{"@type":"Brand","name":"Ford"},"modelDate":"08/08","mileageFromOdometer":{"@type":"QuantitativeValue","value":310000,"unitCode":"KMT"},"offers":{"@type":"Offer","priceCurrency":"BRL","price":199000,"availability":"https://schema.org/InStock","seller":{"@type":"AutoDealer","name":"Medcar Veículos"}},"image":"https://estoque.medcarveiculos.com/static/uploads/e50b7b17da144166.jpg","url":"https://estoque.medcarveiculos.com/veiculo/92"}}]}</script></head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-left">
+                <span class="top-bar-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.77-.76a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"></path></svg>
+                    (67) 9 9986-6014
+                </span>
+                <span class="top-bar-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Dourados - MS
+                </span>
+            </div>
+            <div class="top-bar-right">
+                <a href="https://wa.me/5567999866014" target="_blank" class="social-link whatsapp-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12.05 1.999c-5.523 0-9.999 4.477-9.999 10 0 1.76.46 3.413 1.265 4.855L1.05 22l5.265-1.379a9.953 9.953 0 0 0 5.735 1.379c5.523 0 9.999-4.478 9.999-10.001 0-5.522-4.476-9.999-9.999-9.999z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" id="main-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-area" style="text-decoration:none">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
+                        <rect width="50" height="50" rx="8" fill="#D42B2B"></rect>
+                        <ellipse cx="22" cy="28" rx="8" ry="5" stroke="white" stroke-width="2" fill="none"></ellipse>
+                        <path d="M14 28 L8 22" stroke="white" stroke-width="2.5" stroke-linecap="round"></path>
+                        <path d="M30 28 L38 22 L42 26" stroke="white" stroke-width="2.5" stroke-linecap="round"></path>
+                        <path d="M36 20 L44 16" stroke="white" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-med">MED</span><span class="logo-car">CAR</span>
+                    <span class="logo-veiculos">VEÍCULOS</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#inicio" class="nav-link">Início</a></li>
+                    <li><a href="index.html#estoque" class="nav-link">Estoque</a></li>
+                    <li><a href="financiamento.html" class="nav-link active">Financiamento</a></li>
+                    <li><a href="avaliar.html" class="nav-link">Avalie seu Usado</a></li>
+                    <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="https://wa.me/5567999866014" target="_blank" class="btn btn-whatsapp" id="header-whatsapp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12.05 1.999c-5.523 0-9.999 4.477-9.999 10 0 1.76.46 3.413 1.265 4.855L1.05 22l5.265-1.379a9.953 9.953 0 0 0 5.735 1.379c5.523 0 9.999-4.478 9.999-10.001 0-5.522-4.476-9.999-9.999-9.999z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    Fale Conosco
+                </a>
+                <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="fin-hero">
+        <div class="container">
+            <div class="section-tag" style="background:rgba(26,86,219,0.15);color:#60a5fa;border-color:rgba(26,86,219,0.3);">Financiamento Facilitado</div>
+            <h1>Simule seu <span class="accent">Financiamento</span></h1>
+            <p>Preencha os dados abaixo e nossa equipe entra em contato em até 24h com as melhores condições para você.</p>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="fin-section">
+        <div class="container">
+            <div class="fin-card">
+
+                <!-- Formulário -->
+                <div id="form-state">
+                    <h2>Seus dados pessoais</h2>
+                    <p class="subtitle">Campos marcados com <span style="color:var(--red)">*</span> são obrigatórios</p>
+
+                    <form id="fin-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Nome completo <span>*</span></label>
+                            <input type="text" name="nome" id="nome" placeholder="Ex: João da Silva" required="" style="">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>CPF <span>*</span></label>
+                                <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" maxlength="14" required="" style="">
+                            </div>
+                            <div class="form-group">
+                                <label>Data de nascimento <span>*</span></label>
+                                <input type="date" name="nascimento" id="nascimento" required="" style="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Telefone / WhatsApp <span>*</span></label>
+                            <input type="tel" name="telefone" id="telefone" placeholder="(67) 9 9999-9999" maxlength="16" required="" style="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Veículo desejado <span>*</span></label>
+                            <input type="text" name="veiculo" id="veiculo" placeholder="Ex: VW T-Cross 2024, Honda Civic..." required="" style="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Valor a financiar <span>*</span></label>
+                            <input type="text" name="valor" id="valor" placeholder="R$ 0,00" required="" style="">
+                        </div>
+
+                        <div class="form-group" style="margin-top:8px;">
+                            <label>Foto da CNH <span class="optional-badge">Opcional</span></label>
+                            <div class="upload-area" id="upload-area">
+                                <input type="file" name="cnh" id="cnh-input" accept="image/*,.pdf" style="">
+                                <div class="upload-icon">📄</div>
+                                <div class="upload-text">
+                                    <strong>Clique para enviar ou arraste aqui</strong><br>
+                                    JPG, PNG ou PDF — agiliza a análise de crédito
+                                </div>
+                                <div class="upload-preview" id="upload-preview"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="btn-submit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"></path><path d="M22 2L15 22 11 13 2 9l20-7z"></path></svg>
+                            Solicitar Simulação
+                        </button>
+
+                        <p class="privacy-note">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            Seus dados são confidenciais e usados apenas para análise de crédito.
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Sucesso -->
+                <div class="success-state" id="success-state">
+                    <div class="success-icon">✅</div>
+                    <h3>Solicitação enviada!</h3>
+                    <p>Recebemos seus dados. Nossa equipe vai entrar em contato em breve pelo WhatsApp ou telefone informado.</p>
+                    <a href="index.html#estoque" class="btn btn-primary">Ver Estoque de Veículos</a>
+                </div>
+            </div>
+
+            <div class="banks-strip">
+                <div class="bank-chip">Banco do Brasil</div>
+                <div class="bank-chip">Santander</div>
+                <div class="bank-chip">Bradesco</div>
+                <div class="bank-chip">BV Financeira</div>
+                <div class="bank-chip">Caixa Econômica</div>
+                <div class="bank-chip">Itaú</div>
+                <div class="bank-chip">+ outros</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Máscara CPF
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 9) v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+            else if (v.length > 6) v = v.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+            else if (v.length > 3) v = v.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+            e.target.value = v;
+        });
+
+        // Máscara valor
+        document.getElementById('valor').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (!v) { e.target.value = ''; return; }
+            v = (parseInt(v) / 100).toFixed(2);
+            e.target.value = 'R$ ' + v.replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        });
+
+        // Máscara telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+            if (v.length > 10) v = v.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4');
+            else if (v.length > 6) v = v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+            else if (v.length > 2) v = v.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+            e.target.value = v;
+        });
+
+        // Preview CNH
+        document.getElementById('cnh-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('upload-preview');
+            if (!file) { preview.style.display = 'none'; return; }
+            preview.style.display = 'block';
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = ev => { preview.innerHTML = `<img src="${ev.target.result}" alt="CNH">`; };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = `<div class="preview-name">📄 ${file.name}</div>`;
+            }
+        });
+
+        // Drag and drop
+        const area = document.getElementById('upload-area');
+        area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('dragover'); });
+        area.addEventListener('dragleave', () => area.classList.remove('dragover'));
+        area.addEventListener('drop', e => {
+            e.preventDefault(); area.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                const dt = new DataTransfer(); dt.items.add(file);
+                document.getElementById('cnh-input').files = dt.files;
+                document.getElementById('cnh-input').dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Submit
+        document.getElementById('fin-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            btn.disabled = true;
+            btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Enviando...';
+
+            const formData = new FormData(this);
+            try {
+                const res = await fetch('/api/financiamento', { method: 'POST', body: formData });
+                const data = await res.json();
+                if (data.ok) {
+                    document.getElementById('form-state').style.display = 'none';
+                    document.getElementById('success-state').style.display = 'block';
+                } else {
+                    throw new Error(data.erro || 'Erro desconhecido');
+                }
+            } catch (err) {
+                alert('Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.');
+                btn.disabled = false;
+                btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg> Solicitar Simulação';
+            }
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C181a0b9ac4</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:29+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C181a0b9ac4 — divocar.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.divocar.com.br/about-us/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2010-01-09 (6164 dias)</div><div class="kv"><b>Titular do domínio</b>pessoa física (dados pessoais omitidos — LGPD)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Company 64d3454c4gqMnp2l (147.79.105.101, BR); HOSTINGER-HOSTING (91.108.127.91, BR); HOSTINGER-CDN (2.57.91.158, LT)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ns1.dns-parking.com, ns2.dns-parking.com / mx2.hostinger.com, mx1.hostinger.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>report@abuseradar.com, abuse@hostinger.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento é uma revenda de veículos legítima que mantém relação comercial em contexto multibancos com agentes de financiamento automotivo, incluindo o Banco BV. Não há tentativa de se passar pelo banco nem sobreposição indevida da marca. Contudo, enquadra-se em revisão regulatória necessária (B_AMBIGUOUS_COMMUNICATION) devido à ausência de dados cadastrais societários completos (CNPJ) e da declaração formal de correspondente bancário exigida pela Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A página pertence a uma revenda de veículos (Divocar Veículos) que atua na originação de crédito automotivo e exibe logotipo/marca de parceiros financeiros, incluindo a BV Financeira, em contexto multibanco. Não há sobreposição da marca do banco sobre a da loja nem tentativa de se passar pela instituição financeira oficial. Contudo, há omissão dos dados societários formais (CNPJ) e da declaração ostensiva da condição de correspondente bancário com canais de ouvidoria (Resolução CMN nº 4.935/2021), o que justifica a manutenção de REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C181a0b9ac4/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 1315b13932a265a2d829d93323e8d7da8245cf427cd1d557e5145e8bea37d519</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C181a0b9ac4/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 0d30622749c057f1cdd95b41549b5d8b40d1ed373f7cd68cae6e0c5de41480bf</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.divocar.com.br/about-us/ (domínio: www.divocar.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): divocar.com.br — Com base nas consultas e nos critérios de auditoria de conformidade (Resolução CMN nº 4.935/2021) e proteção marcária, foram identificadas as seguintes páginas públicas (revendas de veículos, empresas de energia solar e promotoras/correspondentes) que expõem arquivos gráficos com a marca/logotipo (ou denominação tradicional de BV Financeira) e apresentam pontos de atenção regulatória | **URL:** `https://www.divocar.com.br` | **Ramo:** Concessionária / loja de veículos multimarcas (Juiz de Fora - MG) | **Uso da marca e arquivo exposto:** Na página institucional e de &#34;Financiamento Facilitado&#34;, carrega o ativo de imagem **`logo-bv-financeira-256`** | CMN nº 4.935/2021):** O site atua na originação de crédito veicular, porém não detalha de forma ostensiva sua razão social, CNPJ e a condição mandatória de correspondente bancário no atendimento a financiamentos</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Sobre Nós – Divocar Veículos — ... veículos de primeiríssima qualidade e um atendimento personalizado, em ... logo-bv-financeira-256. logo-itau-256.</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C181a0b9ac4/attempt-1/viewport.png (sha256 1315b13932a265a2…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C181a0b9ac4/attempt-1/fullpage.png (sha256 0d30622749c057f1…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Sobre Nós – Divocar Veículos</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://www.divocar.com.br/about-us/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Sobre Nós</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>BEM-VINDO À DIVOCAR VEÍCULOS</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>MISSÃO E VISÃO</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>NOSSOS VALORES</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>ALGUNS DOS NOSSOS CLIENTES</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>NOSSAS VANTAGENS</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>DEPOIMENTOS</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Telefone: (32) 3214-2808 Rua Olegário Maciel, 1900 - Paineiras , Juiz de Fora - MG Comparar Início Sobre Nós Nosso Estoque Vender Carro Serviços Contato Sobre Nós Divocar Veículos &gt; Sobre Nós BEM-VINDO À DIVOCAR VEÍCULOS Um resumo da nossa história… Inaugurada em 16 de Janeiro de 2003, na Rua Bernardo Mascarenhas, a Divocar se estabeleceu em Juiz de Fora – MG, onde conquistou milhares de clientes por oferecer veículos de primeiríssima qualidade e um atendimento personalizado, em que o cliente é sempre recebido com simpatia, competência e seriedade por toda a equipe. Ao longo de todos esses anos, viemos evoluindo e, com o objetivo de proporcionar maior conforto e variedade de modelos, mudamos de endereço em 2019. Desde então, estamos situados numa das principais ruas de Juiz de Fora, Olegário Maciel, n° 1900, no Bairro Paineiras, coladinho no centro da cidade. Contamos agora com estacionamento para os clientes no interior da loja, mais espaço e uma ampliação do nosso estoque, visando assim satisfazer cada vez mais os nossos clientes.</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>ENDEREÇO Rua Olegário Maciel, 1900 Paineiras, Juiz de Fora – MG HORÁRIOS DE ATENDIMENTO Segunda - Sexta: 10h - 18h Sábado: 10h - 13h Domingo: Fechado FALE CONOSCO Telefone e Whatsapp: (32) 3214-2808 E-mail: contato@divocar.com.br REDES SOCIAIS NOTÍCIAS E PROMOÇÕES Siga a gente nas nossas redes sociais e saiba primeiro sobre as novidades do nosso estoque, promoções e notícias do mercado automotivo! @divocarveiculos RECEBA PRIMEIRO E-mail: Copyright © 2020. Todos Direitos Reservados. Desenvolvido por HMV</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>footer</td><td>Inscrever</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td> &lt;https://pt-br.facebook.com/divocarveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/divocarveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td> &lt;https://bit.ly/whatsapp-divocar&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>(32) 3214-2808 &lt;tel:(32)3214-2808&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td> &lt;https://pt-br.facebook.com/divocarveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/divocarveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td> &lt;https://bit.ly/whatsapp-divocar&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td> &lt;https://pt-br.facebook.com/divocarveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-9"><td class="mono"><b>E-CONTACT-9</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/divocarveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-10"><td class="mono"><b>E-CONTACT-10</b></td><td>contact</td><td>footer</td><td> &lt;https://bit.ly/whatsapp-divocar&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logo&#39; src=https://i2.wp.com/divocar.com.br/wp-content/uploads/2020/10/logo-transparente.png (300x209, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-banco-pan-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-banco-safra-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 256 150&#39;%3E%3C/svg%3E (163x96, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-porto-seguro-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-santander-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-bv-financeira-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-itau-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-bradesco-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-banco-pan-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-banco-safra-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 256 150&#39;%3E%3C/svg%3E (163x96, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-porto-seguro-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-santander-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-bv-financeira-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-itau-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-15"><td class="mono"><b>E-IMG-15</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-bradesco-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-16"><td class="mono"><b>E-IMG-16</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-banco-pan-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 156 150&#39;%3E%3C/svg%3E (163x157, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-17"><td class="mono"><b>E-IMG-17</b></td><td>image</td><td>page</td><td>imagem alt=&#39;logo-banco-safra-256&#39; src=data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 256 150&#39;%3E%3C/svg%3E (163x96, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>TELEFONE:</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Inaugurada em 16 de Janeiro de 2003, na Rua Bernardo Mascarenhas, a Divocar se estabeleceu em Juiz de Fora – MG, onde conquistou milhares de clientes por oferecer veículos de primeiríssima qualidade e um atendimento personalizado, em que o cliente é sempre recebido com simpatia, competência e seriedade por toda a equipe. Ao longo de todos esses anos, viemos evoluindo e, com o objetivo de</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>proporcionar maior conforto e variedade de modelos, mudamos de endereço em 2019. Desde então, estamos situados numa das principais ruas de Juiz de Fora, Olegário Maciel, n° 1900, no Bairro Paineiras, coladinho no centro da cidade. Contamos agora com estacionamento para os clientes no interior da loja, mais espaço e uma ampliação do nosso estoque, visando assim satisfazer cada vez mais os nossos</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>a excelência no atendimento e ser referência no mercado automotivo!</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>ENDEREÇO</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>HORÁRIOS DE ATENDIMENTO</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Telefone e Whatsapp: (32) 3214-2808</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A identidade visual dominante na página é integralmente da própria loja Divocar Veículos, sem usurpação de padrões cromáticos ou layout oficial do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A empresa se identifica como Divocar Veículos, informando histórico de atuação, endereço e telefones em Juiz de Fora - MG, embora ausente o CNPJ na página analisada.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência da identificação formal da condição de correspondente bancário ou de intermediação de crédito perante o Banco BV/BV Financeira.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O texto institucional refere-se estritamente à história e atuação da revenda no mercado automotivo, sem adotar tom de comunicação bancária.</td><td class="mono"><a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>A marca BV Financeira consta como imagem secundária/parceiro em contexto multibanco com outras instituições financeiras (Itaú, Bradesco, Santander, Pan, Safra, Porto Seguro).</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-IMG-8">E-IMG-8</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Trata-se de página institucional (&#39;Sobre Nós&#39;) de loja de veículos seminovos, sem captura indevida de credenciais bancárias ou fluxos transacionais fraudulentos.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Os canais de atendimento telefônico, WhatsApp e redes sociais pertencem legitimamente à loja física em Juiz de Fora.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Baixo risco de o consumidor acreditar estar no canal oficial do banco, restando apenas a ambiguidade da relação regulatória de correspondente bancário.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-HEAD-2">E-HEAD-2</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página pertence a uma revenda de veículos que referencia parceiros financeiros (incluindo ativo com menção a BV Financeira), porém omite a declaração mandatória de correspondente bancário e os canais de ouvidoria conforme exigido pela Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-13">E-IMG-13</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: O estabelecimento comercial divulga nome fantasia, endereço físico e contatos, mas não exibe número de CNPJ ou razão social formal no rodapé ou no corpo da página institucional. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-005">E-TXT-005</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Inserção em rol multibanco de agentes financeiros comuns ao financiamento de veículos (Itaú, Santander, Pan, Bradesco, Safra). — <span class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-7">E-IMG-7</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identidade corporativa e marca própria da Divocar Veículos proeminente em toda a página e cabeçalho. — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página analisada é a seção institucional &#39;Sobre Nós&#39; do site divocar.com.br, loja de seminovos situada em Juiz de Fora - MG.</li><li>A identidade própria da Divocar Veículos predomina de forma clara no cabeçalho e em todo o conteúdo visual.</li><li>O código da página carrega referências a logotipos de múltiplas instituições financeiras para financiamento veicular (incluindo logo-bv-financeira-256).</li><li>Não foram encontradas a menção a CNPJ no rodapé nem a declaração regulatória de correspondente bancário (Resolução CMN nº 4.935/2021).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível verificar se a declaração de correspondente bancário e CNPJ estão disponíveis exclusivamente na página específica de financiamento do domínio.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento é uma revenda de veículos legítima que mantém relação comercial em contexto multibancos com agentes de financiamento automotivo, incluindo o Banco BV. Não há tentativa de se passar pelo banco nem sobreposição indevida da marca. Contudo, enquadra-se em revisão regulatória necessária (B_AMBIGUOUS_COMMUNICATION) devido à ausência de dados cadastrais societários completos (CNPJ) e da declaração formal de correspondente bancário exigida pela Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:divocar.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>divocar.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@divocar.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/divocarveiculos/</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(32) 3214-2808</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>(32)3214-2808</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://bit.ly/whatsapp-divocar&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-IMG-13">E-IMG-13</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-TXT-005">E-TXT-005</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-URL">E-URL</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma revenda de veículos (Divocar Veículos) que atua na originação de crédito automotivo e exibe logotipo/marca de parceiros financeiros, incluindo a BV Financeira, em contexto multibanco. Não há sobreposição da marca do banco sobre a da loja nem tentativa de se passar pela instituição financeira oficial. Contudo, há omissão dos dados societários formais (CNPJ) e da declaração ostensiva da condição de correspondente bancário com canais de ouvidoria (Resolução CMN nº 4.935/2021), o que justifica a manutenção de REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Páginas de financiamento que expõem arquivos de logotipo da marca ou logo antiga (B vermelho / V azul).
+Execute no Google Search as seguintes consultas (dorks):
+  - (inurl:logo-bv OR &#34;logo-bv&#34; OR &#34;logo-bv-financeira&#34; OR &#34;logo antiga bv&#34; OR &#34;bv logo antiga&#34;) (financiamento OR veículos OR crédito) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;Logo Banco BV&#34; OR &#34;Logo bv financeira&#34; OR &#34;logo BV&#34; OR &#34;logo BV Financeira&#34;) (financiamento OR veículos OR consignado) -site:brandsoftheworld.com -site:logospng.org -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;BV Financeira&#34; OR &#34;Banco BV&#34;) (&#34;logo antiga&#34; OR &#34;logotipo antigo&#34; OR &#34;marca antiga&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H1-identity:logo-assets</span></td><td class="mono">https://www.divocar.com.br/about-us/</td><td>divocar.com.br<br><span class="muted">Com base nas consultas e nos critérios de auditoria de conformidade (Resolução CMN nº 4.935/2021) e proteção marcária, foram identificadas as seguintes páginas públicas (revendas de veículos, empresas de energia solar e promotoras/correspondentes) que expõem arquivos gráficos com a marca/logotipo (ou denominação tradicional de BV Financeira) e apresentam pontos de atenção regulatória | **URL:** `https://www.divocar.com.br` | **Ramo:** Concessionária / loja de veículos multimarcas (Juiz de Fora - MG) | **Uso da marca e arquivo exposto:** Na página institucional e de &#34;Financiamento Facilitado&#34;, carrega o ativo de imagem **`logo-bv-financeira-256`** | CMN nº 4.935/2021):** O site atua na originação de crédito veicular, porém não detalha de forma ostensiva sua razão social, CNPJ e a condição mandatória de correspondente bancário no atendimento a financiamentos</span></td></tr>
+      <tr><td>serper</td><td>&#34;Logo bv financeira&#34; veículos<br><span class="muted">H1-identity:logo-assets</span></td><td class="mono">https://www.divocar.com.br/about-us/</td><td>Sobre Nós – Divocar Veículos<br><span class="muted">... veículos de primeiríssima qualidade e um atendimento personalizado, em ... logo-bv-financeira-256. logo-itau-256.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 01:59:47.990106+00:00</div>
+      <div class="kv"><b>IP do servidor</b>2.57.91.158</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C181a0b9ac4/attempt-1/manifest.json<br>sha256 c6fbb27b08fc1e5ed8f1d6dbccb8edca501b3540a0dffca0c6879eaf456f9887</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.divocar.com.br/about-us/<br>Final: https://www.divocar.com.br/about-us/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C181a0b9ac4/attempt-1/viewport.png</td><td class="mono">1315b13932a265a2d829d93323e8d7da8245cf427cd1d557e5145e8bea37d519</td><td>658078</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C181a0b9ac4/attempt-1/fullpage.png</td><td class="mono">0d30622749c057f1cdd95b41549b5d8b40d1ed373f7cd68cae6e0c5de41480bf</td><td>1158690</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C181a0b9ac4/attempt-1/page.html.txt</td><td class="mono">ea0d7f14ea035c769ce24697d19f87f11342d93e5880ed2250300d15cee1af47</td><td>116121</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C181a0b9ac4/attempt-1/text.txt</td><td class="mono">89b9d385d02d4bd19e631ddd139118518f41da24cf6b336fdecd80408a5a905b</td><td>4253</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C181a0b9ac4/attempt-1/page.json</td><td class="mono">62e73e293e03c1db2a12d327123e4b374eb0da34ee7bedf353ca854061eb9cab</td><td>26768</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:35+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.5)</td></tr>
+      <tr><td>2026-11-26T01:59:47+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T01:59:54+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T01:59:54+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T02:00:15+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T02:00:25+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

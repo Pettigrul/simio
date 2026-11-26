@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cbe61be08a3",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://urlm.com.br/www.jserrano.com.br",
+  "final_url": "http://urlm.com.br/www.jserrano.com.br",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.21.68.179",
+  "collected_at": "2026-11-26T03:05:21.953455+00:00",
+  "manifest_written_at": "2026-11-26T03:05:25.788836+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cbe61be08a3/attempt-1/viewport.png",
+      "sha256": "bb8fdcbc0e414f593d1fbacf6339fb9dcfdb8fd57208b2f6f356132fff135195",
+      "size_bytes": 32452
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cbe61be08a3/attempt-1/fullpage.png",
+      "sha256": "bb8fdcbc0e414f593d1fbacf6339fb9dcfdb8fd57208b2f6f356132fff135195",
+      "size_bytes": 32452
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cbe61be08a3/attempt-1/page.html.txt",
+      "sha256": "89cee874cf14fcae8dab6a54f296dc015a6c0f8c39c9c5aa61d067c9e102b634",
+      "size_bytes": 44276
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cbe61be08a3/attempt-1/text.txt",
+      "sha256": "0aa07d26f49a1fa7226c04aaf0e1c28e32699656ad95da302d588cf78a99a0ba",
+      "size_bytes": 285
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cbe61be08a3/attempt-1/page.json",
+      "sha256": "4a7cf6eb77261cf70c18a3bc963c71f96c0c7228e39a02d5d8726a3575482014",
+      "size_bytes": 1429
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

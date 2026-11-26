@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cdb2d447d71</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cdb2d447d71 — fuzettoveiculos.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://fuzettoveiculos.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2023-10-10 (1142 dias)</div><div class="kv"><b>Titular do domínio</b>FUZETO VEICULOS LTDA (CNPJ 40.916.151/0001-09)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Vercel, Inc (216.198.79.1)</div>
+<div class="kv"><b>DNS (NS / MX)</b>b.sec.dns.br, c.sec.dns.br</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@vercel.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento é uma revenda de veículos (Fuzetto Veículos) que atua na intermediação de crédito automotivo em contexto multibancos (Santander, Itaú, Bradesco, BV Financeira, Pan e Safra). Embora a identidade própria da loja predomine no design e nas ofertas de estoque, a página utiliza o termo indutor &#39;SIMULAÇÃO BANCÁRIA OFICIAL&#39;, coleta dados cadastrais (CPF, data de nascimento e contato) e não apresenta o CNPJ/razão social, nem a declaração regulatória obrigatória de correspondente bancário e contatos de ouvidoria conforme estipulado pela Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] Confirma-se a classificação REVIEW_REQUIRED. Trata-se de uma loja de veículos legítima que atua como intermediadora de crédito em contexto multibancos mencionando a BV Financeira. Embora a marca própria da loja predomine (afastando overbranding direto ou tentativa de se passar pelo banco), o uso da expressão indutora &#39;Simulação Bancária Oficial&#39; com captação de dados cadastrais sem a exibição de CNPJ, esclarecimento do papel de correspondente bancário e dados de ouvidoria configura vínculo ambíguo perante as normas do CMN.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cdb2d447d71/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 609abdd21a773c6a669c8a532990215249291127dff4f8d0c06de2ce7edc145c</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cdb2d447d71/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 f88745f31324543ab86d3574ad48b3132cfcd92f89bc46ba109d6e4347633886</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://fuzettoveiculos.com.br/ (domínio: fuzettoveiculos.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): fuzettoveiculos.com.br — Com base nas consultas e diretrizes da auditoria de conformidade (Resolução CMN nº 4.935/2021) e de proteção de marca, foram identificadas **12 páginas públicas distintas** de lojas de veículos, revendas multimarcas e promotoras/intermediadoras de crédito que promovem financiamento de veículos utilizando a marca **Banco BV** / **BV Financeira** | **URL:** `https://fuzettoveiculos.com.br/simulacao-bancaria` | **Nome do estabelecimento:** Fuzetto Veículos (Presidente Prudente/SP) | **Uso da marca:** Seção *&#34;Simulação Bancária Oficial • Carros e Motos – Simule seu Financiamento com Nossos Bancos Parceiros&#34;*, inserindo a **BV Financeira** na lista de bancos credenciados para análise de crédito, com captação direta de dados cadastrais para mesa de crédito própria | **Conformidade (CNPJ e declaração CMN nº 4.935/2021):** Utiliza termo indutor (*&#34;Simulação Bancária Oficial&#34;*) sem explicitar a qualidade estrita de correspondente no país conforme a Resolução CMN nº 4.93</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Fuzetto Veículos | Carros e Motos em Presidente Prudente &amp; Simulação ... — • BV Financeira; • Banco Pan; • Banco Safra VIP. Atendimento &amp; Horários. R. Pref. Florivaldo Leal, 282 - Jardim Alto da Boa Vista, Pres. Prudente - SP, 19053 ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cdb2d447d71/attempt-1/viewport.png (sha256 609abdd21a773c6a…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cdb2d447d71/attempt-1/fullpage.png (sha256 f88745f31324543a…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Fuzetto Veículos | Carros e Motos em Presidente Prudente &amp; Simulação Bancária</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Compre seu próximo carro ou moto na Fuzetto Veículos em Presidente Prudente - SP. Simulação bancária precisa com Santander, BV, Itaú e Bradesco, aceitamos usado de menor valor na troca e prestamos garantia da loja.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Fuzetto Veículos</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Fuzetto Veículos | Carros e Motos Selecionados &amp; Simulação Bancária</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Estoque selecionado de carros e motos com garantia da loja em Presidente Prudente. Envie seus dados para simulação bancária imediata ou agende sua visita.</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: Fuzetto Veículos</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>SEU PRÓXIMO VEÍCULO COM AS MELHORES CONDIÇÕES E TOTAL CONFIANÇA.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Consulte Nosso Estoque na OLX e no WhatsApp</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Veja Todas as Ofertas com Fotos, Valores e Detalhes</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Explore por Categoria de Interesse</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Procura Algum Modelo Específico?</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Simule seu Financiamento com Nossos Bancos Parceiros</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Agende a sua Visita à Nossa Loja</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Reserve sua Experiência na Loja</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Troca com Usado de Menor Valor ou Compra Direta</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Venha Conhecer Nosso Showroom</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>R. Pref. Florivaldo Leal, 282 - Jardim Alto da Boa Vista, Pres. Prudente - SP, 19053-370</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Mais de 1.500 Veículos Entregues com Procedência</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Perguntas Frequentes</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Carros e Motos • Prestamos Garantia da Loja • Presidente Prudente - SP @fuzettoveiculos | OLX Catálogo | (18) 99672-2421 FUZETTO VEÍCULOS • 2021 Estoque Simulação Bancária Agendar Visita Troca &amp; Compra Localização Depoimentos FAQ OLX Catálogo WhatsApp Simular</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Carros e Motos • Prestamos Garantia da Loja • Presidente Prudente - SP @fuzettoveiculos | OLX Catálogo | (18) 99672-2421 FUZETTO VEÍCULOS • 2021 Estoque Simulação Bancária Agendar Visita Troca &amp; Compra Localização Depoimentos FAQ OLX Catálogo WhatsApp Simular CARROS E MOTOS • NOVOS E SEMINOVOS • NACIONAIS E IMPORTADOS SEU PRÓXIMO VEÍCULO COM AS MELHORES CONDIÇÕES E TOTAL CONFIANÇA. Trabalhamos com estoque selecionado de carros e motos revisados, com garantia da loja e atendimento diferenciado. Envie seus dados para uma simulação bancária personalizada com os maiores bancos ou traga seu usado de menor valor na troca. Simular Financiamento Bancário Agendar sua Visita Prestamos Garantia da Loja Aceitamos Usado de Menor Valor na Troca Carros e Motos em Presidente Prudente Showroom Fuzetto Veículos Pres. Prudente - SP Fuzetto Veículos R. Pref. Florivaldo Leal, 282 Agendar Visita Ver Nosso Estoque WhatsApp Direto Atendimento Nota 10 ★★★★★ Clientes satisfeitos em toda a região Prestamos Garantia Compra Segura 1</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>FUZETTO VEÍCULOS • 2021 Desde 2021, transformando o sonho do veículo próprio em realidade com total transparência, carros e motos selecionados com garantia da loja e as melhores condições bancárias do mercado. OLX NAVEGAÇÃO RÁPIDA Estoque na OLX &amp; WhatsApp Simulação Bancária Agendar sua Visita Localização &amp; Mapa Troca ou Somente Compra Avaliações de Clientes Dúvidas Frequentes BANCOS CREDENCIADOS • Santander Financiamentos • Itaú Veículos • Bradesco Auto • BV Financeira • Banco Pan • Banco Safra VIP ATENDIMENTO &amp; HORÁRIOS R. Pref. Florivaldo Leal, 282 - Jardim Alto da Boa Vista, Pres. Prudente - SP, 19053-370 (18) 99672-2421 Segunda a Sexta: 09:00 às 18:30 Sábado: 09:00 às 13:00 Domingo: Fechado © 2026 Fuzetto Veículos. Todos os direitos reservados. Ambiente Seguro • Dados Protegidos pela LGPD</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>@fuzettoveiculos &lt;https://www.instagram.com/fuzettoveiculos/&gt; | OLX Catálogo &lt;https://www.olx.com.br/perfil/fuzetto-veiculos-d2b35b6b?action=share&amp;origin=copy_link&gt; | (18) 99672-2421 &lt;tel:+5518996722421&gt; | FUZETTO VEÍCULOS • 2021 &lt;https://fuzettoveiculos.com.br/#&gt; | Estoque &lt;https://fuzettoveiculos.com.br/#estoque&gt; | Simulação Bancária &lt;https://fuzettoveiculos.com.br/#simulador&gt; | Agendar Visita &lt;https://fuzettoveiculos.com.br/#agendamento&gt; | Troca &amp; Compra &lt;https://fuzettoveiculos.com.br/#avaliacao&gt; | Localização &lt;https://fuzettoveiculos.com.br/#localizacao&gt; | Depoimentos &lt;https://fuzettoveiculos.com.br/#depoimentos&gt; | FAQ &lt;https://fuzettoveiculos.com.br/#faq&gt; | OLX Catálogo &lt;https://www.olx.com.br/perfil/fuzetto-veiculos-d2b35b6b?action=share&amp;origin=copy_link&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>WhatsApp</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>Simular</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Simular Financiamento Bancário</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Agendar sua Visita</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Agendar Visita</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Ver Nosso Estoque</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>WhatsApp Direto</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>OLX Ver Catálogo Completo na OLX</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Ver Estoque no WhatsApp</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Receber Opções do Estoque no WhatsApp</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Enviar Dados para Simulação Bancária</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>09:00</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>10:30</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>13:30</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>15:00</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>16:30</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>17:30</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>Confirmar Agendamento de Visita à Loja</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>Entrada na Troca (Menor Valor)</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>Somente Compra</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>@fuzettoveiculos &lt;https://www.instagram.com/fuzettoveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>(18) 99672-2421 &lt;tel:+5518996722421&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>(18) 99672-2421 &lt;tel:+5518996722421&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td>INSTAGRAM OFICIAL @fuzettoveiculos &lt;https://www.instagram.com/fuzettoveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>Instagram Fuzetto Veículos &lt;https://www.instagram.com/fuzettoveiculos/&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td>Facebook &lt;https://facebook.com/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td>(18) 99672-2421 &lt;tel:+5518996722421&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Trabalhamos com estoque selecionado de carros e motos revisados, com garantia da loja e atendimento diferenciado. Envie seus dados para uma simulação bancária personalizada com os maiores bancos ou traga seu usado de menor valor na troca.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>WhatsApp Direto</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Atendimento Nota 10</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Consulte Nosso Estoque na OLX e no WhatsApp</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Acompanhe todo o nosso estoque de carros e motos sempre atualizado em tempo real pelo nosso perfil oficial na OLX ou diretamente pelo WhatsApp da loja.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>WHATSAPP ATENDIMENTO IMEDIATO</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Você não precisa esperar: veja agora mesmo os carros e motos disponíveis na nossa vitrine da OLX ou receba a lista completa e vídeos no seu WhatsApp.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Ver Estoque no WhatsApp</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>WHATSAPP: (18) 99672-2421</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Toque na categoria para consultar imediatamente os modelos disponíveis na OLX e no WhatsApp:</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Consultar no WhatsApp</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Consultar no WhatsApp</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Consultar no WhatsApp</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Consultar no WhatsApp</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Consultar no WhatsApp</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Consultar no WhatsApp</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Seu WhatsApp *</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Receber Opções do Estoque no WhatsApp</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>SIMULAÇÃO BANCÁRIA OFICIAL • CARROS E MOTOS</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Simule seu Financiamento com Nossos Bancos Parceiros</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Não geramos taxas genéricas ou fictícias. Preencha seus dados para que nossa mesa de crédito consulte as condições reais e precisas nos bancos parceiros diretamente para o seu perfil.</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Bancos Credenciados para Análise:</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>BV Financeira</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Banco Pan</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>Banco Safra</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>CELULAR / WHATSAPP *</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>ATENDIMENTO PERSONALIZADO • SHOWROOM</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Reserve um horário exclusivo com um dos nossos consultores. Venha conhecer nosso espaço em Presidente Prudente, ver de perto os carros e motos disponíveis e tomar um café conosco com atendimento atencioso e sem pressa.</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>Atendimento Pontual e Dedicado</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>WhatsApp com DDD *</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>WhatsApp com DDD *</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>Fácil acesso, amplo estacionamento e atendimento de excelência com café especial e os melhores veículos da região.</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>ENDEREÇO OFICIAL</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>TELEFONE &amp; WHATSAPP</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>HORÁRIO DE ATENDIMENTO</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>INSTAGRAM OFICIAL</td></tr>
+      <tr id="E-TXT-038"><td class="mono"><b>E-TXT-038</b></td><td>text</td><td>page</td><td>Bancos Parceiros</td></tr>
+      <tr id="E-TXT-039"><td class="mono"><b>E-TXT-039</b></td><td>text</td><td>page</td><td>&#34;Atendimento impecável da equipe Fuzetto! Enviei meus dados para a simulação bancária pelo site e em poucas horas já tínhamos a melhor condição aprovada. O carro veio revisado, impecável, com garantia prestada pela loja.&#34;</td></tr>
+      <tr id="E-TXT-040"><td class="mono"><b>E-TXT-040</b></td><td>text</td><td>page</td><td>&#34;Agendei minha visita pelo site para conhecer as opções na loja e o atendimento foi nota 10. Fiz a simulação direto com eles, aceitaram minha moto usada de menor valor na troca e saí rodando satisfeito!&#34;</td></tr>
+      <tr id="E-TXT-041"><td class="mono"><b>E-TXT-041</b></td><td>text</td><td>page</td><td>Você preenche seus dados básicos (Nome, CPF, Data de Nascimento, WhatsApp e Veículo ou Moto pretendida). Nossa equipe encaminha diretamente para as esteiras de crédito dos bancos parceiros (Santander, Itaú, BV, Bradesco, Pan e Safra) para consultar as taxas exatas e sem simulações genéricas ou imprecisas.</td></tr>
+      <tr id="E-TXT-042"><td class="mono"><b>E-TXT-042</b></td><td>text</td><td>page</td><td>Falar com Consultor no WhatsApp</td></tr>
+      <tr id="E-TXT-043"><td class="mono"><b>E-TXT-043</b></td><td>text</td><td>page</td><td>Estoque na OLX &amp; WhatsApp</td></tr>
+      <tr id="E-TXT-044"><td class="mono"><b>E-TXT-044</b></td><td>text</td><td>page</td><td>BANCOS CREDENCIADOS</td></tr>
+      <tr id="E-TXT-045"><td class="mono"><b>E-TXT-045</b></td><td>text</td><td>page</td><td>• BV Financeira</td></tr>
+      <tr id="E-TXT-046"><td class="mono"><b>E-TXT-046</b></td><td>text</td><td>page</td><td>• Banco Pan</td></tr>
+      <tr id="E-TXT-047"><td class="mono"><b>E-TXT-047</b></td><td>text</td><td>page</td><td>• Banco Safra VIP</td></tr>
+      <tr id="E-TXT-048"><td class="mono"><b>E-TXT-048</b></td><td>text</td><td>page</td><td>ATENDIMENTO &amp; HORÁRIOS</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível localizar o CNPJ ou a razão social da Fuzetto Veículos no código da página para averiguação cadastral formal junto ao Banco Central.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento é uma revenda de veículos (Fuzetto Veículos) que atua na intermediação de crédito automotivo em contexto multibancos (Santander, Itaú, Bradesco, BV Financeira, Pan e Safra). Embora a identidade própria da loja predomine no design e nas ofertas de estoque, a página utiliza o termo indutor &#39;SIMULAÇÃO BANCÁRIA OFICIAL&#39;, coleta dados cadastrais (CPF, data de nascimento e contato) e não apresenta o CNPJ/razão social, nem a declaração regulatória obrigatória de correspondente bancário e contatos de ouvidoria conforme estipulado pela Resolução CMN nº 4.935/2021.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Fuzetto Veículos<br><span class="mono">domain:fuzettoveiculos.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>fuzettoveiculos.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/fuzettoveiculos/</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Fuzetto Veículos</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(18) 99672-2421</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>Bancos Parceiros</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Simule seu Financiamento com Nossos Bancos Parceiros&#34;*, inserindo a **BV Financeira** na lista de bancos credenciados para análise de crédito, com captação direta de dados cadastrais para mesa de créd</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Confirma-se a classificação REVIEW_REQUIRED. Trata-se de uma loja de veículos legítima que atua como intermediadora de crédito em contexto multibancos mencionando a BV Financeira. Embora a marca própria da loja predomine (afastando overbranding direto ou tentativa de se passar pelo banco), o uso da expressão indutora &#39;Simulação Bancária Oficial&#39; com captação de dados cadastrais sem a exibição de CNPJ, esclarecimento do papel de correspondente bancário e dados de ouvidoria configura vínculo ambíguo perante as normas do CMN.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Ambiguidade no vínculo e ausência de dados regulatórios</td><td>MEDIUM</td><td>A revenda de veículos divulga parceria com a BV Financeira e outros bancos para financiamento de veículos e captação de propostas (&#39;Simulação Bancária Oficial&#39;), porém omite CNPJ, razão social, declaração formal de correspondente no país e canal de ouvidoria, em desacordo com as diretrizes da Resolução CMN nº 4.935/2021.</td><td class="mono"><a href="#E-TXT-020">E-TXT-020</a> <a href="#E-TXT-021">E-TXT-021</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Páginas de financiamento de veículos de lojas e multimarcas com destaque para a marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - inurl:financiamento &#34;Banco BV&#34; veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - inurl:financiamento &#34;bv financeira&#34; (veículos OR seminovos OR multimarcas) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - intitle:financiamento (&#34;bv financeira&#34; OR &#34;Banco BV&#34;) veículos -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H2-product:financiamento de veículos</span></td><td class="mono">https://fuzettoveiculos.com.br/</td><td>fuzettoveiculos.com.br<br><span class="muted">Com base nas consultas e diretrizes da auditoria de conformidade (Resolução CMN nº 4.935/2021) e de proteção de marca, foram identificadas **12 páginas públicas distintas** de lojas de veículos, revendas multimarcas e promotoras/intermediadoras de crédito que promovem financiamento de veículos utilizando a marca **Banco BV** / **BV Financeira** | **URL:** `https://fuzettoveiculos.com.br/simulacao-bancaria` | **Nome do estabelecimento:** Fuzetto Veículos (Presidente Prudente/SP) | **Uso da marca:** Seção *&#34;Simulação Bancária Oficial • Carros e Motos – Simule seu Financiamento com Nossos Bancos Parceiros&#34;*, inserindo a **BV Financeira** na lista de bancos credenciados para análise de crédito, com captação direta de dados cadastrais para mesa de crédito própria | **Conformidade (CNPJ e declaração CMN nº 4.935/2021):** Utiliza termo indutor (*&#34;Simulação Bancária Oficial&#34;*) sem explicitar a qualidade estrita de correspondente no país conforme a Resolução CMN nº 4.935/2021</span></td></tr>
+      <tr><td>serper</td><td>olx &#34;bv financeira&#34;<br><span class="muted">H6-platform:marketplaces</span></td><td class="mono">https://fuzettoveiculos.com.br/</td><td>Fuzetto Veículos | Carros e Motos em Presidente Prudente &amp; Simulação ...<br><span class="muted">• BV Financeira; • Banco Pan; • Banco Safra VIP. Atendimento &amp; Horários. R. Pref. Florivaldo Leal, 282 - Jardim Alto da Boa Vista, Pres. Prudente - SP, 19053 ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 01:29:31.900920+00:00</div>
+      <div class="kv"><b>IP do servidor</b>216.198.79.1</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cdb2d447d71/attempt-1/manifest.json<br>sha256 95fda90be78611c8cc9411117cafb8e5f16a4d64436cc18995469e796a40ed6c</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://fuzettoveiculos.com.br/<br>Final: https://fuzettoveiculos.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cdb2d447d71/attempt-1/viewport.png</td><td class="mono">609abdd21a773c6a669c8a532990215249291127dff4f8d0c06de2ce7edc145c</td><td>363153</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cdb2d447d71/attempt-1/fullpage.png</td><td class="mono">f88745f31324543ab86d3574ad48b3132cfcd92f89bc46ba109d6e4347633886</td><td>1513351</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cdb2d447d71/attempt-1/page.html.txt</td><td class="mono">70fad13ad890c5c8bf91a49725b5dae375dafb7504d119390ff1001196cca0d7</td><td>120002</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cdb2d447d71/attempt-1/text.txt</td><td class="mono">b2cc7ca20f221895742a4d91a7efd49dd8c3fe84cb56695b078bc608d7ba436e</td><td>10077</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cdb2d447d71/attempt-1/page.json</td><td class="mono">e154246ba3ecd745b29a8a7fe58966e8b8133b2fc473baa40b729610b5e1dadd</td><td>30863</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:28+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 7.0)</td></tr>
+      <tr><td>2026-11-26T01:29:31+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:41+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:41+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:54+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T01:30:03+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

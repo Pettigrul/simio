@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cdb8174a31e</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cdb8174a31e — facebook.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=ka_GE</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página do Facebook foi nomeada com as marcas &#39;BV Financeira&#39; e &#39;Banco Votorantim&#39; associadas a uma promotora local (&#39;CP Promotora&#39;). Embora a renderização direta tenha sido barrada por tela de login do Facebook, o título indexado indica o uso da marca da instituição financeira no nome do perfil de terceiro, configurando comunicação ambígua que requer revisão manual com autenticação ou averiguação da legitimidade do correspondente.
+[Revisor: CONFIRM] A alegação de que a página solicita senhas é rejeitada categoricamente, pois os formulários pertencem ao login padrão do domínio oficial facebook.com decorrente do login wall. No entanto, mantém-se a classificação em REVIEW_REQUIRED porque o título indexado (E-TITLE e E-DISC-001) demonstra a criação de uma página no Facebook que atrela diretamente as marcas &#39;BV Financeira&#39; e &#39;Banco Votorantim&#39; a um terceiro (&#39;Finanças - CP Promotora - Araraquara/SP&#39;), configurando potencial overbranding no título do canal. A prioridade é rebaixada de HIGH para LOW devido à ausência de risco crítico e à indisponibilidade do conteúdo público.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cdb8174a31e/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 a6bd1a2fd5e01f72d115ec23f5b6442d01f0ae012628bba2677fc9d79e1e183b</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Cdb8174a31e/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a6bd1a2fd5e01f72d115ec23f5b6442d01f0ae012628bba2677fc9d79e1e183b</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=ka_GE (domínio: www.facebook.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): BV Financeira - Banco Votorantim / Finanças - CP Promotora — BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP. 5 მოწონება. ადგილობრივი ბიზნესი.</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): BV Financeira - Banco Votorantim / Finanças - CP Promotora — BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP 。 5 個讚。本地商家.</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cdb8174a31e/attempt-1/viewport.png (sha256 a6bd1a2fd5e01f72…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cdb8174a31e/attempt-1/fullpage.png (sha256 a6bd1a2fd5e01f72…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP | Facebook</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>ეს გვერდი ამწუთას მიუწვდომელია</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>შესვლა Forgot Account? ეს გვერდი ამწუთას მიუწვდომელია შესაძლოა, ეს იყოს დაკავშირებული ტექნიკურ პრობლემასთან, რომლის მოგვარებასაც ვცდილობთ. სცადეთ გვერდის გადატვირთვა. გვერდის ხელახლა ჩატვირთვა მეტის ნახვა Facebook-ზე ელფოსტა ან ტელეფონის ნომერი პაროლი შესვლა პაროლი დაგავიწყდათ? ან ახალი ანგარიშის შექმნა</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Forgot Account? &lt;https://www.facebook.com/recover/initiate?ars=royal_blue_bar&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>header</td><td>შესვლა &lt;https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&amp;next=%2Fpages%2FBV-Financeira-Banco-Votorantim-Finan%25C3%25A7as-CP-Promotora-AraraquaraSP%2F105505622819769%3Flocale%3Dka_GE&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>header</td><td>Forgot Account? &lt;https://www.facebook.com/recover/initiate?ars=royal_blue_bar&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>პაროლი დაგავიწყდათ? &lt;https://www.facebook.com/recover/initiate?ars=royal_blue_bar&gt;</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>O conteúdo visual da página de perfil não pôde ser renderizado devido à tela de indisponibilidade temporária e barreira de login do Facebook.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O nome da página (&#39;BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP&#39;) mescla a denominação de uma promotora de crédito com as marcas institucionais do banco.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NEUTRAL">NEUTRAL</td><td>Não foi possível inspecionar declarações de correspondente bancário ou ouvidoria na página devido à barreira de login.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Inexistência de publicações acessíveis no momento da coleta.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Nenhum logotipo visível na tela capturada devido à barreira de autenticação.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Os formulários presentes na captura referem-se estritamente ao login institucional da própria plataforma Facebook.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Canais de contato da promotora não estavam acessíveis na coleta.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>A indexação pública da página sob o nome composto do banco pode induzir o consumidor a crer que se trata de uma agência ou canal direto do Banco Votorantim / BV Financeira em Araraquara/SP.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-TITLE">E-TITLE</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: O título e a nomenclatura da página no Facebook incorporam diretamente as marcas registradas &#39;BV Financeira&#39; e &#39;Banco Votorantim&#39; associadas a uma promotora local (&#39;Finanças - CP Promotora - Araraquara/SP&#39;), gerando confusão sobre a titularidade oficial do canal. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> </span></li><li>[LOW] CORRESPONDENT_TRANSPARENCY: Não foi possível verificar no corpo da página a presença dos dados cadastrais obrigatórios (razão social, CNPJ) ou da declaração regulatória de correspondente bancário devido à barreira de autenticação do Facebook. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-FOLD">E-FOLD</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Menção a &#39;CP Promotora&#39;, indicando que se trata potencialmente de um correspondente ou promotora independente de crédito. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A URL aponta para uma página comercial do Facebook vinculada a &#39;CP Promotora - Araraquara/SP&#39;.</li><li>O título da página (&#39;BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP&#39;) utiliza ostensivamente os nomes comerciais e institucionais do banco.</li><li>O crawler foi interceptado por tela de indisponibilidade/login padrão do Facebook (em georgiano pelo parâmetro ka_GE), impossibilitando a leitura de posts, avatar, capa e dados de contato.</li><li>Os formulários E-FORM-001 e E-FORM-002 pertencem à interface nativa de login do Facebook.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível visualizar postagens, avatar, logotipo utilizado ou CNPJ da promotora em virtude da tela de login do Facebook.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página do Facebook foi nomeada com as marcas &#39;BV Financeira&#39; e &#39;Banco Votorantim&#39; associadas a uma promotora local (&#39;CP Promotora&#39;). Embora a renderização direta tenha sido barrada por tela de login do Facebook, o título indexado indica o uso da marca da instituição financeira no nome do perfil de terceiro, configurando comunicação ambígua que requer revisão manual com autenticação ou averiguação da legitimidade do correspondente.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:facebook.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>facebook.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=ka_GE</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/recover/initiate?ars=royal_blue_bar</td><td class="mono"><a href="#E-NAV">E-NAV</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&amp;next=%2Fpages%2FBV-Financeira-Banco-Votorantim-Finan%25C3%25A7as-CP-Promotora-AraraquaraSP%2F105505622819769%3Flocale%3Dka_GE</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (DECLARED_COMMERCIAL_IDENTITY, CONSUMER_CONFUSION) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A alegação de que a página solicita senhas é rejeitada categoricamente, pois os formulários pertencem ao login padrão do domínio oficial facebook.com decorrente do login wall. No entanto, mantém-se a classificação em REVIEW_REQUIRED porque o título indexado (E-TITLE e E-DISC-001) demonstra a criação de uma página no Facebook que atrela diretamente as marcas &#39;BV Financeira&#39; e &#39;Banco Votorantim&#39; a um terceiro (&#39;Finanças - CP Promotora - Araraquara/SP&#39;), configurando potencial overbranding no título do canal. A prioridade é rebaixada de HIGH para LOW devido à ausência de risco crítico e à indisponibilidade do conteúdo público.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Falso positivo de captura de credenciais</td><td>HIGH</td><td>O analista apontou &#39;Página usa a marca e pede senha&#39; com severidade HIGH com base em E-FORM-001 e E-FORM-002. Trata-se de um falso positivo grave: os campos de senha pertencem à interface padrão de login e recuperação de conta do próprio Facebook (login wall), não a um fluxo malicioso ou coleta indevida de dados pelo titular da página.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+      <tr><td>Página indisponível / Loginwall</td><td>MEDIUM</td><td>O conteúdo interno da página não foi renderizado, exibindo mensagem de indisponibilidade do Facebook (&#39;ეს გვერდი ამწუთას მიუწვდომელია&#39; / &#39;Esta página não está disponível no momento&#39;) sob idioma georgiano. Não é possível checar postagens, CNPJ ou transparência de correspondente no corpo do perfil.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-FORM-001</li><li>E-FORM-002</li><li>E-HEAD-1</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>facebook &#34;BV Financeira&#34; promotora<br><span class="muted">H6-platform:Facebook</span></td><td class="mono">https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=ka_GE</td><td>BV Financeira - Banco Votorantim / Finanças - CP Promotora<br><span class="muted">BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP. 5 მოწონება. ადგილობრივი ბიზნესი.</span></td></tr>
+      <tr><td>serper</td><td>facebook &#34;BV Financeira&#34; promotora<br><span class="muted">H6-platform:Facebook</span></td><td class="mono">https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=zh_TW</td><td>BV Financeira - Banco Votorantim / Finanças - CP Promotora<br><span class="muted">BV Financeira - Banco Votorantim / Finanças - CP Promotora - Araraquara/SP 。 5 個讚。本地商家.</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 02:30:42.768596+00:00</div>
+      <div class="kv"><b>IP do servidor</b>57.144.66.1</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cdb8174a31e/attempt-1/manifest.json<br>sha256 5755ceb6c107b283a0436aaf44442adce6243ad8690e8e30e1d36ebfb10c10de</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=ka_GE<br>Final: https://www.facebook.com/pages/BV-Financeira-Banco-Votorantim-Finan%C3%A7as-CP-Promotora-AraraquaraSP/105505622819769?locale=ka_GE</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cdb8174a31e/attempt-1/viewport.png</td><td class="mono">a6bd1a2fd5e01f72d115ec23f5b6442d01f0ae012628bba2677fc9d79e1e183b</td><td>43775</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cdb8174a31e/attempt-1/fullpage.png</td><td class="mono">a6bd1a2fd5e01f72d115ec23f5b6442d01f0ae012628bba2677fc9d79e1e183b</td><td>43775</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cdb8174a31e/attempt-1/page.html.txt</td><td class="mono">71495519a74a906d79a6d8f9cdf22087a0cf2524e92a219271de258715e29e23</td><td>695224</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cdb8174a31e/attempt-1/text.txt</td><td class="mono">28443660476de826664936d4e7cf43734b8ec10878b17a4504680d3b5f5f0877</td><td>784</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cdb8174a31e/attempt-1/page.json</td><td class="mono">dacbffa2b3a892c5f8c3d1cc45c1b2fe8ffd8a65fbef982962a827e2c8ce0527</td><td>4413</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:40+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-26T02:30:42+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T02:30:48+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T02:30:48+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T02:31:38+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T02:31:54+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

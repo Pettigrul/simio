@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Ca6867402c6</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Ca6867402c6 — alboompro.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://bancovotorantim.alboompro.com/sobre</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>D_STRONG_IMPERSONATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo + comparação de imagem)</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2016-01-05 (3977 dias) · GoDaddy.com, LLC</div><div class="kv"><b>Titular do domínio</b>não publicado</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Amazon Technologies Inc. (52.206.155.93); Amazon Technologies Inc. (18.210.133.119)</div>
+<div class="kv"><b>DNS (NS / MX)</b>cass.ns.cloudflare.com, dane.ns.cloudflare.com / aspmx.l.google.com, alt3.aspmx.l.google.com, alt4.aspmx.l.google.com, alt1.aspmx.l.google.com, alt2.aspmx.l.google.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>trustandsafety@support.aws.com, abuse@godaddy.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página constitui clara personificação da BV Financeira / Banco Votorantim em domínio não oficial (alboompro.com). O responsável utiliza o nome da instituição no subdomínio, aplica o logotipo legado da marca (B vermelho e V azul), afirma em primeira pessoa ser a BV Financeira e oferece negociação de dívidas via WhatsApp sem identificar qualquer pessoa jurídica real por trás do serviço, violando frontalmente a Resolução CMN nº 4.935/2021 e configurando forte indício de canal fraudulento.
+[Revisor: CONFIRM] A página em domínio de terceiro (alboompro.com) utiliza o logotipo oficial legado da BV Financeira/Banco Votorantim no cabeçalho e em destaque central, apropria-se do discurso institucional em primeira pessoa (&#39;Somos Bv Financeira&#39;) e oferece serviço de negociação de dívidas com direcionamento a WhatsApp sem exibir razão social, CNPJ ou identificação de correspondente bancário (Res. CMN 4.935/2021). Não se trata de blog, notícia ou canal oficial, sustentando integralmente a classificação de forte indício de irregularidade com prioridade alta.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>Logotipo antigo — comparação de imagem</h2>
+    <p class="muted">Regiões dos screenshots comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de IA.</p>
+    <table>
+      <thead><tr><th>Screenshot</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem</th></tr></thead>
+      <tbody>
+        <tr><td>E-SHOT-VIEWPORT</td><td>81, 100</td><td>65×47 px</td><td>0.91</td><td class="mono">https://alfred.alboompro.com/resize/width/370/height/150/quality/99/url/storage.alboom.ninja/sites/49610/img/logo/bv.jpg?t=1599694422</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Ca6867402c6/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 d13dc50b616e4b4f2ddca10ee6dd29cf0f723ce73acb3a23e96a8cb8f33edaec</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/Ca6867402c6/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a0dddd1a2c7621bf199fa0f57a38a7695dbf5640d71a5714858302c3e77825f4</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-VIS-LEGACY-001"><td class="mono"><b>E-VIS-LEGACY-001</b></td><td>visual</td><td>viewport (acima da dobra)</td><td>Comparação de imagem (determinística, sem IA): logotipo ANTIGO de Banco BV (B vermelho sobre V azul) em E-SHOT-VIEWPORT, posição x=81 y=100, 65x47px, similaridade 0.91; imagem: https://alfred.alboompro.com/resize/width/370/height/150/quality/99/url/storage.alboom.ninja/sites/49610/img/logo/bv.jpg?t=1599694422</td></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://bancovotorantim.alboompro.com/sobre (domínio: bancovotorantim.alboompro.com)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (lens): Sobre - Banco Votorantim — Imagem visualmente semelhante ao logotipo antigo (fonte: Banco Votorantim - Alboom)</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Ca6867402c6/attempt-1/viewport.png (sha256 d13dc50b616e4b4f…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Ca6867402c6/attempt-1/fullpage.png (sha256 a0dddd1a2c7621bf…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Sobre - Banco Votorantim</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Um pouco sobre Banco Votorantim</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Sobre - Banco Votorantim</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Um pouco sobre Banco Votorantim</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://bancovotorantim.alboompro.com/sobre</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>&#34;Quem Somos BV Financeira&#34;</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Home Sobre Contato</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Site grátis criado com Alboom . Faça seu próprio site hoje mesmo Comece Já Home Sobre Contato &#34;Quem Somos BV Financeira&#34; Apoiar a sua próxima conquista é o que nos faz seguir em frente. E você pode nem perceber, mas a gente sempre está por perto. Seja na hora de trocar de carro, investir no próprio negócio, na chegada do próximo filho, nos planos para a viagem, em um projeto de energia solar ou até mesmo começando um novo estudo. Se tem conquista, é lá que queremos estar. Com você. E tudo isso de uma maneira leve. Somos líder em financiamento de veículos e uma das principais marcas em soluções de crédito do Brasil. Somos Bv Financeira. Conheça mais sobre a gente.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Página inicial de Banco Votorantim &lt;https://bancovotorantim.alboompro.com/&gt; | Home &lt;https://bancovotorantim.alboompro.com/home&gt; | Sobre &lt;https://bancovotorantim.alboompro.com/sobre&gt; | Contato &lt;https://bancovotorantim.alboompro.com/contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>ATENDIMENTO VIA WHATSAPP &lt;https://web.whatsapp.com/&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>ATENDIMENTO VIA WHATSAPP &lt;https://web.whatsapp.com/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Banco Votorantim&#39; src=https://alfred.alboompro.com/resize/width/370/height/150/quality/99/url/storage.alboom.ninja/sites/49610/img/logo/bv.jpg?t=1599694422 (87x87, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>BV Financeira&#34;</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Somos líder em financiamento de veículos e uma das principais marcas em soluções de crédito do Brasil. Somos Bv Financeira. Conheça mais sobre a gente.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>ATENDIMENTO VIA WHATSAPP</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O site foi estruturado para simular a identidade da BV Financeira / Banco Votorantim, adotando logotipo e temática visual da instituição financeira.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>O terceiro oculta integralmente sua identidade corporativa e CNPJ, apresentando-se textualmente como se fosse a própria BV Financeira.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-002">E-TXT-002</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência de qualquer aviso regulatório de correspondente bancário nos termos da Res. CMN nº 4.935/2021.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>Linguagem em primeira pessoa (&#39;Somos Bv Financeira&#39;) copiando o discurso de marca oficial da instituição.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-002">E-TXT-002</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso indevido do logotipo legado do Banco BV / BV Financeira (B vermelho sobre V azul).</td><td class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Captação de clientes para suposta renegociação de dívida bancária com redirecionamento para WhatsApp desvinculado dos canais oficiais.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="CONFUSION">CONFUSION</td><td>Canal de contato restrito a link genérico para WhatsApp Web sem validação ou chancela oficial.</td><td class="mono"><a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Risco gravíssimo de indução do consumidor a erro, acreditando estar negociando débitos diretamente com o Banco BV / BV Financeira.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-CTA-1">E-CTA-1</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A página utiliza o subdomínio bancovotorantim em plataforma de criação de sites gratuitos (Alboom) e afirma em primeira pessoa ser a própria instituição (&#39;Somos Bv Financeira&#39;), sem identificar qualquer CNPJ ou razão social de terceiro responsável. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-002">E-TXT-002</a> </span></li><li>[HIGH] LOGO_USAGE: Utilização ostensiva do logotipo antigo/legado da BV Financeira (monograma com B vermelho sobre V azul), tanto no cabeçalho quanto no botão gráfico central de negociação de dívidas. — <span class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] INSTITUTIONAL_LANGUAGE: Adoção de discurso institucional em primeira pessoa (&#39;Somos Bv Financeira&#39;, &#39;Apoiar a sua próxima conquista é o que nos faz seguir em frente&#39;) para simular legitimidade institucional. — <span class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-002">E-TXT-002</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Oferta de negociação de dívidas da BV Financeira (&#39;NEGOCIAR DIVIDA BV FINANCEIRA&#39;) direcionando o usuário para canal de atendimento via WhatsApp, criando alto risco de fraude/golpe financeiro. — <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-TXT-003">E-TXT-003</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Ausência total de declaração de correspondente bancário (Resolução CMN nº 4.935/2021) ou indicação de autonomia empresarial. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Site hospedado no subdomínio bancovotorantim.alboompro.com, criado na plataforma gratuita Alboom.</li><li>Presença do logotipo legado do Banco BV (B carmim/vermelho sobre V azul) no topo da página e na arte gráfica central.</li><li>O texto afirma expressamente: &#39;Somos Bv Financeira&#39; e intitula a seção como &#39;Quem Somos BV Financeira&#39;.</li><li>Apresenta botão gráfico de &#39;NEGOCIAR DIVIDA BV FINANCEIRA&#39; com CTA para &#39;ATENDIMENTO VIA WHATSAPP&#39;.</li><li>Nenhum CNPJ, razão social ou aviso de correspondente bancário independente está informado na página.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>—</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página constitui clara personificação da BV Financeira / Banco Votorantim em domínio não oficial (alboompro.com). O responsável utiliza o nome da instituição no subdomínio, aplica o logotipo legado da marca (B vermelho e V azul), afirma em primeira pessoa ser a BV Financeira e oferece negociação de dívidas via WhatsApp sem identificar qualquer pessoa jurídica real por trás do serviço, violando frontalmente a Resolução CMN nº 4.935/2021 e configurando forte indício de canal fraudulento.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:alboompro.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>alboompro.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>ATENDIMENTO VIA WHATSAPP &lt;https://web.whatsapp.com/&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CTA-1">E-CTA-1</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-003">E-TXT-003</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → STRONG_INDICATION / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página em domínio de terceiro (alboompro.com) utiliza o logotipo oficial legado da BV Financeira/Banco Votorantim no cabeçalho e em destaque central, apropria-se do discurso institucional em primeira pessoa (&#39;Somos Bv Financeira&#39;) e oferece serviço de negociação de dívidas com direcionamento a WhatsApp sem exibir razão social, CNPJ ou identificação de correspondente bancário (Res. CMN 4.935/2021). Não se trata de blog, notícia ou canal oficial, sustentando integralmente a classificação de forte indício de irregularidade com prioridade alta.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>lens</td><td>https://logospng.org/wp-content/uploads/bv-financeira.png<br><span class="muted">H12-legacy-logo:lens</span></td><td class="mono">https://bancovotorantim.alboompro.com/sobre</td><td>Sobre - Banco Votorantim<br><span class="muted">Imagem visualmente semelhante ao logotipo antigo (fonte: Banco Votorantim - Alboom)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 01:29:17.904694+00:00</div>
+      <div class="kv"><b>IP do servidor</b>18.210.133.119</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Ca6867402c6/attempt-1/manifest.json<br>sha256 c6388136e14d741f9c12d47ff38174d76bf548476de9bda04619c4d39b84cd22</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://bancovotorantim.alboompro.com/sobre<br>Final: https://bancovotorantim.alboompro.com/sobre</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Ca6867402c6/attempt-1/viewport.png</td><td class="mono">d13dc50b616e4b4f2ddca10ee6dd29cf0f723ce73acb3a23e96a8cb8f33edaec</td><td>72702</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Ca6867402c6/attempt-1/fullpage.png</td><td class="mono">a0dddd1a2c7621bf199fa0f57a38a7695dbf5640d71a5714858302c3e77825f4</td><td>140681</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Ca6867402c6/attempt-1/page.html.txt</td><td class="mono">d5a3c4c3bccc215ac53171e760136ff1021611e959bec5ab1935f37a81fef908</td><td>29495</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Ca6867402c6/attempt-1/text.txt</td><td class="mono">368c111173d2e27e800ae73b667bdeb3eeccfa4456344158f737012245ee13ea</td><td>1191</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Ca6867402c6/attempt-1/page.json</td><td class="mono">49d0745a4dabf6c708240e2fe35ce0bed6cfde220bdfd2bec14d54693ee5842e</td><td>6271</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:28+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 7.0)</td></tr>
+      <tr><td>2026-11-26T01:29:17+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:22+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:22+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:43+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T01:29:50+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

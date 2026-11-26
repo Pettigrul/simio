@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1306ecb58d",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://querofinanciar.com/contato/",
+  "final_url": "https://querofinanciar.com/contato/",
+  "redirect_chain": [
+    "https://querofinanciar.com/contato/"
+  ],
+  "http_status": 403,
+  "server_ip": "172.66.40.215",
+  "collected_at": "2026-11-26T03:09:55.668992+00:00",
+  "manifest_written_at": "2026-11-26T03:10:00.753934+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C1306ecb58d/attempt-1/viewport.png",
+      "sha256": "1466e9f96dfcab06d1fd9753107eeab42e77882b36bf0df8eb594dc8dbc61c97",
+      "size_bytes": 38994
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C1306ecb58d/attempt-1/fullpage.png",
+      "sha256": "09974523b6e796b85d5ed799c3410c5f15bfb96991efd27327e8f664de794b0f",
+      "size_bytes": 38700
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C1306ecb58d/attempt-1/page.html.txt",
+      "sha256": "62964118dabbefc2b369c733cf9e5204a6ea9a9066c79076cc2f317eb2df8c81",
+      "size_bytes": 44875
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C1306ecb58d/attempt-1/text.txt",
+      "sha256": "10338fa08ff82aeb98d34d49c57ae0fda1bf7f2efd6427fafdd4532fcba74075",
+      "size_bytes": 292
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C1306ecb58d/attempt-1/page.json",
+      "sha256": "d2602c4fc29cc4ddc4ade64443e25836892b5c3b2a59597da4dab6559f0a0a26",
+      "size_bytes": 1450
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

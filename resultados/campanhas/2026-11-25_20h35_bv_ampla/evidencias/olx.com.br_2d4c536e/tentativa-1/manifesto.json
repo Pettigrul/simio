@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C2d4c536e26",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.olx.com.br/perfil/l-n-0cb262dc",
+  "final_url": "https://www.olx.com.br/perfil/l-n-0cb262dc",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.18.42.220",
+  "collected_at": "2026-11-26T01:54:14.742357+00:00",
+  "manifest_written_at": "2026-11-26T01:54:18.338362+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C2d4c536e26/attempt-1/viewport.png",
+      "sha256": "7c6dd75026171c490d0001a4b2be73d63944a7f1f575c20bb6ca6032a690b57a",
+      "size_bytes": 66906
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C2d4c536e26/attempt-1/fullpage.png",
+      "sha256": "c2b45ff8b138cd5db3025a7731d564729f2ab2d617010bd00e76b9bbb5b1a308",
+      "size_bytes": 75342
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C2d4c536e26/attempt-1/page.html.txt",
+      "sha256": "56c5d3d61b48054582d61e2c56b3596258c0dc97044a6b0c4a09b247b0ed7190",
+      "size_bytes": 5901
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C2d4c536e26/attempt-1/text.txt",
+      "sha256": "1b779594edf8db8067056f6855975eb1b78dfd5b0517aca70091a56f732f900a",
+      "size_bytes": 691
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C2d4c536e26/attempt-1/page.json",
+      "sha256": "f9c5f81da3fc5f794b3d8f24ecb030565546cb3063792864dbc9d4ffbba69a00",
+      "size_bytes": 2102
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

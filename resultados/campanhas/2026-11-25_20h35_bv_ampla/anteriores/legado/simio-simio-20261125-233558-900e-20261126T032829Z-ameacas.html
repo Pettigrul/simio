@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO · Inteligência de ameaças · simio-20261125-233558-900e</title>
+<style>
+  :root { --ink:#101828; --muted:#475467; --line:#E4E7EC; --bg:#F9FAFB;
+          --crit:#912018; --crit-bg:#FDE7E4; --high:#B42318; --high-bg:#FEF1EF; --med:#B54708; --med-bg:#FEF6E7;
+          --low:#475467; --low-bg:#F2F4F7; --brand:#1C3FAA; }
+  * { box-sizing: border-box; }
+  body { margin:0; font: 14px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:var(--brand); color:#fff; padding:28px 40px; }
+  header h1 { margin:0 0 4px; font-size:22px; font-weight:650; }
+  header p { margin:0; opacity:.85; }
+  main { max-width:1180px; margin:0 auto; padding:24px 40px 60px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin:0 0 8px; }
+  .tile { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 16px; min-width:120px; }
+  .tile b { display:block; font-size:24px; font-variant-numeric:tabular-nums; }
+  .tile.CRÍTICO b { color:var(--crit); } .tile.ALTO b { color:var(--high); } .tile.MÉDIO b { color:var(--med); } .tile.BAIXO b { color:var(--low); }
+  .cats { color:var(--muted); margin:6px 0 24px; }
+  .note { background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:8px; padding:10px 14px; color:var(--muted); margin-bottom:24px; }
+  h2 { font-size:17px; margin:28px 0 12px; }
+  .card { display:grid; grid-template-columns: 300px 1fr; gap:18px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; }
+  .card.CRÍTICO { border-left:5px solid var(--crit); } .card.ALTO { border-left:5px solid var(--high); } .card.MÉDIO { border-left:5px solid var(--med); }
+  .shot { width:300px; height:200px; object-fit:cover; object-position:top; border:1px solid var(--line); border-radius:8px; background:var(--bg); }
+  .noshot { width:300px; height:200px; display:flex; align-items:center; justify-content:center; color:var(--muted); border:1px dashed var(--line); border-radius:8px; font-size:12px; text-align:center; padding:12px; }
+  .pill { display:inline-block; font-size:11px; font-weight:650; letter-spacing:.02em; border-radius:999px; padding:2px 10px; margin:0 6px 6px 0; }
+  .pill.CRÍTICO { background:var(--crit-bg); color:var(--crit); } .pill.ALTO { background:var(--high-bg); color:var(--high); } .pill.MÉDIO { background:var(--med-bg); color:var(--med); } .pill.BAIXO { background:var(--low-bg); color:var(--low); }
+  .pill.cat { background:#EEF2FF; color:#2D3A8C; font-weight:550; }
+  .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; word-break:break-all; margin:4px 0 8px; }
+  ul.facts { margin:6px 0 10px 18px; padding:0; }
+  .kv { display:grid; grid-template-columns: 190px 1fr; gap:2px 12px; font-size:13px; }
+  .kv dt { color:var(--muted); } .kv dd { margin:0; word-break:break-word; }
+  details { margin-top:8px; color:var(--muted); font-size:12.5px; }
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; font-size:13px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--bg); color:var(--muted); font-weight:600; }
+  td.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; word-break:break-all; }
+  a { color:var(--brand); }
+  @media (max-width: 800px) { main { padding:16px; } .card { grid-template-columns:1fr; } .shot, .noshot { width:100%; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Inteligência de ameaças e proteção de marca</h1>
+  <p>Campanha simio-20261125-233558-900e · gerado em 26/11/2026 03:28 UTC</p>
+</header>
+<main>
+  <div class="summary">
+<div class="tile CRÍTICO"><b>4</b>CRÍTICO</div><div class="tile ALTO"><b>54</b>ALTO</div><div class="tile MÉDIO"><b>0</b>MÉDIO</div><div class="tile BAIXO"><b>0</b>BAIXO</div>  </div>
+  <div class="cats">Falso canal oficial (47) · Perfil/post falso em rede social (40) · Personificação da marca (9) · Domínio recente (6) · Golpe com a marca como isca (6) · Domínio com a marca (2) · Coleta de credenciais (phishing) (2) · Canal de mensagens (2) · Hospedagem gratuita (1) · Domínio semelhante (typosquatting) (1)</div>
+  <div class="note">O nível vem de fatos verificáveis (campos de senha/cartão, personificação registrada pelo analisador, domínio com a marca ou parecido, APK fora das lojas, hospedagem gratuita, idade do domínio). Empresas identificadas que usam a própria marca são tema de conformidade e não entram aqui. URLs estão desarmadas (<code>hxxps</code>, <code>[.]</code>) para evitar acesso acidental.</div>
+
+  <h2>CRÍTICO (4)</h2>
+  <div class="card CRÍTICO">
+    <div>
+<div class="noshot">sem captura (página fora do ar ou bloqueada; classificação apoiada no que foi indexado)</div>    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 11.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio com a marca</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://www[.]bvfinanon[.]com/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>a marca está no nome do domínio (www.bvfinanon.com)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>domínio registrado há 117 dias</li><li>indício forte na análise SIMIO</li><li>fora do ar hoje (não resolve)</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-07-31 (117 dias) · GoDaddy.com, LLC</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>não</dd>
+<dt>Contatos de abuso</dt><dd>abuse@godaddy.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C8cfe44d01f.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Apesar do bloqueio na coleta ao vivo por falha de DNS, o histórico indexado em E-DISC-001 evidencia prática de personificação direta do Banco BV (D_STRONG_IMPERSONATION). O domínio bvfinanon.com apresentava-se como canal oficial (&#39;Canais Oficiais BV&#39;), utilizava o CNPJ do banco sem declarar qualquer razão social terceira ou vínculo de correspondente e direcionava clientes para WhatsApp visando quitação e emissão de boletos, configurando grave risco de fraude e confusão de marca.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cc8e48710a5/attempt-1/viewport.png" alt="Captura da página prosas.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 10.0</span><span class="pill cat">Coleta de credenciais (phishing)</span><span class="pill cat">Personificação da marca</span>      <div class="url">hxxps://prosas[.]com[.]br/patrocinadores/766</div>
+      <ul class="facts"><li>pede senha numa página que se apresenta com a marca</li><li>o analisador registrou personificação da instituição</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Dados pedidos</dt><dd>senha</dd><dt>Domínio criado</dt><dd>2013-11-27 (4747 dias)</dd><dt>Titular</dt><dd>Thiago Alvim</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.26.13.137); Cloudflare, Inc. (104.26.12.137)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cc8e48710a5.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página analisada pertence à plataforma Prosas (prosas.com.br), um portal legítimo de editais e fomento a projetos socioculturais. O conteúdo corresponde ao perfil institucional do banco BV como patrocinador de editais, disponibilizando inclusive links direcionando para o domínio oficial da instituição (bv.com.br) e para o Instagram oficial. Não há oferta de crédito, intermediação financeira ou indícios de fraude/phishing.
+[Revisor: DOWNGRADE] A URL corresponde a um perfil cadastral do Banco BV como patrocinador de editais culturais na plataforma Prosas. Não se trata de correspondente bancário irregular, loja automotiva, integrador solar ou promotora de crédito, tampouco fraude/phishing. Ap</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ca6867402c6/attempt-1/viewport.png" alt="Captura da página alboompro.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 9.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio com a marca</span>      <div class="url">hxxps://bancovotorantim[.]alboompro[.]com/sobre</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>a marca está no nome do domínio (bancovotorantim.alboompro.com)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2016-01-05 (3977 dias) · GoDaddy.com, LLC</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Amazon Technologies Inc. (52.206.155.93); Amazon Technologies Inc. (18.210.133.119)</dd>
+<dt>Contatos de abuso</dt><dd>trustandsafety@support.aws.com, abuse@godaddy.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ca6867402c6.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página constitui clara personificação da BV Financeira / Banco Votorantim em domínio não oficial (alboompro.com). O responsável utiliza o nome da instituição no subdomínio, aplica o logotipo legado da marca (B vermelho e V azul), afirma em primeira pessoa ser a BV Financeira e oferece negociação de dívidas via WhatsApp sem identificar qualquer pessoa jurídica real por trás do serviço, violando frontalmente a Resolução CMN nº 4.935/2021 e configurando forte indício de canal fraudulento.
+[Revisor: CONFIRM] A página em domínio de terceiro (alboompro.com) utiliza o logotipo oficial legado da BV Financeira/Banco Votorantim no cabeçalho e em destaque central, apropria-se do discurso instituciona</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cb3ae41f137/attempt-1/viewport.png" alt="Captura da página facilitabr.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://facilitabr[.]com/dados-pessoais</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>domínio registrado há 106 dias</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-08-11 (106 dias) · HOSTINGER operations, UAB</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Vercel, Inc (76.76.21.21)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@vercel.com, abuse-tracker@hostinger.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cb3ae41f137.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O domínio facilitabr.com reproduz o fluxo de simulação de financiamento do Banco BV, utilizando a marca nominalmente no título da página (&#39;Simulador de financiamento | banco BV&#39;) e o slogan institucional &#39;o banco especialista&#39; para capturar dados pessoais (CPF). A página não apresenta CNPJ, razão social ou avisos regulatórios obrigatórios de correspondente bancário, caracterizando forte indício de personificação e risco de confusão ao consumidor.
+[Revisor: CONFIRM] A página em domínio terceiro (facilitabr.com) utiliza ostensivamente o nome do Banco BV no título (&#39;Simulador de financiamento | banco BV&#39;) e campanha institucional (&#39;o banco especialista&#39;) em banner de financiamento veicular para</details>    </div>
+  </div>
+  <h2>ALTO (54)</h2>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C7ba9eca19e/attempt-1/viewport.png" alt="Captura da página wa.me" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 7.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Canal de mensagens</span>      <div class="url">hxxps://wa[.]me/schullzerregularizaoprocessos?lang=ta_IN</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>contato direto por mensageiro (WhatsApp/Telegram)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C7ba9eca19e.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de usurpação de marca e personificação direta (impersonation) do Banco BV. O perfil do WhatsApp apropria-se do nome, logotipo, endereço e CNPJ da matriz do banco para se passar por canal oficial de negociação de contratos e busca e apreensão de veículos, sem revelar a identidade real do operador nem apresentar declaração de correspondente bancário.
+[Revisor: CONFIRM] A hipótese do analista é plenamente corroborada pelas evidências visuais e textuais. O perfil comercial denominado &#39;Schullzer Regularização Processos&#39; apropria-se ostensivamente dos logotipos, fotos de fachada e identidade institucional do Banco BV (E-SHOT-VIEWPORT, E-SHOT-FULL), utilizando indevidamente a razão social,</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cc4df18d92b/attempt-1/viewport.png" alt="Captura da página promasterleilaooficiial.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 7.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio recente</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]promasterleilaooficiial[.]com/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>domínio registrado há 65 dias</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-09-21 (65 dias) · PDR Ltd. d/b/a PublicDomainRegistry.com</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Unified Layer (162.241.203.50)</dd>
+<dt>Contatos de abuso</dt><dd>IARPOC@Newfold.com, abuse@bluehost.com, abuse-contact@publicdomainregistry.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cc4df18d92b.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página utiliza ostensivamente o nome e a marca do Banco BV como &#39;comitente oficial&#39; de um leilão de veículos e maquinários, estampando o logotipo do banco em cada um dos itens anunciados e condicionando a suposta procedência e segurança dos bens à imagem da instituição financeira. Além disso, o domínio utiliza padrão típico de typosquatting (&#39;oficiial&#39;) sem apresentar qualquer transparência regulatória de correspondente bancário (Resolução CMN nº 4.935/2021). A prática configura aparente canal oficial/parceria fictícia com grave potencial de indução a erro do consumidor.
+[Revisor: CONFIRM] A hipótese do analista é confirmada integralmente. O site opera no segmento de leilão/comércio de veí</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cb57d877fbc/attempt-1/viewport.png" alt="Captura da página renegociacaoquitacao.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 7.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio recente</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]renegociacaoquitacao[.]com/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>domínio registrado há 143 dias</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-07-05 (143 dias) · PDR Ltd. d/b/a PublicDomainRegistry.com</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Company 67a08938l6y7Sxyw (185.158.133.1, EU)</dd>
+<dt>Contatos de abuso</dt><dd>report@abuseradar.com, abuse-contact@publicdomainregistry.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cb57d877fbc.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de uma assessoria de renegociação de dívidas que explora expressamente o nome do Banco BV no título e cabeçalho, ofertando serviços sensíveis como emissão de 2ª via de boleto e quitação antecipada. Embora não use logotipos e contenha disclaimer no rodapé com CNPJ próprio declarando não ser representante oficial, o uso acoplado da marca no topo gera risco de confusão e atração parasitária de clientes da instituição.
+[Revisor: CONFIRM] A entidade é uma assessoria financeira/administrativa que incorpora diretamente as marcas das instituições no nome fantasia e cabeçalho principal (&#39;RENEGOCIAÇÃO E QUITAÇÃO BV PAN / ASSESSORIA BV E PAN&#39;). Oferta serviços sensíveis privativos ou críticos,</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cee5ea6d1d2/attempt-1/viewport.png" alt="Captura da página agenciasbancarias.net" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://agenciasbanco[.]com[.]br/agencias/banco/bv-financeira/am/manaus/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2024-01-06 (1054 dias)</dd><dt>Titular</dt><dd>Diego Soares</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.21.45.174); Cloudflare, Inc. (172.67.217.10)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cee5ea6d1d2.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário D_STRONG_IMPERSONATION: apresentação consistente como a própria instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2]; Expressões de oficialidade associadas à marca: Agência BV [E-DISC-001, E-META-3, E-TITLE]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]. (Pontuação de triagem: confusão 7.0, transparência 0.0; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cfdc97d0dc5/attempt-1/viewport.png" alt="Captura da página vercel.app" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://gp-repasse[.]vercel[.]app/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>página com a marca em plataforma gratuita/de terceiros (vercel.app)</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>vercel.app (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Vercel, Inc (64.29.17.130); Vercel, Inc (216.198.79.130); Vercel, Inc (216.198.79.2)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@vercel.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cfdc97d0dc5.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página atua no segmento de comércio e intermediação de veículos/crédito, utilizando ostensivamente o nome do Banco BV como chamariz principal para captação de cadastros de financiamento. O operador oculta sua identidade societária real ao veicular um CNPJ fictício (&#39;00.000.000/0001-00&#39;), omite a declaração regulamentar de correspondente bancário (Res. CMN 4.935/2021) e coleta dados cadastrais sensíveis (CPF, RG, renda e endereço) em ambiente não verificado (vercel.app), configurando alto risco de indução do consumidor a erro e irregularidade cadastral.
+[Revisor: CONFIRM] A página atua no segmento de revenda/repasse de veículos automotores e captação de financiamentos, exibindo ostensivamen</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C443e5034ff/attempt-1/viewport.png" alt="Captura da página wa.me" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Canal de mensagens</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://wa[.]me/sioncred7?lang=el_GR</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>contato direto por mensageiro (WhatsApp/Telegram)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C443e5034ff.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O estabelecimento comercial Sioncred atua na intermediação de financiamentos e se intitula correspondente autorizado do Banco BV. Contudo, utiliza em sua foto de perfil o logotipo legado (antigo) do banco e omite informações obrigatórias exigidas pela Resolução CMN nº 4.935/2021 (CNPJ, razão social completa e canais de ouvidoria), configurando forte indício de irregularidade e risco de confusão visual.
+[Revisor: CONFIRM] Confirma-se a classificacao de STRONG_INDICATION com prioridade HIGH. O perfil comercial da promotora/correspondente Sioncred divulga servicos de financiamento e refinanciamento veicular intitulando-se correspondente autorizado do Banco BV. Em sua imagem de perfil (avatar vi</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C4fd7bc9d42/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/p/Consultor-Banco-BV-61575358873397/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C4fd7bc9d42.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O perfil do Facebook apropria-se do nome do Banco BV sob o título &#39;Consultor Banco BV&#39; e inclui endereço de e-mail sugerindo pertencer ao domínio oficial da instituição (&#39;@bancoBV.com.br&#39;), enquanto direciona atendimentos para um número móvel de WhatsApp sem qualquer indicação de CNPJ ou razão social do correspondente bancário, violando as disposições de transparência e configurando forte risco de personificação.
+[Revisor: CONFIRM] Apesar do equívoco pontual do analista quanto aos formulários de login do Facebook, a classificação STRONG_INDICATION / HIGH se sustenta integralmente. A página se intitula diretamente &#39;Consultor Banco BV&#39;, utiliza o logo da instituição no banner e avatar, alega a</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C65c86da817/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/De16zcXASjx/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C65c86da817.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário D_STRONG_IMPERSONATION: apresentação consistente como a própria instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1]; Expressões de oficialidade associadas à marca: parceiro oficial BV [E-DISC-001, E-TITLE, E-TXT-001]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FOLD, E-TITLE]. (Pontuação de triagem: confusão 7.0, transparência 0.0; ordena casos, não prova.)
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cef1edb5979/attempt-1/viewport.png" alt="Captura da página itapevarec.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Coleta de credenciais (phishing)</span>      <div class="url">hxxps://www[.]itapevarec[.]com[.]br/Nembus/login</div>
+      <ul class="facts"><li>pede senha numa página que se apresenta com a marca</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Dados pedidos</dt><dd>senha</dd><dt>Domínio criado</dt><dd>2008-12-04 (6565 dias)</dd><dt>Titular</dt><dd>Itapeva Recuperacao de Creditos Ltda</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.20.26.112); Cloudflare, Inc. (172.66.157.105)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cef1edb5979.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página inspecionada é o portal oficial de recuperação de crédito da Itapeva. A presença do logotipo da BV ocorre de forma secundária e legítima em uma galeria multimarcas indicando as instituições com as quais a empresa atua na negociação e recuperação de créditos, sem configurar overbranding, disfarce de canal oficial ou confusão com o Banco BV.
+[Revisor: DOWNGRADE] A página corresponde ao portal oficial de login e autoatendimento da Itapeva Recuperação de Crédito. A identidade da Itapeva é predominante no cabeçalho, domínio e viewport. O logotipo da BV Financeira consta unicamente em seção de credores/parceiros (&#39;Trabalhamos com:&#39;) ao lado de dezenas de outros bancos e varejistas, sem ca</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C5e77a72334/attempt-1/viewport.png" alt="Captura da página mendescorreiaadv.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio recente</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]mendescorreiaadv[.]com/duvidas/posso-vender-carro-financiado</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>domínio registrado há 81 dias</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-09-05 (81 dias) · HOSTINGER operations, UAB</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · HOSTINGER-CDN (2.57.91.105, LT); Company 64d3454c4gqMnp2l (84.32.84.208, LT); Company 64d3454c4gqMnp2l (147.79.105.224, BR)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@hostinger.com, report@abuseradar.com, abuse-tracker@hostinger.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/C5e77a72334.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário C_POSSIBLE_OFFICIAL_CHANNEL: elementos que sugerem atendimento direto pela instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-CONTACT-1, E-CONTACT-2, E-CONTACT-3]; Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: quitação antecipada [E-FTR, E-TXT-005, E-TXT-006]. Elementos de tr</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ced11399fdf/attempt-1/viewport.png" alt="Captura da página semparar.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]semparar[.]com[.]br/tag-bv-ou-sem-parar?srsltid=AYCX9vLTVvtuRikb67bA6J1eprQs16OD2pt4Q4Id3SclKtafCJGzecpf</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2003-05-23 (8587 dias)</dd><dt>Titular</dt><dd>Sem Parar Instituição de Pagamento Ltda</dd>        <dt>Resolve hoje</dt><dd>sim · Incapsula Inc (45.60.17.233)</dd>
+<dt>Contatos de abuso</dt><dd>ww.dis.abuse@thalesgroup.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ced11399fdf.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário D_STRONG_IMPERSONATION: apresentação consistente como a própria instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Marca no título/nome do site [E-TITLE]; Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-CONTACT-3, E-CONTACT-4, E-CONTACT-7]; Oferta de serviço pós-venda sensível (2ª via de boleto/quitação/acordo) com captação de contato sem identificação destacada de correspondente/assessoria: 2ª via do boleto [E-FTR]. El</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ce535f96b4c/attempt-1/viewport.png" alt="Captura da página quitarbvfinanceira.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxp://quitarbvfinanceira[.]com/</div>
+      <ul class="facts"><li>domínio semelhante a bvfinanceira (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>domínio registrado há 170 dias</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-06-08 (170 dias) · Hosting Concepts B.V. d/b/a Registrar.eu</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · DC-Germany (185.53.179.136, DE)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@teaminternet.com, abuse@registrar.eu</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A URL investigada retornou status HTTP 410 (Gone), apresentando apenas uma tela genérica de erro indicando que o recurso foi descontinuado/removido. Embora a composição do domínio sugira potencial uso indevido relacionado a quitação de débitos da BV Financeira, a ausência total de conteúdo impede a análise de conformidade de correspondente bancário ou de potencial personificação.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C827a5def26/attempt-1/viewport.png" alt="Captura da página classi-to.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://www[.]classi-to[.]com[.]br/ads/193/financiamento-veiculos-bv-taxa-especial</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-04-10 (229 dias)</dd><dt>Titular</dt><dd>pessoa física (dados pessoais omitidos — LGPD)</dd>        <dt>Resolve hoje</dt><dd>sim · HOSTINGER-HOSTING (187.41.107.210, BR)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@hostinger.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C827a5def26.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página consiste em anúncio comercial publicado em portal de classificados por terceiro intermediador (BZ Corretora de Seguros) que utiliza ostensivamente o logotipo e o nome da marca Banco BV no título e na imagem principal para captação de clientes para financiamento veicular. A divulgação omite a razão social completa e o CNPJ do intermediador, bem como a declaração obrigatória de correspondente bancário independente prevista no art. 14 da Resolução CMN nº 4.935/2021, gerando risco evidente de confusão sobre a oficialidade do canal.
+[Revisor: CONFIRM] Trata-se de anúncio veiculado por terceiro intermediador comercial (BZ Corretora de Seguros) em portal de classificados para captação de c</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C9e1f49d034/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/100081477695582/videos/parceria-de-anos-com-a-banco-bv-napista-uma-empresa-banco-bv-entre-em-contato-qu/1560118195882929/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C9e1f49d034.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social da revenda de veículos Redivo Caminhões utiliza com forte protagonismo a marca e logotipo do &#39;Feirão BV banco&#39; em sua peça em vídeo, promovendo condições de financiamento. Embora a legenda declare a existência de parceria, a publicação omite o CNPJ/razão social da empresa e não apresenta a declaração formal de correspondente bancário independente nem canais de ouvidoria, violando as disposições de transparência da Resolução CMN nº 4.935/2021 (art. 14, II e III) e gerando potencial confusão de canal oficial perante o consumidor.
+[Revisor: CONFIRM] Trata-se de publicação em rede social de terceiro comercial (loja/revenda &#39;Redivo Caminhões&#39;) promovendo financiamento </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C99a906aff6/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/euro7multimarcas/videos/mega-feirao-banco-bv/1173125505131804/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C99a906aff6.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página da Euro 7 Multimarcas promove um &#39;Mega Feirão banco BV&#39; com overbranding explícito da instituição financeira (balões, banners, tótens e vestimenta da apresentadora), utilizando a marca do Banco BV como chamariz central do anúncio sem divulgar CNPJ/razão social da loja e sem a declaração obrigatória de correspondente bancário prevista na Resolução CMN nº 4.935/2021. Configura cenário de canal aparentemente oficial ou parceria desregulada, justificando classificação STRONG_INDICATION com prioridade HIGH.
+[Revisor: CONFIRM] A publicação em rede social de uma loja/revendedora de veículos (&#39;Euro 7 Multimarcas&#39;) divulga o &#39;Mega Feirao banco BV&#39; apresentando ostensivo overbranding da marca</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C1a3f837d7f/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/procar.araxa.mg/videos/-j%C3%A1-est%C3%A1-acontecendo-%C3%A9-o-feir%C3%A3o-banco-bv-aqui-na-procar-ve%C3%ADculoscondi%C3%A7%C3%B5es-imperd/1511047287550148/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C1a3f837d7f.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página da loja de veículos Procar Veículos veicula vídeo promocional utilizando em grande destaque a marca e logotipo oficial do Banco BV (&#39;Mega Feirão BV&#39;, apresentadora uniformizada com a marca BV e selo &#39;parceiro BV banco&#39;). Apesar de indicar tratar-se de parceria, a publicação omite a razão social, CNPJ e a declaração obrigatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021, art. 14, configurando uso desproporcional da marca em anúncio comercial.
+[Revisor: CONFIRM] Confirma-se a classificação de STRONG_INDICATION com prioridade HIGH. Trata-se de publicação promocional em rede social veiculada por loja de veículos (Procar Veículos), divulgando o &#39;Mega Feirão BV&#39; c</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cf76a5746be/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/racingmultimarcas/videos/-feir%C3%A3o-bv-racing-multimarcaschegou-a-oportunidade-de-sair-de-carro-novo-e-come%C3%A7/1172021668597017/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cf76a5746be.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página da loja de veículos &#39;Racing Multimarcas&#39; no Facebook veicula anúncio promocional associando diretamente seu nome à marca do Banco BV (&#39;FEIRÃO BV RACING&#39; e &#39;FINANCIAMENTO BV&#39;) e utilizando materiais do banco. A veiculação omite o CNPJ da loja e a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021, art. 14, II e III), configurando indícios fortes de irregularidade em canal de terceiro comercial.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revendedora multimarcas de veículos (&#39;Racing Multimarcas&#39;) promovendo feirão e crédito (&#39;FEIRÃO BV RACING&#39;, &#39;FINANCIAMENTO BV&#39;) com materiais da marca BV em destaque, porém sem apresentar razão social com</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C1678a7ee6b/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/robinson.giombelli/videos/%C3%BAltima-semana-do-feir%C3%A3o-bv-financeira-chegou-a-hora-de-trocar-de-carro-e-aprovei/1850222826118393/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C1678a7ee6b.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Publicação de revenda automotiva que utiliza o nome da instituição como chamariz principal da campanha (&#39;FEIRÃO BV FINANCEIRA&#39;) sem disponibilizar as informações regulatórias obrigatórias de correspondente bancário (CNPJ, razão social e declaração expressa de correspondente). Caracteriza possível apropriação indevida da marca em canal de divulgação comercial com alto risco de confusão aos consumidores.
+[Revisor: CONFIRM] Publicação em rede social de revenda de veículos (vinculada a Mano Auto Car / Robinson Giombelli) que promove oferta comercial intitulada &#39;FEIRÃO BV FINANCEIRA&#39; com destaque visual direto para a marca da instituição financeira, sem apresentar razão social, CNPJ, condição exp</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cbda5f69fa1/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/thilu.automoveis/videos/-%C3%BAltimo-feir%C3%A3o-banco-bv-thilu-autom%C3%B3veis-do-ano-preparamos-juntamente-com-o-banc/1497225938922045/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cbda5f69fa1.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação da revenda de veículos Thilu Automóveis no Facebook promove o &#39;Feirão Banco BV&#39; com uso proeminente da marca e logotipo institucional do Banco BV na arte gráfica do anúncio, acoplando a marca do banco como chamariz de crédito automotivo. O post omite o CNPJ/razão social formal da loja e não exibe a declaração de correspondente bancário exigida pelo art. 14 da Resolução CMN nº 4.935/2021, caracterizando forte indício de irregularidade e risco de confusão ao consumidor.
+[Revisor: CONFIRM] A publicação em rede social pertence à revendedora de veículos Thilu Automóveis e promove financiamento através de um feirão com uso em destaque da marca e logotipo do Banco BV (&#39;Feirão BV banco&#39;</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C1acc1af7bf/attempt-1/viewport.png" alt="Captura da página facebook.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]facebook[.]com/vitoriaseminovos/videos/recado-da-bv-financeira-pra-voc%C3%AAs-voc%C3%AA-que-tem-contrato-em-dia-com-a-gente-pode-/1598876713596178/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C1acc1af7bf.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O estabelecimento Vitória Seminovos (loja de veículos dentro do escopo) publicou vídeo com arte e marca do Banco BV veiculando oferta de prorrogação de parcelas em primeira pessoa (&#39;com a gente&#39;), sem qualquer declaração de correspondente bancário e sem CNPJ. O formato gera severa ambiguidade e aparência de canal oficial, enquadrando-se em STRONG_INDICATION com prioridade HIGH.
+[Revisor: CONFIRM] A página pertence a uma loja de veículos (&#39;Vitória Seminovos&#39;), público-alvo prioritário da investigação (revenda/COBAN de veículos). O post no Facebook utiliza a identidade visual e o logotipo do Banco BV para divulgar condições contratuais e renegociação de parcelas, empregando linguagem em primei</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C1d60850e3d/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/CHgMxQbHRQO/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C1d60850e3d.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social de integrador de energia solar comercializa kits fotovoltaicos oferecendo financiamento pelo Banco BV em até 60x. A peça publicitária faz uso destacado do logotipo antigo/legado da instituição financeira (B vermelho e V azul, descontinuado) e omite tanto a declaração de correspondente bancário quanto o CNPJ da empresa, configurando desconformidade regulatória e potencial confusão de marca.
+[Revisor: CONFIRM] A publicação em rede social de terceiro do setor de energia solar (Artek Solar) veicula peça gráfica comercial ofertando financiamento pelo Banco BV com uso destacado do logotipo antigo/legado (B vermelho sobre V azul, confirmado em E-VIS-LEGACY-001 e E-SHOT-V</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C3ee396f5c6/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/Cu-C9-EJk_I/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C3ee396f5c6.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social comercializa ativamente crédito/financiamento veicular utilizando o logotipo do Banco BV em destaque central desproporcional (&#39;overbranding&#39;), sem identificar razão social, CNPJ ou exibir a declaração formal de correspondente bancário estipulada pela Resolução CMN nº 4.935/2021. Essa configuração preenche os critérios de forte indício de irregularidade e risco de confusão do consumidor sobre o canal oficial.
+[Revisor: CONFIRM] A publicação em rede social promovida por terceiro comercial (&#39;Mundial Financeira&#39; / @mundialnegociosbr) divulga financiamento veicular com uso proeminente e central da identidade visual e logotipo do Banco BV, sem apresentar razão social co</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ccdd8976dbe/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DK4rofggpxk/?hl=mr</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ccdd8976dbe.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação da concessionária/revenda AK Motors apresenta uso proeminente e extensivo da marca e do logotipo do Banco BV (&#39;overbranding&#39; em balões, camisetas e banners de &#39;Feirão BV&#39;), promovendo inclusive abertura de contas e financiamento. Contudo, não exibe a razão social/CNPJ da empresa nem a declaração regulatória obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021, art. 14), enquadrando-se como forte indício de inadequação de canal de terceiros e confusão visual.
+[Revisor: CONFIRM] A publicação em rede social foi realizada por uma loja de veículos comercial (@akmotorsoficial) e apresenta uso massivo e desproporcional da marca Banco BV (&#39;overbranding&#39; com múltiplos balõ</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cf87e2c0863/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DVGUZbHFRWQ/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cf87e2c0863.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social de empresa de financiamentos e vistorias utiliza de forma desproporcional e exclusiva o logotipo oficial do Banco BV como imagem do post. Aliado à ausência de dados cadastrais (CNPJ/razão social) e de declaração expressa de correspondente bancário (Resolução CMN nº 4.935/2021), a postagem gera confusão no consumidor quanto à oficialidade da comunicação.
+[Revisor: CONFIRM] A publicação em rede social de terceiro que atua no segmento de vistorias e financiamentos veicula unicamente o logotipo oficial do Banco BV ocupando a integralidade da peça gráfica (E-SHOT-FULL, E-IMG-1), caracterizando overbranding manifesto. A postagem não apresenta CNPJ, razão social, declara</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C7b8bd9a220/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DYR2v8TvOPp/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C7b8bd9a220.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação na conta comercial de revenda de veículos @pointcar.al veicula integralmente peça de marketing do Banco BV (&#39;Feirão BV&#39;) com uso do logotipo atual, mas omite completamente a identificação societária (CNPJ/razão social) e a declaração obrigatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021, configurando overbranding e ambiguidade de canal perante o consumidor.
+[Revisor: CONFIRM] A publicação no perfil de revenda automotiva @pointcar.al veicula anúncio integralmente dominado pela identidade visual e logotipo oficial da campanha &#39;Feirão BV banco&#39; sem qualquer identificação de sua razão social, CNPJ, ouvidoria ou condição regulatória de correspondente bancári</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C3bbb55a4ab/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DYW6Ojzx6Q5/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C3bbb55a4ab.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação da revenda de automóveis Auto França Multimarcas promove condições de financiamento do &#39;Feirão BV&#39; fazendo uso desproporcional e reiterado do logotipo oficial do Banco BV em arte publicitária gráfica. O anúncio não apresenta CNPJ, razão social da loja nem o aviso obrigatório de correspondente bancário previsto no art. 14 da Resolução CMN nº 4.935/2021, enquadrando-se nos critérios de indício forte de irregularidade por overbranding e falta de transparência regulatória.
+[Revisor: CONFIRM] A hipótese do analista é plenamente confirmada. A publicação pertence a uma revenda de veículos multimarcas (@auto_franca_multimarcas) e exibe peça publicitária com uso ostensivo e desproporcion</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cd72e4a5a36/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DYnGiwOETdf/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cd72e4a5a36.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de estabelecimento comercial (revenda de veículos) dentro do escopo de apuração que utiliza ostensivamente o logotipo oficial e a marca &#39;Feirão BV banco Financeira&#39; em peça publicitária de rede social. A publicidade acopla a marca da instituição financeira à oferta comercial de veículos sem fornecer a identificação societária (CNPJ/razão social) e sem apresentar o aviso regulatório obrigatório de correspondente bancário (Res. CMN 4.935/2021, art. 14), gerando ambiguidade e risco de confusão no consumidor quanto à oficialidade da ação.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revenda de veículos (Ferrazcar Veículos) anunciando veículos com destaque para selo gráf</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C4a289ca28a/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DcR0yvDFdyV/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C4a289ca28a.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação utiliza a marca institucional de forma dominante ao intitular o evento promocional como &#39;FEIRÃO BV FINANCEIRA&#39;, veiculando ofertas de financiamento com bexigas com o logotipo do banco no pátio dos veículos. Contudo, omite completamente os dados cadastrais (CNPJ/razão social) e a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021), criando forte ambiguidade de canal oficial e risco de confusão ao consumidor.
+[Revisor: CONFIRM] A publicação em rede social promove um evento automotivo intitulado &#39;FEIRÃO BV FINANCEIRA&#39;, com balões com o logotipo da BV no pátio dos veículos, caracterizando a atividade comercial de revenda/feirão parceiro (COBAN de veículos</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C9ebb88245d/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DderXiaprA0/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C9ebb88245d.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Publicação em rede social de loja de veículos exibindo em destaque o logotipo oficial do Banco BV acoplado à alegação de &#39;PARCERIA EXCLUSIVA!&#39;, sem identificação de CNPJ/razão social e desprovida da declaração obrigatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021, caracterizando forte indício de irregularidade na divulgação de produtos de crédito.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma loja/revenda de veículos (@lockar_) que veicula peça publicitária com o logotipo oficial do Banco BV em grande destaque no topo da arte, associado à frase &#39;PARCERIA EXCLUSIVA!&#39; e oferta direta de financiamento, sem divulgar CNPJ, razão social, declaração formal </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cb7f75721cd/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DePmBKAJv1E/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cb7f75721cd.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O perfil @norte_motors publicou anúncio comercial de empréstimo/refinanciamento veicular utilizando o logotipo oficial do Banco BV em destaque no criativo visual e citando a &#39;BV Financeira&#39; na legenda. A postagem não apresenta identificação de pessoa jurídica (razão social ou CNPJ) nem qualquer declaração obrigatória de correspondente bancário, violando as diretrizes de transparência da Resolução CMN nº 4.935/2021 e configurando forte indício de irregularidade visual e institucional.
+[Revisor: CONFIRM] A publicação no Instagram pertence a uma revendedora de veículos (@norte_motors) promovendo serviço financeiro (refinanciamento/crédito com garantia) exibindo o logotipo oficial do Banco BV em</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C346ee2f206/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DgIcezrTMFh/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C346ee2f206.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social utiliza de forma destacada a marca Banco BV e NaPista, promovendo um &#39;Feirão BV&#39; com arte publicitária de padrão institucional. O terceiro (super.credjuazeiro) omite integralmente sua razão social, CNPJ e a condição mandatória de correspondente bancário exigida pelo art. 14 da Resolução CMN nº 4.935/2021, gerando risco evidente de confusão ao consumidor sobre a oficialidade da oferta.
+[Revisor: CONFIRM] A publicação no Instagram realizada pelo perfil comercial &#39;super.credjuazeiro&#39; veicula anúncio promocional (&#39;Feirão BV&#39;) utilizando identidade visual e marcas do Banco BV e NaPista em grande destaque. Não há apresentação da razão social, CNPJ, declaração expressa d</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C10fee56386/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DC71HoXpnLk/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C10fee56386.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social divulga um feirão de automóveis intitulado diretamente como &#39;FEIRÃO DO BANCO BV!&#39;, com estandes exibindo faixas e banners com o logotipo institucional do Banco BV. A postagem omite a razão social e o CNPJ da empresa promotora e não apresenta qualquer declaração de correspondente bancário independente, configurando uso desproporcional da marca e gerando confusão sobre a oficialidade da iniciativa à luz da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A publicação em rede social promove um evento automotivo intitulado expressamente como &#39;FEIRÃO DO BANCO BV!&#39;, exibindo banners com o logotipo oficial do banco nas tendas de atendimento (E-SHOT-VIEWPORT, E-SHOT-FULL).</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C11cbc9edf3/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DQwRq6-joVl/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C11cbc9edf3.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação consiste em anúncio em rede social de loja de seminovos (alvo dentro do escopo) promovendo feirão de financiamento com o Banco BV. Embora utilize a identidade visual atual em co-branding e mencione o regulamento oficial no bv.com.br, a peça traz a marca do Banco BV em grande destaque sem cumprir os requisitos obrigatórios da Resolução CMN nº 4.935/2021 (ausência de declaração de correspondente bancário, omissão de CNPJ e de razão social da loja), enquadrando-se como STRONG_INDICATION.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revenda de veículos (MP Seminovos), enquadrando-se expressamente no escopo de fiscalização de COBANs e parceiros comerciais. A peça pub</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cb241e10f1b/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DT3V1BfEq_p/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cb241e10f1b.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O estabelecimento comercial (revendedora de motos) veiculou peça publicitária com uso destacado do logotipo oficial do Banco BV para o produto &#39;Empréstimo com Garantia de Veículo BV&#39; sem apresentar a razão social, CNPJ ou a declaração regulatória formal de correspondente bancário exigida pela Resolução CMN nº 4.935/2021 (art. 14, II e III), configurando forte indício de irregularidade na apresentação comercial da marca.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revendedora de veículos/motos (@ouromotosmultimarcas) e veicula peça publicitária exibindo com grande destaque a marca e logotipo oficial do Banco BV para o produto &#39;Empréstimo com Garantia de Veículo BV&#39;. O tercei</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ca6c10ba9e9/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DVewoY7gWls/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ca6c10ba9e9.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Publicação em perfil de rede social promovendo feirão de veículos com exibição destacada da marca/logotipo do Banco BV e promessa de &#39;financiamento direto com o Banco BV&#39;, sem identificação societária (CNPJ/razão social) e sem qualquer menção à condição de correspondente bancário, violando as disposições do art. 14 da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A publicação em rede social promove evento comercial de feirão de veículos utilizando em destaque o logotipo do Banco BV (&#39;apoio banco BV&#39;) e oferecendo &#39;financiamento na hora direto com o Banco BV&#39;. O perfil não apresenta identificação de razão social, CNPJ, condição de correspondente bancário ou canais de ouvidoria, em desconfor</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C579f30ead5/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DX9JjyQA7CP/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C579f30ead5.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de uma revendedora multimarcas promovendo a venda de veículos financiada sob o nome &#39;FEIRÃO BANCO BV FINANCEIRA&#39;. A publicação utiliza adereços com a marca &#39;Feirão BV&#39; (chave gigante e camiseta) e intitula o evento com o nome do banco, sem divulgar CNPJ/razão social e sem apresentar a declaração regulamentar obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021). Configura forte indício de irregularidade e uso indevido de canal de comunicação com a marca.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revendedora de veículos (@willcar.am / Ayrton Car) promovendo financiamento automotivo sob o título &#39;FEIRÃO BANCO BV FINANCEIRA&#39;. A peça visual (E-SHOT-FUL</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ca8399af263/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DX_6qO3u-Vj/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ca8399af263.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação no Instagram da loja de veículos Melo Multimarcas comercializa refinanciamento de veículos utilizando em destaque o logotipo oficial do Banco BV sobre fundo azul institucional no próprio vídeo publicitário. A postagem omite a razão social e CNPJ da loja, bem como a declaração obrigatória de correspondente bancário independente exigida pelo art. 14 da Resolução CMN nº 4.935/2021, caracterizando forte indício de irregularidade regulatória e potencial confusão de canal oficial perante o consumidor.
+[Revisor: CONFIRM] A publicação no Instagram pertence a uma revenda de veículos multimarcas (@melomultimarcas1) atuando na captação de clientes para refinanciamento de veículos. O vídeo </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cf56d918a34/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DYAdQ8DuLOh/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cf56d918a34.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O anúncio em rede social veiculado pela loja de veículos Melo Automóveis utiliza com grande destaque visual a marca e o logotipo oficial do Banco BV para ofertar refinanciamento veicular. A peça não inclui a razão social ou CNPJ da loja e omite integralmente o aviso regulatório obrigatório de correspondente bancário (Resolução CMN nº 4.935/2021), configurando overbranding e risco de confusão do consumidor quanto ao canal oficial de contratação.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revenda de veículos multimarcas (@melo.automoveis) que veicula peça publicitária (reel) dominada exclusivamente pela identidade visual e logotipo oficial do Banco BV em tela cheia (E-SHOT-F</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C4785ce6d05/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DYkSSBmPU4d/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C4785ce6d05.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social de estabelecimento comercial de revenda de veículos (Mago Motors) utiliza em grande destaque a marca e o logotipo oficial do Banco BV para divulgar o &#39;Feirão BV da Mago Motors&#39;. A peça publicitária omite por completo os dados cadastrais (CNPJ/razão social) e a declaração obrigatória de correspondente bancário exigida pela Resolução CMN nº 4.935/2021 (art. 14, II e III), gerando risco de confusão visual e percepção de canal oficial perante o consumidor.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revenda de veículos (Mago Motors) e exibe o logotipo oficial do Banco BV em grande destaque no centro da peça publicitária (&#39;Feirão BV&#39;). Não há identifi</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C42c6bab550/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Dak8GdzR2n3/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C42c6bab550.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O anúncio publicado pelo perfil autowebgarage promove serviço de crédito (&#39;Empréstimo com Garantia de Veículo BV&#39;) utilizando arte gráfica dominada pela identidade visual e logotipo oficial do Banco BV. A postagem omite a razão social, CNPJ e a declaração obrigatória de correspondente bancário exigida pelo art. 14 da Resolução CMN nº 4.935/2021, direcionando os interessados para um WhatsApp não homologado, o que configura forte indício de irregularidade e risco de confusão do consumidor.
+[Revisor: CONFIRM] A publicação no perfil @autowebgarage (loja/intermediador de veículos) exibe peça publicitária amplamente dominada pela identidade visual do Banco BV, incluindo logotipo oficial &#39;BV banco&#39;</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cf751c2ba6f/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Dc3nf19RU0f/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cf751c2ba6f.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social promove produto financeiro (&#39;Refinanciamento BV Financeira&#39;) utilizando em destaque o logotipo do Banco BV na arte gráfica do vídeo, sem informar a razão social ou CNPJ da empresa promotora e sem exibir a declaração obrigatória de correspondente bancário (Res. CMN nº 4.935/2021, art. 14). Conforme os critérios para publicações de redes sociais de terceiros comerciais com uso proeminente da marca sem as devidas transparências regulatórias, o caso se enquadra em STRONG_INDICATION com prioridade HIGH.
+[Revisor: CONFIRM] A publicação no Instagram (@bruno_g2despachante) promove produto de crédito veicular (&#39;Refinanciamento BV Financeira&#39;) exibindo de forma proeminente </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cd4aa578e78/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Dc6yY97uJ4c/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cd4aa578e78.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social promove financiamento veicular em um feirão utilizando forte aparato visual do Banco BV (camiseta com logo, tenda inflável e logotipo na arte). Há omissão de CNPJ e de menção expressa à condição de correspondente bancário independente, gerando aparente atendimento direto pelo banco e configurando indício forte de irregularidade regulatória (Res. CMN 4.935/2021).
+[Revisor: CONFIRM] A publicação em rede social é de autoria de organizadores de feirão de veículos e loja multimarcas (@bigfeiraomogiguacu e @guarnieriauto.loja2), apresentando uso massivo e desproporcional da marca Banco BV (tenda inflável, camiseta institucional e logotipo em destaque na tela). Não há fo</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C83e85e56f0/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DcBlARFx0L-/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C83e85e56f0.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social promove um feirão automotivo acoplando o nome e logotipo do Banco BV em grande evidência (pórtico inflável e crachá institucional), sem cumprir os requisitos de transparência da Resolução CMN nº 4.935/2021 (ausência de menção expressa à condição de correspondente bancário e omissão de CNPJ/razão social da revendedora). O conjunto visual e textual gera forte indício de confusão e aparência de canal oficial do banco.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revendedora multimarcas de veículos (Portal Multimarcas) promovendo feirão automotivo com uso ostensivo da identidade visual e logotipo oficial do Banco BV (destaque para pórtico inflável e c</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ce8bff97b1a/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Dcd4bYrOCio/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ce8bff97b1a.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social divulga um feirão/ação de crédito de veículos utilizando em destaque o logotipo institucional atual do Banco BV em inflável promocional e o nome &#39;BV Financeira&#39;, oferecendo condições financeiras (taxas reduzidas, prazos de 60x). O anúncio omite CNPJ/razão social dos responsáveis e a declaração obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021, art. 14, II e III), configurando canal de aparência oficial/overbranding sem transparência regulatória.
+[Revisor: CONFIRM] A publicação em rede social divulga uma ação promocional de feirão de veículos (&#39;Super ação da BV FINANCEIRA!&#39;) em parceria com diversas revendedoras de automóveis locais, utilizando lo</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C65b4715c0f/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DePmBKAJv1E/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C65b4715c0f.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O anúncio publicado pelo perfil comercial @norte_motors utiliza o logotipo oficial do Banco BV em destaque no vídeo e cita a &#39;Bv financeira&#39; na legenda para captação de clientes de crédito com garantia de veículo. Não há qualquer transparência regulatória quanto à condição de correspondente bancário, CNPJ ou razão social da loja, enquadrando-se nas hipóteses de forte indício de irregularidade e risco de confusão do consumidor.
+[Revisor: CONFIRM] A publicação no Instagram pertence à loja de veículos @norte_motors e consiste em uma peça promocional em vídeo oferecendo crédito com garantia veicular. O vídeo exibe em destaque o logotipo do Banco BV (conforme verificado em E-SHOT-VIEWPORT e E-SHO</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C7833c05539/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DekcUi1gPm_/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C7833c05539.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O reel no Instagram promove financiamento automotivo em evento de feirão de veículos utilizando ampla caracterização e marca do Banco BV. Embora aparente ser uma ação comercial/publicitária do próprio evento ou de correspondente parceiro, a comunicação não explicita a razão social/CNPJ da empresa responsável nem o aviso regulatório de correspondente bancário, caracterizando comunicação ambígua que requer revisão.
+[Revisor: CONFIRM] A publicação em rede social promove financiamento automotivo no evento &#39;Big Feirão de Veículos&#39; utilizando ostensivamente a marca Banco BV (arte 3D &#39;BV responde&#39;, camiseta institucional e windbanner), sem exibir razão social, CNPJ da promotora/loja organizadora, o</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cff90e77726/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Df2TxbHgOH5/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cff90e77726.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A loja de veículos promove um feirão automotivo (&#39;Mega Feirao @bancobv&#39;) valendo-se de forte overbranding com a marca oficial atual do Banco BV em balões, displays, banners e vestimenta. Não há indicação de CNPJ, razão social ou a declaração obrigatória de correspondente bancário nos termos da Resolução CMN nº 4.935/2021, configurando cenário com forte indício de irregularidade e risco de confusão quanto à oficialidade da ação.
+[Revisor: CONFIRM] A publicação em rede social pertence à loja de veículos multimarcas euro7multimarcas e divulga o &#39;Mega Feirao @bancobv&#39;. As evidências visuais (E-SHOT-VIEWPORT e E-SHOT-FULL) revelam uso desproporcional e massivo da identidade visual do Banco BV (lo</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C0eeef5f330/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Df4gse4xiX8/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C0eeef5f330.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O reel no Instagram promove feirão de veículos utilizando extensivamente a marca e logotipo do Banco BV e NaPista (em camiseta, windbanner e cenografia), porém sem identificar o CNPJ e razão social da loja e sem apresentar a declaração obrigatória de correspondente bancário conforme a Resolução CMN nº 4.935/2021, justificando classificação de STRONG_INDICATION com prioridade HIGH.
+[Revisor: CONFIRM] A publicação no Instagram pertence a uma revenda de veículos (PH Veículos) divulgando feirão automotivo (&#39;MEGA FEIRÃO BV NA PH VEÍCULOS!&#39;). As evidências visuais (E-SHOT-VIEWPORT e E-SHOT-FULL) comprovam uso ostensivo da marca e identidade visual do Banco BV (camiseta promocional &#39;Feirão BV&#39;, win</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cdf14ec2800/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Df7IoDgRZck/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cdf14ec2800.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O anúncio em vídeo veiculado pela loja de veículos &#39;A F VEÍCULOS&#39; utiliza intensamente a identidade visual contemporânea do Banco BV (&#39;Feirão BV&#39;), incluindo camiseta institucional, balões e painel de fundo, utilizando a marca bancária como chamariz primário. Apesar de se tratar de revenda comercial dentro do escopo de correspondentes, a peça omite o CNPJ da empresa e não apresenta a declaração regulatória obrigatória de correspondente bancário (Res. CMN nº 4.935/2021), configurando overbranding e aparente representação direta.
+[Revisor: CONFIRM] A publicação em vídeo no perfil de rede social pertence a uma revenda de automóveis (&#39;AF Veículos&#39;) promovendo financiamento veicular associado ao </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cbc2261ca22/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DfKSjkNtpQT/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cbc2261ca22.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação da revenda de veículos utiliza excessiva e desproporcionalmente a marca Banco BV, promovendo um &#39;Feirão do Banco BV&#39; com cenografia completa (banner institucional, uniforme/camiseta com a marca e bexigas personalizadas), sem identificar CNPJ/razão social e sem incluir a declaração de correspondente bancário exigida pela Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A publicação no perfil de revenda de veículos (@vitorioveiculos) promove o &#39;Feirão do Banco BV&#39; com uso ostensivo da marca BV (banner vertical de grande porte, camiseta temática e balões nos veículos em exposição), sem fornecer a devida identificação da razão social, CNPJ e condição de correspondente bancário, em de</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Ce83af49a42/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DfnYJATqKGW/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ce83af49a42.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O anúncio promove a venda de veículos sob a chamada &#39;Feirão BANCO BV!&#39;, posicionando o logotipo oficial do Banco BV em destaque principal na arte gráfica da postagem. Embora a loja identifique seu nome fantasia e localização, omite o CNPJ/razão social e a declaração obrigatória de correspondente bancário, descumprindo os artigos 14, II e III da Resolução CMN nº 4.935/2021 e configurando indício forte de uso irregular da marca em ação comercial.
+[Revisor: CONFIRM] A publicação em rede social pertence a uma revendedora de veículos (&#39;Rossi Multimarcas&#39;) promovendo vendas com destaque ao logotipo oficial do Banco BV sob o título &#39;Feirão BV banco&#39; (E-SHOT-VIEWPORT, E-SHOT-FULL). Não há apresentaç</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C77f61552f3/attempt-1/viewport.png" alt="Captura da página nacionalveiculosabc.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://www[.]nacionalveiculosabc[.]com[.]br/financiamento</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2020-07-24 (2316 dias)</dd><dt>Titular</dt><dd>NACIONAL VEICULOS ABC LTDA</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (162.159.143.12); Cloudflare, Inc. (172.66.3.8)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C77f61552f3.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem [E-VIS-LEGACY-001]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-FTR, E-FTR]. (Pontuação de triagem: confusão 3.5, transparência 0.5; ordena casos, não prova.)
+[Revisor: </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/C8e1663975d/attempt-1/viewport.png" alt="Captura da página osmarzinhoveiculos.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://www[.]osmarzinhoveiculos[.]com[.]br/financiamentos</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2017-09-14 (3359 dias)</dd><dt>Titular</dt><dd>OSMARZINHO COMERCIO DE VEICULOS LTDA ME</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (162.159.143.12); Cloudflare, Inc. (172.66.3.8)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C8e1663975d.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário B_AMBIGUOUS_COMMUNICATION: uso destacado da marca sem transparência suficiente. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2, E-IMG-3]; Logotipo antigo da marca (identidade visual descontinuada) confirmado por comparação de imagem [E-VIS-LEGACY-001]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-DISC-001]. (Pontuação de triagem: confusão 3.5, transparência 0.5; ordena casos, não prova.)
+[Revisor: HU</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-233558-900e/evidence/Cfcd7f34c61/attempt-1/viewport.png" alt="Captura da página socaminhoesvirtual.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://www[.]socaminhoesvirtual[.]com[.]br/financiamento-caminhao</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2025-08-20 (462 dias)</dd><dt>Titular</dt><dd>SO CAMINHOES VIRTUAL LTDA</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.21.7.158); Cloudflare, Inc. (172.67.136.240)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cfcd7f34c61.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Triagem heurística — cenário C_POSSIBLE_OFFICIAL_CHANNEL: elementos que sugerem atendimento direto pela instituição. Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: Imagem possivelmente de logotipo da marca acima da dobra [E-IMG-1, E-IMG-2]; Expressões de oficialidade associadas à marca: PARCEIRO OFICIAL Banco BV [E-FOLD]; Nenhuma declaração de correspondente/independência observada no conteúdo coletado [E-FTR, E-FOLD]; Atendimento por WhatsApp sob identidade destacada da marca [E-DISC-001, E-CONTACT-1, E-CONTACT-2]. Elementos de transparência/identificação do terceiro: Empresa responsável identificada por CNPJ [E-FTR, E-CONTACT-4]. (Pontuação de triage</details>    </div>
+  </div>
+
+
+  <h2>Registros defensivos do próprio grupo (3)</h2>
+  <table>
+    <tr><th>Domínio</th><th>Titular</th></tr>
+<tr><td class="mono">bvcartao.com.br</td><td>BANCO VOTORANTIM S/A</td></tr><tr><td class="mono">bvfinanceiracartao.com.br</td><td>BANCO VOTORANTIM S/A</td></tr><tr><td class="mono">cartaobv.com.br</td><td>BANCO VOTORANTIM S/A</td></tr>  </table>
+</main>
+</body>
+</html>

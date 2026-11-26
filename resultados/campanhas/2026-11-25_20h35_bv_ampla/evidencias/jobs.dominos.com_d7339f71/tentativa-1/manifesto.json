@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cd7339f71bf",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://jobs.dominos.com/us/",
+  "final_url": "https://jobs.dominos.com/us/",
+  "redirect_chain": [
+    "https://jobs.dominos.com/us/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.18.20.249",
+  "collected_at": "2026-11-26T03:01:17.328900+00:00",
+  "manifest_written_at": "2026-11-26T03:01:24.541614+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cd7339f71bf/attempt-1/viewport.png",
+      "sha256": "e005b482ce629aaa1a2e9688e8fd3bb933c88e9aeb663fe5047ac45c9615e328",
+      "size_bytes": 39321
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cd7339f71bf/attempt-1/fullpage.png",
+      "sha256": "e005b482ce629aaa1a2e9688e8fd3bb933c88e9aeb663fe5047ac45c9615e328",
+      "size_bytes": 39321
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cd7339f71bf/attempt-1/page.html.txt",
+      "sha256": "f0abe28c5659e0a163feee6e57ef7c3230e37e68609a7d7bc0f9af2481455458",
+      "size_bytes": 44809
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cd7339f71bf/attempt-1/text.txt",
+      "sha256": "56dfeafda8e0cbf435cec56277225254b35af11b49322fa853eb32c54d225644",
+      "size_bytes": 290
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cd7339f71bf/attempt-1/page.json",
+      "sha256": "f238b79d376da60171ce5290fe3cb42975a90f4648af2f1eea74443ae62ae077",
+      "size_bytes": 1444
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

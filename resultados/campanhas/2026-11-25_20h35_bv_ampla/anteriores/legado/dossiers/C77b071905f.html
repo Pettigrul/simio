@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C77b071905f</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-233558-900e</b> · Gerado em: 2026-11-26T03:28:28+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C77b071905f — queroquitar.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.queroquitar.com.br/bv/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2012-05-23 (5299 dias)</div><div class="kv"><b>Titular do domínio</b>Quero Quitar S.A.</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: 3L CLOUD INTERNET SERVICES LTDA - EPP (170.82.173.30, BR); 3L CLOUD INTERNET SERVICES LTDA - EPP (170.82.174.30, BR)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ns-1120.awsdns-12.org, ns-1806.awsdns-33.co.uk, ns-186.awsdns-23.com, ns-974.awsdns-57.net / aspmx.l.google.com, alt3.aspmx.l.google.com, alt4.aspmx.l.google.com, alt1.aspmx.l.google.com, alt2.aspmx.l.google.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>noc@gocache.com.br</div>      <div class="kv"><b>Identidade (categoria)</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Confiança da atribuição</b>HIGH</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma plataforma autorizada de negociação de dívidas (QueroQuitar S.A., CNPJ 54.042.668/0001-20), com identidade comercial própria e logotipo oficial atual do Banco BV. Embora a atividade seja legítima e não haja tentativa de personificação fraudulenta do banco, a comunicação enquadra-se como ambígua em relação aos requisitos regulatórios da Resolução CMN nº 4.935/2021 por utilizar o termo &#39;Parceiro oficial&#39; sem apresentar formalmente a declaração de correspondente bancário e a identificação da ouvidoria da instituição financeira.
+[Revisor: CONFIRM] A página pertence à plataforma QueroQuitar S.A. (CNPJ 54.042.668/0001-20), correspondente bancário autorizado constante no cadastro de parceiros do Banco BV. Embora identifique adequadamente sua razão social no rodapé e opere em contexto de renegociação com múltiplos credores, a landing page utiliza o termo &#39;Parceiro oficial&#39; e a marca BV em destaque sem incluir os avisos regulatórios formais de correspondente bancário e os canais de ouvidoria da instituição contratante (Resolução CMN nº 4.935/2021, art. 14). A classificação REVIEW_REQUIRED é confirmada conforme as diretrizes.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C77b071905f/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 7ac504805d50beb61a1ee779cca4caebe24195ba9f329482b88c2449c6bdb920</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-233558-900e/evidence/C77b071905f/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 9d73f1b8223bd5897a6b68c8b6d2db06545117de29a7cf5f1ddf5d4dbf3782d3</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.queroquitar.com.br/bv/ (domínio: www.queroquitar.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): queroquitar.com.br — Com base nas consultas e diretrizes de auditoria de proteção de marca e conformidade com a **Resolução CMN nº 4.935/2021**, foram mapeadas **12 páginas públicas de terceiros** na web brasileira que ofertam ou intermediam serviços sensíveis (emissão de 2ª via de boleto, quitação de contrato, negociação de dívida e atendimento paralelo) utilizando os termos e marcas **Banco BV** / **BV Financeira** | **URL:** `https://queroquitar.com.br` | **Uso da Marca:** Apresenta seções dedicadas com o título *&#34;Negociação BV: confira a oferta com desconto de até 90%&#34;* | Permite consulta por CPF/CNPJ para gerar proposta de quitação, parcelamento e emissão de boletos de acordo, promovendo atendimento e canal de negociação via WhatsApp e QR Code | CMN 4.935/2021:** Identifica-se como plataforma intermediadora parceira; exibe dados corporativos no rodapé, porém atua no segmento de cobrança/recuperação sem o modelo estrito de correspondente de originação de crédito</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Negociação BV: confira a oferta com desconto de até 90% — Parceiro oficial. Logo bv. Logo da QueroQuitar. Entrar · Dívidas · Crédito ... O que é o Banco BV? Ícone expandir. O Banco BV é uma instituição financeira ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C77b071905f/attempt-1/viewport.png (sha256 7ac504805d50beb6…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C77b071905f/attempt-1/fullpage.png (sha256 9d73f1b8223bd589…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Negociação BV: confira a oferta com desconto de até 90%</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Negociação BV: confira a oferta com desconto de até 90%</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Acordo simples e com as melhores condições</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Conseguimos os melhores descontos para você!</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Dívida total atualizada</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Valor negociado pela QueroQuitar</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Com o BV, acordo bom, é na QueroQuitar</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Quer saber como quitar um contrato com o BV?</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Você está a poucos passos de fechar um acordo</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Consulte grátis</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Selecione uma dívida</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Escolha uma oferta</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Confirme o acordo</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Confira com quem você pode negociar</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>Fez um acordo e tem dúvidas de como pagar seu boleto de quitação BV?</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Duvidas frequentes BV</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Parceiro oficial Dívidas Crédito Seguros Ajuda Consulte grátis</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Parceiro oficial Dívidas Crédito Seguros Ajuda Consulte grátis Negociação BV : confira a oferta com desconto de até 90% Acordo simples e com as melhores condições Consulte grátis Conseguimos os melhores descontos para você! Veja um exemplo de negociação. 90% de desconto</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>QueroQuitar S.A - CNPJ: 54.042.668/0001-20 Av. dos Autonomistas, nº 2561, sala 17 – Centro – Osasco/SP – CEP 06090-020 Atendimento somente nos canais digitais, rápido e sem burocracias. Não realizamos atendimento presencial. Nossos contatos WhatsApp: +55 (11) 97670-0558 Email: contato@queroquitar.com.br Dívida Crédito Seguros Blog Parceiros Santander Claro Sky Porto Bank Ver tudo Seja um parceiro Ajuda Quem somos Segurança Blog Termos de uso Politica de privacidade Baixe o nosso App Ajude seus amigos a quitarem suas dívidas! Enviar pelo WhatsApp</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://www.queroquitar.com.br/&gt; |  &lt;https://www.queroquitar.com.br/bv/&gt; | Dívidas &lt;https://www.queroquitar.com.br/&gt; | Crédito &lt;https://www.queroquitar.com.br/querocredito/&gt; | Seguros &lt;https://www.queroquitar.com.br/quero-seguros/&gt; | Ajuda &lt;https://www.queroquitar.com.br/ajuda/&gt; | Consulte grátis &lt;https://app.queroquitar.com.br/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Consulte grátis &lt;https://app.queroquitar.com.br/&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Consulte grátis</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Consulte grátis &lt;https://app.queroquitar.com.br/&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Consultar Grátis &lt;https://app.queroquitar.com.br/&gt;</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Ver todos os parceiros &lt;https://www.queroquitar.com.br/parceiros/&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Central de ajuda &lt;https://www.queroquitar.com.br/ajuda&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Seta para ir para esquerda</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/cielo/divida-cielo-como-negociar%20/&gt;</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/dividas/como-pagar-uma-divida-que-foi-vendida/&gt;</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/dividas/boleto-do-acordo-vencido%20/&gt;</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/credito/consignado-privado-ou-emprestimo-pessoal%20/&gt;</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/dividas/paguei-divida-nome-continua-serasa/&gt;</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/organizacao/boletos-vencimento-20-novembro-2026-feriado/&gt;</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/besni/divida-besni-fatura-atrasada-negociar-queroquitar/&gt;</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>Ler mais &lt;https://www.queroquitar.com.br/querorenda/blog/noticias/inss-novembro-2026-calendario-pagamentos/&gt;</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>Seta para ir para direita</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>Ver mais &lt;https://www.queroquitar.com.br/blog/&gt;</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>Seta para ir para esquerda</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>Seta para ir para direita</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>footer</td><td>Abrir QRCode</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Whatsapp &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>Email: contato@queroquitar.com.br &lt;mailto:contato@queroquitar.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td>+55 (11) 97670-0558 &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>contato@queroquitar.com.br &lt;mailto:contato@queroquitar.com.br&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>Abrir Whatsapp web &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/queroquitar/&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/queroquitar&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>footer</td><td> &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo QueroQuitar&#39; src=https://www.queroquitar.com.br/assets/images/QQ_vertical_P1-P.png (80x80, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Logo bv&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-start/bv.png (200x40, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;uma mulher feliz sorrindo usando o celular&#39; src=https://www.queroquitar.com.br/assets/images/optimized/hero_lp-bv-tp.png (500x473, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logo bv&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-start/bv.png (200x40, acima da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Logo Quero Quitar&#39; src=https://www.queroquitar.com.br/assets/images/qq_icon.svg (56x41, acima da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo santander&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/santander.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo claro&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/claro.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo sky&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/sky.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo porto-seguro&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/porto_seguro.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo renner&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/renner.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo recovery&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/recovery.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo zema&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/zema.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo cea&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/cea.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo btg&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/btg.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-15"><td class="mono"><b>E-IMG-15</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo santander-empresas&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/logo-santander-empresas-2.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-16"><td class="mono"><b>E-IMG-16</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo avenida&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/avenida_principal.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-17"><td class="mono"><b>E-IMG-17</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo tricard&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/tricard.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-18"><td class="mono"><b>E-IMG-18</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo cielo&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/cielo.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-19"><td class="mono"><b>E-IMG-19</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo banco-pan&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/pan.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-IMG-20"><td class="mono"><b>E-IMG-20</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Logo carrefour&#39; src=https://www.queroquitar.com.br/assets/images/optimized/creditor-center/banco-carrefour.png (200x77, abaixo da dobra)</td></tr>
+      <tr id="E-OFFICIAL-LINKS"><td class="mono"><b>E-OFFICIAL-LINKS</b></td><td>link</td><td>page</td><td>https://www.bv.com.br/atendimento &lt;https://www.bv.com.br/atendimento&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Parceiro oficial</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Negociação BV: confira a oferta com desconto de até 90%</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Com o BV, acordo bom, é na QueroQuitar</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Na QueroQuitar você decide como pagar débitos e colocar a vida financeira em dia. As contas do BV, dívidas, atraso, tudo isso pode ser resolvido. Basta acessar nossa plataforma ou fazer o cadastro, para ter acesso às melhores condições e descontos, preparadas especialmente para você. Se tem dívidas com o BV, quitação rápida, fácil e segura é aqui mesmo. Descomplique e organize sua vida em poucos</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>cliques com nosso parceiro BV. Independente do débito, quem resolve a situação é você.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Quer saber como quitar um contrato com o BV?</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A QueroQuitar é o lugar certo. Uma plataforma 100% online e totalmente gratuita para pagar dívidas! São milhares de acordos fechados todos os meses, ajudando de forma efetiva pessoas por todo o Brasil. Temos os melhores descontos e parcelamentos. Negociação feita com nossos parceiros, para oferecer as melhores ofertas para pagamento de dívida. Tudo de maneira rápida, simples e confiável. Todos os</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>É bem simples. Digite o CPF ou CNPJ.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Você paga o boleto e tem o nome limpo em 5 dias úteis</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Ver todos os parceiros</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Fez um acordo e tem dúvidas de como pagar seu boleto de quitação BV?</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>Saiba que é tão simples quanto o acordo que fez. Veja as opções que existem para pagamento do boleto:</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Via Internet Banking ou apps do seu banco;</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Quer saber como baixar o boleto? Fácil Ao visualizar a proposta e fechar um acordo BV, o boleto é enviado pelo escolhido no momento do cadastro. Caso seja por e-mail, você receberá o boleto em pdf. No caso de SMS, será enviado um código de barras para pagamento.</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Sempre que precisar, você pode baixar o boleto de quitação BV, pela QueroQuitar. É só acessar o site, preencher os dados de acesso e localizar seu acordo, clicando em “Detalhes do Acordo”. Depois, baixe o boleto ou copie o código de barras. Em seguida, efetue o pagamento da dívida.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Duvidas frequentes BV</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>O que é o Banco BV?</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>O Banco BV é uma instituição financeira brasileira que viabiliza produtos financeiros para mais de 15 milhões de brasileiros e tem como objetivo simplificar o dia-a-dia das empresas, oferecendo soluções criativas de investimento.</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Qual o telefone 0800 do BV?</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Se você deseja contratar crédito e financiamento com o BV, pode entrar em contato pelos telefones:</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Como faço para saber meu limite do cartão BV?</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Para saber o limite do seu cartão BV, consulte no app “Meu Cartão BV”. Na tela principal, busque a opção “Limite Disponível” ou “Limite total”.</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Após o pagamento à vista ou da primeira parcela do acordo, o BV tem um prazo de 5 a 7 dias úteis para retirar o nome dos órgãos de proteção ao crédito.</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Após o pagamento da primeira parcela ou do acordo à vista, verifique com o próprio BV, qual o procedimento para a liberação. Para isso acesse o site do BV na área de atendimento:</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>https://www.bv.com.br/atendimento</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>Gostaria de cancelar meu acordo com o BV, como faço?</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Onde e como posso pagar meu boleto BV acordo?</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Na QueroQuitar é muito fácil pagar o seu boleto de acordo BV. Você pode:</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Via Internet Banking ou aplicativos do seu banco;</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>Não se esqueça de ter o boleto em mãos.</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>É possível realizar a quitação total da minha dívida?</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>Sim, se a dívida do BV estiver conosco. Clique aqui , consulte se há alguma oferta disponível, selecione a melhor opção e feche o acordo. Depois pague os boletos que estarão disponíveis na área “Meus Acordos” do nosso site. Enviaremos também os boletos por SMS (código de barras) ou por e-mail (boleto). Tudo de maneira simples, rápida e confiável. Caso já tenha um acordo ativo e queira antecipar o</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>Boleto do acordo vencido: posso pagar normalmente ou preciso solicitar uma segunda via?</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>Seu boleto do acordo venceu? Saiba quando pedir segunda via, se é possível pagar atrasado e como evitar perder o desconto da negociação.</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>Feriados de novembro de 2026: o que acontece com os boletos que vencem no dia 20?</td></tr>
+      <tr id="E-TXT-036"><td class="mono"><b>E-TXT-036</b></td><td>text</td><td>page</td><td>Boleto vence no feriado de 20 de novembro de 2026? Saiba quando pagar sem juros, o que muda nos bancos e quais contas exigem atenção.</td></tr>
+      <tr id="E-TXT-037"><td class="mono"><b>E-TXT-037</b></td><td>text</td><td>page</td><td>Dívida Besni atrasada? Saiba como consultar a fatura, pedir a segunda via e negociar pela QueroQuitar com descontos e parcelamentos disponíveis.</td></tr>
+      <tr id="E-TXT-038"><td class="mono"><b>E-TXT-038</b></td><td>text</td><td>page</td><td>Minha experiência com quero quitar foi ótima excelente atendimento amei o desconto que me deram pra quitar minha dívida com o Santander, se não fosse a quero quitar não sei como iria pagar a minha dívida, sou grata a vocês por terem me ajudado, recomendo, a quero quitar é nota 10.</td></tr>
+      <tr id="E-TXT-039"><td class="mono"><b>E-TXT-039</b></td><td>text</td><td>page</td><td>Whatsapp</td></tr>
+      <tr id="E-TXT-040"><td class="mono"><b>E-TXT-040</b></td><td>text</td><td>page</td><td>QueroQuitar S.A - CNPJ: 54.042.668/0001-20</td></tr>
+      <tr id="E-TXT-041"><td class="mono"><b>E-TXT-041</b></td><td>text</td><td>page</td><td>Av. dos Autonomistas, nº 2561, sala 17 – Centro – Osasco/SP – CEP 06090-020</td></tr>
+      <tr id="E-TXT-042"><td class="mono"><b>E-TXT-042</b></td><td>text</td><td>page</td><td>Atendimento somente nos canais digitais, rápido e sem burocracias. Não realizamos atendimento presencial.</td></tr>
+      <tr id="E-TXT-043"><td class="mono"><b>E-TXT-043</b></td><td>text</td><td>page</td><td>WhatsApp:</td></tr>
+      <tr id="E-TXT-044"><td class="mono"><b>E-TXT-044</b></td><td>text</td><td>page</td><td>Parceiros</td></tr>
+      <tr id="E-TXT-045"><td class="mono"><b>E-TXT-045</b></td><td>text</td><td>page</td><td>Seja um parceiro</td></tr>
+      <tr id="E-TXT-046"><td class="mono"><b>E-TXT-046</b></td><td>text</td><td>page</td><td>Enviar pelo WhatsApp</td></tr>
+      <tr id="E-FORM-001"><td class="mono"><b>E-FORM-001</b></td><td>form</td><td>page</td><td>Campo de formulário que pede CPF (type=text, name=doc, placeholder=Digite seu CPF ou CNPJ)</td></tr>
+      <tr id="E-FORM-ACTION"><td class="mono"><b>E-FORM-ACTION</b></td><td>form</td><td>page</td><td>Formulário envia os dados para outro domínio: app.queroquitar.com.br</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A landing page adota a cor azul e banners temáticos com a chancela &#39;BV parceiro&#39;, porém mantém a identidade visual e o logotipo da QueroQuitar evidentes no topo, no fluxo de negociação e no rodapé.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-5">E-IMG-5</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>A entidade declara com clareza sua razão social (QueroQuitar S.A.), CNPJ (54.042.668/0001-20) e endereço físico completo em Osasco/SP, tratando-se de agente com registro confirmado no cadastro de parceiros.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-040">E-TXT-040</a> <a href="#E-TXT-041">E-TXT-041</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência da declaração regulatória obrigatória estipulada pelo art. 14 da Res. CMN nº 4.935/2021 sobre a atuação como correspondente bancário e ausência de menção expressa à ouvidoria da instituição bancária.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>O texto refere-se ao Banco BV em terceira pessoa (&#39;O que é o Banco BV?&#39;, &#39;nosso parceiro BV&#39;) e disponibiliza link direto para os canais oficiais de atendimento do banco.</td><td class="mono"><a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-017">E-TXT-017</a> <a href="#E-TXT-018">E-TXT-018</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Utilização do logotipo oficial contemporâneo (monocromático) do Banco BV associado ao selo de parceria. Nenhum indício de identidade visual legada (B vermelho / V azul).</td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página coleta CPF/CNPJ para consulta de débitos e redireciona para o subdomínio seguro próprio da plataforma (app.queroquitar.com.br), sem solicitar senhas bancárias ou códigos de segurança sensíveis.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-ACTION">E-FORM-ACTION</a> <a href="#E-CTA-1">E-CTA-1</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da QueroQuitar são devidamente informados (WhatsApp, e-mail de suporte), acompanhados de encaminhamento para a central oficial do Banco BV.</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>A apresentação como ecossistema multinegociação com diversas outras instituições (Santander, Pan, Recovery, etc.) diminui a chance de o consumidor acreditar estar em ambiente exclusivo do Banco BV.</td><td class="mono"><a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-19">E-IMG-19</a> <a href="#E-HEAD-13">E-HEAD-13</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página utiliza os termos &#39;Parceiro oficial&#39; e &#39;BV parceiro&#39; e promove a negociação/quitação de contratos e emissão de boletos do Banco BV sem exibir a declaração formal e explícita de correspondente bancário nem os dados de contato da Ouvidoria da instituição financeira contratante, em desacordo com as exigências de transparência da Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Identificação cadastral e societária completa no rodapé da QueroQuitar S.A. (CNPJ 54.042.668/0001-20), compatível com o cadastro de correspondentes autorizados. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-040">E-TXT-040</a> </span></li><li>[MEDIUM] CONSUMER_CONFUSION: Caráter explícito de plataforma multibancos/multiparceiros que exibe logotipos de diversos outros credores concorrentes no mercado. — <span class="mono"><a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-19">E-IMG-19</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: Direcionamento transparente e links para a página oficial de atendimento do Banco BV (https://www.bv.com.br/atendimento). — <span class="mono"><a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-TXT-025">E-TXT-025</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio pertence à QueroQuitar S.A., CNPJ 54.042.668/0001-20, correspondente cadastrado e autorizado.</li><li>A página oferta renegociação de dívidas do Banco BV sob o título &#39;Negociação BV: confira a oferta com desconto de até 90%&#39;.</li><li>O logotipo atual do Banco BV é exibido junto à chancela &#39;Parceiro oficial&#39;.</li><li>Não há uso da marca antiga/legada (B vermelho / V azul).</li><li>O formulário solicita CPF/CNPJ para consulta e submete os dados para o subdomínio próprio app.queroquitar.com.br.</li><li>Não consta na página a declaração expressa padronizada de correspondente bancário nem menção à Ouvidoria do Banco BV, conforme Res. CMN nº 4.935/2021.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>—</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma plataforma autorizada de negociação de dívidas (QueroQuitar S.A., CNPJ 54.042.668/0001-20), com identidade comercial própria e logotipo oficial atual do Banco BV. Embora a atividade seja legítima e não haja tentativa de personificação fraudulenta do banco, a comunicação enquadra-se como ambígua em relação aos requisitos regulatórios da Resolução CMN nº 4.935/2021 por utilizar o termo &#39;Parceiro oficial&#39; sem apresentar formalmente a declaração de correspondente bancário e a identificação da ouvidoria da instituição financeira.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>CONFIRMED_COBAN</div>
+      <div class="kv"><b>Entidade</b>QueroQuitar S.A<br><span class="mono">cnpj:54042668000120</span></div>
+      <div class="kv"><b>Confiança</b>HIGH</div>
+      <div class="kv"><b>Cadastro autorizado</b>coban_registry_bv.csv (ref. 2026-10-06) (cnpj)</div>
+    </div>
+    <p style="margin-top:12px;">CNPJ 54.042.668/0001-20 observado na página consta do cadastro autorizado &#39;coban_registry_bv.csv (ref. 2026-10-06)&#39;.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>queroquitar.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>54.042.668/0001-20</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>QueroQuitar S.A - CNPJ: 54.042.668/0001-20</td></tr>
+      <tr><td>legal_name</td><td>QueroQuitar S.A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>email</td><td>contato@queroquitar.com.br</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/queroquitar/</td><td class="mono"><a href="#E-CONTACT-6">E-CONTACT-6</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/queroquitar</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 97670-0558</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): queroquitar.com.br — Com base nas consultas e diretrizes de auditoria de proteção de marca e conformidade com a **Resolução CMN nº 4.935/2021**, foram mapeadas **12 página</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Whatsapp &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>+55 (11) 97670-0558 &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Abrir Whatsapp web &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td><td class="mono"><a href="#E-CONTACT-5">E-CONTACT-5</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://wa.me/5511976700558?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20negociar%20a%20minha%20d%C3%ADvida.%20O%20que%20preciso%20fazer%3F&gt;</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+      <tr><td>partnership_declaration</td><td>Parceiro oficial</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td>Parceiro oficial Dívidas Crédito Seguros Ajuda Consulte grátis Negociação BV : confira a oferta com desconto de até 90% Acordo simples e com as melhores condições Consulte grátis Conseguimos os melhor</td></tr>
+      <tr><td>partnership_declaration</td><td>parceiro</td><td class="mono"><a href="#E-TXT-005">E-TXT-005</a></td><td>cliques com nosso parceiro BV.</td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>associação página→CNPJ baseada na publicação do CNPJ na própria página</li><li>um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o domínio é seu</li><li>base da associação: cnpj publicado na página</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — HYPOTHESIS_OF_NONCONFORMITY</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HDR">E-HDR</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-005">E-TXT-005</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li><li>contrato de correspondente vigente e suas cláusulas</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-OFFICIAL-LINKS">E-OFFICIAL-LINKS</a> </span></p>
+<h3>Controles da contratante relacionados</h3><ul><li>Res. CMN 4.935/2021, art. 18, II e § 1º: Art. 18. [...] política de atuação e de contratação desses prestadores de serviços, prevendo, no mínimo: [...] II - mecanismos de controle de qualidade da atuação do correspondente [...]. § 1º Os mecanismos a que se refere o inciso II do caput devem conter medidas administrativas, contratualmente previstas, a serem adotadas pela instituição contratante em relação ao correspondente, aos substabelecidos e aos agentes certificados, se verificadas irregularidades ou inobservância dos padrões estabelecidos, incluindo a possibilidade de suspensão do atendimento prestado ao público e o encerramento antecipado do contrato nos casos considerados graves pela instituição contratante.</li><li>Res. CMN 4.935/2021, art. 19, caput e § 1º: Art. 19. As instituições mencionadas no art. 1º devem adequar o sistema de controles internos com o objetivo de monitorar as atividades de atendimento ao público realizadas por intermédio de correspondentes, compatibilizando-os com o volume e a complexidade das operações realizadas. § 1º A auditoria interna da instituição contratante deve avaliar, anualmente, a efetividade dos mecanismos de controle de qualidade.</li><li>Res. CMN 4.935/2021, art. 21: Art. 21. A instituição contratante deve manter atualizada a relação de seus contratados: I - na forma de dados abertos; e II - no seu sítio eletrônico na internet, acessível na página inicial e em local visível e formato legível.</li></ul><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence à plataforma QueroQuitar S.A. (CNPJ 54.042.668/0001-20), correspondente bancário autorizado constante no cadastro de parceiros do Banco BV. Embora identifique adequadamente sua razão social no rodapé e opere em contexto de renegociação com múltiplos credores, a landing page utiliza o termo &#39;Parceiro oficial&#39; e a marca BV em destaque sem incluir os avisos regulatórios formais de correspondente bancário e os canais de ouvidoria da instituição contratante (Resolução CMN nº 4.935/2021, art. 14). A classificação REVIEW_REQUIRED é confirmada conforme as diretrizes.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo: Páginas de terceiros ofertando serviços sensíveis com a marca (2ª via boleto, quitação, negociação, quitação de contrato).
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;2ª via&#34; OR &#34;segunda via&#34; OR &#34;quitação&#34; OR &#34;quitar financiamento&#34; OR &#34;acordo&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR contrato OR parcelas) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;central de atendimento&#34; OR &#34;fale com&#34; OR &#34;SAC&#34; OR &#34;0800&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR quitação OR negociação OR whatsapp) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos), informando para cada uma o nome do estabelecimento/perfil, a URL e como a marca é utilizada (destaque visual, título, feirão, simulador, redes sociais e se há ou não identificação clara de CNPJ e condição de correspondente bancário).<br><span class="muted">H7-threat-intel:sensitive-services</span></td><td class="mono">https://www.queroquitar.com.br/bv/</td><td>queroquitar.com.br<br><span class="muted">Com base nas consultas e diretrizes de auditoria de proteção de marca e conformidade com a **Resolução CMN nº 4.935/2021**, foram mapeadas **12 páginas públicas de terceiros** na web brasileira que ofertam ou intermediam serviços sensíveis (emissão de 2ª via de boleto, quitação de contrato, negociação de dívida e atendimento paralelo) utilizando os termos e marcas **Banco BV** / **BV Financeira** | **URL:** `https://queroquitar.com.br` | **Uso da Marca:** Apresenta seções dedicadas com o título *&#34;Negociação BV: confira a oferta com desconto de até 90%&#34;* | Permite consulta por CPF/CNPJ para gerar proposta de quitação, parcelamento e emissão de boletos de acordo, promovendo atendimento e canal de negociação via WhatsApp e QR Code | CMN 4.935/2021:** Identifica-se como plataforma intermediadora parceira; exibe dados corporativos no rodapé, porém atua no segmento de cobrança/recuperação sem o modelo estrito de correspondente de originação de crédito</span></td></tr>
+      <tr><td>serper</td><td>&#34;parceiro oficial&#34; &#34;Banco BV&#34;<br><span class="muted">H4-official-language</span></td><td class="mono">https://www.queroquitar.com.br/bv/</td><td>Negociação BV: confira a oferta com desconto de até 90%<br><span class="muted">Parceiro oficial. Logo bv. Logo da QueroQuitar. Entrar · Dívidas · Crédito ... O que é o Banco BV? Ícone expandir. O Banco BV é uma instituição financeira ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-26 01:33:25.826120+00:00</div>
+      <div class="kv"><b>IP do servidor</b>170.82.173.30</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C77b071905f/attempt-1/manifest.json<br>sha256 cdbb81187b15ae8e2bc7c7a5ddef86bac38829dab8f151491d14ebbdea251878</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.queroquitar.com.br/bv/<br>Final: https://www.queroquitar.com.br/bv/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C77b071905f/attempt-1/viewport.png</td><td class="mono">7ac504805d50beb61a1ee779cca4caebe24195ba9f329482b88c2449c6bdb920</td><td>225427</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C77b071905f/attempt-1/fullpage.png</td><td class="mono">9d73f1b8223bd5897a6b68c8b6d2db06545117de29a7cf5f1ddf5d4dbf3782d3</td><td>1488744</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C77b071905f/attempt-1/page.html.txt</td><td class="mono">bcb9d8e7c783d9bf03530d22b3c0fc867c59be41f32e61a73393cc30475d28f5</td><td>176682</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C77b071905f/attempt-1/text.txt</td><td class="mono">bb65b5bf6f52abef9485b91309f15c2be466b533e5334833817678fedcb0e7a2</td><td>11210</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C77b071905f/attempt-1/page.json</td><td class="mono">875b30371f1a552d66089e25d7bc401c3dd6e2003c9ef539a69580097ff14982</td><td>105335</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-26T01:27:29+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 6.0)</td></tr>
+      <tr><td>2026-11-26T01:33:25+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-26T01:33:32+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-26T01:33:32+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-26T01:33:56+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-26T01:34:03+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

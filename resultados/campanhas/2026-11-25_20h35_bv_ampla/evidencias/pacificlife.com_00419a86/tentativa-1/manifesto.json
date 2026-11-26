@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C00419a8673",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.pacificlife.com/home/about/investor-relations.html",
+  "final_url": "https://www.pacificlife.com/home/about/investor-relations.html",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "45.60.18.24",
+  "collected_at": "2026-11-26T03:01:32.833918+00:00",
+  "manifest_written_at": "2026-11-26T03:01:45.530782+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C00419a8673/attempt-1/viewport.png",
+      "sha256": "1cff76ba0ff545148c1f63ddcbf41b9e966f794c827d3e4345070fbce10f2551",
+      "size_bytes": 423323
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C00419a8673/attempt-1/fullpage.png",
+      "sha256": "a32bcbe6e2680f3e1737f078c16ac3363a9a0780787f15ccb72f8d5b537cc2ea",
+      "size_bytes": 1029218
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C00419a8673/attempt-1/page.html.txt",
+      "sha256": "3e793c330f6c8654c85b87b206ed9c4277c91ae432951fe3846b149eecc313b6",
+      "size_bytes": 232311
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C00419a8673/attempt-1/text.txt",
+      "sha256": "df4c383349b4466fbfb5c68fff4895bdadde84fe946cbfe4b0d18f98bc7243b6",
+      "size_bytes": 5270
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C00419a8673/attempt-1/page.json",
+      "sha256": "b7825cef5c898b8eedf9603c1153d0fe7f2334d62827db5321785e74ee98bebe",
+      "size_bytes": 24422
+    }
+  ],
+  "blocked_requests": [
+    "https://cdn.krxd.net/controltag/tgv3zn8fv.js -> DNS resolution failed for cdn.krxd.net: [Errno -5] No address associated with hostname"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

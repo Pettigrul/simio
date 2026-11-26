@@ -1,0 +1,59 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C0681a74e0c",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://openfinancebrasil.org.br/quem-participa/",
+  "final_url": "https://openfinancebrasil.org.br/quem-participa/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "13.227.207.41",
+  "collected_at": "2026-11-26T03:01:40.639582+00:00",
+  "manifest_written_at": "2026-11-26T03:01:51.701677+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C0681a74e0c/attempt-1/viewport.png",
+      "sha256": "b0e6809b7f6223e52f6c812e6936c11d08ff1673f70cb52e829b0ccbe6d0d567",
+      "size_bytes": 89854
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C0681a74e0c/attempt-1/fullpage.png",
+      "sha256": "bbffd3c1b8b09e09b04021d5cae66adbf44fef7045c7be6e0a1716c488b807d0",
+      "size_bytes": 552742
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C0681a74e0c/attempt-1/page.html.txt",
+      "sha256": "c6f880033354a9c05bb020d49e88702e599ae6111af0ee05ad85f748ef538797",
+      "size_bytes": 848302
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C0681a74e0c/attempt-1/text.txt",
+      "sha256": "0c05a26f74462ab78715a20fd23a184894e36a24efba7d54335cec33b28f8ef5",
+      "size_bytes": 5621
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C0681a74e0c/attempt-1/page.json",
+      "sha256": "2611762e926a8ce78df1fde160cb4006257bae01f0729106df88ffe56c241549",
+      "size_bytes": 110247
+    }
+  ],
+  "blocked_requests": [
+    "https://s3-us01.c.com/silver-bullet-img/2024-12-10/m3zOgV/openfinance.svg -> DNS resolution failed for s3-us01.c.com: [Errno -2] Name or service not known",
+    "https://app.nasabank.com.br/assets/logos/nasa.svg -> DNS resolution failed for app.nasabank.com.br: [Errno -2] Name or service not known",
+    "https://openfinance.s3caceis.com.br/assets/img/logo-caceis.svg -> DNS resolution failed for openfinance.s3caceis.com.br: [Errno -5] No address associated with hostname",
+    "https://app.lnst.io/lanistar-star.svg -> DNS resolution failed for app.lnst.io: [Errno -3] Temporary failure in name resolution"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "screenshot completo limitado a 12000px (página com 184178px); texto integral preservado em text.txt",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

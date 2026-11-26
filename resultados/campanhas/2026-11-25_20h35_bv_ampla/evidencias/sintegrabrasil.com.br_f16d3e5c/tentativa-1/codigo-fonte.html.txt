@@ -1,0 +1,1667 @@
+<html lang="pt-BR" class=" sb-sem-ads"><head>
+  <meta charset="UTF-8">
+  <!-- Google AdSense (Auto Ads): tag async, montada em seo.js -->
+  <link rel="shortlink" href="/?p=1">
+<link rel="preconnect" href="https://cdn.joinads.me" crossorigin="">
+<script>
+(function(){
+  var LIM=30,CHAVE='sb_pv',robo=false;
+  try{
+    var ua=navigator.userAgent||'';
+    robo=!!navigator.webdriver||new RegExp('[a-z]bot/|(^|[^a-z])bot([^a-z]|$)|crawler|spider|headless|lighthouse|phantomjs','i').test(ua);
+  }catch(e){}
+  function contar(){
+    try{
+      var t=Date.now(),l=JSON.parse(localStorage.getItem(CHAVE)||'[]');
+      if(!Array.isArray(l))l=[];
+      l=l.filter(function(x){return t-x<36e5;});l.push(t);
+      if(l.length>LIM*2)l=l.slice(-LIM*2);
+      localStorage.setItem(CHAVE,JSON.stringify(l));
+      return l.length;
+    }catch(e){return 0;}
+  }
+  function aviso(){
+    if(document.querySelector('.sb-aviso-api'))return;
+    var alvo=document.querySelector('[joinadscode],.joinads');
+    if(!alvo||!alvo.parentNode)return;
+    var a=document.createElement('div');a.className='sb-aviso-api';
+    a.innerHTML='<strong>Consultando muitos CNPJs?</strong> A <a href="/api">API do SINTEGRA Brasil</a> devolve a inscri\u00e7\u00e3o estadual e os dados cadastrais direto no seu sistema, sem abrir p\u00e1gina por p\u00e1gina.';
+    alvo.parentNode.insertBefore(a,alvo);
+  }
+  function bloquear(m){
+    if(window.sbSemAds)return;
+    window.sbSemAds=m;
+    document.documentElement.className+=' sb-sem-ads';
+    try{if(navigator.sendBeacon)navigator.sendBeacon('/api/sem-anuncio',m);}catch(e){}
+    try{var g=window.googletag;if(g&&g.cmd)g.cmd.push(function(){g.destroySlots();});}catch(e){}
+    if(m==='pesado'){
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aviso);else aviso();
+    }
+  }
+  window.sbUsoAnuncio=function(){
+    if(window.sbSemAds)return false;
+    if(contar()>LIM){bloquear('pesado');return false;}
+    return true;
+  };
+  if(robo){bloquear('robo');return;}
+  if(contar()>LIM){bloquear('pesado');return;}
+  var s=document.createElement('script');s.async=true;s.src='https://cdn.joinads.me/myad6283838238.js';
+  (document.head||document.documentElement).appendChild(s);
+})();
+</script>
+<style>
+div[joinadscode]{min-height:250px;margin:14px auto;text-align:center}
+.sb-sem-ads div[joinadscode],.sb-sem-ads .joinads{display:none!important}
+.sb-aviso-api{margin:14px 0;padding:12px 14px;border:1px solid var(--borda,#e4e8ee);border-left:4px solid var(--azul-claro,#1e6091);border-radius:10px;background:var(--card,#fff);font-size:15px;line-height:1.5}
+.sb-aviso-api a{font-weight:600}
+</style>
+  <!-- Analytics carregado só após consentimento (LGPD) -->
+  <script src="/consent.js?v=7" defer=""></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SINTEGRA Brasil — Consulta de Inscrição Estadual pelo CNPJ, grátis</title>
+  <meta name="description" content="Consulte grátis a Inscrição Estadual (IE) de qualquer empresa pelo CNPJ, nos 27 estados e sem cadastro: situação cadastral, CNAE e endereço. Valide a IE e gere o DANFE da NF-e.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="SINTEGRA Brasil">
+  <link rel="canonical" href="https://www.sintegrabrasil.com.br/">
+  <!-- Versões internacionais (hreflang): /en cobre EUA/UK/Canadá/Austrália; /de a Alemanha -->
+  <link rel="alternate" hreflang="pt-BR" href="https://www.sintegrabrasil.com.br/">
+  <link rel="alternate" hreflang="en" href="https://www.sintegrabrasil.com.br/en">
+  <link rel="alternate" hreflang="en-US" href="https://www.sintegrabrasil.com.br/en">
+  <link rel="alternate" hreflang="en-GB" href="https://www.sintegrabrasil.com.br/en">
+  <link rel="alternate" hreflang="en-CA" href="https://www.sintegrabrasil.com.br/en">
+  <link rel="alternate" hreflang="en-AU" href="https://www.sintegrabrasil.com.br/en">
+  <link rel="alternate" hreflang="de" href="https://www.sintegrabrasil.com.br/de">
+  <link rel="alternate" hreflang="de-DE" href="https://www.sintegrabrasil.com.br/de">
+  <link rel="alternate" hreflang="x-default" href="https://www.sintegrabrasil.com.br/">
+  <meta name="theme-color" content="#0a3d62">
+  <meta name="google-adsense-account" content="ca-pub-8567543177290354">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://publica.cnpj.ws" crossorigin="">
+  <link rel="dns-prefetch" href="https://publica.cnpj.ws">
+
+  <!-- Open Graph / redes sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SINTEGRA Brasil — Consulta de Inscrição Estadual pelo CNPJ">
+  <meta property="og:description" content="Consulte grátis a Inscrição Estadual de qualquer empresa pelo CNPJ, nos 27 estados e sem cadastro: situação cadastral, CNAE e endereço.">
+  <meta property="og:url" content="https://www.sintegrabrasil.com.br/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="SINTEGRA Brasil">
+  <meta property="og:image" content="https://www.sintegrabrasil.com.br/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SINTEGRA Brasil — Consulta de Inscrição Estadual pelo CNPJ">
+  <meta name="twitter:description" content="Consulte grátis a Inscrição Estadual de qualquer empresa pelo CNPJ, nos 27 estados: situação cadastral, CNAE, validação de IE e DANFE.">
+  <meta name="twitter:image" content="https://www.sintegrabrasil.com.br/og-image.svg">
+
+  <!-- CSS inline: elimina a viagem de rede bloqueante na primeira pintura -->
+  <style>:root {
+  --azul: #0a3d62;
+  --azul-claro: #1e6091;
+  --verde: #2e9e5b;
+  --vermelho: #c0392b;
+  --vermelho-claro: #e8746a; /* destaque das caixas de publicidade */
+  --cinza: #6b7280;
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --borda: #e4e8ee;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: #1f2937;
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Topbar */
+.topbar {
+  background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+  color: #fff;
+  padding: 28px 0 24px;
+  text-align: center;
+}
+.topbar .badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+  font-size: 13px;
+}
+.topbar h1 {
+  margin: 10px 0 2px;
+  font-size: 24px;
+}
+.subtitle {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Form */
+label {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+}
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+input {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+input:focus { border-color: var(--azul-claro); }
+button {
+  background: var(--azul);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+button:hover { background: var(--azul-claro); }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+.hint { color: var(--cinza); display: block; margin-top: 8px; }
+
+.aviso-limite {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  background: #fff7e6;
+  border: 1px solid #ffe1a8;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #8a5a00;
+}
+.aviso-ico {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e6a700;
+  color: #fff;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Publicidade: rótulo da caixa de anúncio --- */
+.ad-tag{display:block;font-size:7.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--cinza);opacity:.65;margin-bottom:6px}
+
+/* --- Publicidade: bloco de anúncio nativo (Adsterra) --- */
+.ad-native{padding:14px 16px;border-top:4px solid var(--vermelho-claro)}
+.ad-native img{max-width:100%;height:auto}
+/* O native banner injeta DOM (não é iframe), então dá para conter a tipografia
+   dele por CSS. Escopado no container p/ não vazar para o resto da página. */
+.ad-native [id^="container-"] * { font-size: 12px !important; line-height: 1.35 !important; }
+
+/* Status */
+.status {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.status.loading { background: #eef4fb; color: var(--azul); }
+.status.error { background: #fdecea; color: var(--vermelho); }
+
+/* Result */
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.result-head h2 { margin: 0; font-size: 19px; }
+.muted { color: var(--cinza); margin: 2px 0 0; font-size: 14px; }
+.chip {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--cinza);
+}
+.chip.ativa { background: #e7f6ec; color: var(--verde); }
+.chip.inativa { background: #fdecea; color: var(--vermelho); }
+
+.ie-box {
+  margin: 18px 0;
+  padding: 16px;
+  border-radius: 10px;
+  background: #f0f7f2;
+  border: 1px solid #d4eadd;
+}
+.ie-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.ie-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--verde);
+  font-weight: 700;
+}
+.uf-filter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--cinza);
+  font-weight: 600;
+}
+.uf-filter {
+  font-size: 13px;
+  padding: 5px 8px;
+  border: 1px solid #cfe4d6;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--azul);
+  font-weight: 600;
+  cursor: pointer;
+}
+.ie-uf {
+  display: inline-flex;
+  align-items: center;
+  background: var(--azul);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  align-self: center;
+}
+.ie-value {
+  font-size: 26px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--azul);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ie-value .tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.tag.on { background: #e7f6ec; color: var(--verde); }
+.tag.off { background: #fdecea; color: var(--vermelho); }
+.ie-none { color: var(--cinza); font-size: 15px; }
+
+.ie-status-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #d4eadd;
+}
+.ie-sublabel { font-size: 13px; font-weight: 600; color: var(--cinza); }
+.ie-status-line .muted { font-size: 12.5px; }
+
+.details {
+  margin: 4px 0 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--borda);
+}
+.details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--borda);
+  font-size: 14px;
+}
+.details dt { color: var(--cinza); margin: 0; }
+.details dd { margin: 0; text-align: right; font-weight: 500; }
+
+/* Section titles dentro do resultado */
+.sec-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--azul);
+  margin: 22px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--borda);
+}
+
+/* CNAE */
+.cnae { font-size: 14px; padding: 4px 0; }
+.cnae-cod {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  background: #eef2f7;
+  color: var(--azul);
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 6px;
+  margin-right: 6px;
+  font-size: 13px;
+}
+.collapse { margin-top: 8px; }
+.collapse summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--azul-claro);
+  font-weight: 600;
+  padding: 6px 0;
+}
+.cnae-list { margin: 6px 0 0; padding-left: 0; list-style: none; }
+.cnae-list li { font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--borda); }
+
+/* Sócios */
+.socios { list-style: none; margin: 4px 0 0; padding: 0; }
+.socio {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--borda);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.socio strong { font-size: 14px; }
+.socio-meta { font-size: 12.5px; color: var(--cinza); }
+.socio-empty { font-size: 14px; color: var(--cinza); padding: 8px 0; }
+
+.updated {
+  font-size: 12px;
+  color: var(--cinza);
+  text-align: right;
+  margin: 18px 0 0;
+  font-style: italic;
+}
+
+.source {
+  font-size: 12px;
+  color: var(--cinza);
+  margin: 16px 0 0;
+  text-align: center;
+}
+.source a { color: var(--azul-claro); }
+
+.disclaimer {
+  font-size: 11.5px;
+  color: var(--cinza);
+  background: #f7f9fc;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 10px 0 0;
+  text-align: center;
+  line-height: 1.45;
+}
+
+/* Conteúdo SEO + FAQ */
+.seo-content {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-top: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.seo-content h2 {
+  font-size: 19px;
+  color: var(--azul);
+  margin: 0 0 10px;
+}
+.seo-content h2:not(:first-child) { margin-top: 26px; }
+.seo-content h3 {
+  font-size: 15px;
+  color: var(--azul-claro);
+  margin: 20px 0 6px;
+}
+.seo-content p { font-size: 14px; margin: 0 0 10px; color: #374151; }
+.seo-content abbr { text-decoration: underline dotted; cursor: help; }
+.seo-steps { font-size: 14px; color: #374151; padding-left: 20px; margin: 0 0 10px; }
+.seo-steps li { margin: 4px 0; }
+
+/* Grid de cross-links entre estados (/sintegra/:uf) */
+.uf-grid {
+  list-style: none; padding: 0; margin: 6px 0 14px;
+  display: grid; gap: 6px 14px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  font-size: 14px;
+}
+.uf-grid li { color: #6b7280; }
+.uf-grid a { font-weight: 600; }
+.links-rel { font-size: 14px; margin: 0 0 12px; padding-left: 20px; }
+.links-rel li { margin: 5px 0; }
+
+.faq { margin-top: 10px; }
+.faq details {
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 4px 14px;
+  margin-bottom: 8px;
+  background: #fafbfc;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 0;
+  color: var(--azul);
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: "+ "; color: var(--azul-claro); font-weight: 800; }
+.faq details[open] summary::before { content: "– "; }
+.faq details p { font-size: 13.5px; padding: 0 0 12px; margin: 0; }
+
+.footer { text-align: center; color: var(--cinza); padding: 24px 16px; }
+
+/* --- Navegação / páginas SSR --- */
+.brand-link { color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-size: 20px; }
+.brand-link .badge { font-size: 13px; }
+
+/* Cabeçalho das páginas SSR — igual à home (centralizado, badge + título) */
+.brand-home { text-decoration: none; color: #fff; display: inline-block; }
+.brand-home .brand-title { display: block; font-size: 24px; font-weight: 700; margin: 10px 0 2px; }
+.brand-home:hover .brand-title { text-decoration: underline; }
+
+.footer-links { font-size: 14px; margin: 0 0 12px; }
+.footer-links a { color: var(--azul-claro); text-decoration: none; }
+
+/* Rodapé em colunas agrupadas (melhor disposição dos menus) */
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  text-align: left;
+  max-width: 860px;
+  margin: 8px auto 20px;
+}
+.footer-cols .fcol { display: flex; flex-direction: column; gap: 7px; }
+.footer-cols h4 {
+  margin: 0 0 4px; font-size: 12px; letter-spacing: .6px; text-transform: uppercase;
+  color: #94a3b8; font-weight: 700;
+}
+.footer-cols a { color: var(--azul-claro); text-decoration: none; font-size: 14px; }
+.footer-cols a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 18px 16px; max-width: 420px; }
+}
+
+.states-nav {
+  font-size: 12.5px;
+  color: var(--cinza);
+  line-height: 2;
+  margin: 0 auto 14px;
+  max-width: 560px;
+}
+.states-nav span { font-weight: 600; }
+.states-nav a {
+  color: var(--azul);
+  text-decoration: none;
+  padding: 1px 5px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  margin: 0 1px;
+  display: inline-block;
+}
+.states-nav a:hover { background: #eef2f7; }
+
+.guides-list { list-style: none; padding: 0; margin: 12px 0 0; }
+.guides-list li { padding: 12px 0; border-bottom: 1px solid var(--borda); display: flex; flex-direction: column; gap: 3px; }
+.guides-list li a { color: var(--azul); text-decoration: none; font-size: 16px; }
+
+
+/* Prospecção / leads */
+.lead-box { background: #f7f9fc; border: 1px solid var(--borda); border-radius: 12px; padding: 16px; margin: 14px 0; }
+.lead-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.lead-row > div { flex: 1 1 180px; }
+.lead-box label, .lead-assinar label { display: block; font-size: 12px; font-weight: 600; color: #4b5563; margin-bottom: 4px; }
+.lead-box input, .lead-box select, .lead-assinar input {
+  width: 100%; padding: 9px 11px; border: 1px solid #d7dde6; border-radius: 8px; font: inherit; box-sizing: border-box; background: #fff;
+}
+.lead-btn { background: var(--azul); color: #fff; border: 0; border-radius: 9px; padding: 11px 20px; font-weight: 700; font-size: 15px; cursor: pointer; }
+.lead-btn:hover { background: var(--azul-esc, #072d49); }
+.lead-assinar { background: #eef5ff; border: 1px solid #cfe0f5; border-radius: 12px; padding: 16px; margin: 8px 0 14px; }
+#lf-res { margin: 14px 0; }
+#lf-res .erro { color: #b3261e; }
+@media (max-width: 560px) { .lead-row > div { flex: 1 1 100%; } }
+
+/* Blog */
+.blog-list { list-style: none; padding: 0; margin: 12px 0 0; }
+.blog-item { padding: 14px 0; border-bottom: 1px solid var(--borda); display: flex; gap: 14px; align-items: flex-start; }
+.blog-item > div { display: flex; flex-direction: column; gap: 4px; }
+.blog-item a { color: var(--azul); text-decoration: none; font-size: 16px; }
+.blog-thumb { width: 96px; height: 72px; object-fit: cover; border-radius: 8px; flex: 0 0 auto; }
+.blog-date { color: #9ca3af; font-size: 12px; }
+.blog-meta { font-size: 13px; color: #6b7280; }
+.blog-meta a { color: var(--azul); text-decoration: none; }
+.blog-cover { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 6px 0 14px; }
+.blog-post h2 { margin-top: 22px; }
+@media (max-width: 520px) { .blog-thumb { width: 72px; height: 54px; } }
+
+.seo-content ul { font-size: 14px; color: #374151; padding-left: 20px; }
+.seo-content ol.seo-steps { padding-left: 20px; }
+
+/* formulário SSR */
+.ssr-form { display: flex; gap: 10px; margin: 16px 0; }
+.ssr-form input {
+  flex: 1; padding: 12px 14px; font-size: 16px;
+  border: 1px solid var(--borda); border-radius: 10px; outline: none;
+}
+.ssr-form input:focus { border-color: var(--azul-claro); }
+.ssr-form button {
+  background: var(--azul); color: #fff; border: none; border-radius: 10px;
+  padding: 0 22px; font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.ssr-form button:hover { background: var(--azul-claro); }
+
+/* IE em página de CNPJ */
+.ie-ssr { list-style: none; padding: 0; margin: 8px 0 0; }
+.ie-ssr li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: #f0f7f2; border: 1px solid #d4eadd; border-radius: 10px; margin-bottom: 8px; }
+.ie-num { font-size: 20px; font-weight: 700; color: var(--azul); letter-spacing: 0.5px; }
+.ie-uf-badge { background: var(--azul); color: #fff; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+.ie-ssr .tag { margin-left: auto; }
+
+@media (max-width: 480px) {
+  .ssr-form { flex-direction: column; }
+  .ssr-form button { padding: 12px; }
+}
+
+@media (max-width: 480px) {
+  .input-row { flex-direction: column; }
+  button { padding: 12px; }
+}
+
+/* === Destaque da caixa de consulta === */
+.search-card {
+  border-color: #cfe0ee;
+  border-top: 4px solid var(--azul-claro);
+  box-shadow: 0 8px 26px rgba(10, 61, 98, 0.14);
+}
+
+/* === Botões de ação no resultado === */
+.result-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
+.act-btn {
+  font-size: 13px; font-weight: 600; color: var(--azul);
+  background: #eef2f7; border: 1px solid var(--borda); border-radius: 999px;
+  padding: 7px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+}
+.act-btn:hover { background: #e2e9f1; }
+.act-btn.on { background: #fff3d6; color: #8a5a00; border-color: #ffe1a8; }
+
+/* Botao em destaque (Monitorar este CNPJ): preenchido, puxa o olho no card */
+.act-btn.act-destaque {
+  background: linear-gradient(135deg, var(--azul), var(--azul-claro));
+  color: #fff; border-color: transparent;
+  box-shadow: 0 2px 8px rgba(10, 61, 98, 0.26);
+}
+.act-btn.act-destaque:hover { background: var(--azul); }
+
+/* === Popup de monitoramento === */
+.mon-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(10, 25, 40, 0.62);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; overflow-y: auto;
+}
+.mon-overlay[hidden] { display: none; }
+.mon-modal {
+  position: relative; background: var(--card); border-radius: var(--radius);
+  width: 100%; max-width: 440px; padding: 22px 20px 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+  max-height: calc(100vh - 32px); overflow-y: auto;
+}
+.mon-fechar {
+  position: absolute; top: 6px; right: 8px;
+  background: none; border: 0; color: var(--cinza);
+  font-size: 26px; line-height: 1; cursor: pointer; padding: 4px 8px;
+}
+.mon-modal h2 { margin: 0 24px 10px 0; font-size: 19px; color: var(--azul); }
+.mon-intro { margin: 0 0 8px; font-size: 14px; }
+.mon-lista { margin: 0 0 16px; padding-left: 20px; font-size: 13.5px; }
+.mon-lista li { margin-bottom: 5px; }
+.mon-label { display: block; font-size: 13px; font-weight: 600; color: var(--azul); margin-bottom: 4px; }
+.mon-label-2 { margin-top: 12px; }
+.mon-input {
+  width: 100%; padding: 11px 12px; font-size: 16px; /* 16px evita o zoom do iOS */
+  border: 1px solid var(--borda); border-radius: 8px;
+}
+.mon-input:focus { outline: 2px solid var(--azul-claro); outline-offset: 1px; }
+.mon-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.mon-enviar {
+  width: 100%; margin-top: 10px; padding: 12px; font-size: 15px; font-weight: 700;
+  color: #fff; background: var(--verde); border: 0; border-radius: 8px; cursor: pointer;
+}
+.mon-enviar:hover { background: #27874e; }
+.mon-enviar:disabled { opacity: 0.6; cursor: default; }
+.mon-status { margin: 10px 0 0; font-size: 13.5px; padding: 9px 11px; border-radius: 8px; }
+.mon-status.ok { background: #e8f7ee; color: #1d7a42; }
+.mon-status.erro { background: #fdecea; color: var(--vermelho); }
+.mon-rodape { margin: 14px 0 0; font-size: 12px; color: var(--cinza); line-height: 1.45; }
+
+@media (max-width: 420px) {
+  .mon-modal { padding: 20px 16px 16px; max-height: calc(100vh - 24px); }
+  .mon-modal h2 { font-size: 17.5px; }
+  .mon-lista { padding-left: 18px; }
+  .act-btn.act-destaque { width: 100%; justify-content: center; }
+}
+
+/* === Histórico e favoritos === */
+.saved-box { display: flex; gap: 24px; flex-wrap: wrap; }
+.saved-col { flex: 1; min-width: 200px; }
+.saved-title { font-size: 14px; color: var(--azul); margin: 0 0 8px; }
+.saved-list { list-style: none; padding: 0; margin: 0; font-size: 13.5px; }
+.saved-list li { padding: 6px 0; border-bottom: 1px solid var(--borda); }
+.saved-list a { color: var(--azul-claro); text-decoration: none; font-weight: 600; }
+
+/* === Validador de IE === */
+.validator { margin: 14px 0; }
+.validator-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.validator-row select, .validator-row input {
+  padding: 11px 12px; font-size: 15px; border: 1px solid var(--borda); border-radius: 10px;
+}
+.validator-row select { flex: 0 0 auto; max-width: 220px; }
+.validator-row input { flex: 1; min-width: 160px; }
+.validator-row button { background: var(--azul); color: #fff; border: 0; border-radius: 10px; padding: 0 20px; font-weight: 700; cursor: pointer; }
+.v-result { margin-top: 12px; padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; }
+.v-result.ok { background: #e7f6ec; color: var(--verde); }
+.v-result.bad { background: #fdecea; color: var(--vermelho); }
+
+/* === Bloco de código (incorporar) === */
+.codeblock {
+  background: #0a3d62; color: #e8f1fb; padding: 14px 16px; border-radius: 10px;
+  font-family: ui-monospace, "Courier New", monospace; font-size: 13px;
+  overflow-x: auto; white-space: pre-wrap; word-break: break-all;
+}
+
+/* === Impressão / PDF === */
+@media print {
+  .topbar, .footer, .seo-content, .source, .disclaimer,
+  .aviso-limite, .search-card, #saved, #status, .no-print { display: none !important; }
+  body { background: #fff; }
+  .card { box-shadow: none; border: none; }
+  .result { display: block !important; }
+}
+
+/* Contador de consultas no rodapé */
+.counter {
+  font-size: 12.5px;
+  color: var(--azul);
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.counter #contador-num { font-variant-numeric: tabular-nums; }
+
+/* === Busca por CNAE/UF/município === */
+.busca-form { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+.busca-form input, .busca-form select {
+  padding: 12px 14px; font-size: 15px; border: 1px solid var(--borda); border-radius: 10px; outline: none;
+}
+.busca-form input:focus, .busca-form select:focus { border-color: var(--azul-claro); }
+.busca-row { display: flex; gap: 10px; }
+.busca-row select { flex: 0 0 130px; }
+.busca-row input { flex: 1; }
+.busca-form button {
+  background: var(--azul); color: #fff; border: 0; border-radius: 10px;
+  padding: 12px 22px; font-size: 15px; font-weight: 700; cursor: pointer;
+}
+.busca-form button:hover { background: var(--azul-claro); }
+.busca-status { font-size: 14px; color: var(--cinza); margin: 6px 0; }
+
+.table-wrap { overflow-x: auto; }
+.busca-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 8px; }
+.busca-table th, .busca-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--borda); vertical-align: top; }
+.busca-table th { color: var(--azul); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+.busca-table tr:hover td { background: #f7f9fc; }
+.busca-table a { color: var(--azul-claro); text-decoration: none; font-weight: 600; white-space: nowrap; }
+
+.busca-pager { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 16px 0; }
+
+@media print {
+  .busca-form, .busca-status, .busca-pager, #busca-actions { display: none !important; }
+  .busca-table { font-size: 11px; }
+  .busca-table a { display: none; }
+}
+
+/* === Banner de consentimento de cookies (LGPD) === */
+.cookie-banner {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 9999;
+  max-width: 920px; margin: 0 auto;
+  background: #0a3d62; color: #fff;
+  border-radius: 12px; padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.cookie-text { font-size: 13.5px; flex: 1; min-width: 220px; line-height: 1.45; }
+.cookie-text a { color: #ffb066; }
+.cookie-actions { display: flex; gap: 8px; }
+.cookie-btn {
+  border: 0; border-radius: 999px; padding: 9px 18px; font-size: 14px; font-weight: 700; cursor: pointer;
+  background: #ff8a3d; color: #fff;
+}
+.cookie-btn.alt { background: rgba(255,255,255,0.15); color: #fff; }
+.cookie-btn:hover { opacity: 0.92; }
+@media (max-width: 480px) { .cookie-actions { width: 100%; } .cookie-btn { flex: 1; } }
+@media print { .cookie-banner { display: none !important; } }
+
+/* Mapa de calor por estado (cartograma / tile-grid) */
+.mapa-card { margin: 16px 0; padding: 14px; border: 1px solid #e3e8ef; border-radius: 12px; background: #fff; }
+.mapa-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+.mapa-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; max-width: 430px; margin: 0 auto; }
+.mapa-tile { aspect-ratio: 1 / 1; border-radius: 6px; background: #eef1f5; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; transition: background .2s ease; cursor: default; }
+.mapa-tile .mt-uf { font-weight: 700; font-size: 11px; }
+.mapa-tile .mt-n { font-size: 9px; opacity: .9; }
+.mapa-legend { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 12px; font-size: 11px; color: #6b7785; }
+.mapa-legend .lg { width: 22px; height: 12px; border-radius: 3px; display: inline-block; }
+.lg1 { background: hsl(211,85%,86%); } .lg2 { background: hsl(211,85%,72%); }
+.lg3 { background: hsl(211,85%,58%); } .lg4 { background: hsl(211,85%,45%); } .lg5 { background: hsl(211,85%,33%); }
+.mapa-hint { margin: 10px 0 0; font-size: 12px; text-align: center; }
+@media (max-width: 480px) { .mapa-grid { max-width: 100%; } .mapa-tile .mt-n { font-size: 8px; } }
+
+/* Card de produtos afiliados — Mercado Livre (destaque amarelo, igual layout do card de busca) */
+.ml-card {
+  padding: 20px;
+  border-color: #ffe9a8;
+  border-top: 4px solid #ffe600;
+  box-shadow: 0 8px 26px rgba(160, 130, 0, 0.16);
+}
+.ml-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.ml-brand { font-size: 15px; color: #2d3a4a; }
+.ml-brand strong { color: #2d3277; }
+.ml-tag { font-size: 10px; letter-spacing: .04em; text-transform: uppercase; color: #8a93a0; border: 1px solid #e3e8ef; border-radius: 6px; padding: 2px 7px; }
+.ml-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.ml-tile { display: flex; flex-direction: column; border: 1px solid #e9edf2; border-radius: 10px; padding: 10px; text-decoration: none; color: inherit; background: #fff; transition: box-shadow .15s, transform .15s, border-color .15s; }
+.ml-tile:hover { box-shadow: 0 6px 18px rgba(20,40,80,.12); transform: translateY(-2px); border-color: #ffe600; }
+.ml-thumb { display: block; aspect-ratio: 1 / 1; background: #f6f8fa; border-radius: 8px; overflow: hidden; margin-bottom: 8px; }
+.ml-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ml-name { font-size: 12px; line-height: 1.25; color: #344050; min-height: 30px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.ml-buy { margin-top: auto; text-align: center; font-weight: 700; font-size: 13px; color: #1a1a1a; background: #ffe600; border-radius: 8px; padding: 8px 6px; transition: filter .15s; }
+.ml-tile:hover .ml-buy { filter: brightness(.95); }
+@media (max-width: 860px) { .ml-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .ml-grid { grid-template-columns: repeat(2, 1fr); } .ml-name { font-size: 11px; } }
+
+/* Mapa de calor geográfico (Leaflet) */
+.mapa-leaflet { height: 460px; width: 100%; border-radius: 10px; overflow: hidden; z-index: 0; background: #e8eef3; }
+.mapa-leaflet .leaflet-container { font: inherit; }
+.lg-bar { display: inline-block; width: 120px; height: 12px; border-radius: 3px;
+  background: linear-gradient(90deg, #1a9850, #a6d96a, #fee08b, #fdae61, #d73027); }
+.mapa-zoomhint { margin-left: 8px; }
+@media (max-width: 560px) { .mapa-leaflet { height: 360px; } .mapa-zoomhint { display: none; } }
+
+/* Nome da marca no topo (Sintegra BR) */
+.brand-line { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.brand-line .trustbar { margin: 0; }
+.brand-name { font-weight: 800; font-size: 18px; letter-spacing: 0.3px; color: #fff; vertical-align: middle; margin-right: 4px; }
+.brand-home .brand-name { font-size: 16px; }
+
+/* ===== Card de NF-e na home ===== */
+.nfe-card { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; flex-wrap: wrap;
+  border-color: #cfe2d2; border-top: 4px solid var(--verde); box-shadow: 0 8px 26px rgba(46,158,91,.16);
+  transition: box-shadow .15s, transform .15s; }
+.nfe-card:hover { box-shadow: 0 10px 30px rgba(46,158,91,.24); transform: translateY(-2px); }
+.nfe-card-ico { font-size: 30px; flex-shrink: 0; }
+.nfe-card-text { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 160px; }
+.nfe-card-text strong { color: var(--verde); font-size: 15px; }
+.nfe-card-text span { color: var(--cinza); font-size: 13px; }
+/* Botão preenchido igual ao "Consultar", porém verde */
+.nfe-card-cta { flex-shrink: 0; background: var(--verde); color: #fff; font-size: 15px; font-weight: 600;
+  border-radius: 10px; padding: 12px 22px; white-space: nowrap; transition: background .15s; }
+.nfe-card:hover .nfe-card-cta { background: #278a4d; }
+@media (max-width: 520px) { .nfe-card-cta { width: 100%; text-align: center; } }
+
+/* ===== Card do app (plano Pro) na home ===== */
+/* Mesma estrutura do card de NF-e; azul da marca para nao competir com o verde. */
+.app-card { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; flex-wrap: wrap;
+  border-color: #cfe0ea; border-top: 4px solid var(--azul); box-shadow: 0 8px 26px rgba(10,61,98,.16);
+  transition: box-shadow .15s, transform .15s; }
+.app-card:hover { box-shadow: 0 10px 30px rgba(10,61,98,.24); transform: translateY(-2px); }
+.app-card-ico { font-size: 30px; flex-shrink: 0; }
+.app-card-text { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 160px; }
+.app-card-text strong { color: var(--azul); font-size: 15px; }
+.app-card-text span { color: var(--cinza); font-size: 13px; }
+.app-card-cta { flex-shrink: 0; background: var(--azul); color: #fff; font-size: 15px; font-weight: 600;
+  border-radius: 10px; padding: 12px 22px; white-space: nowrap; transition: background .15s; }
+.app-card:hover .app-card-cta { background: var(--azul-claro); }
+@media (max-width: 520px) { .app-card-cta { width: 100%; text-align: center; } }
+
+/* ===== Página /nfe — formulário ===== */
+.nfe-form { margin: 14px 0; }
+.nfe-file-label { display: inline-flex; align-items: center; cursor: pointer; }
+.nfe-file-label input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.nfe-file-label span { display: inline-block; background: #eef2f7; border: 1px solid var(--borda);
+  border-radius: 10px; padding: 10px 16px; font-weight: 600; color: var(--azul); }
+.nfe-file-label:hover span { background: #e2e9f1; }
+#nfe-xml { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px;
+  border: 1px solid var(--borda); border-radius: 10px; padding: 10px; resize: vertical; }
+.nfe-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.nfe-status { margin-top: 10px; font-size: 14px; }
+.nfe-status.ok { color: var(--verde); }
+.nfe-status.err { color: var(--vermelho); }
+.nfe-out { margin-top: 18px; overflow-x: auto; }
+
+/* ===== DANFE (documento) ===== */
+.dn-doc { border: 1.5px solid #000; font-family: Arial, Helvetica, sans-serif; font-size: 9.5px;
+  color: #000; background: #fff; max-width: 820px; margin: 0 auto; line-height: 1.25; }
+.dn-doc div, .dn-doc span { box-sizing: border-box; }
+.dn-head { display: grid; grid-template-columns: 1.3fr 1.1fr 1.5fr; border-bottom: 1.5px solid #000; }
+.dn-emit { padding: 8px 10px; border-right: 1px solid #000; display: flex; flex-direction: column; justify-content: center; }
+.dn-emit-nome { font-weight: 700; font-size: 12.5px; }
+.dn-emit-sub { font-size: 9.5px; color: #333; margin-top: 1px; }
+.dn-emit-end { margin-top: 4px; line-height: 1.35; }
+.dn-center { padding: 8px; border-right: 1px solid #000; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.dn-title { font-size: 20px; font-weight: 800; letter-spacing: 1px; }
+.dn-subtitle { font-size: 7.5px; margin-top: 1px; }
+.dn-tipo { display: flex; gap: 8px; align-items: center; margin-top: 8px; width: 100%; justify-content: center; }
+.dn-tipo-box { border: 1px solid #000; border-radius: 3px; padding: 3px 6px; font-size: 7px; text-align: left; position: relative; line-height: 1.4; }
+.dn-tipo-num { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); font-size: 16px; font-weight: 800; }
+.dn-tipo-box span:not(.dn-tipo-num) { display: block; }
+.dn-nf-info { font-size: 10px; text-align: left; }
+.dn-chave { padding: 6px 8px; display: flex; flex-direction: column; gap: 3px; align-items: center; }
+.dn-mini { font-size: 7px; text-transform: uppercase; color: #444; align-self: flex-start; }
+.dn-barcode { width: 100%; height: 42px; }
+.dn-barcode rect { fill: #000; }
+.dn-chave-num { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 10px; font-weight: 700;
+  text-align: center; letter-spacing: .5px; word-break: break-all; }
+.dn-consulta { font-size: 7px; color: #333; text-align: center; margin-top: 2px; }
+.dn-bar { border-bottom: 1px solid #000; padding: 3px 8px; font-size: 10px; font-weight: 600; }
+.dn-bar span { display: block; font-size: 7px; color: #444; text-transform: uppercase; font-weight: 400; }
+.dn-sec { background: #e9edf2; border-bottom: 1px solid #000; font-weight: 700; padding: 2px 8px;
+  font-size: 8.5px; text-transform: uppercase; letter-spacing: .3px; }
+.dn-row { display: flex; border-bottom: 1px solid #000; }
+.dn-row > div { padding: 3px 8px; border-right: 1px solid #000; flex: 1; }
+.dn-row > div:last-child { border-right: 0; }
+.dn-row span { display: block; font-size: 7px; color: #444; text-transform: uppercase; }
+.dn-grow { flex: 3 !important; }
+.dn-tot > div { text-align: right; }
+.dn-tot span { text-align: left; }
+.dn-nf-tot { font-weight: 800; background: #f3f6f9; }
+.dn-nf-tot span { color: #000; }
+.dn-itens { width: 100%; border-collapse: collapse; }
+.dn-itens th, .dn-itens td { border: 1px solid #999; padding: 2px 4px; font-size: 8px; text-align: center; }
+.dn-itens thead th { background: #e9edf2; border-color: #000; font-size: 7.5px; text-transform: uppercase; }
+.dn-itens .l { text-align: left; }
+.dn-itens .r { text-align: right; }
+.dn-itens tbody tr:nth-child(even) { background: #fafbfc; }
+.dn-cpl { padding: 8px; min-height: 46px; font-size: 9px; border-bottom: 1px solid #000; }
+.dn-foot { padding: 6px 8px; font-size: 7.5px; color: #555; text-align: center; }
+
+/* ===== Impressão da DANFE (Salvar como PDF) ===== */
+@media print {
+  body.printing-danfe .topbar,
+  body.printing-danfe .footer,
+  body.printing-danfe .seo-content > h1,
+  body.printing-danfe .seo-content > p { display: none !important; }
+  body.printing-danfe main.container { max-width: none !important; padding: 0 !important; margin: 0 !important; }
+  body.printing-danfe .seo-content { border: 0 !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; }
+  body.printing-danfe #nfe-out { display: block !important; overflow: visible !important; }
+  body.printing-danfe .dn-doc { max-width: none; }
+  body.printing-danfe { background: #fff !important; }
+}
+
+/* ===== NF-e: método certificado digital (agente) ===== */
+.nfe-cert { margin-top: 22px; padding-top: 16px; border-top: 1px dashed var(--borda); }
+.nfe-cert #nfe-chave { width: 100%; padding: 10px 12px; font-size: 14px; border: 1px solid var(--borda);
+  border-radius: 10px; margin-bottom: 10px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.cert-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+.cert-row > * { flex: 1; min-width: 150px; }
+.cert-row input, .cert-row select { padding: 10px 12px; font-size: 14px; border: 1px solid var(--borda); border-radius: 10px; }
+#cert-baixar { background: var(--verde); }
+#cert-baixar:hover { background: #278a4d; }
+
+/* ===== Página do Agente (download + tutorial) ===== */
+.agente-dl { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 18px 0; }
+.agente-btn { display: inline-block; background: var(--verde); color: #fff; font-weight: 700; font-size: 16px;
+  text-decoration: none; padding: 14px 24px; border-radius: 10px; box-shadow: 0 6px 18px rgba(46,158,91,.28);
+  transition: background .15s, transform .15s; }
+.agente-btn:hover { background: #278a4d; transform: translateY(-2px); }
+.agente-passos { line-height: 1.7; padding-left: 20px; }
+.agente-passos li { margin-bottom: 6px; }
+
+/* ===== Página do Agente — layout repaginado (inspirado no FSist) ===== */
+.ag-hero { background: linear-gradient(135deg, #eaf6ef, #f4f6f9); border: 1px solid #d4eadd;
+  border-radius: 12px; padding: 20px; margin: 4px 0 18px; }
+.ag-lead { font-size: 16px; margin: 0 0 14px; }
+.feature-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0 8px; }
+.feature-card { border: 1px solid var(--borda); border-radius: 10px; padding: 14px; display: flex;
+  flex-direction: column; gap: 4px; background: #fff; }
+.feature-card .fc-ico { font-size: 26px; }
+.feature-card strong { color: var(--azul); font-size: 14px; }
+.feature-card span { color: var(--cinza); font-size: 13px; }
+.faq-list { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.faq-item { border: 1px solid var(--borda); border-radius: 10px; padding: 4px 14px; background: #fff; }
+.faq-item summary { cursor: pointer; font-weight: 600; padding: 10px 0; color: var(--azul); list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before { content: '+ '; color: var(--verde); font-weight: 800; }
+.faq-item[open] summary::before { content: '– '; }
+.faq-item > div { padding: 0 0 12px; color: #444; font-size: 14px; }
+@media (max-width: 640px) { .feature-cards { grid-template-columns: 1fr; } }
+
+/* ===== /nfe — layout em cards numerados ===== */
+.nfe-intro { font-size: 15px; }
+.nfe-methods { display: grid; gap: 14px; margin: 16px 0; }
+.nfe-method { border: 1px solid var(--borda); border-radius: 12px; padding: 16px; background: #fbfdff; }
+.nfe-method-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.nfe-num { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--verde);
+  color: #fff; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.nfe-num-alt { background: var(--azul-claro); }
+.nfe-method-head h2 { margin: 0; font-size: 16px; color: var(--azul); }
+.nfe-method-head p { margin: 3px 0 0; font-size: 13px; }
+.agente-badge { font-size: 13px; padding: 8px 12px; border-radius: 8px; background: #eef4fb; color: var(--azul); margin-bottom: 10px; }
+.agente-badge.ok { background: #e7f6ec; color: var(--verde); }
+.agente-badge.err { background: #fff7e6; color: #8a5a00; }
+.nfe-chave-input { width: 100%; padding: 13px 14px; font-size: 15px; border: 1px solid var(--borda);
+  border-radius: 10px; margin-bottom: 10px; font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: .3px; }
+.nfe-chave-input:focus { border-color: var(--verde); outline: none; }
+.nfe-btn-primary { background: var(--verde); width: 100%; padding: 13px; }
+.nfe-btn-primary:hover { background: #278a4d; }
+
+/* ===== Home: "O que você pode fazer" (mensagem/keywords) ===== */
+.usecases h2 { font-size: 17px; color: var(--azul); margin: 0 0 8px; }
+.usecases > p { margin: 0 0 10px; font-size: 14px; color: #374151; }
+.usecases-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.usecases-list li { font-size: 14px; line-height: 1.45; }
+.usecases-list a { color: var(--azul-claro); font-weight: 600; }
+.usecases-list a:hover { text-decoration: underline; }
+
+/* ===== Home: barra de autoridade, transparência e links internos ===== */
+.trustbar { display: flex; justify-content: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.trustbar span { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px; }
+.trustbar strong { font-weight: 800; }
+.usecases-transp { margin: 12px 0 0; font-size: 12.5px; color: var(--cinza); border-top: 1px solid var(--borda); padding-top: 10px; }
+.links-internos h2 { font-size: 17px; color: var(--azul); margin: 0 0 4px; }
+.links-internos h3 { font-size: 13px; color: var(--cinza); text-transform: uppercase; letter-spacing: .3px; margin: 14px 0 6px; }
+.li-grid { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.li-grid a { font-size: 13px; color: var(--azul-claro); text-decoration: none; background: #eef2f7;
+  border: 1px solid var(--borda); border-radius: 8px; padding: 4px 9px; }
+.li-grid a:hover { background: #e2e9f1; text-decoration: none; }
+
+/* Título/subtítulo em uma linha só no desktop */
+@media (min-width: 992px) {
+  .topbar .container { max-width: 1120px; }
+  .topbar h1 { font-size: 30px; white-space: nowrap; }
+  .topbar .subtitle { white-space: nowrap; }
+}
+
+/* ===== Acessibilidade ===== */
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; background: #fff; color: var(--azul);
+  font-weight: 700; padding: 10px 16px; border-radius: 0 0 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+.skip-link:focus { left: 0; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--azul-claro); outline-offset: 2px; border-radius: 4px;
+}
+
+/* ===== Tabelas de resultado (IE / detalhes) — extração limpa por IA ===== */
+.ie-table, .details-table { width: 100%; border-collapse: collapse; margin: 6px 0 8px; }
+.ie-table th, .ie-table td, .details-table th, .details-table td {
+  border: 1px solid var(--borda); padding: 8px 10px; font-size: 14px; text-align: left; vertical-align: top; }
+.ie-table thead th { background: #eef4fb; color: var(--azul); font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+.details-table th { width: 38%; background: #f7f9fc; color: var(--azul); font-weight: 600; }
+
+/* --- Matriz/filiais, relacionadas, ficha e radar --- */
+.tabela-scroll { overflow-x: auto; }
+.filiais-table th, .filiais-table td { white-space: nowrap; }
+.btn-ficha { display: inline-block; padding: 10px 16px; border-radius: 8px; background: var(--azul); color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; }
+.btn-ficha:hover { opacity: .9; }
+.ficha-cta { margin: 14px 0 4px; }
+.radar-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+.radar-filtros select, .radar-filtros input { padding: 10px; border: 1px solid var(--borda); border-radius: 8px; font-size: 14px; flex: 1 1 150px; }
+.radar-filtros button { padding: 10px 18px; border: none; border-radius: 8px; background: var(--azul); color: #fff; font-weight: 600; cursor: pointer; }
+.radar-table td { font-size: 13.5px; }
+.radar-pag { display: flex; gap: 10px; justify-content: center; margin: 16px 0 4px; }
+.radar-pag .btn { padding: 8px 16px; border-radius: 8px; background: var(--azul); color: #fff; text-decoration: none; font-size: 14px; }
+
+/* --- Publicidade: side rail (Adsterra 160x300, telas largas) --- */
+.ad-rail { display: none; }
+@media (min-width: 1200px) {
+  /* Ancorado no <main> (não na viewport): alinha sozinho com o topo do primeiro
+     card — os 18px são a margin-top do .card — e rola junto com a página, em vez
+     de acompanhar o usuário ou invadir a faixa do topo. */
+  main.container { position: relative; }
+  /* top:0 (e não 18px): a margin-top do .card COLAPSA para fora do <main> — que
+     não tem padding/border no topo —, então o primeiro card já nasce colado no
+     topo do main. Usar 18px aqui jogava o anúncio 18px abaixo do card de busca. */
+  .ad-rail {
+    display: block; position: absolute; top: 0;
+    width: 176px; /* 160 do anúncio + 8px de padding de cada lado */
+    padding: 8px;
+    background: var(--card); border: 1px solid var(--borda);
+    border-top: 4px solid var(--vermelho-claro); /* destaque, como o azul do .search-card */
+    border-radius: var(--radius); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    z-index: 5;
+  }
+  .ad-rail.esq { left: -196px; }  /* 176 da moldura + 20 de respiro */
+  .ad-rail.dir { right: -196px; }
+  .ad-rail iframe { display: block; border: 0; }
+}
+@media print { .ad-rail { display: none !important; } }
+
+/* --- Widget de feedback (rodapé) --- */
+.fb-widget{background:#f4f8fd;border:1px solid #dbe6f3;border-radius:12px;padding:14px 18px;margin:0 0 18px;width:100%;box-sizing:border-box}
+.fb-titulo{margin:0 0 8px;font-weight:600;font-size:14px;color:#0a3d62}
+.fb-notas{display:flex;gap:6px}
+.fb-notas button{font-size:24px;line-height:1;background:none;border:2px solid transparent;border-radius:10px;padding:6px 8px;cursor:pointer;filter:grayscale(45%);transition:transform .12s,filter .12s}
+.fb-notas button:hover{transform:scale(1.18);filter:none}
+.fb-notas button.sel{border-color:#0b4f9e;background:#fff;filter:none;transform:scale(1.12)}
+.fb-form{display:grid;gap:8px;margin-top:10px}
+.fb-form textarea{width:100%;box-sizing:border-box;border:1px solid #c9d6e8;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;resize:vertical}
+.fb-form button{justify-self:start;background:#0b4f9e;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-weight:600;cursor:pointer;font-size:14px}
+.fb-form button:hover{opacity:.9}
+.fb-form button:disabled{opacity:.6;cursor:wait}
+.fb-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fb-ok{margin:4px 0 0;font-size:14px;color:#1e7e34;font-weight:600}
+@media (max-width:480px){.fb-notas button{font-size:20px;padding:5px 6px}}
+
+/* --- Monitoramento de CNPJ --- */
+.mon-box{background:#f0f7ff;border:1px solid #cfe0f5;border-radius:12px;padding:14px 16px;margin:16px 0}
+.mon-box-t{margin:0 0 4px;font-size:15px}
+.mon-box-s{margin:0 0 10px;font-size:13.5px;color:#4a5a6a}
+.mon-box-f{margin:8px 0 0;font-size:13px}
+.mon-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mon-form input[type=email],.mon-form input[type=text]{flex:1 1 200px;min-width:160px;padding:10px 12px;border:1px solid #c9d6e8;border-radius:8px;font-size:14px}
+.mon-form button{background:#0b4f9e;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:600;cursor:pointer;font-size:14px}
+.mon-form button:hover{opacity:.9}
+.mon-form button:disabled{opacity:.6;cursor:wait}
+.mon-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.mon-msg{font-size:14px;margin:8px 0 0;min-height:1px}
+.mon-msg.ok{color:#1e7e34;font-weight:600}
+.mon-msg.err{color:#c0392b;font-weight:600}
+.mon-cta{background:#f0f7ff;border:1px solid #cfe0f5;border-radius:12px;padding:18px 20px;margin:18px 0}
+.mon-cta h2{margin:0 0 12px}
+.mon-list{line-height:1.7}
+@media (max-width:480px){.mon-form input,.mon-form button{flex:1 1 100%}}
+
+/* --- Relatórios premium (Pro) --- */
+.pro-badge{display:inline-block;background:#8e44ad;color:#fff;border-radius:99px;padding:1px 9px;font-size:11px;font-weight:700;vertical-align:middle}
+.relatorios-pro{background:#faf7fe;border:1px solid #e7d9f5;border-radius:12px;padding:14px 16px;margin:16px 0}
+.rel-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.rel-links a{flex:1 1 200px;background:#fff;border:1px solid #e7d9f5;border-radius:10px;padding:12px 14px;text-decoration:none;color:#5b2d82;font-weight:600;line-height:1.35}
+.rel-links a small{color:#8a7599;font-weight:400}
+.rel-links a:hover{border-color:#8e44ad;box-shadow:0 2px 8px rgba(142,68,173,.12)}
+.pro-lock{background:#faf7fe;border:1px solid #e7d9f5;border-radius:12px;padding:18px 20px;margin-top:14px}
+.risco-score{display:flex;align-items:center;gap:18px;border:2px solid;border-radius:14px;padding:16px 22px;margin:16px 0;justify-content:center}
+.risco-num{font-size:44px;font-weight:800;line-height:1}.risco-num small{font-size:18px;font-weight:600;opacity:.6}
+.risco-classe{font-size:20px;font-weight:700}
+.grupo-bloco{border:1px solid var(--borda);border-radius:10px;padding:12px 14px;margin:12px 0}
+.grupo-bloco h3{margin:0 0 8px;font-size:15px}
+
+/* --- Selo de frescor dos dados + bloco de citação --- */
+.dados-selo{font-size:13px;background:#f0f7f2;border:1px solid #d4eadd;border-radius:8px;padding:8px 12px;color:#1e6b3a}
+.citacao{background:#f7f9fc;border-left:3px solid var(--azul-claro);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14px}
+
+/* --- Assinatura sem anúncios --- */
+.assine-ok{background:#e7f6ec;border:1px solid #b6e0c4;border-radius:8px;padding:10px 14px;margin:10px 0;color:#1e7e34;font-size:14px}
+
+/* --- Banner de assinatura sem anúncios (abaixo da busca) --- */
+.promo-adfree{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 0;padding:10px 14px;
+  background:linear-gradient(120deg,#eef7ff,#f0f7f2);border:1px solid #cfe0ee;border-radius:10px;
+  font-size:13.5px;color:#0a3d62;text-decoration:none;transition:box-shadow .15s,transform .12s}
+.promo-adfree:hover{box-shadow:0 3px 12px rgba(10,61,98,.12);transform:translateY(-1px)}
+.promo-adfree .promo-cta{margin-left:auto;background:var(--azul);color:#fff;font-weight:700;font-size:12.5px;
+  padding:4px 12px;border-radius:999px;white-space:nowrap}
+@media (max-width:480px){.promo-adfree .promo-cta{margin-left:0}}
+
+/* --- Comparativos (matrizes de decisão) --- */
+.comp-resumo{background:#eef4fb;border-left:4px solid var(--azul-claro);border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0 18px}
+.comp-resumo h2{margin:0 0 6px;font-size:15px;color:var(--azul)}
+.comp-resumo ul{margin:0;padding-left:20px}
+.comp-resumo li{margin:5px 0}
+.comp-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 12px}
+.comp-table caption{caption-side:top;text-align:left;font-size:12.5px;color:var(--cinza);padding:0 0 6px}
+.comp-table th,.comp-table td{text-align:left;padding:9px 10px;border:1px solid var(--borda);vertical-align:top}
+.comp-table thead th{background:#eef4fb;color:var(--azul);font-size:12px;text-transform:uppercase;letter-spacing:.3px}
+.comp-table tbody th[scope="row"]{background:#f7f9fc;color:var(--azul);font-weight:600;width:22%}
+.comp-table tr.comp-indicado th{background:#f0f9f3;color:#1e7e34}
+.comp-table tr.comp-indicado td{background:#f0f9f3;font-weight:600}
+@media (max-width:640px){.comp-table{font-size:12px}.comp-table th,.comp-table td{padding:7px 8px}}
+
+/* Vitrine de empresas nas páginas-hub (cidade, atividade, estado).
+   Existe para abrir caminho de rastreamento até as 72M páginas /cnpj/ —
+   elas convertem 7× melhor que as páginas de estado, mas só 0,03% recebia
+   impressão porque nada linkava para elas. */
+.lista-empresas { list-style: none; padding: 0; margin: 12px 0 0;
+  columns: 2; column-gap: 26px; }
+.lista-empresas li { break-inside: avoid; padding: 5px 0;
+  border-bottom: 1px solid var(--borda); font-size: 14px; }
+.lista-empresas a { color: var(--azul); text-decoration: none; }
+.lista-empresas a:hover { text-decoration: underline; }
+.lista-empresas small { display: block; font-size: 12px; }
+@media (max-width: 640px) { .lista-empresas { columns: 1; } }
+</style>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <!-- Resumo do site para modelos de IA (llmstxt.org) -->
+  <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+  <link rel="alternate" type="text/plain" title="llms-full.txt" href="/llms-full.txt">
+
+  <!-- Dados estruturados (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.sintegrabrasil.com.br/#website",
+        "url": "https://www.sintegrabrasil.com.br/",
+        "name": "SINTEGRA Brasil",
+        "description": "Consulta de Inscrição Estadual (IE) por CNPJ em todos os estados do Brasil.",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://www.sintegrabrasil.com.br/#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": { "@type": "EntryPoint", "urlTemplate": "https://www.sintegrabrasil.com.br/cnpj/{search_term_string}" },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.sintegrabrasil.com.br/#org",
+        "name": "SINTEGRA Brasil",
+        "url": "https://www.sintegrabrasil.com.br/",
+        "logo": "https://www.sintegrabrasil.com.br/favicon.svg",
+        "description": "Serviço independente de consulta de Inscrição Estadual por CNPJ. Sem vínculo com órgãos públicos.",
+        "sameAs": ["https://www.wikidata.org/wiki/Q140570618"]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Consulta de Inscrição Estadual por CNPJ",
+        "url": "https://www.sintegrabrasil.com.br/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "browserRequirements": "Requer JavaScript",
+        "inLanguage": "pt-BR",
+        "featureList": [
+          "Consulta de CNPJ",
+          "Consulta de Inscrição Estadual (IE) por CNPJ",
+          "Situação cadastral da empresa",
+          "Validação de Inscrição Estadual",
+          "Pesquisa de empresas por CNAE, estado e município",
+          "Geração de DANFE e download da NF-e"
+        ],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que é Inscrição Estadual (IE)?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A Inscrição Estadual é o registro de uma empresa no cadastro de contribuintes da Secretaria da Fazenda (SEFAZ) do estado. É obrigatória para empresas que recolhem ICMS, como comércio e indústria." }
+          },
+          {
+            "@type": "Question",
+            "name": "Como consultar a Inscrição Estadual pelo CNPJ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Basta informar o CNPJ da empresa no campo de busca e clicar em Consultar. O resultado mostra a Inscrição Estadual, a situação cadastral e os dados públicos da empresa." }
+          },
+          {
+            "@type": "Question",
+            "name": "É possível consultar a IE de qualquer estado?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim. A consulta retorna as inscrições estaduais de todos os estados em que a empresa está cadastrada. Você pode filtrar por uma UF específica ou ver todas de uma vez." }
+          },
+          {
+            "@type": "Question",
+            "name": "A consulta de Inscrição Estadual é gratuita?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim, a consulta é totalmente gratuita e não exige cadastro. Informe o CNPJ e veja o resultado na hora." }
+          },
+          {
+            "@type": "Question",
+            "name": "Toda empresa tem Inscrição Estadual?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Não. Empresas exclusivamente prestadoras de serviços, que recolhem ISS em vez de ICMS, geralmente não possuem Inscrição Estadual." }
+          },
+          {
+            "@type": "Question",
+            "name": "O SINTEGRA Brasil é oficial?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Não. O SINTEGRA Brasil é um serviço independente e privado que consulta dados públicos de empresas. Não é o portal oficial do SINTEGRA nem um site do governo." }
+          },
+          {
+            "@type": "Question",
+            "name": "Como consultar uma empresa pelo CNPJ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Digite o CNPJ no campo de busca e clique em Consultar. Você verá a razão social, a Inscrição Estadual, a situação cadastral, o endereço e a atividade (CNAE) da empresa." }
+          },
+          {
+            "@type": "Question",
+            "name": "Como saber se uma empresa está ativa?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A consulta mostra a situação cadastral (ativa, baixada, inapta, etc.) e indica se a Inscrição Estadual está ativa em cada estado." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Z3HHB66R1Y"></script></head>
+<body>
+  <a class="skip-link" href="#cnpj">Ir para a consulta</a>
+  
+  <header class="topbar">
+    <div class="container">
+      <div class="brand-line">
+        <span class="brand-name">SINTEGRA</span>
+        <div class="trustbar">
+          <span><strong>20,0 mi+</strong> empresas</span>
+          <span><strong>27</strong> estados</span>
+          <span><strong>Grátis</strong> · sem cadastro</span>
+        </div>
+      </div>
+      <h1>Consulta de Inscrição Estadual pelo CNPJ</h1>
+      <p class="subtitle">Descubra a Inscrição Estadual, a situação cadastral e os dados de empresas de todo o Brasil pelo CNPJ — grátis</p>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="card search-card">
+      <form id="form" autocomplete="off">
+        <label for="cnpj">CNPJ</label>
+        <div class="input-row">
+          <input id="cnpj" name="cnpj" type="text" inputmode="numeric" placeholder="00.000.000/0000-00" maxlength="18" aria-describedby="hint" required="" style="">
+          <button id="submit" type="submit">Consultar</button>
+        </div>
+        <small id="hint" class="hint">Digite os 14 dígitos do CNPJ — a formatação é automática.<br>
+          A consulta é gratuita: antes do resultado, um anúncio rápido pode ser exibido uma vez por visita.</small>
+      </form>
+      <section id="status" class="status" aria-live="polite" hidden=""></section>
+    </section>
+
+    <!-- Card: app do plano Pro (consulta limpa, sem anúncio) -->
+    <!-- Publicidade: Content1 acima do card de teste grátis (pedido do JoinAds) -->
+    <div joinadscode="Content1"></div>
+
+    <a class="card app-card no-print" href="/app">
+      <span class="app-card-ico">🔍</span>
+      <span class="app-card-text">
+        <strong>Consulta limpa, sem anúncios — no PC, tablet ou celular</strong>
+        <span>Instale o app do SINTEGRA: só a consulta, sem propaganda e sem rolagem. Inclui chave de API ilimitada por R$ 29,90/mês — <strong>3 dias grátis</strong>.</span>
+      </span>
+      <span class="app-card-cta">Testar grátis</span>
+    </a>
+
+    <!-- Publicidade: native banner (fonte única em seo.js/nativeBannerHtml) -->
+    
+
+
+    <!-- O que o site faz (mensagem clara + palavras-chave, crawlable) -->
+    <section class="card usecases" aria-label="O que você pode fazer no SINTEGRA Brasil">
+      <h2>O que você pode consultar aqui</h2>
+      <p>O <strong>SINTEGRA Brasil</strong> é uma alternativa gratuita e rápida ao portal oficial do SINTEGRA para
+      consultar dados públicos de empresas de <strong>todo o Brasil</strong> a partir do <strong>CNPJ</strong>:</p>
+      <ul class="usecases-list">
+        <li>🔎 <strong>Consultar CNPJ e Inscrição Estadual (IE)</strong> — use a busca acima: razão social, situação cadastral, endereço, CNAE e a IE dos 27 estados.</li>
+        <li>📋 <a href="/situacao-cadastral"><strong>Ver a situação cadastral</strong></a> da empresa (ativa, baixada, etc.).</li>
+        <li>✅ <a href="/validar-inscricao-estadual">Validar uma Inscrição Estadual</a> em qualquer estado.</li>
+        <li>🏢 <a href="/busca">Pesquisar empresas por atividade (CNAE), estado e município</a>, com mapa de calor.</li>
+        <li>📡 <a href="/radar">Ver empresas recém-abertas (Radar)</a> — por cidade e ramo de atividade, ideal para prospecção.</li>
+        <li>📊 <a href="/rankings">Rankings de empresas</a> — maiores capitais sociais, cidades com mais empresas e MEIs, CNAEs em crescimento.</li>
+        <li>🧾 <a href="/nfe">Gerar o DANFE e baixar a NF-e</a> pela chave de acesso ou pelo XML.</li>
+      </ul>
+      <p class="usecases-transp">Consultamos <strong>dados públicos</strong> de empresas. Não somos o portal oficial do SINTEGRA nem um site do governo — veja a <a href="/sobre-os-dados">fonte dos dados</a>.</p>
+    </section>
+
+    <!-- Card: gerar DANFE da NF-e a partir do XML -->
+    <a class="card nfe-card no-print" href="/nfe">
+      <span class="nfe-card-ico">🧾</span>
+      <span class="nfe-card-text">
+        <strong>Baixar DANFE da NF-e em PDF</strong>
+        <span>Tem o XML de uma nota fiscal? Gere o PDF do DANFE na hora — direto no seu navegador, sem enviar nada.</span>
+      </span>
+      <span class="nfe-card-cta">Gerar PDF</span>
+    </a>
+
+    <section id="result" class="card result" hidden="">
+      <div class="result-head">
+        <div>
+          <h2 id="r-razao">—</h2>
+          <p id="r-fantasia" class="muted"></p>
+        </div>
+        <span id="r-situacao" class="chip"></span>
+      </div>
+
+      <div class="result-actions no-print">
+        <button type="button" id="btn-monitorar" class="act-btn act-destaque">🔔 Monitorar este CNPJ</button>
+        <button type="button" id="btn-pdf" class="act-btn">⬇ Salvar PDF</button>
+        <button type="button" id="btn-csv" class="act-btn">⬇ Baixar CSV</button>
+        <a id="btn-link" class="act-btn" href="#">🔗 Página da empresa</a>
+      </div>
+
+      <!-- Destaque: Inscrição Estadual (todas as UFs) -->
+      <div class="ie-box" id="ie-box">
+        <div class="ie-head">
+          <span class="ie-label" id="ie-label">Inscrição Estadual</span>
+          <label class="uf-filter-wrap">
+            <span>Estado:</span>
+            <select id="uf-filter" class="uf-filter"><option value="">Todos os estados</option><option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option></select>
+          </label>
+        </div>
+        <div id="ie-list"></div>
+        <div class="ie-status-line">
+          <span class="ie-sublabel">Situação do CNPJ:</span>
+          <span id="ie-cnpj-status" class="chip">—</span>
+          <span id="ie-cnpj-status-data" class="muted"></span>
+        </div>
+      </div>
+
+      <!-- Identificação -->
+      <h3 class="sec-title">Identificação</h3>
+      <dl class="details">
+        <div><dt>CNPJ</dt><dd id="r-cnpj">—</dd></div>
+        <div><dt>Matriz / Filial</dt><dd id="r-tipo">—</dd></div>
+        <div><dt>Natureza jurídica</dt><dd id="r-natureza">—</dd></div>
+        <div><dt>Porte</dt><dd id="r-porte">—</dd></div>
+        <div><dt>Capital social</dt><dd id="r-capital">—</dd></div>
+        <div><dt>Início de atividade</dt><dd id="r-abertura">—</dd></div>
+      </dl>
+
+      <!-- Situação cadastral -->
+      <h3 class="sec-title">Situação cadastral</h3>
+      <dl class="details">
+        <div><dt>Situação</dt><dd id="r-sit">—</dd></div>
+        <div><dt>Data da situação</dt><dd id="r-sit-data">—</dd></div>
+        <div><dt>Motivo</dt><dd id="r-sit-motivo">—</dd></div>
+        <div id="row-especial" hidden=""><dt>Situação especial</dt><dd id="r-sit-especial">—</dd></div>
+      </dl>
+
+      <!-- Endereço -->
+      <h3 class="sec-title">Endereço</h3>
+      <dl class="details">
+        <div><dt>Logradouro</dt><dd id="r-end-log">—</dd></div>
+        <div><dt>Bairro</dt><dd id="r-end-bairro">—</dd></div>
+        <div><dt>Município / UF</dt><dd id="r-end-municipio">—</dd></div>
+        <div><dt>CEP</dt><dd id="r-end-cep">—</dd></div>
+      </dl>
+
+      <!-- Contato -->
+      <h3 class="sec-title">Contato</h3>
+      <dl class="details">
+        <div><dt>Telefone</dt><dd id="r-tel1">—</dd></div>
+        <div id="row-tel2" hidden=""><dt>Telefone 2</dt><dd id="r-tel2">—</dd></div>
+        <div><dt>E-mail</dt><dd id="r-email">—</dd></div>
+      </dl>
+
+      <!-- Atividades econômicas -->
+      <h3 class="sec-title">Atividade econômica (CNAE)</h3>
+      <div class="cnae" id="r-cnae-principal"></div>
+      <details id="cnae-sec-wrap" class="collapse" hidden="">
+        <summary>Atividades secundárias (<span id="cnae-sec-count">0</span>)</summary>
+        <ul id="r-cnae-sec" class="cnae-list"></ul>
+      </details>
+
+      <!-- Simples / MEI -->
+      <h3 class="sec-title">Simples Nacional / MEI</h3>
+      <dl class="details">
+        <div><dt>Optante pelo Simples</dt><dd id="r-simples">—</dd></div>
+        <div><dt>Optante pelo MEI</dt><dd id="r-mei">—</dd></div>
+      </dl>
+
+      <p class="updated">Dados atualizados em <span id="r-atualizado">—</span></p>
+    </section>
+
+    <!-- Conteúdo informativo (SEO) -->
+    <article class="seo-content">
+      <h2>Consulta de Inscrição Estadual por CNPJ</h2>
+      <p>
+        O <strong>SINTEGRA Brasil</strong> permite <strong>consultar a Inscrição Estadual (IE)</strong>
+        de empresas de <strong>todos os estados do Brasil</strong> a partir do <strong>CNPJ</strong>.
+        A consulta é gratuita, não exige cadastro e mostra o resultado na hora, junto da situação
+        cadastral, endereço, atividades (CNAE) e demais dados públicos da empresa.
+      </p>
+
+      <h3>O que é a Inscrição Estadual?</h3>
+      <p>
+        A Inscrição Estadual é o número de registro de uma empresa no cadastro de contribuintes
+        da Secretaria da Fazenda (SEFAZ) do estado. Ela é obrigatória para empresas que recolhem
+        <abbr title="Imposto sobre Circulação de Mercadorias e Serviços">ICMS</abbr> — como comércio,
+        indústria e atacado — e é exigida para a emissão de notas fiscais de produtos.
+      </p>
+
+      <!-- Publicidade: Content2 abaixo do parágrafo "O que é a Inscrição Estadual?" (pedido do JoinAds) -->
+      <div joinadscode="Content2"></div>
+
+      <h3>Como consultar a IE pelo CNPJ</h3>
+      <ol class="seo-steps">
+        <li>Digite o <strong>CNPJ</strong> da empresa no campo de busca acima.</li>
+        <li>Clique em <strong>Consultar</strong>.</li>
+        <li>Veja a <strong>Inscrição Estadual</strong> e a situação cadastral; use o seletor de estado para filtrar por UF.</li>
+      </ol>
+
+      <h3>Inscrição Estadual em todos os estados</h3>
+      <p>
+        Uma mesma empresa pode ter Inscrição Estadual em mais de um estado. A consulta retorna
+        todas as inscrições encontradas, indicando a <strong>UF</strong> e se cada uma está
+        <strong>ativa</strong> ou <strong>baixada</strong>. É possível consultar a IE em
+        AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO,
+        RR, SC, SP, SE e TO.
+      </p>
+
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>A consulta de Inscrição Estadual é gratuita?</summary>
+          <p>Sim. A consulta é totalmente gratuita e não exige cadastro. Informe o CNPJ e veja o resultado imediatamente.</p>
+        </details>
+        <details>
+          <summary>Toda empresa tem Inscrição Estadual?</summary>
+          <p>Não. Empresas exclusivamente prestadoras de serviços, que recolhem ISS em vez de ICMS, em geral não possuem Inscrição Estadual.</p>
+        </details>
+        <details>
+          <summary>O que significa IE "ativa" ou "baixada"?</summary>
+          <p>Uma IE <strong>ativa</strong> indica que a empresa está habilitada como contribuinte do ICMS naquele estado. <strong>Baixada</strong> ou inativa indica que o registro foi encerrado ou suspenso.</p>
+        </details>
+        <details>
+          <summary>Os dados são oficiais?</summary>
+          <p>Os dados têm caráter informativo e vêm de bases públicas. Para fins oficiais, confirme no SINTEGRA da SEFAZ do estado correspondente.</p>
+        </details>
+        <details>
+          <summary>O SINTEGRA Brasil é oficial?</summary>
+          <p>Não. O SINTEGRA Brasil é um serviço <strong>independente e privado</strong> que consulta dados públicos de empresas. <strong>Não é o portal oficial do SINTEGRA</strong> nem um site do governo.</p>
+        </details>
+        <details>
+          <summary>Como consultar uma empresa pelo CNPJ?</summary>
+          <p>Digite o CNPJ no campo de busca e clique em Consultar. Você verá a razão social, a Inscrição Estadual, a situação cadastral, o endereço e a atividade (CNAE) da empresa.</p>
+        </details>
+        <details>
+          <summary>Como saber se uma empresa está ativa?</summary>
+          <p>A consulta mostra a <strong>situação cadastral</strong> (ativa, baixada, inapta, etc.) e indica se a Inscrição Estadual está ativa em cada estado.</p>
+        </details>
+      </div>
+    </article>
+
+    <section class="card links-internos" aria-label="Consultar empresas por estado, cidade e atividade">
+      <h2>Consultar empresas por estado, cidade e atividade</h2>
+      <h3>Inscrição Estadual por estado</h3>
+      <div class="li-grid">
+        <a href="/sintegra/ac">Acre</a> <a href="/sintegra/al">Alagoas</a> <a href="/sintegra/ap">Amapá</a> <a href="/sintegra/am">Amazonas</a> <a href="/sintegra/ba">Bahia</a> <a href="/sintegra/ce">Ceará</a> <a href="/sintegra/df">Distrito Federal</a> <a href="/sintegra/es">Espírito Santo</a> <a href="/sintegra/go">Goiás</a> <a href="/sintegra/ma">Maranhão</a> <a href="/sintegra/mt">Mato Grosso</a> <a href="/sintegra/ms">Mato Grosso do Sul</a> <a href="/sintegra/mg">Minas Gerais</a> <a href="/sintegra/pa">Pará</a> <a href="/sintegra/pb">Paraíba</a> <a href="/sintegra/pr">Paraná</a> <a href="/sintegra/pe">Pernambuco</a> <a href="/sintegra/pi">Piauí</a> <a href="/sintegra/rj">Rio de Janeiro</a> <a href="/sintegra/rn">Rio Grande do Norte</a> <a href="/sintegra/rs">Rio Grande do Sul</a> <a href="/sintegra/ro">Rondônia</a> <a href="/sintegra/rr">Roraima</a> <a href="/sintegra/sc">Santa Catarina</a> <a href="/sintegra/sp">São Paulo</a> <a href="/sintegra/se">Sergipe</a> <a href="/sintegra/to">Tocantins</a>
+      </div>
+      <h3>Empresas por atividade (CNAE)</h3>
+      <div class="li-grid">
+        <a href="/atividade/comercio-varejista">Comércio varejista</a> <a href="/atividade/comercio-atacadista">Comércio atacadista</a> <a href="/atividade/industria">Indústria</a> <a href="/atividade/restaurantes">Restaurantes</a> <a href="/atividade/supermercados">Supermercados</a> <a href="/atividade/farmacias">Farmácias</a> <a href="/atividade/autopecas">Autopeças</a> <a href="/atividade/vestuario">Vestuário</a> <a href="/atividade/materiais-de-construcao">Materiais de construção</a> <a href="/atividade/comercio-de-veiculos">Veículos</a> <a href="/atividade/ecommerce">E-commerce</a> <a href="/atividade/transporte-de-cargas">Transporte de cargas</a>
+      </div>
+    </section>
+
+    <p class="source">
+      Fonte: API pública <strong>CNPJ.ws</strong> (dados da Receita Federal e SEFAZ).
+      Os dados têm caráter informativo; para fins oficiais, confirme no SINTEGRA da SEFAZ do estado.
+    </p>
+
+    <p class="disclaimer">
+      <strong>Aviso:</strong> o SINTEGRA Brasil é um serviço <strong>independente e privado</strong>,
+      sem vínculo com a Receita Federal, com as Secretarias de Fazenda estaduais (SEFAZ) ou
+      com qualquer órgão público. Não somos um site oficial do governo.
+    </p>
+  </main>
+
+  <!-- Popup de captura de e-mail do monitoramento (abre pelo botao do card) -->
+  <div id="mon-overlay" class="mon-overlay no-print" hidden="">
+    <div class="mon-modal" role="dialog" aria-modal="true" aria-labelledby="mon-titulo">
+      <button type="button" class="mon-fechar" id="mon-fechar" aria-label="Fechar">×</button>
+      <h2 id="mon-titulo">🔔 Monitorar este CNPJ</h2>
+      <p class="mon-intro">Avisamos por e-mail, sem custo, sempre que esta empresa mudar. Você recebe alerta quando:</p>
+      <ul class="mon-lista">
+        <li>a <strong>Inscrição Estadual</strong> sair de habilitada para não habilitada, suspensa ou baixada;</li>
+        <li>a <strong>situação na Receita</strong> virar inapta, suspensa ou baixada;</li>
+        <li>a empresa for <strong>excluída do Simples Nacional</strong> ou deixar de ser <strong>MEI</strong>;</li>
+        <li>mudar <strong>endereço, CNAE, quadro de sócios (QSA)</strong> ou <strong>razão social</strong>.</li>
+      </ul>
+
+      <form id="mon-form" novalidate="">
+        <label class="mon-label" for="mon-nome">Seu nome</label>
+        <input type="text" id="mon-nome" name="nome" class="mon-input" placeholder="Como podemos te chamar" autocomplete="name" maxlength="80" required="" style="">
+        <label class="mon-label mon-label-2" for="mon-email">Seu e-mail</label>
+        <input type="email" id="mon-email" name="email" class="mon-input" placeholder="voce@empresa.com.br" autocomplete="email" required="" style="">
+        <input type="text" id="mon-site" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" class="mon-honeypot" style="">
+        <button type="submit" class="mon-enviar" id="mon-enviar">Ativar alertas gratuitos</button>
+        <p class="mon-status" id="mon-status" role="status" hidden=""></p>
+      </form>
+
+      <p class="mon-rodape">
+        Comparamos os dados a cada atualização da base.
+        Veja a <a href="/privacidade">política de privacidade</a>
+        e gerencie tudo em <a href="/monitorar">Monitorar CNPJ</a>.
+      </p>
+    </div>
+  </div>
+
+  <footer class="container footer">
+    <div class="fb-widget no-print" id="fb-widget">
+    <p class="fb-titulo">Como está sua experiência com o site?</p>
+    <div class="fb-notas" role="group" aria-label="Nota de 1 a 5">
+      <button type="button" data-nota="1" title="Péssima" aria-label="Nota 1 — péssima">😖</button>
+      <button type="button" data-nota="2" title="Ruim" aria-label="Nota 2 — ruim">😕</button>
+      <button type="button" data-nota="3" title="Regular" aria-label="Nota 3 — regular">😐</button>
+      <button type="button" data-nota="4" title="Boa" aria-label="Nota 4 — boa">🙂</button>
+      <button type="button" data-nota="5" title="Excelente" aria-label="Nota 5 — excelente">😍</button>
+    </div>
+    <form class="fb-form" hidden="">
+      <textarea maxlength="1000" rows="3" placeholder="Conte em poucas palavras o que achou ou o que podemos melhorar (opcional)" style=""></textarea>
+      <input type="text" name="site" class="fb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="">
+      <button type="submit">Enviar feedback</button>
+    </form>
+    <p class="fb-ok" hidden="">💙 Obrigado! Seu feedback ajuda a melhorar o site.</p>
+  </div>
+  <script>
+  (function(){
+    var w=document.getElementById('fb-widget');if(!w)return;
+    try{if(localStorage.getItem('fb-enviado')&&Date.now()-Number(localStorage.getItem('fb-enviado'))<2592e6){w.remove();return;}}catch(e){}
+    var nota=0,form=w.querySelector('.fb-form'),ok=w.querySelector('.fb-ok');
+    w.querySelectorAll('.fb-notas button').forEach(function(b){
+      b.addEventListener('click',function(){
+        nota=Number(b.dataset.nota);
+        w.querySelectorAll('.fb-notas button').forEach(function(x){x.classList.toggle('sel',x===b);});
+        form.hidden=false;form.querySelector('textarea').focus();
+      });
+    });
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();if(!nota)return;
+      var btn=form.querySelector('button');btn.disabled=true;
+      fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nota:nota,mensagem:form.querySelector('textarea').value,
+          pagina:location.pathname,site:form.querySelector('.fb-hp').value})})
+        .then(function(r){return r.json();})
+        .then(function(){w.querySelector('.fb-titulo').hidden=true;w.querySelector('.fb-notas').hidden=true;
+          form.hidden=true;ok.hidden=false;
+          try{localStorage.setItem('fb-enviado',String(Date.now()));}catch(e){}})
+        .catch(function(){btn.disabled=false;});
+    });
+  })();
+  </script>
+    <nav class="footer-cols" aria-label="Navegação do rodapé">
+      <div class="fcol"><h4>Consultas</h4>
+        <a href="/">Início</a><a href="/busca">Busca de empresas</a><a href="/consultar-inscricao-estadual">Consultar IE</a><a href="/situacao-cadastral">Situação cadastral</a><a href="/cartao-cnpj">Cartão CNPJ</a><a href="/validar-inscricao-estadual">Validar IE</a>
+      </div>
+      <div class="fcol"><h4>Ferramentas</h4>
+        <a href="/prospeccao">Prospecção (leads)</a><a href="/monitorar">Monitorar CNPJ</a><a href="/nfe">Gerar DANFE</a><a href="/estatisticas">Estatísticas</a><a href="/incorporar">Incorporar widget</a><a href="/api">API</a>
+      </div>
+      <div class="fcol"><h4>Conteúdo</h4>
+        <a href="/blog">Blog</a><a href="/guias">Guias</a><a href="/atividades">Atividades</a><a href="/sobre">Sobre</a><a href="/sobre-os-dados">Fonte dos dados</a>
+      </div>
+      <div class="fcol"><h4>Conta &amp; Legal</h4>
+        <a href="/assinar">Remover anúncios</a><a href="/contato">Contato</a><a href="/privacidade">Privacidade</a><a href="/cookies">Cookies</a><a href="/termos">Termos de uso</a><a href="/lgpd">Exclusão de dados</a>
+      </div>
+    </nav>
+    <nav class="states-nav">
+      <span>Consulta por estado:</span>
+      <a href="/sintegra/ac">AC</a> <a href="/sintegra/al">AL</a> <a href="/sintegra/ap">AP</a>
+      <a href="/sintegra/am">AM</a> <a href="/sintegra/ba">BA</a> <a href="/sintegra/ce">CE</a>
+      <a href="/sintegra/df">DF</a> <a href="/sintegra/es">ES</a> <a href="/sintegra/go">GO</a>
+      <a href="/sintegra/ma">MA</a> <a href="/sintegra/mt">MT</a> <a href="/sintegra/ms">MS</a>
+      <a href="/sintegra/mg">MG</a> <a href="/sintegra/pa">PA</a> <a href="/sintegra/pb">PB</a>
+      <a href="/sintegra/pr">PR</a> <a href="/sintegra/pe">PE</a> <a href="/sintegra/pi">PI</a>
+      <a href="/sintegra/rj">RJ</a> <a href="/sintegra/rn">RN</a> <a href="/sintegra/rs">RS</a>
+      <a href="/sintegra/ro">RO</a> <a href="/sintegra/rr">RR</a> <a href="/sintegra/sc">SC</a>
+      <a href="/sintegra/sp">SP</a> <a href="/sintegra/se">SE</a> <a href="/sintegra/to">TO</a>
+    </nav>
+    <p class="disclaimer">
+      <strong>Aviso:</strong> o SINTEGRA Brasil é um serviço <strong>independente e privado</strong>,
+      sem vínculo com a Receita Federal, com as SEFAZ estaduais ou com qualquer órgão público.
+      As consultas usam dados abertos oficiais.
+    </p>
+    <p class="counter">🔎 <span id="contador-num">11.023.839</span> consultas realizadas</p>
+    <p class="footer-links">Compare preços com histórico: <a href="https://farejapreco.com.br/" target="_blank" rel="noopener">FarejaPreço</a></p>
+    <small>Desenvolvido e Gerenciado por <a href="https://www.spartanti.com.br" target="_blank" rel="noopener">Spartan TI</a> · CNPJ 36.939.912/0001-70</small>
+  </footer>
+
+  <script src="/app.js?v=25" defer=""></script>
+  <script src="/heat.js" defer=""></script>
+  <script>
+  /* Service worker: registra e FORÇA a checagem de atualização a cada visita.
+     Sem o update() explícito, um SW quebrado sobrevive por até 24h no
+     navegador — foi o que fez consultas falharem sem nunca chegar ao
+     servidor (log: 0 requisições recebidas enquanto o usuário via erro). */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function (reg) { try { reg.update(); } catch (e) {} })
+        .catch(function () {});
+    });
+  }
+  </script>
+  
+<script src="https://gridrushcolormatch.com/site/promo/popup.js" defer=""></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a6054b6d7e61f1cd',t:'MTc5NTY1ODM3NQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a6054b6d7e61f1cd',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1ca3cb1e577241448b089e6b8ad3b2db&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+</body></html>

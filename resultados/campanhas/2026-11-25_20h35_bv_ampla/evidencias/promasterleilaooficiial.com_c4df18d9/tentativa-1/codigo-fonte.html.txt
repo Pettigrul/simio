@@ -1,0 +1,914 @@
+<html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ProMaster Leilão de veículos – Plataforma líder em negociação de tratores, caminhonetes e máquinas agrícolas no Brasil.">
+  <title>ProMaster Leilão de Veículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --amber:#E8A020;--amber-d:#C98310;--amber-lt:#FEF3DC;--amber-br:rgba(232,160,32,.3);
+      --blue:#2563EB;--blue-d:#1D4ED8;
+      --dark:#111827;--dark2:#1F2937;--dark3:#0D111C;
+      --text:#111827;--text2:#4B5563;--text3:#9CA3AF;
+      --bg:#F9F8F4;--card:#fff;--border:#E5E7EB;
+      --radius:12px;--radius-sm:8px;--max-w:1200px;
+      --font:'Plus Jakarta Sans',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font-family:var(--font);cursor:pointer}
+    img{display:block;max-width:100%}
+
+    header{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid var(--border)}
+    .hdr{max-width:var(--max-w);margin:auto;padding:0 28px;height:70px;display:flex;align-items:center;gap:20px}
+    .logo{flex-shrink:0}.logo img{height:44px;width:auto}
+    .tel-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;border:1.5px solid var(--amber);background:transparent;color:var(--dark);font-size:.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;transition:background .18s;cursor:pointer;font-family:var(--font)}
+    .tel-btn:hover{background:var(--amber-lt)}
+    nav{display:flex;align-items:center;gap:1px;margin-left:auto;flex-wrap:nowrap}
+    nav a{padding:6px 8px;font-size:.78rem;font-weight:600;color:var(--text2);border-radius:6px;letter-spacing:.01em;white-space:nowrap;transition:color .15s}
+    nav a:hover{color:var(--text)}
+    nav a.ativo{color:var(--text);border-bottom:2px solid var(--text);padding-bottom:4px}
+    .nav-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:var(--text2);font-size:1rem;transition:background .15s}
+    .nav-icon:hover{background:var(--border)}
+    .btn-dash{display:flex;align-items:center;gap:7px;padding:8px 17px;border-radius:var(--radius-sm);border:none;background:var(--dark);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.03em;transition:background .18s;cursor:pointer;font-family:var(--font)}
+    .btn-dash:hover{background:var(--dark2)}
+    .menu-toggle{display:none;margin-left:auto;background:none;border:1.5px solid var(--border);border-radius:8px;width:42px;height:42px;font-size:1.4rem;color:var(--dark);align-items:center;justify-content:center}
+    .btn-sair{display:flex;align-items:center;gap:5px;padding:8px 12px;border-radius:var(--radius-sm);border:none;background:transparent;color:var(--text2);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font);transition:color .15s}
+    .btn-sair:hover{color:var(--text)}
+
+    .hero-wrap{background:#fff}
+    .hero{max-width:var(--max-w);margin:0 auto;padding:64px 28px 72px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:7px;background:#F5F4EE;border:1px solid #DDD9CE;border-radius:999px;padding:5px 14px 5px 10px;font-size:.74rem;font-weight:700;color:var(--dark2);letter-spacing:.04em;margin-bottom:22px}
+    .hero h1{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:800;line-height:1.12;color:var(--text);margin-bottom:18px}
+    .hero h1 .amb{color:var(--amber)}
+    .hero-sub{font-size:.92rem;color:var(--text2);line-height:1.72;max-width:480px;margin-bottom:28px}
+    .search-box{position:relative;margin-bottom:22px}
+    .search-box .ico{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:var(--amber);font-size:1.15rem;z-index:1}
+    .search-box input{width:100%;padding:18px 132px 18px 52px;border-radius:999px;border:2px solid var(--border);background:#fff;font-family:var(--font);font-size:.98rem;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .search-box input:focus{border-color:var(--amber);box-shadow:0 0 0 4px rgba(232,160,32,.15),0 8px 24px rgba(0,0,0,.1)}
+    .search-box input::placeholder{color:var(--text3)}
+    .search-btn{position:absolute;right:7px;top:50%;transform:translateY(-50%);background:var(--amber);color:#fff;border:none;border-radius:999px;padding:12px 26px;font-family:var(--font);font-weight:800;font-size:.88rem;letter-spacing:.02em;cursor:pointer;transition:background .18s,transform .12s;box-shadow:0 4px 12px rgba(232,160,32,.35)}
+    .search-btn:hover{background:var(--amber-d);transform:translateY(-50%) scale(1.03)}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-amber{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:var(--radius-sm);border:none;background:var(--amber);color:#fff;font-size:.88rem;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:background .18s,transform .12s;font-family:var(--font)}
+    .btn-amber:hover{background:var(--amber-d);transform:translateY(-1px)}
+    .btn-dark-h{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:var(--radius-sm);border:none;background:var(--dark);color:#fff;font-size:.88rem;font-weight:700;cursor:pointer;transition:background .18s,transform .12s;font-family:var(--font)}
+    .btn-dark-h:hover{background:var(--dark2);transform:translateY(-1px)}
+
+    .hero-img-card{width:100%;display:flex;justify-content:center}
+    .hero-img-card picture{display:block;width:100%}
+    .hero-img-card img{width:100%;height:auto;display:block;border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.15)}
+    @media(min-width:961px){
+      .hero-img-card{aspect-ratio:1/1}
+      .hero-img-card picture{height:100%}
+      .hero-img-card img{height:100%;object-fit:cover}
+    }
+    .hero-img-ov{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.5) 55%,transparent 100%);padding:28px 24px 22px}
+    .hero-img-ov p{color:#fff;font-size:1.08rem;font-weight:700;line-height:1.35;margin-bottom:14px}
+    .hero-img-ov p span{color:var(--amber)}
+    .ov-foot{display:flex;justify-content:space-between;align-items:center}
+    .ov-loc small{display:block;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:2px}
+    .ov-loc strong{color:#fff;font-size:.82rem}
+    .badge-ent{background:var(--amber);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:6px}
+
+    .sec{max-width:var(--max-w);margin:0 auto;padding:60px 28px}
+    .sec-lbl{display:inline-block;background:var(--amber-lt);color:var(--amber-d);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:4px 12px;border-radius:999px;margin-bottom:10px;border:1px solid var(--amber-br)}
+    .sec-h{font-size:clamp(1.6rem,2.8vw,2.1rem);font-weight:800;color:var(--text);line-height:1.15}
+    .sec-h .amb{color:var(--amber)}
+    .sec-sub{font-size:.88rem;color:var(--text2);margin-top:7px;line-height:1.68;max-width:560px}
+
+    .dest-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+    .btn-estoque{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:#fff;color:var(--text);font-size:.83rem;font-weight:700;white-space:nowrap;cursor:pointer;transition:border-color .18s;font-family:var(--font)}
+    .btn-estoque:hover{border-color:var(--dark)}
+    .tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+    .tab{padding:8px 18px;border-radius:999px;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-size:.79rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:all .18s;font-family:var(--font)}
+    .tab:hover{border-color:var(--dark);color:var(--text)}
+    .tab.ativo{background:var(--dark);border-color:var(--dark);color:#fff}
+    .v-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .v-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:transform .22s,box-shadow .22s;cursor:pointer}
+    .v-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.1)}
+    .v-img{position:relative;overflow:hidden}
+    .v-img img{width:100%;height:175px;object-fit:cover;transition:transform .4s}
+    .v-card:hover .v-img img{transform:scale(1.06)}
+    .v-cat{position:absolute;top:10px;left:10px;background:rgba(17,24,39,.82);backdrop-filter:blur(4px);color:#fff;font-size:.64rem;font-weight:700;letter-spacing:.04em;padding:4px 10px;border-radius:999px}
+    .v-heart{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.83rem;box-shadow:0 1px 4px rgba(0,0,0,.12);transition:transform .15s;cursor:pointer}
+    .v-card:hover .v-heart{transform:scale(1.12)}
+    .v-fc{position:absolute;bottom:10px;left:10px;background:rgba(17,24,39,.75);color:#fff;font-size:.64rem;font-weight:700;padding:3px 8px;border-radius:5px}
+    .v-body{padding:13px 15px 15px}
+    .v-nome{font-size:.91rem;font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.35;min-height:36px}
+    .v-nome.dest{color:var(--amber)}
+    .v-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .v-pw{display:flex;align-items:center;gap:9px}
+    .v-line{width:3px;height:26px;background:var(--amber);border-radius:2px;flex-shrink:0}
+    .v-preco{font-size:.89rem;font-weight:700;color:var(--text)}
+    .v-chat{width:36px;height:36px;border-radius:50%;border:none;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;cursor:pointer;transition:background .18s,transform .12s;text-decoration:none}
+    .v-chat:hover{background:var(--amber-d);transform:scale(1.1)}
+    .v-bv{width:100%;height:auto;border-radius:8px;margin-top:10px;display:block;border:1px solid var(--border)}
+    .v-price-label{display:block;font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:3px}
+    .v-price-sub{display:block;font-size:.7rem;color:var(--text3);margin-top:5px;line-height:1.4}
+    .v-detalhes{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;padding:11px;border-radius:8px;background:var(--dark);color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;transition:background .18s,transform .12s}
+    .v-detalhes:hover{background:var(--amber);transform:translateY(-1px)}
+
+    .galeria-sec{background:#fff;padding:72px 0}
+    .galeria-hdr{text-align:center;margin-bottom:36px;padding:0 28px}
+    .galeria-badge{display:inline-flex;align-items:center;gap:6px;background:var(--dark);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+    .galeria-h{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;color:var(--text);line-height:1.15}
+    .galeria-h .amb{color:var(--amber)}
+    .galeria-sub{font-size:.88rem;color:var(--text2);margin:10px auto 0;line-height:1.7;max-width:500px}
+    .g-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:32px;padding:0 28px;flex-wrap:wrap}
+    .g-grid{max-width:var(--max-w);margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .g-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .22s,box-shadow .22s}
+    .g-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.1)}
+    .g-img-wrap{position:relative;overflow:hidden}
+    .g-img-wrap img{width:100%;height:210px;object-fit:cover;transition:transform .4s}
+    .g-card:hover .g-img-wrap img{transform:scale(1.05)}
+    .g-badge{position:absolute;top:12px;left:12px;background:rgba(17,24,39,.82);backdrop-filter:blur(4px);color:#fff;font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:999px}
+    .g-body{padding:18px 20px 20px}
+    .g-titulo{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.3}
+    .g-desc{font-size:.83rem;color:var(--text2);line-height:1.65;margin-bottom:16px}
+    .g-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px}
+    .g-loc{display:flex;align-items:center;gap:5px;font-size:.75rem;font-weight:600;color:var(--amber)}
+    .g-expand{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:1px;cursor:pointer;transition:color .15s}
+    .g-expand:hover{color:var(--text)}
+
+    .trust-bar{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .trust-inner{max-width:var(--max-w);margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(3,1fr)}
+    .trust-item{display:flex;align-items:center;gap:16px;padding:26px 24px;border-right:1px solid var(--border)}
+    .trust-item:last-child{border-right:none}
+    .trust-ico{width:42px;height:42px;border-radius:10px;background:var(--amber-lt);display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+    .trust-txt strong{display:block;font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:2px}
+    .trust-txt span{font-size:.79rem;color:var(--text2)}
+
+    .cta-dark{background:var(--dark3);background-image:url('uploads/arq_20260902133100_f94ff92b.png');background-size:cover;background-position:center;position:relative}
+    .cta-dark::before{content:'';position:absolute;inset:0;background:rgba(10,13,24,.88);backdrop-filter:blur(1px)}
+    .cta-dark-inner{position:relative;max-width:var(--max-w);margin:0 auto;padding:80px 28px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+    .cta-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(232,160,32,.45);color:var(--amber);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:18px}
+    .cta-dark h2{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:14px}
+    .cta-dark p{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.75;max-width:480px}
+    .cta-btns{display:flex;flex-direction:column;gap:12px;min-width:220px}
+    .btn-blue{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:var(--radius-sm);border:none;background:var(--blue);color:#fff;font-size:.88rem;font-weight:700;cursor:pointer;transition:background .18s,transform .12s;font-family:var(--font);white-space:nowrap;text-decoration:none}
+    .btn-blue:hover{background:var(--blue-d);transform:translateY(-1px)}
+    .btn-dark-out{display:flex;align-items:center;justify-content:center;gap:7px;padding:14px 26px;border-radius:var(--radius-sm);border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff;font-size:.88rem;font-weight:700;cursor:pointer;transition:border-color .18s,background .18s;font-family:var(--font);white-space:nowrap}
+    .btn-dark-out:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.1)}
+
+    footer{background:#0C1422;padding:60px 28px 24px}
+    .f-grid{max-width:var(--max-w);margin:0 auto 44px;display:grid;grid-template-columns:2fr 1fr 1.5fr 1.5fr;gap:40px}
+    .f-grid>*{min-width:0}
+    .leilao-seguro img{max-width:100%;height:auto}
+    .reclame-box{max-width:100%}
+    .f-brand img{height:40px;margin-bottom:14px;background:#fff;padding:8px 12px;border-radius:10px;display:inline-block}
+    .f-brand p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.75;max-width:250px;margin-bottom:20px}
+    .f-social{display:flex;gap:10px}
+    .f-social a{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:.88rem;color:rgba(255,255,255,.4);transition:border-color .18s,color .18s}
+    .f-social a:hover{border-color:var(--amber);color:var(--amber)}
+    .f-col h4{font-size:.69rem;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:rgba(255,255,255,.35);margin-bottom:18px}
+    .f-col ul{list-style:none}
+    .f-col ul li{margin-bottom:10px}
+    .f-col ul li a{font-size:.83rem;color:rgba(255,255,255,.5);transition:color .18s}
+    .f-col ul li a:hover{color:#fff}
+    .f-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+    .f-contact-ico{width:30px;height:30px;border-radius:7px;background:rgba(232,160,32,.12);border:1px solid rgba(232,160,32,.2);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0;margin-top:1px}
+    .f-contact-txt{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.55}
+    .f-contact-txt a{color:rgba(255,255,255,.55);transition:color .15s}
+    .f-contact-txt a:hover{color:var(--amber)}
+    .f-contact-txt strong{display:block;color:rgba(255,255,255,.7);font-size:.8rem;margin-bottom:1px}
+    .leilao-seguro{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .ls-icon{width:38px;height:38px;background:#1a5c2a;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .ls-txt strong{display:block;color:#fff;font-size:.83rem;font-weight:700}
+    .ls-txt span{font-size:.72rem;color:rgba(255,255,255,.45)}
+    .f-cert-desc{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.65}
+    .reclame-box{display:flex;align-items:center;gap:12px;margin-top:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;transition:border-color .18s}
+    .reclame-box:hover{border-color:var(--amber)}
+    .reclame-box img{height:38px;width:auto;max-width:140px;border-radius:6px;background:#fff;padding:4px 6px;object-fit:contain}
+    .reclame-badge{width:40px;height:40px;border-radius:8px;background:#0FB760;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+    .reclame-txt{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.4}
+    .reclame-txt strong{color:var(--amber)}
+    /* Lightbox da galeria */
+    .glb-overlay{position:fixed;inset:0;background:rgba(10,13,24,.85);backdrop-filter:blur(3px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+    .glb-overlay.open{display:flex}
+    .glb-modal{background:#fff;border-radius:18px;max-width:760px;width:100%;max-height:92vh;overflow:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+    .glb-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font-size:1.1rem;cursor:pointer;z-index:2}
+    .glb-close:hover{background:rgba(0,0,0,.75)}
+    .glb-modal img{width:100%;max-height:60vh;object-fit:cover;display:block}
+    .glb-body{padding:22px 24px 26px}
+    .glb-badge{display:inline-block;background:var(--dark);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:999px;margin-bottom:10px;text-transform:uppercase}
+    .glb-body h3{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+    .glb-body p{font-size:.92rem;color:var(--text2);line-height:1.7}
+    /* Barra inferior mobile */
+    .botnav{display:none}
+    .botnav a svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .bn-ic{width:44px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:12px;transition:background .15s,color .15s}
+    @media(max-width:760px){
+      .botnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:900;background:#fff;border-top:1px solid var(--border);box-shadow:0 -4px 16px rgba(0,0,0,.07);padding:7px 4px calc(7px + env(safe-area-inset-bottom,0px));justify-content:space-around}
+      .botnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text2);font-size:.66rem;font-weight:600}
+      .botnav a.on{color:var(--blue)}
+      .botnav a.on .bn-ic{background:var(--blue);color:#fff}
+      body{padding-bottom:78px}
+      .wa{bottom:90px!important}
+    }
+    .f-bottom{max-width:var(--max-w);margin:0 auto;padding-top:22px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+    .f-bottom p{font-size:.76rem;color:rgba(255,255,255,.25)}
+    .f-bottom-r{font-size:.72rem;color:rgba(255,255,255,.2);text-align:right}
+
+    .wa{position:fixed;bottom:28px;right:28px;z-index:999;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .18s,box-shadow .18s;text-decoration:none}
+    .wa:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+
+    @media(max-width:960px){
+      .hero{grid-template-columns:1fr;gap:24px;padding:0 20px 44px}
+      .hero-img-card{order:-1;width:100vw;margin-left:calc(50% - 50vw)}
+      .hero-img-card img{border-radius:0;box-shadow:none}
+      .v-grid{grid-template-columns:repeat(2,1fr)}
+      .g-grid{grid-template-columns:repeat(2,1fr)}
+      .cta-dark-inner{grid-template-columns:1fr;text-align:left}
+      .cta-btns{flex-direction:row;min-width:0}
+      .f-grid{grid-template-columns:1fr 1fr}
+      .trust-inner{grid-template-columns:1fr}
+      .trust-item{border-right:none;border-bottom:1px solid var(--border)}
+      .trust-item:last-child{border-bottom:none}
+    }
+    /* Menu mobile */
+    @media(max-width:1280px){
+      .menu-toggle{display:flex}
+      header nav{position:absolute;top:100%;left:0;right:0;margin-left:0;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 12px 24px rgba(0,0,0,.08);flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 16px;display:none}
+      header nav.open{display:flex}
+      header nav a{padding:13px 6px;border-bottom:1px solid var(--border);font-size:.9rem}
+      header nav a.btn-dash,header nav a.btn-sair{border-bottom:none;justify-content:center;margin-top:8px}
+      .tel-btn{font-size:.76rem;padding:7px 10px}
+    }
+    @media(max-width:640px){
+      .v-grid{grid-template-columns:1fr 1fr}
+      .g-grid{grid-template-columns:1fr}
+      .f-grid{grid-template-columns:1fr}
+      .cta-btns{flex-direction:column}
+    }
+    @media(max-width:560px){
+      .hdr{gap:10px;padding:0 16px}
+      .hero{padding:34px 20px 40px}
+      .sec{padding:40px 20px}
+      .hero-btns{flex-direction:column}
+      .hero-btns .btn-amber,.hero-btns .btn-dark-h{width:100%;justify-content:center}
+    }
+    @media(max-width:420px){.v-grid{grid-template-columns:1fr}}
+    @media(max-width:820px){.f-grid{grid-template-columns:1fr}}
+
+.alerta-overlay{
+  position:fixed;inset:0;
+  background:rgba(8,10,18,.78);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+  animation:alertaFade .25s ease;
+}
+.alerta-overlay.hidden{display:none}
+@keyframes alertaFade{from{opacity:0}to{opacity:1}}
+
+.alerta-modal{
+  position:relative;
+  background:#fff;
+  border-radius:14px;
+  max-width:340px;width:100%;
+  max-height:82vh;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.35), 0 4px 12px rgba(0,0,0,.15);
+  display:flex;flex-direction:column;
+  animation:alertaIn .28s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes alertaIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+
+/* Faixa âmbar superior (identidade da marca) */
+.alerta-modal::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg, #E8A020 0%, #C98310 50%, #E8A020 100%);
+  z-index:2;
+}
+
+/* Cabeçalho */
+.alerta-head{
+  background:var(--dark3);
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px 11px;
+  padding-top:15px; /* compensa a faixa âmbar */
+}
+.alerta-head .ico{
+  width:30px;height:30px;border-radius:8px;
+  background:rgba(232,160,32,.18);
+  color:#E8A020;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(232,160,32,.25), 0 0 12px rgba(232,160,32,.15);
+}
+.alerta-head .ico svg{
+  width:16px;height:16px;
+  display:block;
+}
+.alerta-head h3{
+  color:var(--amber);
+  font-size:.76rem;font-weight:800;
+  letter-spacing:.08em;line-height:1.2;margin:0;
+  text-transform:uppercase;
+}
+.alerta-head p{
+  color:rgba(255,255,255,.55);
+  font-size:.62rem;margin:2px 0 0;
+  letter-spacing:.02em;
+}
+
+/* Botão fechar */
+.alerta-close{
+  margin-left:auto;
+  width:26px;height:26px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.8);
+  font-size:.72rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all .18s;
+}
+.alerta-close:hover{
+  background:rgba(255,255,255,.15);
+  border-color:rgba(255,255,255,.35);
+  color:#fff;
+  transform:rotate(90deg);
+}
+
+/* Corpo */
+.alerta-body{
+  padding:10px;
+  background:#f4f6fb;
+  overflow:auto;
+  display:flex;justify-content:center;
+}
+.alerta-body img{
+  width:100%;max-width:300px;height:auto;
+  border-radius:8px;display:block;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+
+/* Rodapé */
+.alerta-foot{
+  padding:12px 14px 14px;
+  background:#fff;
+  border-top:1px solid #eef1f6;
+}
+.alerta-btn{
+  width:100%;padding:10px;
+  border:none;border-radius:8px;
+  background:linear-gradient(180deg, #E8A020 0%, #D18F12 100%);
+  color:#fff;
+  font-size:.72rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;
+  transition:all .2s;
+  box-shadow:0 2px 6px rgba(232,160,32,.3);
+}
+.alerta-btn:hover{
+  background:linear-gradient(180deg, #F0A82A 0%, #D99A16 100%);
+  box-shadow:0 4px 12px rgba(232,160,32,.45);
+  transform:translateY(-1px);
+}
+.alerta-btn:active{
+  transform:translateY(0);
+  box-shadow:0 1px 3px rgba(232,160,32,.3);
+}
+  </style>
+</head>
+<body>
+
+<div class="alerta-overlay" id="alertaOverlay">
+  <div class="alerta-modal">
+    <div class="alerta-head">
+      <div class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+      </div>
+      <div>
+        <h3>ALERTA DE SEGURANÇA</h3>
+        <p>Comunicado oficial ProMaster</p>
+      </div>
+      <button class="alerta-close" onclick="fecharAlerta()" aria-label="Fechar">✕</button>
+    </div>
+    <div class="alerta-body">
+      <img src="uploads/arq_20261014143710_745d8308.png" alt="Alerta de segurança – ProMaster">
+    </div>
+    <div class="alerta-foot">
+      <button class="alerta-btn" onclick="fecharAlerta()">Ciente / Entendi os cuidados</button>
+    </div>
+  </div>
+</div>
+<script>function fecharAlerta(){document.getElementById('alertaOverlay').classList.add('hidden');}</script>
+
+<header>
+  <div class="hdr">
+    <a href="index.php" class="logo"><img src="https://promaster-web-wine.vercel.app/logo/logo.png" alt="ProMaster"></a>
+    <a href="tel:+551626260974" class="tel-btn">📞 (16) 2626-0974</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <nav id="mainNav">
+      <a href="index.php" class="ativo">INÍCIO</a>
+      <a href="catalogo.php">CATÁLOGO</a>
+      <a href="sobre.php">SOBRE</a>
+      <a href="entregas.php">ENTREGAS</a>
+      <a href="feedback.php">FEEDBACK</a>
+      <a href="comitentes.php">COMITENTE</a>
+      <a href="seguranca.php">SEGURANÇA</a>
+      <a href="consultores.php">CONSULTORES</a>
+      <a href="conta.php">ENTRAR</a>
+          </nav>
+  </div>
+</header>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="fi in">
+      <div class="hero-badge">🛡️ PÁTIO PRÓPRIO INSPECIONADO | PROMASTER</div>
+      <h1>As melhores<br>oportunidades em<br><span class="amb">leilão de veículos<br>e utilitários</span></h1>
+      <p class="hero-sub">Conectamos você aos melhores veículos, carros, caminhonetes, motos e tratores com total procedência garantida, laudo cautelar e pronta-entrega direto do nosso pátio físico.</p>
+      <div class="search-box">
+        <span class="ico">🔍</span>
+        <input type="text" id="heroSearch" placeholder="Busque por carros, motos, tratores, marcas..." style="">
+        <button type="button" class="search-btn" id="heroSearchBtn">Buscar</button>
+      </div>
+      <div class="hero-btns">
+        <a href="catalogo.php" class="btn-amber">VER OFERTAS DO PÁTIO &nbsp;→</a>
+        <a href="#galeria" class="btn-dark-h">CONHEÇA NOSSA ESTRUTURA</a>
+      </div>
+    </div>
+    <div class="hero-img-card fi in">
+      <picture>
+        <source media="(max-width:960px)" srcset="uploads/arq_20260905130145_5dc1297b.png">
+        <img src="uploads/arq_20260902133100_f94ff92b.png" alt="ProMaster – Leilão de Veículos">
+      </picture>
+    </div>
+  </div>
+</div>
+
+<!-- COMITENTE OFICIAL (Banco BV) -->
+<style>
+  .cmt-band{background:var(--dark3);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+  .cmt-band .cmt-img{min-height:300px;background-size:cover;background-position:center}
+  .cmt-band .cmt-body{padding:44px}
+  .cmt-tag{display:inline-block;background:#e8edff;color:var(--blue);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .cmt-body h2{color:#fff;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:800;line-height:1.2;margin-bottom:12px}
+  .cmt-body h2 span{color:#60A5FA}
+  .cmt-body p{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.75;margin-bottom:24px}
+  .cmt-btns{display:flex;gap:12px;flex-wrap:wrap}
+  .cmt-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:13px 26px;border-radius:8px;font-weight:700;font-size:.9rem}
+  .cmt-btn:hover{background:var(--blue-d)}
+  .cmt-btn-o{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#fff}
+  .cmt-btn-o:hover{background:rgba(255,255,255,.08)}
+  @media(max-width:820px){.cmt-band{grid-template-columns:1fr}.cmt-band .cmt-img{min-height:220px}.cmt-band .cmt-body{padding:28px}}
+</style>
+<div class="sec fi in">
+  <div class="cmt-band">
+    <div class="cmt-img" style="background-image:url('assets/banco-bv.jpg')"></div>
+    <div class="cmt-body">
+      <span class="cmt-tag">Comitente oficial</span>
+      <h2>Nosso comitente é o <span>Banco BV</span></h2>
+      <p>Todos os veículos do nosso leilão têm como comitente o Banco BV — uma instituição financeira sólida e reconhecida. Isso significa procedência garantida, documentação em dia e a segurança de comprar de quem cuida de tudo, do lance à entrega.</p>
+      <div class="cmt-btns">
+        <a class="cmt-btn" href="comitentes.php">Conhecer o comitente &nbsp;→</a>
+        <a class="cmt-btn cmt-btn-o" target="_blank" href="https://wa.me/551626260974?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20os%20ve%C3%ADculos%20do%20comitente%20Banco%20BV.">💬 Falar com a equipe</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONSULTORES OFICIAIS -->
+<style>
+  .cmt-band.rev .cmt-img{order:2}
+  .cmt-band.rev .cmt-tag{background:#fff4e0;color:#a9750a}
+  .cmt-band.rev .cmt-body h2 span{color:#F5B400}
+  .cmt-band.rev .cmt-btn{background:#F5B400;color:#1a1205}
+  .cmt-band.rev .cmt-btn:hover{background:#e0a800}
+  @media(max-width:820px){.cmt-band.rev .cmt-img{order:0}}
+</style>
+<div class="sec fi">
+  <div class="cmt-band rev">
+    <div class="cmt-img" style="background-image:url('assets/equipe-promaster-2026.jpg?v=3');cursor:pointer" onclick="location.href='consultores.php'"></div>
+    <div class="cmt-body">
+      <span class="cmt-tag">Atendimento oficial</span>
+      <h2>Fale com nossos <span>consultores oficiais</span></h2>
+      <p>Nossa equipe está pronta para te atender com segurança e transparência. Estes são os únicos atendentes oficiais da ProMaster — desconfie de qualquer contato fora da nossa lista.</p>
+      <div class="cmt-btns">
+        <a class="cmt-btn" href="consultores.php">Conhecer os consultores &nbsp;→</a>
+        <a class="cmt-btn cmt-btn-o" target="_blank" href="https://wa.me/551626260974?text=Ol%C3%A1%21%20Quero%20falar%20com%20um%20consultor%20oficial%20da%20ProMaster.">💬 Falar com a equipe</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec fi" id="veiculos">
+  <div class="dest-hdr">
+    <div>
+      <span class="sec-lbl">ESTOQUE DISPONÍVEL</span>
+      <h2 class="sec-h">Veículos em <span class="amb">Destaque</span></h2>
+      <p class="sec-sub">Confira as últimas adições ao nosso catálogo de veículos e estoque próprio. Veículos rigorosamente inspecionados e prontos para arrematação.</p>
+    </div>
+    <a class="btn-estoque" href="catalogo.php">VER TODO O ESTOQUE &nbsp;→</a>
+  </div>
+  <div class="tabs" id="vTabs">
+    <button class="tab ativo" data-cat="todos">TODOS</button>
+          <button class="tab" data-cat="Caminhonetes">CAMINHONETES</button>
+          <button class="tab" data-cat="Caminhões">CAMINHÕES</button>
+          <button class="tab" data-cat="Carros de passeio">CARROS DE PASSEIO</button>
+          <button class="tab" data-cat="Motos">MOTOS</button>
+          <button class="tab" data-cat="Tratores">TRATORES</button>
+          <button class="tab" data-cat="Utilitários">UTILITÁRIOS</button>
+      </div>
+  <div class="v-grid" id="vGrid">
+        <div class="v-card" data-cat="Utilitários" onclick="location.href='produto.php?id=177'">
+      <div class="v-img">
+        <img src="uploads/v_20261115191906_cd741a94.jpg" alt="GARFO ENLEIRADOR" loading="lazy">
+        <span class="v-cat">Utilitários</span>
+        <span class="v-heart" onclick="event.stopPropagation();this.textContent=this.textContent==='🤍'?'❤️':'🤍'">🤍</span>
+        <span class="v-fc">1/4</span>
+      </div>
+      <div class="v-body">
+        <p class="v-nome ">GARFO ENLEIRADOR</p>
+        <span class="v-price-label">Preço à vista</span>
+        <div class="v-foot">
+          <div class="v-pw"><div class="v-line"></div><span class="v-preco">R$ 30.000,00</span></div>
+          <a class="v-chat" title="WhatsApp" target="_blank" onclick="event.stopPropagation()" href="https://wa.me/551626260974?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20ve%C3%ADculo%3A%20GARFO%20ENLEIRADOR">💬</a>
+        </div>
+        <span class="v-price-sub">Com nota fiscal, laudo cautelar e opções de parcelamento.</span>
+        <img class="v-bv" src="assets/banco-bv.jpg" alt="Veículo faz parte do banco BV" loading="lazy">
+        <a class="v-detalhes" href="produto.php?id=177" onclick="event.stopPropagation()">Ver detalhes do veículo →</a>
+      </div>
+    </div>
+        <div class="v-card" data-cat="Utilitários" onclick="location.href='produto.php?id=176'">
+      <div class="v-img">
+        <img src="uploads/v_20261115191745_66ea8af2.jpg" alt="GARFO DE SILAGEM AGRÍCOLA" loading="lazy">
+        <span class="v-cat">Utilitários</span>
+        <span class="v-heart" onclick="event.stopPropagation();this.textContent=this.textContent==='🤍'?'❤️':'🤍'">🤍</span>
+        <span class="v-fc">1/5</span>
+      </div>
+      <div class="v-body">
+        <p class="v-nome ">GARFO DE SILAGEM AGRÍCOLA</p>
+        <span class="v-price-label">Preço à vista</span>
+        <div class="v-foot">
+          <div class="v-pw"><div class="v-line"></div><span class="v-preco">R$ 11.000,00</span></div>
+          <a class="v-chat" title="WhatsApp" target="_blank" onclick="event.stopPropagation()" href="https://wa.me/551626260974?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20ve%C3%ADculo%3A%20GARFO%20DE%20SILAGEM%20AGR%C3%8DCOLA">💬</a>
+        </div>
+        <span class="v-price-sub">Com nota fiscal, laudo cautelar e opções de parcelamento.</span>
+        <img class="v-bv" src="assets/banco-bv.jpg" alt="Veículo faz parte do banco BV" loading="lazy">
+        <a class="v-detalhes" href="produto.php?id=176" onclick="event.stopPropagation()">Ver detalhes do veículo →</a>
+      </div>
+    </div>
+        <div class="v-card" data-cat="Utilitários" onclick="location.href='produto.php?id=175'">
+      <div class="v-img">
+        <img src="uploads/v_20261115191607_876500f6.jpg" alt="Pulverizador" loading="lazy">
+        <span class="v-cat">Utilitários</span>
+        <span class="v-heart" onclick="event.stopPropagation();this.textContent=this.textContent==='🤍'?'❤️':'🤍'">🤍</span>
+        <span class="v-fc">1/8</span>
+      </div>
+      <div class="v-body">
+        <p class="v-nome ">Pulverizador</p>
+        <span class="v-price-label">Preço à vista</span>
+        <div class="v-foot">
+          <div class="v-pw"><div class="v-line"></div><span class="v-preco">R$ 190.000,00</span></div>
+          <a class="v-chat" title="WhatsApp" target="_blank" onclick="event.stopPropagation()" href="https://wa.me/551626260974?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20ve%C3%ADculo%3A%20Pulverizador">💬</a>
+        </div>
+        <span class="v-price-sub">Com nota fiscal, laudo cautelar e opções de parcelamento.</span>
+        <img class="v-bv" src="assets/banco-bv.jpg" alt="Veículo faz parte do banco BV" loading="lazy">
+        <a class="v-detalhes" href="produto.php?id=175" onclick="event.stopPropagation()">Ver detalhes do veículo →</a>
+      </div>
+    </div>
+        <div class="v-card" data-cat="Utilitários" onclick="location.href='produto.php?id=174'">
+      <div class="v-img">
+        <img src="uploads/v_20261115191423_33461a20.jpg" alt="Pulverizador" loading="lazy">
+        <span class="v-cat">Utilitários</span>
+        <span class="v-heart" onclick="event.stopPropagation();this.textContent=this.textContent==='🤍'?'❤️':'🤍'">🤍</span>
+        <span class="v-fc">1/3</span>
+      </div>
+      <div class="v-body">
+        <p class="v-nome ">Pulverizador</p>
+        <span class="v-price-label">Preço à vista</span>
+        <div class="v-foot">
+          <div class="v-pw"><div class="v-line"></div><span class="v-preco">R$ 80.000,00</span></div>
+          <a class="v-chat" title="WhatsApp" target="_blank" onclick="event.stopPropagation()" href="https://wa.me/551626260974?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20ve%C3%ADculo%3A%20Pulverizador">💬</a>
+        </div>
+        <span class="v-price-sub">Com nota fiscal, laudo cautelar e opções de parcelamento.</span>
+        <img class="v-bv" src="assets/banco-bv.jpg" alt="Veículo faz parte do banco BV" loading="lazy">
+        <a class="v-detalhes" href="produto.php?id=174" onclick="event.stopPropagation()">Ver detalhes do veículo →</a>
+      </div>
+    </div>
+      </div>
+</div>
+
+<div class="galeria-sec" id="galeria">
+  <div class="galeria-hdr fi">
+    <div class="galeria-badge">🛡️ ESTRUTURA FÍSICA REAL</div>
+    <h2 class="galeria-h">Galeria <span class="amb">Institucional</span><br>ProMaster</h2>
+    <p class="galeria-sub">Conheça de perto nosso pátio, frota e infraestrutura. <strong>Clique em cada card</strong> para ir à página correspondente — estrutura, catálogo, entregas, depoimentos e segurança.</p>
+  </div>
+  <div class="g-tabs" id="gTabs">
+    <button class="tab ativo" data-gcat="todas">TODAS</button>
+    <button class="tab" data-gcat="entregas">ENTREGAS</button>
+    <button class="tab" data-gcat="leiloes">LEILÕES</button>
+    <button class="tab" data-gcat="patio">PÁTIO</button>
+    <button class="tab" data-gcat="frota">FROTA</button>
+    <button class="tab" data-gcat="institucional">INSTITUCIONAL</button>
+  </div>
+  <div class="g-grid fi" id="gGrid">
+        <div class="g-card" data-gcat="patio" style="cursor:pointer" onclick="location.href='sobre.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133351_6b4e9d57.jpeg" alt="Pátio Principal e Frota de Veículos" loading="lazy">
+        <span class="g-badge">Estrutura Própria</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Pátio Principal e Frota de Veículos</h3>
+        <p class="g-desc">Pátio próprio amplo equipado com carros, caminhonetes, motos, utilitários e tratores prontos para entrega.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Nossa estrutura →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="entregas" style="cursor:pointer" onclick="location.href='entregas.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133343_08d4645c.jpeg" alt="Entrega Direta de Veículo Arrematado" loading="lazy">
+        <span class="g-badge">Logística Rastreada</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Entrega Direta de Veículo Arrematado</h3>
+        <p class="g-desc">Entrega realizada com sucesso direto na porta do cliente em caminhão-cegonha ou plataforma com rastreamento.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Ver entregas →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="leiloes" style="cursor:pointer" onclick="location.href='catalogo.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260905124559_183f4965.png" alt="Pátio em Dia de Leilão &amp; Arrematação" loading="lazy">
+        <span class="g-badge">Lances ao Vivo</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Pátio em Dia de Leilão &amp; Arrematação</h3>
+        <p class="g-desc">Movimentação e lances ao vivo de veículos com laudo cautelar e documentação 100% auditada.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Ver catálogo →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="institucional" style="cursor:pointer" onclick="location.href='feedback.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133318_dff54381.jpeg" alt="Entrega &amp; Satisfação Garantida" loading="lazy">
+        <span class="g-badge">Cliente Satisfeito</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Entrega &amp; Satisfação Garantida</h3>
+        <p class="g-desc">Clientes recebendo seus veículos direto no pátio com toda documentação, laudo cautelar e entrega chave na mão.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Ver depoimentos →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="leiloes" style="cursor:pointer" onclick="location.href='seguranca.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133306_a9aad903.png" alt="Leilão com Segurança Certificada" loading="lazy">
+        <span class="g-badge">Leilão Seguro</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Leilão com Segurança Certificada</h3>
+        <p class="g-desc">Todos os leilões são certificados, com procedência verificada e total transparência para o arrematante.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Leilão seguro →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="entregas" style="cursor:pointer" onclick="location.href='entregas.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133240_fcfbf16b.jpeg" alt="Frota Pronta para Retirada Imediata" loading="lazy">
+        <span class="g-badge">Pronta-Entrega</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Frota Pronta para Retirada Imediata</h3>
+        <p class="g-desc">Veículos disponíveis para retirada imediata no nosso pátio físico em São Carlos – SP, com rastreamento incluso.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Ver entregas →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="frota" style="cursor:pointer" onclick="location.href='catalogo.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133225_b65b65e1.jpeg" alt="Frota de Carros e Caminhonetes" loading="lazy">
+        <span class="g-badge">Frota Própria</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Frota de Carros e Caminhonetes</h3>
+        <p class="g-desc">Carros, caminhonetes e utilitários revisados e prontos para entrega imediata, com laudo cautelar e procedência garantida.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Ver catálogo →</span>
+        </div>
+      </div>
+    </div>
+        <div class="g-card" data-gcat="frota" style="cursor:pointer" onclick="location.href='catalogo.php'">
+      <div class="g-img-wrap">
+        <img src="uploads/arq_20260902133211_c0c26fdd.png" alt="Frota de Tratores e Máquinas Agrícolas" loading="lazy">
+        <span class="g-badge">Máquinas Pesadas</span>
+      </div>
+      <div class="g-body">
+        <h3 class="g-titulo">Frota de Tratores e Máquinas Agrícolas</h3>
+        <p class="g-desc">Tratores, implementos e máquinas agrícolas disponíveis no pátio, revisados e prontos para arrematação e retirada.</p>
+        <div class="g-foot">
+          <span class="g-loc">📍 Pátio ProMaster</span>
+          <span class="g-expand">Ver catálogo →</span>
+        </div>
+      </div>
+    </div>
+      </div>
+</div>
+
+<div class="trust-bar fi">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-ico">📦</div>
+      <div class="trust-txt"><strong>Pronta-Entrega</strong><span>Veículos inspecionados no pátio</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico">🛡️</div>
+      <div class="trust-txt"><strong>Garantia &amp; Procedência</strong><span>Laudo cautelar e histórico verificado</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico">👤</div>
+      <div class="trust-txt"><strong>Atendimento Presencial</strong><span>Venha conferir em nossa sede física</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-dark">
+  <div class="cta-dark-inner fi">
+    <div>
+      <div class="cta-badge">🛡️ COMPROMISSO PROMASTER</div>
+      <h2>Procurando a máquina<br>ou veículo ideal<br>para sua operação?</h2>
+      <p>Fale diretamente com nossos especialistas ou visite nosso pátio. Garantimos as melhores condições de negociação, procedência auditada e entrega em todo o Brasil.</p>
+    </div>
+    <div class="cta-btns">
+      <a class="btn-blue" target="_blank" href="https://wa.me/551626260974">📞 FALAR COM CONSULTOR</a>
+      <a class="btn-dark-out" href="#veiculos">VER OFERTAS &nbsp;→</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-grid">
+    <div class="f-brand">
+      <img src="https://promaster-web-wine.vercel.app/logo/logo.png" alt="ProMaster">
+      <p>Sua plataforma de confiança para arrematar os melhores veículos, motos e equipamentos, com valor até 50% abaixo da FIPE!</p>
+      <div class="f-social">
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="LinkedIn">💼</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Institucional</h4>
+      <ul>
+        <li><a href="sobre.php">Sobre a ProMaster</a></li>
+        <li><a href="sobre.php">Infraestrutura &amp; Pátio</a></li>
+        <li><a href="#">Política de Privacidade</a></li>
+        <li><a href="#">Termos e Condições</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Atendimento &amp; Pátio</h4>
+      <div class="f-contact-item">
+        <div class="f-contact-ico">📞</div>
+        <div class="f-contact-txt"><a href="tel:+551626260974">(16) 2626-0974</a></div>
+      </div>
+      <div class="f-contact-item">
+        <div class="f-contact-ico">✉️</div>
+        <div class="f-contact-txt"><a href="mailto:suporte@promasterleilao.com">suporte@promasterleilao.com</a></div>
+      </div>
+      <div class="f-contact-item">
+        <div class="f-contact-ico">📍</div>
+        <div class="f-contact-txt">
+          <strong>Endereço do Pátio:</strong>
+          R. Alessandro Di Salvo, 55 São Carlos - SP<br>
+          <a href="https://maps.app.goo.gl/PwULuNzpvZvVeRsZ7" target="_blank" style="color:var(--amber)">Ver no Google Maps</a>
+        </div>
+      </div>
+      <div class="f-contact-item">
+        <div class="f-contact-ico">🏢</div>
+        <div class="f-contact-txt">CNPJ: 37.249.018/0001-31</div>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Garantia &amp; Segurança</h4>
+      <div class="leilao-seguro" style="background:#fff;justify-content:center;padding:14px 16px">
+        <img src="assets/leilao-seguro.png" alt="Leilão Seguro — Certificado &amp; auditado" style="max-width:190px;width:100%;height:auto;display:block">
+      </div>
+      <p class="f-cert-desc">Plataforma com selo de Leilão Seguro certificado. Garantia de procedência, laudo cautelar e transparência em todas as arrematações.</p>
+            <a href="https://reclame-aqui.cloud/" target="_blank" rel="noopener" class="reclame-box">
+        <img src="assets/reclame-aqui.png" alt="Reclame Aqui ProMaster">
+        <span class="reclame-txt">Consulte nossa reputação no<br><strong>Reclame Aqui →</strong></span>
+      </a>
+          </div>
+  </div>
+  <div class="f-bottom">
+    <p>© ProMaster Equipamentos e Veículos — desde 2021. Todos os direitos reservados.</p>
+    <p class="f-bottom-r">R. Alessandro Di Salvo, 55 – São Carlos / SP &nbsp;|&nbsp; CNPJ: 37.249.018/0001-31</p>
+  </div>
+</footer>
+
+<div class="glb-overlay" id="glbOverlay" onclick="if(event.target===this)fecharGaleria()">
+  <div class="glb-modal">
+    <button class="glb-close" onclick="fecharGaleria()" aria-label="Fechar">✕</button>
+    <img id="glbImg" src="" alt="">
+    <div class="glb-body">
+      <span class="glb-badge" id="glbBadge"></span>
+      <h3 id="glbTitulo"></h3>
+      <p id="glbDesc"></p>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/551626260974" class="wa" target="_blank" title="Falar no WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"></path><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.06L2 22l5.06-1.35A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.2-.5-4.49-1.35l-.32-.2-3 .8.8-2.92-.21-.33A7.96 7.96 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"></path></svg></a>
+
+<nav class="botnav">
+  <a href="index.php" class="on"><span class="bn-ic"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H4a1 1 0 0 1-1-1z"></path></svg></span>Início</a>
+  <a href="catalogo.php"><span class="bn-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span>Categorias</a>
+  <a href="index.php#veiculos"><span class="bn-ic"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg></span>Favoritos</a>
+  <a href="catalogo.php"><span class="bn-ic"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 12 22l-9-9V4a1 1 0 0 1 1-1h8l8.6 8.6a1.4 1.4 0 0 1 0 2z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg></span>Ofertas</a>
+  <a href="conta.php"><span class="bn-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"></path></svg></span>Perfil</a>
+</nav>
+
+<script>
+  document.querySelectorAll('#vTabs .tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('#vTabs .tab').forEach(x=>x.classList.remove('ativo'));
+      t.classList.add('ativo');
+      const cat=t.dataset.cat;
+      document.querySelectorAll('#vGrid .v-card').forEach(c=>{
+        c.style.display=(cat==='todos'||c.dataset.cat===cat)?'':'none';
+      });
+    });
+  });
+  document.querySelectorAll('#gTabs .tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('#gTabs .tab').forEach(x=>x.classList.remove('ativo'));
+      t.classList.add('ativo');
+      const cat=t.dataset.gcat;
+      document.querySelectorAll('#gGrid .g-card').forEach(c=>{
+        c.style.display=(cat==='todas'||c.dataset.gcat===cat)?'':'none';
+      });
+    });
+  });
+  const heroSearch=document.getElementById('heroSearch');
+  const heroSearchBtn=document.getElementById('heroSearchBtn');
+  if(heroSearchBtn){heroSearchBtn.addEventListener('click',()=>{document.getElementById('veiculos').scrollIntoView({behavior:'smooth'});heroSearch.focus();});}
+  let jaRolou=false;
+  heroSearch.addEventListener('input',e=>{
+    const q=e.target.value.toLowerCase().trim();
+    // ao buscar, volta o destaque das abas para "TODOS"
+    document.querySelectorAll('#vTabs .tab').forEach(x=>x.classList.remove('ativo'));
+    const tabTodos=document.querySelector('#vTabs .tab[data-cat="todos"]');
+    if(tabTodos) tabTodos.classList.add('ativo');
+    // filtra por NOME e por CATEGORIA
+    document.querySelectorAll('#vGrid .v-card').forEach(c=>{
+      const nome=c.querySelector('.v-nome').textContent.toLowerCase();
+      const cat=(c.dataset.cat||'').toLowerCase();
+      c.style.display=(q===''||nome.includes(q)||cat.includes(q))?'':'none';
+    });
+    // rola até os resultados na primeira digitação
+    if(q!=='' && !jaRolou){
+      document.getElementById('veiculos').scrollIntoView({behavior:'smooth'});
+      jaRolou=true;
+    }
+    if(q==='') jaRolou=false;
+  });
+  function abrirGaleria(card){
+    document.getElementById('glbImg').src=card.dataset.img;
+    document.getElementById('glbTitulo').textContent=card.dataset.titulo;
+    document.getElementById('glbDesc').textContent=card.dataset.desc;
+    document.getElementById('glbBadge').textContent=card.dataset.badge;
+    document.getElementById('glbOverlay').classList.add('open');
+  }
+  function fecharGaleria(){document.getElementById('glbOverlay').classList.remove('open');}
+
+  const mt=document.getElementById('menuToggle');
+  if(mt){mt.addEventListener('click',()=>document.getElementById('mainNav').classList.toggle('open'));}
+  document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mainNav').classList.remove('open')));
+
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.07});
+  document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+</script>
+
+
+</body></html>

@@ -1,0 +1,23 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C21acea1849",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://wikimapia.org/",
+  "final_url": "http://wikimapia.org/#lang=pt&lat=-23.550000&lon=-46.933300&z=12&m=w",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "88.99.95.134",
+  "collected_at": "2026-11-26T03:08:38.726937+00:00",
+  "manifest_written_at": "2026-11-26T03:09:21.197274+00:00",
+  "artifacts": [],
+  "blocked_requests": [
+    "https://a.bringads.ru/sync?ssp=17 -> DNS resolution failed for a.bringads.ru: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)",
+    "collection error: TimeoutError: Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n"
+  ],
+  "not_inspected": [],
+  "hash_algorithm": "SHA-256"
+}
