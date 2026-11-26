@@ -10,6 +10,7 @@ from simio.nucleo import caminhos
 from simio.nucleo.modelos import InteligenciaDominio
 from simio.relatorios.dados import RegistroCandidata
 from simio.relatorios.paginas import agora_br, ambiente, logo_marca
+from simio.relatorios.rotulos import dados_pedidos
 
 
 def desarmar_url(url: str) -> str:
@@ -48,7 +49,7 @@ def gravar_html_ameacas(
                 "url": desarmar_url((ev.url_final if ev else None) or r.candidata.url),
                 "dominio": r.candidata.dominio_registravel,
                 "intel": resumir_inteligencia(item) if item else None,
-                "sensiveis": ", ".join(f.dados_sensiveis_solicitados) if f else "",
+                "sensiveis": dados_pedidos(f.dados_sensiveis_solicitados) if f else "",
                 "classificacao": f.classificacao.value if f else "",
                 "justificativa": (f.justificativa or "")[:700] if f else "",
                 "captura": captura,

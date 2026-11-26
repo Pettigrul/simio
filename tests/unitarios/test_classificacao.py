@@ -463,7 +463,7 @@ def test_peso_da_declaracao_ausente_importa() -> None:
     sig = calcular_sinais(ev, MARCA, cat)
     com_w = analise_heuristica(sig, SC, ev, None, {i.ref for i in cat})
     sem_w = analise_heuristica(sig, sc0, ev, None, {i.ref for i in cat})
-    assert "confusão 3.0" in com_w.resumo_raciocinio and "confusão 1.5" in sem_w.resumo_raciocinio
+    assert "confusão 3,0" in com_w.resumo_raciocinio and "confusão 1,5" in sem_w.resumo_raciocinio
 
 
 def test_mencao_so_no_corpo_nao_eh_sinalizada() -> None:

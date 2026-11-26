@@ -11,6 +11,7 @@ from simio.nucleo.modelos import DesfechoDescoberta, HipoteseBusca, RegistroCons
 from simio.nucleo.urls import dominio_corresponde, dominio_registravel, hostname_de, normalizar_url
 from simio.provedores.busca import Conector
 from simio.provedores.llm import OrcamentoEsgotado
+from simio.provedores.typosquat import descrever_semelhanca
 from simio.seguranca.politica_url import PoliticaUrl, ViolacaoPolitica
 
 log = logging.getLogger(__name__)
@@ -882,8 +883,11 @@ class AgenteDescoberta:
         desfecho = DesfechoDescoberta()
         desfecho.resultados.extend(importadas or [])
         if importadas:
-            desfecho.fontes_usadas.append("import")
-            desfecho.diagnosticos.append(f"{len(importadas)} URL(s) importada(s) manualmente")
+            desfecho.fontes_usadas.append("importacao")
+            n = len(importadas)
+            desfecho.diagnosticos.append(
+                "1 URL importada manualmente" if n == 1 else f"{n} URLs importadas manualmente"
+            )
 
         disponivel: list[Conector] = []
         for con in self.conectores:
@@ -1041,7 +1045,8 @@ def priorizar(grupos: list[GrupoCandidatas], marca: PerfilMarca, foco: str | Non
         if semelhante is not None:
             pontuacao += 3
             motivos.append(
-                f"domínio parecido com {semelhante.metadados.get('semelhante_a')} ({semelhante.metadados.get('fuzzer')})"
+                "domínio "
+                + descrever_semelhanca(semelhante.metadados.get("semelhante_a"), semelhante.metadados.get("fuzzer"))
             )
         if any(h.fonte == "lens" for h in g.resultados):
             pontuacao += 2
@@ -1050,7 +1055,10 @@ def priorizar(grupos: list[GrupoCandidatas], marca: PerfilMarca, foco: str | Non
         hips = {h.id_hipotese for h in g.resultados if h.id_hipotese}
         if len(fontes) > 1 or len(hips) > 1:
             pontuacao += min(2, len(fontes) + len(hips) - 2) + 0.5
-            motivos.append(f"vista por {len(fontes)} fonte(s) / {len(hips)} hipótese(s)")
+            motivos.append(
+                f"vista por {len(fontes)} {'fonte' if len(fontes) == 1 else 'fontes'} e "
+                f"{len(hips)} {'hipótese' if len(hips) == 1 else 'hipóteses'}"
+            )
         if eh_manual:
             pontuacao += 5
             motivos.append("importada manualmente pelo operador")

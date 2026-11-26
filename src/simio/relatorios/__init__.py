@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import logging
 import re
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
+
+from openpyxl import load_workbook
 
 from simio.agentes.inteligencia_dominio import carregar_inteligencia
 from simio.agentes.visual import recortar_correspondencia
@@ -18,6 +21,8 @@ from simio.relatorios.html_ameacas import gravar_html_ameacas
 from simio.relatorios.html_campanha import gravar_html_campanha
 from simio.relatorios.pdf import gerar_pdf_campanha
 
+log = logging.getLogger(__name__)
+
 
 @dataclass
 class ResultadoRelatorios:
@@ -31,6 +36,25 @@ class ResultadoRelatorios:
 
 
 _LINK_EVIDENCIA = re.compile(r'(?P<attr>\b(?:src|href)=")(?P<sobe>(?:\.\./)*)(?=evidencias/)')
+_ALVO_EVIDENCIA = re.compile(rf"(?:\.\./)*{caminhos.DIR_EVIDENCIAS}/")
+
+
+def _ajustar_links_planilha(planilha: Path) -> None:
+    wb = load_workbook(planilha)
+    mudou = False
+    for ws in wb.worksheets:
+        for linha in ws.iter_rows():
+            for celula in linha:
+                alvo = celula.hyperlink.target if celula.hyperlink else None
+                if not alvo or not _ALVO_EVIDENCIA.match(alvo):
+                    continue
+                novo = "../../" + alvo
+                if celula.value == alvo:
+                    celula.value = novo
+                celula.hyperlink.target = novo
+                mudou = True
+    if mudou:
+        wb.save(planilha)
 
 
 def arquivar_relatorios_anteriores(dir_campanha: Path) -> Path | None:
@@ -65,6 +89,12 @@ def arquivar_relatorios_anteriores(dir_campanha: Path) -> Path | None:
         novo = _LINK_EVIDENCIA.sub(r"\g<attr>../../\g<sobe>", texto)
         if novo != texto:
             html.write_text(novo, encoding="utf-8")
+    planilha = destino / caminhos.PLANILHA
+    if planilha.exists():
+        try:
+            _ajustar_links_planilha(planilha)
+        except Exception as exc:  # planilha antiga ilegível não impede gerar a nova
+            log.warning("links da planilha arquivada não ajustados (%s): %s", planilha, exc)
     return destino
 
 

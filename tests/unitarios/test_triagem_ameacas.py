@@ -73,7 +73,7 @@ def test_portal_falso_em_construtor_gratuito_pedindo_senha_eh_critico() -> None:
     )
     t = triar(r, MARCA)
     assert t.nivel == "CRÍTICO"
-    assert "Coleta de credenciais (phishing)" in t.categorias and "Hospedagem gratuita" in t.categorias
+    assert "Página que pede senha (phishing)" in t.categorias and "Hospedagem gratuita" in t.categorias
 
 
 def test_parceiro_identificado_com_marca_propria_nao_eh_ameaca() -> None:

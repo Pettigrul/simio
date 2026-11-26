@@ -72,7 +72,7 @@ def bloco_contexto(
     if identidade is not None:
         linhas.append(
             f"Atribuição de identidade (agente de identidade): {identidade.classificacao.value}"
-            f" / confiança {identidade.confianca_atribuicao.value} — {identidade.fundamentacao}"
+            f" / confiança {identidade.confianca_atribuicao.value}. {identidade.fundamentacao}"
         )
     return "\n".join(linhas)
 
@@ -716,7 +716,7 @@ _TEXTO_CASO = {
 
 
 def _explicar(caso: CasoCenario, confusao: list[Indicador], legitimos: list[Indicador], sc: float, sl: float) -> str:
-    partes = [f"Triagem heurística — cenário {caso.value}: {_TEXTO_CASO[caso]}."]
+    partes = [f"Triagem heurística, cenário {caso.value}: {_TEXTO_CASO[caso]}."]
     if confusao:
         partes.append(
             "Elementos que podem levar o consumidor a crer que trata diretamente com a instituição: "
@@ -729,5 +729,8 @@ def _explicar(caso: CasoCenario, confusao: list[Indicador], legitimos: list[Indi
             + "; ".join(f"{i.descricao} [{', '.join(i.refs_evidencia[:3])}]" for i in legitimos[:4])
             + "."
         )
-    partes.append(f"(Pontuação de triagem: confusão {sc:.1f}, transparência {sl:.1f}; ordena casos, não prova.)")
+    confusao, transparencia = (f"{v:.1f}".replace(".", ",") for v in (sc, sl))
+    partes.append(
+        f"(Pontuação de triagem: confusão {confusao}; transparência {transparencia}; ordena casos, não prova.)"
+    )
     return " ".join(partes)

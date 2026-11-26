@@ -83,6 +83,10 @@ def _emails_abuso(entidades: list[dict[str, Any]] | None) -> list[str]:
     return emails
 
 
+_PESSOA_FISICA = "pessoa física (dados pessoais omitidos por causa da LGPD)"
+_TIPOS_TITULAR_ANTIGOS = {"pessoa física (dados pessoais omitidos — LGPD)": _PESSOA_FISICA}
+
+
 def interpretar_rdap_dominio(dados: dict[str, Any], agora: datetime | None = None) -> InteligenciaRdap:
     # LGPD: de pessoa física (CPF, kind "individual") não guardamos nome, e-mail nem documento, só
     # "pessoa física". Contatos pessoais (administrativo/técnico) nunca entram; só caixas de abuso.
@@ -104,7 +108,7 @@ def interpretar_rdap_dominio(dados: dict[str, Any], agora: datetime | None = Non
         if "registrant" in papeis:
             ids = {str(p.get("type", "")).lower(): p.get("identifier") for p in e.get("publicIds") or []}
             if "cpf" in ids or vc.get("kind") == "individual":
-                tipo_titular = "pessoa física (dados pessoais omitidos — LGPD)"
+                tipo_titular = _PESSOA_FISICA
             elif "cnpj" in ids or vc.get("kind") == "org" or vc.get("org"):
                 nome = vc.get("fn") or vc.get("org") or ""
                 if nome and "redacted" not in nome.lower() and "privacy" not in nome.lower():
@@ -290,7 +294,7 @@ def resumir(intel: InteligenciaDominio) -> dict[str, str]:
         criado = r.criado[:10] + (f" ({r.idade_dias} dias)" if r.idade_dias is not None else "")
     titular = ""
     if r:
-        titular = r.titular or r.tipo_titular
+        titular = r.titular or _TIPOS_TITULAR_ANTIGOS.get(r.tipo_titular, r.tipo_titular)
         if r.titular and r.documento_titular:
             titular = f"{r.titular} (CNPJ {r.documento_titular})"
     hospedagem = "; ".join(
@@ -302,7 +306,7 @@ def resumir(intel: InteligenciaDominio) -> dict[str, str]:
         "plataforma": intel.plataforma or "",
         "registrador": (r.registrador or "") if r else "",
         "criado": criado,
-        "titular": titular or ("— (dono só identificável pela plataforma)" if intel.plataforma else ""),
+        "titular": titular or ("só a plataforma identifica o dono" if intel.plataforma else ""),
         "ns": "" if intel.plataforma else ", ".join(intel.ns or (r.servidores_nomes if r else [])),
         "mx": "" if intel.plataforma else ", ".join(intel.mx),
         "resolve": "sim" if (intel.a or intel.aaaa or intel.cname) else "não",

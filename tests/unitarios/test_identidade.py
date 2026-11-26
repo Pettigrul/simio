@@ -74,7 +74,7 @@ def test_mesma_empresa_outro_estabelecimento_eh_coban_possivel_nao_confirmado(tm
     a = _atribuicao(montar_evidencia(rodape=f"Loja Exemplo Ltda CNPJ {CNPJ_A}"), reg)
     assert a.classificacao == ClasseIdentidade.COBAN_POSSIVEL
     assert a.confianca_atribuicao == Nivel.MEDIA
-    assert a.correspondencia_cadastro and a.correspondencia_cadastro.casado_por == "cnpj_root"
+    assert a.correspondencia_cadastro and a.correspondencia_cadastro.casado_por == "raiz_cnpj"
     assert not a.correspondencia_cadastro.oficial
 
 

@@ -127,9 +127,9 @@ JS_EXTRACAO = r"""
     const r = el.getBoundingClientRect();
     return r.width > 0 && r.height > 0;
   };
-  const loc = el => el.closest('header,[role=banner]') ? 'header'
-    : el.closest('footer,[role=contentinfo]') ? 'footer'
-    : el.closest('nav,[role=navigation]') ? 'nav' : 'page';
+  const loc = el => el.closest('header,[role=banner]') ? 'topo'
+    : el.closest('footer,[role=contentinfo]') ? 'rodape'
+    : el.closest('nav,[role=navigation]') ? 'menu' : 'pagina';
   const meta = {};
   document.querySelectorAll('meta[name],meta[property]').forEach(m => {
     const k = (m.getAttribute('name') || m.getAttribute('property') || '').toLowerCase();
@@ -144,7 +144,7 @@ JS_EXTRACAO = r"""
     href: (a.href || '').slice(0, 1000), local: loc(a), visible: isVisible(a)
   }));
   const strip = l => ({texto: l.texto, href: l.href, local: l.local});
-  const nav = allLinks.filter(l => l.visible && (l.local === 'nav' || l.local === 'header'))
+  const nav = allLinks.filter(l => l.visible && (l.local === 'menu' || l.local === 'topo'))
     .slice(0, 60).map(strip);
   const contactRe = /^(tel:|mailto:|sms:)|wa\.me|whatsapp|api\.whatsapp|t\.me\/|instagram\.com|facebook\.com|m\.me\//i;
   const contacts = allLinks.filter(l => contactRe.test(l.href)).slice(0, 60).map(strip);
@@ -430,7 +430,7 @@ class ColetorNavegador:
             try:
                 await pagina.wait_for_load_state("networkidle", timeout=max(1000, s.espera_estabilizar_ms * 2))
             except PlaywrightTimeout:
-                ev.erros.append("a rede não ficou ociosa (coleta seguiu)")
+                ev.erros.append("a página continuou carregando; a coleta seguiu assim mesmo")
             if s.espera_estabilizar_ms:
                 await pagina.wait_for_timeout(s.espera_estabilizar_ms)
             ev.url_final = url if url_busca != url and pagina.url == url_busca else pagina.url

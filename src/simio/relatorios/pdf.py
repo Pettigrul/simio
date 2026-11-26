@@ -56,7 +56,7 @@ def _miniatura(arquivo: Path, largura: int = 600) -> str | None:
 def _reduzir_capturas(pagina, caminho_html: Path) -> None:
     # As capturas originais (centenas de KB cada) deixariam o PDF com dezenas de MB; no papel o cartão
     # mostra só uma miniatura, então ela entra no lugar da imagem (o HTML em disco não muda).
-    srcs = pagina.evaluate("Array.from(document.querySelectorAll('img.shot'), i => i.getAttribute('src'))")
+    srcs = pagina.evaluate("Array.from(document.querySelectorAll('img.captura'), i => i.getAttribute('src'))")
     trocas = {}
     for src in set(srcs):
         if src and not src.startswith("data:"):
@@ -64,7 +64,7 @@ def _reduzir_capturas(pagina, caminho_html: Path) -> None:
             if miniatura:
                 trocas[src] = miniatura
     pagina.evaluate(
-        "m => document.querySelectorAll('img.shot')"
+        "m => document.querySelectorAll('img.captura')"
         ".forEach(i => { const s = m[i.getAttribute('src')]; if (s) i.src = s; })",
         trocas,
     )

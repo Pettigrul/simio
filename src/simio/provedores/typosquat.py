@@ -25,6 +25,13 @@ TECNICA_PT = {
     "combosquatting": "marca combinada com palavra do setor",
 }
 
+
+def descrever_semelhanca(semelhante_a: str | None, fuzzer: str | None) -> str:
+    """Complemento de "domínio ...": ``parecido com bv.com.br (mesmo nome com outra extensão)``."""
+    if fuzzer == "combosquatting":
+        return f"que combina a marca {semelhante_a} com palavra do setor"
+    return f"parecido com {semelhante_a} ({TECNICA_PT.get(fuzzer or '', fuzzer)})"
+
 _TECLADO = {  # QWERTY / ABNT2
     "q": "wa", "w": "qeas", "e": "wrsd", "r": "etdf", "t": "ryfg", "y": "tugh", "u": "yihj", "i": "uojk",
     "o": "ipkl", "p": "ol", "a": "qwsz", "s": "awedxz", "d": "serfcx", "f": "drtgvc", "g": "ftyhbv",

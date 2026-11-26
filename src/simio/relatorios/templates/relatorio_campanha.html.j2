@@ -13,32 +13,32 @@
 {% endblock %}
 {% block conteudo %}
   <div class="numeros">
-    <div class="tile"><b>{{ total }}</b>páginas analisadas</div>
+    <div class="quadro"><b>{{ total }}</b>páginas analisadas</div>
     {% for cls in ["INDICIO_FORTE", "REQUER_REVISAO", "INCONCLUSIVA", "SEM_INDICIO"] %}
-    <div class="tile {{ cls|tom }}"><b>{{ contagens[cls] or 0 }}</b>{{ cls|rotulo }}</div>
+    <div class="quadro {{ cls|tom }}"><b>{{ contagens[cls] or 0 }}</b>{{ cls|rotulo }}</div>
     {% endfor %}
-    {% if contagens[""] %}<div class="tile"><b>{{ contagens[""] }}</b>não analisadas</div>{% endif %}
-    <div class="tile"><b>{{ revisoes_pendentes }}</b>aguardam revisão humana</div>
+    {% if contagens[""] %}<div class="quadro"><b>{{ contagens[""] }}</b>não analisadas</div>{% endif %}
+    <div class="quadro"><b>{{ revisoes_pendentes }}</b>aguardam revisão humana</div>
   </div>
   <div class="linha">
     {{ status_campanha|rotulo }}{% if periodo %} · execução de {{ periodo }}{% endif %}{% if foco %} · foco: {{ foco }}{% endif %}
     · fontes: {{ fontes_usadas|join(", ") if fontes_usadas else "URLs importadas" }}
-    · modelo: {{ requisicoes_llm }} chamadas, {{ "{:,}".format(tokens_llm).replace(",", ".") }} tokens
+    · modelo: {{ requisicoes_llm|num_br }} chamadas, {{ tokens_llm|num_br }} tokens
   </div>
   <div class="nota">A classificação descreve o que foi observado no material coletado (capturas, texto da página e resultados de busca). Não é conclusão regulatória: cada achado precisa ser confirmado por um analista a partir do dossiê. Pontuações e níveis de confiança não são probabilidade de irregularidade.</div>
 
   {% if destaques %}
   <h2>Achados que pedem atenção ({{ destaques|length }})</h2>
   {% for c in destaques %}
-  <div class="card {{ c.classificacao|tom }}">
+  <div class="cartao {{ c.classificacao|tom }}">
     <div>
-      {% if c.captura %}<img class="shot" src="{{ c.captura }}" alt="Captura de {{ c.host }}" loading="lazy">{% else %}<div class="noshot">sem captura: página fora do ar ou bloqueada na coleta</div>{% endif %}
+      {% if c.captura %}<img class="captura" src="{{ c.captura }}" alt="Captura de {{ c.host }}" loading="lazy">{% else %}<div class="sem-captura">sem captura: página fora do ar ou bloqueada na coleta</div>{% endif %}
     </div>
     <div>
-      <span class="pill {{ c.classificacao|tom }}">{{ c.classificacao|rotulo }}</span>{% if c.prioridade %}<span class="pill {{ c.prioridade|tom }}">Prioridade {{ c.prioridade|rotulo|lower }}</span>{% endif %}{% if c.caso %}<span class="pill cat">{{ c.caso|rotulo }}</span>{% endif %}{% if c.logo_antiga %}<span class="pill alto">Logo antiga</span>{% endif %}{% if c.dados_sensiveis %}<span class="pill crit">Pede {{ c.dados_sensiveis }}</span>{% endif %}
-      <div class="titulo-card">{{ c.host }}</div>
+      <span class="selo {{ c.classificacao|tom }}">{{ c.classificacao|rotulo }}</span>{% if c.prioridade %}<span class="selo {{ c.prioridade|tom }}">Prioridade {{ c.prioridade|rotulo|lower }}</span>{% endif %}{% if c.caso %}<span class="selo categoria">{{ c.caso|rotulo }}</span>{% endif %}{% if c.logo_antiga %}<span class="selo alto">Logo antiga</span>{% endif %}{% if c.dados_sensiveis %}<span class="selo crit">Pede {{ c.dados_sensiveis }}</span>{% endif %}
+      <div class="titulo-cartao">{{ c.host }}</div>
       <div class="url">{{ c.url }}</div>
-      <dl class="kv">
+      <dl class="campos">
         <dt>Responsável</dt><dd>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %} · {{ c.nome_entidade }}{% endif %}</dd>
         {% if c.revisao_critica %}<dt>Revisão crítica</dt><dd>{{ c.revisao_critica|rotulo }}</dd>{% endif %}
         <dt>Revisão humana</dt><dd>{{ c.revisao_humana|rotulo or "—" }}</dd>
@@ -58,8 +58,8 @@
     <tbody>
     {% for c in g.linhas %}
     <tr>
-      <td><b>{{ c.host }}</b><div class="url">{{ c.url }}</div>{% if c.andamento %}<span class="muted peq">andamento: {{ c.andamento|rotulo|lower }}</span>{% endif %}</td>
-      <td>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %}<br><span class="muted peq">{{ c.nome_entidade }}</span>{% endif %}</td>
+      <td><b>{{ c.host }}</b><div class="url">{{ c.url }}</div>{% if c.andamento %}<span class="apagado peq">andamento: {{ c.andamento|rotulo|lower }}</span>{% endif %}</td>
+      <td>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %}<br><span class="apagado peq">{{ c.nome_entidade }}</span>{% endif %}</td>
       <td>{{ c.caso|rotulo or "—" }}</td>
       <td>{{ c.revisao_humana|rotulo or "—" }}</td>
       <td class="dossie">{% if c.dossie %}<a href="{{ c.dossie }}">abrir</a>{% else %}—{% endif %}</td>

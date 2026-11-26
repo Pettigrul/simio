@@ -10,6 +10,7 @@ from simio.nucleo.modelos import ClassificacaoFinal
 from simio.nucleo.urls import hostname_de
 from simio.relatorios.dados import RegistroCandidata
 from simio.relatorios.paginas import agora_br, ambiente, data_br, logo_marca
+from simio.relatorios.rotulos import dados_pedidos, rotulo_fonte
 
 # Ordem das tabelas da segunda parte do relatório; as fechadas viram <details> (abertas no PDF).
 GRUPOS_TABELA = (
@@ -52,7 +53,7 @@ def _linha(rec: RegistroCandidata, caminho_html: Path, dir_campanha: Path, dossi
         "revisao_humana": f.status_revisao_humana if f else "",
         "justificativa": (f.justificativa if f else rec.candidata.ultimo_erro) or "",
         "logo_antiga": bool(f and f.identidade_visual_antiga),
-        "dados_sensiveis": ", ".join(f.dados_sensiveis_solicitados) if f else "",
+        "dados_sensiveis": dados_pedidos(f.dados_sensiveis_solicitados) if f else "",
         "captura": caminhos.link(caminho_html, dir_campanha / captura.caminho) if captura else None,
         "dossie": caminhos.link(caminho_html, dossie) if dossie else "",
     }
@@ -101,7 +102,7 @@ def renderizar_relatorio_campanha(
         revisoes_pendentes=sum(1 for r in registros if r.final and r.final.exige_revisao_humana),
         destaques=destaques,
         grupos=grupos,
-        fontes_usadas=disc.get("fontes_usadas", []),
+        fontes_usadas=list(dict.fromkeys(rotulo_fonte(x) for x in disc.get("fontes_usadas", []))),
         requisicoes_llm=requisicoes,
         tokens_llm=tokens,
     )

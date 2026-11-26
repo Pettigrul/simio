@@ -11,30 +11,30 @@
   td.refs { word-break:normal; width:170px; }
   .capturas img { max-height:760px; object-fit:cover; object-position:top; }
   @media print { .capturas img { max-height:420px; } }
-  blockquote { margin:6px 0; padding:8px 12px; background:var(--bg); border-left:3px solid var(--line); border-radius:4px; }
-  .achado { border-top:1px solid var(--line); padding-top:10px; margin-top:12px; }
+  blockquote { margin:6px 0; padding:8px 12px; background:var(--fundo); border-left:3px solid var(--borda); border-radius:4px; }
+  .achado { border-top:1px solid var(--borda); padding-top:10px; margin-top:12px; }
   .achado:first-of-type { border-top:0; padding-top:0; margin-top:0; }
 {% endblock %}
 {% block conteudo %}
   {% set principal = capturas[0] if capturas else None %}
-  <div class="card {{ f.classificacao|tom if f else '' }}{% if not principal %} sem-captura{% endif %}">
-    {% if principal %}
-    <div><a href="{{ principal.src }}"><img class="shot" src="{{ principal.src }}" alt="{{ principal.rotulo }}"></a></div>
-    {% endif %}
+  <div class="cartao {{ f.classificacao|tom if f else '' }}">
+    <div>
+      {% if principal %}<a href="{{ principal.src }}"><img class="captura" src="{{ principal.src }}" alt="{{ principal.rotulo }}"></a>{% else %}<div class="sem-captura">sem captura: página fora do ar ou bloqueada na coleta</div>{% endif %}
+    </div>
     <div>
       {% if f %}
-      <span class="pill {{ f.classificacao|tom }}">{{ f.classificacao|rotulo }}</span><span class="pill {{ f.prioridade|tom }}">Prioridade {{ f.prioridade|rotulo|lower }}</span><span class="pill cat">{{ f.caso|rotulo }}</span>{% if f.identidade_visual_antiga %}<span class="pill alto">Logo antiga</span>{% endif %}{% if f.dados_sensiveis_solicitados %}<span class="pill crit">Pede {{ f.dados_sensiveis_solicitados|join(", ") }}</span>{% endif %}
+      <span class="selo {{ f.classificacao|tom }}">{{ f.classificacao|rotulo }}</span><span class="selo {{ f.prioridade|tom }}">Prioridade {{ f.prioridade|rotulo|lower }}</span><span class="selo categoria">{{ f.caso|rotulo }}</span>{% if f.identidade_visual_antiga %}<span class="selo alto">Logo antiga</span>{% endif %}{% if f.dados_sensiveis_solicitados %}<span class="selo crit">Pede {{ f.dados_sensiveis_solicitados|dados_pedidos }}</span>{% endif %}
       {% else %}
-      <span class="pill">Sem decisão final</span>
+      <span class="selo">Sem decisão final</span>
       {% endif %}
       <div class="url">{{ c.url }}</div>
-      <dl class="kv">
+      <dl class="campos">
         {% if f %}
         <dt>Responsável</dt><dd>{{ f.classe_identidade|rotulo }}{% if idn and idn.nome_exibicao %} · {{ idn.nome_exibicao }}{% endif %}</dd>
         {% if rv %}<dt>Revisão crítica</dt><dd>{{ rv.decisao|rotulo }}</dd>{% endif %}
         <dt>Revisão humana</dt><dd>{{ f.status_revisao_humana|rotulo }}</dd>
         <dt>Logo antiga</dt><dd>{% if f.identidade_visual_antiga %}sim, logotipo descontinuado ({{ f.fonte_identidade_visual_antiga }}){% else %}não encontrada{% endif %}</dd>
-        <dt>Dados pedidos</dt><dd>{% if f.dados_sensiveis_solicitados %}{{ f.dados_sensiveis_solicitados|join(", ") }}: possível coleta de credenciais{% else %}nenhum campo de senha, cartão ou token{% endif %}</dd>
+        <dt>Dados pedidos</dt><dd>{% if f.dados_sensiveis_solicitados %}{{ f.dados_sensiveis_solicitados|dados_pedidos }}: possível coleta de credenciais{% else %}nenhum campo de senha, cartão ou token{% endif %}</dd>
         {% else %}
         <dt>Andamento</dt><dd>{{ c.status|rotulo }}{% if c.ultimo_erro %} · {{ c.ultimo_erro }}{% endif %}</dd>
         {% endif %}
@@ -48,7 +48,7 @@
   <h2>Decisão</h2>
   <div class="bloco">
     <div class="texto">{{ f.justificativa }}</div>
-    <dl class="kv" style="margin-top:10px">
+    <dl class="campos" style="margin-top:10px">
       <dt>Confiança da atribuição</dt><dd>{{ f.confianca_atribuicao|rotulo }}</dd>
       <dt>Confiança da extração</dt><dd>{{ f.confianca_extracao|rotulo }}</dd>
       <dt>Suficiência da evidência</dt><dd>{{ f.suficiencia_evidencia|rotulo }}</dd>
@@ -68,7 +68,7 @@
   {% if di %}
   <h2>Registro e hospedagem do domínio</h2>
   <div class="bloco">
-    <dl class="kv">
+    <dl class="campos">
       {% if di.plataforma %}<dt>Plataforma</dt><dd>{{ di.plataforma }}: o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</dd>{% endif %}
       {% if di.criado %}<dt>Domínio criado em</dt><dd>{{ di.criado }}{% if di.registrador %} · {{ di.registrador }}{% endif %}</dd>{% endif %}
       {% if di.titular %}<dt>Titular</dt><dd>{{ di.titular }}</dd>{% endif %}
@@ -92,20 +92,20 @@
     {% endfor %}
     </div>
     {% else %}
-    <p class="muted">Nenhuma captura disponível.</p>
+    <p class="apagado">Nenhuma captura disponível.</p>
     {% endif %}
   </div>
 
   {% if b and b.correspondencias_visuais %}
   <h2>Logo antiga: comparação de imagem</h2>
   <div class="bloco">
-    <p class="muted">Regiões das capturas comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de modelo.</p>
+    <p class="apagado">Regiões das capturas comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de modelo.</p>
     <div class="rolagem">
     <table>
       <thead><tr><th>Captura</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem na página</th></tr></thead>
       <tbody>
       {% for m in b.correspondencias_visuais %}
-        <tr><td>{{ m.ref_captura }}</td><td>{{ m.bbox[0] }}, {{ m.bbox[1] }}</td><td>{{ m.bbox[2] }}×{{ m.bbox[3] }} px</td><td>{{ '%.2f'|format(m.pontuacao) }}</td><td class="mono">{{ m.src_imagem or '—' }}</td></tr>
+        <tr><td>{{ m.ref_captura }}</td><td>{{ m.bbox[0] }}, {{ m.bbox[1] }}</td><td>{{ m.bbox[2] }}×{{ m.bbox[3] }} px</td><td>{{ m.pontuacao|num_br(2) }}</td><td class="mono">{{ m.src_imagem or '—' }}</td></tr>
       {% endfor %}
       </tbody>
     </table>
@@ -114,7 +114,7 @@
   {% endif %}
 
   {% if b %}
-  <h2>Análise de marca <span class="muted peq" style="font-weight:normal">{{ b.analisador }}{% if b.versao_prompt %}, {{ b.versao_prompt }}{% endif %}</span></h2>
+  <h2>Análise de marca <span class="apagado peq" style="font-weight:normal">({{ descrever_analisador(b.analisador, b.versao_prompt) }})</span></h2>
   <div class="bloco">
     {% if b.possivel_injecao_prompt %}<div class="nota alerta"><b>Atenção:</b> a página contém texto com instruções dirigidas a modelos de IA (possível prompt injection).</div>{% endif %}
     <div class="texto">{{ b.resumo_raciocinio }}</div>
@@ -125,16 +125,16 @@
       <thead><tr><th>Dimensão</th><th>Sinal</th><th>O que foi visto</th><th>Evidências</th></tr></thead>
       <tbody>
       {% for d in b.dimensoes %}
-      <tr><td>{{ d.dimensao|rotulo }}</td><td><span class="pill {{ d.sinal|tom }}">{{ d.sinal|rotulo }}</span></td><td>{{ d.constatacao }}</td><td class="mono refs">{% for r in d.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</td></tr>
+      <tr><td>{{ d.dimensao|rotulo }}</td><td><span class="selo {{ d.sinal|tom }}">{{ d.sinal|rotulo }}</span></td><td>{{ d.constatacao }}</td><td class="mono refs">{% for r in d.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</td></tr>
       {% endfor %}
       </tbody>
     </table>
     </div>
     {% endif %}
     <h3>Indícios de confusão</h3>
-    <ul>{% for ind in b.indicadores_confusao_marca %}<li><span class="pill">{{ ind.forca|rotulo }}</span>{{ ind.dimensao|rotulo }}: {{ ind.descricao }} <span class="mono refs">{% for r in ind.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</span></li>{% else %}<li class="muted">nenhum</li>{% endfor %}</ul>
+    <ul>{% for ind in b.indicadores_confusao_marca %}<li><span class="selo">{{ ind.forca|rotulo }}</span>{{ ind.dimensao|rotulo }}: {{ ind.descricao }} <span class="mono refs">{% for r in ind.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</span></li>{% else %}<li class="apagado">Nenhum indício registrado.</li>{% endfor %}</ul>
     <h3>Indícios de relação legítima</h3>
-    <ul>{% for ind in b.indicadores_relacao_legitima %}<li><span class="pill">{{ ind.forca|rotulo }}</span>{{ ind.dimensao|rotulo }}: {{ ind.descricao }} <span class="mono refs">{% for r in ind.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</span></li>{% else %}<li class="muted">nenhum</li>{% endfor %}</ul>
+    <ul>{% for ind in b.indicadores_relacao_legitima %}<li><span class="selo">{{ ind.forca|rotulo }}</span>{{ ind.dimensao|rotulo }}: {{ ind.descricao }} <span class="mono refs">{% for r in ind.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</span></li>{% else %}<li class="apagado">Nenhum indício registrado.</li>{% endfor %}</ul>
     {% if b.fatos_observados %}
     <h3>Fatos observados</h3>
     <ul>{% for x in b.fatos_observados %}<li>{{ x }}</li>{% endfor %}</ul>
@@ -143,28 +143,28 @@
     <h3>Incertezas</h3>
     <ul>{% for x in b.incertezas %}<li>{{ x }}</li>{% endfor %}</ul>
     {% endif %}
-    {% if b.referencias_descartadas %}<p class="muted peq">Referências citadas pelo modelo que não existem no catálogo (descartadas): {{ b.referencias_descartadas|join(', ') }}</p>{% endif %}
+    {% if b.referencias_descartadas %}<p class="apagado peq">Referências citadas pelo modelo que não existem no catálogo (descartadas): {{ b.referencias_descartadas|join(', ') }}</p>{% endif %}
   </div>
   {% endif %}
 
   {% if idn %}
   <h2>Responsável pela página</h2>
   <div class="bloco">
-    <dl class="kv">
+    <dl class="campos">
       <dt>Categoria</dt><dd>{{ idn.classificacao|rotulo }}</dd>
-      <dt>Entidade</dt><dd>{{ idn.nome_exibicao or '—' }} <span class="mono muted">{{ idn.chave_entidade }}</span></dd>
+      <dt>Entidade</dt><dd>{{ idn.nome_exibicao or '—' }}</dd>
       <dt>Confiança</dt><dd>{{ idn.confianca_atribuicao|rotulo }}</dd>
-      <dt>Cadastro de correspondentes</dt><dd>{% if idn.correspondencia_cadastro %}{{ idn.correspondencia_cadastro.fonte }} (por {{ idn.correspondencia_cadastro.casado_por|rotulo }}){% else %}sem correspondência{% endif %}</dd>
+      <dt>Cadastro de correspondentes</dt><dd>{% if idn.correspondencia_cadastro %}{{ idn.correspondencia_cadastro|cadastro }}{% else %}sem correspondência{% endif %}</dd>
     </dl>
     {% if idn.fundamentacao %}<div class="texto" style="margin-top:10px">{{ idn.fundamentacao }}</div>{% endif %}
     {% if idn.fatos %}
-    <h3>Fatos observados</h3>
+    <h3>Dados de identificação encontrados</h3>
     <div class="rolagem">
     <table>
       <thead><tr><th>Tipo</th><th>Valor</th><th>Evidência</th><th>Contexto</th></tr></thead>
       <tbody>
       {% for x in idn.fatos %}
-      <tr><td>{{ x.tipo|rotulo }}</td><td>{{ x.valor }}{% if x.valido == false %} <b class="txt-alto">(dígito verificador inválido)</b>{% endif %}</td><td class="mono">{% if x.ref_evidencia %}<a href="#{{ x.ref_evidencia }}">{{ x.ref_evidencia }}</a>{% endif %}</td><td>{{ x.contexto or '' }}</td></tr>
+      <tr><td>{{ x.tipo|rotulo }}</td><td>{{ x.valor }}{% if x.valido == false %} <b class="cor-alto">(dígito verificador inválido)</b>{% endif %}</td><td class="mono">{% if x.ref_evidencia %}<a href="#{{ x.ref_evidencia }}">{{ x.ref_evidencia }}</a>{% endif %}</td><td>{{ x.contexto or '' }}</td></tr>
       {% endfor %}
       </tbody>
     </table>
@@ -180,10 +180,10 @@
   {% if comp %}
   <h2>Conformidade (hipóteses)</h2>
   <div class="bloco">
-    <p class="muted">{{ comp.ressalva }}</p>
+    <p class="apagado">{{ comp.ressalva }}</p>
     {% for fd in comp.achados %}
     <div class="achado">
-      <span class="pill {{ fd.status|tom }}">{{ fd.status|rotulo }}</span><b>{{ fd.citacao }}</b> <span class="muted peq">· {{ fd.fonte_requisito|rotulo }}</span>
+      <span class="selo {{ fd.status|tom }}">{{ fd.status|rotulo }}</span><b>{{ fd.citacao }}</b> <span class="apagado peq">· {{ fd.fonte_requisito|rotulo }}</span>
       <blockquote>{{ fd.texto_requisito }}</blockquote>
       {% if fd.hipotese %}<p><b>Hipótese:</b> {{ fd.hipotese }}</p>{% endif %}
       <p><b>Evidências:</b> <span class="mono refs">{% for r in fd.evidencias_observadas %}<a href="#{{ r }}">{{ r }}</a> {% else %}—{% endfor %}</span></p>
@@ -192,14 +192,14 @@
     {% endfor %}
     {% for n in comp.notas_fora_escopo %}<div class="nota" style="margin:10px 0 0">{{ n }}</div>{% endfor %}
     {% if comp.controles_relacionados %}<h3>Controles da contratante relacionados</h3><ul>{% for n in comp.controles_relacionados %}<li>{{ n }}</li>{% endfor %}</ul>{% endif %}
-    {% if comp.limitacoes %}<p class="muted peq">Limitações: {{ comp.limitacoes|join('; ') }}</p>{% endif %}
+    {% if comp.limitacoes %}<p class="apagado peq">Limitações: {{ comp.limitacoes|join('; ') }}</p>{% endif %}
   </div>
   {% endif %}
 
   {% if rv %}
-  <h2>Revisão crítica <span class="muted peq" style="font-weight:normal">{{ rv.revisor }}</span></h2>
+  <h2>Revisão crítica <span class="apagado peq" style="font-weight:normal">({{ descrever_analisador(rv.revisor, rv.versao_prompt) }})</span></h2>
   <div class="bloco">
-    <p>Decisão: <b>{{ rv.decisao|rotulo }}</b> · classificação revisada: <span class="txt-{{ rv.classificacao_revisada|tom }}">{{ rv.classificacao_revisada|rotulo }}</span> · prioridade {{ rv.prioridade_revisada|rotulo|lower }}</p>
+    <p>Decisão: <b>{{ rv.decisao|rotulo }}</b> · classificação revisada: <span class="cor-{{ rv.classificacao_revisada|tom }}">{{ rv.classificacao_revisada|rotulo }}</span> · prioridade {{ rv.prioridade_revisada|rotulo|lower }}</p>
     <div class="texto">{{ rv.resumo_raciocinio }}</div>
     {% if rv.contestacoes %}
     <h3>Questionamentos</h3>
@@ -208,7 +208,7 @@
       <thead><tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Evidências</th></tr></thead>
       <tbody>
       {% for ch in rv.contestacoes %}
-      <tr><td>{{ ch.topico|rotulo }}</td><td><span class="pill {{ ch.severidade|tom }}">{{ ch.severidade|rotulo }}</span></td><td>{{ ch.preocupacao }}</td><td class="mono refs">{% for r in ch.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</td></tr>
+      <tr><td>{{ ch.topico|rotulo }}</td><td><span class="selo {{ ch.severidade|tom }}">{{ ch.severidade|rotulo }}</span></td><td>{{ ch.preocupacao }}</td><td class="mono refs">{% for r in ch.refs_evidencia %}<a href="#{{ r }}">{{ r }}</a> {% endfor %}</td></tr>
       {% endfor %}
       </tbody>
     </table>
@@ -226,7 +226,7 @@
     {% for i in catalogo %}
     <tr id="{{ i.ref }}"><td class="mono"><b>{{ i.ref }}</b></td><td>{{ i.tipo|rotulo }}</td><td>{{ i.local|rotulo }}{% if i.acima_dobra %} (acima da dobra){% endif %}</td><td>{{ i.conteudo }}</td></tr>
     {% else %}
-    <tr><td colspan="4" class="muted">Sem itens: a página não foi coletada.</td></tr>
+    <tr><td colspan="4" class="apagado">Sem itens: a página não foi coletada.</td></tr>
     {% endfor %}
     </tbody>
   </table>
@@ -238,9 +238,9 @@
     <thead><tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL encontrada</th><th>Título / trecho</th></tr></thead>
     <tbody>
     {% for h in resultados %}
-    <tr><td>{{ h.fonte }}</td><td>{{ h.consulta or '' }}{% if h.id_hipotese %}<br><span class="muted peq">{{ h.id_hipotese }}</span>{% endif %}</td><td class="mono">{{ h.url_original }}</td><td>{{ h.titulo or '' }}{% if h.trecho %}<br><span class="muted peq">{{ h.trecho }}</span>{% endif %}</td></tr>
+    <tr><td>{{ h.fonte|fonte }}</td><td>{{ h.consulta or '' }}{% if h.id_hipotese %}<br><span class="apagado peq">{{ h.id_hipotese }}</span>{% endif %}</td><td class="mono">{{ h.url_original }}</td><td>{{ h.titulo or '' }}{% if h.trecho %}<br><span class="apagado peq">{{ h.trecho }}</span>{% endif %}</td></tr>
     {% else %}
-    <tr><td colspan="4" class="muted">URL importada, sem resultado de busca.</td></tr>
+    <tr><td colspan="4" class="apagado">URL importada, sem resultado de busca.</td></tr>
     {% endfor %}
     </tbody>
   </table>
@@ -249,9 +249,8 @@
   {% if ev %}
   <h2>Coleta e integridade</h2>
   <div class="bloco">
-    <dl class="kv">
-      <dt>Situação</dt><dd>{{ ev.status|rotulo }}{% if ev.status_http %} (HTTP {{ ev.status_http }}){% endif %}</dd>
-      <dt>Coletada em</dt><dd>{{ ev.coletada_em|data_br }}</dd>
+    <dl class="campos">
+      <dt>Tentativa</dt><dd>{{ ev.tentativa }}</dd>
       <dt>IP do servidor</dt><dd>{{ ev.ip_servidor or '—' }}</dd>
       <dt>URL original</dt><dd class="mono">{{ ev.url_original }}</dd>
       <dt>URL final</dt><dd class="mono">{{ ev.url_final or '—' }}</dd>
@@ -269,7 +268,7 @@
         <thead><tr><th>Arquivo</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr></thead>
         <tbody>
         {% for a in ev.artefatos %}
-        <tr><td>{{ a.tipo|rotulo }}</td><td class="mono">{{ a.caminho }}</td><td class="mono">{{ a.sha256 }}</td><td>{{ a.tamanho_bytes }}</td></tr>
+        <tr><td>{{ a.tipo|rotulo }}</td><td class="mono">{{ a.caminho }}</td><td class="mono">{{ a.sha256 }}</td><td>{{ a.tamanho_bytes|num_br }}</td></tr>
         {% endfor %}
         </tbody>
       </table>

@@ -5,7 +5,17 @@ from datetime import UTC, datetime
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from simio.relatorios.dados_logo import LOGO_BV_BRANCA_DATA_URI
-from simio.relatorios.rotulos import COR_MARCA, PALETA, rotulo, tom
+from simio.relatorios.rotulos import (
+    COR_MARCA,
+    PALETA,
+    dados_pedidos,
+    descrever_analisador,
+    descrever_cadastro,
+    num_br,
+    rotulo,
+    rotulo_fonte,
+    tom,
+)
 
 
 def data_br(valor: object, segundos: bool = False) -> str:
@@ -43,5 +53,10 @@ ambiente = Environment(
 ambiente.filters["rotulo"] = rotulo
 ambiente.filters["tom"] = tom
 ambiente.filters["data_br"] = data_br
+ambiente.filters["num_br"] = num_br
+ambiente.filters["dados_pedidos"] = dados_pedidos
+ambiente.filters["fonte"] = rotulo_fonte
+ambiente.filters["cadastro"] = descrever_cadastro
+ambiente.globals["descrever_analisador"] = descrever_analisador
 ambiente.globals["paleta"] = PALETA
 ambiente.globals["cor_marca"] = COR_MARCA

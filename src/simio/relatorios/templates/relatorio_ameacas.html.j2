@@ -4,7 +4,7 @@
 {% block subtitulo %}Campanha {{ id_campanha }} · {{ nome_marca }} · gerado em {{ gerado_em }}{% endblock %}
 {% block conteudo %}
   <div class="numeros">
-    {% for nv, n in niveis %}<div class="tile {{ nv|tom }}"><b>{{ n }}</b>{{ nv|rotulo }}</div>{% endfor %}
+    {% for nv, n in niveis %}<div class="quadro {{ nv|tom }}"><b>{{ n }}</b>{{ nv|rotulo }}</div>{% endfor %}
   </div>
   <div class="linha">{% for cat, n in categorias %}{{ cat }} ({{ n }}){% if not loop.last %} · {% endif %}{% endfor %}</div>
   <div class="nota">O nível vem de fatos verificáveis: campos de senha ou cartão, personificação registrada pelo analisador, domínio com a marca ou parecido, APK fora das lojas, hospedagem gratuita e idade do domínio. Empresas identificadas que usam a própria marca são tema de conformidade e ficam fora desta lista. As URLs estão desarmadas (<code>hxxps</code>, <code>[.]</code>) para ninguém abrir sem querer.</div>
@@ -14,15 +14,15 @@
   {% if grupo %}
   <h2>{{ nv|rotulo }} ({{ grupo | length }})</h2>
   {% for c in grupo %}
-  <div class="card {{ c.nivel|tom }}">
+  <div class="cartao {{ c.nivel|tom }}">
     <div>
-      {% if c.captura %}<img class="shot" src="{{ c.captura }}" alt="Captura de {{ c.dominio }}" loading="lazy">{% else %}<div class="noshot">sem captura: página fora do ar ou bloqueada; a classificação se apoia no que foi indexado</div>{% endif %}
+      {% if c.captura %}<img class="captura" src="{{ c.captura }}" alt="Captura de {{ c.dominio }}" loading="lazy">{% else %}<div class="sem-captura">sem captura: página fora do ar ou bloqueada; a classificação se apoia no que foi indexado</div>{% endif %}
     </div>
     <div>
-      <span class="pill {{ c.nivel|tom }}">{{ c.nivel|rotulo }} · {{ c.pontuacao }}</span>{% for cat in c.categorias %}<span class="pill cat">{{ cat }}</span>{% endfor %}
+      <span class="selo {{ c.nivel|tom }}">{{ c.nivel|rotulo }} · {{ c.pontuacao|num_br(1) }}</span>{% for cat in c.categorias %}<span class="selo categoria">{{ cat }}</span>{% endfor %}
       <div class="url">{{ c.url }}</div>
       <ul class="fatos">{% for fato in c.fatos %}<li>{{ fato }}</li>{% endfor %}</ul>
-      <dl class="kv">
+      <dl class="campos">
         {% if c.sensiveis %}<dt>Dados pedidos</dt><dd>{{ c.sensiveis }}</dd>{% endif %}
         {% if c.intel %}
         {% if c.intel.plataforma %}<dt>Plataforma</dt><dd>{{ c.intel.plataforma }} (o dono só é identificável pela plataforma)</dd>{% endif %}
@@ -31,7 +31,7 @@
         <dt>Resolve hoje</dt><dd>{{ c.intel.resolve }}{% if c.intel.hospedagem %} · {{ c.intel.hospedagem }}{% endif %}</dd>
         {% if c.intel.abuso %}<dt>Contatos de abuso</dt><dd>{{ c.intel.abuso }}</dd>{% endif %}
         {% endif %}
-        <dt>Análise SIMIO</dt><dd>{% if c.classificacao %}<span class="txt-{{ c.classificacao|tom }}">{{ c.classificacao|rotulo }}</span>{% endif %}{% if c.dossie %} · <a href="{{ c.dossie }}">dossiê</a>{% endif %}</dd>
+        <dt>Análise SIMIO</dt><dd>{% if c.classificacao %}<span class="cor-{{ c.classificacao|tom }}">{{ c.classificacao|rotulo }}</span>{% endif %}{% if c.dossie %} · <a href="{{ c.dossie }}">dossiê</a>{% endif %}</dd>
       </dl>
       {% if c.justificativa %}<details><summary>Justificativa do analisador</summary>{{ c.justificativa }}</details>{% endif %}
     </div>

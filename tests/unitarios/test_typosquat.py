@@ -82,4 +82,4 @@ async def test_descoberta_planeja_consultas_semelhantes_e_prioriza_resultados() 
     assert not rejeitados
     [g] = priorizar(grupos, BV)
     assert g.hostname == "feiraobv.com.br" and g.pontuacao >= 3
-    assert any("domínio parecido com bv" in r for r in g.motivos)
+    assert any("domínio que combina a marca bv com palavra do setor" in r for r in g.motivos)

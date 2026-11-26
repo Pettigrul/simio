@@ -126,6 +126,24 @@ _CAMPOS_SENSIVEIS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("cpf", re.compile(r"(?i)\bcpf\b")),
 )
 TIPOS_CREDENCIAL = frozenset({"senha", "cvv", "cartão", "token/código", "agência/conta"})
+_NOMES_DADOS_SENSIVEIS = {
+    "cpf": "CPF",
+    "cvv": "CVV",
+    "token/código": "token ou código",
+    "agência/conta": "agência e conta",
+}
+
+
+def descrever_dados_sensiveis(tipos: list[str] | None) -> str:
+    return ", ".join(_NOMES_DADOS_SENSIVEIS.get(t, t) for t in tipos or [])
+
+
+# Onde o item foi visto. As versões anteriores gravaram os locais da página em inglês.
+_LOCAIS_ANTIGOS = {"header": "topo", "footer": "rodape", "nav": "menu", "page": "pagina"}
+
+
+def _local(valor: str) -> str:
+    return _LOCAIS_ANTIGOS.get(valor, valor)
 
 
 def classificar_campo_entrada(inp: InfoCampoEntrada) -> str | None:
@@ -155,16 +173,17 @@ def montar_catalogo(
     adicionar = itens.append
     for i, m in enumerate(correspondencias_visuais or [], 1):
         x, y, w, h = m.bbox
+        similaridade = f"{m.pontuacao:.2f}".replace(".", ",")
         adicionar(
             ItemEvidencia(
                 ref=f"E-VIS-LEGACY-{i:03d}",
                 tipo="visual",
-                local="viewport" if m.acima_dobra else "page",
+                local="area_visivel" if m.acima_dobra else "pagina",
                 acima_dobra=m.acima_dobra,
                 conteudo=(
-                    f"Comparação de imagem (determinística, sem IA): logotipo ANTIGO de {marca.nome_exibicao} "
-                    f"(B vermelho sobre V azul) em {m.ref_captura}, posição x={x} y={y}, {w}x{h}px, "
-                    f"similaridade {m.pontuacao:.2f}" + (f"; imagem: {m.src_imagem[:200]}" if m.src_imagem else "")
+                    f"Comparação de imagem: logotipo antigo do {marca.nome_exibicao} (B vermelho sobre V azul) em "
+                    f"{m.ref_captura}, posição {x}, {y}, {w}×{h} px, similaridade {similaridade}"
+                    + (f"; imagem: {m.src_imagem[:200]}" if m.src_imagem else "")
                 ),
             )
         )
@@ -188,7 +207,7 @@ def montar_catalogo(
             ItemEvidencia(
                 ref="E-COLLECT",
                 tipo="rede",
-                local="collection",
+                local="coleta",
                 conteudo=f"Status da coleta: {ev.status.value}; HTTP {ev.status_http}; "
                 f"ocorrências: {'; '.join(ev.erros)[:600] or 'nenhuma'}",
             )
@@ -209,7 +228,7 @@ def montar_catalogo(
                 ItemEvidencia(
                     ref=f"E-DISC-{idx_disc:03d}",
                     tipo="texto",
-                    local="search_index",
+                    local="indice_busca",
                     conteudo=f"Índice de busca ({h.fonte}): {combinado}",
                 )
             )
@@ -222,40 +241,46 @@ def montar_catalogo(
                 ItemEvidencia(
                     ref=ref,
                     tipo="captura",
-                    local="viewport" if "VIEW" in ref else "page",
+                    local="area_visivel" if "VIEW" in ref else "pagina",
                     conteudo=f"{a.caminho} (sha256 {a.sha256[:16]}…)",
                 )
             )
     p = ev.pagina
     if p is None or not ev.utilizavel:
         return itens
-    adicionar(ItemEvidencia(ref="E-TITLE", tipo="titulo", local="head", conteudo=p.titulo or "(sem título)"))
+    adicionar(
+        ItemEvidencia(ref="E-TITLE", tipo="titulo", local="cabecalho_html", conteudo=p.titulo or "(sem título)")
+    )
     for i, chave in enumerate(
         k
         for k in ("description", "og:site_name", "og:title", "og:description", "author", "application-name")
         if k in p.meta
     ):
-        adicionar(ItemEvidencia(ref=f"E-META-{i + 1}", tipo="meta", local="head", conteudo=f"{chave}: {p.meta[chave]}"))
+        adicionar(
+            ItemEvidencia(
+                ref=f"E-META-{i + 1}", tipo="meta", local="cabecalho_html", conteudo=f"{chave}: {p.meta[chave]}"
+            )
+        )
     if p.canonica:
-        adicionar(ItemEvidencia(ref="E-CANONICAL", tipo="meta", local="head", conteudo=p.canonica))
+        adicionar(ItemEvidencia(ref="E-CANONICAL", tipo="meta", local="cabecalho_html", conteudo=p.canonica))
     for i, h in enumerate(p.titulos_secao[:15]):
-        adicionar(ItemEvidencia(ref=f"E-HEAD-{i + 1}", tipo="cabecalho_secao", local="page", conteudo=h[:300]))
+        adicionar(ItemEvidencia(ref=f"E-HEAD-{i + 1}", tipo="cabecalho_secao", local="pagina", conteudo=h[:300]))
     if p.texto_cabecalho:
-        adicionar(ItemEvidencia(ref="E-HDR", tipo="texto", local="header", conteudo=p.texto_cabecalho[:800]))
+        adicionar(ItemEvidencia(ref="E-HDR", tipo="texto", local="topo", conteudo=p.texto_cabecalho[:800]))
     if p.texto_acima_dobra:
         adicionar(
             ItemEvidencia(
-                ref="E-FOLD", tipo="texto", local="viewport", acima_dobra=True, conteudo=p.texto_acima_dobra[:2000]
+                ref="E-FOLD", tipo="texto", local="area_visivel", acima_dobra=True, conteudo=p.texto_acima_dobra[:2000]
             )
         )
     if p.texto_rodape:
-        adicionar(ItemEvidencia(ref="E-FTR", tipo="texto", local="footer", conteudo=p.texto_rodape[:2000]))
+        adicionar(ItemEvidencia(ref="E-FTR", tipo="texto", local="rodape", conteudo=p.texto_rodape[:2000]))
     if p.itens_nav:
         adicionar(
             ItemEvidencia(
                 ref="E-NAV",
                 tipo="nav",
-                local="header",
+                local="topo",
                 conteudo=" | ".join(f"{n.texto} <{n.href}>" for n in p.itens_nav[:30])[:1500],
             )
         )
@@ -264,13 +289,15 @@ def montar_catalogo(
             ItemEvidencia(
                 ref=f"E-CTA-{i + 1}",
                 tipo="cta",
-                local=c.local,
+                local=_local(c.local),
                 conteudo=f"{c.texto}" + (f" <{c.href}>" if c.href else ""),
             )
         )
     for i, c in enumerate(p.links_contato[:20]):
         adicionar(
-            ItemEvidencia(ref=f"E-CONTACT-{i + 1}", tipo="contato", local=c.local, conteudo=f"{c.texto} <{c.href}>")
+            ItemEvidencia(
+                ref=f"E-CONTACT-{i + 1}", tipo="contato", local=_local(c.local), conteudo=f"{c.texto} <{c.href}>"
+            )
         )
     eh_social = dominio_corresponde(hostname_de(url), ("instagram.com", "facebook.com", "tiktok.com"))
     com_marca = [
@@ -283,7 +310,7 @@ def montar_catalogo(
             ItemEvidencia(
                 ref=f"E-IMG-{i + 1}",
                 tipo="imagem",
-                local=img.local,
+                local=_local(img.local),
                 acima_dobra=img.acima_dobra,
                 conteudo=f"imagem alt='{img.alt}' src={img.src[:200]} "
                 f"({img.largura}x{img.altura}, {'acima' if img.acima_dobra else 'abaixo'} da dobra)",
@@ -295,7 +322,7 @@ def montar_catalogo(
             ItemEvidencia(
                 ref="E-OFFICIAL-LINKS",
                 tipo="link",
-                local="page",
+                local="pagina",
                 conteudo=" | ".join(f"{ln.texto} <{ln.href}>" for ln in links_oficiais[:10]),
             )
         )
@@ -312,7 +339,7 @@ def montar_catalogo(
             or INJECAO_RE.search(linha_txt)
         ):
             n += 1
-            adicionar(ItemEvidencia(ref=f"E-TXT-{n:03d}", tipo="texto", local="page", conteudo=linha_txt))
+            adicionar(ItemEvidencia(ref=f"E-TXT-{n:03d}", tipo="texto", local="pagina", conteudo=linha_txt))
     n_formularios = 0
     # O muro de login da própria rede social não é a página pedindo credencial.
     campos_formulario = [] if dominio_corresponde(hostname_de(url), _HOSTS_LOGIN_PLATAFORMA) else p.campos_entrada
@@ -329,7 +356,7 @@ def montar_catalogo(
             ItemEvidencia(
                 ref=f"E-FORM-{n_formularios:03d}",
                 tipo="formulario",
-                local="page",
+                local="pagina",
                 conteudo=f"Campo de formulário que pede {tipo.upper()} ({desc[:240]})",
             )
         )
@@ -342,7 +369,7 @@ def montar_catalogo(
             ItemEvidencia(
                 ref="E-FORM-ACTION",
                 tipo="formulario",
-                local="page",
+                local="pagina",
                 conteudo="Formulário envia os dados para outro domínio: " + ", ".join(externo[:5]),
             )
         )
@@ -351,8 +378,12 @@ def montar_catalogo(
             ItemEvidencia(
                 ref="E-NET-BLOCKED",
                 tipo="rede",
-                local="collection",
-                conteudo=f"{len(ev.requisicoes_bloqueadas)} requisição(ões) bloqueadas pela política: "
+                local="coleta",
+                conteudo=(
+                    "1 requisição bloqueada pela política: "
+                    if len(ev.requisicoes_bloqueadas) == 1
+                    else f"{len(ev.requisicoes_bloqueadas)} requisições bloqueadas pela política: "
+                )
                 + "; ".join(ev.requisicoes_bloqueadas[:5]),
             )
         )
@@ -631,7 +662,7 @@ def calcular_sinais(ev: Evidencia, marca: PerfilMarca, catalogo: list[ItemEviden
             for d in marca.declaracoes(texto):
                 sig.declaracoes.append(Ocorrencia(d, item.ref, texto[:200]))
                 sig.locais_declaracao.add(item.local)
-                if item.local in ("viewport", "header") or item.acima_dobra:
+                if item.local in ("area_visivel", "topo") or item.acima_dobra:
                     sig.declaracao_acima_dobra = True
         normalizado = normalizar_texto(texto)
         if "ouvidoria" in normalizado and not eh_disc:

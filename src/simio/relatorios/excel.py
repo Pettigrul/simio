@@ -26,7 +26,19 @@ from simio.nucleo.urls import hostname_de
 from simio.relatorios.dados import RegistroCandidata
 from simio.relatorios.dados_logo import LOGO_BV_AZUL_BASE64
 from simio.relatorios.paginas import data_br
-from simio.relatorios.rotulos import COR_MARCA, PALETA, rotulo, tom
+from simio.relatorios.rotulos import (
+    COR_MARCA,
+    PALETA,
+    dados_pedidos,
+    descrever_cadastro,
+    descrever_chave_entidade,
+    num_br,
+    plural,
+    resumir_consultas,
+    rotulo,
+    rotulo_fonte,
+    tom,
+)
 from simio.relatorios.textos_antigos import traduzir
 
 FONTE = "Calibri"
@@ -50,7 +62,7 @@ _ILEGAIS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 MAX_CELULA = 32000
 
 ABA_RESUMO = "Resumo"
-ABA_CANDIDATAS = "Candidatos"
+ABA_CANDIDATAS = "Candidatas"
 ABA_INDICIOS_FORTES = "Indícios fortes"
 ABA_LOGO_ANTIGA = "Logo antiga"
 ABA_AMEACAS = "Ameaças"
@@ -132,6 +144,53 @@ def _aba(
         ws.auto_filter.ref = ws.dimensions
 
 
+_PARAMETROS = {
+    "marca": "Marca",
+    "foco": "Foco",
+    "limite": "Limite de páginas analisadas",
+    "fontes": "Fontes pedidas",
+    "offline": "Modo offline",
+    "revisar_todas": "Revisão crítica de todas as páginas",
+    "modelo_analise": "Modelo de análise",
+    "modelo_revisao": "Modelo de revisão",
+    "modelo_descoberta": "Modelo de descoberta",
+    "paralelismo": "Páginas em paralelo",
+    "max_requisicoes_llm": "Máximo de chamadas ao modelo",
+    "max_tokens_llm": "Máximo de tokens",
+    "max_consultas_busca": "Máximo de consultas de busca",
+    "urls_importadas": "URLs importadas",
+    "id_anterior": "Identificador anterior",
+}
+
+
+def _valor_parametro(v: Any) -> str:
+    if v is None or v == "" or v == []:
+        return "—"
+    if isinstance(v, bool):
+        return "sim" if v else "não"
+    if isinstance(v, (int, float)):
+        return num_br(v)
+    if isinstance(v, (list, tuple)):
+        return ", ".join(str(x) for x in v)
+    if isinstance(v, dict):
+        return json.dumps(v, ensure_ascii=False)
+    return str(v)
+
+
+def _parametros(parametros: dict[str, Any] | None) -> str:
+    return "\n".join(f"{_PARAMETROS.get(k, k)}: {_valor_parametro(v)}" for k, v in (parametros or {}).items())
+
+
+def _decisao_registro(decisao: str) -> str:
+    # "final:SEM_INDICIO" e códigos soltos (REBAIXAR, IDENTIDADE_DESCONHECIDA) viram rótulo; o resto fica.
+    if decisao.startswith("final:"):
+        return f"final: {rotulo(decisao[len('final:') :])}"
+    return rotulo(decisao)
+
+
+_CAPTURAS = {"E-SHOT-VIEWPORT": "área visível", "E-SHOT-FULL": "página inteira"}
+
+
 def _evidencia_principal(rec: RegistroCandidata, n: int = 6) -> str:
     if not rec.final:
         return ""
@@ -202,13 +261,16 @@ def _aba_logo_antiga(
                 f.fonte_identidade_visual_antiga,
                 "sim" if b and b.logo_antiga_isenta else "não",
                 melhor.pontuacao if melhor else "",
-                (f"{melhor.ref_captura} x={melhor.bbox[0]} y={melhor.bbox[1]} {melhor.bbox[2]}x{melhor.bbox[3]}px")
+                (
+                    f"{_CAPTURAS.get(melhor.ref_captura, melhor.ref_captura)}, posição {melhor.bbox[0]}, "
+                    f"{melhor.bbox[1]}, {melhor.bbox[2]}×{melhor.bbox[3]} px"
+                )
                 if melhor
                 else "",
                 ("sim" if melhor.acima_dobra else "não") if melhor else "",
                 "\n".join(dict.fromkeys(m.src_imagem for m in correspondencias if m.src_imagem)),
                 rotulo(idn.classificacao) if idn else "",
-                f"{reg.get('nome', '')} ({reg.get('cnpj', '')})" if reg else "",
+                descrever_cadastro(idn.correspondencia_cadastro) if reg and idn else "",
                 _link(planilha, recortes.get(r.candidata.id)),
                 _link(planilha, caminhos_dossies.get(r.candidata.id)),
             ]
@@ -222,7 +284,7 @@ def _aba_logo_antiga(
         "Classificação",
         "Prioridade",
         "Como foi detectada",
-        "Site de referência (não eleva)",
+        "Site que só cataloga a logo (não muda a classificação)",
         "Similaridade (comparação de imagem)",
         "Onde (captura e posição)",
         "Acima da dobra",
@@ -341,13 +403,13 @@ def _aba_ameacas(
                 di.get("resolve", ""),
                 di.get("hospedagem", "") or ((ev.ip_servidor or "") if ev else ""),
                 di.get("abuso", ""),
-                ", ".join(f.dados_sensiveis_solicitados),
+                dados_pedidos(f.dados_sensiveis_solicitados),
                 acao,
                 "\n".join(ev.cadeia_redirecionamentos[:6]) if ev else "",
                 rotulo(f.classificacao),
                 rotulo(f.caso),
                 (f.justificativa or "")[:600],
-                ", ".join(sorted({h.fonte for h in r.resultados})),
+                ", ".join(sorted({rotulo_fonte(h.fonte) for h in r.resultados})),
                 "\n".join(sorted({h.id_hipotese for h in r.resultados if h.id_hipotese}))[:500],
                 _link(planilha, caminhos_dossies.get(r.candidata.id)),
             ]
@@ -413,25 +475,26 @@ def gravar_planilha(
     disc = armazenamento.obter_checkpoint(id_campanha, "descoberta", {}) or {}
     req, tok = armazenamento.totais_uso(id_campanha)
     analisadores = Counter(r.marca.analisador for r in registros if r.marca)
+    # TODO: receber o perfil de gerar_relatorios; aqui ignora o arquivo de marca das configurações.
+    perfil_marca = carregar_marca(camp.get("marca") or "bv")
 
     resumo: list[list[Any]] = [
         ["Campanha", id_campanha],
-        ["Marca", camp.get("marca")],
+        ["Marca", perfil_marca.nome_exibicao],
         ["Situação da campanha", rotulo(camp.get("status"))],
         ["Início", data_br(camp.get("criado_em"))],
         ["Fim", data_br(camp.get("finalizado_em"))],
         ["Relatório gerado em", data_br(datetime.now(UTC))],
-        ["Candidatos descobertos (únicos)", len(registros)],
-        ["Andamento dos candidatos", _contagem(armazenamento.contagem_por_status(id_campanha))],
+        ["Candidatas descobertas (únicas)", len(registros)],
+        ["Andamento das candidatas", _contagem(armazenamento.contagem_por_status(id_campanha))],
         *([rotulo(c), contagem_cls.get(c, 0)] for c in CLASSIFICACOES),
         ["Aguardam revisão humana", sum(1 for f in finais if f.exige_revisao_humana)],
-        ["Fontes de descoberta usadas", ", ".join(disc.get("fontes_usadas", []))],
-        ["Consultas executadas (fonte:situação)",
-         ", ".join(f"{k}: {n}" for k, n in (disc.get("consultas") or {}).items())],
+        ["Fontes de descoberta usadas", ", ".join(dict.fromkeys(map(rotulo_fonte, disc.get("fontes_usadas", []))))],
+        ["Consultas executadas", resumir_consultas(disc.get("consultas"))],
         ["Diagnóstico da descoberta", "\n".join(traduzir(d) for d in disc.get("diagnosticos", []))],
         ["Analisadores usados", ", ".join(f"{k}: {n}" for k, n in analisadores.most_common())],
-        ["Chamadas ao modelo / tokens", f"{req} / {tok}"],
-        ["Parâmetros", json.dumps(camp.get("parametros", {}), ensure_ascii=False)],
+        ["Chamadas ao modelo / tokens", f"{plural(req, 'chamada', 'chamadas')} / {num_br(tok)} tokens"],
+        ["Parâmetros", _parametros(camp.get("parametros"))],
         [
             "Observação",
             "As classificações são indícios para apoio à auditoria, não conclusão regulatória. "
@@ -488,15 +551,15 @@ def gravar_planilha(
                 c.dominio_registravel,
                 c.url,
                 ev.url_final if ev else "",
-                ", ".join(sorted({h.fonte for h in r.resultados})),
+                ", ".join(sorted({rotulo_fonte(h.fonte) for h in r.resultados})),
                 "\n".join(sorted({h.consulta for h in r.resultados if h.consulta}))[:2000],
-                (idn.nome_exibicao or idn.chave_entidade) if idn else "",
+                (idn.nome_exibicao or "") if idn else "",
                 rotulo(idn.classificacao) if idn else "",
                 rotulo(idn.confianca_atribuicao) if idn else "",
                 rotulo(f.classificacao) if f else "",
                 rotulo(f.prioridade) if f else "",
                 (f"sim ({f.fonte_identidade_visual_antiga})" if f.identidade_visual_antiga else "não") if f else "",
-                ", ".join(f.dados_sensiveis_solicitados) if f else "",
+                dados_pedidos(f.dados_sensiveis_solicitados) if f else "",
                 rotulo(f.caso) if f else "",
                 rotulo(f.confianca_extracao) if f else "",
                 rotulo(f.suficiencia_evidencia) if f else "",
@@ -527,8 +590,6 @@ def gravar_planilha(
         _aba_logo_antiga(wb, caminho, registros, caminhos_dossies, recortes_logo or {})
         wb.move_sheet(ABA_LOGO_ANTIGA, offset=-(len(wb.sheetnames) - 2))
     foco = (camp.get("parametros") or {}).get("foco")
-    # TODO: receber o perfil de gerar_relatorios; aqui ignora o arquivo de marca das configurações.
-    perfil_marca = carregar_marca(camp.get("marca") or "bv")
     # Na campanha de ameaças a aba de ameaças vem logo depois do resumo; na varredura ampla, depois das de conformidade.
     ameacas_primeiro = foco == FOCO_AMEACAS
     if (
@@ -556,7 +617,7 @@ def gravar_planilha(
             [
                 r.candidata.id,
                 r.candidata.dominio_registravel,
-                idn.chave_entidade,
+                descrever_chave_entidade(idn.chave_entidade),
                 idn.nome_exibicao,
                 rotulo(idn.classificacao),
                 rotulo(idn.confianca_atribuicao),
@@ -564,9 +625,7 @@ def gravar_planilha(
                 ", ".join(idn.cnpjs_instituicao_referenciados),
                 fatos,
                 "\n".join(idn.inferencias),
-                json.dumps(idn.correspondencia_cadastro.model_dump(), ensure_ascii=False)
-                if idn.correspondencia_cadastro
-                else "",
+                descrever_cadastro(idn.correspondencia_cadastro),
                 idn.fundamentacao,
                 "\n".join(idn.limitacoes),
             ]
@@ -577,7 +636,7 @@ def gravar_planilha(
         [
             "ID",
             "Domínio",
-            "Chave da entidade",
+            "Agrupada por",
             "Nome",
             "Categoria",
             "Confiança",
@@ -585,7 +644,7 @@ def gravar_planilha(
             "CNPJs da instituição citados",
             "Fatos observados (ref.)",
             "Inferências",
-            "Correspondência em cadastro",
+            "Cadastro de correspondentes",
             "Fundamentação",
             "Limitações",
         ],
@@ -594,11 +653,17 @@ def gravar_planilha(
     )
 
     linhas_ent = [
-        [e["chave_entidade"], e["nome_exibicao"], rotulo(e["classificacao"]), e["dominios"], e["ids_candidatas"]]
+        [
+            descrever_chave_entidade(e["chave_entidade"]),
+            e["nome_exibicao"],
+            rotulo(e["classificacao"]),
+            e["dominios"],
+            e["ids_candidatas"],
+        ]
         for e in armazenamento.entidades(id_campanha)
     ]
     if linhas_ent:
-        _aba(wb, ABA_ENTIDADES, ["Chave", "Nome", "Categoria", "Domínios", "Candidatos"], linhas_ent)
+        _aba(wb, ABA_ENTIDADES, ["Agrupada por", "Nome", "Categoria", "Domínios", "Candidatas"], linhas_ent)
 
     linhas_ev = []
     for r in registros:
@@ -654,7 +719,13 @@ def gravar_planilha(
 
     # No registro bruto os valores do JSON são códigos: os antigos em inglês viram o código atual, não o rótulo.
     linhas_log = [
-        [d["em"], d["id_candidata"] or "", d["agente"], d["decisao"], traduzir(d["detalhe_json"], rotulos=False)]
+        [
+            d["em"],
+            d["id_candidata"] or "",
+            d["agente"],
+            _decisao_registro(d["decisao"]),
+            traduzir(d["detalhe_json"], rotulos=False),
+        ]
         for d in armazenamento.decisoes(id_campanha)
     ]
     for q in armazenamento.listar_consultas(id_campanha):
@@ -665,7 +736,7 @@ def gravar_planilha(
                 q["executada_em"],
                 "",
                 f"consulta:{q['fonte']}",
-                q["status"],
+                rotulo(q["status"]),
                 json.dumps(
                     {
                         "consulta": q["texto_consulta"],
@@ -681,21 +752,28 @@ def gravar_planilha(
     linhas_log.sort(key=lambda x: str(x[0]))
     for linha in linhas_log:
         linha[0] = data_br(linha[0], segundos=True)
-    _aba(wb, ABA_REGISTRO, ["Quando", "Candidato", "Agente", "Decisão", "Detalhe"], linhas_log, {1: 22, 5: 120})
+    _aba(wb, ABA_REGISTRO, ["Quando", "Candidata", "Agente", "Decisão", "Detalhe"], linhas_log, {1: 22, 5: 120})
 
     linhas_erro = [
         [data_br(e["em"], segundos=True), e["id_candidata"] or "", e["etapa"], e["tipo_erro"], traduzir(e["mensagem"])]
         for e in armazenamento.erros(id_campanha)
     ]
     for r in registros:
-        if r.evidencia and (r.evidencia.erros or r.evidencia.nao_inspecionado):
+        ev = r.evidencia
+        if ev and ev.erros:
+            # Coleta que falhou registra erro; nas que deram certo, o que sobrou é ocorrência.
+            tipo = "ocorrência" if ev.status.value in ("OK", "PARCIAL") else "erro"
+            linhas_erro.append(
+                [data_br(ev.coletada_em, segundos=True), r.candidata.id, "coleta", tipo, "\n".join(ev.erros)]
+            )
+        if ev and ev.nao_inspecionado:
             linhas_erro.append(
                 [
-                    data_br(r.evidencia.coletada_em, segundos=True),
+                    data_br(ev.coletada_em, segundos=True),
                     r.candidata.id,
                     "coleta",
-                    rotulo(r.evidencia.status),
-                    "\n".join([*r.evidencia.erros, *r.evidencia.nao_inspecionado]),
+                    "limitação",
+                    "\n".join(ev.nao_inspecionado),
                 ]
             )
         if r.candidata.status.value == "DESCOBERTA":
@@ -704,13 +782,13 @@ def gravar_planilha(
                     "",
                     r.candidata.id,
                     "fila",
-                    "não processado",
-                    "candidato não processado (fora do --limite ou campanha interrompida)",
+                    "não analisada",
+                    "candidata não analisada (limite de páginas atingido ou campanha interrompida)",
                 ]
             )
     for diag in disc.get("diagnosticos", []):
         linhas_erro.append(["", "", "descoberta", "diagnóstico", traduzir(diag)])
-    _aba(wb, ABA_ERROS, ["Quando", "Candidato", "Etapa", "Tipo", "Mensagem"], linhas_erro, {1: 22, 5: 120})
+    _aba(wb, ABA_ERROS, ["Quando", "Candidata", "Etapa", "Tipo", "Mensagem"], linhas_erro, {1: 22, 5: 120})
     _aba(wb, ABA_GLOSSARIO, ["Termo", "Significado"], GLOSSARIO, {1: 36, 2: 120})
 
     caminho.parent.mkdir(parents=True, exist_ok=True)

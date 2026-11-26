@@ -71,7 +71,7 @@ class ConectorGrounding:
             return False, "grounding: nenhum modelo de descoberta/análise configurado"
         if self.motivo_desativacao:
             return False, f"grounding: desligado após erro: {self.motivo_desativacao}"
-        return True, f"grounding: modelo={self.modelo}"
+        return True, f"grounding: modelo {self.modelo}"
 
     async def resolver(self, uri: str) -> tuple[str | None, str | None]:
         # Resolve o redirecionamento do Vertex com um único GET sem seguir; o destino passa pela política.

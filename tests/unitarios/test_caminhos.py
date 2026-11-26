@@ -154,3 +154,25 @@ def test_relatorio_anterior_vai_para_anteriores_com_links_ajustados(tmp_path: Pa
     rel.planilha.write_bytes(b"xlsx2")
     segundo = arquivar_relatorios_anteriores(pasta)
     assert segundo is not None and segundo != destino and (segundo / "relatorio.xlsx").read_bytes() == b"xlsx2"
+
+
+def test_planilha_arquivada_mantem_links_para_as_evidencias(tmp_path: Path) -> None:
+    from openpyxl import Workbook, load_workbook
+
+    pasta = tmp_path / "campanha"
+    captura = pasta / "evidencias/loja.example_1/tentativa-1/tela-inicial.png"
+    captura.parent.mkdir(parents=True)
+    captura.write_bytes(b"png")
+    rel = caminhos.relatorios(pasta)
+    wb = Workbook()
+    ws = wb.active
+    alvo = "evidencias/loja.example_1/tentativa-1/tela-inicial.png"
+    ws["A1"], ws["B1"] = alvo, "dossies/loja.example_1.html"
+    ws["A1"].hyperlink, ws["B1"].hyperlink = alvo, "dossies/loja.example_1.html"
+    wb.save(rel.planilha)
+    destino = arquivar_relatorios_anteriores(pasta)
+    assert destino is not None
+    ws = load_workbook(destino / "relatorio.xlsx").active
+    assert ws["A1"].value == ws["A1"].hyperlink.target == "../../" + alvo
+    assert (destino / ws["A1"].hyperlink.target).resolve() == captura.resolve()
+    assert ws["B1"].hyperlink.target == "dossies/loja.example_1.html"

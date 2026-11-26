@@ -37,11 +37,30 @@ def _traduzido(obj: M | None, *campos: str) -> M | None:
             novo: Any = traduzir(valor)
         elif isinstance(valor, list):
             novo = [traduzir(v) if isinstance(v, str) else v for v in valor]
+            # Frases antigas diferentes podem virar a mesma frase nova: mostra uma vez só.
+            if all(isinstance(v, str) for v in novo):
+                novo = list(dict.fromkeys(novo))
         else:
             continue
         if novo != valor:
             mudancas[campo] = novo
     return obj.model_copy(update=mudancas) if mudancas else obj
+
+
+def _bloqueio_traduzido(entrada: str) -> str:
+    # "<url> -> <motivo>": a URL é dado coletado e fica como está; só o motivo (texto nosso) é traduzido.
+    url, seta, motivo = entrada.partition(" -> ")
+    return f"{url}{seta}{traduzir(motivo)}" if seta else entrada
+
+
+def _evidencia_traduzida(ev: Evidencia | None) -> Evidencia | None:
+    ev = _traduzido(ev, "erros", "nao_inspecionado")
+    if ev is None or not ev.requisicoes_bloqueadas:
+        return ev
+    bloqueadas = [_bloqueio_traduzido(r) for r in ev.requisicoes_bloqueadas]
+    if bloqueadas == ev.requisicoes_bloqueadas:
+        return ev
+    return ev.model_copy(update={"requisicoes_bloqueadas": bloqueadas})
 
 
 def _marca_traduzida(m: AvaliacaoMarca | None) -> AvaliacaoMarca | None:
@@ -109,13 +128,10 @@ def carregar_registros(armazenamento: Armazenamento, id_campanha: str, marca: Pe
         # Uma rodada coerente: a evidência que gerou a decisão final e as avaliações feitas sobre ela
         # (e não, por exemplo, uma revisão RECOLETAR de uma rodada anterior).
         id_ev = armazenamento.id_evidencia_avaliacao(cand.id, "final")
-        ev = _traduzido(
+        ev = _evidencia_traduzida(
             armazenamento.evidencia_por_id(id_ev)
             if id_ev is not None
-            else armazenamento.evidencia_mais_recente(cand.id),
-            "erros",
-            "nao_inspecionado",
-            "requisicoes_bloqueadas",
+            else armazenamento.evidencia_mais_recente(cand.id)
         )
 
         def obter(tipo: str, cls: type[M], id_ev: int | None = id_ev, cid: str = cand.id) -> M | None:
@@ -129,10 +145,7 @@ def carregar_registros(armazenamento: Armazenamento, id_campanha: str, marca: Pe
                 candidata=_traduzido(cand, "ultimo_erro", "motivos_prioridade") or cand,
                 resultados=resultados,
                 evidencia=ev,
-                todas_evidencias=[
-                    _traduzido(e, "erros", "nao_inspecionado", "requisicoes_bloqueadas") or e
-                    for e in armazenamento.todas_evidencias(cand.id)
-                ],
+                todas_evidencias=[_evidencia_traduzida(e) or e for e in armazenamento.todas_evidencias(cand.id)],
                 catalogo=montar_catalogo(ev, marca, resultados_descoberta=resultados, correspondencias_visuais=visual)
                 if ev
                 else [],

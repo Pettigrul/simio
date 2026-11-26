@@ -76,7 +76,7 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
 
     relatorio = gerar_relatorios(configuracoes, armazenamento, resumo.id_campanha)
     wb = load_workbook(relatorio.planilha)
-    assert wb.sheetnames[:2] == ["Resumo", "Candidatos"]
+    assert wb.sheetnames[:2] == ["Resumo", "Candidatas"]
     for nome in (
         "Indícios fortes",
         "Responsáveis",
@@ -85,7 +85,7 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
         "Erros e limitações",
     ):
         assert nome in wb.sheetnames
-    cand = wb["Candidatos"]
+    cand = wb["Candidatas"]
     cabecalhos = [c.value for c in cand[1]]
     for h in (
         "ID",

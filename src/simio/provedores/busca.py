@@ -367,7 +367,8 @@ class BuscaLens(_ConectorPalavrasChave):
             return False, "lens: chave do Serper não configurada (opcional)"
         if not self.urls_imagens:
             return False, "lens: perfil da marca sem urls_busca_logo_antiga"
-        return True, f"lens: busca reversa de {len(self.urls_imagens)} imagem(ns) da logo antiga"
+        n = len(self.urls_imagens)
+        return True, f"lens: busca reversa de {n} {'imagem' if n == 1 else 'imagens'} da logo antiga"
 
     def consultas(self) -> list[str]:
         return list(self.urls_imagens)
@@ -443,7 +444,7 @@ class BuscaCrtSh:
         self.transporte = transporte
 
     def disponivel(self) -> tuple[bool, str]:
-        return True, "crtsh: ativo (log público de Certificate Transparency)"
+        return True, "crtsh: ativo (busca em certificados públicos)"
 
     def _http(self) -> httpx.AsyncClient:
         return _cliente(self.timeout)

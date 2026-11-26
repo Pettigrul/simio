@@ -250,7 +250,7 @@ class AgenteIdentidade:
                 continue
             for m in NOME_ROTULADO_RE.finditer(item.conteudo):
                 adicionar_nome("razao_social" if "raz" in m.group(1).lower() else "nome_fantasia", m.group(2), item.ref)
-            if item.local in ("footer", "page") or item.tipo == "texto":
+            if item.local in ("rodape", "pagina") or item.tipo == "texto":
                 for linha_txt in item.conteudo.splitlines():
                     for m in RAZAO_SOCIAL_RE.finditer(linha_txt):
                         adicionar_nome("razao_social", m.group(1), item.ref)
@@ -307,7 +307,7 @@ class AgenteIdentidade:
                 registro = self.cadastro.buscar_raiz_cnpj(c)
                 if registro:
                     correspondencia_cadastro = CorrespondenciaCadastro(
-                        fonte=self.cadastro.fonte, casado_por="cnpj_root", registro=registro, oficial=False
+                        fonte=self.cadastro.fonte, casado_por="raiz_cnpj", registro=registro, oficial=False
                     )
                     break
         if correspondencia_cadastro is None:
@@ -315,7 +315,7 @@ class AgenteIdentidade:
                 registro = self.cadastro.buscar_nome(nome)
                 if registro:
                     correspondencia_cadastro = CorrespondenciaCadastro(
-                        fonte=self.cadastro.fonte, casado_por="name", registro=registro, oficial=False
+                        fonte=self.cadastro.fonte, casado_por="nome", registro=registro, oficial=False
                     )
                     break
         if not self.cadastro.carregado:
@@ -355,12 +355,11 @@ class AgenteIdentidade:
                 f"CNPJ {cnpjs_responsavel[0] if cnpjs_responsavel else ''} observado na página consta do "
                 f"cadastro autorizado '{correspondencia_cadastro.fonte}'."
             )
-            inferencias.append("associação página→CNPJ baseada na publicação do CNPJ na própria página")
             inferencias.append(
                 "um CNPJ publicado pode ter sido copiado por terceiros: confirmar junto ao correspondente que o "
                 "domínio é seu"
             )
-        elif correspondencia_cadastro and correspondencia_cadastro.casado_por == "cnpj_root":
+        elif correspondencia_cadastro and correspondencia_cadastro.casado_por == "raiz_cnpj":
             classe = ClasseIdentidade.COBAN_POSSIVEL
             confianca = Nivel.MEDIA if self.cadastro.oficial else Nivel.BAIXA
             fundamentacao = (
@@ -403,7 +402,8 @@ class AgenteIdentidade:
 
         if cnpjs_responsavel:
             chave_entidade = f"cnpj:{normalizar_cnpj(cnpjs_responsavel[0])}"
-            fundamento = "cnpj publicado na página"
+            fundamento = ""
+            inferencias.append("Responsável identificado pelo CNPJ publicado na página.")
         elif dominio_reg in ("instagram.com", "tiktok.com", "facebook.com") and nomes_fantasia:
             chave_entidade = f"social:{dominio_reg}:{normalizar_texto(nomes_fantasia[0]).lstrip('@')}"
             fundamento = "perfil em rede social"
@@ -417,7 +417,8 @@ class AgenteIdentidade:
         exibicao = (razoes_sociais[0] if razoes_sociais else None) or (nomes_fantasia[0] if nomes_fantasia else None)
         if correspondencia_cadastro and not exibicao:
             exibicao = correspondencia_cadastro.registro.get("nome") or correspondencia_cadastro.registro.get("name")
-        inferencias.append(f"base da associação: {fundamento}")
+        if fundamento:
+            inferencias.append(f"base da associação: {fundamento}")
         return AtribuicaoIdentidade(
             id_candidata=id_candidata,
             classificacao=classe,

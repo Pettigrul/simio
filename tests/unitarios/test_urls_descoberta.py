@@ -346,7 +346,7 @@ async def test_descoberta_sem_fonte_gera_diagnostico() -> None:
     saida = await agente.executar()
     assert saida.resultados == [] and any("Nenhuma fonte de descoberta" in d for d in saida.diagnosticos)
     saida2 = await agente.executar(importar_texto("https://a.example/"))
-    assert len(saida2.resultados) == 1 and "import" in saida2.fontes_usadas
+    assert len(saida2.resultados) == 1 and "importacao" in saida2.fontes_usadas
 
 
 async def test_grounding_fica_indisponivel_em_erro_de_auth(armazenamento) -> None:

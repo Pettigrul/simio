@@ -420,7 +420,8 @@ class Orquestrador:
             if cand.status == S.DESCOBERTA and na_fila < opcs.limite and (
                 g.pontuacao >= self.configuracoes.pontuacao_minima_fila or eh_manual
             ):
-                self.armazenamento.transicionar(cid, S.NA_FILA, nota=f"priorizada (pontuação {g.pontuacao:.1f})")
+                pontuacao = f"{g.pontuacao:.1f}".replace(".", ",")
+                self.armazenamento.transicionar(cid, S.NA_FILA, nota=f"priorizada (pontuação {pontuacao})")
                 na_fila += 1
         info = {
             "resultados": len(desfecho.resultados),
@@ -454,9 +455,11 @@ class Orquestrador:
             cadastro.registros, marca, limite=s.limite_sementes_coban, lote=s.lote_sementes_coban, excluir=pesquisados
         )
         restantes = len(cadastro.registros) - len(pesquisados) - n
+        restantes_br = f"{max(0, restantes):,}".replace(",", ".")
         return hips, (
-            f"busca pelos COBANs cadastrados (H9): {n} correspondentes em {len(hips)} prompt(s); "
-            f"{len(pesquisados)} já pesquisados em campanhas anteriores, ~{max(0, restantes)} ainda não"
+            f"busca pelos COBANs cadastrados (H9): {n} {'correspondente' if n == 1 else 'correspondentes'} em "
+            f"{len(hips)} {'prompt' if len(hips) == 1 else 'prompts'}; "
+            f"{len(pesquisados)} já pesquisados em campanhas anteriores, ~{restantes_br} ainda não"
         )
 
     async def _processar(

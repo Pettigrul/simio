@@ -3,11 +3,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
-from simio.agentes.evidencia import TIPOS_CREDENCIAL
+from simio.agentes.evidencia import TIPOS_CREDENCIAL, descrever_dados_sensiveis
 from simio.agentes.inteligencia_dominio import plataforma_hospedagem
 from simio.marcas import PerfilMarca
 from simio.nucleo.modelos import CasoCenario, ClasseIdentidade, ClassificacaoFinal, InteligenciaDominio
 from simio.nucleo.urls import dominio_corresponde, hostname_de
+from simio.provedores.typosquat import descrever_semelhanca
 
 if TYPE_CHECKING:  # relatorios importa este módulo (evita import circular)
     from simio.relatorios.dados import RegistroCandidata
@@ -83,7 +84,9 @@ def triar(rec: RegistroCandidata, marca: PerfilMarca, intel: InteligenciaDominio
     creds = [k for k in f.dados_sensiveis_solicitados if k in TIPOS_CREDENCIAL]
     if creds:
         adicionar(
-            5, f"pede {', '.join(creds)} numa página que se apresenta com a marca", "Coleta de credenciais (phishing)"
+            5,
+            f"pede {descrever_dados_sensiveis(creds)} numa página que se apresenta com a marca",
+            "Página que pede senha (phishing)" if "senha" in creds else "Página que pede dados bancários (phishing)",
         )
     caso = f.caso
     if descartado:
@@ -97,8 +100,9 @@ def triar(rec: RegistroCandidata, marca: PerfilMarca, intel: InteligenciaDominio
     if semelhante is not None:
         adicionar(
             2,
-            f"domínio semelhante a {semelhante.metadados.get('semelhante_a')} ({semelhante.metadados.get('fuzzer')})",
-            "Domínio semelhante (typosquatting)",
+            "domínio "
+            + descrever_semelhanca(semelhante.metadados.get("semelhante_a"), semelhante.metadados.get("fuzzer")),
+            "Domínio parecido com o oficial",
         )
     elif (
         not oficial

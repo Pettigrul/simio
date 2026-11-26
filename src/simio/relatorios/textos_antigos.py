@@ -7,11 +7,48 @@ from functools import lru_cache
 
 from simio.nucleo import modelos
 from simio.nucleo.traducao_legado import ETAPA, STATUS_CAMPANHA, STATUS_REVISAO_HUMANA, VALORES_ENUM
-from simio.relatorios.rotulos import rotulo
+from simio.provedores.typosquat import descrever_semelhanca
+from simio.relatorios.rotulos import num_br, plural, rotulo
+
+Grupos = dict[str, str]
+
+
+def _p(grupos: Grupos, nome: str, um: str, varios: str) -> str:
+    return plural(int(grupos[nome]), um, varios)
+
+
+def _urls_importadas(g: Grupos) -> str:
+    return f"{_p(g, 'n', 'URL importada', 'URLs importadas')} manualmente"
+
+
+def _busca_reversa(g: Grupos) -> str:
+    return f"lens: busca reversa de {_p(g, 'n', 'imagem', 'imagens')} da logo antiga"
+
+
+def _busca_coban(g: Grupos) -> str:
+    return (
+        f"busca pelos COBANs cadastrados (H9): {_p(g, 'n', 'correspondente', 'correspondentes')} em "
+        f"{_p(g, 'p', 'prompt', 'prompts')}; {g['pesquisados']} já pesquisados em campanhas anteriores, "
+        f"~{g['restantes']} ainda não"
+    )
+
+
+def _vista_por(g: Grupos) -> str:
+    return f"vista por {_p(g, 'n_fontes', 'fonte', 'fontes')} e {_p(g, 'n_hipoteses', 'hipótese', 'hipóteses')}"
+
+
+def _semelhante(g: Grupos) -> str:
+    return f"domínio {descrever_semelhanca(g['semelhante_a'], g['fuzzer'])}"
+
+
+_IDENTIFICADO_POR_CNPJ = "Responsável identificado pelo CNPJ publicado na página."
+_REDE_OCUPADA = "a página continuou carregando; a coleta seguiu assim mesmo"
+_CRTSH = "crtsh: ativo (busca em certificados públicos)"
 
 # Frases fixas que as versões antigas gravaram em inglês no banco. O banco e os manifestos não mudam
 # (cadeia de custódia): a troca é só na hora de exibir. {x} é um trecho variável, copiado como está.
-FRASES: tuple[tuple[str, str], ...] = (
+# Também entram frases em português que mudaram de redação depois de gravadas.
+FRASES: tuple[tuple[str, str | Callable[[Grupos], str]], ...] = (
     # núcleo / orquestrador
     ("interrupted {n} times in {status}; marked FALHOU", "interrompida {n} vezes em {status}; marcada como FALHOU"),
     ("recovered after interruption", "recuperada após interrupção"),
@@ -27,6 +64,7 @@ FRASES: tuple[tuple[str, str], ...] = (
         "modo offline: sem descoberta automática nem análise por IA; só as URLs importadas entram",
     ),
     ("prioritised (score {pontuacao})", "priorizada (pontuação {pontuacao})"),
+    ("priorizada (pontuação {pontuacao})", "priorizada (pontuação {pontuacao})"),
     (
         "coban-seeded search (H9): SIMIO_CAMINHO_CADASTRO_COBAN not set; skipped",
         "busca pelos COBANs cadastrados (H9): SIMIO_CAMINHO_CADASTRO_COBAN não definido; pulada",
@@ -34,8 +72,12 @@ FRASES: tuple[tuple[str, str], ...] = (
     (
         "coban-seeded search (H9): {n} registered correspondents in {p} prompt(s); {pesquisados} searched in "
         "earlier campaigns, ~{restantes} not yet searched",
+        _busca_coban,
+    ),
+    (
         "busca pelos COBANs cadastrados (H9): {n} correspondentes em {p} prompt(s); {pesquisados} já pesquisados "
         "em campanhas anteriores, ~{restantes} ainda não",
+        _busca_coban,
     ),
     ("Vertex AI not configured; heuristic analysis used", "Vertex AI não configurado; análise heurística"),
     ("unexpected error: {tipo}: {erro}", "erro inesperado: {tipo}: {erro}"),
@@ -88,15 +130,14 @@ FRASES: tuple[tuple[str, str], ...] = (
     ("multi-bank partner list in snippet", "lista de vários bancos parceiros no trecho"),
     ("likely non-bank homonym context in title/snippet", "provável homônimo fora do setor bancário"),
     ("editorial/blog/help article (de-prioritised)", "artigo de blog/notícia/ajuda (rebaixado)"),
-    ("lookalike of {semelhante_a} ({fuzzer})", "domínio parecido com {semelhante_a} ({fuzzer})"),
+    ("lookalike of {semelhante_a} ({fuzzer})", _semelhante),
+    ("domínio parecido com {semelhante_a} ({fuzzer})", _semelhante),
     (
         "image visually similar to the legacy logo (reverse image search)",
         "imagem parecida com a logo antiga (busca reversa)",
     ),
-    (
-        "seen by {n_fontes} source(s) / {n_hipoteses} hypothesis(es)",
-        "vista por {n_fontes} fonte(s) / {n_hipoteses} hipótese(s)",
-    ),
+    ("seen by {n_fontes} source(s) / {n_hipoteses} hypothesis(es)", _vista_por),
+    ("vista por {n_fontes} fonte(s) / {n_hipoteses} hipótese(s)", _vista_por),
     ("manually imported by operator", "importada manualmente pelo operador"),
     ("news/review/regulator domain (de-prioritised)", "domínio de notícia/reclamação/regulador (rebaixado)"),
     (
@@ -110,7 +151,8 @@ FRASES: tuple[tuple[str, str], ...] = (
     ),
     ("invalid/blocked URL: {erro}", "URL inválida/bloqueada: {erro}"),
     ("{conector}: not used in a focused campaign ({foco})", "{conector}: não usado em campanha com foco ({foco})"),
-    ("{n} URL(s) imported manually", "{n} URL(s) importada(s) manualmente"),
+    ("{n} URL(s) imported manually", _urls_importadas),
+    ("{n} URL(s) importada(s) manualmente", _urls_importadas),
     (
         "NO automatic discovery mechanism is available. Configure Vertex AI (SIMIO_PROJETO_GCP + SIMIO_MODELO_ANALISE) "
         "for Google Search Grounding, or an optional connector key (SIMIO_CHAVE_API_BRAVE / SIMIO_CHAVE_API_SERPER / "
@@ -128,8 +170,10 @@ FRASES: tuple[tuple[str, str], ...] = (
     ("{conector}: configured", "{conector}: configurado"),
     ("lens: Serper API key not configured (optional)", "lens: chave do Serper não configurada (opcional)"),
     ("lens: no legacy_logo_search_urls in the brand profile", "lens: perfil da marca sem urls_busca_logo_antiga"),
-    ("lens: reverse image search of {n} legacy-logo image(s)", "lens: busca reversa de {n} imagem(ns) da logo antiga"),
-    ("crtsh: active (public Certificate Transparency log)", "crtsh: ativo (log público de Certificate Transparency)"),
+    ("lens: reverse image search of {n} legacy-logo image(s)", _busca_reversa),
+    ("lens: busca reversa de {n} imagem(ns) da logo antiga", _busca_reversa),
+    ("crtsh: active (public Certificate Transparency log)", _CRTSH),
+    ("crtsh: ativo (log público de Certificate Transparency)", _CRTSH),
     ("Issuer: {emissor}", "Emissor: {emissor}"),
     (
         "grounding: Vertex AI not configured (SIMIO_PROJETO_GCP / model) or offline",
@@ -137,7 +181,8 @@ FRASES: tuple[tuple[str, str], ...] = (
     ),
     ("grounding: no discovery/analysis model configured", "grounding: nenhum modelo de descoberta/análise configurado"),
     ("grounding: disabled after error: {motivo}", "grounding: desligado após erro: {motivo}"),
-    ("grounding: model={modelo}", "grounding: modelo={modelo}"),
+    ("grounding: model={modelo}", "grounding: modelo {modelo}"),
+    ("grounding: modelo={modelo}", "grounding: modelo {modelo}"),
     (
         "search-results page reference (not a target page)",
         "página de resultados de busca (não é página-alvo)",
@@ -182,7 +227,9 @@ FRASES: tuple[tuple[str, str], ...] = (
     ("collection error: {tipo}: {mensagem}", "erro na coleta: {tipo}: {mensagem}"),
     ("navigation timeout", "timeout de navegação"),
     ("navigation error: {mensagem}", "erro de navegação: {mensagem}"),
-    ("network did not become idle (continuing)", "a rede não ficou ociosa (coleta seguiu)"),
+    ("network did not become idle (continuing)", _REDE_OCUPADA),
+    ("a rede não ficou ociosa (coleta seguiu)", _REDE_OCUPADA),
+    ("request cap reached", "limite de requisições atingido"),
     ("final URL violates policy: {motivo}", "URL final viola a política: {motivo}"),
     ("HTTP {status}: page content is an error page", "HTTP {status}: o conteúdo é uma página de erro"),
     (
@@ -210,12 +257,20 @@ FRASES: tuple[tuple[str, str], ...] = (
         "navegador conectou em endereço não público {ip} para {host}",
     ),
     ("per-page transfer cap of {n} bytes reached", "limite de transferência por página ({n} bytes) atingido"),
+    # análise heurística
+    ("Triagem heurística — cenário ", "Triagem heurística, cenário "),
+    (
+        "(Pontuação de triagem: confusão {confusao}, transparência {transparencia}; ordena casos, não prova.)",
+        "(Pontuação de triagem: confusão {confusao}; transparência {transparencia}; ordena casos, não prova.)",
+    ),
 )
 
 # Curtas ou genéricas demais para trocar no meio de outro texto: só quando são o texto inteiro.
 FRASES_INTEIRAS: tuple[tuple[str, str], ...] = (
     ("home page", "página inicial"),
     ("unversioned", "sem-versao"),
+    ("associação página→CNPJ baseada na publicação do CNPJ na própria página", _IDENTIFICADO_POR_CNPJ),
+    ("base da associação: cnpj publicado na página", _IDENTIFICADO_POR_CNPJ),
 )
 
 # Como casar cada {x}: número, código/palavra, trecho sem espaço (URL, host) ou texto livre (o resto).
@@ -238,7 +293,11 @@ _NUMERICOS = {
     "reservados",
     "estimados",
     "max_tokens",
+    "confusao",
+    "transparencia",
 }
+# Números que a exibição passa para o formato brasileiro (5.0 -> 5,0; 52471 -> 52.471).
+_NUMEROS_BR = {"pontuacao", "restantes", "confusao", "transparencia"}
 _PALAVRAS = {"status", "codigo", "atual", "alvo", "conector", "tipo", "versao"}
 _SEM_ESPACO = {"url", "host", "ip", "esquema", "modelo", "semelhante_a", "fuzzer"}
 _ETAPAS_ANTIGAS = "|".join(sorted(map(re.escape, ETAPA), key=len, reverse=True))
@@ -279,12 +338,14 @@ def _compilar(antigo: str, inteiro: bool) -> tuple[str, re.Pattern[str]]:
     return trecho, re.compile(corpo, re.DOTALL)
 
 
-def _substituto(novo: str) -> Callable[[re.Match[str]], str]:
+def _substituto(novo: str | Callable[[Grupos], str]) -> Callable[[re.Match[str]], str]:
     def trocar(m: re.Match[str]) -> str:
         grupos = m.groupdict()
         if grupos.get("etapa"):
             grupos["etapa"] = ETAPA[grupos["etapa"]]
-        return novo.format(**grupos)
+        for nome in _NUMEROS_BR & grupos.keys():
+            grupos[nome] = num_br(grupos[nome])
+        return novo(grupos) if callable(novo) else novo.format(**grupos)
 
     return trocar
 
@@ -316,11 +377,23 @@ def _codigos_atuais() -> set[str]:
 
 CODIGOS_ANTIGOS = _codigos_antigos()
 CODIGOS = {c: rotulo(c) for c in _codigos_atuais() | set(CODIGOS_ANTIGOS.values()) if c.isupper()}
+# Antes do código não pode vir pedaço de URL ou de parâmetro (golpe.com/PENDING/login, ?s=ALTA). A barra
+# só passa entre dois códigos ("NAO_RELEVANTE/SEM_INDICIO"), o que _para_rotulo confere.
 _CODIGO = re.compile(
-    r"(?<![\w-])("
+    r"(?<![\w+=?&%:.-])("
     + "|".join(sorted(map(re.escape, CODIGOS_ANTIGOS.keys() | CODIGOS.keys()), key=len, reverse=True))
     + r")(?![\w-])"
 )
+_URL = re.compile(r"(?:https?|hxxps?)://\S+", re.IGNORECASE)
+_CODIGO_ANTES_DA_BARRA = re.compile(r"([A-Z][A-Z_]*)/\Z")
+_REVISOR = re.compile(r"\[(?:Revisor|Reviewer): ([A-Z_]+)\] ?")
+_VERBO_REVISOR = {
+    "CONFIRMAR": "Revisor confirmou: ",
+    "REBAIXAR": "Revisor rebaixou: ",
+    "RECOLETAR": "Revisor pediu nova coleta: ",
+    "REVISAO_HUMANA": "Revisor pediu revisão humana: ",
+    "INCONCLUSIVA": "Revisor considerou inconclusiva: ",
+}
 _PALAVRA_ANTES = re.compile(r"(\w+) +\Z")
 _PALAVRA_DEPOIS = re.compile(r" +(\w+)")
 
@@ -337,7 +410,26 @@ def _vizinha_em_maiusculas(texto: str, inicio: int, fim: int) -> bool:
 def _eh_citacao(m: re.Match[str]) -> bool:
     # Código de uma palavra só (HIGH, ALTA, CONFIRM) no meio de um trecho todo em maiúsculas é texto
     # citado da página ("TAXA BAIXA"), não o código: fica como está.
+    if m.start() and m.string[m.start() - 1] == "/":
+        antes = _CODIGO_ANTES_DA_BARRA.search(m.string, max(0, m.start() - 60), m.start())
+        if not antes or (antes.group(1) not in CODIGOS and antes.group(1) not in CODIGOS_ANTIGOS):
+            return True
     return "_" not in m.group(1) and _vizinha_em_maiusculas(m.string, m.start(), m.end())
+
+
+def _trocar_codigos(texto: str, troca: Callable[[re.Match[str]], str]) -> str:
+    # URLs são dado coletado: ficam como estão, mesmo com algo parecido com código no caminho.
+    partes = _URL.split(texto)
+    urls = _URL.findall(texto)
+    saida = [_CODIGO.sub(troca, partes[0])]
+    for url, resto in zip(urls, partes[1:], strict=True):
+        saida += [url, _CODIGO.sub(troca, resto)]
+    return "".join(saida)
+
+
+def _verbo_revisor(m: re.Match[str]) -> str:
+    codigo = CODIGOS_ANTIGOS.get(m.group(1), m.group(1))
+    return _VERBO_REVISOR.get(codigo, m.group(0))
 
 
 def _para_rotulo(m: re.Match[str]) -> str:
@@ -362,7 +454,9 @@ def _traduzir(texto: str, rotulos: bool) -> str:
                 if novo == texto:
                     break
                 texto = novo
-    return _CODIGO.sub(_para_rotulo if rotulos else _para_codigo_atual, texto)
+    if rotulos:
+        texto = _REVISOR.sub(_verbo_revisor, texto)
+    return _trocar_codigos(texto, _para_rotulo if rotulos else _para_codigo_atual)
 
 
 def traduzir(texto: str | None, rotulos: bool = True) -> str:
