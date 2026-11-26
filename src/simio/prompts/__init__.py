@@ -1,5 +1,3 @@
-"""Versioned prompt templates (Markdown with a small front-matter header)."""
-
 from __future__ import annotations
 
 from functools import lru_cache
@@ -10,9 +8,9 @@ DIR_PROMPTS = Path(__file__).parent
 
 @lru_cache(maxsize=16)
 def carregar_prompt(nome: str) -> tuple[str, str]:
-    """Return (version, template) for ``prompts/<name>.md``."""
+    # Devolve (versão, corpo). A versão vem do front-matter e é gravada junto com cada análise.
     bruto = (DIR_PROMPTS / f"{nome}.md").read_text(encoding="utf-8")
-    versao = "unversioned"
+    versao = "sem-versao"
     corpo = bruto
     if bruto.startswith("---"):
         _, cabecalho, corpo = bruto.split("---", 2)

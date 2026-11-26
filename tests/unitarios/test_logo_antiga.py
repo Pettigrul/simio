@@ -1,5 +1,3 @@
-"""Legacy (discontinued) logo: deterministic image comparison, decision floor and reverse image search."""
-
 from __future__ import annotations
 
 import json
@@ -41,7 +39,7 @@ LOGO = Image.open(CAMINHO_REF).convert("RGB")
 
 
 def _monocromatica(img: Image.Image, rgb: tuple[int, int, int] = (30, 100, 255)) -> Image.Image:
-    """The *current* logo: same monogram, a single blue."""
+    # logo atual: mesmo monograma, só azul
     vermelho, azul = mascaras_cor(img)
     arr = np.full((img.height, img.width, 3), 255, dtype=np.uint8)
     arr[vermelho | azul] = rgb
@@ -64,7 +62,7 @@ def _evidencia_captura(tmp_path: Path, tela: Image.Image, imagens: list[InfoImag
 
 def _pagina_com(logo: Image.Image, fundo: str = "white", quando: tuple[int, int] = (180, 140)) -> Image.Image:
     tela = Image.new("RGB", (1366, 900), fundo)
-    # distractors: red button, blue header bar and text-like blocks
+    # distrações: botão vermelho, barra azul no topo e blocos parecidos com texto
     tela.paste(Image.new("RGB", (240, 60), (220, 20, 60)), (900, 600))
     tela.paste(Image.new("RGB", (1366, 50), (0, 90, 170)), (0, 0))
     for i in range(6):
@@ -85,7 +83,7 @@ def test_logo_antiga_achada_na_captura_sem_coordenadas_do_elemento(tmp_path: Pat
     ev = _evidencia_captura(tmp_path, _pagina_com(logo))
     [m] = detectar_logo_antiga(ev, tmp_path, REF)
     assert m.ref_captura == "E-SHOT-VIEWPORT" and m.pontuacao > 0.7 and m.acima_dobra
-    vermelho, azul = mascaras_cor(logo)  # expected box = coloured ink of the pasted logo (it has white margins)
+    vermelho, azul = mascaras_cor(logo)  # caixa esperada = tinta colorida da logo colada (ela tem margem branca)
     ys, xs = np.nonzero(vermelho | azul)
     x, y, w, h = m.bbox
     assert abs(x - (180 + xs.min())) <= 3 and abs(y - (140 + ys.min())) <= 3
@@ -241,5 +239,5 @@ def test_trecho_da_descoberta_lens_nao_eh_fato_da_pagina() -> None:
     )
     ev = montar_evidencia(titulo="Loja")
     cat = montar_catalogo(ev, MARCA, resultados_descoberta=[resultado])
-    sig = calcular_sinais(ev, MARCA, cat)  # used to raise UnboundLocalError (E-DISC item first)
+    sig = calcular_sinais(ev, MARCA, cat)  # dava UnboundLocalError quando o item E-DISC vinha primeiro
     assert not sig.marcadores_logo_antiga

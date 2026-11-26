@@ -1,11 +1,3 @@
-"""Compliance Analyst Agent: maps observed indications to requirements.
-
-Deterministic by design so it cannot invent articles: it only cites requirements present in the
-versioned catalog (``conhecimento/cmn_4935.toml``, transcribed from the official text) and, when
-supplied, an operator-provided contractual/internal requirements file. It separates requirement,
-observed evidence, non-conformity *hypothesis*, missing information and need for human review.
-"""
-
 from __future__ import annotations
 
 import tomllib
@@ -69,15 +61,15 @@ class CatalogoRequisitos:
         ]
         if caminho_contrato is not None:
             with caminho_contrato.open("rb") as fh:
-                cdata = tomllib.load(fh)
-            for r in cdata.get("requisito", []):
-                src = FonteRequisito(r.get("fonte", "CONTRATUAL"))
+                dados_contrato = tomllib.load(fh)
+            for r in dados_contrato.get("requisito", []):
+                fonte = FonteRequisito(r.get("fonte", "CONTRATUAL"))
                 cat.requisitos.append(
                     Requisito(
                         id=r["id"],
                         citacao=r["citacao"],
                         texto=r["texto"].strip(),
-                        fonte=src,
+                        fonte=fonte,
                         dimensoes=[Dimensao(d) for d in r["dimensoes"]],
                         hipotese=r.get("hipotese", "Possível descumprimento de requisito contratual"),
                         destinatario=r.get("destinatario", ""),
@@ -94,18 +86,19 @@ _HIPOTESES = (
 )
 
 
+# Sem LLM de propósito: só cita requisitos do catálogo versionado (transcrito do texto oficial) e do
+# arquivo contratual informado pelo operador, para nunca inventar artigo.
 class AnalistaConformidade:
     def __init__(self, catalogo: CatalogoRequisitos) -> None:
         self.catalogo = catalogo
 
     @staticmethod
     def _texto_hipotese(req: Requisito, dims_resultado: list[Dimensao], declaracao_vista: bool) -> str:
-        """Hypothesis wording that matches what was actually observed."""
         if req.id == "CMN4935-ART14-III" and declaracao_vista:
-            drivers = [d.value for d in dims_resultado if d != Dimensao.TRANSPARENCIA_CORRESPONDENTE]
+            outras = [d.value for d in dims_resultado if d != Dimensao.TRANSPARENCIA_CORRESPONDENTE]
             return (
                 "Há declaração da condição de correspondente/prestador, mas outros elementos da página "
-                f"({', '.join(drivers) or 'apresentação da marca'}) podem contradizê-la ou reduzir seu efeito "
+                f"({', '.join(outras) or 'apresentação da marca'}) podem contradizê-la ou reduzir seu efeito "
                 "(destaque, legibilidade e identificação da contratante a verificar)"
             )
         return req.hipotese

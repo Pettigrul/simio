@@ -1,5 +1,3 @@
-"""Deterministic in-process LLM provider used by tests (no network, no credentials)."""
-
 from __future__ import annotations
 
 import json
@@ -25,11 +23,9 @@ class ChamadaMock:
 
 @dataclass
 class ProvedorMock:
-    """Responders are keyed by the Pydantic schema class name (e.g. ``SaidaAnaliseMarca``).
-
-    A responder receives (system, parts) and returns a dict / BaseModel / JSON string, or
-    raises an exception to simulate provider failures.
-    """
+    # Provedor falso dos testes. Os respondedores são indexados pelo nome da classe do esquema
+    # (ex.: SaidaAnaliseMarca), recebem (sistema, partes) e devolvem dict, BaseModel ou JSON em texto;
+    # para simular falha do provedor, basta levantar exceção.
 
     respondedores: dict[str, Respondedor] = field(default_factory=dict)
     com_grounding: Callable[[str], ResultadoGrounding] | None = None
@@ -49,7 +45,7 @@ class ProvedorMock:
         self.chamadas.append(ChamadaMock("gerar", modelo, sistema, list(partes), chave))
         respondedor = self.respondedores.get(chave)
         if respondedor is None:
-            raise RuntimeError(f"MockProvider has no responder for {chave}")
+            raise RuntimeError(f"ProvedorMock sem respondedor para {chave}")
         saida = respondedor(sistema, partes)
         if isinstance(saida, BaseModel):
             texto = saida.model_dump_json()
@@ -62,12 +58,11 @@ class ProvedorMock:
     async def busca_grounding(self, *, modelo: str, prompt: str, dominios_excluidos: list[str]) -> ResultadoGrounding:
         self.chamadas.append(ChamadaMock("grounding", modelo, "", [prompt]))
         if self.com_grounding is None:
-            raise RuntimeError("MockProvider has no grounded responder")
+            raise RuntimeError("ProvedorMock sem respondedor de grounding")
         return self.com_grounding(prompt)
 
 
 def resultado_grounding(urls: list[tuple[str, str]], consultas: list[str] | None = None) -> ResultadoGrounding:
-    """Helper: build a GroundedResult from (uri, title) pairs."""
     return ResultadoGrounding(
         texto="(mock)",
         fontes=[
