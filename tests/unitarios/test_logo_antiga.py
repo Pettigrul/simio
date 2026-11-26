@@ -187,7 +187,7 @@ async def test_busca_reversa_lens_planeja_e_prioriza() -> None:
     grupos, _ = deduplicar(desfecho.resultados, PoliticaUrl())
     ranqueados = {g.hostname: g for g in priorizar(grupos, MARCA)}
     assert "loja-exemplo.com.br" in ranqueados and ranqueados["loja-exemplo.com.br"].pontuacao > ranqueados["shutterstock.com"].pontuacao
-    assert any("legacy logo" in r for r in ranqueados["loja-exemplo.com.br"].motivos)
+    assert any("logo antiga" in r for r in ranqueados["loja-exemplo.com.br"].motivos)
     assert BuscaLens("k", []).disponivel()[0] is False and BuscaLens(None, [semente]).disponivel()[0] is False
 
 

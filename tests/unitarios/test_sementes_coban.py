@@ -1,5 +1,3 @@
-"""H9: discovery seeded by the registered correspondents (complements the open-web sweep)."""
-
 from __future__ import annotations
 
 from pathlib import Path
@@ -37,7 +35,7 @@ def test_nome_de_busca_remove_sufixos_juridicos_e_pula_pessoas_e_bancos() -> Non
 
 def test_mais_recentes_primeiro_em_rodizio_e_lotes() -> None:
     hips, n = hipoteses_coban(REGISTROS, BV, limite=10, lote=2)
-    assert n == 3  # person, bank and duplicate name skipped
+    assert n == 3  # pula pessoa física, banco e nome repetido
     assert [h.id for h in hips] == ["H9-coban:22222222000122,55555555000155", "H9-coban:11111111000111"]
     assert "NOVA MOTOS" in hips[0].prompt_grounding and "22.222.222/0001-22" in hips[0].prompt_grounding
     assert all("-site:bv.com.br" in q for q in hips[0].consultas_palavras_chave)
@@ -65,6 +63,6 @@ def test_armazenamento_lembra_correspondentes_pesquisados_entre_campanhas(tmp_pa
     st.registrar_consulta(c1, RegistroConsulta(fonte="grounding", consulta="q", id_hipotese="H9-coban:1,2", status="OK"))
     st.registrar_consulta(c1, RegistroConsulta(fonte="grounding", consulta="q", id_hipotese="H9-coban:3", status="ERRO"))
     st.registrar_consulta(c2, RegistroConsulta(fonte="grounding", consulta="q", id_hipotese="H9-coban:4", status="VAZIA"))
-    assert st.cnpjs_coban_pesquisados() == {"1", "2", "4"}  # failed searches are retried later
-    assert st.cnpjs_coban_pesquisados(excluir_campanha=c2) == {"1", "2"}  # resume keeps its own selection
+    assert st.cnpjs_coban_pesquisados() == {"1", "2", "4"}  # busca que falhou é refeita depois
+    assert st.cnpjs_coban_pesquisados(excluir_campanha=c2) == {"1", "2"}  # a retomada mantém a própria seleção
     st.fechar()

@@ -1,14 +1,3 @@
-"""Google Search Grounding connector (Gemini on Vertex AI).
-
-The model is asked an investigative question with the ``google_search`` tool enabled.
-URLs are taken **exclusively** from ``grounding_metadata.grounding_chunks`` -- never from the
-model's free text -- so no URL is invented. Grounding redirect URIs
-(``vertexaisearch.cloud.google.com/grounding-api-redirect/...``) are resolved with a single
-non-following request and the target is validated by the URL policy.
-
-Grounding is not an exhaustive web index; results are a sample guided by the hypotheses.
-"""
-
 from __future__ import annotations
 
 import html
@@ -53,6 +42,8 @@ INSTRUCOES_GROUNDING = (
 )
 
 
+# As URLs vêm só de grounding_chunks, nunca do texto livre do modelo, para não aceitar URL inventada.
+# O grounding devolve uma amostra guiada pela hipótese, não um índice completo da web.
 class ConectorGrounding:
     nome = "grounding"
 
@@ -75,18 +66,18 @@ class ConectorGrounding:
 
     def disponivel(self) -> tuple[bool, str]:
         if self.gateway is None:
-            return False, "grounding: Vertex AI not configured (SIMIO_PROJETO_GCP / model) or offline"
+            return False, "grounding: Vertex AI não configurado (SIMIO_PROJETO_GCP / modelo) ou modo offline"
         if not self.modelo:
-            return False, "grounding: no discovery/analysis model configured"
+            return False, "grounding: nenhum modelo de descoberta/análise configurado"
         if self.motivo_desativacao:
-            return False, f"grounding: disabled after error: {self.motivo_desativacao}"
-        return True, f"grounding: model={self.modelo}"
+            return False, f"grounding: desligado após erro: {self.motivo_desativacao}"
+        return True, f"grounding: modelo={self.modelo}"
 
     async def resolver(self, uri: str) -> tuple[str | None, str | None]:
-        """Resolve grounding redirect URIs. Returns (url, error)."""
+        # Resolve o redirecionamento do Vertex com um único GET sem seguir; o destino passa pela política.
         host = hostname_de(uri)
         if host in HOSTS_RESULTADO_BUSCA:
-            return None, "search-results page reference (not a target page)"
+            return None, "página de resultados de busca (não é página-alvo)"
         if host not in HOSTS_REDIRECIONAMENTO:
             return uri, None
         try:
@@ -97,14 +88,14 @@ class ConectorGrounding:
             else:
                 kwargs["trust_env"] = True
             async with httpx.AsyncClient(**kwargs) as c, c.stream("GET", uri) as r:
-                loc = r.headers.get("location")
-                if r.status_code in (301, 302, 303, 307, 308) and loc:
-                    alvo = urljoin(uri, loc)
+                destino = r.headers.get("location")
+                if r.status_code in (301, 302, 303, 307, 308) and destino:
+                    alvo = urljoin(uri, destino)
                     self.politica.verificar_estatico(alvo)
                     return alvo, None
-                return None, f"redirect not resolved (HTTP {r.status_code})"
+                return None, f"redirecionamento não resolvido (HTTP {r.status_code})"
         except ViolacaoPolitica as exc:
-            return None, f"policy: {exc}"
+            return None, f"política: {exc}"
         except httpx.HTTPError as exc:
             return None, f"{type(exc).__name__}: {exc}"
 
@@ -138,10 +129,10 @@ class ConectorGrounding:
 
         resultados: list[ResultadoDescoberta] = []
         nao_resolvidos: list[dict[str, str]] = []
-        for src in res.fontes:
-            url, err = await self.resolver(src.uri)
+        for fonte in res.fontes:
+            url, erro = await self.resolver(fonte.uri)
             if url is None:
-                nao_resolvidos.append({"uri": src.uri, "title": src.titulo or "", "error": err or ""})
+                nao_resolvidos.append({"uri": fonte.uri, "title": fonte.titulo or "", "error": erro or ""})
                 continue
             resultados.append(
                 ResultadoDescoberta(
@@ -149,12 +140,12 @@ class ConectorGrounding:
                     url_original=url,
                     consulta=consulta,
                     id_hipotese=hipotese.id,
-                    titulo=src.titulo,
-                    trecho=" | ".join(src.textos_suporte)[:1000] or None,
-                    posicao=src.indice_trecho + 1,
+                    titulo=fonte.titulo,
+                    trecho=" | ".join(fonte.textos_suporte)[:1000] or None,
+                    posicao=fonte.indice_trecho + 1,
                     metadados={
-                        "uri_grounding": src.uri,
-                        "dominio_grounding": src.dominio,
+                        "uri_grounding": fonte.uri,
+                        "dominio_grounding": fonte.dominio,
                         "consultas_busca_web": res.consultas_busca_web,
                         "modelo": res.modelo,
                     },
@@ -170,21 +161,22 @@ class ConectorGrounding:
                 "consultas_busca_web": res.consultas_busca_web,
                 "fragmentos_grounding": len(res.fontes),
                 "nao_resolvidos": nao_resolvidos,
-                # Kept verbatim (unmodified) as required by the grounding terms of service.
+                # Guardado sem alteração: exigência dos termos de uso do grounding.
                 "html_ponto_entrada_busca": res.html_ponto_entrada_busca,
                 "trecho_texto_modelo": res.texto[:1500],
             },
         )
-        # Vertex AI Search Grounding strips instagram.com and facebook.com from grounding_chunks.
-        # When executing social platform hypotheses in live mode (no mock transport), supplement with
-        # direct web dork queries so public Instagram/Facebook reels, posts and profiles are discovered.
+        # O grounding do Vertex tira instagram.com e facebook.com dos grounding_chunks. Nas hipóteses de
+        # rede social (e só fora dos testes) completa com os mesmos dorks no Yahoo.
+        # TODO: esses resultados saem com fonte "grounding"; uma fonte própria evitaria inflar a
+        # contagem do grounding e deixaria o complemento testável.
         if self.transporte is None and hipotese.id.startswith("H6-plataforma:") and hipotese.consultas_palavras_chave:
             resultados_sociais = await self._complementar_dorks_sociais(hipotese)
             urls_vistas = {h.url_original for h in resultados}
-            for sh in resultados_sociais:
-                if sh.url_original not in urls_vistas:
-                    urls_vistas.add(sh.url_original)
-                    resultados.append(sh)
+            for social in resultados_sociais:
+                if social.url_original not in urls_vistas:
+                    urls_vistas.add(social.url_original)
+                    resultados.append(social)
             registro.qtd_resultados = len(resultados)
             if resultados:
                 registro.status = "OK"
@@ -203,7 +195,6 @@ class ConectorGrounding:
                 timeout=self.timeout_http, trust_env=True, follow_redirects=True, headers=cabecalhos
             ) as c:
                 for dork in hipotese.consultas_palavras_chave:
-                    # Strip excess -site: operators for the social search engine query
                     dork_limpo = re.sub(r"\s+-site:\S+", "", dork).strip()
                     r = await c.get("https://br.search.yahoo.com/search", params={"p": dork_limpo, "n": 20})
                     if r.status_code != 200:
@@ -231,5 +222,5 @@ class ConectorGrounding:
                             )
                         )
         except Exception as exc:
-            log.debug("social dork supplement skipped: %s", exc)
+            log.debug("complemento de dorks sociais ignorado: %s", exc)
         return saida

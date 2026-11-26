@@ -1,5 +1,3 @@
-"""Focused campaign on the legacy logo (``simio investigar --foco logo-antiga``)."""
-
 from __future__ import annotations
 
 import contextlib
@@ -45,7 +43,7 @@ class _Nomeado:
     def consultas(self) -> list[str]:
         return self._q
 
-    async def executar(self, hipotese, consulta):  # pragma: no cover - planning only
+    async def executar(self, hipotese, consulta):  # pragma: no cover
         raise AssertionError
 
 
@@ -56,8 +54,8 @@ def test_plano_focado_usa_so_hipoteses_de_logo_e_pula_conectores_de_dominio() ->
     ids = {p.hipotese.id.split(":")[0] for p in planejar}
     assert ids == {"H13-foco-logo-antiga", "H12-logo-antiga"}
     assert not any(p.conector == "typosquat" for p in planejar)
-    assert any("typosquat: not used in a focused campaign" in d for d in agente.diagnosticos)
-    assert sum(p.conector == "serper" for p in planejar) >= 40  # thematic + one per state
+    assert any("typosquat: não usado em campanha com foco" in d for d in agente.diagnosticos)
+    assert sum(p.conector == "serper" for p in planejar) >= 40  # temáticas + uma por UF
 
 
 def _ev_com(imagens: list[InfoImagem]) -> Evidencia:
@@ -86,8 +84,7 @@ def test_pistas_de_logo_por_nome_de_arquivo_ou_alt_curto() -> None:
 
 
 class _ColetorFalso:
-    """Writes a synthetic screenshot per URL: ``/logo`` shows the legacy logo, ``/hint`` has an image named
-    ``bv.png`` but no visible logo, ``/plain`` has neither."""
+    # /logo mostra a logo antiga, /hint tem imagem bv.png sem logo visível, /plain não tem nenhuma das duas.
 
     async def coletar(self, id_candidata: str, url: str, tentativa: int, dir_campanha: Path) -> Evidencia:
         rel = caminhos.dir_tentativa(hostname_de(url), id_candidata, tentativa)

@@ -1,9 +1,3 @@
-"""Optional keyword-search connectors and URL import adapters.
-
-Every connector is optional: a missing API key makes it *unavailable*, never fatal.
-Connectors only return URLs present in the provider response (nothing is synthesised).
-"""
-
 from __future__ import annotations
 
 import csv
@@ -20,20 +14,18 @@ from simio.nucleo.urls import extrair_urls
 
 log = logging.getLogger(__name__)
 _REDIRECIONAMENTO_GOOGLE_RE = re.compile(r"(?i)^https?://(?:www\.)?google\.[a-z.]+/(?:goto|url)\?")
-# Serper's ``displayedLink`` ("https://www.loja.com.br › financiamento"): the destination host of an
-# opaque result, without the path.
+# displayedLink do Serper ("https://www.loja.com.br › financiamento"): host de destino do link opaco.
 _HOST_EXIBIDO_RE = re.compile(r"^(https?)://([a-z0-9.-]+\.[a-z]{2,})(?=$|[\s›/])", re.IGNORECASE)
-# Hosts whose home page says nothing about the matched post/profile: not recovered.
+# A home destes hosts não diz nada sobre o post/perfil encontrado, então não vale recuperar.
 _HOSTS_IRRECUPERAVEIS = (
     "instagram.com", "facebook.com", "tiktok.com", "youtube.com", "x.com", "twitter.com", "linkedin.com",
     "kwai.com", "threads.net", "pinterest.com", "t.me", "telegram.me", "google.com", "reddit.com",
 )
 
-
-# Search operators that make Google hide results behind opaque links (measured: 6-9 of 10 results).
+# Com esses operadores o Google esconde de 6 a 9 dos 10 resultados atrás de links opacos (medido).
 _OPERADOR_RE = re.compile(r"(?i)(?:^|[\s(])-?(?:site|inurl|intitle|intext|allintitle|allinurl):|\sOR\s|[()]")
 _TERMO_CONSULTA_RE = re.compile(r'[()]|-?[A-Za-z]+:"[^"]*"|-?"[^"]*"|[^\s()]+')
-# site: targets rewritten as a plain word (Google still ranks the platform's pages first).
+# site: vira palavra simples; o Google continua trazendo a plataforma primeiro.
 _PALAVRAS_SITE = {
     "instagram.com": "instagram", "facebook.com": "facebook", "tiktok.com": "tiktok", "t.me": "telegram",
     "youtube.com": "youtube", "linkedin.com": "linkedin", "kwai.com": "kwai", "x.com": "twitter",
@@ -42,7 +34,7 @@ _PALAVRAS_SITE = {
 
 
 def _termo_simples(token: str) -> str | None:
-    """One query token without operators; None drops it (``-site:`` exclusions are applied client-side)."""
+    # None descarta o termo: as exclusões -site: são aplicadas depois, do nosso lado.
     minuscula = token.lower()
     if minuscula.startswith("-") and ":" in minuscula.split('"', 1)[0]:
         return None
@@ -57,11 +49,10 @@ def _termo_simples(token: str) -> str | None:
 
 
 def variantes_simples(consulta: str, limite: int = 3) -> tuple[list[str], list[str]]:
-    """Operator-free versions of a dork, plus the domains it excluded with ``-site:``.
+    """Versões do dork sem operadores, mais os domínios excluídos com -site:.
 
-    ``OR`` groups are expanded round-robin (variant *i* takes the *i*-th alternative of every group), so
-    ``limite`` variants cover the alternatives instead of AND-ing them all. ``site:instagram.com`` becomes
-    the word ``instagram``, ``intitle:"X"`` becomes ``"X"``."""
+    Os grupos OR são expandidos em rodízio (a variante i pega a i-ésima alternativa de cada grupo), para
+    cobrir as alternativas sem juntar todas num AND. site:instagram.com vira "instagram"."""
     excluidos = [
         m.group(1).lower().removeprefix("www.")
         for m in re.finditer(r"(?i)(?:^|\s)-site:([^\s()]+)", consulta)
@@ -78,14 +69,14 @@ def variantes_simples(consulta: str, limite: int = 3) -> tuple[list[str], list[s
                 if profundidade:
                     grupo.append(tokens[j])
                 j += 1
-            alts, cur = [], []
+            alts, atual = [], []
             for t in grupo:
                 if t == "OR":
-                    alts.append(" ".join(cur))
-                    cur = []
+                    alts.append(" ".join(atual))
+                    atual = []
                 elif t not in ("(", ")"):
-                    cur.append(t)
-            alts.append(" ".join(cur))
+                    atual.append(t)
+            alts.append(" ".join(atual))
             vagas.append([a for a in alts if a])
             i = j
             continue
@@ -127,13 +118,24 @@ class Conector(Protocol):
 
 
 def _cliente(timeout: float) -> httpx.AsyncClient:
-    # trust_env=True honours corporate HTTP(S)_PROXY / SSL_CERT_FILE settings.
+    # trust_env=True para respeitar HTTP(S)_PROXY / SSL_CERT_FILE da rede corporativa.
     return httpx.AsyncClient(
         timeout=timeout,
         trust_env=True,
         follow_redirects=False,
         headers={"User-Agent": "simio/0.1"},
     )
+
+
+def _falhar_se_erro_serper(r: httpx.Response) -> None:
+    # O Serper explica o erro (ex.: falta de créditos) no campo "message" do JSON.
+    if r.status_code < 400:
+        return
+    try:
+        detalhe = r.json().get("message") or r.text[:200]
+    except ValueError:
+        detalhe = r.text[:200]
+    raise httpx.HTTPStatusError(f"HTTP {r.status_code}: {detalhe}", request=r.request, response=r)
 
 
 class _ConectorPalavrasChave:
@@ -149,15 +151,15 @@ class _ConectorPalavrasChave:
 
     def disponivel(self) -> tuple[bool, str]:
         if not self.chave_api:
-            return False, f"{self.nome}: API key not configured (optional)"
-        return True, f"{self.nome}: configured"
+            return False, f"{self.nome}: chave de API não configurada (opcional)"
+        return True, f"{self.nome}: configurado"
 
     def _http(self) -> httpx.AsyncClient:
         if self.transporte is not None:
             return httpx.AsyncClient(timeout=self.timeout, transport=self.transporte)
         return _cliente(self.timeout)
 
-    async def _requisitar(self, consulta: str) -> Any:  # pragma: no cover - overridden
+    async def _requisitar(self, consulta: str) -> Any:  # pragma: no cover
         raise NotImplementedError
 
     def _interpretar(self, dados: Any) -> list[tuple[str, str | None, str | None, dict[str, Any]]]:
@@ -217,13 +219,11 @@ class BuscaBrave(_ConectorPalavrasChave):
 
 
 class BuscaSerper(_ConectorPalavrasChave):
-    """Google results via serper.dev, dorks executed literally (site:, inurl:, intitle:, OR, -site:).
+    """Google via serper.dev, com o dork executado literalmente.
 
-    Pages of 10 results (1 credit each; free accounts reject ``num`` > 10). Stops early when a page
-    is not full, so short result lists do not spend extra credits.
-
-    Google hides most results of operator queries behind opaque links. When that happens, up to
-    ``variantes_simples`` operator-free versions of the dork run as well (see ``variantes_simples``)."""
+    Páginas de 10 resultados (1 crédito cada; conta gratuita recusa num > 10). Para na primeira página
+    incompleta para não gastar crédito à toa. Quando o Google esconde os resultados atrás de links
+    opacos, roda também até `variantes_simples` versões sem operadores."""
 
     nome = "serper"
     endpoint = "https://google.serper.dev/search"
@@ -249,12 +249,7 @@ class BuscaSerper(_ConectorPalavrasChave):
                     json={"q": consulta, "gl": "br", "hl": "pt-br", "num": 10, "page": pagina},
                     headers={"X-API-KEY": self.chave_api or "", "Content-Type": "application/json"},
                 )
-                if r.status_code >= 400:
-                    try:
-                        detalhe = r.json().get("message") or r.text[:200]
-                    except ValueError:
-                        detalhe = r.text[:200]
-                    raise httpx.HTTPStatusError(f"HTTP {r.status_code}: {detalhe}", request=r.request, response=r)
+                _falhar_se_erro_serper(r)
                 linhas = r.json().get("organic") or []
                 for linha in linhas:
                     linha.setdefault("position", len(organicos) + 1)
@@ -277,11 +272,10 @@ class BuscaSerper(_ConectorPalavrasChave):
     async def executar(
         self, hipotese: HipoteseBusca, consulta: str
     ) -> tuple[list[ResultadoDescoberta], RegistroConsulta]:
-        """Google often returns opaque ``google.com/goto?url=...`` links that only resolve through an
-        anti-automation interstitial. They are never followed. When the result names its destination
-        host (``displayedLink``), the *home page* of that host becomes the candidate instead (marked
-        ``recovered_from_google_redirect``; the matched page itself stays unknown). The rest is kept in
-        the query record (title/snippet) for manual follow-up."""
+        # Links google.com/goto?url=... só abrem passando por uma tela anti-robô, então nunca são seguidos.
+        # Se o resultado mostra o host de destino (displayedLink), a home dele vira candidata
+        # (recuperado_de_redirecionamento_google; a página exata fica desconhecida). O resto fica no
+        # registro da consulta para conferência manual.
         resultados, registro = await super().executar(hipotese, consulta)
         fracao_opacos = sum(bool(_REDIRECIONAMENTO_GOOGLE_RE.match(h.url_original)) for h in resultados) / max(
             1, len(resultados)
@@ -350,11 +344,10 @@ def _host_em(url: str, dominio: str) -> bool:
 
 
 class BuscaLens(_ConectorPalavrasChave):
-    """Reverse image search (Google Lens via serper.dev): pages showing images visually similar to a
-    public copy of the brand's *legacy* logo. Each query is an image URL (3 credits per search).
+    """Busca reversa de imagem (Google Lens via serper.dev) a partir de cópias públicas da logo antiga.
 
-    It finds pages that never write the brand name in text. Results are only leads: every page goes
-    through the normal pipeline, where the deterministic logo comparison confirms (or not) the logo."""
+    Cada consulta é a URL de uma imagem (3 créditos). Os resultados são só pistas: a comparação de logo
+    no pipeline normal é que confirma."""
 
     nome = "lens"
     endpoint = "https://google.serper.dev/lens"
@@ -371,10 +364,10 @@ class BuscaLens(_ConectorPalavrasChave):
 
     def disponivel(self) -> tuple[bool, str]:
         if not self.chave_api:
-            return False, "lens: Serper API key not configured (optional)"
+            return False, "lens: chave do Serper não configurada (opcional)"
         if not self.urls_imagens:
-            return False, "lens: no legacy_logo_search_urls in the brand profile"
-        return True, f"lens: reverse image search of {len(self.urls_imagens)} legacy-logo image(s)"
+            return False, "lens: perfil da marca sem urls_busca_logo_antiga"
+        return True, f"lens: busca reversa de {len(self.urls_imagens)} imagem(ns) da logo antiga"
 
     def consultas(self) -> list[str]:
         return list(self.urls_imagens)
@@ -386,12 +379,7 @@ class BuscaLens(_ConectorPalavrasChave):
                 json={"url": consulta, "gl": "br", "hl": "pt-br"},
                 headers={"X-API-KEY": self.chave_api or "", "Content-Type": "application/json"},
             )
-            if r.status_code >= 400:
-                try:
-                    detalhe = r.json().get("message") or r.text[:200]
-                except ValueError:
-                    detalhe = r.text[:200]
-                raise httpx.HTTPStatusError(f"HTTP {r.status_code}: {detalhe}", request=r.request, response=r)
+            _falhar_se_erro_serper(r)
             return r.json()
 
     def _interpretar(self, dados: Any) -> list[tuple[str, str | None, str | None, dict[str, Any]]]:
@@ -411,8 +399,7 @@ class BuscaLens(_ConectorPalavrasChave):
 
 
 class BuscaUrlscan(_ConectorPalavrasChave):
-    """urlscan.io search API (Elasticsearch query-string syntax)."""
-
+    # A consulta usa a sintaxe query-string do Elasticsearch.
     nome = "urlscan"
     endpoint = "https://urlscan.io/api/v1/search/"
 
@@ -445,11 +432,9 @@ class BuscaUrlscan(_ConectorPalavrasChave):
 
 
 class BuscaCrtSh:
-    """Certificate Transparency (crt.sh) search connector.
-    
-    Zero-configuration OSINT connector querying public certificate logs for lookalike / combosquatting domains.
-    """
-
+    # Logs públicos de Certificate Transparency; não precisa de chave.
+    # TODO: _http ignora self.transporte (não dá para testar com mock) e o resultado sai com
+    # fonte "crtsh:<hipótese>" e sem consulta/id_hipotese, diferente dos outros conectores.
     nome = "crtsh"
     endpoint = "https://crt.sh/"
 
@@ -458,7 +443,7 @@ class BuscaCrtSh:
         self.transporte = transporte
 
     def disponivel(self) -> tuple[bool, str]:
-        return True, "crtsh: active (public Certificate Transparency log)"
+        return True, "crtsh: ativo (log público de Certificate Transparency)"
 
     def _http(self) -> httpx.AsyncClient:
         return _cliente(self.timeout)
@@ -467,7 +452,6 @@ class BuscaCrtSh:
         self, hipotese: HipoteseBusca, consulta: str
     ) -> tuple[list[ResultadoDescoberta], RegistroConsulta]:
         resultados: list[ResultadoDescoberta] = []
-        # Query crt.sh expecting JSON array: [{name_value: "...", ...}]
         q_limpa = re.sub(r"[^a-zA-Z0-9.\-_%]", "", consulta.strip()).replace(" ", "%")
         if not q_limpa.startswith("%") and not q_limpa.endswith("%"):
             q_limpa = f"%{q_limpa}%"
@@ -477,7 +461,7 @@ class BuscaCrtSh:
                 r.raise_for_status()
                 dados = r.json()
             except Exception as e:
-                log.warning("crt.sh query '%s' failed: %s", consulta, e)
+                log.warning("consulta ao crt.sh '%s' falhou: %s", consulta, e)
                 return resultados, RegistroConsulta(
                     fonte=self.nome,
                     id_hipotese=hipotese.id,
@@ -504,7 +488,7 @@ class BuscaCrtSh:
                         url_original=url,
                         posicao=len(resultados) + 1,
                         titulo=f"Certificado CT: {dominio}",
-                        trecho=f"Issuer: {item.get('issuer_name')}",
+                        trecho=f"Emissor: {item.get('issuer_name')}",
                         metadados={"id_entrada": item.get("id"), "registrado_em": item.get("entry_timestamp")},
                     )
                 )
@@ -522,15 +506,12 @@ class BuscaCrtSh:
         )
 
 
-# --------------------------------------------------------------------------------------
-# Imports
-# --------------------------------------------------------------------------------------
 def importar_texto(texto: str, fonte: str = "importacao:texto") -> list[ResultadoDescoberta]:
     return [ResultadoDescoberta(fonte=fonte, url_original=u, posicao=i + 1) for i, u in enumerate(extrair_urls(texto))]
 
 
 def importar_arquivo(caminho: Path) -> list[ResultadoDescoberta]:
-    """Import URLs from .txt (any text), .csv (any column containing URLs) or .json."""
+    """URLs de .txt, .json (qualquer texto) ou .csv (qualquer coluna)."""
     bruto = caminho.read_text(encoding="utf-8", errors="replace")
     fonte = f"importacao:arquivo:{caminho.name}"
     if caminho.suffix.lower() == ".csv":

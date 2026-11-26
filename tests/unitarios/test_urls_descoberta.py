@@ -15,7 +15,6 @@ from simio.seguranca.politica_url import PoliticaUrl
 from tests.auxiliares import MARCA
 
 
-# ------------------------------------------------------------------ normalisation / extraction
 @pytest.mark.parametrize(
     ("a", "b"),
     [
@@ -90,7 +89,7 @@ def test_priorizar_exclui_oficiais_e_ordena() -> None:
     grupos, _ = deduplicar(resultados, PoliticaUrl())
     ordenados = priorizar(grupos, MARCA)
     assert ordenados[0].hostname == "bancobv-oficial.example"
-    assert ordenados[-1].motivo_exclusao == "official institutional domain"
+    assert ordenados[-1].motivo_exclusao == "domínio institucional oficial"
     wiki = next(g for g in ordenados if "wikipedia" in g.hostname)
     assert wiki.pontuacao < ordenados[0].pontuacao
 
@@ -157,17 +156,17 @@ def test_priorizar_exclui_dominios_oficiais_perfis_sociais_e_indices_de_tags() -
     excluidos = {g.url_normalizada: g.motivo_exclusao for g in ordenados if g.motivo_exclusao is not None}
     assert [g.hostname for g in mantidos] == ["bkbv.lovable.app"]
     assert len(excluidos) == 13
-    assert excluidos["https://www2.bvfinanceira.com.br/acesso/clientes"] == "official institutional domain"
-    assert excluidos["https://bvinvestimentos.com.br/fundos"] == "official institutional domain"
-    assert excluidos["https://developers-sandbox.bvopen.com.br/apis"] == "official institutional domain"
-    assert excluidos["https://instagram.com/bancobv"] == "official institutional social profile"
-    assert excluidos["https://instagram.com/reel/DYpFTKTpnS-"] == "official institutional social profile"
-    assert excluidos["https://instagram.com/popular/bv-financeira-parceiro"] == "social platform tag/search index page"
-    assert excluidos["https://tiktok.com/discover/banco-bv-es-seguro"] == "social platform tag/search index page"
-    assert excluidos["https://armazviplprd.blob.core.windows.net/pdf/72b9840d-edc0"] == "direct binary/PDF document URL"
+    assert excluidos["https://www2.bvfinanceira.com.br/acesso/clientes"] == "domínio institucional oficial"
+    assert excluidos["https://bvinvestimentos.com.br/fundos"] == "domínio institucional oficial"
+    assert excluidos["https://developers-sandbox.bvopen.com.br/apis"] == "domínio institucional oficial"
+    assert excluidos["https://instagram.com/bancobv"] == "perfil social oficial da instituição"
+    assert excluidos["https://instagram.com/reel/DYpFTKTpnS-"] == "perfil social oficial da instituição"
+    assert excluidos["https://instagram.com/popular/bv-financeira-parceiro"] == "página de tag/busca de rede social"
+    assert excluidos["https://tiktok.com/discover/banco-bv-es-seguro"] == "página de tag/busca de rede social"
+    assert excluidos["https://armazviplprd.blob.core.windows.net/pdf/72b9840d-edc0"] == "link direto para PDF/arquivo"
     assert (
         excluidos["https://guiacidade.example/brasilia-df/empresa/bv-financeira-sa-credito"]
-        == "public business directory entry for the institution itself"
+        == "ficha da própria instituição em diretório de empresas"
     )
 
 
@@ -198,7 +197,7 @@ def test_priorizar_rebaixa_ruido_e_preserva_diversidade_de_dominios_e_pagina_ini
             url_original="https://ajuda.crm.example/adicionar-simulador-da-bv-financeira/",
             titulo="Como adicionar o simulador da BV Financeira no site",
         ),
-        # Multi-page domain: 3 regional subpages + 1 homepage
+        # mesmo domínio: 3 páginas regionais + a inicial
         ResultadoDescoberta(fonte="brave", url_original="https://multicred.example/financiamento/recife", titulo="Banco BV"),
         ResultadoDescoberta(fonte="brave", url_original="https://multicred.example/financiamento/manaus", titulo="Banco BV"),
         ResultadoDescoberta(fonte="brave", url_original="https://multicred.example/financiamento/goiania", titulo="Banco BV"),
@@ -208,20 +207,18 @@ def test_priorizar_rebaixa_ruido_e_preserva_diversidade_de_dominios_e_pagina_ini
     ordenados = priorizar(grupos, MARCA)
     por_url = {g.url_normalizada: g for g in ordenados}
     assert ordenados[0].hostname == "bvfinanon.example"
-    # Foreign scientific domain with "bv-" does not match brand domain patterns
+    # domínio científico estrangeiro com "bv-" não casa com os padrões da marca
     assert por_url["https://bv-brc.org/"].pontuacao < 0
-    # Modeling agency "Agência BV Model" does not get official-channel bonus
-    assert "official-channel language in title/snippet" not in por_url["https://facebook.com/in.el/posts/agencia-bv-model"].motivos
-    # Individual OLX listing and help tutorial are de-prioritised
+    # "Agência BV Model" é agência de modelos, não canal oficial
+    assert "linguagem de canal oficial no título/trecho" not in por_url["https://facebook.com/in.el/posts/agencia-bv-model"].motivos
+    # anúncio avulso da OLX e tutorial de ajuda ficam para trás
     assert por_url["https://sp.olx.com.br/sao-paulo/autos-e-pecas/motos/honda-cg-160-12345"].pontuacao < 0
     assert por_url["https://ajuda.crm.example/adicionar-simulador-da-bv-financeira"].pontuacao < 0
-    # 3rd regional subpage (sorted alphabetically: goiania, manaus, recife) gets domain-diversity penalty,
-    # while homepage is never penalised.
-    assert any("additional page" in r for r in por_url["https://multicred.example/financiamento/recife"].motivos)
-    assert not any("additional page" in r for r in por_url["https://multicred.example/"].motivos)
+    # a 3ª página regional (ordem alfabética: goiania, manaus, recife) é penalizada; a inicial nunca
+    assert any("página extra" in r for r in por_url["https://multicred.example/financiamento/recife"].motivos)
+    assert not any("página extra" in r for r in por_url["https://multicred.example/"].motivos)
 
 
-# ------------------------------------------------------------------ connectors
 def _transporte(payload: dict, status: int = 200) -> httpx.MockTransport:
     return httpx.MockTransport(lambda req: httpx.Response(status, json=payload))
 
@@ -249,7 +246,6 @@ def test_conectores_indisponiveis_sem_chaves() -> None:
     assert ConectorGrounding(None, None, PoliticaUrl(), []).disponivel()[0] is False
 
 
-# ------------------------------------------------------------------ grounding
 def test_interpretar_resposta_grounding_usa_so_metadados() -> None:
     from types import SimpleNamespace as NS
 
@@ -309,7 +305,7 @@ async def test_conector_grounding_resolve_redirecionamentos(armazenamento, monke
     resultados, rec = await con.executar(HipoteseBusca(id="H1", descricao="", prompt_grounding="p"), "p")
     assert [h.url_original for h in resultados] == ["https://loja-alvo.example/financiamento"]
     assert resultados[0].metadados["uri_grounding"] == redirecionamento
-    assert rec.metadados["nao_resolvidos"][0]["error"].startswith("search-results page")
+    assert rec.metadados["nao_resolvidos"][0]["error"].startswith("página de resultados")
     assert armazenamento.totais_uso(cid)[0] == 1
 
 
@@ -340,15 +336,15 @@ async def test_descoberta_alternativa_quando_grounding_falha(armazenamento) -> N
     agente = AgenteDescoberta(MARCA, [GroundingComFalha(), BraveFalso()], PoliticaUrl(), max_consultas=10)
     saida = await agente.executar()
     assert saida.fontes_usadas == ["brave"]
-    assert sum(1 for q in saida.consultas if q.fonte == "grounding") == 1  # disabled after first error
-    assert any("fallback" in d for d in saida.diagnosticos)
+    assert sum(1 for q in saida.consultas if q.fonte == "grounding") == 1  # desligado após o primeiro erro
+    assert any("seguindo com as outras fontes" in d for d in saida.diagnosticos)
     assert len([q for q in saida.consultas if q.fonte == "brave"]) >= 5
 
 
 async def test_descoberta_sem_fonte_gera_diagnostico() -> None:
     agente = AgenteDescoberta(MARCA, [BuscaBrave(None), ConectorGrounding(None, None, PoliticaUrl(), [])], PoliticaUrl())
     saida = await agente.executar()
-    assert saida.resultados == [] and any("NO automatic discovery" in d for d in saida.diagnosticos)
+    assert saida.resultados == [] and any("Nenhuma fonte de descoberta" in d for d in saida.diagnosticos)
     saida2 = await agente.executar(importar_texto("https://a.example/"))
     assert len(saida2.resultados) == 1 and "import" in saida2.fontes_usadas
 
