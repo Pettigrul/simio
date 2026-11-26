@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO · Inteligência de ameaças · {{ campaign_id }}</title>
+<style>
+  :root { --ink:#101828; --muted:#475467; --line:#E4E7EC; --bg:#F9FAFB;
+          --crit:#912018; --crit-bg:#FDE7E4; --high:#B42318; --high-bg:#FEF1EF; --med:#B54708; --med-bg:#FEF6E7;
+          --low:#475467; --low-bg:#F2F4F7; --brand:#1C3FAA; }
+  * { box-sizing: border-box; }
+  body { margin:0; font: 14px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:var(--brand); color:#fff; padding:28px 40px; }
+  header h1 { margin:0 0 4px; font-size:22px; font-weight:650; }
+  header p { margin:0; opacity:.85; }
+  main { max-width:1180px; margin:0 auto; padding:24px 40px 60px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin:0 0 8px; }
+  .tile { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 16px; min-width:120px; }
+  .tile b { display:block; font-size:24px; font-variant-numeric:tabular-nums; }
+  .tile.CRÍTICO b { color:var(--crit); } .tile.ALTO b { color:var(--high); } .tile.MÉDIO b { color:var(--med); } .tile.BAIXO b { color:var(--low); }
+  .cats { color:var(--muted); margin:6px 0 24px; }
+  .note { background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:8px; padding:10px 14px; color:var(--muted); margin-bottom:24px; }
+  h2 { font-size:17px; margin:28px 0 12px; }
+  .card { display:grid; grid-template-columns: 300px 1fr; gap:18px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; }
+  .card.CRÍTICO { border-left:5px solid var(--crit); } .card.ALTO { border-left:5px solid var(--high); } .card.MÉDIO { border-left:5px solid var(--med); }
+  .shot { width:300px; height:200px; object-fit:cover; object-position:top; border:1px solid var(--line); border-radius:8px; background:var(--bg); }
+  .noshot { width:300px; height:200px; display:flex; align-items:center; justify-content:center; color:var(--muted); border:1px dashed var(--line); border-radius:8px; font-size:12px; text-align:center; padding:12px; }
+  .pill { display:inline-block; font-size:11px; font-weight:650; letter-spacing:.02em; border-radius:999px; padding:2px 10px; margin:0 6px 6px 0; }
+  .pill.CRÍTICO { background:var(--crit-bg); color:var(--crit); } .pill.ALTO { background:var(--high-bg); color:var(--high); } .pill.MÉDIO { background:var(--med-bg); color:var(--med); } .pill.BAIXO { background:var(--low-bg); color:var(--low); }
+  .pill.cat { background:#EEF2FF; color:#2D3A8C; font-weight:550; }
+  .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; word-break:break-all; margin:4px 0 8px; }
+  ul.facts { margin:6px 0 10px 18px; padding:0; }
+  .kv { display:grid; grid-template-columns: 190px 1fr; gap:2px 12px; font-size:13px; }
+  .kv dt { color:var(--muted); } .kv dd { margin:0; word-break:break-word; }
+  details { margin-top:8px; color:var(--muted); font-size:12.5px; }
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; font-size:13px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--bg); color:var(--muted); font-weight:600; }
+  td.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; word-break:break-all; }
+  a { color:var(--brand); }
+  @media (max-width: 800px) { main { padding:16px; } .card { grid-template-columns:1fr; } .shot, .noshot { width:100%; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Inteligência de ameaças e proteção de marca</h1>
+  <p>Campanha {{ campaign_id }} · gerado em {{ generated_at }}</p>
+</header>
+<main>
+  <div class="summary">
+    {% for lv, n in levels %}<div class="tile {{ lv }}"><b>{{ n }}</b>{{ lv }}</div>{% endfor %}
+  </div>
+  <div class="cats">{% for cat, n in categories %}{{ cat }} ({{ n }}){% if not loop.last %} · {% endif %}{% endfor %}</div>
+  <div class="note">O nível vem de fatos verificáveis (campos de senha/cartão, personificação registrada pelo analisador, domínio com a marca ou parecido, APK fora das lojas, hospedagem gratuita, idade do domínio). Empresas identificadas que usam a própria marca são tema de conformidade e não entram aqui. URLs estão desarmadas (<code>hxxps</code>, <code>[.]</code>) para evitar acesso acidental.</div>
+
+  {% for lv in ["CRÍTICO", "ALTO", "MÉDIO"] %}
+  {% set group = cards | selectattr("level", "equalto", lv) | list %}
+  {% if group %}
+  <h2>{{ lv }} ({{ group | length }})</h2>
+  {% for c in group %}
+  <div class="card {{ c.level }}">
+    <div>
+      {% if c.shot %}<img class="shot" src="{{ c.shot }}" alt="Captura da página {{ c.domain }}" loading="lazy">{% else %}<div class="noshot">sem captura (página fora do ar ou bloqueada; classificação apoiada no que foi indexado)</div>{% endif %}
+    </div>
+    <div>
+      <span class="pill {{ c.level }}">{{ c.level }} · {{ c.score }}</span>{% for cat in c.categories %}<span class="pill cat">{{ cat }}</span>{% endfor %}
+      <div class="url">{{ c.url }}</div>
+      <ul class="facts">{% for fact in c.facts %}<li>{{ fact }}</li>{% endfor %}</ul>
+      <dl class="kv">
+        {% if c.sensitive %}<dt>Dados pedidos</dt><dd>{{ c.sensitive }}</dd>{% endif %}
+        {% if c.intel %}
+        {% if c.intel.platform %}<dt>Plataforma</dt><dd>{{ c.intel.platform }} (dono só identificável pela plataforma)</dd>{% endif %}
+        {% if c.intel.created %}<dt>Domínio criado</dt><dd>{{ c.intel.created }}{% if c.intel.registrar %} · {{ c.intel.registrar }}{% endif %}</dd>{% endif %}
+        {% if c.intel.holder and not c.intel.platform %}<dt>Titular</dt><dd>{{ c.intel.holder }}</dd>{% endif %}
+        <dt>Resolve hoje</dt><dd>{{ c.intel.resolves }}{% if c.intel.hosting %} · {{ c.intel.hosting }}{% endif %}</dd>
+        {% if c.intel.abuse %}<dt>Contatos de abuso</dt><dd>{{ c.intel.abuse }}</dd>{% endif %}
+        {% endif %}
+        <dt>Análise SIMIO</dt><dd>{{ c.classification }}{% if c.dossier %} · <a href="{{ c.dossier }}">dossiê</a>{% endif %}</dd>
+      </dl>
+      {% if c.justification %}<details><summary>Justificativa do analisador</summary>{{ c.justification }}</details>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endfor %}
+
+  {% set low = cards | selectattr("level", "equalto", "BAIXO") | list %}
+  {% if low %}
+  <h2>Monitorar ({{ low | length }})</h2>
+  <table>
+    <tr><th>URL</th><th>Por quê</th><th>Domínio criado</th><th>Titular</th></tr>
+    {% for c in low %}
+    <tr><td class="mono">{{ c.url }}</td><td>{{ c.facts | join("; ") }}</td><td>{{ c.intel.created if c.intel else "" }}</td><td>{{ c.intel.holder if c.intel else "" }}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  {% if defensive %}
+  <h2>Registros defensivos do próprio grupo ({{ defensive | length }})</h2>
+  <table>
+    <tr><th>Domínio</th><th>Titular</th></tr>
+    {% for host, holder in defensive %}<tr><td class="mono">{{ host }}</td><td>{{ holder }}</td></tr>{% endfor %}
+  </table>
+  {% endif %}
+</main>
+</body>
+</html>

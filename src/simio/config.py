@@ -68,7 +68,21 @@ class Settings(BaseSettings):
     serper_pages: int = Field(
         default=1, ge=1, le=10, description="Serper result pages (10 results / 1 credit each) per query"
     )
+    serper_plain_variants: int = Field(
+        default=3,
+        ge=0,
+        le=6,
+        description="When Google hides most results of a dork behind opaque links, re-run up to N "
+        "operator-free versions of it (1 credit each; 0 disables)",
+    )
+    min_queue_score: float = Field(
+        default=-10.0, description="Candidates below this pre-collection score are not analysed (noise floor)"
+    )
     http_timeout_s: float = Field(default=20.0, gt=0)
+    # ---- Domain intelligence of flagged pages (RDAP + DNS over HTTPS; public, no key) ----
+    domain_intel: bool = Field(default=True, description="Collect RDAP/DNS/hosting data of flagged pages")
+    rdap_base_url: str = "https://rdap.org"
+    doh_url: str = "https://cloudflare-dns.com/dns-query"
 
     # ---- Browser / evidence --------------------------------------------------------------
     nav_timeout_ms: int = Field(default=30_000, ge=1000)

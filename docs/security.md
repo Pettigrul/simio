@@ -83,7 +83,10 @@ O SIMIO aplica cinco defesas em profundidade:
 - **Typosquatting só resolve DNS**: o conector `typosquat` nunca acessa as páginas; apenas domínios com IP público entram na fila, e daí seguem pelo mesmo `EgressProxy`. Se o DNS responder para nomes inexistentes (*NXDOMAIN hijacking*), o conector se desativa para não gerar falsos positivos.
 - **Comparação de imagem local**: a detecção da logo antiga roda sobre os screenshots já gravados com hash, sem rede e sem IA; o resultado é reproduzível a partir das evidências.
 - **Busca reversa de imagem**: envia ao Serper apenas a URL pública de uma imagem da logo antiga (nunca screenshots ou dados coletados).
-- **Links opacos não são seguidos**: resultados `google.com/goto?...` do Serper passam por uma página anti-robô do Google; eles não viram candidatos e ficam registrados (título e trecho) para conferência manual.
+- **Links opacos não são seguidos**: resultados `google.com/goto?...` do Serper passam por uma página anti-robô do Google e nunca são acessados. Quando o resultado mostra o domínio de destino (`displayedLink`), só a página inicial desse domínio entra na fila, pelo mesmo `EgressProxy`; o restante fica registrado (título e trecho) para conferência manual.
+- **Formulários só são lidos**: o coletor registra tipo, nome e rótulo dos campos e o destino dos formulários, mas **nunca preenche, envia ou clica**; páginas de phishing são visitadas como qualquer outra, sob o mesmo isolamento.
+- **Inteligência de domínio (`agents/domain_intel.py`)**: só para os achados, e só com fontes públicas e sem chave: RDAP via `rdap.org` (que redireciona ao registro de cada TLD ou ao RIR do IP) e DNS sobre HTTPS (`cloudflare-dns.com`). Essas consultas enviam **apenas o nome do host suspeito e o IP do servidor**, nunca conteúdo coletado. As consultas RDAP são espaçadas (limite dos registros) e repetidas em caso de `429`. Endpoints configuráveis em `SIMIO_RDAP_BASE_URL` e `SIMIO_DOH_URL`; `SIMIO_DOMAIN_INTEL=false` desliga.
+- **Titulares de domínio e LGPD**: o nome e o documento do titular só são guardados quando ele é **pessoa jurídica** (CNPJ no Registro.br, ou `kind: org` sem serviço de privacidade). Pessoa física (CPF ou `kind: individual`) aparece apenas como "pessoa física"; contatos administrativos e técnicos nunca são guardados, só as caixas de abuso de organizações.
 - **Dados de parceiros e LGPD**:
   - A base de COBANs fica em `data/`, que o git ignora.
   - A busca guiada (H9) envia **nome e CNPJ de empresas** correspondentes ao Google; nomes de MEI que contêm CPF são **sempre ignorados**, assim como bancos e cooperativas.
@@ -100,6 +103,7 @@ O SIMIO aplica cinco defesas em profundidade:
 - **Redação de segredos e auditoria pré-commit**:
   - Chaves de API (Serper, Brave, urlscan) usam `SecretStr` e são mascaradas nos logs (`logging_setup.py`) e nos snapshots de configuração (`Settings.redacted()`).
   - O `.gitignore` bloqueia `.env*`, credenciais JSON, bancos SQLite, planilhas, logs e pastas de evidências (`output/`).
+  - **Exceção deliberada neste repositório**: o responsável versiona `output/` (campanhas, evidências, banco e relatórios) com `git add -f`. Isso publica prints e classificações de sites de terceiros para quem tiver acesso ao repositório; mantenha-o privado. O `simio.db` cresce a cada campanha: acima de 50 MB o GitHub avisa e acima de 100 MB recusa o push (use Git LFS).
   - O script `python.exe scripts/check_secrets.py --history` verifica toda a árvore de arquivos e o histórico do Git para impedir o versionamento acidental de chaves, tokens ou dados de campanha.
 
 <p align="center">

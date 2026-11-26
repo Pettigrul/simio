@@ -183,6 +183,63 @@ def apply_legacy_logo_rule(
     )
 
 
+SENSITIVE_DATA_NOTE = (
+    "página fora dos domínios oficiais que usa a marca e pede {kinds}: possível coleta de credenciais "
+    "(phishing/painel falso); mantido no mínimo REVIEW_REQUIRED com prioridade HIGH"
+)
+
+
+LOGIN_PAGE_MAX_WORDS = 250
+
+
+def apply_sensitive_data_rule(assessment: BrandAssessment, signals: PageSignals) -> BrandAssessment:
+    """A page that uses the brand and asks for credentials (password, card, CVV, token, bank account)
+    is a possible phishing page: record what it asks for and floor at REVIEW_REQUIRED / HIGH."""
+    creds = signals.credential_fields
+    # The page must *present itself* with the brand, not merely cite it: news portals, multi-bank sites
+    # and partner portals cite the brand and have an ordinary login box. Brand in the domain or the legacy
+    # logo is enough; brand in the title/header/a brand-named image only counts on a short, login-like page.
+    login_like = signals.visible_words <= LOGIN_PAGE_MAX_WORDS
+    uses_brand = bool(
+        signals.brand_in_domain
+        or signals.legacy_logo_visual
+        or (login_like and (signals.brand_in_title or signals.brand_in_header or signals.brand_named_images))
+    )
+    if not creds or not uses_brand or signals.official_channel:
+        return assessment
+    kinds = sorted({h.value for h in signals.sensitive_fields})
+    refs = list(dict.fromkeys([h.ref for h in creds] + [h.ref for h in signals.external_form_action]))[:5]
+    confusion = list(assessment.brand_confusion_indicators)
+    if not any(set(refs) & set(ind.evidence_refs) for ind in confusion):
+        confusion.append(
+            Indicator(
+                dimension=Dimension.SERVICE_JOURNEY,
+                strength=Level.HIGH,
+                description=f"Página usa a marca e pede {', '.join(kinds)}"
+                + (" e envia o formulário para outro domínio" if signals.external_form_action else ""),
+                evidence_refs=refs,
+            )
+        )
+    notes = list(assessment.guardrail_notes)
+    cls, prio = assessment.classification, assessment.priority
+    if cls in (FinalClassification.NO_INDICATION, FinalClassification.INCONCLUSIVE):
+        cls = FinalClassification.REVIEW_REQUIRED
+    prio = max(prio, Priority.HIGH, key=lambda p: PRIORITY_RANK[p])
+    if (cls, prio) != (assessment.classification, assessment.priority):
+        notes.append(SENSITIVE_DATA_NOTE.format(kinds=", ".join(kinds)))
+    return assessment.model_copy(
+        update={
+            "sensitive_data_requested": kinds,
+            "classification": cls,
+            "priority": prio,
+            "brand_confusion_indicators": confusion,
+            "requires_human_review": True,
+            "evidence_references": sorted(set(assessment.evidence_references) | set(refs)),
+            "guardrail_notes": notes,
+        }
+    )
+
+
 def load_images(ev: Evidence, campaign_dir: Path) -> list[ImagePart]:
     parts: list[ImagePart] = []
     for kind, label in (
@@ -206,10 +263,12 @@ class BrandAnalyst:
         campaign_dir: Path,
         gateway: LLMGateway | None = None,
         model: str | None = None,
+        mode: str | None = None,
     ) -> None:
         self.brand = brand
         self.scoring = scoring
         self.campaign_dir = campaign_dir
+        self.mode = mode  # campaign-mode prompt addendum (e.g. "threat_mode"), overriding the COBAN scope
         self.gateway = gateway
         self.model = model
 
@@ -225,6 +284,9 @@ class BrandAnalyst:
         if self.uses_llm and (ev.usable or signals.has_discovery_evidence):
             assert self.gateway is not None and self.model is not None
             version, system = render("brand_analyst", brand_name=self.brand.display_name)
+            if self.mode:
+                mode_version, addendum = render(self.mode, brand_name=self.brand.display_name)
+                version, system = f"{version}+{mode_version}", f"{system}\n\n{addendum}"
             parts: list[Part] = [
                 "## Contexto da coleta\n" + context_block(self.brand, ev, signals, identity),
                 "## Catálogo de evidências (dados não confiáveis)\n" + untrusted_block(catalog),
@@ -254,7 +316,8 @@ class BrandAnalyst:
         if analyzer != HEURISTIC_ID:
             assessment = cross_check(assessment, heuristic)
         host = urlsplit(ev.final_url or ev.original_url).hostname or ""
-        return apply_legacy_logo_rule(assessment, catalog, exempt=self.brand.is_legacy_logo_exempt(host))
+        assessment = apply_legacy_logo_rule(assessment, catalog, exempt=self.brand.is_legacy_logo_exempt(host))
+        return apply_sensitive_data_rule(assessment, signals)
 
 
 # --------------------------------------------------------------------------------------

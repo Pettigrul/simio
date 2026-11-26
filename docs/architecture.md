@@ -42,13 +42,13 @@ src/simio/
     decision.py            ScoringConfig, guardrails determinísticos e composição da FinalDecision
     urls.py                Normalização canônica de URLs, extração de domínio registrável (PSL offline)
   agents/
-    discovery.py           Hipóteses de busca (H1–H7 marca/produto/canais, H8 domínios semelhantes, H9 COBANs, H10 fraudes, H11 NaPista), planejamento intercalado, deduplicação e priorização
+    discovery.py           Hipóteses de busca (H1–H7 marca/produto/canais, H8 domínios semelhantes, H9 COBANs, H10 fraudes, H11 NaPista, H12/H13 logo antiga), modos de campanha (FOCUS_MODES), planejamento intercalado, deduplicação e priorização
     evidence.py            Construção do catálogo de evidências (E-*) e extração determinística de sinais
     identity.py            Extração/validação de CNPJ (numérico e alfanumérico), razão social e cruzamento COBAN
     brand.py               BrandAnalyst (Gemini multimodal + heurística offline + cross_check)
     compliance.py          Mapeamento determinístico para a Resolução CMN nº 4.935/2021 e cláusulas contratuais
     reviewer.py            Reviewer cético (LLM + desafios determinísticos de validação)
-    visual.py              Comparação de imagem sem IA: logo antiga (B vermelho + V azul) nos screenshots
+    visual.py              Comparação de imagem sem IA: logo antiga (B vermelho + V azul) nos screenshots, indícios por nome de arquivo e recortes
   providers/
     llm.py                 LLMGateway: reserva de orçamento, semáforo de concorrência, retry e reparo de JSON
     vertex.py              Integração oficial com google-genai (Vertex AI) e Google Search Grounding
@@ -63,11 +63,14 @@ src/simio/
     egress_proxy.py        Proxy HTTP/CONNECT por página com DNS pinning
   reporting/
     data.py                Carregamento consistente de registros por campanha e ordenação por criticidade
-    excel.py               Geração da planilha consolidada (.xlsx) com 8 abas e proteção contra fórmula injection
+    __init__.py            generate_reports(): dossiês, recortes da logo antiga, Excel, HTML e PDF da campanha
+    excel.py               Planilha consolidada (.xlsx), até 10 abas (inclui "Logo antiga" com recortes) e proteção contra fórmula injection
+    campaign_html.py       Relatório consolidado da campanha (HTML), base do PDF
+    pdf.py                 Conversão do relatório consolidado em PDF (Chromium do Playwright)
     dossier.py             Geração dos dossiês HTML individuais (Jinja2 com autoescape e Content-Security-Policy)
   prompts/
-    brand_analyst.md       Prompt versionado do analista de marca (brand-analyst/v3)
-    reviewer.md            Prompt versionado do revisor cético (reviewer/v2)
+    brand_analyst.md       Prompt versionado do analista de marca (brand-analyst/v6)
+    reviewer.md            Prompt versionado do revisor cético (reviewer/v4)
   knowledge/
     cmn_4935.toml          Texto literal dos artigos da Resolução CMN nº 4.935/2021
   brands/
@@ -112,6 +115,8 @@ build_hypotheses(marca)  ──►  H1–H7, H10, H11   (varredura aberta, sem d
 coban_hypotheses(base)   ──►  H9               (opcional, sempre no fim da fila)
 TyposquatConnector       ──►  H8               (DNS, sem acessar páginas)
 LensSearch               ──►  H12              (busca reversa da logo antiga)
+build_legacy_logo_hypotheses() ──► H13         (só em --focus logo-antiga, substitui a varredura aberta)
+build_threat_hypotheses()      ──► H14+H10+H7  (só em --focus ameacas, sem H9)
                                    │
                                    ▼
              plan(): uma lista por fonte, intercaladas (zip)
@@ -133,6 +138,12 @@ LensSearch               ──►  H12              (busca reversa da logo anti
 - **Orçamento**: `SIMIO_MAX_SEARCH_QUERIES` corta a lista intercalada; 300 cobre o plano completo (cerca de 230 consultas).
 - **Retomada**: consultas já executadas na campanha são puladas no `resume`.
 - **Logo antiga na análise**: antes do `BrandAnalyst`, `visual.detect_legacy_logo()` compara os screenshots (já com hash) com as referências do perfil. Os achados entram no catálogo como `E-VIS-LEGACY-*` e a regra `apply_legacy_logo_rule()` fixa o piso `REVIEW_REQUIRED`/`HIGH`, que `compose_final()` mantém mesmo após o revisor.
+- **Campanhas focadas** (`HuntOptions.focus`, gravado nos parâmetros da campanha e respeitado pelo `resume`):
+  - `DiscoveryAgent(focus=...)` troca as hipóteses abertas pelas do modo e ignora fontes que só listam domínios (`typosquat`, `crtsh`, `urlscan`); as fontes padrão do modo ficam em `FOCUS_DEFAULT_SOURCES`.
+  - Em `_analyze()`, depois da comparação de imagem e da identidade, uma página sem logo confirmada e sem `legacy_logo_hints()` (imagem com o nome da marca no arquivo ou no `alt`) é encerrada com um `BrandAssessment` `focus:logo-antiga` (`NO_INDICATION`, ou `INCONCLUSIVE` se a coleta falhou), sem chamar os modelos. A limitação fica registrada na decisão final.
+- **Inteligência de domínio**: `agents/domain_intel.py` (`enrich_campaign`) consulta RDAP do domínio e do IP e DNS sobre HTTPS para os hosts dos achados; `hosting_platform()` reconhece inquilinos de plataformas (lista própria + parte privada da Public Suffix List). O resultado fica em `campaigns/<ID>/domain-intel.json` (sem migração de banco) e alimenta a aba "Domínios", três colunas da aba "Ameaças" e os dossiês. Comando `simio enrich`; o `hunt`/`resume` chamam antes do relatório.
+- **Modo de ameaças**: `prioritise(..., focus="ameacas")` mantém e prioriza construtores gratuitos; `FOCUS_WITHOUT_COBANS` desliga H9. Na análise, `classify_input()` transforma os campos de formulário em `E-FORM-*` e `apply_sensitive_data_rule()` fixa o piso `REVIEW_REQUIRED`/`HIGH` para página com a marca que pede credenciais; `compose_final()` mantém o piso após o revisor.
+- **Links opacos do Serper**: `SerperSearch.run()` transforma resultados `google.com/goto` com `displayedLink` em candidato da página inicial do domínio (`recovered_from_google_redirect`, -1 na fila); redes sociais e resultados sem domínio ficam só no registro da consulta.
 - **Rotação de COBANs**: `Storage.searched_coban_cnpjs()` guarda quais correspondentes já foram pesquisados com sucesso; a próxima campanha começa pelos que faltam.
 
 <p align="center">

@@ -20,6 +20,96 @@ from simio.core.urls import extract_urls
 
 log = logging.getLogger(__name__)
 _GOOGLE_REDIRECT_RE = re.compile(r"(?i)^https?://(?:www\.)?google\.[a-z.]+/(?:goto|url)\?")
+# Serper's ``displayedLink`` ("https://www.loja.com.br › financiamento"): the destination host of an
+# opaque result, without the path.
+_DISPLAYED_HOST_RE = re.compile(r"^(https?)://([a-z0-9.-]+\.[a-z]{2,})(?=$|[\s›/])", re.IGNORECASE)
+# Hosts whose home page says nothing about the matched post/profile: not recovered.
+_UNRECOVERABLE_HOSTS = (
+    "instagram.com", "facebook.com", "tiktok.com", "youtube.com", "x.com", "twitter.com", "linkedin.com",
+    "kwai.com", "threads.net", "pinterest.com", "t.me", "telegram.me", "google.com", "reddit.com",
+)
+
+
+# Search operators that make Google hide results behind opaque links (measured: 6-9 of 10 results).
+_OPERATOR_RE = re.compile(r"(?i)(?:^|[\s(])-?(?:site|inurl|intitle|intext|allintitle|allinurl):|\sOR\s|[()]")
+_QUERY_TOKEN_RE = re.compile(r'[()]|-?[A-Za-z]+:"[^"]*"|-?"[^"]*"|[^\s()]+')
+# site: targets rewritten as a plain word (Google still ranks the platform's pages first).
+_SITE_WORDS = {
+    "instagram.com": "instagram", "facebook.com": "facebook", "tiktok.com": "tiktok", "t.me": "telegram",
+    "youtube.com": "youtube", "linkedin.com": "linkedin", "kwai.com": "kwai", "x.com": "twitter",
+    "threads.net": "threads", "olx.com.br": "olx", "mercadolivre.com.br": "mercado livre",
+}
+
+
+def _plain_term(token: str) -> str | None:
+    """One query token without operators; None drops it (``-site:`` exclusions are applied client-side)."""
+    low = token.lower()
+    if low.startswith("-") and ":" in low.split('"', 1)[0]:
+        return None
+    op, sep, value = token.partition(":")
+    if sep and op.lower() in ("site", "inurl", "intitle", "intext", "allintitle", "allinurl") and '"' not in op:
+        value = value.strip()
+        if op.lower() == "site":
+            dom = value.lower().removeprefix("www.").strip("/")
+            return _SITE_WORDS.get(dom, dom)
+        return value
+    return token
+
+
+def plain_variants(query: str, limit: int = 3) -> tuple[list[str], list[str]]:
+    """Operator-free versions of a dork, plus the domains it excluded with ``-site:``.
+
+    ``OR`` groups are expanded round-robin (variant *i* takes the *i*-th alternative of every group), so
+    ``limit`` variants cover the alternatives instead of AND-ing them all. ``site:instagram.com`` becomes
+    the word ``instagram``, ``intitle:"X"`` becomes ``"X"``."""
+    excluded = [
+        m.group(1).lower().removeprefix("www.")
+        for m in re.finditer(r"(?i)(?:^|\s)-site:([^\s()]+)", query)
+    ]
+    tokens = _QUERY_TOKEN_RE.findall(query)
+    slots: list[list[str]] = []
+    i = 0
+    while i < len(tokens):
+        tok = tokens[i]
+        if tok == "(":
+            depth, j, group = 1, i + 1, []
+            while j < len(tokens) and depth:
+                depth += {"(": 1, ")": -1}.get(tokens[j], 0)
+                if depth:
+                    group.append(tokens[j])
+                j += 1
+            alts, cur = [], []
+            for t in group:
+                if t == "OR":
+                    alts.append(" ".join(cur))
+                    cur = []
+                elif t not in ("(", ")"):
+                    cur.append(t)
+            alts.append(" ".join(cur))
+            slots.append([a for a in alts if a])
+            i = j
+            continue
+        if tok == "OR" and slots and i + 1 < len(tokens) and tokens[i + 1] not in ("(", ")"):
+            slots[-1].append(tokens[i + 1])
+            i += 2
+            continue
+        if tok not in (")", "OR"):
+            slots.append([tok])
+        i += 1
+    slots = [s for s in slots if s]
+    if not slots:
+        return [], excluded
+    n = max(1, min(limit, max(len(s) for s in slots)))
+    out: list[str] = []
+    for v in range(n):
+        words = []
+        for slot in slots:
+            alt = slot[v % len(slot)]
+            words.extend(w for w in (_plain_term(t) for t in _QUERY_TOKEN_RE.findall(alt)) if w)
+        q = " ".join(dict.fromkeys(words))
+        if q and q not in out and q != query:
+            out.append(q)
+    return out, excluded
 
 
 class ConnectorError(RuntimeError):
@@ -126,7 +216,10 @@ class SerperSearch(_KeywordConnector):
     """Google results via serper.dev, dorks executed literally (site:, inurl:, intitle:, OR, -site:).
 
     Pages of 10 results (1 credit each; free accounts reject ``num`` > 10). Stops early when a page
-    is not full, so short result lists do not spend extra credits."""
+    is not full, so short result lists do not spend extra credits.
+
+    Google hides most results of operator queries behind opaque links. When that happens, up to
+    ``plain_variants`` operator-free versions of the dork run as well (see ``plain_variants``)."""
 
     name = "serper"
     endpoint = "https://google.serper.dev/search"
@@ -137,9 +230,11 @@ class SerperSearch(_KeywordConnector):
         timeout: float = 20.0,
         transport: httpx.AsyncBaseTransport | None = None,
         pages: int = 1,
+        plain_variants: int = 3,
     ) -> None:
         super().__init__(api_key, timeout, transport)
         self.pages = max(1, pages)
+        self.plain_variants = max(0, plain_variants)
 
     async def _request(self, query: str) -> Any:
         organic: list[Any] = []
@@ -166,28 +261,84 @@ class SerperSearch(_KeywordConnector):
 
     def _parse(self, data: Any) -> list[tuple[str, str | None, str | None, dict[str, Any]]]:
         return [
-            (r.get("link"), r.get("title"), r.get("snippet"), {"position": r.get("position"), "date": r.get("date")})
+            (
+                r.get("link"),
+                r.get("title"),
+                r.get("snippet"),
+                {"position": r.get("position"), "date": r.get("date"), "displayed_link": r.get("displayedLink")},
+            )
             for r in data.get("organic") or []
         ]
 
     async def run(self, hypothesis: SearchHypothesis, query: str) -> tuple[list[DiscoveryHit], QueryRecord]:
-        """Google sometimes returns opaque ``google.com/goto?url=...`` links (mostly social posts) that
-        only resolve through an anti-automation interstitial. They are not followed: title/snippet are
-        kept in the query record for manual follow-up, and they never become candidates."""
+        """Google often returns opaque ``google.com/goto?url=...`` links that only resolve through an
+        anti-automation interstitial. They are never followed. When the result names its destination
+        host (``displayedLink``), the *home page* of that host becomes the candidate instead (marked
+        ``recovered_from_google_redirect``; the matched page itself stays unknown). The rest is kept in
+        the query record (title/snippet) for manual follow-up."""
         hits, record = await super().run(hypothesis, query)
+        opaque_share = sum(bool(_GOOGLE_REDIRECT_RE.match(h.original_url)) for h in hits) / max(1, len(hits))
+        if self.plain_variants and record.status != "ERROR" and _OPERATOR_RE.search(query) and (
+            opaque_share >= 0.3 or not hits
+        ):
+            variants, excluded = plain_variants(query, self.plain_variants)
+            extra: list[DiscoveryHit] = []
+            for v in variants:
+                more, _ = await super().run(hypothesis, v)
+                extra.extend(
+                    h.model_copy(update={"metadata": {**h.metadata, "plain_variant_of": query}})
+                    for h in more
+                    if not any(_host_in(h.original_url, d) for d in excluded)
+                )
+            record.metadata["plain_variants"] = variants
+            if record.status == "EMPTY" and extra:
+                record.status = "OK"
+            hits = hits + extra
         kept: list[DiscoveryHit] = []
         opaque: list[dict[str, str]] = []
+        recovered = 0
+        seen: set[str] = set()
         for h in hits:
-            if _GOOGLE_REDIRECT_RE.match(h.original_url):
-                opaque.append({"title": h.title or "", "snippet": (h.snippet or "")[:300]})
-            else:
-                kept.append(h)
+            if not _GOOGLE_REDIRECT_RE.match(h.original_url):
+                if h.original_url not in seen:
+                    seen.add(h.original_url)
+                    kept.append(h)
+                continue
+            shown = str(h.metadata.get("displayed_link") or "")
+            m = _DISPLAYED_HOST_RE.match(shown.strip())
+            host = m.group(2).lower() if m else ""
+            if host and not any(host == d or host.endswith("." + d) for d in _UNRECOVERABLE_HOSTS):
+                url = f"{m.group(1).lower()}://{host}/"  # type: ignore[union-attr]
+                if url not in seen:
+                    seen.add(url)
+                    recovered += 1
+                    kept.append(
+                        h.model_copy(
+                            update={
+                                "original_url": url,
+                                "metadata": {
+                                    **h.metadata,
+                                    "recovered_from_google_redirect": True,
+                                    "matched_page": shown[:200],
+                                },
+                            }
+                        )
+                    )
+                continue
+            opaque.append({"title": h.title or "", "snippet": (h.snippet or "")[:300], "displayed": shown[:120]})
         if opaque:
             record.metadata["unresolved_google_redirects"] = opaque[:50]
-            record.result_count = len(kept)
-            if not kept and record.status == "OK":
-                record.status = "EMPTY"
+        if recovered:
+            record.metadata["recovered_google_redirect_hosts"] = recovered
+        record.result_count = len(kept)
+        if not kept and record.status == "OK":
+            record.status = "EMPTY"
         return kept, record
+
+
+def _host_in(url: str, domain: str) -> bool:
+    host = (httpx.URL(url).host or "").lower()
+    return host == domain or host.endswith("." + domain)
 
 
 class LensSearch(_KeywordConnector):

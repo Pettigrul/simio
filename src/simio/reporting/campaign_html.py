@@ -78,6 +78,7 @@ def render_campaign_report(
             "review_status": review_status,
             "summary": f.justification if f else "",
             "legacy_logo": bool(f and f.legacy_visual_identity),
+            "sensitive_data": ", ".join(f.sensitive_data_requested) if f else "",
             "dossier_rel": dossier_rel,
         })
 

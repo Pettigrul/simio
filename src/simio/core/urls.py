@@ -123,7 +123,11 @@ def normalize_url(url: str) -> str:
 
 
 def hostname_of(url: str) -> str:
-    return (urlsplit(url if "://" in url else "https://" + url).hostname or "").lower().rstrip(".")
+    """Lower-case host of a URL; "" for malformed input (e.g. a page link like ``http://[broken``)."""
+    try:
+        return (urlsplit(url if "://" in url else "https://" + url).hostname or "").lower().rstrip(".")
+    except ValueError:
+        return ""
 
 
 def extract_urls(text: str) -> list[str]:

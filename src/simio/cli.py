@@ -54,6 +54,19 @@ def _resolve_campaign(storage, campaign: str | None) -> str:  # type: ignore[no-
     return cid
 
 
+def _enrich(s: Settings, storage, campaign_id: str, refresh: bool = False) -> None:  # type: ignore[no-untyped-def]
+    """Domain intelligence (RDAP/DNS/hosting) of the flagged pages; never fails the command."""
+    from simio.agents.domain_intel import enrich_campaign
+
+    if not s.domain_intel or s.offline:
+        return
+    try:
+        intel = asyncio.run(enrich_campaign(s, storage, campaign_id, refresh=refresh))
+        typer.echo(f"Inteligência de domínio: {len(intel)} host(s) (RDAP, DNS, hospedagem)")
+    except Exception as exc:  # network trouble must not cost the report
+        typer.secho(f"Inteligência de domínio indisponível: {exc}", fg="yellow", err=True)
+
+
 def _print_summary(summary, report=None) -> None:  # type: ignore[no-untyped-def]
     typer.secho(f"\nCampanha {summary.campaign_id}: {summary.status}", bold=True)
     typer.echo("Estados: " + json.dumps(summary.counts, ensure_ascii=False))
@@ -66,6 +79,8 @@ def _print_summary(summary, report=None) -> None:  # type: ignore[no-untyped-def
             typer.secho(f"Relatório HTML: {report.html_report}", fg="green")
         if getattr(report, "pdf_report", None):
             typer.secho(f"Relatório PDF: {report.pdf_report}", fg="green")
+        if getattr(report, "threat_report", None):
+            typer.secho(f"Relatório de ameaças: {report.threat_report}", fg="green")
         typer.echo(f"Dossiês: {len(report.dossiers)} em {report.report_dir / 'dossiers'}")
 
 
@@ -93,14 +108,15 @@ def hunt(
         str | None,
         typer.Option(
             help=f"Fontes de descoberta, separadas por vírgula ({','.join(DISCOVERY_SOURCES)}). "
-            "Padrão: todas; com --focus logo-antiga: serper,lens"
+            "Padrão: todas; --focus logo-antiga: serper,lens; --focus ameacas: grounding,serper,typosquat,crtsh"
         ),
     ] = None,
     focus: Annotated[
         str | None,
         typer.Option(
             help="Campanha focada em uma única questão. 'logo-antiga': só a identidade visual descontinuada "
-            "(busca própria; só páginas com indício da logo vão aos modelos)"
+            "(busca própria; só páginas com indício da logo vão aos modelos). 'ameacas': inteligência de ameaças "
+            "sem o contexto de COBANs (logins e portais falsos, coleta de senha/cartão, apps, hospedagem gratuita)"
         ),
     ] = None,
     urls_file: Annotated[
@@ -170,6 +186,8 @@ def hunt(
                 )
             )
         )
+        if not no_report:
+            _enrich(s, storage, summary.campaign_id)
         report = None if no_report else generate_reports(s, storage, summary.campaign_id)
         _print_summary(summary, report)
         if summary.counts == {} and not imported:
@@ -211,8 +229,30 @@ def resume(
         except CampaignBusy as exc:
             typer.secho(str(exc), fg="red", err=True)
             raise typer.Exit(4) from exc
+        if not no_report:
+            _enrich(s, storage, cid)
         report = None if no_report else generate_reports(s, storage, cid)
         _print_summary(summary, report)
+    finally:
+        storage.close()
+
+
+@app.command()
+def enrich(
+    campaign: CampaignOpt = None,
+    refresh: Annotated[bool, typer.Option("--refresh", help="Consulta de novo os hosts já levantados")] = False,
+    output_dir: OutputOpt = None,
+) -> None:
+    """Levanta registro (RDAP/WHOIS), DNS e hospedagem dos achados e gera o relatório de novo."""
+    from simio.reporting import generate_reports
+
+    s = _settings(output_dir=output_dir)
+    storage = _storage(s)
+    try:
+        cid = _resolve_campaign(storage, campaign)
+        _enrich(s, storage, cid, refresh=refresh)
+        res = generate_reports(s, storage, cid)
+        typer.secho(f"Relatório: {res.workbook}", fg="green")
     finally:
         storage.close()
 
@@ -236,6 +276,8 @@ def report(
             typer.secho(f"Relatório HTML: {res.html_report}", fg="green")
         if res.pdf_report:
             typer.secho(f"Relatório PDF: {res.pdf_report}", fg="green")
+        if res.threat_report:
+            typer.secho(f"Relatório de ameaças: {res.threat_report}", fg="green")
         typer.echo(f"Dossiês: {len(res.dossiers)} em {res.report_dir / 'dossiers'}")
     finally:
         storage.close()

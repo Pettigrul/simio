@@ -214,6 +214,15 @@
       <div class="kv"><b>Classificação</b>{{ f.classification.value }}</div>
       <div class="kv"><b>Prioridade</b>{{ f.priority.value }}</div>
       <div class="kv"><b>Identidade visual antiga</b>{% if f.legacy_visual_identity %}SIM — logotipo descontinuado ({{ f.legacy_visual_identity_source }}){% else %}não identificada{% endif %}</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>{% if f.sensitive_data_requested %}{{ f.sensitive_data_requested|join(', ') }} — possível coleta de credenciais{% else %}nenhum campo de senha, cartão ou token{% endif %}</div>
+      {% if di %}
+      {% if di.platform %}<div class="kv"><b>Plataforma</b>{{ di.platform }} — o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</div>{% endif %}
+      {% if di.created %}<div class="kv"><b>Domínio criado em</b>{{ di.created }}{% if di.registrar %} · {{ di.registrar }}{% endif %}</div>{% endif %}
+      {% if di.holder %}<div class="kv"><b>Titular do domínio</b>{{ di.holder }}</div>{% endif %}
+      <div class="kv"><b>Resolve hoje</b>{{ di.resolves }}{% if di.hosting %} · hospedagem: {{ di.hosting }}{% endif %}</div>
+      {% if di.ns %}<div class="kv"><b>DNS (NS / MX)</b>{{ di.ns }}{% if di.mx %} / {{ di.mx }}{% endif %}</div>{% endif %}
+      {% if di.abuse %}<div class="kv"><b>Contatos de abuso (takedown)</b>{{ di.abuse }}</div>{% endif %}
+      {% endif %}
       <div class="kv"><b>Identidade (categoria)</b>{{ f.identity_class.value }}</div>
       <div class="kv"><b>Confiança da atribuição</b>{{ f.attribution_confidence.value }}</div>
       <div class="kv"><b>Confiança da extração</b>{{ f.extraction_confidence.value }}</div>

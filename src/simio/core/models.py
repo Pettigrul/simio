@@ -218,6 +218,57 @@ class VisualMatch(Strict):
     above_fold: bool = False
 
 
+class RdapIntel(Strict):
+    registrar: str | None = None
+    created: str | None = None
+    expires: str | None = None
+    updated: str | None = None
+    age_days: int | None = None
+    status: list[str] = Field(default_factory=list)
+    name_servers: list[str] = Field(default_factory=list)
+    holder: str | None = None  # only for legal entities (LGPD)
+    holder_document: str | None = None  # CNPJ, when published (Registro.br)
+    holder_kind: str = "não publicado"
+    abuse_emails: list[str] = Field(default_factory=list)
+
+
+class IpIntel(Strict):
+    ip: str
+    network: str | None = None
+    organisation: str | None = None
+    country: str | None = None
+    abuse_emails: list[str] = Field(default_factory=list)
+
+
+class DomainIntel(Strict):
+    """Registration, DNS and hosting facts of a flagged page's host (see ``agents/domain_intel.py``)."""
+
+    hostname: str
+    registered_domain: str
+    platform: str | None = None
+    a: list[str] = Field(default_factory=list)
+    aaaa: list[str] = Field(default_factory=list)
+    cname: list[str] = Field(default_factory=list)
+    ns: list[str] = Field(default_factory=list)
+    mx: list[str] = Field(default_factory=list)
+    rdap: RdapIntel | None = None
+    ips: list[IpIntel] = Field(default_factory=list)
+    notes: list[str] = Field(default_factory=list)
+    errors: list[str] = Field(default_factory=list)
+    collected_at: str = ""
+
+
+class InputInfo(Strict):
+    """A form field the page asks for (recorded, never filled)."""
+
+    type: str = ""
+    name: str = ""
+    id: str = ""
+    placeholder: str = ""
+    autocomplete: str = ""
+    label: str = ""
+
+
 class PageData(Strict):
     title: str = ""
     meta: dict[str, str] = Field(default_factory=dict)
@@ -234,6 +285,8 @@ class PageData(Strict):
     above_fold_text: str = ""
     visible_text: str = ""
     forms_present: int = 0
+    inputs: list[InputInfo] = Field(default_factory=list)
+    form_actions: list[str] = Field(default_factory=list)
 
 
 class Evidence(Strict):
@@ -343,6 +396,8 @@ class BrandAssessment(BrandAnalysisOutput):
     legacy_visual_identity_source: str = ""  # "modelo", "comparação de imagem" or both
     # Logo repository / image bank / press: finding recorded without the REVIEW_REQUIRED/HIGH floor.
     legacy_logo_exempt: bool = False
+    # Credential-type data the page asks for (senha, cartão, token...) while using the brand.
+    sensitive_data_requested: list[str] = Field(default_factory=list)
     prompt_version: str | None = None
     dropped_references: list[str] = Field(default_factory=list)
     guardrail_notes: list[str] = Field(default_factory=list)
@@ -446,4 +501,5 @@ class FinalDecision(Strict):
     compliance_summary: list[str] = Field(default_factory=list)
     legacy_visual_identity: bool = False
     legacy_visual_identity_source: str = ""
+    sensitive_data_requested: list[str] = Field(default_factory=list)
     decided_at: datetime = Field(default_factory=utcnow)

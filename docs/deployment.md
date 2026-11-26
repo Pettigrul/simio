@@ -113,7 +113,17 @@ SIMIO_SERPER_PAGES=1      # páginas de 10 resultados por dork (1 crédito cada)
 - **Conta gratuita**: 2.500 créditos no cadastro e no máximo 10 resultados por página. O conector já pagina de 10 em 10 e para quando uma página volta incompleta.
 - **Consumo**: cerca de 170 créditos por rodada completa com `SIMIO_SERPER_PAGES=1`.
 - **Sem chave**: o conector fica indisponível e a rodada segue só com as outras fontes.
-- **Busca reversa de imagem (`lens`)**: usa a mesma chave. As imagens pesquisadas ficam em `legacy_logo_search_urls` no `bv.toml` (3 créditos cada). Precisam ser URLs públicas que o Google consiga abrir; a da Wikimedia, por exemplo, não retorna resultados.
+- **Busca reversa de imagem (`lens`)**: usa a mesma chave. As imagens pesquisadas ficam em `legacy_logo_search_urls` no `bv.toml` (3 créditos cada, até 60 resultados por imagem). Precisam ser URLs públicas que o Google consiga abrir; a da Wikimedia, por exemplo, não retorna resultados.
+- **Campanha focada na logo antiga** (`--focus logo-antiga`): cerca de 100 créditos (47 dorks + 40 COBANs + 3 imagens) e poucas dezenas de chamadas ao Gemini, porque só as páginas com indício da logo vão aos modelos. Uma rodada de ~230 páginas levou cerca de 20 minutos com `--workers 5`.
+- **Versões sem operadores**: quando o Google esconde a maior parte dos resultados de um dork, até `SIMIO_SERPER_PLAIN_VARIANTS` (padrão 3) versões sem operadores são buscadas, 1 crédito cada. Na prática, uma campanha ampla gasta de 2 a 4 vezes o número de dorks (~400-700 créditos).
+- **Fila**: candidatos com nota abaixo de `SIMIO_MIN_QUEUE_SCORE` (padrão `-10`) não são analisados; os demais entram até o `--limit`, em ordem de nota.
+- **Campanha de ameaças** (`--focus ameacas`): 41 dorks no Serper (cerca de 41 a 160 créditos), 21 prompts de Grounding, ~1.900 domínios semelhantes testados por DNS (grátis) e crt.sh (grátis, às vezes instável). Todas as páginas da fila vão aos modelos.
+- **Links opacos**: parte dos resultados vem como `google.com/goto?url=…`. Quando há domínio de destino, a página inicial entra na fila; o registro de cada consulta mostra quantos foram recuperados e quantos ficaram sem destino (ver `docs/security.md` §4).
+
+### 4.1. Inteligência de domínio (RDAP e DNS)
+- Sem chave e sem custo. Roda no fim do `hunt`/`resume` para os achados (`STRONG`/`REVIEW` ou que pedem credenciais) e grava `output/campaigns/<ID>/domain-intel.json`.
+- Leva cerca de 1 minuto para 50 hosts: as consultas RDAP são espaçadas (`1,2 s`) porque Registro.br, ARIN e RIPE limitam rajadas. Hosts que ainda assim falharem são refeitos com `simio enrich -c <ID>`.
+- Em rede corporativa, liberar `rdap.org`, os servidores RDAP dos registros (`rdap.registro.br`, `rdap.arin.net`, `rdap.db.ripe.net`, `rdap.verisign.com`...) e `cloudflare-dns.com` (ou apontar `SIMIO_DOH_URL` para o DoH interno).
 
 <p align="center">
   <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">

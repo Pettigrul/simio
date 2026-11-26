@@ -86,7 +86,19 @@ _IG_RESERVED = frozenset(
     {"p", "reel", "reels", "tv", "stories", "explore", "popular", "accounts", "direct", "about", "legal", "tags"}
 )
 _FB_VIDEO_RE = re.compile(r"(?i)^https?://(?:www\.|m\.|web\.)?facebook\.com/(?:[^/?#]+/videos/|reel/|watch/?\?v=)")
-_FB_POST_RE = re.compile(r"(?i)^https?://(?:www\.|m\.|web\.)?facebook\.com/[^/?#]+/posts/")
+_FB_POST_RE = re.compile(
+    r"(?i)^https?://(?:www\.|m\.|web\.)?facebook\.com/(?:[^/?#]+/posts/|[^/?#]+/photos/|photo\.php\?|photo/?\?"
+    r"|permalink\.php\?|story\.php\?)"
+)
+# Page/profile root ("facebook.com/lojax/" or "profile.php?id=..."): the public Page Plugin shows
+# name, avatar, bio, contact data and the latest posts, where the page itself shows a login wall.
+_FB_PAGE_RE = re.compile(
+    r"(?i)^https?://(?:www\.|m\.|web\.|pt-br\.)?facebook\.com/(?:(profile\.php)\?(?:[^#]*&)?id=(\d+)|([A-Za-z0-9.\-]+)/?(?:[?#].*)?$)"
+)
+_FB_RESERVED = frozenset(
+    {"groups", "watch", "events", "marketplace", "share", "login", "help", "policies", "pages", "gaming", "reel",
+     "hashtag", "search", "public", "people", "plugins", "dialog", "sharer", "home.php", "photo.php", "photo"}
+)
 
 
 def _social_embed_url(url: str) -> str:
@@ -102,6 +114,17 @@ def _social_embed_url(url: str) -> str:
         return f"https://www.facebook.com/plugins/video.php?href={quote(url, safe='')}&show_text=true&width=500"
     if _FB_POST_RE.match(url):
         return f"https://www.facebook.com/plugins/post.php?href={quote(url, safe='')}&show_text=true&width=500"
+    m = _FB_PAGE_RE.match(url)
+    if m and (m.group(2) or (m.group(3) or "").lower() not in _FB_RESERVED):
+        href = (
+            f"https://www.facebook.com/profile.php?id={m.group(2)}"
+            if m.group(2)
+            else f"https://www.facebook.com/{m.group(3)}/"
+        )
+        return (
+            f"https://www.facebook.com/plugins/page.php?href={quote(href, safe='')}"
+            "&tabs=timeline&width=500&height=1400&small_header=false&hide_cover=false"
+        )
     return url
 
 EXTRACT_JS = r"""
@@ -189,7 +212,21 @@ EXTRACT_JS = r"""
     footer_text: sectionText('footer,[role=contentinfo]'),
     above_fold_text: fold.join(' ').slice(0, 8000),
     visible_text: visText.slice(0, maxChars),
-    forms_present: document.forms.length
+    forms_present: document.forms.length,
+    // Fields the page asks for (never filled): password/CPF/card/token fields reveal credential harvesting.
+    inputs: [...document.querySelectorAll('input, select, textarea')]
+      .filter(e => !['hidden', 'submit', 'button', 'reset', 'image'].includes((e.type || '').toLowerCase()))
+      .filter(e => isVisible(e) || (e.type || '').toLowerCase() === 'password')
+      .slice(0, 60)
+      .map(e => ({
+        type: (e.type || e.tagName || '').toLowerCase().slice(0, 30),
+        name: clean(e.name || '').slice(0, 80), id: clean(e.id || '').slice(0, 80),
+        placeholder: clean(e.placeholder || '').slice(0, 120),
+        autocomplete: clean(e.getAttribute('autocomplete') || '').slice(0, 60),
+        label: clean((e.labels && e.labels[0] ? e.labels[0].innerText : '')
+          || e.getAttribute('aria-label') || '').slice(0, 120)
+      })),
+    form_actions: [...document.forms].map(f => (f.action || '').slice(0, 300)).filter(Boolean).slice(0, 20)
   };
 }
 """

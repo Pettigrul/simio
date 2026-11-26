@@ -8,6 +8,9 @@ from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+from simio.agents.domain_intel import summarize as summarize_intel
+from simio.core.models import DomainIntel
+from simio.core.urls import hostname_of
 from simio.reporting.data import CandidateRecord
 from simio.reporting.logo_data import BV_LOGO_WHITE_DATA_URI
 
@@ -19,7 +22,9 @@ _env = Environment(
 )
 
 
-def render_dossier(rec: CandidateRecord, output_dir: Path, dossier_path: Path) -> str:
+def render_dossier(
+    rec: CandidateRecord, output_dir: Path, dossier_path: Path, intel: dict[str, str] | None = None
+) -> str:
     ev = rec.evidence
     shots = []
     if ev:
@@ -44,13 +49,18 @@ def render_dossier(rec: CandidateRecord, output_dir: Path, dossier_path: Path) -
         hits=rec.hits,
         transitions=rec.transitions,
         shots=shots,
+        di=intel,
         bv_logo_white_uri=BV_LOGO_WHITE_DATA_URI,
         generated_at=datetime.now(UTC).isoformat(timespec="seconds"),
     )
 
 
 def write_dossiers(
-    records: list[CandidateRecord], output_dir: Path, report_dir: Path, all_candidates: bool = False
+    records: list[CandidateRecord],
+    output_dir: Path,
+    report_dir: Path,
+    all_candidates: bool = False,
+    domain_intel: dict[str, DomainIntel] | None = None,
 ) -> dict[str, str]:
     """Write dossiers for priority candidates (or all). Returns {candidate_id: path relative to
     output_dir}."""
@@ -61,6 +71,10 @@ def write_dossiers(
         if not (all_candidates or rec.is_priority):
             continue
         path = ddir / f"{rec.candidate.id}.html"
-        path.write_text(render_dossier(rec, output_dir, path), encoding="utf-8")
+        host = hostname_of((rec.evidence.final_url if rec.evidence else None) or rec.candidate.url)
+        item = (domain_intel or {}).get(host)
+        path.write_text(
+            render_dossier(rec, output_dir, path, summarize_intel(item) if item else None), encoding="utf-8"
+        )
         written[rec.candidate.id] = Path(os.path.relpath(path, output_dir)).as_posix()
     return written

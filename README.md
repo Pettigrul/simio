@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <strong>Harness multiagente determinístico para descoberta ativa, coleta segura, auditoria regulatória (Resolução CMN nº 4.935/2021) e detecção de uso indevido ou usurpação de marca (<em>brand impersonation</em>).</strong>
+  <strong>Harness multiagente determinístico para descoberta ativa, coleta segura, auditoria regulatória (Resolução CMN nº 4.935/2021), detecção de uso indevido ou usurpação de marca (<em>brand impersonation</em>) e inteligência de ameaças (phishing, painéis e sites falsos).</strong>
 </p>
 
 <p align="center">
@@ -51,7 +51,8 @@ O sistema correlaciona cinco frentes fundamentais:
 | **Pydantic v2 & Pydantic-Settings** | Contratos de dados estritos (`extra="forbid"`), validação de esquemas de saída do Gemini e leitura tipada de `.env`. |
 | **HTTPX** | Cliente HTTP assíncrono para validação de conexões, checagem de URLs e resolução segura de redirecionamentos. |
 | **TLDExtract** | Extração offline de domínio registrável (ex.: separa subdomínios de plataformas e aplica decaimento por repetição). |
-| **OpenPyXL & Jinja2** | Geração da planilha Excel consolidada (8 abas com proteção anti-fórmula) e dos dossiês periciais HTML. |
+| **Pillow & NumPy** | Comparação de imagem determinística (logo antiga) nos prints já com hash, sem IA, e recortes para o relatório. |
+| **OpenPyXL, Jinja2 & Chromium** | Planilha Excel (até 12 abas, com proteção anti-fórmula), relatório consolidado HTML/PDF e dossiês periciais HTML. |
 | **Typer** | Interface de linha de comando (CLI) intuitiva e estruturada. |
 
 <p align="center">
@@ -74,6 +75,8 @@ A descoberta de ameaças do SIMIO não depende de buscas ingênuas ou manuais. E
 | **`brave` / `urlscan`** | Conectores opcionais, ativados quando há chave no `.env`. | Conforme o provedor |
 
 Todas as fontes rodam **intercaladas**: um orçamento pequeno de consultas continua cobrindo todas as frentes.
+
+> **Dorks e links opacos**: com operadores (`site:`, `intitle:`, `inurl:`, `OR`, `-site:`), o Google esconde 6 a 9 de cada 10 resultados atrás de links opacos (`google.com/goto?url=…`), que nunca são seguidos. Quando isso acontece, o SIMIO refaz a busca em até 3 versões **sem operadores** (`site:instagram.com ("Banco BV" OR "bv financeira") feirão` vira `instagram "Banco BV" feirão`, `instagram "bv financeira" feirão`...), filtra os `-site:` do lado do cliente e soma os resultados diretos (1 crédito por versão; `SIMIO_SERPER_PLAIN_VARIANTS`, `0` desliga). Dos opacos que sobram, a página inicial do domínio exibido entra na fila e o resto fica registrado na campanha.
 
 ### <img src="assets/icones/busca.svg" width="20" height="20" valign="middle"> 3.2. Vetores cobertos (independentes da lista de COBANs)
 
@@ -104,11 +107,9 @@ A logo antiga do BV (**B vermelho sobre V azul**) não pode ser usada por tercei
 
 Com a logo antiga detectada, o caso fica no mínimo em `REVIEW_REQUIRED` com prioridade `HIGH`, **mesmo se o revisor sugerir descartar**. O Excel e o relatório HTML marcam "LOGO ANTIGA", e a aba **"Logo antiga"** do Excel lista cada achado com o recorte da imagem.
 
-**Campanha focada** só nessa questão:
-```bash
-python -m simio hunt --brand bv --focus logo-antiga --limit 1000 --workers 5
-```
-Busca própria (vitrines de "bancos parceiros", páginas de financiamento, energia solar, consignado e uma busca por estado), busca reversa de imagem e os COBANs do cadastro. Só vão aos modelos as páginas em que a comparação de imagem achou a logo ou que têm imagem com o nome da marca no arquivo (ex.: `logo-bv-financeira.png`); as demais são encerradas sem custo de IA.
+- **Sites de referência** (repositórios de logos, bancos de imagens, enciclopédias, imprensa), listados em `legacy_logo_exempt_domains`, registram o achado sem elevar o caso.
+- **As camadas se completam**: a comparação de imagem não vê logo cortada na borda do print, coberta por aviso de cookies ou montada sobre foto; nesses casos o Gemini registra. Logo em escala de cinza não permite distinguir a versão antiga da atual.
+- Existe uma **campanha focada** só nessa questão (ver §3.7 e §7.2).
 
 ### <img src="assets/icones/validado.svg" width="20" height="20" valign="middle"> 3.5. Busca complementar guiada por COBANs (H9)
 Opcional e sempre **depois** da varredura aberta. Pesquisa o nome de correspondentes cadastrados junto com a marca para identificar **qual COBAN** está usando a marca de forma indevida. A seleção começa pelos cadastros mais recentes e muda a cada campanha, até percorrer toda a base. Nomes de MEI com CPF nunca são pesquisados (LGPD).
@@ -116,8 +117,43 @@ Opcional e sempre **depois** da varredura aberta. Pesquisa o nome de corresponde
 ### <img src="assets/icones/grounding.svg" width="20" height="20" valign="middle"> 3.6. Garantias contra URLs inventadas
 1. **Só URLs de metadados de busca**: no Grounding, links citados apenas no texto do modelo são **rejeitados**; valem só os de `grounding_metadata.grounding_chunks`.
 2. **Redirecionamentos resolvidos com segurança**: links `vertexaisearch.cloud.google.com/grounding-api-redirect/...` são desfeitos sem seguir automaticamente (`follow_redirects=False`) e passam pela política anti-SSRF.
-3. **Redes sociais**: o Grounding remove Instagram e Facebook dos resultados; por isso essas plataformas vêm do Serper (com uma busca de reserva no Yahoo). Links opacos `google.com/goto?...` não viram candidatos e ficam registrados para conferência manual.
+3. **Redes sociais**: o Grounding remove Instagram e Facebook dos resultados; por isso essas plataformas vêm do Serper, pelas versões sem operadores (`instagram "Banco BV" feirão`), que devolvem links diretos de posts, Reels e perfis. A reserva no Yahoo é só complementar (costuma esbarrar na tela de consentimento).
 4. **Importação manual**: listas de ferramentas de *threat intel* (Spiderfoot, Maltego, feeds de phishing) entram com `--urls-file`.
+
+### <img src="assets/icones/regras.svg" width="20" height="20" valign="middle"> 3.7. Modos de campanha
+
+| Modo | Comando | Busca | O que vai aos modelos |
+|---|---|---|---|
+| **Ampla** (padrão) | `hunt` | 38 hipóteses, todas as fontes, COBANs (H9) | Todas as páginas da fila |
+| **Logo antiga** | `hunt --focus logo-antiga` | 9 hipóteses próprias (H13, 47 dorks), busca reversa (H12) e COBANs (H9); fontes `serper,lens` | Só páginas com a logo confirmada por imagem ou com imagem que leva o nome da marca no arquivo ou no texto alternativo (ex.: `logo-bv-financeira.png`, `alt="BV"`). As demais fecham como `NO_INDICATION` sem custo de IA |
+| **Ameaças** | `hunt --focus ameacas` | Inteligência de ameaças **sem o contexto de COBANs**: 21 hipóteses (H14 + fraudes H10 + serviços sensíveis H7), domínios semelhantes e certificados; fontes `grounding,serper,typosquat,crtsh` | Todas as páginas da fila |
+
+### <img src="assets/icones/alerta.svg" width="20" height="20" valign="middle"> 3.8. Inteligência de ameaças (phishing e painéis falsos)
+Além do uso indevido da marca por correspondentes, o SIMIO procura páginas que **se passam pelo banco ou põem clientes em risco**:
+
+| Vetor (H14) | O que procura |
+|---|---|
+| **Login e portal de parceiro falsos** | "Acesse sua conta", "digite sua senha", portais "parceiro BV" fora dos domínios oficiais |
+| **Hospedagem gratuita** | A marca em `vercel.app`, `netlify.app`, `web.app`, `github.io`, `wixsite.com`, `weebly.com`, `blogspot.com`... |
+| **Boleto, Pix e taxa antecipada** | Geração de boleto/Pix, consulta de débito por CPF, "taxa de liberação" |
+| **Painéis e venda de dados** | Painéis de consulta, logins e leads citando a marca (inclusive no Telegram) |
+| **Perfis e apps falsos** | Atendimento falso em Instagram, Facebook e TikTok; APKs fora das lojas oficiais |
+
+- **Coleta de credenciais detectada sem IA**: o coletor registra os campos que cada página pede (**nunca preenche**). Página fora dos domínios oficiais que usa a marca e pede **senha, cartão, CVV, token ou agência/conta** recebe as evidências `E-FORM-*`, fica no mínimo `REVIEW_REQUIRED`/`HIGH` e o revisor não pode descartá-la. Formulário que envia os dados para outro domínio também é registrado. CPF sozinho não dispara a regra (é comum em simuladores legítimos).
+- **Análise com olhar de ameaça**: nesta campanha o analisador recebe o adendo `prompts/threat_mode.md`, que substitui a pergunta de conformidade de COBAN por "isto se passa pelo banco ou põe clientes em risco?".
+- **Triagem de ameaças, sem custo de IA**: relê a campanha já analisada e dá a cada página um nível (**CRÍTICO, ALTO, MÉDIO, BAIXO**) com os fatos que o justificam: coleta de credenciais, personificação, domínio parecido ou com a marca, APK fora das lojas, hospedagem gratuita, domínio recém-criado, boleto/quitação com a marca. Parceiros identificados, notícias, diretórios, homônimos e **domínios registrados pelo próprio banco** (registro defensivo, identificado pelo RDAP) não entram. Funciona também em campanhas antigas: basta `python -m simio report -c <ID>`.
+- **Aba "Ameaças" no Excel e relatório `*-ameacas.html`**: nível, categoria, fatos, URL, registro do domínio, hospedagem e contatos de abuso, além dos dados pedidos e do destino do formulário: os indicadores técnicos (IOCs) prontos para bloqueio e *takedown*. O HTML traz a captura de cada página e as URLs **desarmadas** (`hxxps://site[.]com`).
+- **Quem está por trás do domínio (aba "Domínios")**: para cada achado (`STRONG`/`REVIEW` ou que pede credenciais), o SIMIO consulta o **RDAP** (o WHOIS estruturado) e o **DNS**, sem chave e sem custo:
+
+| Informação | Para que serve |
+|---|---|
+| **Data de criação e idade** | Domínio criado há poucos dias é sinal forte de golpe |
+| **Registrador e titular** | No `.br`, o Registro.br publica o **nome e o CNPJ** de empresas. Pessoa física aparece só como "pessoa física" (LGPD) |
+| **NS, MX e se ainda resolve** | Infraestrutura usada e se o site continua no ar |
+| **Hospedagem (rede do IP)** | Provedor que hospeda a página (Vercel, Cloudflare, Hostinger...) |
+| **Contatos de abuso** | E-mails de abuso do registrador e do provedor, para pedir a derrubada |
+
+  Em plataformas (`*.weebly.com`, `*.lovable.app`, `*.site123.me`...), o registro e o DNS são da plataforma: o responsável pela página só é identificável por ela, e o relatório indica o contato de abuso da própria plataforma.
 
 <p align="center">
   <img src="assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
@@ -156,6 +192,8 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 | **H10** Fraudes | Leilão, ágio, falso empréstimo, app falso, central falsa, vagas, investimento |
 | **H11** NaPista | Uso indevido da marca do marketplace do grupo |
 | **H12** Logo antiga | Busca reversa de imagem da identidade visual descontinuada |
+| **H13** Logo antiga (focada) | Vitrines de "bancos parceiros", financiamento, solar, consignado e uma busca por UF |
+| **H14** Ameaças (focada) | Login e portal de parceiro falsos, hospedagem gratuita, boleto/Pix, taxa antecipada, painéis de dados, perfis e apps falsos |
 
 - **Higienização ativa**: exclui domínios e perfis oficiais do banco, joga notícias, reclamações e processos para o fim da fila e aplica decaimento a URLs repetidas do mesmo domínio.
 
@@ -165,7 +203,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
   - Valida a URL contra a política de rede;
   - Resolve o DNS previamente e **bloqueia IPs de intranet/privados** (`10.0.0.0/8`, `192.168.0.0/16`, `127.0.0.1`, endpoints de nuvem `169.254.169.254`);
   - Realiza **DNS Pinning** (conecta diretamente no IP público validado, mitigando *DNS Rebinding*).
-- Abre posts e Reels do Instagram e do Facebook pelos endpoints públicos de *embed*, que mostram imagem, perfil e legenda sem exigir login.
+- Abre posts e Reels do Instagram e do Facebook pelos endpoints públicos de *embed*, que mostram imagem, perfil e legenda sem exigir login. Páginas e perfis do Facebook passam pelo *Page Plugin* público (nome, foto, bio, CNPJ/contato e últimos posts) em vez da tela de login; fotos e `permalink.php` pelo plugin de post.
 - Captura evidências: `page.html.txt`, screenshots (`viewport.png` e `fullpage.png`), textos do DOM e gera manifesto indexado com **hash SHA-256**.
 
 ### <img src="assets/icones/classificacao.svg" width="18" height="18" valign="middle"> Fase 3: Identificação de Titularidade (`IdentityAgent`)
@@ -183,6 +221,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
   - Avalia o destaque do logotipo e cores, distinguindo a logo atual da **logo antiga** (que também é confirmada por comparação de imagem sem IA);
   - Analisa a presença de discursos de transparência;
   - Detecta se é loja multimarca legítima (menção simultânea a múltiplos bancos concorrentes como Santander e Itaú);
+  - Recebe junto os achados da **comparação de imagem** (`E-VIS-LEGACY-*`), feita antes e sem IA;
   - Possui *fallback* determinístico offline caso a IA esteja indisponível.
 - O **`ComplianceAgent`** enquadra o caso contra a **Resolução CMN nº 4.935/2021**:
   - **Art. 14, II**: Uso indevido de logotipo ou elementos visuais exclusivos da contratante.
@@ -199,8 +238,10 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 - Divergências entre o modelo e as regras determinísticas forçam o caso para `REVIEW_REQUIRED` (revisão humana obrigatória).
 
 ### <img src="assets/icones/relatorio.svg" width="18" height="18" valign="middle"> Fase 7: Relatórios Consolidados (`Reporting`)
-- **Planilha Excel (`.xlsx`)**: 8 abas de alta gerência e auditoria. Sanitiza textos para impedir ataques de *Spreadsheet Formula Injection*.
-- **Dossiês HTML**: Gera páginas estáticas completas com histórico pericial, capturas de tela e evidências, blindadas por política restritiva de *Content-Security-Policy*.
+- **Planilha Excel (`.xlsx`)**: até 12 abas de gerência e auditoria (resumo, **ameaças com IOCs**, **domínios (registro, DNS, hospedagem e contatos de abuso)**, **logo antiga com recortes**, candidatos, indícios fortes, identidade, entidades, evidências, log, erros e glossário). Sanitiza textos para impedir *Spreadsheet Formula Injection*.
+- **Relatório consolidado HTML e PDF**: visão da campanha inteira, com marcações "LOGO ANTIGA" e "PEDE SENHA/CARTÃO/TOKEN".
+- **Dossiês HTML**: páginas estáticas com histórico pericial, capturas de tela e evidências, blindadas por *Content-Security-Policy* restritiva.
+- **Recortes da logo antiga** (`logo-antiga/*.png`): o trecho de cada print onde a logo foi encontrada.
 
 <p align="center">
   <img src="assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
@@ -215,6 +256,7 @@ O ciclo de vida de uma investigação é determinístico e composto por 7 fases:
 | **<img src="assets/icones/alerta.svg" width="18" height="18" valign="middle"> Combate a Fraudes de Boletos** | Mapear páginas que usam a marca para atrair clientes para WhatsApp falso prometendo quitação com desconto. |
 | **<img src="assets/icones/alerta.svg" width="18" height="18" valign="middle"> Golpes com a Marca** | Encontrar leilões falsos, venda de ágio, empréstimo com taxa antecipada, apps e centrais falsas. |
 | **<img src="assets/icones/marca.svg" width="18" height="18" valign="middle"> Identidade Visual Antiga** | Identificar correspondentes e terceiros que ainda usam a logo descontinuada (B vermelho + V azul). |
+| **<img src="assets/icones/alerta.svg" width="18" height="18" valign="middle"> Phishing e Painéis Falsos** | Encontrar páginas de login, portais de parceiro e painéis falsos que pedem senha, cartão ou token em nome do banco. |
 | **<img src="assets/icones/web.svg" width="18" height="18" valign="middle"> Domínios Semelhantes** | Detectar domínios registrados parecidos com os oficiais antes que virem phishing. |
 | **<img src="assets/icones/evidencia.svg" width="18" height="18" valign="middle"> Instrução Pericial e Takedowns** | Produção rápida de dossiês com capturas autenticadas por hashes SHA-256 para subsidiar notificações e processos. |
 
@@ -309,44 +351,67 @@ python -m simio hunt --brand bv --limit 1000 --workers 5
 
 > `--limit` é o número máximo de **candidatos analisados** (URLs únicas), não de buscas. A descoberta roda inteira; o limite só corta a fila de análise, que é ordenada por risco.
 
-### 7.2. Investigação a partir de Lista de URLs
+### 7.2. Campanha Focada
+Investiga uma única questão, com busca própria e triagem sem IA (ver §3.7):
+```bash
+python -m simio hunt --brand bv --focus logo-antiga --limit 1000 --workers 5
+```
+Custo típico: ~100 créditos do Serper e poucas dezenas de chamadas ao Gemini. O resultado principal fica na aba **"Logo antiga"** do Excel.
+
+Inteligência de ameaças, sem o contexto de COBANs:
+```bash
+python -m simio hunt --brand bv --focus ameacas --limit 500 --workers 5
+```
+O resultado principal fica na aba **"Ameaças"** do Excel. Para escolher as fontes de qualquer modo, use `--sources` (ex.: `--sources serper,grounding`).
+
+### 7.3. Investigação a partir de Lista de URLs
 Examina links específicos fornecidos em um arquivo `.txt` ou `.csv`:
 ```powershell
 python.exe -m simio hunt --urls-file "urls_suspeitas.txt" --limit 30
 ```
 
-### 7.3. Modo 100% Offline (Sem Custos de LLM)
+### 7.4. Modo 100% Offline (Sem Custos de LLM)
 Navega nas URLs importadas e aplica exclusivamente as heurísticas locais:
 ```powershell
 python.exe -m simio hunt --offline --urls-file "urls_suspeitas.txt"
 ```
 
-### 7.4. Retomada de Campanha Interrompida
-Se a execução for pausada por esgotamento de orçamento ou queda de conexão, retoma exatamente do ponto em que parou sem refazer análises de IA já concluídas:
+### 7.5. Retomada de Campanha Interrompida
+Se a execução for pausada por esgotamento de orçamento ou queda de conexão, retoma exatamente do ponto em que parou, com os parâmetros originais (inclusive `--focus`) e sem refazer análises de IA já concluídas:
 ```powershell
-python.exe -m simio resume
+python.exe -m simio resume                                  # última campanha
+python.exe -m simio resume -c <CAMPAIGN_ID> --retry-failed  # reprocessa também as que falharam
 ```
 
-### 7.5. Geração de Relatórios
+### 7.6. Geração de Relatórios
 Compila os relatórios da última campanha (ou use `-c <ID>`):
 ```powershell
 python.exe -m simio report
 ```
-Arquivos gerados em `output/reports/<CAMPAIGN_ID>/`:
-- `simio_report_<CAMPAIGN_ID>.xlsx` (Planilha consolidada com 8 abas)
-- `dossiers/<CANDIDATE_ID>.html` (Dossiês visuais completos)
+Arquivos gerados em `output/reports/<CAMPAIGN_ID>/` (com carimbo de data e hora no nome):
+- `simio-<CAMPAIGN_ID>-<data>.xlsx` (planilha consolidada, até 12 abas)
+- `simio-<CAMPAIGN_ID>-<data>.html` e `.pdf` (relatório consolidado)
+- `dossiers/<CANDIDATE_ID>.html` (dossiês visuais completos)
+- `logo-antiga/<CANDIDATE_ID>-<domínio>.png` (recortes da logo antiga, quando houver)
 
-### 7.6. Atualização Mensal da Lista de COBANs
+O `hunt` e o `resume` levantam registro, DNS e hospedagem dos achados antes do relatório. Para fazer isso numa campanha antiga, ou completar hosts que falharam (limite de consultas dos registros):
+```powershell
+python.exe -m simio enrich -c <CAMPAIGN_ID>             # só os hosts ainda sem dados
+python.exe -m simio enrich -c <CAMPAIGN_ID> --refresh   # consulta tudo de novo
+```
+
+### 7.7. Atualização Mensal da Lista de COBANs
 Limpa a exportação de correspondentes ativos (remove duplicados, CNPJs inválidos e entidades do próprio banco) e grava a base usada pelo `IdentityAgent`:
 ```bash
 python scripts/prepare_coban_registry.py Todos_Cobans_Ativos.xlsx --out data/coban_registry_bv.csv
 ```
 A base fica em `data/`, que o git ignora. Depois, atualize `SIMIO_COBAN_REGISTRY_REFERENCE_DATE` no `.env`.
 
-### 7.7. Monitoramento de Status
-Consulta o painel de status da campanha e consumo de tokens:
+### 7.8. Monitoramento de Status
+Consulta o estado da campanha, o consumo de tokens e as fontes usadas:
 ```powershell
-python.exe -m simio status
+python.exe -m simio status                       # lista as campanhas
+python.exe -m simio status --campaign <ID>       # detalhe de uma campanha
 ```
 
 <p align="center">
@@ -358,6 +423,7 @@ python.exe -m simio status
 - **Perfis de Marca (`src/simio/brands/`)**: Adicione novos arquivos `.toml` para investigar outras instituições financeiras e marcas corporativas.
 - **Novos Conectores**: Plugue novos motores de busca ou feeds de ameaças em `src/simio/providers/search.py`.
 - **Novas Hipóteses e Dorks**: Adicione vetores em `build_hypotheses()` (`src/simio/agents/discovery.py`); eles passam a rodar em todas as fontes.
+- **Novos Modos de Campanha**: Registre o nome em `FOCUS_MODES`, as hipóteses e as fontes padrão em `src/simio/agents/discovery.py` e a regra de triagem em `_analyze()` (`src/simio/core/orchestrator.py`).
 - **Logo antiga**: Troque ou acrescente imagens de referência em `legacy_logo_references` e URLs públicas para a busca reversa em `legacy_logo_search_urls` no `.toml` da marca. Sites que só catalogam a logo (repositórios, bancos de imagens, imprensa) ficam em `legacy_logo_exempt_domains`.
 - **Typosquatting**: Ajuste sementes, rótulos e palavras do setor em `typosquat_seeds`, `typosquat_combo_labels` e `typosquat_keywords` no `.toml` da marca.
 - **Novas Normativas**: Estenda as regras de conformidade adicionando dispositivos regulatórios em `src/simio/knowledge/`.

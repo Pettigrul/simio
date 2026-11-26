@@ -59,6 +59,9 @@ EPHEMERAL_HOSTING_DOMAINS = (
 )
 
 _ABANDONED_BUILDER_HOSTS = ("weebly.com", "site123.me")
+# Free/ephemeral hosting and site builders (reported as hosting context in threat campaigns).
+FREE_HOSTING_DOMAINS = (*EPHEMERAL_HOSTING_DOMAINS, *_ABANDONED_BUILDER_HOSTS, "webnode.page", "godaddysites.com",
+                        "hostingersite.com")
 
 _SOCIAL_INDEX_RE = re.compile(
     r"(?i)^https?://(?:(?:www|m)\.)?(?:"
@@ -500,11 +503,137 @@ def build_hypotheses(brand: BrandProfile) -> list[SearchHypothesis]:
 
 # Focused campaigns (``simio hunt --focus``): only one question is investigated.
 FOCUS_LEGACY_LOGO = "logo-antiga"
-FOCUS_MODES = (FOCUS_LEGACY_LOGO,)
+FOCUS_THREAT = "ameacas"
+FOCUS_MODES = (FOCUS_LEGACY_LOGO, FOCUS_THREAT)
 # Connectors used by a focused campaign when the operator does not choose them.
-FOCUS_DEFAULT_SOURCES = {FOCUS_LEGACY_LOGO: ("serper", "lens")}
-# Connectors that never contribute to a focused campaign (domain-level discovery without page content).
-_FOCUS_SKIPPED = {FOCUS_LEGACY_LOGO: {"typosquat", "crtsh", "urlscan"}}
+FOCUS_DEFAULT_SOURCES = {
+    FOCUS_LEGACY_LOGO: ("serper", "lens"),
+    FOCUS_THREAT: ("grounding", "serper", "typosquat", "crtsh", "urlscan", "brave"),
+}
+# Connectors that never contribute to a focused campaign.
+_FOCUS_SKIPPED = {FOCUS_LEGACY_LOGO: {"typosquat", "crtsh", "urlscan"}, FOCUS_THREAT: {"lens"}}
+# Focused campaigns detached from the correspondent context: no COBAN-seeded searches (H9).
+FOCUS_WITHOUT_COBANS = frozenset({FOCUS_THREAT})
+
+
+def _threat_grounding_prompt(description: str, dorks: list[str]) -> str:
+    joined = "\n".join(f"  - {q}" for q in dorks)
+    return (
+        f"Objetivo (inteligência de ameaças e proteção de marca): {description}.\n"
+        f"Execute no Google Search as seguintes consultas (dorks):\n{joined}\n"
+        f"Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos) que possam "
+        f"se passar pela instituição ou enganar seus clientes. Para cada uma, informe a URL, quem parece operar "
+        f"a página e o que ela oferece ou pede (login, senha, CPF, dados de cartão, token, boleto ou Pix, "
+        f"download de aplicativo, contato por WhatsApp/Telegram) e por que parece falsa ou perigosa."
+    )
+
+
+def build_threat_hypotheses(brand: BrandProfile) -> list[SearchHypothesis]:
+    """Threat-intelligence campaign, detached from the correspondent (COBAN) context: fake login and
+    partner portals, credential/payment harvesting, fake apps and support channels, pages on free hosting
+    and data-selling panels, plus the fraud (H10) and sensitive-service (H7) hypotheses of the open sweep."""
+    name = brand.display_name
+    alt = next((t for t in brand.strong_terms if t.lower() != name.lower()), name)
+    b = f'("{name}" OR "{alt}")'
+    excl = " ".join(f"-site:{d}" for d in brand.official_domains)
+    ex = f"{excl} -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br"
+    hs: list[SearchHypothesis] = []
+
+    def add_h(hid: str, desc: str, dorks: list[str]) -> None:
+        hs.append(
+            SearchHypothesis(
+                id=hid, description=desc, grounding_prompt=_threat_grounding_prompt(desc, dorks), keyword_queries=dorks
+            )
+        )
+
+    add_h(
+        "H14-threat:login-falso",
+        "Páginas de login/acesso bancário falsas usando a marca (phishing de credenciais)",
+        [
+            f'(intitle:"{name}" OR intitle:"{alt}") (login OR entrar OR "acesse sua conta" OR "internet banking") {ex}',
+            f'{b} ("digite sua senha" OR "informe sua senha" OR "senha eletrônica" OR "código de acesso") {ex}',
+            f"(inurl:bancobv OR inurl:bvfinanceira OR inurl:bv-online OR inurl:bvonline) "
+            f"(inurl:login OR inurl:acesso OR inurl:auth OR inurl:conta OR inurl:seguranca) {ex}",
+        ],
+    )
+    add_h(
+        "H14-threat:portal-parceiro-falso",
+        "Portais falsos de parceiro/correspondente (roubo de acesso de lojistas e promotoras)",
+        [
+            f'("portal do parceiro" OR "portal parceiro" OR "acesso parceiro" OR "área do parceiro") {b} login {ex}',
+            f'(intitle:"parceiro BV" OR intitle:"BV parceiros" OR intitle:"portal BV") (login OR acesso OR senha) {ex}',
+        ],
+    )
+    add_h(
+        "H14-threat:hospedagem-gratuita",
+        "Páginas com a marca em hospedagem gratuita/efêmera (padrão de kits de phishing)",
+        [
+            f"(site:vercel.app OR site:netlify.app OR site:pages.dev OR site:github.io) {b}",
+            f"(site:web.app OR site:firebaseapp.com OR site:lovable.app OR site:canva.site) {b}",
+            f"(site:wixsite.com OR site:weebly.com OR site:site123.me OR site:webnode.page) {b} "
+            f"(boleto OR acordo OR quitação OR empréstimo OR login)",
+            f"(site:blogspot.com OR site:wordpress.com OR site:godaddysites.com OR site:hostingersite.com) {b} "
+            f"(boleto OR acordo OR quitação OR empréstimo)",
+        ],
+    )
+    add_h(
+        "H14-threat:boleto-pix-falso",
+        "Geração de boleto/Pix e consulta de débitos fora dos canais oficiais",
+        [
+            f'("gerar boleto" OR "emitir boleto" OR "boleto atualizado" OR "chave pix") {b} '
+            f"(acordo OR quitação OR parcela OR débito) {ex}",
+            f'("consultar CPF" OR "consulte seu CPF" OR "digite seu CPF") {b} (acordo OR débito OR desconto OR boleto) {ex}',
+        ],
+    )
+    add_h(
+        "H14-threat:taxa-antecipada",
+        "Empréstimo/financiamento que cobra taxa antecipada em nome da marca",
+        [
+            f'{b} ("taxa de liberação" OR "taxa de cadastro" OR "seguro prestamista" OR "depósito antecipado") {ex}',
+            f'{b} ("empréstimo aprovado" OR "crédito liberado") (pix OR whatsapp) {ex}',
+        ],
+    )
+    add_h(
+        "H14-threat:paineis-dados",
+        "Painéis de consulta, venda de dados, logins ou leads citando a marca",
+        [
+            f'("painel de consulta" OR "painel consulta" OR "consulta completa") {b} (CPF OR dados) {ex}',
+            f"site:t.me {b} (painel OR \"consulta CPF\" OR logins OR \"base de dados\" OR leads)",
+            f'(logins OR "contas" OR "acessos" OR "leads") {b} (venda OR vendo OR telegram) {ex}',
+        ],
+    )
+    add_h(
+        "H14-threat:perfis-falsos",
+        "Perfis em redes sociais se passando pelo atendimento da marca",
+        [
+            f"site:instagram.com {b} (atendimento OR central OR quitação OR acordo OR boleto)",
+            f'site:facebook.com {b} ("atendimento oficial" OR quitação OR acordo OR "limpa nome")',
+            f'site:tiktok.com {b} (quitação OR acordo OR empréstimo OR "dinheiro rápido")',
+        ],
+    )
+    add_h(
+        "H14-threat:apps-falsos",
+        "Aplicativos/APKs da marca fora das lojas oficiais",
+        [
+            f"{b} (apk OR \"download\") (site:apkpure.com OR site:apkcombo.com OR site:uptodown.com OR site:aptoide.com)",
+            f'{b} ("baixar aplicativo" OR "instale o app" OR "apk") -site:play.google.com -site:apps.apple.com {ex}',
+        ],
+    )
+    add_h(
+        "H14-threat:napista-golpe",
+        "Golpes usando o marketplace do grupo (NaPista)",
+        [f'"NaPista" (leilão OR retomados OR "sinal" OR pix OR "taxa") {ex} -site:napista.com.br'],
+    )
+    reused = [
+        h
+        for h in build_hypotheses(brand)
+        if h.id.startswith(("H7-", "H10-")) or h.id == "H6-platform:Telegram-grupos"
+    ]
+    for h in reused:
+        hs.append(
+            h.model_copy(update={"grounding_prompt": _threat_grounding_prompt(h.description, h.keyword_queries)})
+        )
+    return hs
 
 
 def build_legacy_logo_hypotheses(brand: BrandProfile) -> list[SearchHypothesis]:
@@ -696,8 +825,8 @@ class DiscoveryAgent:
 
     def plan(self, available: list[Connector]) -> list[PlannedQuery]:
         """Interleave hypotheses across connectors so a small budget still diversifies."""
-        focused = self.focus == FOCUS_LEGACY_LOGO
-        base = build_legacy_logo_hypotheses(self.brand) if focused else build_hypotheses(self.brand)
+        builder = {FOCUS_LEGACY_LOGO: build_legacy_logo_hypotheses, FOCUS_THREAT: build_threat_hypotheses}
+        base = builder.get(self.focus or "", build_hypotheses)(self.brand)
         hyps = base + list(self.extra_hypotheses)
         skipped = _FOCUS_SKIPPED.get(self.focus or "", set())
         per_connector: list[list[PlannedQuery]] = []
@@ -843,8 +972,9 @@ def deduplicate(
     return list(groups.values()), rejected
 
 
-def prioritise(groups: list[CandidateGroup], brand: BrandProfile) -> list[CandidateGroup]:
+def prioritise(groups: list[CandidateGroup], brand: BrandProfile, focus: str | None = None) -> list[CandidateGroup]:
     """Deterministic pre-collection score. It only orders the queue; it is not a finding."""
+    threat = focus == FOCUS_THREAT
     for g in groups:
         titles_text = " ".join(filter(None, (h.title or "" for h in g.hits)))
         snippets_text = " ".join(filter(None, (h.snippet or "" for h in g.hits)))
@@ -866,11 +996,17 @@ def prioritise(groups: list[CandidateGroup], brand: BrandProfile) -> list[Candid
         if not is_manual and _INSTITUTION_DIRECTORY_RE.search(g.normalized_url):
             g.excluded_reason = "public business directory entry for the institution itself"
             continue
-        if not is_manual and domain_matches(g.hostname, _ABANDONED_BUILDER_HOSTS):
+        if not is_manual and not threat and domain_matches(g.hostname, _ABANDONED_BUILDER_HOSTS):
             g.excluded_reason = "generic free-builder boleto/phishing page outside correspondent scope"
             continue
 
         score, reasons = 0.0, []
+        if threat and domain_matches(g.hostname, _ABANDONED_BUILDER_HOSTS):
+            score += 2
+            reasons.append("free website builder (common for phishing kits)")
+        if all(h.metadata.get("recovered_from_google_redirect") for h in g.hits):
+            score -= 1
+            reasons.append("home page of a host recovered from an opaque Google result (matched page unknown)")
         if pat := brand.domain_brand_match(g.hostname):
             score += 3
             reasons.append(f"brand pattern in domain ({pat})")

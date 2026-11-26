@@ -352,6 +352,16 @@ def compose_final(
                 "revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana"
             )
         prio = max(prio, Priority.HIGH, key=lambda p: PRIORITY_RANK[p])
+    sensitive = getattr(assessment, "sensitive_data_requested", [])
+    if sensitive:
+        # A brand page asking for credentials is never cleared automatically (not even by the reviewer).
+        if cls in (C.NO_INDICATION, C.INCONCLUSIVE):
+            notes.append(
+                f"resultado revisado para {cls.value}, mas a página usa a marca e pede "
+                f"{', '.join(sensitive)}; mantido para revisão humana"
+            )
+            cls = C.REVIEW_REQUIRED
+        prio = max(prio, Priority.HIGH, key=lambda p: PRIORITY_RANK[p])
     limitations = [*evidence.not_inspected, *identity.limitations, *compliance.limitations]
     if assessment.analyzer.startswith("heuristic"):
         limitations.append(
@@ -384,6 +394,7 @@ def compose_final(
         routing=suggest_routing(cls, identity.classification),
         legacy_visual_identity=assessment.legacy_visual_identity,
         legacy_visual_identity_source=getattr(assessment, "legacy_visual_identity_source", ""),
+        sensitive_data_requested=list(sensitive),
         compliance_summary=[
             f"{f.requirement_id}: {f.status.value}"
             for f in compliance.findings

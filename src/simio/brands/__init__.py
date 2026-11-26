@@ -80,6 +80,8 @@ class BrandProfile(BaseModel):
     sensitive_service_phrases: list[str] = Field(default_factory=list)
     homonym_context_phrases: list[str] = Field(default_factory=list)
     deprioritized_domains: list[str] = Field(default_factory=list)
+    # Domains of unrelated organisations that share the acronym (threat triage never flags them).
+    homonym_domains: list[str] = Field(default_factory=list)
     # Lookalike-domain discovery (providers/typosquat.py)
     typosquat_seeds: list[str] = Field(default_factory=list)
     typosquat_combo_labels: list[str] = Field(default_factory=list)

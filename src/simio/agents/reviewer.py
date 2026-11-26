@@ -181,12 +181,18 @@ def heuristic_review(
 
 class Reviewer:
     def __init__(
-        self, brand: BrandProfile, campaign_dir: Path, gateway: LLMGateway | None = None, model: str | None = None
+        self,
+        brand: BrandProfile,
+        campaign_dir: Path,
+        gateway: LLMGateway | None = None,
+        model: str | None = None,
+        mode: str | None = None,
     ) -> None:
         self.brand = brand
         self.campaign_dir = campaign_dir
         self.gateway = gateway
         self.model = model
+        self.mode = mode  # campaign-mode prompt addendum (e.g. "threat_mode")
 
     async def review(
         self,
@@ -199,6 +205,9 @@ class Reviewer:
     ) -> Review:
         if self.gateway is not None and self.model and ev.usable:
             version, system = render("reviewer", brand_name=self.brand.display_name)
+            if self.mode:
+                mode_version, addendum = render(self.mode, brand_name=self.brand.display_name)
+                version, system = f"{version}+{mode_version}", f"{system}\n\n{addendum}"
             hypothesis = a.model_dump(
                 include={
                     "case",

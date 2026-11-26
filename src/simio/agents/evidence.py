@@ -13,7 +13,7 @@ from pathlib import Path
 
 from simio.brands import BrandProfile, fold, sentences
 from simio.collectors.browser import BrowserCollector
-from simio.core.models import DiscoveryHit, Evidence, EvidenceItem, ImageInfo, VisualMatch
+from simio.core.models import DiscoveryHit, Evidence, EvidenceItem, ImageInfo, InputInfo, VisualMatch
 from simio.core.urls import domain_matches, hostname_of
 
 # ---------------------------------------------------------------------------------- regexes
@@ -116,6 +116,36 @@ def _lines(text: str) -> list[str]:
             ln = ln[cut:].strip()
         out.append(ln)
     return out
+
+
+# Form fields that reveal credential harvesting when the page uses the brand. CPF alone is common on
+# legitimate simulation pages, so it is recorded but is not a credential by itself.
+_SENSITIVE_FIELDS: tuple[tuple[str, re.Pattern[str]], ...] = (
+    ("senha", re.compile(r"(?i)senha|password|passwd|\bpin\b")),
+    ("cvv", re.compile(r"(?i)\bcvv\b|\bcvc\b|cc-csc|c[oó]d(igo)?\.? de seguran")),
+    ("cartão", re.compile(r"(?i)cart[aã]o|card[-_ ]?number|cc-number|cc-exp|validade do cart")),
+    ("token/código", re.compile(r"(?i)token|\botp\b|one-time-code|c[oó]digo (de )?(verifica|sms|acesso|seguran)")),
+    ("agência/conta", re.compile(r"(?i)ag[eê]ncia|conta[-_ ]?corrente|n[uú]mero da conta|\bconta\b")),
+    ("cpf", re.compile(r"(?i)\bcpf\b")),
+)
+CREDENTIAL_KINDS = frozenset({"senha", "cvv", "cartão", "token/código", "agência/conta"})
+
+
+def classify_input(inp: InputInfo) -> str | None:
+    """Kind of sensitive data a form field asks for (None for ordinary fields)."""
+    t = inp.type.lower()
+    if t == "password":
+        return "senha"
+    if t in ("email", "checkbox", "radio", "search", "url", "range", "color", "file"):
+        return None
+    blob = " ".join((inp.name, inp.id, inp.placeholder, inp.autocomplete, inp.label))
+    return next((kind for kind, rx in _SENSITIVE_FIELDS if rx.search(blob)), None)
+
+
+_PLATFORM_LOGIN_HOSTS = (
+    "facebook.com", "instagram.com", "linkedin.com", "tiktok.com", "x.com", "twitter.com", "threads.net",
+    "youtube.com", "google.com", "kwai.com", "pinterest.com", "reddit.com",
+)
 
 
 def build_catalog(
@@ -285,6 +315,39 @@ def build_catalog(
         ):
             n += 1
             add(EvidenceItem(ref=f"E-TXT-{n:03d}", kind="text", location="page", content=line))
+    n_form = 0
+    # A social platform's own login wall is not the page asking for credentials.
+    form_inputs = [] if domain_matches(hostname_of(url), _PLATFORM_LOGIN_HOSTS) else p.inputs
+    for inp in form_inputs:
+        kind = classify_input(inp)
+        if kind is None or n_form >= 12:
+            continue
+        n_form += 1
+        desc = ", ".join(
+            f"{k}={v}" for k, v in (("type", inp.type), ("name", inp.name), ("placeholder", inp.placeholder),
+                                    ("rótulo", inp.label)) if v
+        )
+        add(
+            EvidenceItem(
+                ref=f"E-FORM-{n_form:03d}",
+                kind="form",
+                location="page",
+                content=f"Campo de formulário que pede {kind.upper()} ({desc[:240]})",
+            )
+        )
+    page_host = hostname_of(url)
+    external = sorted(
+        {hostname_of(a) for a in p.form_actions if a.startswith("http") and hostname_of(a) != page_host} - {""}
+    )
+    if external:
+        add(
+            EvidenceItem(
+                ref="E-FORM-ACTION",
+                kind="form",
+                location="page",
+                content="Formulário envia os dados para outro domínio: " + ", ".join(external[:5]),
+            )
+        )
     if ev.blocked_requests:
         add(
             EvidenceItem(
@@ -327,6 +390,8 @@ class PageSignals:
     brand_in_header: bool = False
     brand_above_fold: bool = False
     brand_images: list[Hit] = field(default_factory=list)
+    brand_named_images: int = 0  # images whose alt/src carries the brand name itself
+    visible_words: int = 0
     brand_images_above_fold: int = 0
     legacy_logo_markers: list[Hit] = field(default_factory=list)
     legacy_logo_visual: list[Hit] = field(default_factory=list)  # deterministic image matches
@@ -355,6 +420,12 @@ class PageSignals:
     cnpjs: list[Hit] = field(default_factory=list)
     injection_markers: list[Hit] = field(default_factory=list)
     forms_present: int = 0
+    sensitive_fields: list[Hit] = field(default_factory=list)  # value = kind (senha, cartão, cpf...)
+    external_form_action: list[Hit] = field(default_factory=list)
+
+    @property
+    def credential_fields(self) -> list[Hit]:
+        return [h for h in self.sensitive_fields if h.value in CREDENTIAL_KINDS]
 
     def as_observations(self) -> list[str]:
         out = [
@@ -399,6 +470,10 @@ class PageSignals:
             f"contatos WhatsApp: {len(self.whatsapp_contacts)}; telefones: {len(self.phones)}",
             "CNPJs: " + (", ".join(f"{h.value} [{h.ref}]" for h in self.cnpjs[:5]) or "nenhum"),
             f"formulários na página: {self.forms_present}",
+            "campos que pedem dados sensíveis: "
+            + (", ".join(f"{h.value} [{h.ref}]" for h in self.sensitive_fields[:8]) or "nenhum"),
+            "formulário que envia dados para outro domínio: "
+            + (", ".join(f"{h.value} [{h.ref}]" for h in self.external_form_action[:3]) or "não"),
         ]
         if self.official_channel:
             out.append("canal/domínio oficial da própria instituição identificado na URL final")
@@ -494,6 +569,7 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
         sig.brand_above_fold = sig.brand_mentions > 0
         sig.disclosure_names_institution = bool(_real_disclosures_naming_institution(brand, disc_text))
     sig.official_links = any(i.ref == "E-OFFICIAL-LINKS" for i in catalog)
+    sig.visible_words = len(p.visible_text.split()) if p else 0
     for item in catalog:
         text = item.content
         if INJECTION_RE.search(text):  # every kind, including image alt text and metadata
@@ -502,10 +578,19 @@ def compute_signals(ev: Evidence, brand: BrandProfile, catalog: list[EvidenceIte
             # Only treat an image as a brand logo indicator when not a non-bank homonym page.
             if not (sig.homonym_context and sig.brand_mentions == 0 and not sig.brand_in_domain):
                 sig.brand_images.append(Hit(text[:120], item.ref))
+                if brand.strong_mentions(text):
+                    sig.brand_named_images += 1
                 if item.above_fold:
                     sig.brand_images_above_fold += 1
                 if LEGACY_LOGO_RE.search(text):
                     sig.legacy_logo_markers.append(Hit(text[:120], item.ref))
+            continue
+        if item.kind == "form":
+            if item.ref == "E-FORM-ACTION":
+                sig.external_form_action.append(Hit(text.split(": ", 1)[-1][:120], item.ref))
+            else:
+                kind = text.removeprefix("Campo de formulário que pede ").split(" (", 1)[0].lower()
+                sig.sensitive_fields.append(Hit(kind, item.ref))
             continue
         if item.kind == "visual":
             sig.legacy_logo_visual.append(Hit(text[text.find("em E-SHOT") :][:120], item.ref))

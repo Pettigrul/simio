@@ -62,7 +62,7 @@ Para evitar que o limite de candidatos (`--limit`) seja consumido por falsos pos
    - Domínios oficiais do ecossistema do banco (`bv.com.br`, `bancobv.com.br`, `bvfinanceira.com.br`, `napista.com.br`, `bvopen.com.br`, `meufinanciamentosolar.com.br`, `votorantim.com.br`);
    - Perfis e postagens oficiais do próprio banco nas redes sociais (`instagram.com/bancobv`, `facebook.com/bancobv`, `facebook.com/napistapp`, `tiktok.com/@bancobv`, `linkedin.com/company/bancobv`, `x.com/bancobv`);
    - Páginas automáticas de busca/tags de redes sociais (`instagram.com/popular/...`, `instagram.com/explore/...`, `tiktok.com/discover/...`, `facebook.com/public/...`).
-2. **Despriorização (jogados para o final da fila)**:
+2. **Despriorização (jogados para o final da fila)**: notas negativas só ordenam a fila; tudo acima de `SIMIO_MIN_QUEUE_SCORE` (padrão `-10`) é analisado enquanto houver vaga no `--limit`.
    - Portais de notícias, imprensa, órgãos públicos (`gov.br`, `bcb.gov.br`), Reclame Aqui, Proteste, Jusbrasil, tribunais (`jus.br`), diretórios de CNPJ (`econodata.com.br`, `cnpj.biz`), plataformas de RH (`indeed.com`, `glassdoor.com.br`) e repositórios de logotipos (`brandsoftheworld.com`, `logospng.org`);
    - Anúncios individuais de veículos usados em classificados (`olx.com.br/.../autos-e-pecas/`, `carro.mercadolivre.com.br/MLB-...`, `webmotors.com.br/comprar/`, `mobiauto.com.br/comprar/`), **exceto** quando vêm de uma hipótese de fraude (H10), como um anúncio de "leilão BV";
    - Artigos informativos, blogs, estudos de caso e centrais de ajuda de software (`Como adicionar o simulador...`, `/blog/`, `ajuda.*`);
@@ -111,14 +111,36 @@ Páginas identificadas como artigos de imprensa, blogs educativos, tutoriais de 
 3. **Alegação de canal oficial e domínios lookalike**:
    - Expressões como `"canal oficial"`, `"site oficial"`, `"central de atendimento BV"`, `"SAC BV"`, `"ambiente seguro Banco BV"` ou domínios contendo o padrão da marca (`bancobv-*`, `bvfinanon`, `bkbv`, `bvsol`) elevam diretamente o caso para revisão prioritária.
    - Domínios encontrados pelo typosquatting (`bancobva.com.br`, `feiraobv.com.br`) chegam com a técnica usada registrada (ex.: "marca combinada com palavra do setor") e recebem prioridade na fila.
-4. **Identidade visual antiga (logo descontinuada)**:
+4. **Inteligência de ameaças (`--focus ameacas`)**:
+   - Campanha **sem o contexto de COBANs** (não usa H9 nem as hipóteses de produto/regionais): H14 (login e portal de parceiro falsos, hospedagem gratuita/efêmera, boleto/Pix e consulta de débito, taxa antecipada, painéis e venda de dados, perfis e apps falsos, golpes com NaPista) + H10 (fraudes) + H7 (serviços sensíveis e portais) + Telegram, mais domínios semelhantes (`typosquat`) e certificados (`crtsh`).
+   - Os prompts de Grounding pedem o que a página oferece ou **pede** (login, senha, CPF, cartão, token, boleto/Pix, app, WhatsApp/Telegram) e por que parece falsa.
+   - Na fila, páginas em construtores gratuitos (weebly, site123) **não são excluídas** (na varredura ampla são) e ganham prioridade.
+   - **Coleta de credenciais (`E-FORM-*`)**: o coletor registra os campos de formulário (tipo, nome, `placeholder`, rótulo, `autocomplete`) e o destino dos formulários, sem preencher nada. Senha, cartão, CVV, token/código e agência/conta são credenciais; CPF é registrado, mas sozinho não basta. Página fora dos domínios oficiais que usa a marca e pede uma credencial fica no mínimo `REVIEW_REQUIRED`/`HIGH`, e o revisor não a descarta.
+   - **Prompt de ameaças (`prompts/threat_mode.md`)**: nesta campanha, o analisador e o revisor recebem um adendo que **prevalece** sobre a triagem de escopo de COBANs. A pergunta passa a ser "isto se passa pelo banco ou põe clientes em risco?": parceiro identificado com a própria marca é tema de conformidade (fica para a varredura ampla); notícia, diretório e blog só contam se desviarem o cliente para canais não oficiais. A versão gravada fica `v7+threat-mode/v1`.
+   - **Triagem de ameaças (`agents/threat_triage.py`)**: sem chamar o modelo, relê o que já foi analisado e dá a cada página um nível (`CRÍTICO` ≥ 8, `ALTO` ≥ 5, `MÉDIO` ≥ 3, `BAIXO` ≥ 2) a partir de fatos auditáveis:
+
+     | Fato | Pontos |
+     |---|---|
+     | Pede senha/cartão/CVV/token/agência-conta com a marca | +5 |
+     | Personificação (caso D) / falso canal oficial (caso C), se o veredito final não for `NO_INDICATION` | +4 / +3 |
+     | APK com a marca fora das lojas oficiais | +3 |
+     | Domínio parecido (typosquatting) ou com a marca; +1 se o conteúdo cita a instituição | +2 (+1) |
+     | Página com a marca em plataforma gratuita; domínio criado há ≤ 180 dias; boleto/quitação/2ª via com a marca | +2 cada |
+     | `STRONG` / `REVIEW` na análise; contato por WhatsApp/Telegram | +2 / +1; +1 |
+     | Empresa identificada com a própria marca (casos A/B, sem credenciais) / menção comercial legítima | −4 / −2 |
+     | Sem relação com a instituição (`NOT_RELEVANT`) | −3 e teto 3 |
+
+     Domínio oficial, loja oficial, homônimo conhecido (`homonym_domains` no perfil da marca) ou domínio **registrado pelo próprio grupo** (titular/CNPJ do RDAP em `institution_names`/`institution_cnpjs`: registro defensivo) têm teto 0. Em campanha de ameaças, a aba "Ameaças" do Excel e o relatório `*-ameacas.html` (capturas, fatos, registro do domínio, contatos de abuso, URLs desarmadas `hxxps://site[.]com`) listam tudo acima de `SEM AMEAÇA`. Na varredura ampla, só `CRÍTICO`/`ALTO` e páginas que pedem credenciais, numa aba depois das de conformidade.
+5. **Identidade visual antiga (logo descontinuada)**:
    - A logo antiga (B vermelho/carmim sobre V azul) não pode ser usada por terceiros, nem por correspondentes contratados. O logo atual tem o mesmo desenho, em uma única cor.
    - **Detecção em duas camadas independentes**: o Gemini preenche `legacy_visual_identity` ao ver a logo; a comparação de imagem (`agents/visual.py`) compara as regiões dos prints com a referência **separadamente nas tintas vermelha e azul** (o logo atual, só azul, nunca casa) e registra `E-VIS-LEGACY-*` com posição e similaridade.
    - **Regra**: com qualquer uma das camadas, o caso fica no mínimo `REVIEW_REQUIRED` com prioridade `HIGH`, e o revisor não pode descartá-lo sozinho. O relatório informa a origem ("modelo", "comparação de imagem" ou ambos).
    - **Campanha focada** (`--focus logo-antiga`): hipóteses próprias (H13: vitrine multibanco, páginas de financiamento, energia solar, crédito/consignado e uma consulta por UF) + busca reversa (H12) + COBANs do cadastro (H9). Fontes padrão: `serper,lens`. Páginas sem logo confirmada e sem imagem com o nome da marca no arquivo/alt são encerradas como `NO_INDICATION` sem chamar os modelos, com a limitação registrada.
+   - **Trecho da busca reversa não é fato da página**: o texto sintético "semelhante ao logotipo antigo" dos resultados `lens` (itens `E-DISC-*`) nunca conta como indício; só a comparação de imagem e o modelo, sobre a própria página, confirmam a logo.
+   - **O que a experiência mostrou** (campanhas de 25/11/2026): a logo antiga aparece sobretudo em vitrines de "bancos parceiros" de revendas de veículos e de energia solar, em páginas de consignado de correspondentes, em fotos de perfil de redes sociais de empresas com iniciais "BV" e em artigos de blogs de crédito. O arquivo `logo-bv-financeira-512.png` circula entre vários sites.
    - **Exceção**: sites que só catalogam ou noticiam a logo (repositórios de logos, bancos de imagens, enciclopédias, imprensa), listados em `legacy_logo_exempt_domains`, registram o achado como "site de referência" sem elevar a classificação. Redes sociais e marketplaces não entram nessa lista.
    - **Limitações**: logos exibidos em escala de cinza (ex.: carrossel de parceiros com filtro) não permitem distinguir a versão antiga da atual; logo aplicado diretamente sobre fundo vermelho pode escapar da comparação de imagem e depende do Gemini.
-5. **Golpes que usam a marca como isca**:
+6. **Golpes que usam a marca como isca**:
    - Leilão de veículos "retomados", venda de ágio, crédito "pré-aprovado" mediante taxa, aplicativo para baixar fora das lojas oficiais e vagas de "digitador/correspondente" são buscados ativamente (H10) e analisados pelo mesmo fluxo de evidências.
 
 <p align="center">

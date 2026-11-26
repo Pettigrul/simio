@@ -30,6 +30,8 @@ from simio.agents.brand import BrandAnalyst
 from simio.agents.compliance import ComplianceAnalyst, RequirementCatalog
 from simio.agents.discovery import (
     FOCUS_LEGACY_LOGO,
+    FOCUS_THREAT,
+    FOCUS_WITHOUT_COBANS,
     DiscoveryAgent,
     coban_hypotheses,
     deduplicate,
@@ -175,7 +177,9 @@ class Orchestrator:
                 gateway, s.effective_discovery_model, self.policy, brand.official_domains, s.http_timeout_s
             ),
             "brave": BraveSearch(key(s.brave_api_key), s.http_timeout_s),
-            "serper": SerperSearch(key(s.serper_api_key), s.http_timeout_s, pages=s.serper_pages),
+            "serper": SerperSearch(
+                key(s.serper_api_key), s.http_timeout_s, pages=s.serper_pages, plain_variants=s.serper_plain_variants
+            ),
             "urlscan": UrlscanSearch(key(s.urlscan_api_key), s.http_timeout_s),
             "crtsh": CrtShSearch(s.http_timeout_s),
             "typosquat": TyposquatConnector(brand),
@@ -330,7 +334,10 @@ class Orchestrator:
         done = {
             (q["source"], q["query_text"]) for q in self.storage.list_queries(campaign_id) if q["source"] in sources
         }
-        coban_hyps, coban_note = self._coban_hypotheses(campaign_id, brand, connectors)
+        if opts.focus in FOCUS_WITHOUT_COBANS:
+            coban_hyps, coban_note = [], f"coban-seeded search (H9): not used in a focused campaign ({opts.focus})"
+        else:
+            coban_hyps, coban_note = self._coban_hypotheses(campaign_id, brand, connectors)
         agent = DiscoveryAgent(
             brand,
             connectors,
@@ -382,7 +389,7 @@ class Orchestrator:
                 "rejected_url",
                 {"url": hit.original_url[:500], "source": hit.source, "reason": reason},
             )
-        ordered = prioritise(groups, brand)
+        ordered = prioritise(groups, brand, opts.focus)
         # Candidates already queued/processed (earlier interrupted run) count against --limit.
         queued = sum(n for st, n in self.storage.status_counts(campaign_id).items() if st != S.DISCOVERED.value)
         for g in ordered:
@@ -407,7 +414,9 @@ class Orchestrator:
             self.storage.set_priority(cid, g.score, g.reasons)
             cand = self.storage.get_candidate(cid)
             is_manual = any(h.source.startswith("import") for h in g.hits)
-            if cand.status == S.DISCOVERED and queued < opts.limit and (g.score >= 0 or is_manual):
+            if cand.status == S.DISCOVERED and queued < opts.limit and (
+                g.score >= self.settings.min_queue_score or is_manual
+            ):
                 self.storage.transition(cid, S.QUEUED, note=f"prioritised (score {g.score:.1f})")
                 queued += 1
         info = {
@@ -465,8 +474,10 @@ class Orchestrator:
         identity_agent = IdentityAgent(brand, registry)
         scoring = ScoringConfig.load(s.output_dir / "scoring.toml")
         catalog = RequirementCatalog.load(s.contract_requirements_path)
-        analyst = BrandAnalyst(brand, scoring, cdir, gateway, s.analysis_model)
-        reviewer = Reviewer(brand, cdir, gateway, s.effective_review_model)
+        # Threat campaigns judge impersonation and risk to customers, not correspondent compliance.
+        mode = "threat_mode" if focus == FOCUS_THREAT else None
+        analyst = BrandAnalyst(brand, scoring, cdir, gateway, s.analysis_model, mode=mode)
+        reviewer = Reviewer(brand, cdir, gateway, s.effective_review_model, mode=mode)
         compliance = ComplianceAnalyst(catalog)
         if gateway is None and not s.offline:
             self.storage.log_decision(

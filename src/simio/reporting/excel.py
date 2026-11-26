@@ -14,7 +14,13 @@ from openpyxl.drawing.image import Image as OpenpyxlImage
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
+from simio.agents.discovery import FOCUS_THREAT
+from simio.agents.domain_intel import summarize as summarize_intel
+from simio.agents.threat_triage import ThreatView, triage
+from simio.brands import BrandProfile, load_brand
+from simio.core.models import DomainIntel
 from simio.core.storage import Storage
+from simio.core.urls import hostname_of
 from simio.reporting.data import CandidateRecord
 
 # Banco BV Design System Theme Colors
@@ -31,6 +37,11 @@ FILLS = {
     "REVIEW_REQUIRED": PatternFill("solid", fgColor="FEF3D6"),    # Soft amber
     "INCONCLUSIVE": PatternFill("solid", fgColor="E7E7ED"),       # Soft gray
     "NO_INDICATION": PatternFill("solid", fgColor="E6F4EA"),      # Soft green
+    # Threat levels (threat triage)
+    "CRÍTICO": PatternFill("solid", fgColor="F9D2CE"),
+    "ALTO": PatternFill("solid", fgColor="FCE8E6"),
+    "MÉDIO": PatternFill("solid", fgColor="FEF3D6"),
+    "BAIXO": PatternFill("solid", fgColor="E7E7ED"),
 }
 
 STATUS_FONTS = {
@@ -38,6 +49,10 @@ STATUS_FONTS = {
     "REVIEW_REQUIRED": Font(name="Inter", size=10, color="B54708", bold=True),
     "INCONCLUSIVE": Font(name="Inter", size=10, color="475467", bold=True),
     "NO_INDICATION": Font(name="Inter", size=10, color="067647", bold=True),
+    "CRÍTICO": Font(name="Inter", size=10, color="912018", bold=True),
+    "ALTO": Font(name="Inter", size=10, color="B42318", bold=True),
+    "MÉDIO": Font(name="Inter", size=10, color="B54708", bold=True),
+    "BAIXO": Font(name="Inter", size=10, color="475467", bold=True),
 }
 
 THIN_BORDER = Border(
@@ -210,6 +225,132 @@ def _legacy_logo_sheet(
             continue
 
 
+THREAT_SHEET = "Ameaças"
+
+
+DOMAIN_SHEET = "Domínios"
+
+
+def _page_host(r: CandidateRecord) -> str:
+    return hostname_of((r.evidence.final_url if r.evidence else None) or r.candidate.url) or r.candidate.hostname
+
+
+def _domain_sheet(wb: Workbook, records: list[CandidateRecord], intel: dict[str, DomainIntel]) -> None:
+    """Registration (RDAP/WHOIS), DNS and hosting of every flagged host, with the takedown contacts."""
+    worst: dict[str, tuple[str, str]] = {}
+    rank = {"STRONG_INDICATION": 0, "REVIEW_REQUIRED": 1}
+    for r in records:
+        if r.final is None:
+            continue
+        host = _page_host(r)
+        cur = (r.final.classification.value, r.final.priority.value)
+        if host in intel and (host not in worst or rank.get(cur[0], 9) < rank.get(worst[host][0], 9)):
+            worst[host] = cur
+    rows = []
+    for host, item in sorted(intel.items(), key=lambda kv: (rank.get(worst.get(kv[0], ("",))[0], 9), kv[0])):
+        s = summarize_intel(item)
+        cls, prio = worst.get(host, ("", ""))
+        rows.append(
+            [host, item.registered_domain, cls, prio, s["platform"], s["created"], s["registrar"], s["holder"],
+             s["resolves"], ", ".join(item.a[:4]), s["hosting"], s["ns"], s["mx"], s["abuse"], s["notes"]]
+        )
+    headers = [
+        "Host", "Domínio registrado", "Classificação", "Prioridade", "Plataforma (dono só via denúncia)",
+        "Criado em (idade)", "Registrador", "Titular", "Resolve hoje", "IPs", "Hospedagem (rede do IP)",
+        "Servidores DNS (NS)", "E-mail (MX)", "Contatos de abuso (takedown)", "Observações",
+    ]
+    _sheet(wb, DOMAIN_SHEET, headers, rows, {1: 40, 2: 26, 8: 40, 11: 40, 12: 36, 14: 44, 15: 70}, fill_col=2)
+
+
+def threat_rows(
+    records: list[CandidateRecord],
+    brand: BrandProfile,
+    focus: str | None,
+    intel: dict[str, DomainIntel] | None = None,
+) -> list[tuple[ThreatView, CandidateRecord, DomainIntel | None]]:
+    """Pages in the threat view, most dangerous first. In a threat campaign every level is listed; in
+    other campaigns only CRÍTICO/ALTO pages and pages asking for credentials."""
+    out = []
+    for r in records:
+        if r.final is None:
+            continue
+        item = (intel or {}).get(_page_host(r))
+        t = triage(r, brand, item)
+        keep = t.is_threat if focus == FOCUS_THREAT else (t.level in ("CRÍTICO", "ALTO") or bool(
+            r.final.sensitive_data_requested and t.is_threat))
+        if keep:
+            out.append((t, r, item))
+    out.sort(key=lambda x: (-x[0].score, x[1].candidate.url))
+    return out
+
+
+def _threat_sheet(
+    wb: Workbook,
+    rows_in: list[tuple[ThreatView, CandidateRecord, DomainIntel | None]],
+    dossier_paths: dict[str, str],
+) -> bool:
+    """Threat-intelligence view: level, category and the facts behind it, with the IOCs and takedown data."""
+    rows: list[list[Any]] = []
+    for t, r, item in rows_in:
+        f, ev = r.final, r.evidence
+        assert f is not None
+        final_url = (ev.final_url if ev else None) or r.candidate.url
+        action = next((i.content.split(": ", 1)[-1] for i in r.catalog if i.ref == "E-FORM-ACTION"), "")
+        di = summarize_intel(item) if item else {}
+        registration = " · ".join(x for x in (di.get("created"), di.get("registrar"), di.get("holder")) if x)
+        rows.append(
+            [
+                t.level,
+                t.score,
+                "; ".join(t.categories),
+                "\n".join(t.facts),
+                final_url,
+                r.candidate.registrable_domain,
+                di.get("platform", ""),
+                registration,
+                di.get("resolves", ""),
+                di.get("hosting", "") or ((ev.server_ip or "") if ev else ""),
+                di.get("abuse", ""),
+                ", ".join(f.sensitive_data_requested),
+                action,
+                "\n".join(ev.redirect_chain[:6]) if ev else "",
+                f.classification.value,
+                f.case.value,
+                (f.justification or "")[:600],
+                ", ".join(sorted({h.source for h in r.hits})),
+                "\n".join(sorted({h.hypothesis_id for h in r.hits if h.hypothesis_id}))[:500],
+                dossier_paths.get(r.candidate.id, ""),
+            ]
+        )
+    if not rows:
+        return False
+    headers = [
+        "Nível de ameaça",
+        "Pontos",
+        "Categoria",
+        "Fatos que levaram ao nível",
+        "URL",
+        "Domínio",
+        "Plataforma (dono só via denúncia)",
+        "Registro do domínio (criação · registrador · titular)",
+        "Resolve hoje",
+        "Hospedagem",
+        "Contatos de abuso (takedown)",
+        "Dados sensíveis pedidos",
+        "Formulário envia para",
+        "Redirecionamentos",
+        "Classificação SIMIO (conformidade)",
+        "Caso (analisador)",
+        "Justificativa do analisador",
+        "Fontes",
+        "Hipóteses",
+        "Dossiê",
+    ]
+    widths = {3: 34, 4: 60, 5: 50, 6: 26, 8: 44, 10: 36, 11: 40, 14: 40, 17: 70, 19: 34, 20: 40}
+    _sheet(wb, THREAT_SHEET, headers, rows, widths, fill_col=0)
+    return True
+
+
 def write_workbook(
     path: Path,
     storage: Storage,
@@ -217,6 +358,7 @@ def write_workbook(
     records: list[CandidateRecord],
     dossier_paths: dict[str, str],
     logo_crops: dict[str, str] | None = None,
+    domain_intel: dict[str, DomainIntel] | None = None,
 ) -> Path:
     camp = storage.get_campaign(campaign_id) or {}
     wb = Workbook()
@@ -281,6 +423,7 @@ def write_workbook(
         "Classificação",
         "Prioridade",
         "Identidade visual antiga (logo descontinuada)",
+        "Dados sensíveis pedidos (senha, cartão, token...)",
         "Cenário",
         "Confiança da extração",
         "Suficiência da evidência",
@@ -317,6 +460,7 @@ def write_workbook(
                 f.classification.value if f else "",
                 f.priority.value if f else "",
                 (f"SIM ({f.legacy_visual_identity_source})" if f.legacy_visual_identity else "não") if f else "",
+                ", ".join(f.sensitive_data_requested) if f else "",
                 f.case.value if f else "",
                 f.extraction_confidence.value if f else "",
                 f.evidence_sufficiency.value if f else "",
@@ -335,7 +479,7 @@ def write_workbook(
                 round(c.priority_score, 1),
             ]
         )
-    widths = {1: 13, 2: 24, 3: 40, 4: 40, 6: 40, 15: 34, 16: 40, 17: 60, 18: 60, 19: 50}
+    widths = {1: 13, 2: 24, 3: 40, 4: 40, 6: 40, 16: 34, 17: 40, 18: 60, 19: 60, 20: 50}
     _sheet(wb, "Candidates", cand_headers, rows, widths, fill_col=9)
     strong = [
         row
@@ -346,6 +490,16 @@ def write_workbook(
     if any(r.final and r.final.legacy_visual_identity for r in records):
         _legacy_logo_sheet(wb, records, dossier_paths, logo_crops or {})
         wb.move_sheet(LEGACY_LOGO_SHEET, offset=-(len(wb.sheetnames) - 2))
+    focus = (camp.get("params") or {}).get("focus")
+    brand_profile = load_brand(camp.get("brand") or "bv")
+    # In a threat campaign the threat view comes first; in the COBAN sweep it follows the compliance sheets.
+    threat_first = focus == FOCUS_THREAT
+    if _threat_sheet(wb, threat_rows(records, brand_profile, focus, domain_intel), dossier_paths) and threat_first:
+        wb.move_sheet(THREAT_SHEET, offset=-(len(wb.sheetnames) - 2))
+    if domain_intel:
+        _domain_sheet(wb, records, domain_intel)
+        if threat_first:
+            wb.move_sheet(DOMAIN_SHEET, offset=-(len(wb.sheetnames) - 3))
 
     id_rows = []
     for r in records:
