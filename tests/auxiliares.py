@@ -1,5 +1,3 @@
-"""Builders for synthetic evidence (no browser needed)."""
-
 from __future__ import annotations
 
 from simio.marcas import carregar_marca

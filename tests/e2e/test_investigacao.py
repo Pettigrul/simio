@@ -1,8 +1,5 @@
-"""End-to-end: discovery -> collection -> analysis -> review -> reports, against local sites.
-
-Real Chromium is used for collection; the LLM is either absent (offline heuristic) or a scripted
-MockProvider. Live Vertex AI is NEVER called here.
-"""
+# Ponta a ponta contra sites locais, com Chromium de verdade na coleta. O LLM é a heurística
+# offline ou o ProvedorMock; o Vertex AI real nunca é chamado aqui.
 
 from __future__ import annotations
 
@@ -73,7 +70,7 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
     assert finais["lookalike.html"].classificacao == C.INDICIO_FORTE
     assert finais["unavailable"].classificacao == C.INCONCLUSIVA
     assert finais["injection.html"].classificacao != C.SEM_INDICIO
-    # contradictory evidence is challenged by the reviewer -> not left as STRONG
+    # evidência contraditória é contestada pelo revisor e não fica como forte
     assert finais["contradictory.html"].classificacao == C.REQUER_REVISAO
     assert finais["third_party_official_contact.html"].classe_identidade.value == "OUTRO_TERCEIRO"
 
@@ -110,7 +107,7 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
         assert h in cabecalhos
     assert cand.max_row == len(PAGINAS) + 1
     assert wb["Strong Indications"].max_row >= 2
-    # Dossiers for priority candidates, readable offline, escaped, script-free.
+    # Dossiês das prioritárias: abrem offline, com escape e sem script.
     assert relatorio.dossies
     html = relatorio.dossies[next(iter(relatorio.dossies))].read_text(encoding="utf-8")
     assert "<script" not in html.lower()
@@ -122,8 +119,8 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
     assert capturas and all((relatorio.dossies[id_semelhante].parent / s).resolve().is_file() for s in capturas)
     id_inj = next(c.id for c in armazenamento.listar_candidatas(resumo.id_campanha) if c.url.endswith("injection.html"))
     inj = relatorio.dossies[id_inj].read_text(encoding="utf-8")
-    assert "Ignore todas as instru" in inj and "font-size:2px" not in inj  # text kept, markup never rendered
-    # Every local link of the campaign report and of the workbook opens a file of the campaign folder.
+    assert "Ignore todas as instru" in inj and "font-size:2px" not in inj  # o texto fica, a marcação não é renderizada
+    # Todo link local do relatório e da planilha abre um arquivo da pasta da campanha.
     pasta = relatorio.dir_campanha
     assert relatorio.planilha == pasta / "relatorio.xlsx" and relatorio.relatorio_html == pasta / "relatorio.html"
     links = re.findall(r'href="(dossies/[^"]+)"', relatorio.relatorio_html.read_text(encoding="utf-8"))
@@ -179,7 +176,7 @@ def _provedor_mock() -> ProvedorMock:
 
 
 class _BuscaFalsa:
-    """Keyword connector double returning local fixture URLs (stands in for Brave/Serper/Grounding)."""
+    """Conector falso que devolve URLs dos sites locais (no lugar de Brave/Serper/Grounding)."""
 
     nome = "grounding"
 
@@ -212,7 +209,7 @@ async def test_llm_investigar_com_descoberta_revisao_e_limite(configuracoes, arm
     orq = Orquestrador(configuracoes, armazenamento, provedor=provedor, conectores=[busca])
     resumo = await orq.investigar(OpcoesInvestigacao(limite=2))
     cid = resumo.id_campanha
-    # dedup: 3 unique URLs; limit 2 analysed; 1 left DISCOVERED (traceable backlog)
+    # dedup: 3 URLs únicas; limite de 2 analisadas; 1 fica em DESCOBERTA (pendência rastreável)
     assert len(armazenamento.listar_candidatas(cid)) == 3
     assert resumo.contagens.get("DESCOBERTA") == 1
     assert len(armazenamento.listar_consultas(cid)) == 3
@@ -221,7 +218,7 @@ async def test_llm_investigar_com_descoberta_revisao_e_limite(configuracoes, arm
     assert olhar.classificacao == C.INDICIO_FORTE and "[Revisor: CONFIRMAR]" in olhar.justificativa
     tipos = [c.esquema for c in provedor.chamadas]
     assert "SaidaRevisao" in tipos and "SaidaAnaliseMarca" in tipos
-    # images were sent to the multimodal analyst
+    # as imagens foram para o analista multimodal
     assert any(not isinstance(p, str) for c in provedor.chamadas for p in c.partes)
     assert resumo.requisicoes_llm == len(provedor.chamadas)
 
@@ -235,7 +232,7 @@ async def test_orcamento_esgotado_pausa_e_retomada_conclui(configuracoes, armaze
     s1 = await Orquestrador(configuracoes, armazenamento, provedor=provedor).investigar(OpcoesInvestigacao(importadas=urls, fontes=[]))
     assert s1.status == "PAUSADA_ORCAMENTO"
     assert armazenamento.contagem_por_status(s1.id_campanha).get("COLETADA", 0) >= 1
-    # Resume keeps the campaign's original budget unless explicitly overridden (architecture review #3).
+    # A retomada mantém o limite original da campanha, a não ser que seja sobrescrito.
     mesma = await Orquestrador(configuracoes, armazenamento, provedor=provedor).retomar(s1.id_campanha)
     assert mesma.status == "PAUSADA_ORCAMENTO"
     s2 = await Orquestrador(configuracoes, armazenamento, provedor=provedor).retomar(
@@ -249,7 +246,7 @@ async def test_retomar_apos_queda_recupera_em_andamento(configuracoes, armazenam
     configuracoes.offline = True
     s1 = await Orquestrador(configuracoes, armazenamento).investigar(OpcoesInvestigacao(importadas=importar_texto(f"{site}/ambiguous.html")))
     cid = s1.id_campanha
-    # Simulate a crash mid-collection on a new candidate.
+    # Simula uma queda no meio da coleta de uma candidata nova.
     id_cand, _ = armazenamento.upsert_candidata(
         cid,
         url=f"{site}/lookalike.html",
@@ -264,7 +261,7 @@ async def test_retomar_apos_queda_recupera_em_andamento(configuracoes, armazenam
     assert s2.status == "CONCLUIDA"
     assert armazenamento.obter_candidata(id_cand).status == S.CONCLUIDA
     notas = [t["nota"] for t in armazenamento.transicoes(id_cand)]
-    assert "recovered after interruption" in notas
+    assert "recuperada após interrupção" in notas
 
 
 async def test_llm_indisponivel_degrada_para_heuristica(configuracoes, armazenamento, site) -> None:
@@ -279,7 +276,7 @@ async def test_llm_indisponivel_degrada_para_heuristica(configuracoes, armazenam
     assert s.status == "CONCLUIDA"
     f = next(iter(_finais(armazenamento, s.id_campanha).values()))
     assert any("LLM indisponível" in x for x in f.limitacoes)
-    assert any("degraded" in d for d in s.diagnosticos)
+    assert any("análise heurística no lugar" in d for d in s.diagnosticos)
 
 
 async def test_saida_invalida_do_modelo_falha_apos_retentativas(configuracoes, armazenamento, site) -> None:
@@ -290,7 +287,6 @@ async def test_saida_invalida_do_modelo_falha_apos_retentativas(configuracoes, a
     assert any(e["tipo_erro"] == "SaidaLLMInvalida" for e in armazenamento.erros(s.id_campanha))
 
 
-# ------------------------------------------------------------------ CLI
 def test_cli_ajuda_e_protecoes(configuracoes, tmp_path) -> None:
     runner = CliRunner()
     r = runner.invoke(app, ["--help"])

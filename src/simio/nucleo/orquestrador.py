@@ -1,16 +1,3 @@
-"""Orchestrator: explicit, checkpointed pipeline over a SQLite-backed state machine.
-
-Flow per candidate::
-
-    DESCOBERTA -> NA_FILA -> COLETANDO -> COLETADA -> ANALISANDO -> [REVISANDO] -> CONCLUIDA
-                                                                         |-> INCONCLUSIVA
-                                       (bounded recollect: REVISANDO -> NA_FILA)
-    any stage -> FALHOU after ``max_tentativas`` internal errors
-
-Agents never talk to each other directly; the orchestrator passes typed outputs along.
-Parallelism is limited to independent candidates (``paralelismo``).
-"""
-
 from __future__ import annotations
 
 import asyncio
@@ -102,7 +89,7 @@ class OpcoesInvestigacao:
     fontes: list[str] = field(default_factory=lambda: list(FONTES_DESCOBERTA))
     importadas: list[ResultadoDescoberta] = field(default_factory=list)
     revisar_todas: bool = False
-    # Focused campaign (discovery.FOCUS_MODES), e.g. "logo-antiga": only that question is investigated.
+    # Campanha focada (MODOS_FOCO da descoberta), ex.: "logo-antiga": só essa questão é investigada.
     foco: str | None = None
 
 
@@ -138,7 +125,6 @@ class Orquestrador:
         self._motivo_parada: str | None = None
         self._motivo_degradacao: str | None = None
 
-    # ------------------------------------------------------------------ wiring
     @staticmethod
     def _referencias_logo_antiga(marca: PerfilMarca) -> list[Referencia]:
         refs: list[Referencia] = []
@@ -146,7 +132,7 @@ class Orquestrador:
             try:
                 refs.append(carregar_referencia(caminho))
             except (OSError, ValueError) as exc:
-                log.warning("legacy logo reference ignored (%s): %s", caminho, exc)
+                log.warning("referência da logo antiga ignorada (%s): %s", caminho, exc)
         return refs
 
     def dir_campanha(self, id_campanha: str) -> Path:
@@ -200,7 +186,6 @@ class Orquestrador:
             return self._fabrica_coletor()
         return ColetorNavegador(self.configuracoes, self.politica)
 
-    # ------------------------------------------------------------------ public API
     async def investigar(self, opcs: OpcoesInvestigacao) -> ResumoExecucao:
         marca = carregar_marca(opcs.marca, self.configuracoes.arquivo_marca)
         parametros = {
@@ -220,7 +205,7 @@ class Orquestrador:
             "urls_importadas": len(opcs.importadas),
         }
         id_campanha = self.armazenamento.criar_campanha(opcs.marca, parametros)
-        log.info("campaign %s started", id_campanha)
+        log.info("campanha %s iniciada", id_campanha)
         self.armazenamento.registrar_decisao(id_campanha, None, "orquestrador", "campanha_iniciada", parametros)
         if self.configuracoes.hosts_liberados_inseguro:
             self.armazenamento.registrar_decisao(
@@ -230,10 +215,10 @@ class Orquestrador:
                 "HOSTS_LIBERADOS_INSEGURO_ATIVO",
                 {
                     "hosts": self.configuracoes.hosts_liberados_inseguro,
-                    "aviso": "SSRF protection bypassed for these hosts",
+                    "aviso": "proteção contra SSRF desligada para estes hosts",
                 },
             )
-        # Imported URLs are persisted before any network work so a crash cannot lose them.
+        # As URLs importadas são gravadas antes de qualquer acesso à rede, para não se perderem numa queda.
         self.armazenamento.salvar_checkpoint(
             id_campanha, "resultados_importados", [h.model_dump(mode="json") for h in opcs.importadas]
         )
@@ -256,11 +241,11 @@ class Orquestrador:
     async def retomar(
         self, id_campanha: str, repetir_falhas: bool = False, sobrescritas: dict[str, Any] | None = None
     ) -> ResumoExecucao:
-        """Resume with the campaign's *original* parameters (model, offline mode, budgets...);
-        only values the operator passes explicitly in ``sobrescritas`` change them."""
+        # Retoma com os parâmetros originais da campanha (modelo, offline, limites); só o que vier em
+        # `sobrescritas` muda.
         camp = self.armazenamento.obter_campanha(id_campanha)
         if camp is None:
-            raise KeyError(f"campaign not found: {id_campanha}")
+            raise KeyError(f"campanha não encontrada: {id_campanha}")
         parametros = camp["parametros"]
         mesclado = {k: parametros[k] for k in self.PARAMS_RETOMAVEIS if parametros.get(k) is not None}
         mesclado.update({k: v for k, v in (sobrescritas or {}).items() if v is not None})
@@ -283,7 +268,7 @@ class Orquestrador:
             if repetir_falhas:
                 for cand in self.armazenamento.listar_candidatas(id_campanha, [S.FALHOU]):
                     self.armazenamento.zerar_tentativas(cand.id)
-                    self.armazenamento.transicionar(cand.id, S.NA_FILA, nota="retry requested by operator")
+                    self.armazenamento.transicionar(cand.id, S.NA_FILA, nota="nova tentativa pedida pelo operador")
             gateway = self._gateway(id_campanha)
             if not self.armazenamento.obter_checkpoint(id_campanha, "descoberta_concluida", False):
                 importadas = [
@@ -305,12 +290,12 @@ class Orquestrador:
 
     @asynccontextmanager
     async def _execucao_campanha(self, id_campanha: str) -> AsyncIterator[None]:
-        """Single-writer lease (two processes on one campaign would double-process candidates),
-        heartbeat while running, and an explicit INTERROMPIDA status on Ctrl+C / crash."""
+        # Trava de um processo por campanha (dois processos processariam as mesmas candidatas), pulso
+        # enquanto roda e status INTERROMPIDA explícito em Ctrl+C ou queda.
         dono = f"{socket.gethostname()}:{os.getpid()}:{secrets.token_hex(4)}"
         titular = self.armazenamento.adquirir_trava(id_campanha, dono)
         if titular is not None:
-            raise CampanhaOcupada(f"campaign {id_campanha} is being processed by {titular}")
+            raise CampanhaOcupada(f"a campanha {id_campanha} está sendo processada por {titular}")
         self.armazenamento.definir_status_campanha(id_campanha, "EM_EXECUCAO")
 
         async def pulsar() -> None:
@@ -318,7 +303,7 @@ class Orquestrador:
                 await asyncio.sleep(30)
                 self.armazenamento.renovar_trava(id_campanha, dono)
 
-        hb = asyncio.create_task(pulsar())
+        tarefa_pulso = asyncio.create_task(pulsar())
         try:
             yield
         except BaseException as exc:
@@ -328,11 +313,10 @@ class Orquestrador:
                 self.armazenamento.registrar_erro(id_campanha, None, "orquestrador", type(exc).__name__, str(exc)[:500])
             raise
         finally:
-            hb.cancel()
+            tarefa_pulso.cancel()
             with contextlib.suppress(Exception):
                 self.armazenamento.liberar_trava(id_campanha, dono)
 
-    # ------------------------------------------------------------------ discovery
     async def _descobrir(
         self, id_campanha: str, marca: PerfilMarca, gateway: GatewayLLM | None, opcs: OpcoesInvestigacao
     ) -> None:
@@ -342,15 +326,16 @@ class Orquestrador:
             if self.configuracoes.offline and self._conectores_forcados is None
             else self._conectores(gateway, marca, fontes)
         )
-        # Resume-safety: queries already executed (and paid for) are skipped and count against the cap;
-        # their hits were checkpointed as they arrived.
+        # Na retomada, consultas já feitas (e pagas) não se repetem e contam no limite; os resultados
+        # delas já foram salvos no checkpoint conforme chegaram.
         feitas = {
             (q["fonte"], q["texto_consulta"])
             for q in self.armazenamento.listar_consultas(id_campanha)
             if q["fonte"] in fontes
         }
         if opcs.foco in FOCOS_SEM_COBANS:
-            hips_coban, nota_coban = [], f"coban-seeded search (H9): not used in a focused campaign ({opcs.foco})"
+            hips_coban: list[Any] = []
+            nota_coban: str | None = f"busca pelos COBANs cadastrados (H9): não usada em campanha focada ({opcs.foco})"
         else:
             hips_coban, nota_coban = self._hipoteses_coban(id_campanha, marca, conectores)
         agente = AgenteDescoberta(
@@ -372,10 +357,11 @@ class Orquestrador:
             por_fonte: dict[str, list[ResultadoDescoberta]] = {}
             for h in opcs.importadas:
                 por_fonte.setdefault(h.fonte, []).append(h)
-            for src, resultados in por_fonte.items():
-                qid = self.armazenamento.registrar_consulta(
-                    id_campanha, RegistroConsulta(fonte=src, consulta=src, status="OK", qtd_resultados=len(resultados))
+            for nome_fonte, resultados in por_fonte.items():
+                registro = RegistroConsulta(
+                    fonte=nome_fonte, consulta=nome_fonte, status="OK", qtd_resultados=len(resultados)
                 )
+                qid = self.armazenamento.registrar_consulta(id_campanha, registro)
                 for h in resultados:
                     h.metadados["id_consulta_db"] = qid
 
@@ -393,7 +379,7 @@ class Orquestrador:
             desfecho.diagnosticos.append(nota_coban)
         if self.configuracoes.offline:
             desfecho.diagnosticos.insert(
-                0, "offline mode: automatic discovery and AI analysis disabled; only imported URLs are processed"
+                0, "modo offline: sem descoberta automática nem análise por IA; só as URLs importadas entram"
             )
         grupos, rejeitados = deduplicar(desfecho.resultados, self.politica)
         for resultado, motivo in rejeitados:
@@ -405,7 +391,7 @@ class Orquestrador:
                 {"url": resultado.url_original[:500], "fonte": resultado.fonte, "motivo": motivo},
             )
         ordenados = priorizar(grupos, marca, opcs.foco)
-        # Candidates already queued/processed (earlier interrupted run) count against --limite.
+        # Candidatas já enfileiradas ou processadas numa execução anterior interrompida contam no --limite.
         na_fila = sum(
             n for st, n in self.armazenamento.contagem_por_status(id_campanha).items() if st != S.DESCOBERTA.value
         )
@@ -434,7 +420,7 @@ class Orquestrador:
             if cand.status == S.DESCOBERTA and na_fila < opcs.limite and (
                 g.pontuacao >= self.configuracoes.pontuacao_minima_fila or eh_manual
             ):
-                self.armazenamento.transicionar(cid, S.NA_FILA, nota=f"prioritised (score {g.pontuacao:.1f})")
+                self.armazenamento.transicionar(cid, S.NA_FILA, nota=f"priorizada (pontuação {g.pontuacao:.1f})")
                 na_fila += 1
         info = {
             "resultados": len(desfecho.resultados),
@@ -448,18 +434,20 @@ class Orquestrador:
         self.armazenamento.salvar_checkpoint(id_campanha, "descoberta", info)
         self.armazenamento.salvar_checkpoint(id_campanha, "descoberta_concluida", True)
         self.armazenamento.registrar_decisao(id_campanha, None, "descoberta", "concluida", info)
-        log.info("discovery: %d hits, %d unique, %d queued", len(desfecho.resultados), len(grupos), na_fila)
+        log.info(
+            "descoberta: %d resultados, %d URLs únicas, %d na fila", len(desfecho.resultados), len(grupos), na_fila
+        )
 
     def _hipoteses_coban(
         self, id_campanha: str, marca: PerfilMarca, conectores: list[Conector]
     ) -> tuple[list[Any], str | None]:
-        """H9: searches seeded by the registered correspondents (complements the open-web sweep).
-        Rotates across campaigns: correspondents searched in earlier campaigns are skipped."""
+        # H9: buscas a partir dos correspondentes cadastrados, complementando a varredura aberta. Há
+        # rodízio entre campanhas: quem já foi pesquisado antes fica de fora.
         s = self.configuracoes
         if s.limite_sementes_coban <= 0 or not conectores:
             return [], None
         if not s.caminho_cadastro_coban or not s.caminho_cadastro_coban.is_file():
-            return [], "coban-seeded search (H9): SIMIO_CAMINHO_CADASTRO_COBAN not set; skipped"
+            return [], "busca pelos COBANs cadastrados (H9): SIMIO_CAMINHO_CADASTRO_COBAN não definido; pulada"
         cadastro = CadastroCoban.carregar(s.caminho_cadastro_coban, oficial=s.cadastro_coban_oficial)
         pesquisados = self.armazenamento.cnpjs_coban_pesquisados(excluir_campanha=id_campanha)
         hips, n = hipoteses_coban(
@@ -467,11 +455,10 @@ class Orquestrador:
         )
         restantes = len(cadastro.registros) - len(pesquisados) - n
         return hips, (
-            f"coban-seeded search (H9): {n} registered correspondents in {len(hips)} prompt(s); "
-            f"{len(pesquisados)} searched in earlier campaigns, ~{max(0, restantes)} not yet searched"
+            f"busca pelos COBANs cadastrados (H9): {n} correspondentes em {len(hips)} prompt(s); "
+            f"{len(pesquisados)} já pesquisados em campanhas anteriores, ~{max(0, restantes)} ainda não"
         )
 
-    # ------------------------------------------------------------------ processing
     async def _processar(
         self,
         id_campanha: str,
@@ -491,7 +478,7 @@ class Orquestrador:
         agente_identidade = AgenteIdentidade(marca, cadastro)
         config_pontuacao = ConfigPontuacao.carregar(caminhos.arquivo_pontuacao(s.dir_saida))
         catalogo = CatalogoRequisitos.carregar(s.caminho_requisitos_contratuais)
-        # Threat campaigns judge impersonation and risk to customers, not correspondent compliance.
+        # Campanha de ameaças avalia falsificação e risco ao cliente, não conformidade de correspondente.
         modo = "modo_ameacas" if foco == FOCO_AMEACAS else None
         analista = AnalistaMarca(marca, config_pontuacao, cdir, gateway, s.modelo_analise, modo=modo)
         revisor = Revisor(marca, cdir, gateway, s.modelo_revisao_efetivo, modo=modo)
@@ -502,7 +489,7 @@ class Orquestrador:
                 None,
                 "orquestrador",
                 "llm_indisponivel",
-                {"motivo": "Vertex AI not configured; heuristic analysis used"},
+                {"motivo": "Vertex AI não configurado; análise heurística"},
             )
 
         pendentes = self.armazenamento.listar_candidatas(id_campanha, [S.NA_FILA, S.COLETADA])
@@ -532,13 +519,13 @@ class Orquestrador:
                         except ModificacaoConcorrente as exc:
                             log.warning("%s", exc)
                         except Exception as exc:
-                            # One unexpected error must not abort sibling workers (or close the
-                            # shared browser under them): isolate it to this candidate.
-                            log.exception("unexpected error processing %s", cid)
+                            # Um erro inesperado não pode derrubar os outros trabalhadores (nem fechar o
+                            # navegador compartilhado): fica restrito a esta candidata.
+                            log.exception("erro inesperado ao processar %s", cid)
                             self.armazenamento.registrar_erro(
                                 id_campanha, cid, "orquestrador", type(exc).__name__, str(exc)
                             )
-                            self._falhar_com_seguranca(cid, f"unexpected error: {type(exc).__name__}: {exc}")
+                            self._falhar_com_seguranca(cid, f"erro inesperado: {type(exc).__name__}: {exc}")
 
                 retornos = await asyncio.gather(*(trabalhador(c.id) for c in pendentes), return_exceptions=True)
                 for r in retornos:
@@ -557,9 +544,9 @@ class Orquestrador:
         disc = self.armazenamento.obter_checkpoint(id_campanha, "descoberta", {}) or {}
         diagnosticos = list(disc.get("diagnosticos", []))
         if self._motivo_parada:
-            diagnosticos.append(f"stopped: {self._motivo_parada}. Use `simio retomar` after adjusting budgets.")
+            diagnosticos.append(f"interrompida: {self._motivo_parada}. Ajuste os limites e rode `simio retomar`.")
         if self._motivo_degradacao:
-            diagnosticos.append(f"LLM degraded to heuristic analysis: {self._motivo_degradacao}")
+            diagnosticos.append(f"LLM indisponível, análise heurística no lugar: {self._motivo_degradacao}")
         req, tok = self.armazenamento.totais_uso(id_campanha)
         self.armazenamento.registrar_decisao(
             id_campanha,
@@ -592,7 +579,7 @@ class Orquestrador:
             if cand.status in (S.NA_FILA, S.COLETANDO, S.ANALISANDO, S.REVISANDO, S.COLETADA):
                 self.armazenamento.transicionar(cid, S.FALHOU, nota=nota[:500])
         except TransicaoInvalida:
-            log.error("could not mark %s FALHOU from %s", cid, cand.status.value)
+            log.error("não deu para marcar %s como FALHOU a partir de %s", cid, cand.status.value)
 
     def _espera_retentativa(self, tentativa: int) -> float:
         base = self.configuracoes.atraso_base_retentativa_s
@@ -612,10 +599,10 @@ class Orquestrador:
                 except Exception as exc:
                     st.registrar_erro(ctx.id_campanha, cid, "coleta", type(exc).__name__, str(exc))
                     if tentativa < max_tentativas:
-                        st.transicionar(cid, S.NA_FILA, nota=f"collector error, retry {tentativa}")
+                        st.transicionar(cid, S.NA_FILA, nota=f"erro no coletor, nova tentativa ({tentativa})")
                         await asyncio.sleep(self._espera_retentativa(tentativa))
                         continue
-                    st.transicionar(cid, S.FALHOU, nota=f"collector error: {exc}"[:500])
+                    st.transicionar(cid, S.FALHOU, nota=f"erro no coletor: {exc}"[:500])
                     return
                 id_ev = st.salvar_evidencia(ev)
                 st.registrar_decisao(
@@ -633,7 +620,7 @@ class Orquestrador:
                     },
                 )
                 if ev.status.value == "FALHOU" and ev.repetivel and tentativa < max_tentativas:
-                    st.transicionar(cid, S.NA_FILA, nota=f"transient collection failure, retry {tentativa}")
+                    st.transicionar(cid, S.NA_FILA, nota=f"falha temporária na coleta, nova tentativa ({tentativa})")
                     await asyncio.sleep(self._espera_retentativa(tentativa))
                     continue
                 st.transicionar(cid, S.COLETADA)
@@ -646,12 +633,10 @@ class Orquestrador:
                 return
 
     async def _analisar(self, ctx: _Ctx, cid: str) -> bool:
-        """Identity -> brand -> compliance -> review -> final. Returns True when the candidate is settled.
-
-        Every assessment is stored with the id of the evidence it was computed from, so a retry or a
-        resume after a crash/budget pause *reuses* paid LLM results for the same evidence instead of
-        buying them again. Attempts are counted *before* the stage runs, so a candidate that crashes
-        or hangs the process is eventually marked FALHOU (see ``recuperar_em_andamento``)."""
+        # Identidade -> marca -> conformidade -> revisão -> final. Devolve True quando a candidata fecha.
+        # Cada avaliação é gravada com o id da evidência de origem: nova tentativa ou retomada reaproveita
+        # o que já foi pago ao LLM para a mesma evidência. A tentativa conta antes da etapa rodar, então
+        # uma candidata que derruba o processo acaba em FALHOU (ver recuperar_em_andamento).
         st = self.armazenamento
         cand = st.obter_candidata(cid)
         st.transicionar(cid, S.ANALISANDO, esperado=S.COLETADA)
@@ -660,7 +645,7 @@ class Orquestrador:
         try:
             mais_recente = st.evidencia_mais_recente_com_id(cid)
             if mais_recente is None:
-                raise RuntimeError("no evidence stored for a COLETADA candidate")
+                raise RuntimeError("candidata COLETADA sem evidência gravada")
             id_ev, ev = mais_recente
             resultados_disc = st.resultados_descoberta(cid)
             visual: list[CorrespondenciaVisual] = []
@@ -689,7 +674,7 @@ class Orquestrador:
             )
 
             if ctx.foco == FOCO_LOGO_ANTIGA and not visual and not pistas_logo_antiga(ev):
-                # Focused campaign: no sign of the legacy logo, settle without spending on the models.
+                # Campanha focada sem sinal da logo antiga: fecha sem gastar com os modelos.
                 etapa = "final"
                 avaliacao = self._avaliacao_foco(ev)
                 st.salvar_avaliacao(cid, "marca", avaliacao, id_ev)
@@ -708,7 +693,7 @@ class Orquestrador:
 
             etapa = "marca"
             avaliacao = st.obter_avaliacao(cid, "marca", AvaliacaoMarca, id_evidencia=id_ev)
-            if avaliacao is None or (avaliacao.analisador.startswith("heuristic") and ctx.analista.usa_llm):
+            if avaliacao is None or (avaliacao.analisador.startswith("heuristica") and ctx.analista.usa_llm):
                 avaliacao = await ctx.analista.analisar(ev, catalogo, sinais, identidade)
                 avaliacao = avaliacao.model_copy(update={"correspondencias_visuais": visual})
                 st.salvar_avaliacao(cid, "marca", avaliacao, id_ev)
@@ -763,7 +748,7 @@ class Orquestrador:
                 if revisao.decisao == DecisaoRevisao.RECOLETAR and pode_recoletar:
                     st.incrementar(cid, "recoletas")
                     st.zerar_tentativas(cid)
-                    st.transicionar(cid, S.NA_FILA, nota=f"reviewer requested recollection: {revisao.motivo_recoleta}")
+                    st.transicionar(cid, S.NA_FILA, nota=f"revisor pediu nova coleta: {revisao.motivo_recoleta}")
                     return False
 
             etapa = "final"
@@ -786,11 +771,11 @@ class Orquestrador:
             self._motivo_parada = str(exc)
             self._parada.set()
             st.registrar_erro(ctx.id_campanha, cid, etapa, "OrcamentoEsgotado", str(exc))
-            st.zerar_tentativas(cid)  # not the candidate's fault
-            st.transicionar(cid, S.COLETADA, nota="paused: budget exhausted (paid results kept for resume)")
+            st.zerar_tentativas(cid)  # a culpa não é da candidata
+            st.transicionar(cid, S.COLETADA, nota="pausada: limite de uso atingido (o que já foi pago fica guardado)")
             return True
         except LLMIndisponivel as exc:
-            # Degrade gracefully, only the agent whose model failed; record the limitation.
+            # Só o agente cujo modelo falhou passa para a heurística; a limitação fica registrada.
             self._motivo_degradacao = f"{etapa}: {str(exc)[:300]}"
             st.registrar_erro(ctx.id_campanha, cid, etapa, "LLMIndisponivel", str(exc))
             if etapa == "revisao":
@@ -799,20 +784,21 @@ class Orquestrador:
                 ctx.analista.gateway = None
                 ctx.revisor.gateway = None
             st.zerar_tentativas(cid)
-            st.transicionar(cid, S.COLETADA, nota=f"LLM unavailable at {etapa}; retrying with heuristic analysis")
+            st.transicionar(cid, S.COLETADA, nota=f"LLM indisponível em {etapa}; nova tentativa com análise heurística")
             return False
-        except Exception as exc:  # LLMOutputInvalid, TransientLLMError, unexpected bugs
+        except Exception as exc:  # SaidaLLMInvalida, ErroTransitorioLLM ou bug
             st.registrar_erro(ctx.id_campanha, cid, etapa, type(exc).__name__, str(exc))
             if tentativa < self.configuracoes.max_tentativas:
-                st.transicionar(cid, S.COLETADA, nota=f"{etapa} error, retry {tentativa}: {type(exc).__name__}")
+                nota = f"erro em {etapa}, nova tentativa ({tentativa}): {type(exc).__name__}"
+                st.transicionar(cid, S.COLETADA, nota=nota)
                 await asyncio.sleep(self._espera_retentativa(tentativa))
                 return False
-            st.transicionar(cid, S.FALHOU, nota=f"{etapa} failed: {type(exc).__name__}: {exc}"[:500])
+            st.transicionar(cid, S.FALHOU, nota=f"{etapa} falhou: {type(exc).__name__}: {exc}"[:500])
             return True
 
 
 class CampanhaOcupada(RuntimeError):
-    """Another live process holds the campaign lease."""
+    """Outro processo ativo está com a trava da campanha."""
 
 
 @dataclass

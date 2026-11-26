@@ -31,7 +31,7 @@ ARQUIVO_RENOMEACOES = "renomeacoes.json"
 PREFIXO_TENTATIVA = "tentativa-"
 ARQUIVO_MANIFESTO = "manifesto.json"
 
-# Artifact kind -> file name inside the attempt folder (the kind is what the database and the code use).
+# Tipo do artefato -> nome do arquivo na pasta da tentativa (o banco e o código usam o tipo).
 ARTEFATOS = {
     "captura_viewport": "tela-inicial.png",
     "captura_completa": "pagina-inteira.png",
@@ -40,7 +40,7 @@ ARTEFATOS = {
     "dados_pagina": "dados-da-pagina.json",
 }
 
-# Files a report generation writes at the campaign root; the previous set goes to anteriores/ first.
+# Arquivos que o relatório grava na raiz da campanha; os da geração anterior vão antes para anteriores/.
 ARQUIVOS_RELATORIO = (PLANILHA, RELATORIO_HTML, RELATORIO_PDF, RELATORIO_AMEACAS)
 DIRS_RELATORIO = (DIR_DOSSIES, DIR_LOGO_ANTIGA)
 
@@ -49,7 +49,7 @@ _NAO_SEGURO = re.compile(r"[^a-z0-9.-]+")
 
 
 def carimbo(momento: datetime | None = None) -> str:
-    """``AAAA-MM-DD_HHhMM`` in Brasília time (naive datetimes are taken as UTC)."""
+    # Horário de Brasília; datetime sem fuso é tratado como UTC.
     momento = momento or datetime.now(UTC)
     if momento.tzinfo is None:
         momento = momento.replace(tzinfo=UTC)
@@ -66,7 +66,7 @@ def modo_campanha(foco: str | None) -> str:
 
 
 def id_campanha(momento: datetime, marca: str, foco: str | None) -> str:
-    """Base id ``AAAA-MM-DD_HHhMM_<marca>_<modo>``; the storage appends ``-2``, ``-3``... on collision."""
+    # O armazenamento acrescenta -2, -3... se o id já existir.
     return f"{carimbo(momento)}_{_segmento(marca, 'marca')}_{modo_campanha(foco)}"
 
 
@@ -88,11 +88,10 @@ def id_curto(id_candidata: str) -> str:
 
 
 def chave_candidata(hostname: str, id_candidata: str) -> str:
-    """``<host>_<idcurto>``: names the dossier, the logo crop and the evidence folder of a candidate."""
+    # Nomeia o dossiê, o recorte da logo e a pasta de evidências da candidata.
     return f"{host_seguro(hostname)}_{id_curto(id_candidata)}"
 
 
-# ---- output root --------------------------------------------------------------------------
 def arquivo_banco(dir_saida: Path) -> Path:
     return dir_saida / ARQUIVO_BANCO
 
@@ -115,7 +114,6 @@ def dir_campanha(dir_saida: Path, id_campanha: str) -> Path:
     return dir_saida / DIR_CAMPANHAS / id_campanha
 
 
-# ---- inside a campaign folder -------------------------------------------------------------
 def arquivo_dominios(dir_campanha: Path) -> Path:
     return dir_campanha / ARQUIVO_DOMINIOS
 
@@ -150,7 +148,7 @@ def arquivo_logo_antiga(dir_campanha: Path, hostname: str, id_candidata: str) ->
 
 
 def dir_tentativa(hostname: str, id_candidata: str, tentativa: int) -> PurePosixPath:
-    """Attempt folder relative to the campaign folder (always ``/``: it is stored in the database)."""
+    # Relativo à pasta da campanha e sempre com "/", porque vai para o banco.
     return PurePosixPath(DIR_EVIDENCIAS, chave_candidata(hostname, id_candidata), f"{PREFIXO_TENTATIVA}{tentativa}")
 
 
@@ -171,5 +169,5 @@ def dir_anterior_livre(dir_campanha: Path, nome: str) -> Path:
 
 
 def link(origem: Path, alvo: Path) -> str:
-    """Relative link (``/``) from the file ``origem`` to ``alvo``, as written in HTML and spreadsheets."""
+    # Link relativo, com "/", do jeito que vai no HTML e na planilha.
     return Path(os.path.relpath(alvo, origem.parent)).as_posix()

@@ -1,9 +1,3 @@
-"""Centralised configuration.
-
-All environment-specific values (GCP project, region, model names, API keys, budgets) are
-read from environment variables or a local ``.env`` file. Nothing corporate is hard-coded.
-"""
-
 from __future__ import annotations
 
 import os
@@ -16,7 +10,7 @@ from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 from simio.nucleo.caminhos import DIR_SAIDA_PADRAO, arquivo_banco
 
 FONTES_DESCOBERTA = ("grounding", "brave", "serper", "urlscan", "crtsh", "typosquat", "lens")
-# Secret settings, by current (PT) and former (EN) names: never logged or reported in clear.
+# Nomes atuais e antigos (em inglês) das chaves secretas: nunca aparecem em log ou relatório.
 CHAVES_SENSIVEIS = (
     "chave_api_brave",
     "chave_api_serper",
@@ -36,68 +30,63 @@ class Configuracoes(BaseSettings):
         populate_by_name=True,
     )
 
-    # ---- Vertex AI / Gemini -------------------------------------------------------------
-    projeto_gcp: str | None = Field(default=None, description="GCP project for Vertex AI")
-    local_gcp: str = Field(default="global", description="Vertex AI location/region")
+    projeto_gcp: str | None = Field(default=None, description="Projeto GCP do Vertex AI")
+    local_gcp: str = Field(default="global", description="Região do Vertex AI")
     caminho_credenciais_gcp: Path | None = Field(
         default=None,
         validation_alias=AliasChoices("SIMIO_CAMINHO_CREDENCIAIS_GCP", "GOOGLE_APPLICATION_CREDENTIALS"),
-        description="Optional path to ADC credentials file (sets GOOGLE_APPLICATION_CREDENTIALS)",
+        description="Arquivo de credenciais ADC (vira GOOGLE_APPLICATION_CREDENTIALS)",
     )
-    modelo_analise: str | None = Field(default=None, description="Multimodal analysis model")
-    modelo_revisao: str | None = Field(default=None, description="Reviewer model")
+    modelo_analise: str | None = Field(default=None, description="Modelo multimodal de análise")
+    modelo_revisao: str | None = Field(default=None, description="Modelo do revisor")
     modelo_descoberta: str | None = Field(
-        default=None, description="Model used for Google Search grounding (defaults to analysis)"
+        default=None, description="Modelo do Google Search Grounding (padrão: o de análise)"
     )
     llm_max_tokens_saida: int = Field(default=4096, ge=256, le=65536)
     llm_temperatura: float = Field(default=0.2, ge=0.0, le=2.0)
     llm_timeout_s: float = Field(default=120.0, gt=0)
     llm_max_retentativas: int = Field(default=3, ge=0, le=10)
 
-    # ---- Budgets --------------------------------------------------------------------------
-    max_requisicoes_llm: int = Field(default=300, ge=0, description="Per-campaign LLM call budget")
-    max_tokens_llm: int = Field(default=2_000_000, ge=0, description="Per-campaign token budget")
-    max_consultas_busca: int = Field(default=40, ge=0, description="Discovery query budget")
+    max_requisicoes_llm: int = Field(default=300, ge=0, description="Limite de chamadas ao LLM por campanha")
+    max_tokens_llm: int = Field(default=2_000_000, ge=0, description="Limite de tokens por campanha")
+    max_consultas_busca: int = Field(default=40, ge=0, description="Limite de consultas de descoberta")
     limite_sementes_coban: int = Field(
         default=0,
         ge=0,
-        description="Registered correspondents searched per campaign (H9; most recent first, rotating across "
-        "campaigns). 0 disables. Requires SIMIO_CAMINHO_CADASTRO_COBAN",
+        description="Correspondentes cadastrados pesquisados por campanha (H9; mais recentes primeiro, em "
+        "rodízio entre campanhas). 0 desliga. Precisa de SIMIO_CAMINHO_CADASTRO_COBAN",
     )
-    lote_sementes_coban: int = Field(default=4, ge=1, le=10, description="Correspondents per H9 search prompt")
+    lote_sementes_coban: int = Field(default=4, ge=1, le=10, description="Correspondentes por prompt de busca H9")
 
-    # ---- Concurrency / pipeline ----------------------------------------------------------
     paralelismo: int = Field(default=3, ge=1, le=16)
     max_tentativas: int = Field(default=3, ge=1, le=10)
     max_recoletas: int = Field(default=1, ge=0, le=3)
     atraso_base_retentativa_s: float = Field(default=2.0, ge=0)
 
-    # ---- Optional discovery connectors (never required) ----------------------------------
     chave_api_brave: SecretStr | None = None
     chave_api_serper: SecretStr | None = None
     chave_api_urlscan: SecretStr | None = None
     paginas_serper: int = Field(
-        default=1, ge=1, le=10, description="Serper result pages (10 results / 1 credit each) per query"
+        default=1, ge=1, le=10, description="Páginas do Serper por consulta (10 resultados e 1 crédito cada)"
     )
     variantes_simples_serper: int = Field(
         default=3,
         ge=0,
         le=6,
-        description="When Google hides most results of a dork behind opaque links, re-run up to N "
-        "operator-free versions of it (1 credit each; 0 disables)",
+        description="Quando o Google esconde a maior parte dos resultados de um dork atrás de links opacos, "
+        "refaz até N versões sem operadores (1 crédito cada; 0 desliga)",
     )
     pontuacao_minima_fila: float = Field(
-        default=-10.0, description="Candidates below this pre-collection score are not analysed (noise floor)"
+        default=-10.0, description="Candidatas abaixo desta pontuação (antes da coleta) não são analisadas"
     )
     timeout_http_s: float = Field(default=20.0, gt=0)
-    # ---- Domain intelligence of flagged pages (RDAP + DNS over HTTPS; public, no key) ----
-    inteligencia_dominio: bool = Field(default=True, description="Collect RDAP/DNS/hosting data of flagged pages")
+    # RDAP e DNS sobre HTTPS são públicos, sem chave.
+    inteligencia_dominio: bool = Field(default=True, description="Levanta RDAP, DNS e hospedagem dos achados")
     url_base_rdap: str = "https://rdap.org"
     url_doh: str = "https://cloudflare-dns.com/dns-query"
 
-    # ---- Browser / evidence --------------------------------------------------------------
     timeout_navegacao_ms: int = Field(default=30_000, ge=1000)
-    orcamento_pagina_s: float = Field(default=90.0, gt=0, description="Hard cap per page collection")
+    orcamento_pagina_s: float = Field(default=90.0, gt=0, description="Tempo máximo de coleta por página")
     espera_estabilizar_ms: int = Field(default=2500, ge=0)
     largura_viewport: int = 1366
     altura_viewport: int = 900
@@ -106,37 +95,35 @@ class Configuracoes(BaseSettings):
     max_caracteres_texto: int = Field(default=200_000, ge=1000)
     max_requisicoes_por_pagina: int = Field(default=400, ge=10)
     sandbox_navegador: bool = Field(
-        default=True, description="Chromium OS sandbox; disable only where it cannot start (documented risk)"
+        default=True, description="Sandbox do Chromium; desligue só onde ele não sobe (risco documentado)"
     )
     proxy_navegador_fixar_ip: bool = Field(
         default=True,
-        description="Send the validated IP (not the hostname) to the upstream proxy (anti DNS-rebinding)",
+        description="Manda ao proxy o IP já validado, não o hostname (contra DNS rebinding)",
     )
-    proxy_navegador: str | None = Field(default=None, description="e.g. http://proxy:8080")
+    proxy_navegador: str | None = Field(default=None, description="ex.: http://proxy:8080")
     user_agent_navegador: str | None = None
     ignorar_erros_https: bool = False
     portas_permitidas: Annotated[list[int], NoDecode] = Field(default_factory=lambda: [80, 443, 8080, 8443])
-    # Explicit host allow-list that bypasses the private-network block. TESTING ONLY.
+    # Hosts liberados do bloqueio de rede privada. Só para teste.
     hosts_liberados_inseguro: Annotated[list[str], NoDecode] = Field(default_factory=list)
 
-    # ---- Data locations ------------------------------------------------------------------
     dir_saida: Path = Field(default=Path(DIR_SAIDA_PADRAO))
     caminho_cadastro_coban: Path | None = Field(
-        default=None, description="CSV with authorised correspondents (CNPJ,name,...)"
+        default=None, description="CSV dos correspondentes autorizados (cnpj;nome;...)"
     )
     cadastro_coban_oficial: bool = Field(
         default=False,
-        description="Set true ONLY when the registry CSV is an official/approved source (enables COBAN_CONFIRMADO)",
+        description="true SÓ se o CSV for fonte oficial ou aprovada (habilita COBAN_CONFIRMADO)",
     )
     data_referencia_cadastro_coban: str | None = Field(
-        default=None, description="Reference date of the registry snapshot, shown in reports"
+        default=None, description="Data de referência da extração do cadastro, mostrada nos relatórios"
     )
     caminho_requisitos_contratuais: Path | None = Field(
-        default=None, description="Optional TOML with contractual requirements"
+        default=None, description="TOML opcional com requisitos contratuais"
     )
     arquivo_marca: Path | None = None
 
-    # ---- Modes ---------------------------------------------------------------------------
     offline: bool = False
     nivel_log: str = "INFO"
 
@@ -167,15 +154,13 @@ class Configuracoes(BaseSettings):
     @classmethod
     def _separar_csv(cls, v: object) -> object:
         if isinstance(v, str):
-            itens = [x.strip() for x in v.split(",") if x.strip()]
-            return itens
+            return [x.strip() for x in v.split(",") if x.strip()]
         return v
 
     def model_post_init(self, __context: object) -> None:
         if self.caminho_credenciais_gcp is not None and self.caminho_credenciais_gcp.is_file():
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(self.caminho_credenciais_gcp)
 
-    # ---- Derived -------------------------------------------------------------------------
     @property
     def caminho_db(self) -> Path:
         return arquivo_banco(self.dir_saida)
@@ -192,11 +177,11 @@ class Configuracoes(BaseSettings):
         return bool(self.projeto_gcp and self.modelo_analise)
 
     def mascarada(self) -> dict[str, object]:
-        """Settings snapshot safe for logs/reports (no secret values)."""
+        """Cópia das configurações sem os valores secretos, para log e relatório."""
         dados = self.model_dump(mode="json")
         for chave in CHAVES_SENSIVEIS:
             if chave in dados:
-                dados[chave] = "***set***" if getattr(self, chave, None) else None
+                dados[chave] = "***definida***" if getattr(self, chave, None) else None
         if self.proxy_navegador:
             from simio.config_logs import mascarar
 

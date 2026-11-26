@@ -1,5 +1,5 @@
-"""Schema v3 (Portuguese names): an English-named v2 database is migrated in place, and a new
-database is created directly in the same final schema."""
+# Esquema v3: um banco v2 com nomes em inglês é migrado no lugar, e um banco novo já nasce no
+# mesmo esquema final.
 
 from __future__ import annotations
 
@@ -14,11 +14,11 @@ from simio.nucleo.armazenamento import MIGRACOES, Armazenamento
 from simio.nucleo.traducao_legado import TABELAS, traduzir_modelo
 from simio.relatorios.dados import carregar_registros
 
-# Dump of a v2 database written by the English-named build (offline e2e run over the synthetic
-# fixture sites with the mock LLM: grounding discovery, analysis, review, usage, checkpoints).
+# Dump de um banco v2 gravado pela versão em inglês (e2e offline nos sites sintéticos com o LLM
+# falso: descoberta por grounding, análise, revisão, uso e checkpoints).
 FIXTURE = Path(__file__).resolve().parents[1] / "fixtures" / "banco_legado_v2.sql"
 
-# A few more legacy rows covering codes the fixture run does not produce.
+# Algumas linhas antigas a mais, com códigos que a execução do fixture não gera.
 EXTRAS = [
     "INSERT INTO campaigns(id, brand, status, params_json, created_at, updated_at) VALUES ('simio-x', 'bv', 'PAUSED_BUDGET',"
     """ '{"brand": "bv", "limit": 5, "focus": "ameacas", "workers": 2, "review_all": false, "imported_urls": 1}',"""
@@ -104,7 +104,7 @@ def test_migracao_v3_traduz_banco_legado(tmp_path: Path) -> None:
         assert depois == antes[velha] + (1 if velha == "schema_migrations" else 0), velha
     assert st.con.execute("PRAGMA foreign_key_check").fetchall() == []
 
-    # every payload validates against the new models (extra="forbid")
+    # todo payload valida nos modelos novos (extra="forbid")
     por_tipo = {
         "identidade": m.AtribuicaoIdentidade,
         "marca": m.AvaliacaoMarca,
@@ -139,7 +139,7 @@ def test_migracao_v3_traduz_banco_legado(tmp_path: Path) -> None:
         "permutacoes_verificadas": 120,
         "resolvidos_nao_publicos": ["a.example"],
         "complemento": "dork_social",
-        "nao_resolvidos": [{"title": "t", "snippet": "s"}],  # API payload entries are not walked
+        "nao_resolvidos": [{"title": "t", "snippet": "s"}],  # payload de API não é percorrido
     }
     arquivo = consultas["H13-foco-logo-antiga:regiao-sul"]
     assert arquivo["fonte"] == "importacao:arquivo:lista.txt" and arquivo["status"] == "ERRO"
@@ -155,7 +155,7 @@ def test_migracao_v3_traduz_banco_legado(tmp_path: Path) -> None:
     assert [(e["etapa"], e["tipo_erro"]) for e in st.erros("simio-x")] == [("marca", "LLMIndisponivel")]
     assert st.obter_checkpoint("simio-x", "descoberta_concluida") is True
 
-    # the campaign written by the old build: codes and vocabulary of the new one
+    # a campanha gravada pela versão antiga sai com os códigos e o vocabulário da nova
     (cid,) = st.con.execute("SELECT id FROM campanhas WHERE id != 'simio-x'").fetchone()
     assert {r[0] for r in st.con.execute("SELECT DISTINCT agente FROM uso_llm")} <= {
         "analista_marca",

@@ -1,14 +1,3 @@
-"""Translation of data written by the English-named SIMIO builds (schema v1/v2).
-
-Used by migration v3 (``simio.nucleo.armazenamento``) to rewrite every stored JSON payload and
-text code, and by readers of files written on disk by older runs (``domain-intel.json``).
-The walk is driven by the Pydantic models: keys are renamed per model class, enum values per
-enum-typed field and the few free-text codes per field. Payloads coming from third-party APIs
-(``metadados`` values, page text) are never walked.
-
-Tables generated from the name map (analise/mapa_nomes.json) of the Portuguese rename.
-"""
-
 from __future__ import annotations
 
 import inspect
@@ -21,7 +10,7 @@ from typing import Annotated, Any, Union, get_args, get_origin
 
 from pydantic import BaseModel
 
-# ---------------------------------------------------------------------------- generated tables
+# Tabelas geradas a partir do mapa de nomes da tradução para o português (analise/mapa_nomes.json).
 CAMPOS_POR_MODELO: dict[str, Any] = {
     "AchadoConformidade": {
         "requirement_id": "id_requisito",
@@ -804,7 +793,7 @@ INDICES: dict[str, Any] = {
     "idx_discovery_unique": "idx_descoberta_unico",
 }
 
-# Keys of free-form payloads (agent_decisions.detail_json, campaigns.params_json, checkpoint values).
+# Chaves dos payloads livres (detail_json das decisões, params_json das campanhas, checkpoints).
 DETALHE: dict[str, str] = {
     **PARAMETROS,
     "priority": "prioridade",
@@ -844,9 +833,8 @@ DETALHE: dict[str, str] = {
 }
 
 
-# ---------------------------------------------------------------------------- scalar codes
 def hipotese(valor: Any) -> Any:
-    """``H2-product:financiamento`` -> ``H2-produto:financiamento`` (the suffix is data)."""
+    # H2-product:financiamento -> H2-produto:financiamento; o sufixo é dado e não muda.
     if not isinstance(valor, str):
         return valor
     familia, sep, resto = valor.partition(":")
@@ -884,7 +872,7 @@ def _tabela(mapa: dict[str, Any]) -> Callable[[Any], Any]:
 
 
 def metadados(valor: Any) -> Any:
-    """Top-level keys only: nested entries mirror third-party API payloads."""
+    # Só o primeiro nível: o que está dentro é payload de API de terceiros.
     if not isinstance(valor, dict):
         return valor
     saida: dict[str, Any] = {}
@@ -928,12 +916,11 @@ ESPECIAIS: dict[tuple[str, str], Callable[[Any], Any]] = {
     ("RegistroConsulta", "metadados"): metadados,
     ("DecisaoFinal", "status_revisao_humana"): _tabela(STATUS_REVISAO_HUMANA),
     ("DecisaoFinal", "resumo_conformidade"): _resumo_conformidade,
-    # free-text topic; the model sometimes names a dimension (``LOGO_USAGE``): exact matches only
+    # Tópico é texto livre, mas às vezes o modelo usa o nome de uma dimensão (LOGO_USAGE): só valor exato.
     ("Contestacao", "topico"): enum,
 }
 
 
-# ---------------------------------------------------------------------------- model-driven walk
 def _por_tipo(anotacao: Any, valor: Any) -> Any:
     origem = get_origin(anotacao)
     args = get_args(anotacao)
@@ -965,10 +952,10 @@ def _por_tipo(anotacao: Any, valor: Any) -> Any:
     return valor
 
 
+# O percurso segue os modelos pydantic: chaves por classe, valores de enum pelo tipo do campo e os
+# poucos códigos em texto livre por campo (ESPECIAIS). Payload de terceiros e texto de página não
+# são tocados. Idempotente: o que já está no vocabulário novo volta igual.
 def traduzir_modelo(cls: type[BaseModel], dados: Any) -> Any:
-    """Rename the keys/values of a dumped ``cls`` written by an English-named build.
-
-    Idempotent: payloads already in the new vocabulary come back unchanged."""
     if not isinstance(dados, dict):
         return dados
     mapa: dict[str, str] = {}
@@ -991,7 +978,6 @@ def traduzir_modelo(cls: type[BaseModel], dados: Any) -> Any:
 
 
 def detalhe(valor: Any, chave: str | None = None) -> Any:
-    """Free-form payloads (decision details, campaign params, discovery checkpoint)."""
     if isinstance(valor, dict):
         saida: dict[str, Any] = {}
         for k, v in valor.items():
@@ -1020,12 +1006,11 @@ def detalhe(valor: Any, chave: str | None = None) -> Any:
 
 
 def _chave_consulta(chave: str) -> str:
-    """``serper:EMPTY`` -> ``serper:VAZIA`` (see ``resumir_consultas``)."""
-    src, sep, status = chave.rpartition(":")
-    return f"{fonte(src)}{sep}{STATUS_CONSULTA.get(status, status)}" if sep else chave
+    # serper:EMPTY -> serper:VAZIA (ver resumir_consultas).
+    origem, sep, status = chave.rpartition(":")
+    return f"{fonte(origem)}{sep}{STATUS_CONSULTA.get(status, status)}" if sep else chave
 
 
-# ---------------------------------------------------------------------------- migration v3
 def _json_compacto(obj: Any) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
@@ -1035,7 +1020,6 @@ def _json_livre(obj: Any) -> str:
 
 
 def _reescrever(con: sqlite3.Connection, tabela: str, colunas: dict[str, Callable[[Any], Any]]) -> int:
-    """Apply ``colunas[col](value)`` to every row; returns how many rows changed."""
     nomes = list(colunas)
     sel = ", ".join(f'"{c}"' for c in nomes)
     alteradas = 0
@@ -1072,9 +1056,7 @@ def _json_com(fn: Callable[[Any], Any], estilo: Callable[[Any], str] = _json_liv
 
 
 def migrar_v3(con: sqlite3.Connection) -> None:
-    """Schema v3: Portuguese table/column/index names and payload vocabulary.
-
-    Runs inside the migration transaction with foreign keys disabled by the caller."""
+    # Roda dentro da transação da migração; quem chama já desligou as chaves estrangeiras.
     from simio.nucleo import modelos as m
 
     for velha, (nova, colunas) in TABELAS.items():
@@ -1094,7 +1076,7 @@ def migrar_v3(con: sqlite3.Connection) -> None:
         "revisao": m.Revisao,
         "final": m.DecisaoFinal,
     }
-    hits = _json_com(_lista(lambda h: traduzir_modelo(m.ResultadoDescoberta, h)))
+    conv_resultados = _json_com(_lista(lambda h: traduzir_modelo(m.ResultadoDescoberta, h)))
 
     def payload_entidade(d: Any) -> Any:
         if not isinstance(d, dict):
@@ -1140,7 +1122,7 @@ def migrar_v3(con: sqlite3.Connection) -> None:
         if chave == "descoberta":
             novo = _json_com(detalhe)(valor)
         elif chave in ("resultados_parciais_descoberta", "resultados_importados"):
-            novo = hits(valor)
+            novo = conv_resultados(valor)
         else:
             continue
         if novo != valor:

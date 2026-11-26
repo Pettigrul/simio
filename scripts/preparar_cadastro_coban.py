@@ -1,15 +1,14 @@
-"""Prepare the authorised-correspondent (COBAN) registry used by the Identity agent.
+"""Prepara o cadastro de correspondentes (COBAN) usado pelo agente de identidade.
 
-Reads the operator's export (``.xlsx`` or ``.csv`` with columns ``cnpj``, ``nmpessoa``,
-``dtcadastro``, ``login_parceiro``) and writes the CSV expected by ``CadastroCoban``:
+Lê a exportação do operador (.xlsx ou .csv com as colunas cnpj, nmpessoa, dtcadastro e
+login_parceiro) e grava o CSV que o CadastroCoban espera:
 
-* one row per CNPJ (duplicates from multiple partner logins are merged);
-* the institution's own entities are removed (CNPJ roots from the brand profile, plus any row
-  whose name is an institution name, e.g. internal accounts such as "COMISSAO PARCERIA");
-* invalid CNPJs are dropped; mojibake in names (``COM√ÇRCIO``) is repaired when possible.
+* uma linha por CNPJ (logins de parceiro repetidos são juntados);
+* sem as entidades da própria instituição (raízes de CNPJ do perfil de marca e nomes da
+  instituição, como contas internas do tipo "COMISSAO PARCERIA");
+* sem CNPJ inválido; nomes com mojibake (COM√ÇRCIO) são consertados quando dá.
 
-The output contains partner data and MUST stay on the execution machine (``data/`` is
-git-ignored). Usage::
+A saída tem dados de parceiros e NÃO sai da máquina de execução (data/ está no .gitignore). Uso:
 
     python scripts/preparar_cadastro_coban.py Todos_Cobans_Ativos.xlsx \
         --saida data/coban_registry_bv.csv --marca bv --data-referencia 2026-10-06
@@ -30,7 +29,7 @@ RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ / "src"))
 
 from simio.agentes.identidade import cnpj_valido, normalizar_cnpj  # noqa: E402
-from simio.marcas import normalizar_texto, carregar_marca  # noqa: E402
+from simio.marcas import carregar_marca, normalizar_texto  # noqa: E402
 
 CAMPOS = [
     "cnpj",
@@ -48,12 +47,12 @@ _DATA = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 def reparar_nome(bruto: object) -> str:
-    """Trim, collapse spaces and undo UTF-8-read-as-MacRoman mojibake (``COM√ÇRCIO`` -> ``COMÉRCIO``)."""
+    # Desfaz UTF-8 lido como MacRoman: COM√ÇRCIO -> COMÉRCIO.
     nome = re.sub(r"\s+", " ", str(bruto or "")).strip()
     if _MOJIBAKE.search(nome):
         with contextlib.suppress(UnicodeEncodeError, UnicodeDecodeError):
             nome = nome.encode("mac_roman").decode("utf-8")
-    if nome.replace(".", "").isdigit():  # a bare number is not a name
+    if nome.replace(".", "").isdigit():  # número solto não é nome
         return ""
     return nome
 
@@ -118,7 +117,10 @@ def preparar(
             estatisticas["removidas_cnpj_invalido"] += 1
             continue
         normalizado = normalizar_texto(nome).strip(" .")
-        if cnpj[:8] in raizes or any(normalizado == n or normalizado.startswith(n + " ") for n in nomes_inst if len(n) > 6):
+        da_instituicao = any(
+            normalizado == n or normalizado.startswith(n + " ") for n in nomes_inst if len(n) > 6
+        )
+        if cnpj[:8] in raizes or da_instituicao:
             estatisticas["removidas_entidade_da_instituicao"] += 1
             removidos.append((cnpj, nome))
             continue
@@ -130,17 +132,23 @@ def preparar(
         if r.get("login_parceiro") not in (None, ""):
             e.logins.append(str(r["login_parceiro"]))
     estatisticas["cnpjs_unicos"] = len(entradas)
-    mantidos = estatisticas["linhas_lidas"] - estatisticas["removidas_cnpj_invalido"] - estatisticas["removidas_entidade_da_instituicao"]
+    mantidos = (
+        estatisticas["linhas_lidas"]
+        - estatisticas["removidas_cnpj_invalido"]
+        - estatisticas["removidas_entidade_da_instituicao"]
+    )
     estatisticas["linhas_duplicadas_mescladas"] = mantidos - len(entradas)
-    estatisticas["cnpjs_com_nomes_divergentes"] = sum(1 for e in entradas.values() if len({normalizar_texto(n) for n in e.nomes}) > 1)
+    estatisticas["cnpjs_com_nomes_divergentes"] = sum(
+        1 for e in entradas.values() if len({normalizar_texto(n) for n in e.nomes}) > 1
+    )
     return entradas, estatisticas, removidos
 
 
 def principal() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("origem", type=Path)
-    ap.add_argument("--saida", type=Path, default=RAIZ / "data" / "coban_registry_bv.csv")
-    ap.add_argument("--marca", default="bv")
+    ap.add_argument("origem", type=Path, help="exportação do operador (.xlsx ou .csv)")
+    ap.add_argument("--saida", type=Path, default=RAIZ / "data" / "coban_registry_bv.csv", help="CSV de saída")
+    ap.add_argument("--marca", default="bv", help="perfil de marca (padrão: bv)")
     ap.add_argument("--data-referencia", default="", help="data de referência da extração (AAAA-MM-DD)")
     args = ap.parse_args()
 

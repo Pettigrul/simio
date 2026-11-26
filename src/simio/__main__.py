@@ -1,5 +1,3 @@
-"""Package entry point (`python -m simio`)."""
-
 from __future__ import annotations
 
 from simio.cli import app

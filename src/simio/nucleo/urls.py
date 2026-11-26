@@ -1,5 +1,3 @@
-"""URL normalisation, registrable-domain extraction and URL extraction from free text."""
-
 from __future__ import annotations
 
 import contextlib
@@ -71,7 +69,7 @@ _PONTUACAO_FINAL = ".,;:!?)]}'\"»”"
 
 @lru_cache(maxsize=1)
 def _extrator() -> tldextract.TLDExtract:
-    # suffix_list_urls=() -> use the bundled Public Suffix List snapshot; never hits the network.
+    # suffix_list_urls=() usa a cópia da Public Suffix List que vem no pacote, sem acessar a rede.
     return tldextract.TLDExtract(suffix_list_urls=(), cache_dir=None)
 
 
@@ -84,12 +82,8 @@ def dominio_registravel(hostname: str) -> str:
 
 
 def normalizar_url(url: str) -> str:
-    """Canonical form used for deduplication.
-
-    Lower-cases scheme/host, strips ``www.``, default ports, fragments, tracking parameters,
-    sorts the query string and removes trailing slashes. ``http`` and ``https`` collapse to
-    the same key (the same page served over both schemes is one candidate).
-    """
+    # Chave de deduplicação: http e https caem na mesma URL (a mesma página nos dois esquemas é
+    # uma candidata só).
     bruto = url.strip()
     if not re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", bruto):
         bruto = "https://" + bruto
@@ -123,7 +117,7 @@ def normalizar_url(url: str) -> str:
 
 
 def hostname_de(url: str) -> str:
-    """Lower-case host of a URL; "" for malformed input (e.g. a page link like ``http://[broken``)."""
+    # "" para URL malformada, comum em links de página como ``http://[quebrado``.
     try:
         return (urlsplit(url if "://" in url else "https://" + url).hostname or "").lower().rstrip(".")
     except ValueError:
@@ -131,12 +125,11 @@ def hostname_de(url: str) -> str:
 
 
 def extrair_urls(texto: str) -> list[str]:
-    """Extract http(s) URLs from free text, preserving order and removing duplicates."""
     vistos: set[str] = set()
     saida: list[str] = []
     for correspondencia in _URL_RE.finditer(texto or ""):
         candidata = correspondencia.group(1).rstrip(_PONTUACAO_FINAL)
-        # Balance a trailing ")" that belongs to the URL (e.g. wikipedia style)
+        # TODO: o rstrip corta o ")" final que faz parte da URL (ex.: wikipedia.org/wiki/Foo_(bar)).
         if candidata.lower().startswith("www."):
             candidata = "https://" + candidata
         if candidata not in vistos:

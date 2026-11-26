@@ -1,4 +1,4 @@
-"""Architecture-review regressions: crash isolation, resume semantics, idempotency, budgets."""
+# Regressões: isolamento de queda, retomada, idempotência e limites de uso.
 
 from __future__ import annotations
 
@@ -60,7 +60,7 @@ async def test_candidata_venenosa_nao_bloqueia_retomada(configuracoes, armazenam
     armazenamento.transicionar(cand, S.NA_FILA)
     armazenamento.transicionar(cand, S.COLETANDO)
     for _ in range(configuracoes.max_tentativas):
-        armazenamento.incrementar(cand, "tentativas")  # crashed/hung the process max_attempts times
+        armazenamento.incrementar(cand, "tentativas")  # derrubou ou travou o processo max_tentativas vezes
     s = await Orquestrador(configuracoes, armazenamento).retomar(cid)
     assert armazenamento.obter_candidata(cand).status == S.FALHOU
     assert s.status == "CONCLUIDA"
@@ -71,7 +71,7 @@ async def test_retomar_mantem_modo_offline_e_modelo(configuracoes, armazenamento
     urls = importar_texto(f"{site}/ambiguous.html")
     s1 = await Orquestrador(configuracoes, armazenamento).investigar(OpcoesInvestigacao(importadas=urls, limite=0))
     assert s1.contagens == {"DESCOBERTA": 1}
-    # Operator now has Vertex configured: resume must NOT silently start sending pages to the model.
+    # Agora há Vertex configurado: a retomada NÃO pode passar a mandar páginas ao modelo sem aviso.
     chamadas: list[str] = []
     prov = ProvedorMock({"SaidaAnaliseMarca": lambda sy, p: chamadas.append("x") or FORTE})
     configuracoes.offline = False
@@ -112,7 +112,7 @@ async def test_analise_de_marca_paga_eh_reaproveitada_apos_falha_do_revisor(conf
     def revisor(sy, p):
         n["revisao"] += 1
         if n["revisao"] == 1:
-            return "not json"  # invalid twice (initial + repair) -> analysis retry
+            return "not json"  # inválida duas vezes (inicial + reparo) -> nova tentativa da análise
         return SaidaRevisao(
             decisao="CONFIRMAR",
             classificacao_revisada=C.REQUER_REVISAO,
@@ -153,7 +153,7 @@ class _BuscaContadora:
 
     async def executar(self, hipotese, consulta):
         if self.falhar_depois is not None and len(self.chamadas) >= self.falhar_depois:
-            raise KeyboardInterrupt  # simulated Ctrl+C mid-discovery
+            raise KeyboardInterrupt  # Ctrl+C simulado no meio da descoberta
         self.chamadas.append(consulta)
         resultados = [
             ResultadoDescoberta(fonte=self.nome, url_original=u, consulta=consulta, id_hipotese=hipotese.id) for u in self.urls
@@ -174,7 +174,7 @@ async def test_descoberta_interrompida_retoma_sem_perder_importadas_nem_pagar_de
     assert armazenamento.obter_campanha(cid)["status"] == "INTERROMPIDA"
     segundo = _BuscaContadora([f"{site}/lookalike.html"])
     await Orquestrador(configuracoes, armazenamento, conectores=[segundo]).retomar(cid)
-    assert len(armazenamento.listar_consultas(cid)) == 1 + 4  # 1 import record + cap of 4 searches overall
+    assert len(armazenamento.listar_consultas(cid)) == 1 + 4  # 1 registro de importação + limite de 4 buscas no total
     assert not set(primeiro.chamadas) & set(segundo.chamadas)
     urls = {c.url.rsplit("/", 1)[-1] for c in armazenamento.listar_candidatas(cid)}
     assert {"legit_partner.html", "ambiguous.html", "lookalike.html"} <= urls
@@ -184,7 +184,7 @@ async def test_relatorio_mostra_uma_rodada_consistente(configuracoes, armazename
     configuracoes.offline = True
     s = await Orquestrador(configuracoes, armazenamento).investigar(OpcoesInvestigacao(importadas=importar_texto(f"{site}/ambiguous.html")))
     cand = armazenamento.listar_candidatas(s.id_campanha)[0]
-    # A stale review from an older round must not be reported next to the current final.
+    # Revisão velha de uma rodada anterior não pode sair ao lado do resultado final atual.
     armazenamento.salvar_avaliacao(
         cand.id,
         "revisao",

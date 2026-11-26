@@ -1,10 +1,3 @@
-"""SQLite persistence with versioned migrations.
-
-The database is local (``<output_dir>/simio.db``) and holds campaigns, queries, candidates,
-domains, entities, evidence references, assessments, decisions, errors and checkpoints.
-All JSON payloads are produced from validated Pydantic models.
-"""
-
 from __future__ import annotations
 
 import hashlib
@@ -34,7 +27,7 @@ from simio.nucleo.traducao_legado import migrar_v3
 M = TypeVar("M", bound=BaseModel)
 
 MIGRACOES: list[str | Callable[[sqlite3.Connection], None]] = [
-    # v1 - initial schema
+    # v1: esquema inicial, com nomes em inglês
     """
     CREATE TABLE campaigns (
         id TEXT PRIMARY KEY,
@@ -172,8 +165,8 @@ MIGRACOES: list[str | Callable[[sqlite3.Connection], None]] = [
         at TEXT NOT NULL
     );
     """,
-    # v2: assessments tied to the evidence they were computed from (retry/resume reuse and
-    # consistent reports); idempotent discovery results; single-writer campaign lease.
+    # v2: avaliação ligada à evidência de onde saiu (reaproveitada em nova tentativa ou retomada),
+    # resultado de descoberta sem duplicata e trava de campanha (um processo por vez).
     """
     ALTER TABLE assessments ADD COLUMN evidence_id INTEGER;
     CREATE INDEX idx_assessments_ev ON assessments(candidate_id, kind, evidence_id);
@@ -187,12 +180,12 @@ MIGRACOES: list[str | Callable[[sqlite3.Connection], None]] = [
         heartbeat TEXT NOT NULL
     );
     """,
-    # v3: Portuguese table/column/index names; every stored payload and code translated
-    # (simio.nucleo.traducao_legado). Runs with foreign keys off, checked afterwards.
+    # v3: tabelas, colunas, índices e conteúdo gravado em português (simio.nucleo.traducao_legado).
+    # Roda com as chaves estrangeiras desligadas e confere tudo no final.
     migrar_v3,
 ]
 
-# Latest schema, used to create a new database directly (ends in the same state as v1 -> v3).
+# Banco novo já nasce neste esquema, que é o mesmo estado final de v1 -> v3.
 ESQUEMA_ATUAL = """
     CREATE TABLE campanhas (
         id TEXT PRIMARY KEY,
@@ -355,7 +348,7 @@ def id_candidata_para(id_campanha: str, url_normalizada: str) -> str:
 
 
 class ModificacaoConcorrente(_TransicaoInvalida):
-    """Compare-and-set transition failed: the candidate was moved by another writer."""
+    """Outro processo mudou o estado da candidata entre a leitura e a escrita."""
 
 
 class Armazenamento:
@@ -369,7 +362,6 @@ class Armazenamento:
         self.con.execute("PRAGMA busy_timeout=30000")
         self.migrar()
 
-    # ------------------------------------------------------------------ infrastructure
     def fechar(self) -> None:
         self.con.close()
 
@@ -392,15 +384,15 @@ class Armazenamento:
     def migrar(self) -> None:
         atual = self.versao_esquema()
         if atual > len(MIGRACOES):
-            raise RuntimeError(f"Database schema v{atual} is newer than this SIMIO build (v{len(MIGRACOES)}).")
+            raise RuntimeError(f"O banco está no esquema v{atual}, mais novo que este SIMIO (v{len(MIGRACOES)}).")
         if atual == 0:
             self._criar_esquema_atual()
             return
         for versao, passo in enumerate(MIGRACOES, start=1):
             if versao <= atual:
                 continue
-            # PRAGMA foreign_keys is a no-op inside a transaction: switch it off around the step
-            # (tables are renamed/rewritten) and verify the references once it is committed.
+            # PRAGMA foreign_keys não tem efeito dentro de transação: desliga antes do passo (que
+            # renomeia e reescreve tabelas) e confere as referências depois do commit.
             self.con.execute("PRAGMA foreign_keys=OFF")
             try:
                 with self.transacao() as c:
@@ -419,11 +411,10 @@ class Armazenamento:
             violacoes = self.con.execute("PRAGMA foreign_key_check").fetchall()
             if violacoes:
                 raise RuntimeError(
-                    f"Migration v{versao} left {len(violacoes)} foreign key violation(s): {violacoes[:5]}"
+                    f"A migração v{versao} deixou {len(violacoes)} referência(s) quebrada(s): {violacoes[:5]}"
                 )
 
     def _criar_esquema_atual(self) -> None:
-        """A new database is created directly in the latest schema (same end state as v1..v3)."""
         with self.transacao() as c:
             for stmt in (s.strip() for s in ESQUEMA_ATUAL.split(";")):
                 if stmt:
@@ -432,9 +423,8 @@ class Armazenamento:
             for versao in range(1, len(MIGRACOES) + 1):
                 c.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (?, ?)", (versao, agora))
 
-    # ------------------------------------------------------------------ campaigns
     def criar_campanha(self, marca: str, parametros: dict[str, Any]) -> str:
-        """Readable id ``AAAA-MM-DD_HHhMM_<marca>_<modo>`` (Brasília time); ``-2``, ``-3``... when taken."""
+        # Id legível AAAA-MM-DD_HHhMM_<marca>_<modo> (horário de Brasília); -2, -3... se já existir.
         momento = datetime.now(UTC)
         agora = momento.isoformat(timespec="seconds")
         base = caminhos.id_campanha(momento, marca, parametros.get("foco"))
@@ -458,7 +448,7 @@ class Armazenamento:
             return cid
 
     def resolver_id_campanha(self, id_ou_anterior: str) -> str | None:
-        """Current id of a campaign, also when given the id it had before the folder migration."""
+        # Aceita também o id que a campanha tinha antes da migração para resultados/.
         if self.con.execute("SELECT 1 FROM campanhas WHERE id=?", (id_ou_anterior,)).fetchone():
             return id_ou_anterior
         linha = self.con.execute(
@@ -506,7 +496,6 @@ class Armazenamento:
         ).fetchone()
         return json.loads(linha[0]) if linha else padrao
 
-    # ------------------------------------------------------------------ discovery
     def registrar_consulta(self, id_campanha: str, q: RegistroConsulta) -> int:
         cur = self.con.execute(
             "INSERT INTO consultas(id_campanha, fonte, id_hipotese, texto_consulta, status,"
@@ -526,7 +515,7 @@ class Armazenamento:
         return int(cur.lastrowid or 0)
 
     def cnpjs_coban_pesquisados(self, excluir_campanha: str | None = None) -> set[str]:
-        """CNPJs already covered by a successful COBAN-seeded (H9) search in other campaigns."""
+        # CNPJs que já passaram por busca H9 bem-sucedida em outras campanhas.
         linhas = self.con.execute(
             "SELECT id_hipotese FROM consultas WHERE id_hipotese LIKE 'H9-coban:%'"
             " AND status IN ('OK','VAZIA') AND id_campanha IS NOT ?",
@@ -570,8 +559,8 @@ class Armazenamento:
         hostname: str,
         dominio_registravel: str,
     ) -> tuple[str, bool]:
-        # Look up by URL, not by the derived id: migrated campaigns keep their candidates' ids but not
-        # the campaign id they were hashed from.
+        # Busca pela URL e não pelo id derivado: campanhas migradas mantêm o id das candidatas, mas não
+        # o id de campanha usado no hash.
         existente = self.con.execute(
             "SELECT id FROM candidatas WHERE id_campanha=? AND url_normalizada=?", (id_campanha, url_normalizada)
         ).fetchone()
@@ -627,7 +616,6 @@ class Armazenamento:
             (pontuacao, _serializar(motivos), _agora(), id_candidata),
         )
 
-    # ------------------------------------------------------------------ candidates
     @staticmethod
     def _linha_para_candidata(linha: sqlite3.Row) -> Candidata:
         return Candidata(
@@ -679,8 +667,7 @@ class Armazenamento:
         nota: str | None = None,
         esperado: StatusCandidata | None = None,
     ) -> None:
-        """Validated, atomic transition. With ``esperado`` it is a compare-and-set: it fails if the
-        candidate is no longer in the state the caller observed (another writer moved it)."""
+        # Com `esperado`, falha se a candidata já não estiver no estado que quem chamou leu.
         with self.transacao() as c:
             linha = c.execute("SELECT status FROM candidatas WHERE id=?", (id_candidata,)).fetchone()
             if not linha:
@@ -688,7 +675,7 @@ class Armazenamento:
             atual = StatusCandidata(linha[0])
             if esperado is not None and atual != esperado:
                 raise ModificacaoConcorrente(
-                    f"{id_candidata}: expected {esperado.value}, found {atual.value} (another process?)"
+                    f"{id_candidata}: esperava {esperado.value}, está em {atual.value} (outro processo?)"
                 )
             verificar_transicao(atual, alvo)
             c.execute(
@@ -722,25 +709,23 @@ class Armazenamento:
         self.con.execute("UPDATE candidatas SET ultimo_erro=? WHERE id=?", (mensagem, id_candidata))
 
     def recuperar_em_andamento(self, id_campanha: str, max_tentativas: int | None = None) -> int:
-        """Return interrupted in-flight candidates to their last stable state. A candidate that has
-        already used ``max_tentativas`` (e.g. it crashes or hangs the process every time) goes to
-        FALHOU instead, so one poison candidate cannot block every resume."""
+        # Devolve as candidatas interrompidas ao último estado estável. A que já gastou max_tentativas
+        # (derruba ou trava o processo toda vez) vai para FALHOU, senão nenhuma retomada termina.
         n = 0
         for cand in self.listar_candidatas(id_campanha, EM_ANDAMENTO):
             if max_tentativas is not None and cand.tentativas >= max_tentativas:
                 self.transicionar(
                     cand.id,
                     StatusCandidata.FALHOU,
-                    nota=f"interrupted {cand.tentativas} times in {cand.status.value}; marked FALHOU",
+                    nota=f"interrompida {cand.tentativas} vezes em {cand.status.value}; marcada como FALHOU",
                 )
             else:
-                self.transicionar(cand.id, RETOMAR_DE[cand.status], nota="recovered after interruption")
+                self.transicionar(cand.id, RETOMAR_DE[cand.status], nota="recuperada após interrupção")
             n += 1
         return n
 
-    # ------------------------------------------------------------------ campaign lease
     def adquirir_trava(self, id_campanha: str, dono: str, vencida_apos_s: float = 120.0) -> str | None:
-        """Single writer per campaign. Returns None on success, or the current live holder."""
+        # Um processo por campanha. Devolve None se conseguiu a trava, ou o dono atual se ela está viva.
         agora = datetime.now(UTC)
         with self.transacao() as c:
             linha = c.execute(
@@ -772,7 +757,6 @@ class Armazenamento:
         ).fetchall()
         return [dict(r) for r in linhas]
 
-    # ------------------------------------------------------------------ evidence
     def salvar_evidencia(self, ev: Evidencia) -> int:
         cur = self.con.execute(
             "INSERT INTO evidencias(id_candidata, tentativa, status, url_final, caminho_manifesto,"
@@ -814,7 +798,6 @@ class Armazenamento:
         ).fetchall()
         return [Evidencia.model_validate_json(r[0]) for r in linhas]
 
-    # ------------------------------------------------------------------ assessments
     def salvar_avaliacao(
         self, id_candidata: str, tipo: str, modelo: BaseModel, id_evidencia: int | None = None
     ) -> None:
@@ -824,7 +807,7 @@ class Armazenamento:
         )
 
     def obter_avaliacao(self, id_candidata: str, tipo: str, cls: type[M], id_evidencia: int | None = None) -> M | None:
-        """Latest assessment of a kind; with ``id_evidencia``, only one computed from that evidence."""
+        # Com id_evidencia, só vale a avaliação feita sobre aquela evidência.
         sql = "SELECT dados_json FROM avaliacoes WHERE id_candidata=? AND tipo=?"
         args: list[Any] = [id_candidata, tipo]
         if id_evidencia is not None:
@@ -840,7 +823,6 @@ class Armazenamento:
         ).fetchone()
         return int(linha[0]) if linha and linha[0] is not None else None
 
-    # ------------------------------------------------------------------ entities
     def upsert_entidade(self, id_campanha: str, atribuicao: AtribuicaoIdentidade, fundamento: str) -> int:
         linha = self.con.execute(
             "SELECT id FROM entidades WHERE id_campanha=? AND chave_entidade=?",
@@ -873,7 +855,7 @@ class Armazenamento:
                 ),
             )
             id_entidade = int(cur.lastrowid or 0)
-        # A candidate belongs to the entity of its *latest* attribution (no stale links after recollect).
+        # A candidata fica com a entidade da atribuição mais recente (sem vínculo velho depois de recoleta).
         self.con.execute("DELETE FROM vinculos_entidade WHERE id_candidata=?", (atribuicao.id_candidata,))
         self.con.execute(
             "INSERT OR REPLACE INTO vinculos_entidade(id_entidade, id_candidata, fundamento) VALUES (?,?,?)",
@@ -892,7 +874,6 @@ class Armazenamento:
         ).fetchall()
         return [dict(r) for r in linhas]
 
-    # ------------------------------------------------------------------ logs
     def registrar_decisao(
         self,
         id_campanha: str,
@@ -930,7 +911,6 @@ class Armazenamento:
         linhas = self.con.execute("SELECT * FROM erros WHERE id_campanha=? ORDER BY id", (id_campanha,)).fetchall()
         return [dict(r) for r in linhas]
 
-    # ------------------------------------------------------------------ usage / budget
     def registrar_uso(
         self, id_campanha: str, agente: str, modelo: str, prompt: int, qtd_saida: int, total: int
     ) -> None:

@@ -5,11 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "simio"
 version = "0.1.0"
-description = "Multi-agent brand identity intelligence and investigation harness."
+description = "Investigação de identidade digital e uso indevido de marcas."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.11"
-authors = [{ name = "SIMIO maintainers" }]
+authors = [{ name = "Equipe SIMIO" }]
 classifiers = [
   "Private :: Do Not Upload",
   "Programming Language :: Python :: 3",
@@ -51,13 +51,13 @@ src = ["src", "tests"]
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF", "ASYNC", "PTH"]
 ignore = [
-  "S101",   # assert is fine in tests
-  "RUF001", "RUF002", "RUF003",  # Portuguese text uses ambiguous-looking unicode legitimately
-  "PTH123", # open() is fine
+  "S101",   # assert é normal em teste
+  "RUF001", "RUF002", "RUF003",  # texto em português tem acentos e aspas que o ruff acha ambíguos
+  "PTH123", # open() serve
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S", "PTH", "ASYNC", "E501"]  # long synthetic fixture lines
+"tests/**" = ["S", "PTH", "ASYNC", "E501"]  # fixtures sintéticas com linhas longas
 "scripts/**" = ["S603", "S607"]
 
 [tool.mypy]
@@ -77,7 +77,7 @@ testpaths = ["tests"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 markers = [
-  "browser: requires Playwright Chromium installed",
-  "live: calls real external services (Vertex AI / search APIs); opt-in with SIMIO_TESTES_REAIS=1",
+  "browser: precisa do Chromium do Playwright instalado",
+  "live: chama serviços externos reais (Vertex AI, APIs de busca); só com SIMIO_TESTES_REAIS=1",
 ]
 addopts = "-ra"
