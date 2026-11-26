@@ -20,7 +20,7 @@ PADROES_CONTEUDO = {
         r"(?i)\b[\w-]*(api[_-]?key|secret|segredo|token|password|passwd|senha|chave[_-]?api[\w-]*)\b\s*[:=]\s*"
         r"['\"][A-Za-z0-9_\-./+=]{16,}['\"]"
     ),
-    "valor-secreto-env": re.compile(r"(?m)^\s*SIMIO_(\w*(API_KEY|TOKEN|SECRET|SEGREDO)|\w*CHAVE_API\w*)\s*=\s*\S+"),
+    "valor-secreto-env": re.compile(r"(?m)^\s*SIMIO_(\w*(API_KEY|TOKEN|SECRET|SEGREDO)|\w*CHAVE_API\w*)\s*=\s*(?!<[^>\s]*>\s*$)\S+"),
     "url-com-credencial": re.compile(r"(?i)\b[a-z][a-z0-9+.\-]*://[^/\s:@'\"<>]+:[^/\s@'\"<>]{3,}@[\w.\-]+"),
     "cabecalho-chave-api": re.compile(r"(?i)[\"']x-(?:api-key|subscription-token)[\"']\s*:\s*[\"'][^\"'{}\s]{8,}[\"']"),
     "cabecalho-autenticacao": re.compile(
