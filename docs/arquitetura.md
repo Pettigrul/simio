@@ -50,6 +50,8 @@ src/simio/
     __init__.py            gerar_relatorios(): arquiva a geração anterior e grava tudo de novo
     dados.py               carrega os registros de uma campanha e ordena por criticidade
     rotulos.py             rótulos legíveis dos códigos gravados no banco e paleta de cores
+    textos_antigos.py      traduz, só na exibição, textos gravados em inglês por campanhas antigas
+    dados_logo.py          logos do relatório embutidas em base64
     excel.py               relatorio.xlsx, com neutralização de fórmulas
     html_campanha.py       relatorio.html (base do PDF)
     html_ameacas.py        ameacas.html
@@ -58,8 +60,8 @@ src/simio/
     paginas.py             ambiente Jinja2 (autoescape)
     templates/             base.html.j2 (layout comum), relatorio_campanha, relatorio_ameacas, dossie
   prompts/
-    analista_marca.md      prompt do analista (analista-marca/v9)
-    revisor.md             prompt do revisor (revisor/v6)
+    analista_marca.md      prompt do analista (analista-marca/v10)
+    revisor.md             prompt do revisor (revisor/v7)
     modo_ameacas.md        adendo da campanha de ameaças (modo-ameacas/v3)
   conhecimento/
     cmn_4935.toml          texto literal dos artigos usados da Res. CMN 4.935/2021

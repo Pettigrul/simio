@@ -165,6 +165,7 @@ resultados/
   simio.db                          banco SQLite (campanhas, evidências, decisões, uso do LLM)
   registros/simio.jsonl             log de execução, com segredos mascarados
   pontuacao.toml                    opcional: sobrepõe os pesos da heurística (ver docs/metodologia.md)
+  ids_campanhas.json                ids antigos e novos, quando houve migração do layout antigo
   campanhas/
     2026-11-25_19h05_bv_ameacas/    data e hora de Brasília, marca e modo (ampla, logo-antiga, ameacas)
       relatorio.xlsx

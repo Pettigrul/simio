@@ -123,7 +123,7 @@ Na campanha focada (`--foco logo-antiga`), as fontes padrão são `serper` e `le
 
 Não usa o contexto de COBANs (nem H9 nem as hipóteses de produto e regionais). Busca H14, H10, H7 e Telegram, mais domínios parecidos (`typosquat`) e certificados (`crtsh`). Os prompts de Grounding pedem o que a página oferece ou pede (login, senha, CPF, cartão, token, boleto, Pix, app, WhatsApp, Telegram) e por que parece falsa.
 
-O analista e o revisor recebem o adendo `prompts/modo_ameacas.md`, que tem precedência sobre o escopo de COBANs. A pergunta passa a ser "isto se passa pelo banco ou põe clientes em risco?": parceiro identificado com a própria marca é tema de conformidade e fica para a varredura ampla; notícia, diretório e blog só contam se desviarem o cliente para canal não oficial. A versão gravada fica `analista-marca/v9+modo-ameacas/v3`.
+O analista e o revisor recebem o adendo `prompts/modo_ameacas.md`, que tem precedência sobre o escopo de COBANs. A pergunta passa a ser "isto se passa pelo banco ou põe clientes em risco?": parceiro identificado com a própria marca é tema de conformidade e fica para a varredura ampla; notícia, diretório e blog só contam se desviarem o cliente para canal não oficial. A versão gravada fica `analista-marca/v10+modo-ameacas/v3`.
 
 #### Coleta de credenciais
 

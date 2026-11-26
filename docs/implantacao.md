@@ -149,6 +149,22 @@ A base tem dados de parceiros e fica só na máquina de execução (`data/` est�
 
 Com gemini-3.8-flash, cada página analisada custa perto de US$ 0,03. Uma varredura de 1.000 páginas fica entre US$ 20 e 35. Se o limite acabar, a campanha fica como `PAUSADA_ORCAMENTO` e continua com `simio retomar --max-requisicoes-llm <novo> --max-tokens <novo>`.
 
+## Outros ajustes
+
+Raramente precisam mudar; ficam aqui para quem for mexer na coleta.
+
+| Variável | Padrão | Para que serve |
+|---|---|---|
+| `SIMIO_OFFLINE` | false | o mesmo que `--offline`: sem Vertex AI, sem APIs de busca e sem RDAP/DNS |
+| `SIMIO_LARGURA_VIEWPORT`, `SIMIO_ALTURA_VIEWPORT` | 1366 × 900 | tamanho da janela do Chromium nas capturas |
+| `SIMIO_ESPERA_ESTABILIZAR_MS` | 2500 | espera depois do carregamento, para scripts e banners terminarem |
+| `SIMIO_MAX_ALTURA_PAGINA_INTEIRA` | 12000 | corta a captura de página inteira nessa altura (px) |
+| `SIMIO_MAX_BYTES_HTML` | 2000000 | trunca o HTML salvo como evidência |
+| `SIMIO_MAX_CARACTERES_TEXTO` | 200000 | trunca o texto visível extraído da página |
+| `SIMIO_USER_AGENT_NAVEGADOR` | do Chromium | troca o user agent do navegador |
+| `SIMIO_TIMEOUT_HTTP_S` | 20 | timeout das APIs de busca e do RDAP/DNS |
+| `SIMIO_LLM_MAX_RETENTATIVAS`, `SIMIO_ATRASO_BASE_RETENTATIVA_S` | 3 e 2 s | novas tentativas nas falhas temporárias do modelo, com espera crescente |
+
 ## Migrar do layout antigo
 
 As versões anteriores gravavam em `output/`, com banco em inglês, ids de campanha como `simio-20261118-184932-cc75` e evidências em `output/campaigns/<id>/evidence/<candidata>/attempt-N/`. O código atual lê e grava em `resultados/`.
