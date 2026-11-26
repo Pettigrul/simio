@@ -148,6 +148,15 @@ python -m simio status --listar                           # últimas 50 campanha
 python -m simio testar                                    # pytest; --real inclui os testes com Vertex/Grounding
 ```
 
+Relatório executivo, somando todas as campanhas do banco:
+
+```bash
+python -m simio executivo                                 # grava relatorio_executivo.html e .pdf na pasta atual
+python -m simio executivo -d apresentacoes --sem-pdf      # outra pasta, só o HTML
+```
+
+Ele junta as campanhas contando cada URL uma vez, com a classificação mais grave que recebeu, e deixa de fora os domínios oficiais da marca. Mostra o intuito e o funcionamento da ferramenta, a stack, a capacidade e a cobertura (consultas, URLs, coletas, custo estimado de IA), os achados de uso indevido da marca, COBANs, logo antiga e ameaças, o histórico das campanhas, os ganhos e as limitações. Cada bloco de achados vem com uma tabela em branco para anotar quantos foram confirmados na validação humana. `--minutos-por-pagina` (padrão 10) é a premissa de triagem manual usada no esforço equivalente; `--marca` escolhe o perfil.
+
 O `retomar` usa os parâmetros originais da campanha, inclusive o `--foco`. O `investigar` e o `retomar` já levantam registro, DNS e hospedagem dos achados antes do relatório; o `enriquecer` serve para campanhas antigas ou para completar hosts que falharam.
 
 Preparar o cadastro de correspondentes (todo mês, a partir da exportação do operador):

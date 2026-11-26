@@ -19,7 +19,7 @@ from simio.relatorios.dossie import gravar_dossies
 from simio.relatorios.excel import gravar_planilha, linhas_ameacas
 from simio.relatorios.html_ameacas import gravar_html_ameacas
 from simio.relatorios.html_campanha import gravar_html_campanha
-from simio.relatorios.pdf import gerar_pdf_campanha
+from simio.relatorios.pdf import gerar_pdf
 
 log = logging.getLogger(__name__)
 
@@ -156,7 +156,7 @@ def gerar_relatorios(
     relatorio_html = gravar_html_campanha(
         arquivos.html, registros, armazenamento, id_campanha, dossies, marca.nome_exibicao, relatorio_ameacas
     )
-    relatorio_pdf = gerar_pdf_campanha(relatorio_html, arquivos.pdf)
+    relatorio_pdf = gerar_pdf(relatorio_html, arquivos.pdf)
 
     return ResultadoRelatorios(
         planilha=planilha,

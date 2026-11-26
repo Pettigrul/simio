@@ -12,7 +12,7 @@ O Chromium nunca sai direto para a internet. Cada página ganha um proxy local (
 
 ```
 src/simio/
-  cli.py                   comandos (Typer): investigar, retomar, enriquecer, relatorio, status, diagnostico, testar
+  cli.py                   comandos (Typer): investigar, retomar, enriquecer, relatorio, executivo, status, diagnostico, testar
   configuracoes.py         configurações tipadas (pydantic-settings, prefixo SIMIO_, lê o .env)
   config_logs.py           log JSONL em resultados/registros/simio.jsonl, com segredos mascarados
   nucleo/
@@ -55,10 +55,11 @@ src/simio/
     excel.py               relatorio.xlsx, com neutralização de fórmulas
     html_campanha.py       relatorio.html (base do PDF)
     html_ameacas.py        ameacas.html
-    pdf.py                 relatorio.pdf, impresso pelo Chromium do Playwright
+    pdf.py                 PDFs dos relatórios, impressos pelo Chromium do Playwright
+    executivo.py           relatorio_executivo.html/.pdf: soma todas as campanhas, cada URL uma vez
     dossie.py              dossiês HTML por página
     paginas.py             ambiente Jinja2 (autoescape)
-    templates/             base.html.j2 (layout comum), relatorio_campanha, relatorio_ameacas, dossie
+    templates/             base.html.j2 (layout comum), relatorio_campanha, relatorio_ameacas, dossie, relatorio_executivo
   prompts/
     analista_marca.md      prompt do analista (analista-marca/v10)
     revisor.md             prompt do revisor (revisor/v7)

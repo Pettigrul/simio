@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO · Relatório executivo</title>
+<style>
+:root{--tinta:#101828;--cinza:#475467;--cinza-2:#98A2B3;--borda:#E4E7EC;--fundo:#F5F7FB;--azul:#1C3FAA;--azul-2:#006BE6;--navy:#072D68;--ciano:#00C9D2;
+--crit:#912018;--alto:#B42318;--medio:#B54708;--ok:#067647}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tinta);background:var(--fundo);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px}
+.apagado{color:var(--cinza)}.peq{font-size:13px}
+.capa{background:linear-gradient(135deg,var(--navy) 0%,#0B3F94 55%,var(--azul-2) 100%);color:#fff;padding:56px 48px 40px}
+.capa-int{max-width:1200px;margin:0 auto}
+.capa .logo svg{height:56px;width:auto}
+.capa h1{font-size:38px;line-height:1.15;margin:28px 0 10px;font-weight:700;letter-spacing:-.01em}
+.capa p.sub{font-size:18px;opacity:.9;margin:0 0 24px;max-width:820px}
+.capa .meta{display:flex;gap:28px;flex-wrap:wrap;font-size:13px;opacity:.85}
+.capa .meta b{display:block;font-size:20px;opacity:1}
+nav.menu{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--borda)}
+nav.menu div{max-width:1200px;margin:0 auto;padding:8px 48px;display:flex;gap:6px;flex-wrap:wrap}
+nav.menu a{color:var(--navy);text-decoration:none;font-size:12.5px;padding:4px 10px;border-radius:999px}
+nav.menu a:hover{background:#EEF2FF}
+main{max-width:1200px;margin:0 auto;padding:12px 48px 60px}
+section{padding:36px 0 16px;border-bottom:1px solid var(--borda)}
+.sec-cab{display:flex;align-items:baseline;gap:14px}
+.sec-num{font-size:13px;font-weight:700;color:#fff;background:var(--azul);border-radius:8px;padding:3px 9px}
+h2{font-size:26px;margin:0;letter-spacing:-.01em;color:var(--navy)}
+h3{font-size:17px;margin:26px 0 10px;color:var(--navy)}
+h4{font-size:14.5px;margin:0 0 10px;color:var(--navy)}
+p.intro{font-size:16px;color:var(--cinza);margin:8px 0 22px;max-width:900px}
+.tiles{display:grid;grid-template-columns:repeat(var(--cols,5),1fr);gap:12px;margin:18px 0}
+.tile{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:14px 16px}
+.tile b{display:block;font-size:28px;line-height:1.15;color:var(--navy);font-variant-numeric:tabular-nums}
+.tile span{display:block;font-size:13px;font-weight:600;margin-top:4px}
+.tile small{display:block;color:var(--cinza);font-size:12px;margin-top:2px}
+.tile.destaque{background:var(--navy);border-color:var(--navy)}
+.tile.destaque b,.tile.destaque span{color:#fff}.tile.destaque small{color:#C7D7FE}
+.mensagens{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+.mensagens>div{background:#fff;border:1px solid var(--borda);border-left:4px solid var(--azul-2);border-radius:10px;padding:14px 18px}
+.mensagens p{margin:0;color:var(--cinza)}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+.duas>*{min-width:0}
+.bloco{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:18px 20px;margin:14px 0}
+.duas>.bloco{margin:0}
+.bloco ul{margin:0;padding-left:18px}.bloco li{margin-bottom:5px}
+blockquote{margin:14px 0;padding:14px 18px;background:#EEF2FF;border-left:4px solid var(--azul);border-radius:8px;font-size:16px;color:var(--navy);font-weight:550}
+ol.angulos{margin:0;padding-left:20px}ol.angulos li{margin-bottom:8px}ol.angulos span{display:block;color:var(--cinza);font-size:13.5px}
+.fluxo{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:10px 0 18px}
+.etapa{background:#fff;border:1px solid var(--borda);border-top:4px solid var(--azul-2);border-radius:10px;padding:12px;position:relative}
+.etapa span{display:inline-block;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:24px}
+.etapa b{display:block;margin:8px 0 4px;color:var(--navy)}
+.etapa p{margin:0;font-size:12.5px;color:var(--cinza)}
+.etapa:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:40%;font-size:20px;color:var(--azul-2);font-weight:700}
+.cartoes{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:12px}
+.cartao{background:#fff;border:1px solid var(--borda);border-top:3px solid var(--azul-2);border-radius:12px;padding:16px 18px}
+.cartao h4{margin:0 0 6px}.cartao p{margin:0;font-size:13.5px;color:var(--cinza)}
+table.tab{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;margin:10px 0;font-size:13.5px}
+.tab th{background:#F2F4F7;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--cinza);padding:9px 12px}
+.tab td{padding:9px 12px;border-top:1px solid var(--borda);vertical-align:top}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.barras{display:flex;flex-direction:column;gap:7px;margin:6px 0 12px}
+.barra{display:grid;grid-template-columns:minmax(150px,42%) 1fr 112px;gap:10px;align-items:center;font-size:13px}
+.val{text-align:right}
+.barra .rot{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trilho{height:12px;background:#F2F4F7;border-radius:4px;overflow:hidden}
+.enche{display:block;height:100%;border-radius:0 4px 4px 0}
+.val{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}.val .apagado{font-weight:400}
+.funil{display:flex;flex-direction:column;gap:6px;align-items:center}
+.degrau{width:100%;display:flex;flex-direction:column;align-items:center}
+.fb{background:linear-gradient(90deg,var(--navy),var(--azul-2));color:#fff;border-radius:8px;text-align:center;padding:7px 0}
+.fb b{font-size:17px;font-variant-numeric:tabular-nums}
+.degrau span{font-size:12.5px;color:var(--cinza);margin-top:2px}
+.empilhada{display:flex;height:26px;border-radius:6px;overflow:hidden;gap:2px;background:#fff}
+.empilhada span{display:block;height:100%}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:13px}
+.legenda i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.cobertura{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cobertura>div{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:14px 16px}
+.cobertura ul{margin:0;padding-left:16px;font-size:13px;color:var(--cinza)}.cobertura li{margin-bottom:4px}
+.galeria{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.galeria figure{margin:0;background:#fff;border:1px solid var(--borda);border-radius:10px;padding:10px;text-align:center}
+.galeria img{height:96px;max-width:100%;object-fit:contain;image-rendering:auto}
+.galeria figcaption{font-size:12px;color:var(--cinza);margin-top:6px;word-break:break-all}
+.galeria figcaption b{color:var(--tinta)}
+.validacao{background:#FFFBEB;border:1px dashed #D97706;border-radius:12px;padding:16px 18px;margin:18px 0}
+.validacao h4{color:#92400E}
+.validacao table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff}
+.validacao th{font-size:12px;text-align:left;color:#92400E;padding:7px 10px;border-bottom:1px solid #FCD34D}
+.validacao td{padding:9px 10px;border-bottom:1px solid #FDE68A}
+.preencher{min-width:120px;border-left:1px dashed #FCD34D;background:#FFFDF5}
+.preencher:focus{outline:2px solid #D97706;background:#fff}
+.nota{background:#fff;border:1px solid var(--borda);border-left:4px solid var(--azul-2);border-radius:10px;padding:12px 16px;margin:16px 0;color:var(--tinta)}
+.selo{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;color:#fff}
+.s-crit{background:var(--crit)}.s-alto{background:var(--alto)}
+footer{max-width:1200px;margin:0 auto;padding:20px 48px 40px;color:var(--cinza);font-size:12.5px}
+@media (max-width:900px){.tiles,.cartoes{grid-template-columns:1fr 1fr}.duas,.mensagens,.cobertura{grid-template-columns:1fr}.fluxo{grid-template-columns:1fr 1fr}.galeria{grid-template-columns:repeat(2,1fr)}.etapa::after{display:none}}
+@media print{nav.menu{display:none}body{background:#fff}main{max-width:none;padding:0 28px}.capa{padding:36px 28px}.capa-int{max-width:none}
+section{border:0;padding-top:22px}.sec-cab,p.intro,h3,h4{break-after:avoid}.fluxo,.cartoes,.tiles{break-before:avoid}#como,#ganhos{break-before:page}#funcionalidades,#marca,#ameacas,#limitacoes{break-before:page}
+.bloco,.tile,.cartao,.etapa,tr,.validacao,figure,.mensagens>div,.cobertura>div{break-inside:avoid}footer{max-width:none}}
+</style>
+</head>
+{% macro barras(itens, total=none, sufixo="", cor_padrao=cor.azul) -%}
+{%- set itens = itens | rejectattr("1", "equalto", 0) | list -%}
+{%- if itens -%}
+{%- set maximo = itens | map(attribute="1") | max -%}
+<div class="barras">
+{%- for item in itens %}
+<div class="barra" title="{{ item[0] }}: {{ item[1] | num_br }}{{ sufixo }}"><span class="rot">{{ item[0] }}</span><span class="trilho"><span class="enche" style="width:{{ '%.1f' | format([1.5, 100 * item[1] / maximo] | max) }}%;background:{{ item[2] if item | length > 2 else cor_padrao }}"></span></span><span class="val">{{ item[1] | num_br }}{{ sufixo }}{% if total %} <span class="apagado">({{ pct(item[1], total) }})</span>{% endif %}</span></div>
+{%- endfor %}
+</div>
+{%- endif -%}
+{%- endmacro %}
+{% macro tile(valor, nome, sub="", destaque=false) -%}
+<div class="tile{{ ' destaque' if destaque }}"><b>{{ valor }}</b><span>{{ nome }}</span>{% if sub %}<small>{{ sub }}</small>{% endif %}</div>
+{%- endmacro %}
+{% macro validacao(titulo, linhas) -%}
+<div class="validacao"><h4>{{ titulo }}</h4>
+<table><thead><tr><th>Categoria</th><th class="num">Detectados pelo SIMIO</th><th>Confirmados (positivos de fato)</th><th>Descartados (falso positivo)</th><th>Precisão</th></tr></thead>
+<tbody>
+{%- for nome, n in linhas %}
+<tr><td>{{ nome }}</td><td class="num">{{ n | num_br }}</td><td class="preencher" contenteditable="true"></td><td class="preencher" contenteditable="true"></td><td class="preencher" contenteditable="true"></td></tr>
+{%- endfor %}
+</tbody></table>
+<p class="apagado peq">Para preencher depois da validação humana. No navegador dá para clicar na célula e digitar (o texto não fica salvo no arquivo); na impressão as colunas saem em branco.</p></div>
+{%- endmacro %}
+{% macro cabecalho(id, num, titulo, intro="") -%}
+<div class="sec-cab"><span class="sec-num">{{ num }}</span><h2>{{ titulo }}</h2></div>
+{% if intro %}<p class="intro">{{ intro }}</p>{% endif %}
+{%- endmacro %}
+{% set A = achados %}{% set C = coban %}{% set L = logo %}{% set T = ameacas %}{% set I = intel %}
+{% set crit = T.nivel[0][1] %}{% set alto = T.nivel[1][1] %}{% set medio = T.nivel[2][1] %}{% set baixo = T.nivel[3][1] %}
+{% set conf = C.conformidade %}{% set confg = A.conformidade %}
+<body>
+<header class="capa"><div class="capa-int">
+<div class="logo">{% include "logo_simio.svg" %}</div>
+<h1>Relatório executivo do SIMIO</h1>
+<p class="sub">Monitoramento do uso da marca {{ marca.nome_exibicao }} na internet: correspondentes (COBANs), identidade visual antiga, brand protection e ameaças. Desenvolvimento, funcionamento, capacidade e resultados das campanhas.</p>
+<div class="meta"><div><b>{{ data }}</b>data do levantamento</div><div><b>{{ tempo_desenvolvimento }}</b>tempo de desenvolvimento</div><div><b>{{ campanhas | length | num_br }}</b>campanhas</div><div><b>{{ analisadas | num_br }}</b>páginas analisadas</div><div><b>{{ A.total | num_br }}</b>achados para validação</div></div>
+</div></header>
+<nav class="menu"><div>
+<a href="#resumo">Resumo</a><a href="#proposito">Intuito</a><a href="#como">Como funciona</a><a href="#funcionalidades">Funcionalidades</a><a href="#stack">Stack</a><a href="#capacidade">Capacidade</a><a href="#marca">Uso da marca</a><a href="#coban">COBANs</a><a href="#logo">Logo antiga</a><a href="#ameacas">Ameaças</a><a href="#campanhas">Campanhas</a><a href="#ganhos">Ganhos</a><a href="#limitacoes">Limitações</a><a href="#proximos">Próximos passos</a>
+</div></nav>
+<main>
+
+<section id="resumo">
+{{ cabecalho("resumo", "01", "Resumo executivo") }}
+<div class="tiles" style="--cols:4">
+{{ tile(tempo_desenvolvimento, "tempo de desenvolvimento", "da arquitetura à operação", true) }}
+{{ tile(campanhas | length | num_br, "campanhas executadas", por_modo.get("ampla", 0) ~ " amplas · " ~ por_modo.get("logo-antiga", 0) ~ " logo antiga · " ~ por_modo.get("ameacas", 0) ~ " ameaças") }}
+{{ tile(urls | num_br, "URLs únicas descobertas", (dominios | num_br) ~ " domínios distintos") }}
+{{ tile(analisadas | num_br, "páginas analisadas", "coleta forense + IA + regras") }}
+{{ tile(A.total | num_br, "achados de uso indevido da marca", (A.forte | num_br) ~ " indícios fortes · " ~ (A.revisao | num_br) ~ " para revisão", true) }}
+{{ tile(C.total | num_br, "achados ligados a COBANs", (C.confirmado | num_br) ~ " confirmados no cadastro" ~ ((" de " ~ (cadastro_coban | num_br)) if cadastro_coban else "")) }}
+{{ tile(L.total | num_br, "páginas com a logo antiga", (L.sites | num_br) ~ " sites próprios") }}
+{{ tile((crit + alto) | num_br, "ameaças críticas ou altas", (crit | num_br) ~ " críticas") }}
+</div>
+<div class="mensagens">
+<div><h4>O que a ferramenta entrega</h4><p>Varredura da internet em busca de páginas e perfis que usam a marca de forma que pode confundir o consumidor, com prova forense de cada página (capturas, código, texto e hash SHA-256) e classificação explicada, pronta para revisão humana.</p></div>
+<div><h4>Foco em correspondentes</h4><p>Cruza o CNPJ e a razão social de cada página com o cadastro de correspondentes{% if cadastro_coban %} ({{ cadastro_coban | num_br }} registros){% endif %} e enquadra os achados na Res. CMN 4.935/2021 (art. 14, II e III) sem usar IA no enquadramento jurídico.</p></div>
+<div><h4>Além de COBANs</h4><p>O mesmo motor virou monitoramento de <i>brand protection</i> e ameaças: sites falsos, phishing, domínios parecidos e perfis falsos, com registro, hospedagem e contato de abuso para pedir a derrubada.</p></div>
+<div><h4>Escala e custo</h4><p>{% if ritmo.get("ampla") %}Cerca de {{ ritmo["ampla"] | round | int | num_br }} páginas por hora na varredura ampla. {% endif %}Uma página analisada custa em torno de US$ {{ custo_por_pagina | num_br(2) }} em chamadas ao modelo. Feito à mão, o volume analisado até hoje levaria ~{{ horas_manual | round | int | num_br }} horas de analista.</p></div>
+</div>
+</section>
+
+<section id="proposito">
+{{ cabecalho("proposito", "02", "Intuito da ferramenta", "Monitorar o uso da marca na internet por correspondentes e terceiros, com evidência defensável e foco em conformidade.") }}
+<div class="duas">
+<div>
+<p>O {{ marca.nome_exibicao }} opera com milhares de correspondentes bancários (COBANs): revendas de veículos, integradores de energia solar, promotoras de crédito e consignado. Muitos divulgam a marca do banco nos próprios sites e redes sociais, e parte deles se apresenta como se fosse o próprio banco, usa a logo antiga ou omite que é correspondente.</p>
+<p>A pergunta que o SIMIO responde, para cada página encontrada, é:</p>
+<blockquote>A forma como a página se apresenta pode levar o consumidor a achar que está falando diretamente com o banco, quando na verdade é um correspondente ou outro terceiro?</blockquote>
+<p>Além disso, procura páginas que se passam pelo banco para enganar clientes (login falso, boleto, quitação, app fora das lojas) e o uso da <b>logo antiga</b>, que terceiros não podem mais usar.</p>
+</div>
+<div>
+<h4>Cinco ângulos de análise por página</h4>
+<ol class="angulos">
+<li><b>Identidade declarada</b><span>título, cabeçalho, domínio, rodapé, razão social e CNPJ</span></li>
+<li><b>Identidade visual</b><span>logotipo e cores acima da dobra, a partir das capturas</span></li>
+<li><b>Quem opera a página</b><span>CNPJ do banco citado × CNPJ de quem mantém o site; cruzamento com o cadastro de COBANs</span></li>
+<li><b>Transparência</b><span>declaração de correspondente (art. 14, III): existe, está em destaque, nomeia o banco?</span></li>
+<li><b>Jornada de atendimento</b><span>"canal oficial", "central 0800", 2ª via, quitação com desconto, captação por WhatsApp</span></li>
+</ol>
+</div>
+</div>
+<h3>Base normativa usada no enquadramento</h3>
+<table class="tab"><thead><tr><th>Dispositivo</th><th>O que exige</th><th>Como o SIMIO verifica</th></tr></thead><tbody>
+<tr><td>Res. CMN 4.935/2021, art. 14, II</td><td>Vedação ao uso, pelo correspondente, de logomarca ou atributos parecidos com os da instituição contratante</td><td>Logo do banco ou logo antiga acima da dobra, cores e marca no título ou no domínio</td></tr>
+<tr><td>Res. CMN 4.935/2021, art. 14, III</td><td>Divulgação da condição de correspondente, com identificação da contratante e dos canais de atendimento e ouvidoria</td><td>Busca a declaração, mede se está em destaque e se nomeia o banco</td></tr>
+<tr><td>Res. CMN 4.935/2021, art. 3º</td><td>Escopo das atividades do correspondente</td><td>Atividades oferecidas na página × o que cabe ao correspondente</td></tr>
+</tbody></table>
+</section>
+
+<section id="como">
+{{ cabecalho("como", "03", "Como funciona", "Uma campanha passa por sete etapas, sempre na mesma ordem, cada uma gravada e reproduzível.") }}
+<div class="fluxo">
+{% for titulo, texto in [
+  ("Descoberta", "7 fontes de busca, 14 famílias de hipóteses de abuso e cerca de 1.900 domínios parecidos testados por DNS"),
+  ("Coleta forense", "Chromium isolado atrás de proxy anti-SSRF; capturas, código, texto e manifesto SHA-256"),
+  ("Identidade", "CNPJ, razão social e cruzamento com o cadastro de COBANs"),
+  ("Análise de marca", "Gemini multimodal + heurística local em paralelo, com verificação cruzada"),
+  ("Revisão", "Segundo modelo, cético: rebaixa, pede nova coleta ou marca inconclusivo"),
+  ("Decisão", "Regras fixas: evidência citada tem que existir; pisos para logo antiga e pedido de senha"),
+  ("Relatórios", "Excel, HTML e PDF, página de ameaças e dossiê por página, com links para as provas"),
+] %}<div class="etapa"><span>{{ loop.index }}</span><b>{{ titulo }}</b><p>{{ texto }}</p></div>{% endfor %}
+</div>
+<div class="duas">
+<div class="bloco"><h4>Por que o resultado é confiável</h4><ul>
+<li>A IA <b>propõe</b>, as regras <b>decidem</b>: toda evidência citada pelo modelo é conferida contra o catálogo real da página; referência inventada é descartada.</li>
+<li>Indício forte exige pelo menos <b>dois indicadores</b> válidos de confusão e coleta utilizável.</li>
+<li>Se o modelo diz "sem indício" e a heurística vê risco, o caso <b>sobe para revisão humana</b> (verificação cruzada).</li>
+<li>O revisor pode rebaixar, mas nunca promove sozinho um caso a indício forte.</li>
+<li>Enquadramento normativo <b>sem IA</b>: só cita o texto literal da resolução, para nunca inventar artigo.</li>
+</ul></div>
+<div class="bloco"><h4>Por que o resultado é auditável</h4><ul>
+<li>Cada consulta, URL, coleta, transição de estado e chamada ao modelo fica gravada no banco local.</li>
+<li>Cada página tem manifesto com hash SHA-256 de todos os arquivos coletados.</li>
+<li>Cada decisão registra cenário, justificativa, evidências-chave, limitações e encaminhamento sugerido.</li>
+<li>A versão do prompt fica gravada em cada análise (ex.: <code>analista-marca/v10</code>).</li>
+<li>Campanha interrompida é retomada de onde parou, sem pagar de novo pelo que já foi analisado.</li>
+</ul></div>
+</div>
+</section>
+
+<section id="funcionalidades">
+{{ cabecalho("funcionalidades", "04", "Funcionalidades e implementações", "O que foi construído, em linguagem de negócio.") }}
+<div class="cartoes" style="--cols:4">
+{% for titulo, texto in [
+  ("Descoberta multifonte", "Google via Serper (dorks exatos) e via Grounding do Gemini (buscas que o modelo escreve), Brave, urlscan.io, certificados (crt.sh) e busca reversa da logo antiga (Google Lens). " ~ hipoteses.ampla ~ " hipóteses e " ~ dorks.ampla ~ " dorks na varredura ampla."),
+  ("Hipóteses de abuso reais", "14 famílias (H1 a H14): marca no título ou na URL, produtos (veículos, solar, consignado), 2ª via e quitação por WhatsApp, linguagem de canal oficial, feirões nas 27 UFs, redes sociais, fraudes, NaPista, logo antiga e ameaças."),
+  ("Domínios parecidos", "Cerca de 1.900 variações dos domínios oficiais (troca de letra, tecla vizinha, hífen, extensão, marca + palavra do setor), testadas só por DNS. Se o DNS responde a tudo, o conector se desliga sozinho."),
+  ("Fila inteligente", "Exclui domínios e perfis oficiais, joga notícias, órgãos públicos, reclamações e classificados para o fim, penaliza repetição do mesmo domínio e prioriza o que tem mais risco."),
+  ("Coleta forense", "Captura da tela inicial e da página inteira, código-fonte, texto visível, formulários (sem preencher) e manifesto SHA-256. Navegador só leitura, sem downloads, popups ou service workers."),
+  ("Identidade e COBANs", "Extrai CNPJs (inclusive o formato alfanumérico) e razão social, separa o CNPJ do banco citado do CNPJ de quem opera o site e cruza com o cadastro de correspondentes."),
+  ("Análise multimodal", "O Gemini olha as capturas e o texto; uma heurística local com pesos calibrados faz a mesma análise em paralelo. Divergência vira revisão humana."),
+  ("Conformidade sem IA", "Mapeia cada achado para a Res. CMN 4.935/2021 (art. 3º e 14, II e III) e para cláusulas contratuais opcionais, com o texto literal do requisito."),
+  ("Logo antiga em duas camadas", "Comparação de imagem determinística (separa a tinta vermelha da azul, então a logo atual nunca casa) + leitura visual do Gemini. O recorte da logo vai para o relatório."),
+  ("Triagem de ameaças", "Nível Crítico a Baixo a partir de fatos verificáveis: pede senha ou cartão, personificação, domínio parecido ou recente, hospedagem gratuita, APK fora da loja, boleto ou quitação."),
+  ("Inteligência de domínio", "RDAP (WHOIS estruturado) e DNS de cada achado: idade do domínio, registrador, titular (só pessoa jurídica, por LGPD), hospedagem e e-mails de abuso para pedir a derrubada."),
+  ("Relatórios prontos para uso", "Planilha Excel com abas de resumo, achados, responsáveis, evidências, logo antiga, ameaças e domínios, relatório HTML e PDF, página de ameaças e dossiê por página com links clicáveis."),
+  ("Controle de orçamento", "Reserva de chamadas e tokens antes de cada uso do modelo; ao atingir o limite a campanha pausa com relatório parcial e continua com <code>retomar</code>."),
+  ("Segurança por padrão", "Proxy local anti-SSRF por página, sandbox do Chromium, defesas contra prompt injection, segredos mascarados nos logs e LGPD na coleta de titulares."),
+  ("Campanhas focadas", "Três modos: <b>ampla</b> (COBANs e uso da marca, " ~ hipoteses.ampla ~ " hipóteses), <b>logo antiga</b> (" ~ hipoteses.logo ~ " hipóteses, " ~ dorks.logo ~ " dorks) e <b>ameaças</b> (" ~ hipoteses.ameacas ~ " hipóteses, " ~ dorks.ameacas ~ " dorks)."),
+  ("Retomada e rodízio", "Campanha interrompida continua de onde parou; o cadastro de COBANs entra em rodízio, começando pelos que ainda não foram pesquisados."),
+] %}<div class="cartao"><h4>{{ titulo }}</h4><p>{{ texto | safe }}</p></div>{% endfor %}
+</div>
+</section>
+
+<section id="stack">
+{{ cabecalho("stack", "05", "Stack tecnológica", "Tecnologias escolhidas por serem auditáveis, baratas de operar e fáceis de manter.") }}
+<table class="tab"><thead><tr><th>Camada</th><th>Tecnologia</th><th>Papel no SIMIO</th></tr></thead><tbody>
+{% for camada, tecnologia, papel in [
+  ("Linguagem e execução", "Python 3.11+ com <code>asyncio</code>", "pipeline assíncrono, com páginas processadas em paralelo"),
+  ("Inteligência artificial", "Google Gemini (Vertex AI), SDK <code>google-genai</code>", "análise multimodal (imagem + texto), revisor e descoberta"),
+  ("Busca com IA", "Grounding with Google Search (Vertex AI)", "buscas guiadas por hipótese, só com URLs comprovadas pelo Google"),
+  ("Busca na web", "Serper (Google), Brave Search, urlscan.io, crt.sh", "dorks exatos, busca reversa de imagem (Lens) e certificados"),
+  ("Navegador", "Playwright + Chromium com sandbox", "coleta forense de páginas e redes sociais"),
+  ("Rede segura", "Proxy HTTP/CONNECT próprio, com DNS fixado", "bloqueio de rede interna e de metadados de nuvem (anti-SSRF)"),
+  ("Dados", "SQLite (WAL) com migrações versionadas", "campanhas, evidências, decisões e uso do modelo, tudo local"),
+  ("Contratos de dados", "Pydantic v2 e pydantic-settings", "validação estrita das respostas do modelo e das configurações"),
+  ("Inteligência de domínio", "RDAP (rdap.org) e DNS sobre HTTPS", "registro, idade, hospedagem e contatos de abuso, sem chave de API"),
+  ("Visão computacional", "Pillow + NumPy", "comparação de imagem determinística da logo antiga"),
+  ("Domínios", "tldextract + Public Suffix List offline", "domínio registrável e plataformas compartilhadas"),
+  ("Relatórios", "openpyxl, Jinja2, Chromium (PDF)", "planilha, HTML, PDF e dossiês com autoescape"),
+  ("Interface", "Typer (CLI em português)", "investigar, retomar, enriquecer, relatorio, executivo, status, diagnostico"),
+  ("Qualidade", "pytest, ruff, mypy", "testes unitários, de integração e ponta a ponta"),
+] %}<tr><td>{{ camada }}</td><td>{{ tecnologia | safe }}</td><td>{{ papel }}</td></tr>{% endfor %}
+</tbody></table>
+<div class="tiles" style="--cols:6">
+{{ tile(tempo_desenvolvimento, "tempo de desenvolvimento", "", true) }}
+{{ tile("~" ~ ((codigo.linhas / 1000) | round | int) ~ " mil", "linhas de código", (codigo.modulos | num_br) ~ " módulos Python") }}
+{% if codigo.testes %}{{ tile(codigo.testes | num_br, "funções de teste automatizado", "unitários, integração e ponta a ponta") }}{% endif %}
+{{ tile("7", "fontes de descoberta integradas") }}
+{{ tile("3", "prompts versionados", "analista, revisor e modo ameaças") }}
+{{ tile("0", "frameworks de agentes", "orquestração própria e auditável") }}
+</div>
+</section>
+
+<section id="capacidade">
+{{ cabecalho("capacidade", "06", "Capacidade, cobertura e volume processado", "Números somados de todas as campanhas executadas até hoje.") }}
+<div class="tiles" style="--cols:4">
+{{ tile(consultas | num_br, "consultas de busca", (resultados | num_br) ~ " resultados retornados") }}
+{{ tile(urls | num_br, "URLs únicas", (hosts | num_br) ~ " hosts · " ~ (dominios | num_br) ~ " domínios") }}
+{{ tile(analises | num_br, "análises completas", (analisadas | num_br) ~ " páginas únicas") }}
+{{ tile(coletas | num_br, "coletas forenses", (capturas | num_br) ~ " capturas de tela") }}
+{{ tile(evidencias | num_br, "arquivos de evidência", (gb_evidencias | num_br(1)) ~ " GB com hash SHA-256") }}
+{{ tile(dossies | num_br, "dossiês gerados", "um por página prioritária") }}
+{{ tile(chamadas | num_br, "chamadas ao modelo", ((tokens / 1000000) | num_br(1)) ~ " milhões de tokens") }}
+{{ tile("~US$ " ~ (custo | round | int | num_br), "custo estimado de IA", "≈ US$ " ~ (custo_por_pagina | num_br(2)) ~ " por página analisada") }}
+</div>
+<div class="duas">
+<div class="bloco">
+{% if ritmo %}<h4>Ritmo de processamento</h4>
+{{ barras(ritmo_itens, sufixo=" pág./h") }}
+{% if maior %}<p class="apagado peq">Maior campanha: {{ maior.analisadas | num_br }} páginas em {{ maior.horas | num_br(1) }} h ({{ maior.id }}). Tempo de máquina das campanhas concluídas: {{ horas_maquina | num_br(1) }} h.</p>{% endif %}{% endif %}
+<h4>Esforço equivalente</h4>
+{{ barras([("Analista (premissa: " ~ minutos_por_pagina ~ " min por página)", horas_manual | round | int, cor.cinza), ("SIMIO (tempo de máquina)", horas_maquina | round | int)], sufixo=" h") }}
+<p class="apagado peq">Premissa ajustável: triagem manual de {{ minutos_por_pagina }} min por página (abrir, capturar, identificar CNPJ, classificar). O analista continua necessário para validar os achados, mas passa a olhar só o que o SIMIO prioriza.</p>
+</div>
+<div class="bloco"><h4>Consultas por fonte</h4>{{ barras(consultas_fonte) }}
+<h4>Resultados de busca por fonte</h4>{{ barras(resultados_fonte) }}</div>
+</div>
+<h3>O que cobrimos</h3>
+<div class="cobertura">
+<div><h4>Fontes</h4><ul><li>Google via Serper</li><li>Google via Grounding (Gemini)</li><li>Busca reversa de imagem (Google Lens)</li><li>Domínios parecidos (typosquatting)</li><li>Certificados TLS (crt.sh)</li><li>urlscan.io</li><li>Brave Search</li></ul></div>
+<div><h4>Canais monitorados</h4><ul><li>Sites próprios de revendas, integradores e promotoras</li><li>Instagram (posts, reels, perfis), Facebook, TikTok, YouTube, Threads, LinkedIn, Kwai, Telegram, WhatsApp</li><li>Classificados: OLX, Mercado Livre, Webmotors, iCarros, Mobiauto</li><li>Plataformas gratuitas: Weebly, Site123, Lovable, Vercel, Webnode, WordPress.com</li></ul></div>
+<div><h4>Segmentos de COBAN</h4><ul><li>Revendas de veículos e motos, feirões</li><li>Caminhões e pesados</li><li>Energia solar</li><li>Consignado e crédito com garantia</li><li>Promotoras e assessorias financeiras</li><li>Regionalização pelas 27 UFs</li></ul></div>
+<div><h4>Tipos de abuso</h4><ul><li>Marca como identidade do site</li><li>Falso canal oficial, SAC ou 0800</li><li>2ª via, quitação e renegociação por WhatsApp</li><li>Logo antiga</li><li>CNPJ do banco no lugar do próprio</li><li>Phishing, leilão falso, taxa antecipada, APK, vagas falsas</li></ul></div>
+</div>
+</section>
+
+<section id="marca">
+{{ cabecalho("marca", "07", "Detecções de uso indevido da marca", "Somando todas as campanhas, cada URL contada uma única vez, com a classificação mais grave que recebeu.") }}
+<div class="duas">
+<div class="bloco"><h4>Do volume bruto ao que importa</h4>
+<div class="funil">
+{% set topo = [resultados, 1] | max %}
+{% for nome, n in [("Resultados de busca", resultados), ("URLs únicas descobertas", urls), ("Páginas analisadas", analisadas), ("Achados (indício forte + requer revisão)", A.total), ("Prioridade alta", A.alta), ("Indício forte", A.forte)] %}
+<div class="degrau"><div class="fb" style="width:{{ '%.1f' | format([12, 100 * (n / topo) ** 0.45] | max) }}%"><b>{{ n | num_br }}</b></div><span>{{ nome }}</span></div>
+{% endfor %}
+</div></div>
+<div class="bloco"><h4>Classificação final das {{ analisadas | num_br }} páginas analisadas</h4>
+<div class="empilhada">{% for k, n, c in classificacao if n %}<span style="width:{{ '%.2f' | format(100 * n / analisadas) }}%;background:{{ c }}" title="{{ k | rotulo }}: {{ n | num_br }}"></span>{% endfor %}</div>
+<div class="legenda">{% for k, n, c in classificacao %}<span><i style="background:{{ c }}"></i>{{ k | rotulo }} <b>{{ n | num_br }}</b> ({{ pct(n, analisadas) }})</span>{% endfor %}</div>
+<h4 style="margin-top:18px">Achados por cenário</h4>
+{{ barras([("D · Personificação forte", A.caso.get("D_PERSONIFICACAO_FORTE", 0), cor.crit), ("C · Possível canal oficial", A.caso.get("C_POSSIVEL_CANAL_OFICIAL", 0), cor.alto), ("B · Comunicação ambígua", A.caso.get("B_COMUNICACAO_AMBIGUA", 0), cor.medio)], total=A.total) }}
+<p class="apagado peq">D: a página se passa pelo banco. C: se apresenta como canal oficial. B: comunicação ambígua, que pode confundir.</p>
+</div>
+</div>
+<div class="tiles" style="--cols:5">
+{{ tile(A.total | num_br, "achados únicos", "URL contada uma vez, na pior classificação", true) }}
+{{ tile(A.sites | num_br, "sites próprios distintos") }}
+{{ tile(A.redes | num_br, "perfis e posts em redes sociais e classificados") }}
+{{ tile(A.alta | num_br, "com prioridade alta") }}
+{{ tile(A.recorrentes | num_br, "reencontrados em mais de uma campanha", "persistência do problema") }}
+</div>
+<div class="duas">
+<div class="bloco"><h4>Onde estão os achados</h4>{{ barras(A.canal, total=A.total) }}</div>
+<div class="bloco"><h4>Encaminhamento sugerido</h4>{{ barras(A.encaminhamento, total=A.total) }}<p class="apagado peq">Um achado pode ter mais de um encaminhamento.</p></div>
+</div>
+{% if A.hipoteses %}<div class="bloco"><h4>Hipóteses de busca que mais renderam achados</h4>{{ barras(A.hipoteses) }}
+<p class="apagado peq">Mostra quais padrões de abuso aparecem de fato na internet; serve para calibrar as próximas campanhas.</p></div>{% endif %}
+{{ validacao("Validação dos achados de uso indevido da marca", [
+  ("Indício forte", A.forte),
+  ("Requer revisão · C · Possível canal oficial", A.caso.get("C_POSSIVEL_CANAL_OFICIAL", 0)),
+  ("Requer revisão · B · Comunicação ambígua", A.caso.get("B_COMUNICACAO_AMBIGUA", 0)),
+  ("D · Personificação forte (parte dos indícios fortes)", A.caso.get("D_PERSONIFICACAO_FORTE", 0)),
+  ("Total de achados", A.total),
+]) }}
+</section>
+
+<section id="coban">
+{{ cabecalho("coban", "08", "Foco em correspondentes (COBANs)", "Parte dos achados já sai com o correspondente identificado e o dispositivo da resolução que pode ter sido descumprido.") }}
+<div class="tiles" style="--cols:{{ 6 if cadastro_coban else 5 }}">
+{{ tile(C.total | num_br, "achados com COBAN identificado", (C.sites | num_br) ~ " sites próprios", true) }}
+{{ tile(C.confirmado | num_br, "COBANs confirmados no cadastro", "CNPJ ou razão social casados") }}
+{{ tile(C.possivel | num_br, "COBANs possíveis", "indícios de atuação como correspondente") }}
+{{ tile(C.forte | num_br, "com indício forte") }}
+{{ tile(C.logo | num_br, "usando a logo antiga") }}
+{% if cadastro_coban %}{{ tile(cadastro_coban | num_br, "correspondentes no cadastro", "base de cruzamento") }}{% endif %}
+</div>
+<div class="duas">
+<div class="bloco"><h4>Hipóteses de não conformidade (Res. CMN 4.935/2021)</h4>
+<table class="tab"><thead><tr><th>Dispositivo</th><th class="num">Não conformidade</th><th class="num">Condicionada</th></tr></thead><tbody>
+{% for req, nome in [("ART14-II", "Art. 14, II · uso de logomarca"), ("ART14-III", "Art. 14, III · declaração de correspondente"), ("ART3", "Art. 3º · escopo de atividades")] %}
+<tr><td>{{ nome }}</td><td class="num">{{ conf.get(req ~ "|HIPOTESE_NAO_CONFORMIDADE", 0) | num_br }}</td><td class="num">{{ conf.get(req ~ "|HIPOTESE_CONDICIONADA_VINCULO", 0) | num_br }}</td></tr>
+{% endfor %}
+</tbody></table>
+<p class="apagado peq">Achados com COBAN identificado. "Condicionada": a hipótese vale se a empresa for de fato correspondente do banco. Em todos os achados, não só COBANs, o art. 14, II soma {{ confg.get("ART14-II|HIPOTESE_NAO_CONFORMIDADE", 0) | num_br }} hipóteses (+ {{ confg.get("ART14-II|HIPOTESE_CONDICIONADA_VINCULO", 0) | num_br }} condicionadas) e o art. 14, III, {{ confg.get("ART14-III|HIPOTESE_NAO_CONFORMIDADE", 0) | num_br }} (+ {{ confg.get("ART14-III|HIPOTESE_CONDICIONADA_VINCULO", 0) | num_br }}).</p>
+</div>
+<div class="bloco"><h4>Responsável pelos {{ A.total | num_br }} achados</h4>
+{{ barras(identidade_itens, total=A.total) }}
+<p class="apagado peq">"Responsável não identificado" é comum em posts de redes sociais e páginas sem CNPJ; nesses casos a apuração do vínculo fica com a gestão de correspondentes.</p>
+<h4>Cenário dos achados com COBAN</h4>
+{{ barras(coban_caso, total=C.total) }}
+</div>
+</div>
+{% if C.exemplos %}<div class="bloco"><h4>Exemplos de achados com COBAN identificado</h4>
+<table class="tab"><thead><tr><th>Domínio</th><th>Classificação</th><th>Cenário</th><th>Identidade</th><th class="num">Campanhas</th></tr></thead><tbody>
+{% for p in C.exemplos %}<tr><td class="mono">{{ p.host }}</td><td>{{ p.classificacao | rotulo }}</td><td>{{ p.caso | rotulo }}</td><td>{{ identidades.get(p.identidade, p.identidade) }}</td><td class="num">{{ p.campanhas | length }}</td></tr>{% endfor %}
+</tbody></table></div>{% endif %}
+{{ validacao("Validação dos achados com COBAN", [
+  ("COBAN confirmado no cadastro", C.confirmado),
+  ("COBAN possível", C.possivel),
+  ("Hipótese de não conformidade · art. 14, II", conf.get("ART14-II|HIPOTESE_NAO_CONFORMIDADE", 0)),
+  ("Hipótese de não conformidade · art. 14, III", conf.get("ART14-III|HIPOTESE_NAO_CONFORMIDADE", 0)),
+  ("Total de achados com COBAN", C.total),
+]) }}
+</section>
+
+<section id="logo">
+{{ cabecalho("logo", "09", "Uso da identidade visual antiga", "A logo antiga (B vermelho sobre V azul) não pode ser usada por terceiros, nem por correspondentes contratados.") }}
+<div class="tiles" style="--cols:5">
+{{ tile(L.total | num_br, "páginas com a logo antiga", (L.sites | num_br) ~ " sites próprios", true) }}
+{{ tile(L.forte | num_br, "com indício forte") }}
+{{ tile(L.revisao | num_br, "para revisão") }}
+{{ tile(L.coban | num_br, "ligadas a COBANs", (L.coban_confirmado | num_br) ~ " confirmados no cadastro") }}
+{{ tile(recortes_total | num_br, "recortes de imagem como prova") }}
+</div>
+<div class="duas">
+<div class="bloco"><h4>Como a logo foi detectada</h4>
+{{ barras([("Imagem + modelo (as duas camadas)", L.fonte.get("ambas", 0)), ("Só o modelo (Gemini)", L.fonte.get("modelo", 0)), ("Só a comparação de imagem", L.fonte.get("imagem", 0))], total=L.total) }}
+<p class="apagado peq">As duas camadas são independentes e se complementam: a comparação de imagem não vê logo cortada ou sobre foto; o modelo não mede similaridade. {{ L.referencia | num_br }} achados foram marcados como "site de referência" (repositórios de logos, imprensa) e não sobem a classificação.</p>
+<h4>Campanhas que encontraram a logo antiga</h4>{{ barras(L.modos) }}
+</div>
+<div class="bloco"><h4>Onde a logo antiga aparece</h4>
+<ul><li>Vitrines de "bancos parceiros" em revendas de veículos e integradores de energia solar</li><li>Páginas de consignado de correspondentes</li><li>Fotos de perfil de empresas com iniciais "BV"</li><li>Blogs de crédito e sites em plataformas gratuitas</li></ul>
+{% if L.exemplos %}<h4>Exemplos</h4>
+<table class="tab"><thead><tr><th>Domínio</th><th>Classificação</th><th>Identidade</th></tr></thead><tbody>
+{% for p in L.exemplos %}<tr><td class="mono">{{ p.host }}</td><td>{{ p.classificacao | rotulo }}</td><td>{{ identidades.get(p.identidade, p.identidade) }}</td></tr>{% endfor %}
+</tbody></table>{% endif %}
+</div>
+</div>
+{% if L.recortes %}<h3>Recortes extraídos automaticamente das capturas</h3>
+<div class="galeria">{% for r in L.recortes %}<figure><img src="{{ r.src }}" alt="Logo antiga em {{ r.host }}"><figcaption><b>{{ r.host }}</b><br>{{ r.legenda }}</figcaption></figure>{% endfor %}</div>{% endif %}
+{{ validacao("Validação dos achados de logo antiga", [
+  ("Logo antiga · indício forte", L.forte),
+  ("Logo antiga · requer revisão", L.revisao),
+  ("Logo antiga · ligada a COBAN", L.coban),
+  ("Total de páginas com logo antiga", L.total),
+]) }}
+</section>
+
+<section id="ameacas">
+{{ cabecalho("ameacas", "10", "Expansão: brand protection e ameaças", "O mesmo motor de descoberta, coleta e análise foi estendido para proteger a marca e os clientes contra fraudes.") }}
+<div class="tiles" style="--cols:6">
+{{ tile(crit | num_br, "ameaças críticas", "pedem credencial ou personificam o banco", true) }}
+{{ tile(alto | num_br, "ameaças altas") }}
+{{ tile((medio + baixo) | num_br, "médias e baixas") }}
+{{ tile(T.sites | num_br, "sites próprios críticos ou altos", "candidatos a pedido de derrubada") }}
+{{ tile(T.parecidos | num_br, "domínios parecidos com o oficial") }}
+{{ tile(T.credenciais | num_br, "páginas pedindo senha", "phishing") }}
+</div>
+<div class="duas">
+<div class="bloco"><h4>Nível de ameaça (páginas únicas)</h4>
+{{ barras(niveis_itens) }}
+<h4>Categorias identificadas</h4>{{ barras(T.categorias) }}
+<p class="apagado peq">Uma página pode ter mais de uma categoria.</p>
+</div>
+<div class="bloco"><h4>Quem está por trás dos domínios ({{ I.hosts | num_br }} hosts investigados)</h4>
+{{ barras([("Criados há até 180 dias", I.idade.get("ate180", 0), cor.alto), ("Entre 180 dias e 2 anos", I.idade.get("ate2anos", 0)), ("Mais de 2 anos", I.idade.get("antigo", 0))]) }}
+{% if I.hospedagem %}<h4>Hospedagem mais usada</h4>{{ barras(I.hospedagem) }}{% endif %}
+<p class="apagado peq">{{ I.abuso | num_br }} hosts com contato de abuso identificado (registrador ou provedor) · {{ I.no_ar | num_br }} ainda no ar na última verificação · titular pessoa jurídica em {{ I.pj | num_br }}; pessoa física em {{ I.pf | num_br }} (dados omitidos por LGPD).</p>
+</div>
+</div>
+{% if T.exemplos %}<div class="bloco"><h4>Exemplos de ameaças críticas e altas</h4>
+<table class="tab"><thead><tr><th>Host</th><th>Nível</th><th>Fatos</th></tr></thead><tbody>
+{% for p in T.exemplos %}<tr><td class="mono">{{ p.host }}</td><td><span class="selo s-{{ 'crit' if p.nivel == 'CRÍTICO' else 'alto' }}">{{ p.nivel }}</span></td><td>{{ (p.categorias | sort)[:3] | join(", ") }}</td></tr>{% endfor %}
+</tbody></table>
+<p class="apagado peq">Lista completa, com capturas, registro do domínio e contatos de abuso, no <code>ameacas.html</code> de cada campanha.</p></div>{% endif %}
+{{ validacao("Validação das ameaças", [
+  ("Crítico", crit),
+  ("Alto", alto),
+  ("Médio e baixo", medio + baixo),
+  ("Páginas pedindo senha (phishing)", T.credenciais),
+]) }}
+</section>
+
+<section id="campanhas">
+{{ cabecalho("campanhas", "11", "Campanhas executadas", "Histórico das execuções reais.") }}
+<table class="tab"><thead><tr><th>Campanha</th><th>Modo</th><th class="num">URLs</th><th class="num">Analisadas</th><th class="num">Indício forte</th><th class="num">Revisão</th><th class="num">Logo antiga</th><th class="num">Ameaça crít./alta</th><th class="num">Duração</th></tr></thead><tbody>
+{% for c in executadas %}<tr><td class="mono">{{ c.id }}</td><td>{{ modos.get(c.modo, c.modo) }}</td><td class="num">{{ c.urls | num_br }}</td><td class="num">{{ c.analisadas | num_br }}</td><td class="num">{{ c.forte | num_br }}</td><td class="num">{{ c.revisao | num_br }}</td><td class="num">{{ c.logo | num_br }}</td><td class="num">{{ c.ameacas | num_br }}</td><td class="num">{{ ((c.horas * 60) | round | int ~ " min") if c.horas < 1 else (c.horas | num_br(1)) ~ " h" }}</td></tr>{% endfor %}
+</tbody></table>
+<p class="apagado peq">{{ campanhas | length | num_br }} campanhas registradas no banco; {{ (campanhas | length - executadas | length) | num_br }} não chegaram a analisar páginas (testes de configuração ou interrompidas no início) e ficaram fora da tabela.</p>
+{% if sobreposicao %}<div class="nota"><b>Lição das campanhas amplas:</b> as duas maiores varreduras amplas ({{ sobreposicao.a | num_br }} e {{ sobreposicao.b | num_br }} URLs) tiveram só {{ sobreposicao.comum | num_br }} URLs em comum, porque a busca do Google via IA devolve resultados diferentes a cada execução. Por isso o valor está na <b>soma</b> das campanhas: {{ A.recorrentes | num_br }} dos {{ A.total | num_br }} achados foram reencontrados em mais de uma campanha (problemas persistentes) e o restante apareceu uma única vez.</div>{% endif %}
+</section>
+
+<section id="ganhos">
+{{ cabecalho("ganhos", "12", "Ganhos", "O que muda para a operação com o SIMIO.") }}
+<div class="cartoes" style="--cols:4">
+{% for titulo, texto in [
+  ("Escala", (analisadas | num_br) ~ " páginas analisadas em ~" ~ (horas_maquina | round | int) ~ " h de máquina; o equivalente manual passaria de " ~ (horas_manual | round | int | num_br) ~ " h de analista."),
+  ("Padronização", "Todas as páginas são avaliadas pelos mesmos cinco ângulos, com os mesmos pesos e as mesmas regras. Fim da variação entre analistas."),
+  ("Prova defensável", "Capturas, código e texto com hash SHA-256 e registro de quando e como cada página foi coletada. Serve para notificação, jurídico e auditoria."),
+  ("Foco do analista", "Das " ~ (urls | num_br) ~ " URLs encontradas, o analista olha " ~ (A.total | num_br) ~ " achados, já ordenados por prioridade e com encaminhamento sugerido."),
+  ("Conformidade de COBANs", "Achados já saem com o CNPJ do correspondente e a hipótese de não conformidade do art. 14 da Res. 4.935, prontos para a gestão de correspondentes."),
+  ("Proteção ao cliente", "Sites falsos, phishing e domínios parecidos detectados com registro, hospedagem e contato de abuso: o pedido de derrubada sai do próprio relatório."),
+  ("Custo baixo", "Cerca de US$ " ~ (custo_por_pagina | num_br(2)) ~ " por página analisada. As consultas de RDAP e DNS são gratuitas."),
+  ("Memória", "Tudo fica no banco local: dá para comparar campanhas, ver o que persiste e medir a evolução do problema ao longo do tempo."),
+] %}<div class="cartao"><h4>{{ titulo }}</h4><p>{{ texto }}</p></div>{% endfor %}
+</div>
+</section>
+
+<section id="limitacoes">
+{{ cabecalho("limitacoes", "13", "Limitações e como contornamos", "Os obstáculos reais encontrados no desenvolvimento e na operação, e a resposta de engenharia para cada um.") }}
+<table class="tab"><thead><tr><th>Limitação</th><th>Como contornamos</th></tr></thead><tbody>
+{% for limite, solucao in [
+  ("O Google esconde de 6 a 9 em cada 10 resultados atrás de links opacos quando a busca usa operadores (<code>site:</code>, <code>intitle:</code>)", "A busca é refeita em até 3 versões sem operadores, os filtros são aplicados pelo próprio SIMIO e a página inicial do domínio exibido entra na fila."),
+  ("O Grounding (busca do Gemini) remove Instagram e Facebook dos resultados", "Redes sociais vêm do Serper, pelas versões sem operadores, que trazem links diretos de posts, reels e perfis."),
+  ("A busca via IA devolve resultados diferentes a cada execução", "Sete fontes combinadas, campanhas somadas e rodízio do cadastro de COBANs. O valor está no acumulado das campanhas."),
+  ("Redes sociais exigem login e mostram CAPTCHA", "O SIMIO não burla login nem CAPTCHA (risco jurídico); analisa o que é público e marca como Inconclusiva quando a coleta não basta, para verificação manual."),
+  ("A IA pode inventar evidência ou ser manipulada pela página (prompt injection)", "Conteúdo da página isolado como não confiável, modelo sem ferramentas, evidências conferidas contra o catálogo real, verificação cruzada com a heurística e revisor cético."),
+  ("A IA pode inventar artigo de lei", "Enquadramento normativo feito sem IA, só com o texto literal da Res. CMN 4.935/2021."),
+  ("Lojas multibanco, notícias, reclamações e homônimos de \"BV\" (Boa Vista, Bela Vista) geram falso positivo", "Filtros de contexto: multibanco, editorial, declaração de correspondente e lista de homônimos, sem deixar passar página com marcadores bancários explícitos."),
+  ("Logo cortada, em escala de cinza ou sobre foto escapa da comparação de imagem", "Segunda camada com o Gemini olhando a captura; a busca reversa (Lens) encontra páginas que usam a imagem sem escrever a marca."),
+  ("Páginas maliciosas podem atacar a máquina que investiga (SSRF, downloads, exploits)", "Proxy local por página que bloqueia rede interna e metadados de nuvem, sandbox do Chromium, navegação só leitura, sem downloads nem formulários."),
+  ("O custo de IA pode sair do controle em campanhas grandes", "Orçamento reservado antes de cada chamada; ao atingir o limite a campanha pausa com relatório parcial e continua com <code>retomar</code>."),
+  ("O limite de páginas por campanha deixa URLs sem análise", "Fila priorizada por risco: o que fica de fora é o de menor pontuação, e pode ser analisado com <code>retomar</code> ou na próxima campanha."),
+  ("Em plataformas gratuitas (Weebly, Vercel, Lovable) o dono do domínio é a plataforma", "O relatório aponta o contato de abuso da própria plataforma para a derrubada."),
+  ("Dados pessoais de titulares de domínio e de MEIs (LGPD)", "Pessoa física aparece só como \"pessoa física\"; nomes de MEI com CPF nunca vão para as buscas; o cadastro de COBANs não sai da máquina."),
+  ("Rede corporativa com inspeção TLS e sem rota IPv6", "Suporte a proxy corporativo e certificado próprio; o proxy tenta IPv4 primeiro, sem nunca conectar em IP não validado."),
+  ("A ferramenta não confirma infração sozinha", "Toda decisão traz justificativa, evidências e limitações; Indício forte e Requer revisão vão para validação humana. Os campos de validação deste relatório medem a precisão real."),
+] %}<tr><td>{{ limite | safe }}</td><td>{{ solucao | safe }}</td></tr>{% endfor %}
+</tbody></table>
+</section>
+
+<section id="proximos">
+{{ cabecalho("proximos", "14", "Próximos passos") }}
+<div class="cartoes" style="--cols:3">
+{% for titulo, texto in [
+  ("Validação humana", "Preencher os campos de validação deste relatório e usar o resultado para calibrar pesos e prompts (precisão por categoria)."),
+  ("Relatório consolidado", "Um relatório único somando todas as campanhas, com deduplicação e histórico de cada URL."),
+  ("Execução agendada", "Varredura ampla mensal, campanha de ameaças semanal e logo antiga trimestral, rodando sozinhas."),
+  ("Fluxo de derrubada", "Gerar a notificação ao registrador ou à plataforma a partir da página de ameaças, com a prova anexada."),
+  ("Integração com a gestão de COBANs", "Enviar os achados com CNPJ confirmado direto para a área responsável pelos correspondentes."),
+  ("Novas marcas", "O perfil de marca é um arquivo de configuração; NaPista e outras marcas do grupo entram sem mudar o código."),
+] %}<div class="cartao"><h4>{{ titulo }}</h4><p>{{ texto }}</p></div>{% endfor %}
+</div>
+</section>
+
+<section id="metodo">
+{{ cabecalho("metodo", "15", "Como os números foram calculados") }}
+<ul class="peq">
+<li>Fonte: banco local do SIMIO, com todas as campanhas registradas até {{ data }}.</li>
+<li><b>Contagem única:</b> cada URL normalizada conta uma vez, com a classificação mais grave que recebeu em qualquer campanha. Domínios oficiais do grupo ficam fora da conta.</li>
+<li><b>Achados</b> = Indício forte + Requer revisão. <b>Sites próprios</b> = domínios registráveis distintos fora de redes sociais e classificados.</li>
+<li><b>COBAN confirmado</b>: CNPJ ou razão social casados com o cadastro de correspondentes. <b>COBAN possível</b>: a página indica atuação como correspondente, sem casamento no cadastro.</li>
+<li><b>Nível de ameaça</b>: triagem determinística sobre os fatos gravados (ver docs/metodologia.md); páginas únicas, no nível mais alto que receberam.</li>
+<li><b>Custo de IA</b>: estimativa de US$ {{ custo_por_pagina | num_br(2) }} por página analisada (média observada com gemini-3.8-flash), não é fatura.</li>
+<li><b>Esforço manual</b>: premissa de {{ minutos_por_pagina }} minutos de triagem por página; ajuste com <code>--minutos-por-pagina</code>.</li>
+<li>Todos os achados são indícios para revisão humana; os números de positivos de fato dependem da validação.</li>
+</ul>
+</section>
+</main>
+<footer>SIMIO · relatório executivo gerado em {{ data }} a partir do banco local de campanhas. Uso interno: contém domínios de terceiros sob investigação; os achados são indícios e dependem de validação humana.</footer>
+</body>
+</html>

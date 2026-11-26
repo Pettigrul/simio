@@ -239,3 +239,16 @@ hipotese = "Uso da marca fora do manual de identidade aprovado"
 ```
 
 As dimensões possíveis são `IDENTIDADE_VISUAL`, `IDENTIDADE_COMERCIAL_DECLARADA`, `TRANSPARENCIA_CORRESPONDENTE`, `LINGUAGEM_INSTITUCIONAL`, `USO_LOGO`, `JORNADA_ATENDIMENTO`, `CANAIS_CONTATO` e `CONFUSAO_CONSUMIDOR`.
+
+## Relatório executivo (`relatorios/executivo.py`)
+
+O `simio executivo` soma todas as campanhas do banco. As regras de contagem:
+
+- cada URL normalizada conta uma vez, com a classificação mais grave e o nível de ameaça mais alto que recebeu em qualquer campanha; os domínios oficiais da marca ficam de fora;
+- achados são Indício forte + Requer revisão; sites próprios são domínios registráveis distintos fora de redes sociais e classificados;
+- consultas e resultados de busca não incluem URLs importadas por arquivo ou texto;
+- o ritmo (páginas por hora) é o da maior campanha concluída de cada modo, e o tempo de máquina soma só as campanhas concluídas;
+- o custo de IA é estimado em US$ 0,03 por análise (média observada com `gemini-3.8-flash`, não é fatura), e o esforço manual usa a premissa de `--minutos-por-pagina` por página única;
+- os recortes da logo antiga vêm das pastas `logo-antiga/` já gravadas pelos relatórios das campanhas, um por domínio, sem os sites de referência.
+
+As tabelas de validação saem em branco, para registrar quantos achados a revisão humana confirmou e calcular a precisão real de cada categoria.

@@ -70,7 +70,7 @@ def _reduzir_capturas(pagina, caminho_html: Path) -> None:
     )
 
 
-def _renderizar_pdf(caminho_html: Path, caminho_pdf: Path) -> Path | None:
+def _renderizar_pdf(caminho_html: Path, caminho_pdf: Path, paisagem: bool = False) -> Path | None:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -95,11 +95,16 @@ def _renderizar_pdf(caminho_html: Path, caminho_pdf: Path) -> Path | None:
                 pagina.pdf(
                     path=str(caminho_pdf),
                     format="A4",
+                    landscape=paisagem,
+                    # A página em paisagem foi desenhada para tela larga; reduzida, cabe na folha sem quebrar.
+                    scale=0.72 if paisagem else 1,
                     print_background=True,
                     display_header_footer=True,
                     header_template="<span></span>",
                     footer_template=_RODAPE,
-                    margin={"top": "12mm", "bottom": "14mm", "left": "10mm", "right": "10mm"},
+                    margin={"top": "10mm", "bottom": "12mm", "left": "10mm", "right": "10mm"}
+                    if paisagem
+                    else {"top": "12mm", "bottom": "14mm", "left": "10mm", "right": "10mm"},
                 )
                 logger.info("PDF gravado em %s", caminho_pdf)
                 return caminho_pdf
@@ -110,9 +115,9 @@ def _renderizar_pdf(caminho_html: Path, caminho_pdf: Path) -> Path | None:
         return None
 
 
-def gerar_pdf_campanha(caminho_html: Path, caminho_pdf: Path) -> Path | None:
-    """PDF A4 do relatório da campanha, ou None se o Playwright/Chromium não estiver disponível."""
+def gerar_pdf(caminho_html: Path, caminho_pdf: Path, paisagem: bool = False) -> Path | None:
+    """PDF A4 de uma página HTML, ou None se o Playwright/Chromium não estiver disponível."""
     caminho_pdf.parent.mkdir(parents=True, exist_ok=True)
     # Thread própria: a API síncrona do Playwright não roda dentro de um loop asyncio ativo.
     with ThreadPoolExecutor(max_workers=1) as executor:
-        return executor.submit(_renderizar_pdf, caminho_html, caminho_pdf).result()
+        return executor.submit(_renderizar_pdf, caminho_html, caminho_pdf, paisagem).result()

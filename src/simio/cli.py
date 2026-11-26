@@ -525,6 +525,37 @@ def relatorio(
         armazenamento.fechar()
 
 
+@comando()
+def executivo(
+    marca: Annotated[str, typer.Option(metavar=TEXTO, help="Perfil de marca (ex.: bv)")] = "bv",
+    destino: Annotated[
+        Path,
+        typer.Option("--destino", "-d", metavar="PASTA", help="Onde gravar o relatório_executivo.html e o .pdf"),
+    ] = Path(),
+    minutos_por_pagina: Annotated[
+        int, typer.Option(min=1, metavar=NUMERO, help="Premissa de triagem manual, para o esforço equivalente")
+    ] = 10,
+    sem_pdf: Annotated[bool, typer.Option("--sem-pdf", metavar=FLAG, help="Gera só o HTML")] = False,
+    dir_saida: OpcaoSaida = None,
+) -> None:
+    """Gera o relatório executivo somando todas as campanhas do banco (HTML e PDF)."""
+    from simio.relatorios.executivo import gravar_relatorio_executivo
+
+    s = _configuracoes(dir_saida=dir_saida)
+    armazenamento = _armazenamento(s)
+    try:
+        res = gravar_relatorio_executivo(
+            s, armazenamento, destino, id_marca=marca, minutos_por_pagina=minutos_por_pagina, com_pdf=not sem_pdf
+        )
+    finally:
+        armazenamento.fechar()
+    typer.secho(f"Relatório executivo: {res.html}", fg="green")
+    if res.pdf:
+        typer.secho(f"PDF: {res.pdf}", fg="green")
+    elif not sem_pdf:
+        typer.secho("PDF não gerado (Playwright/Chromium indisponível).", fg="yellow")
+
+
 def _imprimir_tabela(cabecalho: tuple[str, ...], linhas: list[tuple[str, ...]]) -> None:
     larguras = [max(len(linha[i]) for linha in [cabecalho, *linhas]) for i in range(len(cabecalho))]
 
