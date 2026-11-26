@@ -363,7 +363,7 @@ def compor_final(
             cls = C.REQUER_REVISAO
         prio = max(prio, Prioridade.ALTA, key=lambda p: ORDEM_PRIORIDADE[p])
     limitacoes = [*evidencia.nao_inspecionado, *identidade.limitacoes, *conformidade.limitacoes]
-    if avaliacao.analisador.startswith("heuristic"):
+    if avaliacao.analisador.startswith("heuristica"):
         limitacoes.append(
             "análise heurística offline (sem modelo multimodal): indícios visuais não avaliados; resultado é triagem"
         )

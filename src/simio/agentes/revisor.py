@@ -104,7 +104,7 @@ def contestacoes_deterministicas(
         )
     # TODO: comparar com marca.ID_HEURISTICA (e o legado "heuristic-v1") em vez do prefixo; hoje
     # funciona só porque "heuristica-v1" começa com "heuristic".
-    if a.analisador.startswith("heuristic") and a.classificacao != C.SEM_INDICIO:
+    if a.analisador.startswith("heuristica") and a.classificacao != C.SEM_INDICIO:
         ch.append(
             Contestacao(
                 topico="contexto_visual_nao_analisado",
