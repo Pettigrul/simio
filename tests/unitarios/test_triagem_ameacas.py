@@ -16,7 +16,7 @@ from simio.nucleo.modelos import (
 )
 from simio.nucleo.urls import hostname_de
 from simio.relatorios.dados import RegistroCandidata
-from simio.relatorios.html_ameacas import desarmar_url
+from simio.relatorios.paginas import link_url
 from tests.auxiliares import MARCA, montar_evidencia
 
 
@@ -132,6 +132,11 @@ def test_dominio_novo_soma_peso() -> None:
     assert novo.pontuacao == antigo.pontuacao + 2 and "Domínio recente" in novo.categorias
 
 
-def test_desarmar_url() -> None:
-    assert desarmar_url("https://bv.weebly.com/a.b?x=1") == "hxxps://bv[.]weebly[.]com/a.b?x=1"
-    assert desarmar_url("http://golpe.example") == "hxxp://golpe[.]example"
+def test_link_url() -> None:
+    assert str(link_url("https://bv.weebly.com/a.b?x=1&y=2")) == (
+        '<a href="https://bv.weebly.com/a.b?x=1&amp;y=2" target="_blank" rel="noopener noreferrer nofollow">'
+        "https://bv.weebly.com/a.b?x=1&amp;y=2</a>"
+    )
+    assert "<a" not in str(link_url("javascript:alert(1)"))
+    assert '"><script>' not in str(link_url('https://x.example/"><script>'))
+    assert link_url(None) == ""

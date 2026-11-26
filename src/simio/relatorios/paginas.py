@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import re
 from datetime import UTC, datetime
 
 from jinja2 import Environment, PackageLoader, select_autoescape
+from markupsafe import Markup, escape
 
 from simio.relatorios.dados_logo import LOGO_BV_BRANCA_DATA_URI
 from simio.relatorios.rotulos import (
@@ -35,6 +37,19 @@ def data_br(valor: object, segundos: bool = False) -> str:
     return momento.strftime("%d/%m/%Y %H:%M:%S UTC" if segundos else "%d/%m/%Y %H:%M UTC")
 
 
+_HTTP = re.compile(r"^https?://", re.IGNORECASE)
+
+
+def link_url(url: object) -> Markup | str:
+    """URL clicável, abrindo em outra aba; o que não for http(s) fica só como texto."""
+    if not url:
+        return ""
+    texto = escape(str(url))
+    if not _HTTP.match(str(url)):
+        return texto
+    return Markup(f'<a href="{texto}" target="_blank" rel="noopener noreferrer nofollow">{texto}</a>')  # noqa: S704 (texto já escapado)
+
+
 def agora_br() -> str:
     return data_br(datetime.now(UTC))
 
@@ -53,6 +68,7 @@ ambiente = Environment(
 ambiente.filters["rotulo"] = rotulo
 ambiente.filters["tom"] = tom
 ambiente.filters["data_br"] = data_br
+ambiente.filters["link_url"] = link_url
 ambiente.filters["num_br"] = num_br
 ambiente.filters["dados_pedidos"] = dados_pedidos
 ambiente.filters["fonte"] = rotulo_fonte

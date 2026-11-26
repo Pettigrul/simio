@@ -7,7 +7,7 @@
     {% for nv, n in niveis %}<div class="quadro {{ nv|tom }}"><b>{{ n }}</b>{{ nv|rotulo }}</div>{% endfor %}
   </div>
   <div class="linha">{% for cat, n in categorias %}{{ cat }} ({{ n }}){% if not loop.last %} · {% endif %}{% endfor %}</div>
-  <div class="nota">O nível vem de fatos verificáveis: campos de senha ou cartão, personificação registrada pelo analisador, domínio com a marca ou parecido, APK fora das lojas, hospedagem gratuita e idade do domínio. Empresas identificadas que usam a própria marca são tema de conformidade e ficam fora desta lista. As URLs estão desarmadas (<code>hxxps</code>, <code>[.]</code>) para ninguém abrir sem querer.</div>
+  <div class="nota">O nível vem de fatos verificáveis: campos de senha ou cartão, personificação registrada pelo analisador, domínio com a marca ou parecido, APK fora das lojas, hospedagem gratuita e idade do domínio. Empresas identificadas que usam a própria marca são tema de conformidade e ficam fora desta lista.</div>
 
   {% for nv in ["CRÍTICO", "ALTO", "MÉDIO"] %}
   {% set grupo = fichas | selectattr("nivel", "equalto", nv) | list %}
@@ -20,7 +20,7 @@
     </div>
     <div>
       <span class="selo {{ c.nivel|tom }}">{{ c.nivel|rotulo }} · {{ c.pontuacao|num_br(1) }}</span>{% for cat in c.categorias %}<span class="selo categoria">{{ cat }}</span>{% endfor %}
-      <div class="url">{{ c.url }}</div>
+      <div class="url">{{ c.url | link_url }}</div>
       <ul class="fatos">{% for fato in c.fatos %}<li>{{ fato }}</li>{% endfor %}</ul>
       <dl class="campos">
         {% if c.sensiveis %}<dt>Dados pedidos</dt><dd>{{ c.sensiveis }}</dd>{% endif %}
@@ -48,7 +48,7 @@
     <thead><tr><th>URL</th><th>Por quê</th><th>Domínio criado</th><th>Titular</th></tr></thead>
     <tbody>
     {% for c in baixos %}
-    <tr><td class="mono">{{ c.url }}</td><td>{{ c.fatos | join("; ") }}</td><td>{{ c.intel.criado if c.intel else "" }}</td><td>{{ c.intel.titular if c.intel else "" }}</td></tr>
+    <tr><td class="mono">{{ c.url | link_url }}</td><td>{{ c.fatos | join("; ") }}</td><td>{{ c.intel.criado if c.intel else "" }}</td><td>{{ c.intel.titular if c.intel else "" }}</td></tr>
     {% endfor %}
     </tbody>
   </table>

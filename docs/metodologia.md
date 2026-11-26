@@ -146,7 +146,7 @@ Sem chamar o modelo, a triagem relê o que já foi analisado e dá a cada págin
 
 Níveis: Crítico a partir de 8, Alto a partir de 5, Médio a partir de 3, Baixo a partir de 2, abaixo disso Sem ameaça. Domínio oficial, loja oficial de apps, homônimo conhecido (`dominios_homonimos` no perfil) e domínio registrado pelo próprio grupo (titular ou CNPJ do RDAP em `nomes_instituicao` ou `cnpjs_instituicao`, ou seja, registro defensivo) ficam com teto 0.
 
-Na campanha de ameaças, a aba Ameaças e o `ameacas.html` listam tudo acima de Sem ameaça. Na varredura ampla, só Crítico, Alto e páginas que pedem credencial, numa aba depois das de conformidade. Os dois trazem nível, categoria, fatos, URL, registro do domínio, hospedagem, contatos de abuso, dados pedidos e destino do formulário, prontos para bloqueio e pedido de remoção. O HTML mostra a captura de cada página e as URLs desarmadas (`hxxps://site[.]com`).
+Na campanha de ameaças, a aba Ameaças e o `ameacas.html` listam tudo acima de Sem ameaça. Na varredura ampla, só Crítico, Alto e páginas que pedem credencial, numa aba depois das de conformidade. Os dois trazem nível, categoria, fatos, URL, registro do domínio, hospedagem, contatos de abuso, dados pedidos e destino do formulário, prontos para bloqueio e pedido de remoção. O HTML mostra a captura de cada página e a URL como link.
 
 #### Quem está por trás do domínio
 

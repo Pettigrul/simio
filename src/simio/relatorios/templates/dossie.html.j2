@@ -27,7 +27,7 @@
       {% else %}
       <span class="selo">Sem decisão final</span>
       {% endif %}
-      <div class="url">{{ c.url }}</div>
+      <div class="url">{{ c.url | link_url }}</div>
       <dl class="campos">
         {% if f %}
         <dt>Responsável</dt><dd>{{ f.classe_identidade|rotulo }}{% if idn and idn.nome_exibicao %} · {{ idn.nome_exibicao }}{% endif %}</dd>
@@ -238,7 +238,7 @@
     <thead><tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL encontrada</th><th>Título / trecho</th></tr></thead>
     <tbody>
     {% for h in resultados %}
-    <tr><td>{{ h.fonte|fonte }}</td><td>{{ h.consulta or '' }}{% if h.id_hipotese %}<br><span class="apagado peq">{{ h.id_hipotese }}</span>{% endif %}</td><td class="mono">{{ h.url_original }}</td><td>{{ h.titulo or '' }}{% if h.trecho %}<br><span class="apagado peq">{{ h.trecho }}</span>{% endif %}</td></tr>
+    <tr><td>{{ h.fonte|fonte }}</td><td>{{ h.consulta or '' }}{% if h.id_hipotese %}<br><span class="apagado peq">{{ h.id_hipotese }}</span>{% endif %}</td><td class="mono">{{ h.url_original | link_url }}</td><td>{{ h.titulo or '' }}{% if h.trecho %}<br><span class="apagado peq">{{ h.trecho }}</span>{% endif %}</td></tr>
     {% else %}
     <tr><td colspan="4" class="apagado">URL importada, sem resultado de busca.</td></tr>
     {% endfor %}
@@ -252,8 +252,8 @@
     <dl class="campos">
       <dt>Tentativa</dt><dd>{{ ev.tentativa }}</dd>
       <dt>IP do servidor</dt><dd>{{ ev.ip_servidor or '—' }}</dd>
-      <dt>URL original</dt><dd class="mono">{{ ev.url_original }}</dd>
-      <dt>URL final</dt><dd class="mono">{{ ev.url_final or '—' }}</dd>
+      <dt>URL original</dt><dd class="mono">{{ ev.url_original | link_url }}</dd>
+      <dt>URL final</dt><dd class="mono">{{ ev.url_final | link_url if ev.url_final else '—' }}</dd>
       {% if ev.cadeia_redirecionamentos %}<dt>Redirecionamentos</dt><dd class="mono">{{ ev.cadeia_redirecionamentos|join(' → ') }}</dd>{% endif %}
       <dt>Manifesto</dt><dd class="mono">{{ ev.caminho_manifesto or '—' }}{% if ev.sha256_manifesto %}<br>sha256 {{ ev.sha256_manifesto }}{% endif %}</dd>
     </dl>

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 from collections import Counter
 from pathlib import Path
 
@@ -11,14 +10,6 @@ from simio.nucleo.modelos import InteligenciaDominio
 from simio.relatorios.dados import RegistroCandidata
 from simio.relatorios.paginas import agora_br, ambiente, logo_marca
 from simio.relatorios.rotulos import dados_pedidos
-
-
-def desarmar_url(url: str) -> str:
-    """``https://golpe.com/x`` -> ``hxxps://golpe[.]com/x``, para ninguém abrir a página sem querer."""
-    saida = re.sub(r"^http", "hxxp", url, flags=re.IGNORECASE)
-    fim_host = saida.find("/", saida.find("://") + 3) if "://" in saida else -1
-    host = saida[: fim_host if fim_host > 0 else len(saida)]
-    return host.replace(".", "[.]") + (saida[fim_host:] if fim_host > 0 else "")
 
 
 def gravar_html_ameacas(
@@ -46,7 +37,7 @@ def gravar_html_ameacas(
                 "pontuacao": t.pontuacao,
                 "categorias": t.categorias,
                 "fatos": t.fatos,
-                "url": desarmar_url((ev.url_final if ev else None) or r.candidata.url),
+                "url": (ev.url_final if ev else None) or r.candidata.url,
                 "dominio": r.candidata.dominio_registravel,
                 "intel": resumir_inteligencia(item) if item else None,
                 "sensiveis": dados_pedidos(f.dados_sensiveis_solicitados) if f else "",

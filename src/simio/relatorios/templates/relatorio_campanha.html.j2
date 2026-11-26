@@ -37,7 +37,7 @@
     <div>
       <span class="selo {{ c.classificacao|tom }}">{{ c.classificacao|rotulo }}</span>{% if c.prioridade %}<span class="selo {{ c.prioridade|tom }}">Prioridade {{ c.prioridade|rotulo|lower }}</span>{% endif %}{% if c.caso %}<span class="selo categoria">{{ c.caso|rotulo }}</span>{% endif %}{% if c.logo_antiga %}<span class="selo alto">Logo antiga</span>{% endif %}{% if c.dados_sensiveis %}<span class="selo crit">Pede {{ c.dados_sensiveis }}</span>{% endif %}
       <div class="titulo-cartao">{{ c.host }}</div>
-      <div class="url">{{ c.url }}</div>
+      <div class="url">{{ c.url | link_url }}</div>
       <dl class="campos">
         <dt>Responsável</dt><dd>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %} · {{ c.nome_entidade }}{% endif %}</dd>
         {% if c.revisao_critica %}<dt>Revisão crítica</dt><dd>{{ c.revisao_critica|rotulo }}</dd>{% endif %}
@@ -58,7 +58,7 @@
     <tbody>
     {% for c in g.linhas %}
     <tr>
-      <td><b>{{ c.host }}</b><div class="url">{{ c.url }}</div>{% if c.andamento %}<span class="apagado peq">andamento: {{ c.andamento|rotulo|lower }}</span>{% endif %}</td>
+      <td><b>{{ c.host }}</b><div class="url">{{ c.url | link_url }}</div>{% if c.andamento %}<span class="apagado peq">andamento: {{ c.andamento|rotulo|lower }}</span>{% endif %}</td>
       <td>{{ c.identidade|rotulo or "—" }}{% if c.nome_entidade %}<br><span class="apagado peq">{{ c.nome_entidade }}</span>{% endif %}</td>
       <td>{{ c.caso|rotulo or "—" }}</td>
       <td>{{ c.revisao_humana|rotulo or "—" }}</td>

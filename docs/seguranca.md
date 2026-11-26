@@ -59,7 +59,7 @@ Uma página pode ter instruções escondidas no texto ou nas imagens tentando en
 
 ## Relatórios e segredos
 
-- Dossiês e relatórios HTML são gerados pelo Jinja2 com autoescape e sem scripts. O dossiê traz `Content-Security-Policy: default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'`. URLs externas aparecem como texto, e nas páginas de ameaça vêm desarmadas (`hxxps://site[.]com`), para evitar clique acidental.
+- Dossiês e relatórios HTML são gerados pelo Jinja2 com autoescape e sem scripts. O dossiê traz `Content-Security-Policy: default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'`. URLs externas viram links só quando são `http`/`https`, abrem em outra aba e levam `rel="noopener noreferrer nofollow"`. Cuidado ao clicar nas páginas de ameaça: são sites de golpe; prefira abrir num navegador isolado.
 - Na planilha, células que começam com `=`, `+`, `-`, `@`, tabulação ou retorno de carro ganham um apóstrofo na frente (`relatorios/excel.py`), o que neutraliza injeção de fórmula.
 - Chaves de API (Serper, Brave, urlscan) são `SecretStr`, mascaradas no log (`config_logs.py`, que reconhece os nomes atuais e os antigos em inglês) e na cópia das configurações gravada na campanha (`Configuracoes.mascarada()`). Usuário e senha em URL de proxy também são mascarados.
 - O `.gitignore` bloqueia `.env*` (menos `.env.example`), credenciais JSON, bancos SQLite, planilhas, logs, `data/` e as pastas de resultados (`resultados/`, e também a antiga `output/`).
