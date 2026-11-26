@@ -1,16 +1,3 @@
-"""Secure evidence collection with Playwright (Chromium, headless).
-
-Safety properties (see docs/security.md):
-* every browser connection goes through a per-page :class:`EgressProxy` that validates the
-  target, resolves DNS itself and connects to the validated IP (covers redirect hops, which
-  Playwright ``route()`` does not see, and DNS rebinding);
-* ``route()`` interception adds early blocking, a request cap and media blocking;
-* no form filling, no clicks, no login, downloads disabled, popups closed, dialogs dismissed,
-  service workers blocked, no extra permissions, Chromium sandbox enabled (``SIMIO_SANDBOX_NAVEGADOR``);
-* hard per-page time budget and request cap;
-* raw HTML is stored as ``.html.txt`` so it is never rendered by accident.
-"""
-
 from __future__ import annotations
 
 import asyncio
@@ -50,15 +37,15 @@ ARGS_CHROMIUM = [
     "--metrics-recording-only",
     "--disable-features=InterestFeedContentSuggestions,MediaRouter,OptimizationHints",
     "--deny-permission-prompts",
-    # All traffic must traverse the egress proxy: no QUIC, no non-proxied WebRTC UDP, and
-    # loopback is NOT implicitly bypassed.
+    # Todo o tráfego tem que passar pelo proxy de saída: sem QUIC, sem UDP do WebRTC fora do
+    # proxy, e loopback não fica isento implicitamente.
     "--disable-quic",
     "--force-webrtc-ip-handling-policy=disable_non_proxied_udp",
     "--webrtc-ip-handling-policy=disable_non_proxied_udp",
     "--proxy-bypass-list=<-loopback>",
 ]
-# Placeholder global proxy: every context overrides it with its own egress proxy. If a context
-# ever lacked one, traffic would fail closed instead of going direct.
+# Proxy global fictício: cada contexto sobrescreve com o seu proxy de saída. Se algum contexto
+# ficar sem, o tráfego falha em vez de sair direto.
 PROXY_POR_CONTEXTO: Any = {"server": "http://per-context.invalid:1", "bypass": "<-loopback>"}
 
 MARCADORES_DESAFIO = (
@@ -92,8 +79,8 @@ _POST_FB_RE = re.compile(
     r"(?i)^https?://(?:www\.|m\.|web\.)?facebook\.com/(?:[^/?#]+/posts/|[^/?#]+/photos/|photo\.php\?|photo/?\?"
     r"|permalink\.php\?|story\.php\?)"
 )
-# Page/profile root ("facebook.com/lojax/" or "profile.php?id=..."): the public Page Plugin shows
-# name, avatar, bio, contact data and the latest posts, where the page itself shows a login wall.
+# Raiz de página/perfil ("facebook.com/lojax/" ou "profile.php?id=..."): o Page Plugin público mostra
+# nome, avatar, bio, contatos e os últimos posts; a página normal cai na tela de login.
 _PAGINA_FB_RE = re.compile(
     r"(?i)^https?://(?:www\.|m\.|web\.|pt-br\.)?facebook\.com/(?:(profile\.php)\?(?:[^#]*&)?id=(\d+)|([A-Za-z0-9.\-]+)/?(?:[?#].*)?$)"
 )
@@ -104,8 +91,8 @@ _RESERVADOS_FB = frozenset(
 
 
 def _url_incorporavel_social(url: str) -> str:
-    """Rewrite public Instagram/Facebook post, reel and profile URLs to their official unauthenticated
-    embed endpoints so Chromium can render the visual creative, handle and caption without a login wall."""
+    # Posts, reels e perfis públicos do Instagram/Facebook viram a URL de embed oficial (sem login),
+    # que é o único jeito de renderizar o criativo, o @ e a legenda sem cair no muro de login.
     m = _POST_IG_RE.match(url)
     if m:
         return f"https://www.instagram.com/p/{m.group(1)}/embed/captioned/"
@@ -215,7 +202,7 @@ JS_EXTRACAO = r"""
     texto_acima_dobra: fold.join(' ').slice(0, 8000),
     texto_visivel: visText.slice(0, maxChars),
     formularios_presentes: document.forms.length,
-    // Fields the page asks for (never filled): password/CPF/card/token fields reveal credential harvesting.
+    // campos que a página pede (nunca preenchidos): senha/CPF/cartão/token indicam captura de credenciais
     campos_entrada: [...document.querySelectorAll('input, select, textarea')]
       .filter(e => !['hidden', 'submit', 'button', 'reset', 'image'].includes((e.type || '').toLowerCase()))
       .filter(e => isVisible(e) || (e.type || '').toLowerCase() === 'password')
@@ -258,7 +245,7 @@ class _GuardaPagina:
             return
         self.contagem += 1
         if self.contagem > self.max_requisicoes:
-            self.bloqueadas.append(f"{url[:200]} -> request cap reached")
+            self.bloqueadas.append(f"{url[:200]} -> limite de requisições atingido")
             await rota.abort("blockedbyclient")
             return
         if req.resource_type == "media":
@@ -287,25 +274,26 @@ class _GuardaPagina:
 
 
 async def iniciar_chromium(pw: Any, *, sandbox: bool) -> Any:
-    """Launch headless Chromium, falling back to full Chromium if headless-shell is absent."""
     iniciar: dict[str, Any] = {
         "headless": True,
         "args": ARGS_CHROMIUM,
         "proxy": PROXY_POR_CONTEXTO,
-        # Playwright disables the Chromium sandbox by default; keep it ON unless explicitly
-        # disabled for an environment where it cannot start (documented risk).
+        # O Playwright desliga o sandbox do Chromium por padrão. Aqui fica ligado, a não ser que o
+        # ambiente não consiga subir com ele (risco documentado em docs/security.md).
         "chromium_sandbox": sandbox,
     }
     try:
         return await pw.chromium.launch(**iniciar)
     except Exception as exc:
+        # Sem o headless-shell instalado, cai para o Chromium completo.
+        # TODO: detectar pela exceção/caminho do executável em vez da mensagem do Playwright.
         if "Executable doesn't exist" in str(exc):
             return await pw.chromium.launch(**iniciar, channel="chromium")
         raise
 
 
 class ColetorNavegador:
-    """Async context manager owning one Chromium instance; one fresh context per page."""
+    # Um Chromium por coletor e um contexto novo (com proxy de saída próprio) por página.
 
     def __init__(self, configuracoes: Configuracoes, politica: PoliticaUrl) -> None:
         self.configuracoes = configuracoes
@@ -328,9 +316,9 @@ class ColetorNavegador:
         return self._navegador is not None and self._navegador.is_connected()
 
     async def garantir_navegador(self) -> None:
-        """Relaunch Chromium if it crashed (e.g. OOM) so one crash does not fail every later page."""
+        # Se o Chromium caiu (OOM, por exemplo), sobe de novo para não derrubar as páginas seguintes.
         if not self.conectado and self._pw is not None:
-            log.warning("browser disconnected; relaunching")
+            log.warning("navegador desconectado; reiniciando")
             await self._iniciar()
 
     async def __aexit__(self, *exc: object) -> None:
@@ -343,8 +331,8 @@ class ColetorNavegador:
         dir_rel = caminhos.dir_tentativa(hostname_de(url), id_candidata, tentativa)
         dir_destino = dir_campanha / dir_rel
         if dir_destino.exists():
-            # Leftovers of an interrupted attempt that never produced an evidence record must not be
-            # hashed into (or sent to the model as part of) this attempt.
+            # Sobra de tentativa interrompida, sem registro de evidência: não pode entrar no hash
+            # nem ir para o modelo como se fosse desta tentativa.
             shutil.rmtree(dir_destino)
         dir_destino.mkdir(parents=True, exist_ok=True)
         await self.garantir_navegador()
@@ -355,7 +343,7 @@ class ColetorNavegador:
             await self.politica.verificar_async(url)
         except ViolacaoPolitica as exc:
             ev.status = StatusColeta.BLOQUEADA
-            ev.erros.append(f"blocked by URL policy: {exc}")
+            ev.erros.append(f"bloqueada pela política de URL: {exc}")
             ev.nao_inspecionado.append("página não acessada (bloqueada pela política de segurança)")
             return self._finalizar(ev, dir_destino, dir_rel, dir_campanha)
         try:
@@ -363,17 +351,17 @@ class ColetorNavegador:
                 self._coletar_pagina(ev, url, dir_destino, dir_rel), timeout=self.configuracoes.orcamento_pagina_s
             )
         except TimeoutError:
-            ev.erros.append(f"page budget of {self.configuracoes.orcamento_pagina_s}s exceeded")
+            ev.erros.append(f"tempo limite da página ({self.configuracoes.orcamento_pagina_s}s) excedido")
             ev.nao_inspecionado.append("coleta interrompida por tempo: parte do conteúdo/artefatos pode faltar")
             ev.repetivel = True
             if ev.status == StatusColeta.NAO_COLETADA:
                 ev.status = StatusColeta.FALHOU
             elif ev.status == StatusColeta.OK:
                 ev.status = StatusColeta.PARCIAL
-        except Exception as exc:  # Playwright errors (crashed target, destroyed context, ...)
+        except Exception as exc:  # erros do Playwright (alvo caiu, contexto destruído...)
             if not self.conectado:
-                raise  # browser died: infrastructure failure, not a property of this page
-            ev.erros.append(f"collection error: {type(exc).__name__}: {str(exc)[:300]}")
+                raise  # o navegador morreu: falha de infraestrutura, não da página
+            ev.erros.append(f"erro na coleta: {type(exc).__name__}: {str(exc)[:300]}")
             ev.repetivel = True
             ev.pagina = None
             ev.status = StatusColeta.FALHOU
@@ -420,18 +408,17 @@ class ColetorNavegador:
             except PlaywrightTimeout:
                 ev.status = StatusColeta.FALHOU
                 ev.repetivel = True
-                ev.erros.append("navigation timeout")
+                ev.erros.append("timeout de navegação")
                 ev.nao_inspecionado.append("conteúdo da página não inspecionado (timeout de navegação)")
                 return
             except PlaywrightError as exc:
                 msg = str(exc).splitlines()[0][:300]
                 ev.status = StatusColeta.BLOQUEADA if "ERR_BLOCKED_BY_CLIENT" in msg else StatusColeta.FALHOU
                 ev.repetivel = any(k in msg for k in ("ERR_CONNECTION", "ERR_TIMED_OUT", "ERR_NETWORK"))
-                ev.erros.append(f"navigation error: {msg}")
+                ev.erros.append(f"erro de navegação: {msg}")
                 ev.nao_inspecionado.append("conteúdo da página não inspecionado (falha de acesso)")
                 return
 
-            # Redirect chain of the main navigation.
             cadeia: list[str] = []
             if resposta is not None:
                 req = resposta.request
@@ -443,22 +430,22 @@ class ColetorNavegador:
             try:
                 await pagina.wait_for_load_state("networkidle", timeout=max(1000, s.espera_estabilizar_ms * 2))
             except PlaywrightTimeout:
-                ev.erros.append("network did not become idle (continuing)")
+                ev.erros.append("a rede não ficou ociosa (coleta seguiu)")
             if s.espera_estabilizar_ms:
                 await pagina.wait_for_timeout(s.espera_estabilizar_ms)
             ev.url_final = url if url_busca != url and pagina.url == url_busca else pagina.url
 
-            # The egress proxy connected to a validated (pinned) IP; record it for custody.
+            # IP validado (fixado) a que o proxy de saída conectou; vai para a cadeia de custódia.
             ev.ip_servidor = proxy.ip_de(hostname_de(ev.url_final))
             try:
                 self.politica.verificar_estatico(ev.url_final)
             except ViolacaoPolitica as exc:
                 ev.status = StatusColeta.BLOQUEADA
-                ev.erros.append(f"final URL violates policy: {exc}")
+                ev.erros.append(f"URL final viola a política: {exc}")
                 return
 
             ev.status = StatusColeta.OK
-            bruto = await pagina.evaluate(JS_EXTRACAO, s.max_caracteres_texto)  # truncated in-page (memory bound)
+            bruto = await pagina.evaluate(JS_EXTRACAO, s.max_caracteres_texto)  # já trunca na página (memória)
             bruto["texto_visivel"] = (bruto.get("texto_visivel") or "")[: s.max_caracteres_texto]
             ev.pagina = DadosPagina.model_validate(bruto)
             reduzido = (ev.pagina.titulo + " " + ev.pagina.texto_visivel[:5000]).lower()
@@ -473,14 +460,14 @@ class ColetorNavegador:
                 )
             elif ev.status_http and ev.status_http >= 400:
                 ev.status = StatusColeta.FALHOU
-                ev.erros.append(f"HTTP {ev.status_http}: page content is an error page")
+                ev.erros.append(f"HTTP {ev.status_http}: o conteúdo é uma página de erro")
             if any(m in reduzido for m in MARCADORES_DESAFIO):
-                ev.erros.append("possible bot challenge/CAPTCHA detected; no bypass attempted")
+                # "CAPTCHA" precisa continuar no texto: o revisor procura por ele em ev.erros.
+                ev.erros.append("possível desafio anti-bot/CAPTCHA detectado; nenhuma tentativa de contorno")
                 ev.nao_inspecionado.append("conteúdo real possivelmente oculto por desafio anti-bot")
                 if ev.status == StatusColeta.OK:
                     ev.status = StatusColeta.PARCIAL
 
-            # --- artifacts --------------------------------------------------------------
             await self._gravar(
                 dir_destino / ARTEFATOS["captura_viewport"], await pagina.screenshot(type="png", animations="disabled")
             )
@@ -491,7 +478,7 @@ class ColetorNavegador:
                         " document.documentElement.scrollHeight)"
                     )
                 )
-                # Always clip: a page that grows while being captured cannot exceed the cap.
+                # Sempre com clip: página que cresce durante a captura não passa do limite.
                 kwargs_captura: dict[str, Any] = {
                     "type": "png",
                     "full_page": True,
@@ -511,7 +498,7 @@ class ColetorNavegador:
                 captura_completa = await pagina.screenshot(**kwargs_captura)
                 await self._gravar(dir_destino / ARTEFATOS["captura_completa"], captura_completa)
             except PlaywrightError as exc:
-                ev.erros.append(f"full-page screenshot failed: {str(exc)[:200]}")
+                ev.erros.append(f"falha no screenshot da página completa: {str(exc)[:200]}")
                 ev.nao_inspecionado.append("screenshot da página completa indisponível")
                 if ev.status == StatusColeta.OK:
                     ev.status = StatusColeta.PARCIAL
@@ -522,8 +509,9 @@ class ColetorNavegador:
             )
             html = str(cabeca).encode("utf-8", errors="replace")
             if int(total) > s.max_bytes_html or len(html) > s.max_bytes_html:
-                ev.erros.append(f"HTML truncated to {s.max_bytes_html} bytes")
+                ev.erros.append(f"HTML truncado em {s.max_bytes_html} bytes")
                 html = html[: s.max_bytes_html]
+            # O HTML bruto é gravado como .html.txt (ver ARTEFATOS) para nunca ser renderizado sem querer.
             await self._gravar(dir_destino / ARTEFATOS["html"], html)
             await self._gravar(dir_destino / ARTEFATOS["texto"], ev.pagina.texto_visivel.encode("utf-8"))
             await self._gravar(

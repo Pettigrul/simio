@@ -7,8 +7,8 @@ from simio.agentes.identidade import AgenteIdentidade, CadastroCoban
 from simio.nucleo.modelos import ClasseIdentidade, Nivel, StatusColeta
 from tests.auxiliares import MARCA, montar_evidencia
 
-CNPJ_A = "11.222.333/0001-81"  # canonical documentation example
-CNPJ_ALFANUMERICO = "12.ABC.345/01DE-35"  # Receita Federal's alphanumeric example
+CNPJ_A = "11.222.333/0001-81"  # exemplo clássico de documentação
+CNPJ_ALFANUMERICO = "12.ABC.345/01DE-35"  # exemplo alfanumérico da Receita Federal
 
 
 def _atribuicao(ev, cadastro: CadastroCoban | None = None, marca=MARCA):
@@ -69,7 +69,7 @@ def test_cadastro_nao_oficial_nunca_confirma(tmp_path: Path) -> None:
 
 
 def test_mesma_empresa_outro_estabelecimento_eh_coban_possivel_nao_confirmado(tmp_path: Path) -> None:
-    """Registry lists the branch (0002); the page shows the head office (0001) of the same company."""
+    # o cadastro tem a filial (0002); a página mostra a matriz (0001) da mesma empresa
     reg = _cadastro(tmp_path, "cnpj;nome\n11222333000262;LOJA EXEMPLO LTDA FILIAL\n")
     a = _atribuicao(montar_evidencia(rodape=f"Loja Exemplo Ltda CNPJ {CNPJ_A}"), reg)
     assert a.classificacao == ClasseIdentidade.COBAN_POSSIVEL
@@ -81,8 +81,8 @@ def test_mesma_empresa_outro_estabelecimento_eh_coban_possivel_nao_confirmado(tm
 def test_cadastro_indice_por_nome_e_busca_por_raiz(tmp_path: Path) -> None:
     reg = _cadastro(tmp_path, "cnpj;nome\n11222333000181;Loja Exemplo Ltda\n11222333000262;Loja Exemplo Filial\n")
     assert reg.buscar_nome("LOJA EXEMPLO LTDA")["cnpj"] == "11222333000181"
-    assert reg.buscar_raiz_cnpj("11222333000181") is None  # exact match takes precedence elsewhere
-    assert reg.buscar_raiz_cnpj("11.222.333/0003-43")["cnpj"] == "11222333000181"  # matriz preferred
+    assert reg.buscar_raiz_cnpj("11222333000181") is None  # casamento exato tem precedência em outro ponto
+    assert reg.buscar_raiz_cnpj("11.222.333/0003-43")["cnpj"] == "11222333000181"  # matriz tem preferência
 
 
 def test_cnpj_invalido_nao_eh_usado() -> None:
@@ -106,7 +106,7 @@ def test_cnpj_logo_apos_nome_da_instituicao_com_outro_cnpj_eh_referencia() -> No
 
 
 def test_cnpj_unico_perto_do_nome_da_instituicao_eh_mantido_mas_sinalizado() -> None:
-    # Ambiguous: could be the institution's or the owner's CNPJ -> never silently dropped.
+    # Ambíguo: pode ser da instituição ou do responsável, então nunca é descartado em silêncio.
     ev = montar_evidencia(rodape=f"Operação financiada pelo Banco BV, CNPJ {CNPJ_A}.")
     a = _atribuicao(ev)
     assert a.cnpjs_responsavel == [CNPJ_A] and a.cnpjs_instituicao_referenciados == []
@@ -179,13 +179,13 @@ def test_fatos_e_inferencias_sao_separados() -> None:
     tipos = {f.tipo for f in a.fatos}
     assert {"dominio", "cnpj", "email", "whatsapp"} <= tipos
     assert all(f.ref_evidencia for f in a.fatos)
-    assert a.inferencias  # association reasoning kept apart from facts
+    assert a.inferencias  # raciocínio de associação separado dos fatos
 
 
 def test_empresas_do_grupo_bv_e_outros_bancos_nunca_sao_atribuidos_como_terceiro_responsavel() -> None:
-    """Regression: fragments of 'BV Financeira S.A. - Crédito, Financiamento e Investimento',
-    'BV Investimentos', 'NaPista', historical CNPJ 01.149.953/0001-89, or competing bank names like
-    'Banco Inter S/A' must never become the third-party page owner."""
+    # Regressão: pedaços de "BV Financeira S.A. - Crédito, Financiamento e Investimento", "BV Investimentos",
+    # "NaPista", o CNPJ histórico 01.149.953/0001-89 ou nomes de outros bancos ("Banco Inter S/A") nunca
+    # viram o terceiro responsável pela página.
     ev = montar_evidencia(
         rodape="Correspondente bancário de BV Financeira S.A. - Crédito, Financiamento e Investimento "
         "(CNPJ 01.149.953/0001-89), BV Investimentos, NaPista e Banco Inter S/A."

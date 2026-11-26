@@ -1,14 +1,3 @@
-"""Identity Agent: who controls / represents the page?
-
-Deterministic and fully traceable: every fact points to an evidence-catalog reference.
-Facts (observed) and inferences (association reasoning) are kept separate.
-
-``COBAN_CONFIRMADO`` requires a match by CNPJ in an *authoritative* registry supplied by the
-operator (e.g. the contracting institution's open-data list of correspondents published under
-Res. CMN 4.935/2021 art. 21, or an internal base). Advertising the brand's products is never
-enough to infer a correspondent relationship.
-"""
-
 from __future__ import annotations
 
 import csv
@@ -46,14 +35,12 @@ PERFIL_IG_TITULO_RE = re.compile(r"(?i)^Instagram\s+@([A-Za-z0-9._]+)")
 PERFIL_IG_META_RE = re.compile(r"\(@([A-Za-z0-9._]+)\)")
 
 
-# --------------------------------------------------------------------------------- registry
 @dataclass
 class CadastroCoban:
-    """Operator-supplied list of authorised correspondents (CSV).
-
-    Required column: ``cnpj``. Optional: ``nome``/``name``, ``contratante``, ``fonte``,
-    ``data_referencia``. ``oficial`` must only be True for an official/approved source.
-    """
+    # CSV de correspondentes autorizados fornecido pelo operador (ex.: lista publicada pela contratante
+    # com base na Res. CMN 4.935/2021 art. 21). Coluna obrigatória: cnpj; opcionais: nome/name,
+    # contratante, fonte, data_referencia. oficial=True só para fonte oficial/homologada; sem isso
+    # nenhuma candidata sai como COBAN_CONFIRMADO.
 
     registros: dict[str, dict[str, str]] = field(default_factory=dict)
     fonte: str = "none"
@@ -65,8 +52,8 @@ class CadastroCoban:
         if caminho is None:
             return cls()
         if not caminho.is_file():
-            raise FileNotFoundError(f"COBAN registry not found: {caminho}")
-        recs: dict[str, dict[str, str]] = {}
+            raise FileNotFoundError(f"cadastro COBAN não encontrado: {caminho}")
+        registros: dict[str, dict[str, str]] = {}
         texto = caminho.read_text(encoding="utf-8-sig")
         primeiro = texto.splitlines()[0] if texto else ""
         delimitador = ";" if primeiro.count(";") > primeiro.count(",") else ","
@@ -74,9 +61,9 @@ class CadastroCoban:
             norm = {(k or "").strip().lower(): (v or "").strip() for k, v in linha.items()}
             cnpj = normalizar_cnpj(norm.get("cnpj", ""))
             if len(cnpj) == 14:
-                recs[cnpj] = norm
+                registros[cnpj] = norm
         fonte = caminho.name + (f" (ref. {data_referencia})" if data_referencia else "")
-        return cls(registros=recs, fonte=fonte, oficial=oficial, data_referencia=data_referencia)
+        return cls(registros=registros, fonte=fonte, oficial=oficial, data_referencia=data_referencia)
 
     @property
     def carregado(self) -> bool:
@@ -86,7 +73,7 @@ class CadastroCoban:
         return self.registros.get(normalizar_cnpj(cnpj))
 
     def buscar_raiz_cnpj(self, cnpj: str) -> dict[str, str] | None:
-        """Same legal entity, different establishment (matriz/filial share the 8-digit root)."""
+        # Mesma empresa, outro estabelecimento: matriz e filial têm a mesma raiz de 8 dígitos.
         c = normalizar_cnpj(cnpj)
         if len(c) != 14 or c in self.registros:
             return None
@@ -100,24 +87,27 @@ class CadastroCoban:
 
     @cached_property
     def _por_raiz(self) -> dict[str, dict[str, str]]:
-        idx: dict[str, dict[str, str]] = {}
-        for cnpj, rec in sorted(self.registros.items()):  # matriz (0001) sorts first within a root
-            idx.setdefault(cnpj[:8], rec)
-        return idx
+        indice: dict[str, dict[str, str]] = {}
+        for cnpj, registro in sorted(self.registros.items()):  # a matriz (0001) vem primeiro na raiz
+            indice.setdefault(cnpj[:8], registro)
+        return indice
 
     @cached_property
     def _por_nome(self) -> dict[str, dict[str, str]]:
-        idx: dict[str, dict[str, str]] = {}
-        for rec in self.registros.values():
-            for bruto in (rec.get("nome"), rec.get("name"), rec.get("razao_social")):
+        indice: dict[str, dict[str, str]] = {}
+        for registro in self.registros.values():
+            for bruto in (registro.get("nome"), registro.get("name"), registro.get("razao_social")):
                 n = normalizar_texto(bruto or "").strip()
                 if n:
-                    idx.setdefault(n, rec)
-        return idx
+                    indice.setdefault(n, registro)
+        return indice
 
 
-# --------------------------------------------------------------------------------- agent
 class AgenteIdentidade:
+    # Quem controla a página. Tudo determinístico: cada fato aponta para uma referência do catálogo,
+    # e fatos ficam separados das inferências. Anunciar produto da marca nunca basta para supor
+    # relação de correspondente; COBAN_CONFIRMADO exige o CNPJ num cadastro oficial.
+
     def __init__(self, marca: PerfilMarca, cadastro: CadastroCoban) -> None:
         self.marca = marca
         self.cadastro = cadastro
@@ -128,8 +118,8 @@ class AgenteIdentidade:
         return any(normalizar_texto(n) in ctx for n in self.marca.nomes_instituicao)
 
     def _nome_mais_proximo_eh_instituicao(self, contexto: str) -> bool:
-        """True when the closest company name before a CNPJ is the institution itself
-        (e.g. "Banco BV S.A., CNPJ ..."), not another company named in between."""
+        # O nome de empresa mais perto antes do CNPJ é a própria instituição ("Banco BV S.A., CNPJ ...")
+        # e não outra empresa citada no meio?
         f = normalizar_texto(contexto)
         inst = max((f.rfind(normalizar_texto(n)) for n in self.marca.nomes_instituicao), default=-1)
         if inst < 0:
@@ -171,14 +161,13 @@ class AgenteIdentidade:
                 "a partir das evidências indexadas na descoberta (E-DISC-*)"
             )
 
-        # ---- CNPJs: owner vs. referenced institution ---------------------------------
-        # A CNPJ is the institution's only when listed in the brand profile, or when the nearest
-        # preceding company name is the institution AND another valid CNPJ exists on the page (so
-        # the owner is not lost). Otherwise proximity to the institution's name is only flagged.
+        # CNPJ só é da instituição se estiver no perfil da marca, ou se o nome mais próximo antes dele
+        # for o da instituição E houver outro CNPJ válido na página (para não perder o responsável).
+        # Fora isso, a proximidade do nome da instituição só é sinalizada.
         cnpjs_responsavel: list[str] = []
         refs_instituicao: list[str] = []
         invalido: list[str] = []
-        encontrados: list[tuple[str, bool]] = []  # (cnpj, institution-context)
+        encontrados: list[tuple[str, bool]] = []  # (cnpj, contexto da instituição)
         for item in catalogo:
             fim_anterior = 0
             for m in CNPJ_RE.finditer(item.conteudo.upper()):
@@ -187,7 +176,8 @@ class AgenteIdentidade:
                     continue
                 cnpj = formatar_cnpj(bruto)
                 valido = cnpj_valido(bruto)
-                # Context = text since the previous CNPJ (max 120 chars) so labels don't leak across.
+                # Contexto = texto desde o CNPJ anterior (até 120 caracteres), para um rótulo não vazar
+                # para o CNPJ seguinte.
                 ctx = item.conteudo[max(fim_anterior, m.start() - 120) : m.end()]
                 fim_anterior = m.end()
                 fatos.append(
@@ -226,9 +216,8 @@ class AgenteIdentidade:
                 "titular da página ou à contratante (perfil da marca sem CNPJs da instituição validados)"
             )
 
-        # ---- names, contacts, declarations -------------------------------------------
-        # A name that is just the institution's (e.g. og:site_name "Banco BV") is a *claimed* identity
-        # observed on the page, never the owner's name.
+        # Nome que é só o da instituição (ex.: og:site_name "Banco BV") é identidade alegada pela
+        # página, nunca o nome do responsável.
         razoes_sociais: list[str] = []
         nomes_fantasia: list[str] = []
         alegado: list[str] = []
@@ -242,8 +231,8 @@ class AgenteIdentidade:
                     alegado.append(val)
                     fatos.append(FatoIdentidade(tipo="nome_instituicao_exibido", valor=val, ref_evidencia=ref))
                 return
-            # Do not attribute another bank's corporate name (e.g. "Banco Inter S/A", "Banco Omni S/A")
-            # or a shared platform's og:site_name ("YouTube", "Instagram", "Facebook") as the third-party owner.
+            # Razão social de outro banco ("Banco Inter S/A", "Banco Omni S/A") ou og:site_name de
+            # plataforma ("YouTube", "Instagram") não vira responsável pela página.
             valor_normalizado = normalizar_texto(val)
             if (
                 self.marca.mencoes_concorrentes(val)
@@ -251,9 +240,9 @@ class AgenteIdentidade:
                 or valor_normalizado in ("youtube", "instagram", "facebook", "tiktok", "linkedin", "my site", "home")
             ):
                 return
-            bucket = razoes_sociais if tipo == "razao_social" else nomes_fantasia
-            if val not in bucket:
-                bucket.append(val)
+            lista = razoes_sociais if tipo == "razao_social" else nomes_fantasia
+            if val not in lista:
+                lista.append(val)
                 fatos.append(FatoIdentidade(tipo=tipo, valor=val, ref_evidencia=ref))
 
         for item in catalogo:
@@ -279,8 +268,7 @@ class AgenteIdentidade:
                 (ev.pagina.meta.get("twitter:title") or "") + " " + (ev.pagina.meta.get("og:title") or "")
             )
             if m_ig:
-                tratar = f"@{m_ig.group(1)}"
-                adicionar_nome("nome_fantasia", tratar, "E-TITLE")
+                adicionar_nome("nome_fantasia", f"@{m_ig.group(1)}", "E-TITLE")
         if alegado:
             inferencias.append(
                 "a página se apresenta com o nome da instituição ("
@@ -303,32 +291,31 @@ class AgenteIdentidade:
             )
         fatos = _deduplicar_fatos(fatos)
 
-        # ---- registry lookup -----------------------------------------------------------
         correspondencia_cadastro: CorrespondenciaCadastro | None = None
         for c in cnpjs_responsavel:
-            rec = self.cadastro.buscar_cnpj(c)
-            if rec:
+            registro = self.cadastro.buscar_cnpj(c)
+            if registro:
                 correspondencia_cadastro = CorrespondenciaCadastro(
                     fonte=self.cadastro.fonte,
                     casado_por="cnpj",
-                    registro=rec,
+                    registro=registro,
                     oficial=self.cadastro.oficial,
                 )
                 break
         if correspondencia_cadastro is None:
             for c in cnpjs_responsavel:
-                rec = self.cadastro.buscar_raiz_cnpj(c)
-                if rec:
+                registro = self.cadastro.buscar_raiz_cnpj(c)
+                if registro:
                     correspondencia_cadastro = CorrespondenciaCadastro(
-                        fonte=self.cadastro.fonte, casado_por="cnpj_root", registro=rec, oficial=False
+                        fonte=self.cadastro.fonte, casado_por="cnpj_root", registro=registro, oficial=False
                     )
                     break
         if correspondencia_cadastro is None:
             for nome in razoes_sociais:
-                rec = self.cadastro.buscar_nome(nome)
-                if rec:
+                registro = self.cadastro.buscar_nome(nome)
+                if registro:
                     correspondencia_cadastro = CorrespondenciaCadastro(
-                        fonte=self.cadastro.fonte, casado_por="name", registro=rec, oficial=False
+                        fonte=self.cadastro.fonte, casado_por="name", registro=registro, oficial=False
                     )
                     break
         if not self.cadastro.carregado:
@@ -336,9 +323,8 @@ class AgenteIdentidade:
                 "nenhum cadastro autorizado de correspondentes carregado; COBAN_CONFIRMADO indisponível nesta execução"
             )
 
-        # ---- classification -----------------------------------------------------------
         correspondente_declara = bool(sinais.declaracoes)
-        menciona_parceiro = bool(sinais.parceria_com_marca)  # "parceiro" of *this* brand
+        menciona_parceiro = bool(sinais.parceria_com_marca)  # "parceiro" desta marca
         identificado = bool(cnpjs_responsavel or razoes_sociais)
         if len(cnpjs_responsavel) > 1:
             inferencias.append(
@@ -352,8 +338,8 @@ class AgenteIdentidade:
             and correspondencia_cadastro.oficial
             and len(cnpjs_responsavel) > 1
         ):
-            cls = ClasseIdentidade.COBAN_POSSIVEL
-            conf = Nivel.BAIXA
+            classe = ClasseIdentidade.COBAN_POSSIVEL
+            confianca = Nivel.BAIXA
             fundamentacao = (
                 "Um dos CNPJs da página consta do cadastro autorizado, mas há outros CNPJs (diretório, "
                 "marketplace ou grupo): a titularidade da página não é inequívoca."
@@ -363,8 +349,8 @@ class AgenteIdentidade:
             and correspondencia_cadastro.casado_por == "cnpj"
             and correspondencia_cadastro.oficial
         ):
-            cls = ClasseIdentidade.COBAN_CONFIRMADO
-            conf = Nivel.ALTA if len(cnpjs_responsavel) == 1 else Nivel.MEDIA
+            classe = ClasseIdentidade.COBAN_CONFIRMADO
+            confianca = Nivel.ALTA if len(cnpjs_responsavel) == 1 else Nivel.MEDIA
             fundamentacao = (
                 f"CNPJ {cnpjs_responsavel[0] if cnpjs_responsavel else ''} observado na página consta do "
                 f"cadastro autorizado '{correspondencia_cadastro.fonte}'."
@@ -375,8 +361,8 @@ class AgenteIdentidade:
                 "domínio é seu"
             )
         elif correspondencia_cadastro and correspondencia_cadastro.casado_por == "cnpj_root":
-            cls = ClasseIdentidade.COBAN_POSSIVEL
-            conf = Nivel.MEDIA if self.cadastro.oficial else Nivel.BAIXA
+            classe = ClasseIdentidade.COBAN_POSSIVEL
+            confianca = Nivel.MEDIA if self.cadastro.oficial else Nivel.BAIXA
             fundamentacao = (
                 f"O CNPJ da página não consta do cadastro, mas outro estabelecimento da mesma empresa (raiz "
                 f"{cnpjs_responsavel[0][:8] if cnpjs_responsavel else ''}, matriz/filial) consta de "
@@ -384,35 +370,35 @@ class AgenteIdentidade:
                 "confirmar se o contrato de correspondente abrange este estabelecimento."
             )
         elif correspondencia_cadastro:
-            cls = ClasseIdentidade.COBAN_POSSIVEL
-            conf = Nivel.BAIXA
+            classe = ClasseIdentidade.COBAN_POSSIVEL
+            confianca = Nivel.BAIXA
             fundamentacao = (
                 "Correspondência apenas por nome (ou fonte não autoritativa) no cadastro; requer confirmação por CNPJ."
             )
         elif correspondente_declara and identificado:
-            cls = ClasseIdentidade.COBAN_POSSIVEL
-            conf = Nivel.BAIXA if sinalizadas else Nivel.MEDIA
+            classe = ClasseIdentidade.COBAN_POSSIVEL
+            confianca = Nivel.BAIXA if sinalizadas else Nivel.MEDIA
             fundamentacao = (
                 "A página declara atuação como correspondente/prestador e identifica a empresa, "
                 "mas não houve confirmação em cadastro autorizado."
             )
         elif correspondente_declara or (menciona_parceiro and identificado):
-            cls = ClasseIdentidade.COBAN_POSSIVEL
-            conf = Nivel.BAIXA
+            classe = ClasseIdentidade.COBAN_POSSIVEL
+            confianca = Nivel.BAIXA
             fundamentacao = (
                 "Há declaração de correspondente ou de parceria, sem identificação suficiente "
                 "ou sem confirmação cadastral."
             )
         elif identificado:
-            cls = ClasseIdentidade.OUTRO_TERCEIRO
-            conf = Nivel.MEDIA if len(cnpjs_responsavel) == 1 and not sinalizadas else Nivel.BAIXA
+            classe = ClasseIdentidade.OUTRO_TERCEIRO
+            confianca = Nivel.MEDIA if len(cnpjs_responsavel) == 1 and not sinalizadas else Nivel.BAIXA
             fundamentacao = (
                 "Empresa identificada na página sem declaração de relação de correspondente; "
                 "anunciar produtos da marca não comprova vínculo."
             )
         else:
-            cls = ClasseIdentidade.IDENTIDADE_DESCONHECIDA
-            conf = Nivel.NENHUMA if not fatos[1:] else Nivel.BAIXA
+            classe = ClasseIdentidade.IDENTIDADE_DESCONHECIDA
+            confianca = Nivel.NENHUMA if not fatos[1:] else Nivel.BAIXA
             fundamentacao = "Nenhum CNPJ ou razão social identificáveis no conteúdo coletado."
 
         if cnpjs_responsavel:
@@ -434,7 +420,7 @@ class AgenteIdentidade:
         inferencias.append(f"base da associação: {fundamento}")
         return AtribuicaoIdentidade(
             id_candidata=id_candidata,
-            classificacao=cls,
+            classificacao=classe,
             chave_entidade=chave_entidade,
             nome_exibicao=exibicao,
             cnpjs_responsavel=cnpjs_responsavel,
@@ -442,7 +428,7 @@ class AgenteIdentidade:
             fatos=fatos,
             inferencias=inferencias,
             correspondencia_cadastro=correspondencia_cadastro,
-            confianca_atribuicao=conf,
+            confianca_atribuicao=confianca,
             limitacoes=limitacoes,
             fundamentacao=fundamentacao,
         )

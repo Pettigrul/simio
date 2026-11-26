@@ -1,5 +1,3 @@
-"""Evidence collection with a real headless Chromium against local synthetic sites."""
-
 from __future__ import annotations
 
 import contextlib
@@ -47,7 +45,7 @@ async def test_coleta_capturas_texto_e_hashes(configuracoes, site) -> None:
         assert p.is_file() and sha256_arquivo(p) == a.sha256 and p.stat().st_size == a.tamanho_bytes
     vp = cdir / ev.artefato("captura_viewport").caminho
     assert vp.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
-    assert not any(a.caminho.endswith(".html") for a in ev.artefatos)  # raw HTML stored as .html.txt
+    assert not any(a.caminho.endswith(".html") for a in ev.artefatos)  # HTML bruto fica como .html.txt
     manifesto = json.loads((cdir / ev.caminho_manifesto).read_text(encoding="utf-8"))
     assert manifesto["algoritmo_hash"] == "SHA-256" and len(manifesto["artefatos"]) == len(ev.artefatos)
     assert sha256_arquivo(cdir / ev.caminho_manifesto) == ev.sha256_manifesto
@@ -64,7 +62,7 @@ async def test_segue_redirecionamento_permitido(configuracoes, site) -> None:
 
 @pytest.mark.parametrize("caminho", ["/redirect-private", "/redirect-metadata"])
 async def test_redirecionamento_para_destino_interno_eh_bloqueado(configuracoes, site, acessos_servidor, caminho: str) -> None:
-    """Regression: Playwright route() is not invoked for redirect hops; the egress proxy must be."""
+    # Regressão: o route() do Playwright não roda nos saltos de redirect; o proxy de saída roda.
     ev, _ = await _coletar(configuracoes, f"{site}{caminho}")
     assert ev.status == StatusColeta.BLOQUEADA
     assert ev.pagina is None
@@ -107,7 +105,7 @@ async def test_pagina_indisponivel_eh_falha_nao_ausencia(configuracoes, site) ->
 
 
 async def test_host_inalcancavel_eh_falha(configuracoes) -> None:
-    ev, _ = await _coletar(configuracoes, "http://127.0.0.1:9/")  # nothing listens on port 9
+    ev, _ = await _coletar(configuracoes, "http://127.0.0.1:9/")  # nada escuta na porta 9
     assert ev.status == StatusColeta.FALHOU and ev.pagina is None
     assert any("não inspecionado" in n for n in ev.nao_inspecionado)
 
@@ -172,7 +170,7 @@ def test_estrutura_dir_evidencias(configuracoes) -> None:
 
 @pytest.mark.skipif(not sys.platform.startswith("linux"), reason="/proc inspection is Linux-only")
 async def test_chromium_roda_com_sandbox_do_so(configuracoes) -> None:
-    """Security review: Playwright disables the sandbox by default; SIMIO must keep it on."""
+    # o Playwright desliga o sandbox por padrão; o SIMIO tem que manter ligado
 
     def descendentes(pid: int) -> list[int]:
         filhos: dict[int, list[int]] = {}
@@ -196,5 +194,5 @@ async def test_chromium_roda_com_sandbox_do_so(configuracoes) -> None:
             with contextlib.suppress(OSError):
                 linhas_cmd.append(Path(f"/proc/{p}/cmdline").read_bytes().replace(b"\0", b" ").decode())
     chrome = [c for c in linhas_cmd if "chrom" in c.lower()]
-    assert chrome, "no Chromium process found"
+    assert chrome, "nenhum processo do Chromium encontrado"
     assert not [c for c in chrome if "--no-sandbox" in c]

@@ -57,9 +57,9 @@ def test_url_publica_permitida(politica: PoliticaUrl, monkeypatch: pytest.Monkey
 
 
 def test_dns_resolvendo_para_privado_eh_bloqueado(politica: PoliticaUrl, monkeypatch: pytest.MonkeyPatch) -> None:
-    """DNS manipulation: a public-looking name that resolves to an internal address."""
+    # nome com cara de público que resolve para endereço interno
     monkeypatch.setattr(politica, "_resolver_sincrono", lambda h, p: ["93.184.215.14", "10.1.2.3"])
-    with pytest.raises(ViolacaoPolitica, match="non-public"):
+    with pytest.raises(ViolacaoPolitica, match="não público"):
         politica.verificar("https://rebind.example.com/")
 
 

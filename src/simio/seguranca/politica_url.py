@@ -1,20 +1,3 @@
-"""Outbound URL policy (SSRF protection).
-
-Every URL the system fetches -- top-level navigations, browser sub-resources, redirects,
-grounding redirect resolution and connector calls -- goes through :class:`UrlPolicy`.
-
-Rules:
-* only ``http``/``https``; no embedded credentials; allowed ports only;
-* hostname must resolve, and **every** resolved address must be public
-  (no loopback, private, link-local, CGNAT, multicast, reserved, unspecified,
-  IPv4-mapped/6to4/Teredo-embedded private addresses, cloud metadata);
-* blocked hostnames/suffixes (``localhost``, ``*.internal``, ``metadata.google.internal``...).
-
-Residual risk (documented in docs/security.md): Chromium performs its own DNS resolution after
-our check (TOCTOU / DNS rebinding). The collector therefore also verifies the *actual* server
-address of every response and discards evidence if a private address was reached.
-"""
-
 from __future__ import annotations
 
 import asyncio
@@ -27,11 +10,16 @@ from urllib.parse import urlsplit
 
 EnderecoIP = ipaddress.IPv4Address | ipaddress.IPv6Address
 
+# Proteção contra SSRF: toda URL que o sistema busca (navegação, subrecursos, redirecionamentos,
+# resolução de redirect do grounding, conectores) passa por PoliticaUrl. Só http/https, sem
+# credenciais, portas da lista, e *todos* os IPs resolvidos têm que ser públicos. A troca de DNS
+# entre a checagem e a conexão (rebinding) é coberta pelo ProxySaida, que conecta no IP validado.
+
 _REDES_BLOQUEADAS_EXTRAS = [
     ipaddress.ip_network(n)
     for n in (
         "0.0.0.0/8",
-        "100.64.0.0/10",  # CGNAT / shared address space
+        "100.64.0.0/10",  # CGNAT
         "192.0.0.0/24",
         "192.0.2.0/24",
         "198.18.0.0/15",
@@ -40,7 +28,7 @@ _REDES_BLOQUEADAS_EXTRAS = [
         "224.0.0.0/4",
         "240.0.0.0/4",
         "255.255.255.255/32",
-        "64:ff9b::/96",  # NAT64 (could embed private v4)
+        "64:ff9b::/96",  # NAT64 (pode embutir IPv4 privado)
         "64:ff9b:1::/48",
         "fc00::/7",
         "fe80::/10",
@@ -80,10 +68,11 @@ SUFIXOS_BLOQUEADOS = (
 
 
 class ViolacaoPolitica(ValueError):
-    """Raised when a URL is not allowed to be fetched."""
+    pass
 
 
 def ip_eh_publico(ip: EnderecoIP) -> bool:
+    # IPv6 que embute IPv4 (mapeado, 6to4, Teredo) é julgado pelo IPv4 de dentro.
     if isinstance(ip, ipaddress.IPv6Address):
         if ip.ipv4_mapped is not None:
             return ip_eh_publico(ip.ipv4_mapped)
@@ -107,7 +96,7 @@ def ip_eh_publico(ip: EnderecoIP) -> bool:
 @dataclass
 class PoliticaUrl:
     portas_permitidas: frozenset[int] = frozenset({80, 443, 8080, 8443})
-    # Hosts explicitly allowed to bypass the private-address check. Tests only.
+    # Hosts liberados da checagem de endereço privado. Só para testes.
     hosts_liberados_inseguro: frozenset[str] = frozenset()
     ttl_cache_dns_s: float = 60.0
     _cache: dict[str, tuple[float, list[str]]] = field(default_factory=dict, repr=False)
@@ -121,60 +110,58 @@ class PoliticaUrl:
             hosts_liberados_inseguro=frozenset(h.lower() for h in hosts_liberados_inseguro),
         )
 
-    # ------------------------------------------------------------------ static checks
     def verificar_estatico(self, url: str) -> tuple[str, int]:
-        """Validate syntax-level rules. Returns (hostname, port)."""
+        # Só regras de sintaxe, sem DNS. Devolve (hostname, porta).
         if not url or len(url) > 4096:
-            raise ViolacaoPolitica("empty or oversized URL")
+            raise ViolacaoPolitica("URL vazia ou longa demais")
+        # Barra invertida e caracteres de controle fazem parsers diferentes discordarem do host.
         if any(ch in url for ch in ("\x00", "\r", "\n", "\t", "\\")):
-            raise ViolacaoPolitica("control characters or backslash in URL")
+            raise ViolacaoPolitica("caracteres de controle ou barra invertida na URL")
         try:
             partes = urlsplit(url)
             porta = partes.port
         except ValueError as exc:
-            raise ViolacaoPolitica(f"malformed URL: {exc}") from exc
+            raise ViolacaoPolitica(f"URL malformada: {exc}") from exc
         esquema_url = partes.scheme.lower()
         if esquema_url not in ("http", "https"):
-            raise ViolacaoPolitica(f"scheme not allowed: {esquema_url or '(none)'}")
+            raise ViolacaoPolitica(f"esquema não permitido: {esquema_url or '(nenhum)'}")
         if partes.username is not None or partes.password is not None or "@" in partes.netloc:
-            raise ViolacaoPolitica("credentials in URL are not allowed")
+            raise ViolacaoPolitica("credenciais na URL não são permitidas")
         host = (partes.hostname or "").rstrip(".").lower()
         if not host:
-            raise ViolacaoPolitica("missing host")
+            raise ViolacaoPolitica("URL sem host")
         if porta is None:
             porta = 443 if esquema_url == "https" else 80
         if host in self.hosts_liberados_inseguro:
             return host, porta
         if porta not in self.portas_permitidas:
-            raise ViolacaoPolitica(f"port {porta} not allowed")
+            raise ViolacaoPolitica(f"porta {porta} não permitida")
         if host in HOSTNAMES_BLOQUEADOS or host.endswith(SUFIXOS_BLOQUEADOS):
-            raise ViolacaoPolitica(f"internal hostname blocked: {host}")
+            raise ViolacaoPolitica(f"hostname interno bloqueado: {host}")
         if "." not in host and ":" not in host:
-            # Single-label names resolve via local search domains (intranet).
+            # Nome sem ponto resolve pelos domínios de busca locais (intranet).
             try:
                 ipaddress.ip_address(host)
             except ValueError:
-                raise ViolacaoPolitica(f"single-label hostname blocked: {host}") from None
+                raise ViolacaoPolitica(f"hostname sem domínio bloqueado: {host}") from None
         literal = _interpretar_ip_literal(host)
         if literal is not None and not ip_eh_publico(literal):
-            raise ViolacaoPolitica(f"non-public IP literal blocked: {host}")
+            raise ViolacaoPolitica(f"IP literal não público bloqueado: {host}")
         return host, porta
 
-    # ------------------------------------------------------------------ resolution
     def _resolver_sincrono(self, host: str, porta: int) -> list[str]:
         infos = socket.getaddrinfo(host, porta, type=socket.SOCK_STREAM)
         return sorted({str(info[4][0]) for info in infos})
 
     def _verificar_enderecos(self, host: str, enderecos: list[str]) -> None:
         if not enderecos:
-            raise ViolacaoPolitica(f"{host} did not resolve")
-        for addr in enderecos:
-            ip = ipaddress.ip_address(addr.split("%", 1)[0])
+            raise ViolacaoPolitica(f"{host} não resolveu")
+        for endereco in enderecos:
+            ip = ipaddress.ip_address(endereco.split("%", 1)[0])
             if not ip_eh_publico(ip):
-                raise ViolacaoPolitica(f"{host} resolves to non-public address {ip}")
+                raise ViolacaoPolitica(f"{host} resolve para endereço não público {ip}")
 
     def verificar(self, url: str) -> str:
-        """Full synchronous check (static + DNS). Returns hostname."""
         host, porta = self.verificar_estatico(url)
         if host in self.hosts_liberados_inseguro:
             return host
@@ -183,13 +170,14 @@ class PoliticaUrl:
             try:
                 enderecos = self._resolver_sincrono(host, porta)
             except OSError as exc:
-                raise ViolacaoPolitica(f"DNS resolution failed for {host}: {exc}") from exc
+                raise ViolacaoPolitica(f"falha na resolução DNS de {host}: {exc}") from exc
             self._guardar(host, enderecos)
         self._verificar_enderecos(host, enderecos)
         return host
 
+    # TODO: verificar_async e resolver_verificado_async repetem o bloco de cache + getaddrinfo;
+    # dá para extrair um _resolver_async(host, porta).
     async def verificar_async(self, url: str) -> str:
-        """Async check, resolution runs in the default executor."""
         host, porta = self.verificar_estatico(url)
         if host in self.hosts_liberados_inseguro:
             return host
@@ -199,17 +187,14 @@ class PoliticaUrl:
             try:
                 infos = await loop.getaddrinfo(host, porta, type=socket.SOCK_STREAM)
             except OSError as exc:
-                raise ViolacaoPolitica(f"DNS resolution failed for {host}: {exc}") from exc
+                raise ViolacaoPolitica(f"falha na resolução DNS de {host}: {exc}") from exc
             enderecos = sorted({str(i[4][0]) for i in infos})
             self._guardar(host, enderecos)
         self._verificar_enderecos(host, enderecos)
         return host
 
     async def resolver_verificado_async(self, url: str) -> list[str]:
-        """Validate ``url`` and return the resolved addresses that were validated.
-
-        Used by the egress proxy, which then connects to one of *these* addresses (DNS pinning).
-        """
+        # Usado pelo ProxySaida, que conecta num destes IPs já validados (DNS fixado, sem rebinding).
         host, porta = self.verificar_estatico(url)
         enderecos = self._do_cache(host)
         if enderecos is None:
@@ -217,25 +202,25 @@ class PoliticaUrl:
             try:
                 infos = await loop.getaddrinfo(host, porta, type=socket.SOCK_STREAM)
             except OSError as exc:
-                raise ViolacaoPolitica(f"DNS resolution failed for {host}: {exc}") from exc
+                raise ViolacaoPolitica(f"falha na resolução DNS de {host}: {exc}") from exc
             enderecos = sorted({str(i[4][0]) for i in infos})
             self._guardar(host, enderecos)
         if host not in self.hosts_liberados_inseguro:
             self._verificar_enderecos(host, enderecos)
         if not enderecos:
-            raise ViolacaoPolitica(f"{host} did not resolve")
+            raise ViolacaoPolitica(f"{host} não resolveu")
         return enderecos
 
     def verificar_endereco_servidor(self, host: str, ip: str | None) -> None:
-        """Post-connection verification of the address actually used by the browser."""
+        # Checagem depois da conexão, com o IP que o navegador de fato usou.
         if not ip or host in self.hosts_liberados_inseguro:
             return
         try:
-            addr = ipaddress.ip_address(ip.strip("[]").split("%", 1)[0])
+            endereco = ipaddress.ip_address(ip.strip("[]").split("%", 1)[0])
         except ValueError:
             return
-        if not ip_eh_publico(addr):
-            raise ViolacaoPolitica(f"browser connected to non-public address {addr} for {host}")
+        if not ip_eh_publico(endereco):
+            raise ViolacaoPolitica(f"navegador conectou em endereço não público {endereco} para {host}")
 
     def _do_cache(self, host: str) -> list[str] | None:
         resultado = self._cache.get(host)
@@ -253,7 +238,7 @@ def _interpretar_ip_literal(host: str) -> EnderecoIP | None:
         return ipaddress.ip_address(h)
     except ValueError:
         pass
-    # Legacy numeric forms accepted by some resolvers: 2130706433, 0x7f000001, 0177.0.0.1
+    # Formas numéricas antigas que alguns resolvedores aceitam: 2130706433, 0x7f000001, 0177.0.0.1
     try:
         if h.isdigit():
             return ipaddress.IPv4Address(int(h))

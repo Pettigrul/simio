@@ -1,5 +1,3 @@
-"""Egress proxy: network-layer enforcement of the URL policy (no browser needed)."""
-
 from __future__ import annotations
 
 import asyncio
@@ -77,12 +75,12 @@ async def test_resposta_dns_eh_validada_e_fixada(monkeypatch) -> None:
     monkeypatch.setattr(loop, "getaddrinfo", rebinding)
     async with ProxySaida(politica) as proxy:
         saida = await _bruto(proxy.porta, b"CONNECT rebind.example.com:443 HTTP/1.1\r\n\r\n")
-        assert saida.startswith(b"HTTP/1.1 403") and "non-public" in proxy.bloqueadas[0]
+        assert saida.startswith(b"HTTP/1.1 403") and "não público" in proxy.bloqueadas[0]
 
 
 async def test_ipv6_primeiro_recorre_a_ipv4_alcancavel(monkeypatch) -> None:
-    """Hosts like Meta's answer AAAA first; without an IPv6 route the proxy must still connect
-    through a validated IPv4 instead of failing the whole page (ERR_TUNNEL_CONNECTION_FAILED)."""
+    # A Meta responde AAAA primeiro; sem rota IPv6 o proxy tem que ir pelo IPv4 validado em vez de
+    # derrubar a página (ERR_TUNNEL_CONNECTION_FAILED).
     srv, porta, _ = await _origem()
     loop = asyncio.get_running_loop()
 
@@ -122,7 +120,7 @@ async def _upstream_falso() -> tuple[asyncio.base_events.Server, int, list[bytes
 
 
 async def test_upstream_recebe_ip_fixado_nao_hostname(monkeypatch) -> None:
-    """Security review: with a corporate upstream, DNS pinning must survive (anti-rebinding)."""
+    # com proxy corporativo o DNS continua fixado (anti-rebinding)
     loop = asyncio.get_running_loop()
 
     async def resolvedor(host, porta, type=0):

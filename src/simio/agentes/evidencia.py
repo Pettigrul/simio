@@ -1,10 +1,3 @@
-"""Evidence Agent: runs the secure collector and turns raw page data into an addressable
-evidence catalog plus deterministic observations ("signals") that other agents cite.
-
-The catalog is a pure function of (Evidence, BrandProfile), so it is reproducible from the
-stored evidence at any time (reports and dossiers rebuild it instead of trusting summaries).
-"""
-
 from __future__ import annotations
 
 import re
@@ -23,24 +16,22 @@ from simio.nucleo.modelos import (
 )
 from simio.nucleo.urls import dominio_corresponde, hostname_de
 
-# ---------------------------------------------------------------------------------- regexes
 CNPJ_RE = re.compile(r"(?<![\w])([0-9A-Z]{2}\.?[0-9A-Z]{3}\.?[0-9A-Z]{3}/?[0-9A-Z]{4}-?\d{2})(?![\w])")
 TELEFONE_RE = re.compile(r"(?<!\d)(0800[\s.-]?\d{3}[\s.-]?\d{4}|\(?\d{2}\)?[\s.-]?9?\d{4}[\s.-]?\d{4})(?!\d)")
 CEP_RE = re.compile(r"(?<!\d)\d{5}-\d{3}(?!\d)")
-# A legal name = 1..8 capitalised words (connectors allowed) ending in a company-type suffix, on a
-# single line. Lower-case words and sentence-ending periods break the chain, so surrounding
-# sentences are not captured.
+# Razão social = 1 a 8 palavras capitalizadas (conectivos permitidos) terminando em LTDA, S.A. etc.,
+# numa linha só. Palavra minúscula ou ponto final quebram a sequência, então a frase ao redor não entra.
 RAZAO_SOCIAL_RE = re.compile(
     r"((?:[A-ZÀ-Ý0-9][\wÀ-ÿ&'\-]*(?:\.[\wÀ-ÿ]+)*[ \t]+(?:(?:de|da|do|dos|das|e|&)[ \t]+)?){1,8}"
     r"(?:LTDA|Ltda|EIRELI|Eireli|S\.[ ]?A\.?|S/A|ME|EPP)\b\.?)"
 )
-# Third-person / reporting / warning context: a claim *about* the brand, not *by* the page.
+# Discurso de terceiros (notícia, alerta): alegação sobre a marca, não feita pela página.
 NOTICIADO_RE = re.compile(
     r"\b(segundo|de acordo com|conforme|informou|anunciou|afirmou|divulgou|comunicado|reportagem|"
     r"noticia|golpe|golpistas|alerta|cuidado com|falso|falsa|fraude|denuncia|procurado pela)\b"
 )
 
-# UI words that often precede a company name in flattened text (buttons, menus).
+# Palavras de botão/menu que costumam grudar antes do nome da empresa no texto achatado.
 PREFIXO_UI_NOME = re.compile(
     r"^(?:(?:WhatsApp|Whatsapp|Atendimento|Ligar|Fale|Contato|Contatos|Home|Início|Menu|Simule|Simular|"
     r"Oficial|Agora|Sobre|Quem|Somos|Copyright|Todos|Direitos|Reservados|©)[ \t]+)+"
@@ -89,7 +80,7 @@ def normalizar_cnpj(bruto: str) -> str:
 
 
 def cnpj_valido(bruto: str) -> bool:
-    """Validate numeric and alphanumeric (2026+) CNPJ check digits."""
+    # Vale para o CNPJ numérico e para o alfanumérico (a partir de 2026).
     c = normalizar_cnpj(bruto)
     if len(c) != 14 or not c[12:].isdigit() or len(set(c)) == 1:
         return False
@@ -109,7 +100,6 @@ def formatar_cnpj(c: str) -> str:
     return f"{c[:2]}.{c[2:5]}.{c[5:8]}/{c[8:12]}-{c[12:]}" if len(c) == 14 else c
 
 
-# --------------------------------------------------------------------------------- catalog
 def _linhas(texto: str) -> list[str]:
     bruto = [re.sub(r"\s+", " ", ln).strip() for ln in (texto or "").splitlines()]
     saida: list[str] = []
@@ -125,8 +115,8 @@ def _linhas(texto: str) -> list[str]:
     return saida
 
 
-# Form fields that reveal credential harvesting when the page uses the brand. CPF alone is common on
-# legitimate simulation pages, so it is recorded but is not a credential by itself.
+# Campos que indicam captura de credenciais quando a página usa a marca. CPF sozinho é comum em
+# simulador legítimo: fica registrado, mas não conta como credencial.
 _CAMPOS_SENSIVEIS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("senha", re.compile(r"(?i)senha|password|passwd|\bpin\b")),
     ("cvv", re.compile(r"(?i)\bcvv\b|\bcvc\b|cc-csc|c[oó]d(igo)?\.? de seguran")),
@@ -139,7 +129,6 @@ TIPOS_CREDENCIAL = frozenset({"senha", "cvv", "cartão", "token/código", "agên
 
 
 def classificar_campo_entrada(inp: InfoCampoEntrada) -> str | None:
-    """Kind of sensitive data a form field asks for (None for ordinary fields)."""
     t = inp.tipo_campo.lower()
     if t == "password":
         return "senha"
@@ -325,7 +314,7 @@ def montar_catalogo(
             n += 1
             adicionar(ItemEvidencia(ref=f"E-TXT-{n:03d}", tipo="texto", local="page", conteudo=linha_txt))
     n_formularios = 0
-    # A social platform's own login wall is not the page asking for credentials.
+    # O muro de login da própria rede social não é a página pedindo credencial.
     campos_formulario = [] if dominio_corresponde(hostname_de(url), _HOSTS_LOGIN_PLATAFORMA) else p.campos_entrada
     for inp in campos_formulario:
         tipo = classificar_campo_entrada(inp)
@@ -371,16 +360,15 @@ def montar_catalogo(
 
 
 def _imagem_tem_marca(img: InfoImagem, marca: PerfilMarca) -> bool:
-    blob = f"{img.alt} {img.src}"
+    amostra = f"{img.alt} {img.src}"
     return bool(
-        marca.mencoes(blob)
-        or "logo" in normalizar_texto(blob)
-        or LOGO_ANTIGA_RE.search(blob)
+        marca.mencoes(amostra)
+        or "logo" in normalizar_texto(amostra)
+        or LOGO_ANTIGA_RE.search(amostra)
         or marca.correspondencia_marca_dominio(img.src)
     )
 
 
-# --------------------------------------------------------------------------------- signals
 @dataclass
 class Ocorrencia:
     valor: str
@@ -390,7 +378,7 @@ class Ocorrencia:
 
 @dataclass
 class SinaisPagina:
-    """Deterministic observations with catalog references (facts, not conclusions)."""
+    # Observações determinísticas com referência ao catálogo: fatos, não conclusões.
 
     utilizavel: bool
     mencoes_marca: int = 0
@@ -399,11 +387,11 @@ class SinaisPagina:
     marca_no_cabecalho: bool = False
     marca_acima_dobra: bool = False
     imagens_marca: list[Ocorrencia] = field(default_factory=list)
-    imagens_nomeadas_marca: int = 0  # images whose alt/src carries the brand name itself
+    imagens_nomeadas_marca: int = 0  # alt/src com o nome da marca
     palavras_visiveis: int = 0
     imagens_marca_acima_dobra: int = 0
     marcadores_logo_antiga: list[Ocorrencia] = field(default_factory=list)
-    logo_antiga_visual: list[Ocorrencia] = field(default_factory=list)  # deterministic image matches
+    logo_antiga_visual: list[Ocorrencia] = field(default_factory=list)  # achados da comparação de imagem
     alegacoes_oficiais: list[Ocorrencia] = field(default_factory=list)
     alegacoes_ligadas_marca: list[Ocorrencia] = field(default_factory=list)
     declaracoes: list[Ocorrencia] = field(default_factory=list)
@@ -412,7 +400,7 @@ class SinaisPagina:
     locais_declaracao: set[str] = field(default_factory=set)
     parceria: list[Ocorrencia] = field(default_factory=list)
     parceria_com_marca: list[Ocorrencia] = field(default_factory=list)
-    alegacoes_noticiadas: list[Ocorrencia] = field(default_factory=list)  # third-person / news / warnings
+    alegacoes_noticiadas: list[Ocorrencia] = field(default_factory=list)  # terceiros / notícia / alerta
     mencoes_fracas: int = 0
     tem_evidencia_descoberta: bool = False
     canal_oficial: bool = False
@@ -429,7 +417,7 @@ class SinaisPagina:
     cnpjs: list[Ocorrencia] = field(default_factory=list)
     marcadores_injecao: list[Ocorrencia] = field(default_factory=list)
     formularios_presentes: int = 0
-    campos_sensiveis: list[Ocorrencia] = field(default_factory=list)  # value = kind (senha, cartão, cpf...)
+    campos_sensiveis: list[Ocorrencia] = field(default_factory=list)  # valor = tipo (senha, cartão, cpf...)
     acao_formulario_externa: list[Ocorrencia] = field(default_factory=list)
 
     @property
@@ -584,10 +572,10 @@ def calcular_sinais(ev: Evidencia, marca: PerfilMarca, catalogo: list[ItemEviden
     sig.palavras_visiveis = len(p.texto_visivel.split()) if p else 0
     for item in catalogo:
         texto = item.conteudo
-        if INJECAO_RE.search(texto):  # every kind, including image alt text and metadata
-            sig.marcadores_injecao.append(Ocorrencia(INJECAO_RE.search(texto).group(0), item.ref))  # type: ignore[union-attr]
+        if m_inj := INJECAO_RE.search(texto):  # qualquer tipo, inclusive alt de imagem e metadados
+            sig.marcadores_injecao.append(Ocorrencia(m_inj.group(0), item.ref))
         if item.tipo == "imagem":
-            # Only treat an image as a brand logo indicator when not a non-bank homonym page.
+            # Em página de homônimo (sem ser banco), imagem não conta como logo da marca.
             if not (sig.contexto_homonimo and sig.mencoes_marca == 0 and not sig.marca_no_dominio):
                 sig.imagens_marca.append(Ocorrencia(texto[:120], item.ref))
                 if marca.mencoes_fortes(texto):
@@ -610,8 +598,8 @@ def calcular_sinais(ev: Evidencia, marca: PerfilMarca, catalogo: list[ItemEviden
             continue
         if item.tipo in ("captura", "rede", "dominio"):
             continue
-        # Do not count synthetic meta-descriptions inside E-DISC snippets ("sem exibir razão social /
-        # correspondente bancário", "semelhante ao logotipo antigo") as facts observed on the page.
+        # Trechos E-DISC trazem descrições sintéticas ("sem exibir razão social / correspondente
+        # bancário", "semelhante ao logotipo antigo") que não são fatos observados na página.
         eh_disc = item.ref.startswith("E-DISC-")
         if LOGO_ANTIGA_RE.search(texto) and not eh_disc:
             sig.marcadores_logo_antiga.append(Ocorrencia(LOGO_ANTIGA_RE.search(texto).group(0), item.ref))  # type: ignore[union-attr]
@@ -621,7 +609,7 @@ def calcular_sinais(ev: Evidencia, marca: PerfilMarca, catalogo: list[ItemEviden
                 if sig.contexto_homonimo and sig.mencoes_marca == 0 and not marca.mencoes_fortes(frase):
                     alegacoes = [c for c in alegacoes if marca.mencoes_fortes(c)]
             if alegacoes:
-                # brand-linked: the claim phrase itself names the brand ("SAC BV") or the sentence does
+                # ligada à marca: a própria expressão cita a marca ("SAC BV") ou a frase cita
                 vinculado = any(marca.mencoes(c) for c in alegacoes) or bool(marca.mencoes(frase))
                 noticiado = bool(NOTICIADO_RE.search(normalizar_texto(frase)))
                 for c in alegacoes:
@@ -654,21 +642,20 @@ def calcular_sinais(ev: Evidencia, marca: PerfilMarca, catalogo: list[ItemEviden
             sig.telefones.append(Ocorrencia(m.group(1), item.ref, texto[:200]))
         for m in CNPJ_RE.finditer(texto.upper()):
             bruto = m.group(1)
-            if sum(ch.isdigit() for ch in bruto) >= 8:  # avoid matching random uppercase words
+            if sum(ch.isdigit() for ch in bruto) >= 8:  # evita casar palavra qualquer em maiúsculas
                 sig.cnpjs.append(Ocorrencia(formatar_cnpj(bruto), item.ref, texto[:300]))
-    # Disclosure in the above-fold text counts even if only the E-TXT copy matched.
+    # Declaração no texto acima da dobra conta mesmo que só a cópia em E-TXT tenha casado.
     if p is not None and (marca.declaracoes(p.texto_acima_dobra) or marca.declaracoes(p.texto_cabecalho)):
         sig.declaracao_acima_dobra = True
     return sig
 
 
 def _declaracoes_reais_nomeando_instituicao(marca: PerfilMarca, texto: str) -> list[str]:
-    """Disclosure sentences naming the institution that are not negated/contradicted in the same
-    sentence (e.g. "Não somos correspondente bancário: somos o Banco BV oficial")."""
+    # Descarta a declaração desmentida na mesma frase
+    # ("Não somos correspondente bancário: somos o Banco BV oficial").
     return [s for s in marca.declaracoes_nomeando_instituicao(texto) if not marca.alegacoes_oficiais(s)]
 
 
-# --------------------------------------------------------------------------------- agent
 class AgenteEvidencia:
     def __init__(self, coletor: ColetorNavegador, dir_campanha: Path) -> None:
         self.coletor = coletor
