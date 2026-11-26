@@ -45,6 +45,7 @@ from simio.agentes.visual import Referencia, carregar_referencia, detectar_logo_
 from simio.coletores.navegador import ColetorNavegador
 from simio.configuracoes import FONTES_DESCOBERTA, Configuracoes
 from simio.marcas import PerfilMarca, carregar_marca
+from simio.nucleo import caminhos
 from simio.nucleo.armazenamento import Armazenamento, ModificacaoConcorrente
 from simio.nucleo.decisao import ConfigPontuacao, compor_final, precisa_revisao
 from simio.nucleo.estado import TransicaoInvalida
@@ -149,7 +150,7 @@ class Orquestrador:
         return refs
 
     def dir_campanha(self, id_campanha: str) -> Path:
-        return self.configuracoes.dir_saida / "campaigns" / id_campanha
+        return caminhos.dir_campanha(self.configuracoes.dir_saida, id_campanha)
 
     def _gateway(self, id_campanha: str) -> GatewayLLM | None:
         if self.configuracoes.offline:
@@ -488,7 +489,7 @@ class Orquestrador:
             data_referencia=s.data_referencia_cadastro_coban,
         )
         agente_identidade = AgenteIdentidade(marca, cadastro)
-        config_pontuacao = ConfigPontuacao.carregar(s.dir_saida / "scoring.toml")
+        config_pontuacao = ConfigPontuacao.carregar(caminhos.arquivo_pontuacao(s.dir_saida))
         catalogo = CatalogoRequisitos.carregar(s.caminho_requisitos_contratuais)
         # Threat campaigns judge impersonation and risk to customers, not correspondent compliance.
         modo = "modo_ameacas" if foco == FOCO_AMEACAS else None

@@ -5,7 +5,6 @@ URLs of suspicious pages are *defanged* (``hxxps://exemplo[.]com``) so nobody op
 
 from __future__ import annotations
 
-import os
 import re
 from collections import Counter
 from datetime import UTC, datetime
@@ -15,6 +14,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 from simio.agentes.inteligencia_dominio import resumir as resumir_inteligencia
 from simio.agentes.triagem_ameacas import NIVEIS, VisaoAmeaca
+from simio.nucleo import caminhos
 from simio.nucleo.modelos import InteligenciaDominio
 from simio.relatorios.dados import RegistroCandidata
 
@@ -37,8 +37,8 @@ def gravar_html_ameacas(
     caminho: Path,
     linhas: list[tuple[VisaoAmeaca, RegistroCandidata, InteligenciaDominio | None]],
     id_campanha: str,
-    dir_saida: Path,
-    caminhos_dossies: dict[str, str],
+    dir_campanha: Path,
+    caminhos_dossies: dict[str, Path],
     defensivos: list[tuple[str, str]] | None = None,
 ) -> Path:
     fichas = []
@@ -48,8 +48,7 @@ def gravar_html_ameacas(
         if ev:
             a = ev.artefato("captura_viewport")
             if a:
-                alvo = dir_saida / "campaigns" / r.candidata.id_campanha / a.caminho
-                captura = Path(os.path.relpath(alvo, caminho.parent)).as_posix()
+                captura = caminhos.link(caminho, dir_campanha / a.caminho)
         dossie = caminhos_dossies.get(r.candidata.id)
         fichas.append(
             {
@@ -64,7 +63,7 @@ def gravar_html_ameacas(
                 "classificacao": f.classificacao.value if f else "",
                 "justificativa": (f.justificativa or "")[:700] if f else "",
                 "captura": captura,
-                "dossie": Path(os.path.relpath(dir_saida / dossie, caminho.parent)).as_posix() if dossie else None,
+                "dossie": caminhos.link(caminho, dossie) if dossie else None,
                 "cid": r.candidata.id,
             }
         )

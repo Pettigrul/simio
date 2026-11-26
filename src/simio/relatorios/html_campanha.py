@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import os
 from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+from simio.nucleo import caminhos
 from simio.nucleo.armazenamento import Armazenamento
 from simio.relatorios.dados import RegistroCandidata
 from simio.relatorios.dados_logo import LOGO_BV_BRANCA_DATA_URI
@@ -32,7 +32,7 @@ def renderizar_relatorio_campanha(
     registros: list[RegistroCandidata],
     armazenamento: Armazenamento,
     id_campanha: str,
-    dossies: dict[str, str],
+    dossies: dict[str, Path],
     caminho_html_relatorio: Path,
 ) -> str:
     camp = armazenamento.obter_campanha(id_campanha) or {}
@@ -55,11 +55,8 @@ def renderizar_relatorio_campanha(
         if f and f.exige_revisao_humana:
             revisoes_pendentes += 1
 
-        dossie_rel = ""
-        if rec.candidata.id in dossies:
-            # relative link from report_html_path to dossier file
-            alvo = caminho_html_relatorio.parent / dossies[rec.candidata.id]
-            dossie_rel = Path(os.path.relpath(alvo, caminho_html_relatorio.parent)).as_posix()
+        dossie = dossies.get(rec.candidata.id)
+        dossie_rel = caminhos.link(caminho_html_relatorio, dossie) if dossie else ""
 
         status_revisao = f.status_revisao_humana if f else "NAO_EXIGIDA"
         if rec.revisao:
@@ -111,7 +108,7 @@ def gravar_html_campanha(
     registros: list[RegistroCandidata],
     armazenamento: Armazenamento,
     id_campanha: str,
-    dossies: dict[str, str],
+    dossies: dict[str, Path],
 ) -> Path:
     arquivo_relatorio.parent.mkdir(parents=True, exist_ok=True)
     conteudo = renderizar_relatorio_campanha(registros, armazenamento, id_campanha, dossies, arquivo_relatorio)

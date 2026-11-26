@@ -17,6 +17,7 @@ import typer
 from simio import __version__
 from simio.config_logs import configurar_logging
 from simio.configuracoes import FONTES_DESCOBERTA, Configuracoes, carregar_configuracoes
+from simio.nucleo import caminhos
 
 app = typer.Typer(
     name="simio",
@@ -47,7 +48,7 @@ def _armazenamento(configuracoes: Configuracoes):  # type: ignore[no-untyped-def
 
 
 def _resolver_campanha(armazenamento, campanha: str | None) -> str:  # type: ignore[no-untyped-def]
-    cid = campanha or armazenamento.id_campanha_mais_recente()
+    cid = armazenamento.resolver_id_campanha(campanha) if campanha else armazenamento.id_campanha_mais_recente()
     if not cid or armazenamento.obter_campanha(cid) is None:
         typer.secho("Nenhuma campanha encontrada. Execute `simio investigar` primeiro.", fg="red", err=True)
         raise typer.Exit(1)
@@ -81,7 +82,7 @@ def _imprimir_resumo(resumo, relatorio=None) -> None:  # type: ignore[no-untyped
             typer.secho(f"Relatório PDF: {relatorio.relatorio_pdf}", fg="green")
         if getattr(relatorio, "relatorio_ameacas", None):
             typer.secho(f"Relatório de ameaças: {relatorio.relatorio_ameacas}", fg="green")
-        typer.echo(f"Dossiês: {len(relatorio.dossies)} em {relatorio.dir_relatorio / 'dossiers'}")
+        typer.echo(f"Dossiês: {len(relatorio.dossies)} em {caminhos.relatorios(relatorio.dir_campanha).dossies}")
 
 
 @app.callback()
@@ -149,7 +150,7 @@ def investigar(
         dir_saida=dir_saida,
         offline=offline or None,
     )
-    configurar_logging(s.nivel_log, s.dir_saida / "logs")
+    configurar_logging(s.nivel_log, caminhos.arquivo_log(s.dir_saida))
     if s.hosts_liberados_inseguro:
         typer.secho(
             f"ATENÇÃO: SIMIO_HOSTS_LIBERADOS_INSEGURO={s.hosts_liberados_inseguro} desativa a proteção SSRF para esses "
@@ -229,7 +230,7 @@ def retomar(
         "paralelismo": paralelismo,
         "offline": True if offline else None,
     }
-    configurar_logging(s.nivel_log, s.dir_saida / "logs")
+    configurar_logging(s.nivel_log, caminhos.arquivo_log(s.dir_saida))
     armazenamento = _armazenamento(s)
     try:
         cid = _resolver_campanha(armazenamento, campanha)
@@ -291,7 +292,7 @@ def relatorio(
             typer.secho(f"Relatório PDF: {res.relatorio_pdf}", fg="green")
         if res.relatorio_ameacas:
             typer.secho(f"Relatório de ameaças: {res.relatorio_ameacas}", fg="green")
-        typer.echo(f"Dossiês: {len(res.dossies)} em {res.dir_relatorio / 'dossiers'}")
+        typer.echo(f"Dossiês: {len(res.dossies)} em {caminhos.relatorios(res.dir_campanha).dossies}")
     finally:
         armazenamento.fechar()
 

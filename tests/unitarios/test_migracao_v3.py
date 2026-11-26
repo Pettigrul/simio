@@ -7,7 +7,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from simio.agentes.inteligencia_dominio import ARQUIVO_INTELIGENCIA, carregar_inteligencia
+from simio.agentes.inteligencia_dominio import caminho_inteligencia, carregar_inteligencia
 from simio.marcas import carregar_marca
 from simio.nucleo import modelos as m
 from simio.nucleo.armazenamento import MIGRACOES, Armazenamento
@@ -201,7 +201,7 @@ def test_traducao_eh_idempotente_sobre_dados_novos(armazenamento: Armazenamento)
 
 def test_inteligencia_de_dominio_gravada_pela_versao_antiga_eh_lida(tmp_path: Path) -> None:
     cid = "simio-legado"
-    destino = tmp_path / "campaigns" / cid / ARQUIVO_INTELIGENCIA
+    destino = caminho_inteligencia(tmp_path, cid)
     destino.parent.mkdir(parents=True)
     legado = {
         "loja.example": {

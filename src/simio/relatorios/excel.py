@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 from collections import Counter
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,7 @@ from simio.agentes.descoberta import FOCO_AMEACAS
 from simio.agentes.inteligencia_dominio import resumir as resumir_inteligencia
 from simio.agentes.triagem_ameacas import VisaoAmeaca, triar
 from simio.marcas import PerfilMarca, carregar_marca
+from simio.nucleo import caminhos
 from simio.nucleo.armazenamento import Armazenamento
 from simio.nucleo.modelos import InteligenciaDominio
 from simio.nucleo.urls import hostname_de
@@ -30,6 +32,7 @@ from simio.relatorios.dados import RegistroCandidata
 PREENCHIMENTO_CABECALHO = PatternFill("solid", fgColor="001A6B")
 FONTE_CABECALHO = Font(name="Inter", size=11, color="FFFFFF", bold=True)
 FONTE_DADOS = Font(name="Inter", size=10, color="272833")
+FONTE_LINK = Font(name="Inter", size=10, color="0B5FFF", underline="single")
 
 # Status and Classification Fills with high legibility and soft tint
 PREENCHIMENTOS = {
@@ -66,9 +69,22 @@ _ILEGAIS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 MAX_CELULA = 32000
 
 
+@dataclass(frozen=True)
+class _Link:
+    """Cell shown as a relative path that opens the file (resolved by Excel from the workbook's folder)."""
+
+    alvo: str
+
+
+def _link(planilha: Path, alvo: Path | None) -> _Link | str:
+    return _Link(caminhos.link(planilha, alvo)) if alvo else ""
+
+
 def _celula(v: Any) -> Any:
     if v is None:
         return ""
+    if isinstance(v, _Link):
+        v = v.alvo
     if isinstance(v, (list, tuple, set)):
         v = "\n".join(str(x) for x in v)
     elif isinstance(v, dict):
@@ -98,9 +114,12 @@ def _aba(
         c.border = BORDA_FINA
     for linha in linhas:
         ws.append([_celula(v) for v in linha])
+        for coluna, v in enumerate(linha, start=1):
+            if isinstance(v, _Link):
+                ws.cell(row=ws.max_row, column=coluna).hyperlink = v.alvo
     for r in ws.iter_rows(min_row=2):
         for c in r:
-            c.font = FONTE_DADOS
+            c.font = FONTE_LINK if c.hyperlink else FONTE_DADOS
             c.border = BORDA_FINA
             c.alignment = Alignment(wrap_text=True, vertical="top")
         if coluna_preenchimento is not None:
@@ -160,11 +179,15 @@ _ALTURA_LINHA_RECORTE = 64
 
 
 def _aba_logo_antiga(
-    wb: Workbook, registros: list[RegistroCandidata], caminhos_dossies: dict[str, str], recortes: dict[str, str]
+    wb: Workbook,
+    planilha: Path,
+    registros: list[RegistroCandidata],
+    caminhos_dossies: dict[str, Path],
+    recortes: dict[str, Path],
 ) -> None:
     """One row per page where the discontinued logo was found (model and/or image comparison)."""
     linhas: list[list[Any]] = []
-    imagens: list[tuple[int, str]] = []
+    imagens: list[tuple[int, Path]] = []
     for r in registros:
         f, b, idn = r.final, r.marca, r.identidade
         if f is None or not f.identidade_visual_antiga:
@@ -189,8 +212,8 @@ def _aba_logo_antiga(
                 "\n".join(dict.fromkeys(m.src_imagem for m in correspondencias if m.src_imagem)),
                 idn.classificacao.value if idn else "",
                 f"{reg.get('nome', '')} ({reg.get('cnpj', '')})" if reg else "",
-                recortes.get(r.candidata.id, ""),
-                caminhos_dossies.get(r.candidata.id, ""),
+                _link(planilha, recortes.get(r.candidata.id)),
+                _link(planilha, caminhos_dossies.get(r.candidata.id)),
             ]
         )
         if r.candidata.id in recortes:
@@ -223,7 +246,7 @@ def _aba_logo_antiga(
     ws = wb[ABA_LOGO_ANTIGA]
     for linha, recorte in imagens:
         try:
-            img = OpenpyxlImage(recorte)
+            img = OpenpyxlImage(str(recorte))
             escala = min(160 / img.width, (_ALTURA_LINHA_RECORTE * 1.3) / img.height, 1.0)
             img.width, img.height = int(img.width * escala), int(img.height * escala)
             ws.row_dimensions[linha].height = _ALTURA_LINHA_RECORTE
@@ -300,8 +323,9 @@ def linhas_ameacas(
 
 def _aba_ameacas(
     wb: Workbook,
+    planilha: Path,
     linhas_entrada: list[tuple[VisaoAmeaca, RegistroCandidata, InteligenciaDominio | None]],
-    caminhos_dossies: dict[str, str],
+    caminhos_dossies: dict[str, Path],
 ) -> bool:
     """Threat-intelligence view: level, category and the facts behind it, with the IOCs and takedown data."""
     linhas: list[list[Any]] = []
@@ -333,7 +357,7 @@ def _aba_ameacas(
                 (f.justificativa or "")[:600],
                 ", ".join(sorted({h.fonte for h in r.resultados})),
                 "\n".join(sorted({h.id_hipotese for h in r.resultados if h.id_hipotese}))[:500],
-                caminhos_dossies.get(r.candidata.id, ""),
+                _link(planilha, caminhos_dossies.get(r.candidata.id)),
             ]
         )
     if not linhas:
@@ -370,10 +394,12 @@ def gravar_planilha(
     armazenamento: Armazenamento,
     id_campanha: str,
     registros: list[RegistroCandidata],
-    caminhos_dossies: dict[str, str],
-    recortes_logo: dict[str, str] | None = None,
+    caminhos_dossies: dict[str, Path],
+    recortes_logo: dict[str, Path] | None = None,
     inteligencia_dominio: dict[str, InteligenciaDominio] | None = None,
 ) -> Path:
+    """``caminho`` is the workbook at the campaign folder root: artifact paths are relative to it."""
+    dir_campanha = caminho.parent
     camp = armazenamento.obter_campanha(id_campanha) or {}
     wb = Workbook()
     if wb.active is not None:
@@ -485,9 +511,9 @@ def gravar_planilha(
                 "\n".join(f.limitacoes) if f else "",
                 f.status_revisao_humana if f else "",
                 r.revisao.decisao.value if r.revisao else "",
-                f"campaigns/{c.id_campanha}/{vp.caminho}" if vp else "",
-                f"campaigns/{c.id_campanha}/{fp.caminho}" if fp else "",
-                caminhos_dossies.get(c.id, ""),
+                _link(caminho, dir_campanha / vp.caminho if vp else None),
+                _link(caminho, dir_campanha / fp.caminho if fp else None),
+                _link(caminho, caminhos_dossies.get(c.id)),
                 ev.coletada_em.isoformat(timespec="seconds") if ev else "",
                 c.status.value,
                 round(c.pontuacao_prioridade, 1),
@@ -502,14 +528,16 @@ def gravar_planilha(
     ]
     _aba(wb, "Strong Indications", cabecalhos_cand, forte, larguras, coluna_preenchimento=9)
     if any(r.final and r.final.identidade_visual_antiga for r in registros):
-        _aba_logo_antiga(wb, registros, caminhos_dossies, recortes_logo or {})
+        _aba_logo_antiga(wb, caminho, registros, caminhos_dossies, recortes_logo or {})
         wb.move_sheet(ABA_LOGO_ANTIGA, offset=-(len(wb.sheetnames) - 2))
     foco = (camp.get("parametros") or {}).get("foco")
     perfil_marca = carregar_marca(camp.get("marca") or "bv")
     # In a threat campaign the threat view comes first; in the COBAN sweep it follows the compliance sheets.
     ameacas_primeiro = foco == FOCO_AMEACAS
     if (
-        _aba_ameacas(wb, linhas_ameacas(registros, perfil_marca, foco, inteligencia_dominio), caminhos_dossies)
+        _aba_ameacas(
+            wb, caminho, linhas_ameacas(registros, perfil_marca, foco, inteligencia_dominio), caminhos_dossies
+        )
         and ameacas_primeiro
     ):
         wb.move_sheet(ABA_AMEACAS, offset=-(len(wb.sheetnames) - 2))
@@ -585,11 +613,11 @@ def gravar_planilha(
                         ev.tentativa,
                         ev.status.value,
                         a.tipo,
-                        f"campaigns/{r.candidata.id_campanha}/{a.caminho}",
+                        _link(caminho, dir_campanha / a.caminho),
                         a.sha256,
                         a.tamanho_bytes,
                         ev.coletada_em.isoformat(timespec="seconds"),
-                        ev.caminho_manifesto,
+                        _link(caminho, dir_campanha / ev.caminho_manifesto if ev.caminho_manifesto else None),
                         ev.sha256_manifesto,
                     ]
                 )
@@ -604,7 +632,7 @@ def gravar_planilha(
                         "",
                         0,
                         ev.coletada_em.isoformat(timespec="seconds"),
-                        ev.caminho_manifesto,
+                        _link(caminho, dir_campanha / ev.caminho_manifesto if ev.caminho_manifesto else None),
                         ev.sha256_manifesto,
                     ]
                 )

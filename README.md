@@ -388,11 +388,16 @@ Compila os relatórios da última campanha (ou use `-c <ID>`):
 ```powershell
 python.exe -m simio report
 ```
-Arquivos gerados em `output/reports/<CAMPAIGN_ID>/` (com carimbo de data e hora no nome):
-- `simio-<CAMPAIGN_ID>-<data>.xlsx` (planilha consolidada, até 12 abas)
-- `simio-<CAMPAIGN_ID>-<data>.html` e `.pdf` (relatório consolidado)
-- `dossiers/<CANDIDATE_ID>.html` (dossiês visuais completos)
-- `logo-antiga/<CANDIDATE_ID>-<domínio>.png` (recortes da logo antiga, quando houver)
+Tudo de uma campanha fica em `resultados/campanhas/<ID>/` (o ID tem a data e a hora de Brasília, a marca e o modo, por exemplo `2026-11-25_19h05_bv_ameacas`):
+- `relatorio.xlsx` (planilha consolidada, até 12 abas; caminhos de prints e dossiês são links clicáveis)
+- `relatorio.html` e `relatorio.pdf` (relatório consolidado) e `ameacas.html` (quando houver ameaças)
+- `dossies/<host>_<id>.html` (dossiês visuais completos)
+- `logo-antiga/<host>_<id>.png` (recortes da logo antiga, quando houver)
+- `evidencias/<host>_<id>/tentativa-N/` (prints, código-fonte, texto, dados da página e `manifesto.json` com os hashes)
+- `dominios.json` (registro, DNS e hospedagem dos achados)
+- `anteriores/<data>/` (a versão anterior dos relatórios, movida para cá quando eles são gerados de novo)
+
+O banco fica em `resultados/simio.db` e o registro de execução em `resultados/registros/simio.jsonl`. Para trazer campanhas gravadas no layout antigo (`output/`), rode `python scripts/migrar_resultados.py --simular` para ver o plano e depois sem `--simular`.
 
 O `hunt` e o `resume` levantam registro, DNS e hospedagem dos achados antes do relatório. Para fazer isso numa campanha antiga, ou completar hosts que falharam (limite de consultas dos registros):
 ```powershell

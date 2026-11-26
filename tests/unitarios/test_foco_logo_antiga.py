@@ -9,6 +9,7 @@ from PIL import Image
 
 from simio.agentes.descoberta import FOCO_LOGO_ANTIGA, AgenteDescoberta
 from simio.agentes.visual import pistas_logo_antiga
+from simio.nucleo import caminhos
 from simio.nucleo.modelos import (
     Artefato,
     AvaliacaoMarca,
@@ -24,6 +25,7 @@ from simio.nucleo.modelos import (
 )
 from simio.nucleo.modelos import ClassificacaoFinal as C
 from simio.nucleo.orquestrador import OpcoesInvestigacao, Orquestrador
+from simio.nucleo.urls import hostname_de
 from simio.provedores.busca import importar_texto
 from simio.provedores.mock import ProvedorMock
 from simio.seguranca.politica_url import PoliticaUrl
@@ -88,7 +90,7 @@ class _ColetorFalso:
     ``bv.png`` but no visible logo, ``/plain`` has neither."""
 
     async def coletar(self, id_candidata: str, url: str, tentativa: int, dir_campanha: Path) -> Evidencia:
-        rel = Path("evidence") / id_candidata / f"attempt-{tentativa}"
+        rel = caminhos.dir_tentativa(hostname_de(url), id_candidata, tentativa)
         (dir_campanha / rel).mkdir(parents=True, exist_ok=True)
         tela = Image.new("RGB", (1366, 900), "white")
         imagens: list[InfoImagem] = []
@@ -97,7 +99,7 @@ class _ColetorFalso:
             imagens.append(InfoImagem(src=f"{url}/img/parceiro.png", alt="", largura=110, altura=58, pagina_x=200, pagina_y=150))
         elif url.endswith("/hint"):
             imagens.append(InfoImagem(src=f"{url}/img/bv.png", alt="", largura=60, altura=40, pagina_x=10, pagina_y=10))
-        tela.save(dir_campanha / rel / "viewport.png")
+        tela.save(dir_campanha / rel / caminhos.ARTEFATOS["captura_viewport"])
         return Evidencia(
             id_candidata=id_candidata,
             tentativa=tentativa,
@@ -107,7 +109,7 @@ class _ColetorFalso:
             status_http=200,
             pagina=DadosPagina(titulo="Loja", texto_visivel="Financiamento", imagens=imagens),
             artefatos=[
-                Artefato(tipo="captura_viewport", caminho=str(rel / "viewport.png"), sha256="x", tamanho_bytes=1)
+                Artefato(tipo="captura_viewport", caminho=str(rel / caminhos.ARTEFATOS["captura_viewport"]), sha256="x", tamanho_bytes=1)
             ],
         )
 

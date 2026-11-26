@@ -13,6 +13,7 @@ import pytest
 from simio.agentes.evidencia import calcular_sinais, montar_catalogo
 from simio.agentes.marca import analise_heuristica
 from simio.coletores.navegador import ColetorNavegador, sha256_arquivo
+from simio.nucleo import caminhos
 from simio.nucleo.decisao import ConfigPontuacao, aplicar_salvaguardas_marca
 from simio.nucleo.modelos import CasoCenario, ClassificacaoFinal, StatusColeta
 from simio.seguranca.politica_url import PoliticaUrl
@@ -26,7 +27,7 @@ def _coletor(configuracoes) -> ColetorNavegador:
 
 
 async def _coletar(configuracoes, url: str, cid: str = "Cx"):
-    cdir = configuracoes.dir_saida / "campaigns" / "t"
+    cdir = caminhos.dir_campanha(configuracoes.dir_saida, "t")
     async with _coletor(configuracoes) as col:
         return await col.coletar(cid, url, 1, cdir), cdir
 
@@ -50,6 +51,8 @@ async def test_coleta_capturas_texto_e_hashes(configuracoes, site) -> None:
     manifesto = json.loads((cdir / ev.caminho_manifesto).read_text(encoding="utf-8"))
     assert manifesto["algoritmo_hash"] == "SHA-256" and len(manifesto["artefatos"]) == len(ev.artefatos)
     assert sha256_arquivo(cdir / ev.caminho_manifesto) == ev.sha256_manifesto
+    assert ev.caminho_manifesto == "evidencias/127.0.0.1_x/tentativa-1/manifesto.json"
+    assert vp.name == "tela-inicial.png"
 
 
 async def test_segue_redirecionamento_permitido(configuracoes, site) -> None:

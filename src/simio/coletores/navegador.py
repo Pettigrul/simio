@@ -21,11 +21,13 @@ import re
 import shutil
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 from urllib.parse import quote
 
 from simio.configuracoes import Configuracoes
+from simio.nucleo import caminhos
+from simio.nucleo.caminhos import ARTEFATOS
 from simio.nucleo.modelos import Artefato, DadosPagina, Evidencia, StatusColeta
 from simio.nucleo.urls import hostname_de
 from simio.seguranca.politica_url import PoliticaUrl, ViolacaoPolitica
@@ -338,7 +340,7 @@ class ColetorNavegador:
             await self._pw.stop()
 
     async def coletar(self, id_candidata: str, url: str, tentativa: int, dir_campanha: Path) -> Evidencia:
-        dir_rel = Path("evidence") / id_candidata / f"attempt-{tentativa}"
+        dir_rel = caminhos.dir_tentativa(hostname_de(url), id_candidata, tentativa)
         dir_destino = dir_campanha / dir_rel
         if dir_destino.exists():
             # Leftovers of an interrupted attempt that never produced an evidence record must not be
@@ -377,7 +379,7 @@ class ColetorNavegador:
             ev.status = StatusColeta.FALHOU
         return self._finalizar(ev, dir_destino, dir_rel, dir_campanha)
 
-    async def _coletar_pagina(self, ev: Evidencia, url: str, dir_destino: Path, dir_rel: Path) -> None:
+    async def _coletar_pagina(self, ev: Evidencia, url: str, dir_destino: Path, dir_rel: PurePosixPath) -> None:
         from playwright.async_api import Error as PlaywrightError
         from playwright.async_api import TimeoutError as PlaywrightTimeout
 
@@ -479,7 +481,9 @@ class ColetorNavegador:
                     ev.status = StatusColeta.PARCIAL
 
             # --- artifacts --------------------------------------------------------------
-            await self._gravar(dir_destino / "viewport.png", await pagina.screenshot(type="png", animations="disabled"))
+            await self._gravar(
+                dir_destino / ARTEFATOS["captura_viewport"], await pagina.screenshot(type="png", animations="disabled")
+            )
             try:
                 altura = int(
                     await pagina.evaluate(
@@ -502,9 +506,10 @@ class ColetorNavegador:
                 if altura > s.max_altura_pagina_inteira:
                     ev.nao_inspecionado.append(
                         f"screenshot completo limitado a {s.max_altura_pagina_inteira}px "
-                        f"(página com {altura}px); texto integral preservado em text.txt"
+                        f"(página com {altura}px); texto integral preservado em {ARTEFATOS['texto']}"
                     )
-                await self._gravar(dir_destino / "fullpage.png", await pagina.screenshot(**kwargs_captura))
+                captura_completa = await pagina.screenshot(**kwargs_captura)
+                await self._gravar(dir_destino / ARTEFATOS["captura_completa"], captura_completa)
             except PlaywrightError as exc:
                 ev.erros.append(f"full-page screenshot failed: {str(exc)[:200]}")
                 ev.nao_inspecionado.append("screenshot da página completa indisponível")
@@ -519,9 +524,11 @@ class ColetorNavegador:
             if int(total) > s.max_bytes_html or len(html) > s.max_bytes_html:
                 ev.erros.append(f"HTML truncated to {s.max_bytes_html} bytes")
                 html = html[: s.max_bytes_html]
-            await self._gravar(dir_destino / "page.html.txt", html)
-            await self._gravar(dir_destino / "text.txt", ev.pagina.texto_visivel.encode("utf-8"))
-            await self._gravar(dir_destino / "page.json", ev.pagina.model_dump_json(indent=2).encode("utf-8"))
+            await self._gravar(dir_destino / ARTEFATOS["html"], html)
+            await self._gravar(dir_destino / ARTEFATOS["texto"], ev.pagina.texto_visivel.encode("utf-8"))
+            await self._gravar(
+                dir_destino / ARTEFATOS["dados_pagina"], ev.pagina.model_dump_json(indent=2).encode("utf-8")
+            )
             ev.nao_inspecionado.append(
                 "apenas a URL descoberta foi inspecionada; páginas internas, "
                 "formulários e fluxos após cliques não foram acessados"
@@ -535,15 +542,10 @@ class ColetorNavegador:
     async def _gravar(caminho: Path, dados: bytes) -> None:
         await asyncio.to_thread(caminho.write_bytes, dados)
 
-    def _finalizar(self, ev: Evidencia, dir_destino: Path, dir_rel: Path, dir_campanha: Path) -> Evidencia:
-        tipos = {
-            "viewport.png": "captura_viewport",
-            "fullpage.png": "captura_completa",
-            "page.html.txt": "html",
-            "text.txt": "texto",
-            "page.json": "dados_pagina",
-        }
-        for nome, tipo in tipos.items():
+    def _finalizar(
+        self, ev: Evidencia, dir_destino: Path, dir_rel: PurePosixPath, dir_campanha: Path
+    ) -> Evidencia:
+        for tipo, nome in ARTEFATOS.items():
             p = dir_destino / nome
             if p.exists():
                 ev.artefatos.append(
@@ -569,8 +571,8 @@ class ColetorNavegador:
             "nao_inspecionado": ev.nao_inspecionado,
             "algoritmo_hash": "SHA-256",
         }
-        arq_manifesto = dir_destino / "manifest.json"
+        arq_manifesto = dir_destino / caminhos.ARQUIVO_MANIFESTO
         arq_manifesto.write_text(json.dumps(manifesto, ensure_ascii=False, indent=2), encoding="utf-8")
-        ev.caminho_manifesto = str(dir_rel / "manifest.json")
+        ev.caminho_manifesto = str(dir_rel / caminhos.ARQUIVO_MANIFESTO)
         ev.sha256_manifesto = sha256_arquivo(arq_manifesto)
         return ev

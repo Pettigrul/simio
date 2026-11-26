@@ -112,17 +112,25 @@ async def test_investigacao_offline_ponta_a_ponta(configuracoes, armazenamento, 
     assert wb["Strong Indications"].max_row >= 2
     # Dossiers for priority candidates, readable offline, escaped, script-free.
     assert relatorio.dossies
-    html = (configuracoes.dir_saida / relatorio.dossies[next(iter(relatorio.dossies))]).read_text(encoding="utf-8")
+    html = relatorio.dossies[next(iter(relatorio.dossies))].read_text(encoding="utf-8")
     assert "<script" not in html.lower()
     assert "Content-Security-Policy" in html
     id_semelhante = next(c.id for c in armazenamento.listar_candidatas(resumo.id_campanha) if c.url.endswith("lookalike.html"))
-    dossie = (configuracoes.dir_saida / relatorio.dossies[id_semelhante]).read_text(encoding="utf-8")
+    dossie = relatorio.dossies[id_semelhante].read_text(encoding="utf-8")
     assert "E-SHOT-VIEWPORT" in dossie and "Art. 14" in dossie
     capturas = re.findall(r'<img src="([^"]+)"', dossie)
-    assert capturas and all((relatorio.dir_relatorio / "dossiers" / s).resolve().is_file() for s in capturas)
+    assert capturas and all((relatorio.dossies[id_semelhante].parent / s).resolve().is_file() for s in capturas)
     id_inj = next(c.id for c in armazenamento.listar_candidatas(resumo.id_campanha) if c.url.endswith("injection.html"))
-    inj = (configuracoes.dir_saida / relatorio.dossies[id_inj]).read_text(encoding="utf-8")
+    inj = relatorio.dossies[id_inj].read_text(encoding="utf-8")
     assert "Ignore todas as instru" in inj and "font-size:2px" not in inj  # text kept, markup never rendered
+    # Every local link of the campaign report and of the workbook opens a file of the campaign folder.
+    pasta = relatorio.dir_campanha
+    assert relatorio.planilha == pasta / "relatorio.xlsx" and relatorio.relatorio_html == pasta / "relatorio.html"
+    links = re.findall(r'href="(dossies/[^"]+)"', relatorio.relatorio_html.read_text(encoding="utf-8"))
+    assert len(links) == len(relatorio.dossies) and all((pasta / h).is_file() for h in links)
+    hiperlinks = [c.hyperlink.target for ws in wb.worksheets for r in ws.iter_rows() for c in r if c.hyperlink]
+    assert any(h.startswith("evidencias/") for h in hiperlinks) and any(h.startswith("dossies/") for h in hiperlinks)
+    assert all((pasta / h).is_file() for h in hiperlinks)
 
 
 def _provedor_mock() -> ProvedorMock:
@@ -326,4 +334,4 @@ def test_cli_offline_investigar_relatorio_status(configuracoes, site, tmp_path, 
     r = runner.invoke(app, ["relatorio", "-o", saida, "--todos-dossies"])
     assert r.exit_code == 0 and "Dossiês: 2" in r.output
     r = runner.invoke(app, ["status", "--listar", "-o", saida])
-    assert r.exit_code == 0 and "simio-" in r.output
+    assert r.exit_code == 0 and "_bv_ampla" in r.output

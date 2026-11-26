@@ -63,7 +63,7 @@ class _FiltroRuidoBenigno(logging.Filter):
         return "Direct use of automatic function calling (AFC)" not in msg
 
 
-def configurar_logging(nivel: str, dir_log: Path | None) -> None:
+def configurar_logging(nivel: str, arquivo_log: Path | None) -> None:
     raiz = logging.getLogger()
     raiz.handlers.clear()
     raiz.setLevel(nivel.upper())
@@ -72,9 +72,9 @@ def configurar_logging(nivel: str, dir_log: Path | None) -> None:
     console.addFilter(filtro_ruido)
     console.setFormatter(FormatadorMascarador("%(asctime)s %(levelname)-7s %(name)s: %(message)s", "%H:%M:%S"))
     raiz.addHandler(console)
-    if dir_log is not None:
-        dir_log.mkdir(parents=True, exist_ok=True)
-        fh = logging.FileHandler(dir_log / "simio.jsonl", encoding="utf-8")
+    if arquivo_log is not None:
+        arquivo_log.parent.mkdir(parents=True, exist_ok=True)
+        fh = logging.FileHandler(arquivo_log, encoding="utf-8")
         fh.addFilter(filtro_ruido)
         fh.setFormatter(FormatadorJson())
         raiz.addHandler(fh)

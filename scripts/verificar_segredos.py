@@ -42,10 +42,12 @@ NOMES_PROIBIDOS = re.compile(
     r"[^/]*service[-_]?account[^/]*\.json|[^/]*credentials[^/]*\.json|[^/]*\.(pem|key|p12|pfx|db|sqlite3?|"
     r"xlsx|jsonl|log)|coban_registry[^/]*\.csv)$"
 )
-DIRS_BINARIOS_PERMITIDOS = ("tests/fixtures/",)
+DIRS_BINARIOS_PERMITIDOS = ("tests/fixtures/", "src/simio/marcas/assets/")
 PRAGMA_PERMISSAO = "pragma: allowlist secret"
 DIRS_PRAGMA_PERMISSAO = ("tests/",)  # the pragma is honoured only in test code
-DIRS_DADOS = re.compile(r"(^|/)(output|outputs|evidence|reports|dossiers|registry)/")
+DIRS_DADOS = re.compile(
+    r"(^|/)(output|outputs|evidence|reports|dossiers|registry|resultados|campanhas|evidencias|dossies)/"
+)
 
 
 def git(*args: str) -> str:
@@ -88,7 +90,7 @@ def varrer_nome(nome: str) -> list[str]:
     if DIRS_DADOS.search(nome):
         saida.append(f"{nome}: investigation data directory must not be versioned")
     if re.search(r"(?i)\.(png|jpe?g|webp)$", nome) and not nome.startswith(DIRS_BINARIOS_PERMITIDOS):
-        saida.append(f"{nome}: image outside tests/fixtures (possible evidence screenshot)")
+        saida.append(f"{nome}: image outside {', '.join(DIRS_BINARIOS_PERMITIDOS)} (possible evidence screenshot)")
     return saida
 
 

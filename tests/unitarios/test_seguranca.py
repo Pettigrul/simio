@@ -169,10 +169,37 @@ def test_gitignore_bloqueia_artefatos_sensiveis() -> None:
         "evidence/shot.png",
         "coban_registry.csv",
         "logs/simio.jsonl",
+        "resultados/simio.db",
+        "resultados/registros/simio.jsonl",
+        "resultados/campanhas/x/relatorio.html",
+        "campanhas/x/dominios.json",
+        "evidencias/a_1/tentativa-1/codigo-fonte.html.txt",
+        "dossies/a_1.html",
     ]
     r = subprocess.run(["git", "check-ignore", "--no-index", *sondar], cwd=raiz, capture_output=True, text=True)
     ignorados = set(r.stdout.split())
     assert ignorados == set(sondar), set(sondar) - ignorados
+
+
+def test_varredor_de_segredos_barra_pastas_de_resultados() -> None:
+    import importlib.util
+
+    raiz = Path(__file__).resolve().parents[2]
+    spec = importlib.util.spec_from_file_location("verificar_segredos", raiz / "scripts" / "verificar_segredos.py")
+    assert spec and spec.loader
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    for nome in (
+        "output/campaigns/x/evidence/C1/attempt-1/text.txt",
+        "resultados/campanhas/x/relatorio.html",
+        "campanhas/x/ameacas.html",
+        "x/evidencias/a_1/tentativa-1/texto-visivel.txt",
+        "dossies/a_1.html",
+    ):
+        assert any("must not be versioned" in f for f in mod.varrer_nome(nome)), nome
+    assert mod.varrer_nome("src/simio/marcas/assets/bv_logo_antiga.png") == []
+    assert mod.varrer_nome("src/simio/nucleo/caminhos.py") == []
+    assert mod.varrer_nome("docs/print.png")
 
 
 def test_varredor_de_segredos_detecta_segredo_plantado(tmp_path: Path) -> None:

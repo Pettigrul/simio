@@ -31,6 +31,7 @@ import httpx
 import tldextract
 
 from simio.marcas import carregar_marca
+from simio.nucleo import caminhos
 from simio.nucleo.modelos import DecisaoFinal, InteligenciaDominio, InteligenciaIp, InteligenciaRdap
 from simio.nucleo.traducao_legado import traduzir_modelo
 from simio.nucleo.urls import dominio_corresponde, dominio_registravel, hostname_de
@@ -326,12 +327,11 @@ def resumir(intel: InteligenciaDominio) -> dict[str, str]:
     }
 
 
-ARQUIVO_INTELIGENCIA = "domain-intel.json"
 SINALIZADAS = ("INDICIO_FORTE", "REQUER_REVISAO")
 
 
 def caminho_inteligencia(dir_saida: Path, id_campanha: str) -> Path:
-    return dir_saida / "campaigns" / id_campanha / ARQUIVO_INTELIGENCIA
+    return caminhos.arquivo_dominios(caminhos.dir_campanha(dir_saida, id_campanha))
 
 
 def carregar_inteligencia(dir_saida: Path, id_campanha: str) -> dict[str, InteligenciaDominio]:

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import secrets
 import sqlite3
 from collections.abc import Callable, Iterable, Iterator
 from contextlib import contextmanager
@@ -19,6 +18,7 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
+from simio.nucleo import caminhos
 from simio.nucleo.estado import EM_ANDAMENTO, RETOMAR_DE, verificar_transicao
 from simio.nucleo.estado import TransicaoInvalida as _TransicaoInvalida
 from simio.nucleo.modelos import (
@@ -354,10 +354,6 @@ def id_candidata_para(id_campanha: str, url_normalizada: str) -> str:
     return "C" + hash_hex[:10]
 
 
-def novo_id_campanha() -> str:
-    return datetime.now(UTC).strftime("simio-%Y%m%d-%H%M%S-") + secrets.token_hex(2)
-
-
 class ModificacaoConcorrente(_TransicaoInvalida):
     """Compare-and-set transition failed: the candidate was moved by another writer."""
 
@@ -438,13 +434,37 @@ class Armazenamento:
 
     # ------------------------------------------------------------------ campaigns
     def criar_campanha(self, marca: str, parametros: dict[str, Any]) -> str:
-        cid = novo_id_campanha()
-        agora = _agora()
-        self.con.execute(
-            "INSERT INTO campanhas(id, marca, status, parametros_json, criado_em, atualizado_em) VALUES (?,?,?,?,?,?)",
-            (cid, marca, "EM_EXECUCAO", _serializar(parametros), agora, agora),
-        )
-        return cid
+        """Readable id ``AAAA-MM-DD_HHhMM_<marca>_<modo>`` (Brasília time); ``-2``, ``-3``... when taken."""
+        momento = datetime.now(UTC)
+        agora = momento.isoformat(timespec="seconds")
+        base = caminhos.id_campanha(momento, marca, parametros.get("foco"))
+        pasta_campanhas = caminhos.dir_campanhas(self.caminho.parent)
+        n = 1
+        while True:
+            cid = caminhos.com_sufixo(base, n)
+            n += 1
+            if (pasta_campanhas / cid).exists():
+                continue
+            try:
+                self.con.execute(
+                    "INSERT INTO campanhas(id, marca, status, parametros_json, criado_em, atualizado_em)"
+                    " VALUES (?,?,?,?,?,?)",
+                    (cid, marca, "EM_EXECUCAO", _serializar(parametros), agora, agora),
+                )
+            except sqlite3.IntegrityError:
+                if self.con.execute("SELECT 1 FROM campanhas WHERE id=?", (cid,)).fetchone() is None:
+                    raise
+                continue
+            return cid
+
+    def resolver_id_campanha(self, id_ou_anterior: str) -> str | None:
+        """Current id of a campaign, also when given the id it had before the folder migration."""
+        if self.con.execute("SELECT 1 FROM campanhas WHERE id=?", (id_ou_anterior,)).fetchone():
+            return id_ou_anterior
+        linha = self.con.execute(
+            "SELECT id FROM campanhas WHERE json_extract(parametros_json, '$.id_anterior')=?", (id_ou_anterior,)
+        ).fetchone()
+        return str(linha[0]) if linha else None
 
     def obter_campanha(self, id_campanha: str) -> dict[str, Any] | None:
         linha = self.con.execute("SELECT * FROM campanhas WHERE id=?", (id_campanha,)).fetchone()
@@ -550,10 +570,14 @@ class Armazenamento:
         hostname: str,
         dominio_registravel: str,
     ) -> tuple[str, bool]:
+        # Look up by URL, not by the derived id: migrated campaigns keep their candidates' ids but not
+        # the campaign id they were hashed from.
+        existente = self.con.execute(
+            "SELECT id FROM candidatas WHERE id_campanha=? AND url_normalizada=?", (id_campanha, url_normalizada)
+        ).fetchone()
+        if existente:
+            return str(existente[0]), False
         cid = id_candidata_para(id_campanha, url_normalizada)
-        existe = self.con.execute("SELECT 1 FROM candidatas WHERE id=?", (cid,)).fetchone()
-        if existe:
-            return cid, False
         id_dominio = self._upsert_dominio(id_campanha, dominio_registravel, hostname)
         agora = _agora()
         self.con.execute(

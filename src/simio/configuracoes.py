@@ -13,6 +13,8 @@ from typing import Annotated
 from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
+from simio.nucleo.caminhos import DIR_SAIDA_PADRAO, arquivo_banco
+
 FONTES_DESCOBERTA = ("grounding", "brave", "serper", "urlscan", "crtsh", "typosquat", "lens")
 # Secret settings, by current (PT) and former (EN) names: never logged or reported in clear.
 CHAVES_SENSIVEIS = (
@@ -118,7 +120,7 @@ class Configuracoes(BaseSettings):
     hosts_liberados_inseguro: Annotated[list[str], NoDecode] = Field(default_factory=list)
 
     # ---- Data locations ------------------------------------------------------------------
-    dir_saida: Path = Field(default=Path("output"))
+    dir_saida: Path = Field(default=Path(DIR_SAIDA_PADRAO))
     caminho_cadastro_coban: Path | None = Field(
         default=None, description="CSV with authorised correspondents (CNPJ,name,...)"
     )
@@ -176,7 +178,7 @@ class Configuracoes(BaseSettings):
     # ---- Derived -------------------------------------------------------------------------
     @property
     def caminho_db(self) -> Path:
-        return self.dir_saida / "simio.db"
+        return arquivo_banco(self.dir_saida)
 
     @property
     def modelo_descoberta_efetivo(self) -> str | None:

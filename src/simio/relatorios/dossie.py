@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import os
 from datetime import UTC, datetime
 from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from simio.agentes.inteligencia_dominio import resumir as resumir_inteligencia
+from simio.nucleo import caminhos
 from simio.nucleo.modelos import InteligenciaDominio
 from simio.nucleo.urls import hostname_de
 from simio.relatorios.dados import RegistroCandidata
@@ -23,7 +23,7 @@ _env = Environment(
 
 
 def renderizar_dossie(
-    rec: RegistroCandidata, dir_saida: Path, caminho_dossie: Path, intel: dict[str, str] | None = None
+    rec: RegistroCandidata, dir_campanha: Path, caminho_dossie: Path, intel: dict[str, str] | None = None
 ) -> str:
     ev = rec.evidencia
     capturas = []
@@ -34,9 +34,9 @@ def renderizar_dossie(
         ):
             a = ev.artefato(tipo)
             if a:
-                alvo = dir_saida / "campaigns" / rec.candidata.id_campanha / a.caminho
-                rel = os.path.relpath(alvo, caminho_dossie.parent)
-                capturas.append({"src": Path(rel).as_posix(), "rotulo": rotulo, "sha": a.sha256})
+                capturas.append(
+                    {"src": caminhos.link(caminho_dossie, dir_campanha / a.caminho), "rotulo": rotulo, "sha": a.sha256}
+                )
     return _env.get_template("dossie.html.j2").render(
         c=rec.candidata,
         f=rec.final,
@@ -57,24 +57,22 @@ def renderizar_dossie(
 
 def gravar_dossies(
     registros: list[RegistroCandidata],
-    dir_saida: Path,
-    dir_relatorio: Path,
+    dir_campanha: Path,
     todas_candidatas: bool = False,
     inteligencia_dominio: dict[str, InteligenciaDominio] | None = None,
-) -> dict[str, str]:
-    """Write dossiers for priority candidates (or all). Returns {candidate_id: path relative to
-    output_dir}."""
-    ddir = dir_relatorio / "dossiers"
-    ddir.mkdir(parents=True, exist_ok=True)
-    gravados: dict[str, str] = {}
+) -> dict[str, Path]:
+    """Write dossiers for priority candidates (or all). Returns {candidate_id: dossier file}."""
+    caminhos.relatorios(dir_campanha).dossies.mkdir(parents=True, exist_ok=True)
+    gravados: dict[str, Path] = {}
     for rec in registros:
         if not (todas_candidatas or rec.eh_prioritaria):
             continue
-        caminho = ddir / f"{rec.candidata.id}.html"
+        caminho = caminhos.arquivo_dossie(dir_campanha, rec.candidata.hostname, rec.candidata.id)
         host = hostname_de((rec.evidencia.url_final if rec.evidencia else None) or rec.candidata.url)
         item = (inteligencia_dominio or {}).get(host)
         caminho.write_text(
-            renderizar_dossie(rec, dir_saida, caminho, resumir_inteligencia(item) if item else None), encoding="utf-8"
+            renderizar_dossie(rec, dir_campanha, caminho, resumir_inteligencia(item) if item else None),
+            encoding="utf-8",
         )
-        gravados[rec.candidata.id] = Path(os.path.relpath(caminho, dir_saida)).as_posix()
+        gravados[rec.candidata.id] = caminho
     return gravados
