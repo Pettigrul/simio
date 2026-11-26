@@ -16,7 +16,7 @@ Para chegar a uma resposta, cada página é olhada por cinco ângulos:
 4. Se há a declaração de correspondente exigida pela Resolução CMN nº 4.935/2021 (art. 14, III), onde ela aparece e se nomeia o banco.
 5. A jornada de atendimento: "canal oficial", "central 0800", 2ª via de boleto, quitação com desconto e captação por WhatsApp.
 
-Lojas que trabalham com vários bancos, notícias, reclamações e homônimos da sigla "BV" são tratados à parte para não virarem alerta. Os detalhes estão em [docs/methodology.md](docs/methodology.md).
+Lojas que trabalham com vários bancos, notícias, reclamações e homônimos da sigla "BV" são tratados à parte para não virarem alerta. Os detalhes estão em [docs/metodologia.md](docs/metodologia.md).
 
 ## Como funciona
 
@@ -27,17 +27,17 @@ Uma campanha passa por sete etapas, sempre na mesma ordem:
 3. Identidade: CNPJs, razão social e cruzamento com o cadastro de correspondentes (COBAN).
 4. Marca: o Gemini olha as capturas e o texto; uma heurística local faz a mesma análise em paralelo e as duas são comparadas.
 5. Revisão: um segundo modelo, cético, pode rebaixar o caso, pedir nova coleta ou marcar como inconclusivo.
-6. Decisão: regras fixas validam as referências às evidências e aplicam os pisos (logo antiga, pedido de senha ou cartão).
+6. Decisão: regras fixas conferem se a análise cita evidências que existem e impedem que certos casos fiquem com classificação baixa demais (logo antiga, pedido de senha ou cartão).
 7. Relatórios: planilha Excel, relatório HTML e PDF, relatório de ameaças e dossiês por página.
 
 Tudo fica num SQLite local. Se a campanha parar no meio (erro, Ctrl+C, limite de uso do LLM), `retomar` continua de onde parou sem pagar de novo pelas análises já feitas.
 
 Mais detalhes:
 
-- [docs/architecture.md](docs/architecture.md): módulos, máquina de estados, descoberta e controle de orçamento.
-- [docs/methodology.md](docs/methodology.md): hipóteses de busca, filtros, pesos, triagem de ameaças e regras de decisão.
-- [docs/deployment.md](docs/deployment.md): instalação, Vertex AI, proxy corporativo, Serper, cadastro de COBANs, custos e migração.
-- [docs/security.md](docs/security.md): isolamento de rede e do navegador, prompt injection, LGPD e segredos.
+- [docs/arquitetura.md](docs/arquitetura.md): módulos, máquina de estados, descoberta e controle de orçamento.
+- [docs/metodologia.md](docs/metodologia.md): hipóteses de busca, filtros, pesos, triagem de ameaças e regras de decisão.
+- [docs/implantacao.md](docs/implantacao.md): instalação, Vertex AI, proxy corporativo, Serper, cadastro de COBANs, custos e migração.
+- [docs/seguranca.md](docs/seguranca.md): isolamento de rede e do navegador, prompt injection, LGPD e segredos.
 
 ## Instalação
 
@@ -97,7 +97,7 @@ SIMIO_CADASTRO_COBAN_OFICIAL=true
 SIMIO_LIMITE_SEMENTES_COBAN=40
 ```
 
-Todas as variáveis estão comentadas em [.env.example](.env.example). Custos e dimensionamento em [docs/deployment.md](docs/deployment.md).
+Todas as variáveis estão comentadas em [.env.example](.env.example). Custos e dimensionamento em [docs/implantacao.md](docs/implantacao.md).
 
 ## Uso
 
@@ -164,7 +164,7 @@ Tudo fica em `resultados/` (mude com `SIMIO_DIR_SAIDA` ou `-o`):
 resultados/
   simio.db                          banco SQLite (campanhas, evidências, decisões, uso do LLM)
   registros/simio.jsonl             log de execução, com segredos mascarados
-  pontuacao.toml                    opcional: sobrepõe os pesos da heurística (ver docs/methodology.md)
+  pontuacao.toml                    opcional: sobrepõe os pesos da heurística (ver docs/metodologia.md)
   campanhas/
     2026-11-25_19h05_bv_ameacas/    data e hora de Brasília, marca e modo (ampla, logo-antiga, ameacas)
       relatorio.xlsx
@@ -186,7 +186,7 @@ resultados/
 
 Se já existir uma campanha com o mesmo minuto, o id ganha `-2`, `-3` e assim por diante.
 
-A planilha tem as abas Resumo, Candidatos, Indícios fortes, Responsáveis, Evidências, Registro da investigação, Erros e limitações e Glossário. Quando há o que mostrar, entram também Logo antiga (com o recorte da imagem), Ameaças, Domínios e Entidades. Na campanha de ameaças, as abas Ameaças e Domínios vêm logo depois do Resumo. Caminhos de capturas e dossiês são links clicáveis.
+A planilha tem as abas Resumo, Candidatas, Indícios fortes, Responsáveis, Evidências, Registro da investigação, Erros e limitações e Glossário. Quando há o que mostrar, entram também Logo antiga (com o recorte da imagem), Ameaças, Domínios e Entidades. Na campanha de ameaças, as abas Ameaças e Domínios vêm logo depois do Resumo. Caminhos de capturas e dossiês são links clicáveis.
 
 ## Classificações
 
@@ -214,7 +214,7 @@ python scripts/migrar_resultados.py --simular        # mostra o plano sem mexer 
 python scripts/migrar_resultados.py                  # move de fato
 ```
 
-O script renomeia as campanhas para o id novo, move evidências e `domain-intel.json` (que vira `dominios.json`), põe os relatórios antigos em `anteriores/legado/`, confere os SHA-256 dos manifestos e termina sugerindo os comandos `simio relatorio` para gerar os relatórios no layout novo. Não rode com uma campanha em execução. Os nomes das variáveis do `.env` também mudaram; veja a tabela em [docs/deployment.md](docs/deployment.md#migrar-do-layout-antigo).
+O script renomeia as campanhas para o id novo, move evidências e `domain-intel.json` (que vira `dominios.json`), põe os relatórios antigos em `anteriores/legado/`, confere os SHA-256 dos manifestos e termina sugerindo os comandos `simio relatorio` para gerar os relatórios no layout novo. Não rode com uma campanha em execução. Os nomes das variáveis do `.env` também mudaram; veja a tabela em [docs/implantacao.md](docs/implantacao.md#migrar-do-layout-antigo).
 
 ## Adaptar para outra marca ou caso
 

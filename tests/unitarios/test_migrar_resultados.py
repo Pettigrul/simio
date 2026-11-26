@@ -263,3 +263,29 @@ def test_artefato_alterado_eh_apontado(tmp_path: Path, monkeypatch: pytest.Monke
     assert _executar(_modulo(), monkeypatch, tmp_path) == 1
     saida = capsys.readouterr().out
     assert "texto-visivel.txt: SHA-256 difere do manifesto" in saida
+
+
+def test_campanha_ja_no_layout_novo_dentro_de_output_vai_junto(  # type: ignore[no-untyped-def]
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+) -> None:
+    _montar(tmp_path)
+    novo = "2026-11-26_09h00_bv_ampla"
+    st = Armazenamento(tmp_path / "output" / "simio.db")
+    try:
+        st.con.execute(
+            "INSERT INTO campanhas(id, marca, status, parametros_json, criado_em, atualizado_em)"
+            " VALUES (?,?,?,?,?,?)",
+            (novo, "bv", "CONCLUIDA", "{}", "2026-11-26T12:00:00+00:00", "2026-11-26T12:00:00+00:00"),
+        )
+    finally:
+        st.fechar()
+    pasta = caminhos.dir_campanha(tmp_path / "output", novo)
+    (pasta / "dossies").mkdir(parents=True)
+    (pasta / "relatorio.xlsx").write_bytes(b"planilha nova")
+    (pasta / "dossies" / "x.html").write_text("<html></html>", encoding="utf-8")
+    assert _executar(_modulo(), monkeypatch, tmp_path) == 0, capsys.readouterr().out
+    assert "movidas sem renomear" in capsys.readouterr().out
+    destino = caminhos.dir_campanha(tmp_path / "resultados", novo)
+    assert (destino / "relatorio.xlsx").read_bytes() == b"planilha nova"
+    assert (destino / "dossies" / "x.html").is_file()
+    assert not (tmp_path / "output").exists()

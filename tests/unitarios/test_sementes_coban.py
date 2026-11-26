@@ -18,10 +18,10 @@ def _registro(nome: str, data: str) -> dict[str, str]:
 REGISTROS = {
     "11111111000111": _registro("ANTIGA VEICULOS LTDA", "2016-01-01"),
     "22222222000122": _registro("NOVA MOTOS LTDA - ME", "2026-09-30"),
-    "33333333000133": _registro("JOAO DA SILVA 12345678901", "2026-10-01"),  # MEI with CPF: never searched
-    "44444444000144": _registro("BANCO EXEMPLO SA", "2026-10-02"),  # financial institution
+    "33333333000133": _registro("JOAO DA SILVA 12345678901", "2026-10-01"),  # MEI com CPF: nunca é pesquisado
+    "44444444000144": _registro("BANCO EXEMPLO SA", "2026-10-02"),  # instituição financeira
     "55555555000155": _registro("SOLAR FORTE ENERGIA EIRELI", "2026-08-15"),
-    "66666666000166": _registro("NOVA MOTOS LTDA", "2026-07-01"),  # same searchable name as 2222...
+    "66666666000166": _registro("NOVA MOTOS LTDA", "2026-07-01"),  # mesmo nome de busca do 2222...
 }
 
 

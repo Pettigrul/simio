@@ -143,8 +143,8 @@ def test_varredor_de_segredos_reconhece_nomes_em_portugues() -> None:
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     valor = "Qx7" + "segredo" + "9981abcdefgh"
-    env = mod.PADROES_CONTEUDO["env-secret-value"]
-    atribuido = mod.PADROES_CONTEUDO["assigned-secret"]
+    env = mod.PADROES_CONTEUDO["valor-secreto-env"]
+    atribuido = mod.PADROES_CONTEUDO["segredo-atribuido"]
     assert env.search(f"SIMIO_CHAVE_API_SERPER={valor}") and env.search(f"SIMIO_SERPER_API_KEY={valor}")
     assert atribuido.search(f'chave_api_brave = "{valor}"') and atribuido.search(f'brave_api_key = "{valor}"')
 
@@ -188,8 +188,6 @@ def test_varredor_de_segredos_barra_pastas_de_resultados() -> None:
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     for nome in (
-        "output/campaigns/x/evidence/C1/attempt-1/text.txt",
-        "resultados/campanhas/x/relatorio.html",
         "campanhas/x/ameacas.html",
         "x/evidencias/a_1/tentativa-1/texto-visivel.txt",
         "dossies/a_1.html",
@@ -198,6 +196,10 @@ def test_varredor_de_segredos_barra_pastas_de_resultados() -> None:
     assert mod.varrer_nome("src/simio/marcas/assets/bv_logo_antiga.png") == []
     assert mod.varrer_nome("src/simio/nucleo/caminhos.py") == []
     assert mod.varrer_nome("docs/print.png")
+    # resultados/ é versionada de propósito: só as regras de segredo valem lá
+    assert mod.varrer_nome("resultados/campanhas/x/evidencias/a_1/tentativa-1/tela-inicial.png") == []
+    assert mod.varrer_nome("output/campaigns/x/evidence/C1/attempt-1/text.txt") == []
+    assert mod.varrer_nome("resultados/.env")
 
 
 def test_varredor_de_segredos_detecta_segredo_plantado(tmp_path: Path) -> None:

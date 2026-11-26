@@ -291,6 +291,23 @@ def migrar_campanha(origem: Path, destino: Path, antigo: str, novo: str, hosts: 
             mover(arq, legado / arq.relative_to(pasta_rel), relato)
 
 
+def migrar_layout_novo(origem: Path, destino: Path, mapa: dict[str, str], relato: Relato) -> list[str]:
+    # Campanhas que a versão nova já gravou dentro da pasta antiga (rodada com -o output antes da
+    # migração). O banco cita os caminhos relativos à pasta da campanha, então ela vai inteira.
+    raiz = caminhos.dir_campanhas(origem)
+    movidas: list[str] = []
+    if not raiz.is_dir():
+        return movidas
+    for pasta in sorted(p for p in raiz.iterdir() if p.is_dir()):
+        novo = mapa.get(pasta.name, pasta.name)
+        alvo = caminhos.dir_campanha(destino, novo)
+        for arq in sorted(p for p in pasta.rglob("*") if p.is_file()):
+            relato.contar(novo, "layout_novo")
+            mover(arq, alvo / arq.relative_to(pasta), relato)
+        movidas.append(novo)
+    return movidas
+
+
 def remover_vazias(raiz: Path) -> None:
     if not raiz.is_dir():
         return
@@ -392,6 +409,7 @@ def principal() -> int:
 
     for antigo, novo in sorted(mapa.items()):
         migrar_campanha(origem, destino, antigo, novo, hosts, relato)
+    layout_novo = [c for c in migrar_layout_novo(origem, destino, mapa, relato) if c not in mapa.values()]
     log_antigo = origem / "logs" / caminhos.ARQUIVO_LOG
     if log_antigo.exists():
         relato.contar("(raiz)", "registro")
@@ -408,7 +426,7 @@ def principal() -> int:
         remover_vazias(origem)
         if origem.exists():
             relato.deixados += [str(p) for p in sorted(origem.rglob("*")) if p.is_file()]
-        verificar(destino, con, mapa, relato)
+        verificar(destino, con, {**mapa, **{c: c for c in layout_novo}}, relato)
         integridade = con.execute("PRAGMA integrity_check").fetchone()[0]
         fk = len(con.execute("PRAGMA foreign_key_check").fetchall())
         integridade = f"{integridade}; referências quebradas: {fk}"
@@ -418,6 +436,10 @@ def principal() -> int:
         itens = relato.plano.get(novo, {})
         detalhe = ", ".join(f"{k}: {v}" for k, v in sorted(itens.items())) or "sem arquivos"
         print(f"  {antigo} -> {novo}  ({detalhe})")
+    if layout_novo:
+        print("Campanhas já no layout novo, movidas sem renomear:")
+        for cid in layout_novo:
+            print(f"  {cid}  (arquivos: {relato.plano.get(cid, {}).get('layout_novo', 0)})")
     print()
     verbo = "a atualizar" if simular else "atualizadas"
     print(

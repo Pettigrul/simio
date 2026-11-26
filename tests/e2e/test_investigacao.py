@@ -324,9 +324,9 @@ def test_cli_offline_investigar_relatorio_status(configuracoes, site, tmp_path, 
     runner = CliRunner()
     r = runner.invoke(app, ["investigar", "--offline", "--arquivo-urls", str(urls), "-o", saida])
     assert r.exit_code == 0, r.output
-    assert "CONCLUIDA" in r.output and ".xlsx" in r.output
+    assert "Concluída" in r.output and ".xlsx" in r.output
     r = runner.invoke(app, ["status", "-o", saida])
-    assert r.exit_code == 0 and "CONCLUIDA" in r.output
+    assert r.exit_code == 0 and "Concluída" in r.output
     r = runner.invoke(app, ["relatorio", "-o", saida, "--todos-dossies"])
     assert r.exit_code == 0 and "Dossiês: 2" in r.output
     r = runner.invoke(app, ["status", "--listar", "-o", saida])

@@ -15,14 +15,9 @@ CABECALHOS_HOP = {"proxy-connection", "proxy-authorization", "connection", "keep
 MAX_CABECALHO = 64 * 1024
 
 
-# Proxy local por onde passa toda conexão do Chromium. Existe porque o route() do Playwright não vê
-# os saltos de redirect, então sozinho não segura "página pública -> 302 -> http://169.254.169.254/".
-# O proxy valida o destino na PoliticaUrl, resolve o DNS ele mesmo e conecta no IP validado (sem
-# rebinding entre checagem e conexão). HTTP simples vai com "Connection: close" para o Chromium não
-# reaproveitar socket numa requisição que o proxy não leu; HTTPS/WSS vão por CONNECT (TLS de ponta a
-# ponta). Com proxy corporativo, o upstream recebe o IP validado, não o hostname; fixar_upstream=False
-# manda o hostname (filtro corporativo por nome) e é risco residual documentado.
-# O Chromium sobe com --proxy-bypass-list=<-loopback> para o loopback também passar por aqui.
+# O route() do Playwright não vê os saltos de redirect; este proxy valida cada destino e conecta no
+# IP já validado. `upstream` é o proxy corporativo; com fixar_upstream=False ele recebe o hostname.
+# Detalhes em docs/seguranca.md.
 @dataclass
 class ProxySaida:
     politica: PoliticaUrl
@@ -104,7 +99,7 @@ class ProxySaida:
                 return
             ip, up_r, up_w = up
             host_alvo = ip if self.fixar_upstream else host
-            if self.upstream and not await self._conectar_upstream(up_r, up_w, host_alvo, porta, escritor):
+            if self.upstream and not await self._abrir_tunel_proxy(up_r, up_w, host_alvo, porta, escritor):
                 return
             escritor.write(b"HTTP/1.1 200 Connection Established\r\n\r\n")
             await escritor.drain()
@@ -134,7 +129,7 @@ class ProxySaida:
                     mantidos.append(f"Host: {partes.netloc}")
             else:
                 linha_requisicao = f"{metodo} {alvo} {versao}"
-            auth = _auth_proxy(self.upstream)
+            auth = _autenticacao_proxy(self.upstream)
             if auth:
                 mantidos.append(f"Proxy-Authorization: {auth}")
         else:
@@ -163,7 +158,7 @@ class ProxySaida:
         await escritor.drain()
         await self._encanar(leitor, escritor, up_r, up_w)
 
-    async def _conectar_upstream(
+    async def _abrir_tunel_proxy(
         self,
         up_r: asyncio.StreamReader,
         up_w: asyncio.StreamWriter,
@@ -174,7 +169,7 @@ class ProxySaida:
         assert self.upstream is not None
         host_porta = f"[{host_alvo}]" if ":" in host_alvo else host_alvo
         linhas = [f"CONNECT {host_porta}:{porta} HTTP/1.1", f"Host: {host_porta}:{porta}"]
-        auth = _auth_proxy(self.upstream)
+        auth = _autenticacao_proxy(self.upstream)
         if auth:
             linhas.append(f"Proxy-Authorization: {auth}")
         up_w.write(("\r\n".join([*linhas, "", ""])).encode("latin-1"))
@@ -182,12 +177,12 @@ class ProxySaida:
         try:
             resposta = await asyncio.wait_for(up_r.readuntil(b"\r\n\r\n"), self.timeout_conexao_s)
         except (asyncio.IncompleteReadError, asyncio.LimitOverrunError, TimeoutError):
-            await self._responder(cliente, 502, "o proxy upstream não respondeu ao CONNECT")
+            await self._responder(cliente, 502, "o proxy corporativo não respondeu ao CONNECT")
             return False
         status = resposta.split(b" ", 2)[1:2]
         if not status or not status[0].startswith(b"2"):
             codigo = status[0].decode("latin-1", "replace") if status else "?"
-            await self._responder(cliente, 502, f"o proxy upstream recusou o CONNECT ({codigo})")
+            await self._responder(cliente, 502, f"o proxy corporativo recusou o CONNECT ({codigo})")
             return False
         return True
 
@@ -204,8 +199,8 @@ class ProxySaida:
         self, host: str, ips: list[str], porta: int, cliente: asyncio.StreamWriter
     ) -> tuple[str, asyncio.StreamReader, asyncio.StreamWriter] | None:
         # Só tenta endereços que passaram pela política.
-        # TODO: com upstream só o primeiro IP validado é usado; se ele estiver fora do ar a página
-        # falha mesmo havendo outros IPs válidos (sem upstream já há esse fallback).
+        # TODO: com proxy corporativo só o primeiro IP validado é usado; se ele estiver fora do ar a página
+        # falha mesmo havendo outros IPs válidos (sem proxy corporativo já há esse fallback).
         ultimo: BaseException | None = None
         if self.upstream:
             up = urlsplit(self.upstream)
@@ -279,8 +274,8 @@ def _separar_host_porta(alvo: str, porta_padrao: int) -> tuple[str, int]:
         return host.lower(), -1
 
 
-def _auth_proxy(upstream: str) -> str | None:
-    partes = urlsplit(upstream)
+def _autenticacao_proxy(url_proxy: str) -> str | None:
+    partes = urlsplit(url_proxy)
     if partes.username is None:
         return None
     token = f"{unquote(partes.username)}:{unquote(partes.password or '')}".encode()

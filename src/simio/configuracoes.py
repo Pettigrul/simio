@@ -8,6 +8,7 @@ from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 from simio.nucleo.caminhos import DIR_SAIDA_PADRAO, arquivo_banco
+from simio.nucleo.traducao_legado import CAMPOS_POR_MODELO
 
 FONTES_DESCOBERTA = ("grounding", "brave", "serper", "urlscan", "crtsh", "typosquat", "lens")
 # Nomes atuais e antigos (em inglês) das chaves secretas: nunca aparecem em log ou relatório.
@@ -191,9 +192,57 @@ class Configuracoes(BaseSettings):
 
 _ENV_REPO = Path(__file__).resolve().parents[2] / ".env"
 
+NOMES_ANTIGOS = {
+    f"SIMIO_{antigo.upper()}": f"SIMIO_{novo.upper()}" for antigo, novo in CAMPOS_POR_MODELO["Configuracoes"].items()
+}
 
-def carregar_configuracoes(**sobrescritas: object) -> Configuracoes:
+
+class NomesAntigos(ValueError):
+    pass
+
+
+def arquivo_env() -> Path | None:
+    if Path(".env").is_file():
+        return Path(".env")
+    return _ENV_REPO if _ENV_REPO.is_file() else None
+
+
+def _chaves_env(arquivo: Path) -> set[str]:
+    # Só o nome de cada variável; o valor (pode ser chave de API) nem sai daqui.
+    chaves = set()
+    with arquivo.open(encoding="utf-8", errors="replace") as fh:
+        for linha in fh:
+            linha = linha.strip()
+            if not linha or linha.startswith("#") or "=" not in linha:
+                continue
+            nome = linha.split("=", 1)[0].strip().removeprefix("export ").strip()
+            chaves.add(nome.upper())
+    return chaves
+
+
+def variaveis_com_nome_antigo(arquivo: Path | None = None) -> list[str]:
+    """Variáveis SIMIO_* com o nome de antes da tradução, que hoje seriam ignoradas sem aviso."""
+    achadas: dict[str, list[str]] = {}
+    for nome in os.environ:
+        if nome.upper() in NOMES_ANTIGOS:
+            achadas.setdefault(nome.upper(), []).append("ambiente")
+    if arquivo is not None and arquivo.is_file():
+        for nome in _chaves_env(arquivo) & NOMES_ANTIGOS.keys():
+            achadas.setdefault(nome, []).append(arquivo.name)
+    return [f"{nome} (agora {NOMES_ANTIGOS[nome]}; em {' e '.join(onde)})" for nome, onde in sorted(achadas.items())]
+
+
+def carregar_configuracoes(*, aceitar_nomes_antigos: bool = False, **sobrescritas: object) -> Configuracoes:
     limpo: dict[str, object] = {k: v for k, v in sobrescritas.items() if v is not None}
-    if not Path(".env").is_file() and _ENV_REPO.is_file():
-        limpo["_env_file"] = _ENV_REPO
+    env = arquivo_env()
+    if env is not None and env != Path(".env"):
+        limpo["_env_file"] = env
+    if not aceitar_nomes_antigos:
+        antigas = variaveis_com_nome_antigo(env)
+        if antigas:
+            raise NomesAntigos(
+                "variáveis com nome antigo, que não são mais lidas: "
+                + "; ".join(antigas)
+                + ". Renomeie e rode de novo."
+            )
     return Configuracoes(**limpo)  # type: ignore[arg-type]

@@ -1,19 +1,3 @@
-"""Prepara o cadastro de correspondentes (COBAN) usado pelo agente de identidade.
-
-Lê a exportação do operador (.xlsx ou .csv com as colunas cnpj, nmpessoa, dtcadastro e
-login_parceiro) e grava o CSV que o CadastroCoban espera:
-
-* uma linha por CNPJ (logins de parceiro repetidos são juntados);
-* sem as entidades da própria instituição (raízes de CNPJ do perfil de marca e nomes da
-  instituição, como contas internas do tipo "COMISSAO PARCERIA");
-* sem CNPJ inválido; nomes com mojibake (COM√ÇRCIO) são consertados quando dá.
-
-A saída tem dados de parceiros e NÃO sai da máquina de execução (data/ está no .gitignore). Uso:
-
-    python scripts/preparar_cadastro_coban.py Todos_Cobans_Ativos.xlsx \
-        --saida data/coban_registry_bv.csv --marca bv --data-referencia 2026-10-06
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -145,7 +129,14 @@ def preparar(
 
 
 def principal() -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(
+        description="Gera o CSV de correspondentes (COBAN) usado pelo agente de identidade a partir da "
+        "exportação do operador (colunas cnpj, nmpessoa, dtcadastro e login_parceiro). Junta as linhas "
+        "do mesmo CNPJ, descarta CNPJ inválido e contas da própria instituição e conserta nomes com "
+        "acentuação quebrada quando dá. O arquivo tem dados de parceiros e fica só nesta máquina.",
+        epilog="exemplo: python scripts/preparar_cadastro_coban.py Todos_Cobans_Ativos.xlsx "
+        "--saida data/coban_registry_bv.csv --data-referencia 2026-10-06",
+    )
     ap.add_argument("origem", type=Path, help="exportação do operador (.xlsx ou .csv)")
     ap.add_argument("--saida", type=Path, default=RAIZ / "data" / "coban_registry_bv.csv", help="CSV de saída")
     ap.add_argument("--marca", default="bv", help="perfil de marca (padrão: bv)")
