@@ -1,162 +1,166 @@
-<p align="center">
-  <img src="../assets/logos/logo-claro.svg" alt="SIMIO - Arquitetura" width="340">
-</p>
+# Arquitetura
 
-<p align="center">
-  <img src="../assets/badges/agentes.svg" alt="Agentes">
-  <img src="../assets/badges/automação.svg" alt="Automação">
-  <img src="../assets/badges/monitoramento.svg" alt="Monitoramento">
-</p>
+## Decisões de projeto
 
-# Arquitetura do Sistema
+O SIMIO é Python 3.11+ com `asyncio` e SQLite, sem framework de orquestração de agentes. O motivo é simples: o caminho de cada página é fixo (descoberta, coleta, identidade, marca, conformidade, revisão, decisão) e precisa ser auditável. Os agentes não conversam entre si; o `Orquestrador` faz cada transição e passa modelos Pydantic estritos (`extra="forbid"`) de uma etapa para a outra.
 
-<p align="center">
-  <img src="../assets/banners/divisoria.svg" alt="Divisória" width="100%">
-</p>
+Cada transição de estado, consulta de busca, evidência e chamada ao LLM é gravada na hora em `resultados/simio.db`. Por isso uma campanha interrompida pode ser retomada com `simio retomar` sem pagar de novo pelo que já foi analisado.
 
-## <img src="../assets/icones/regras.svg" width="22" height="22" valign="middle"> 1. Visão geral e decisões de projeto
+O Chromium nunca sai direto para a internet. Cada página ganha um proxy local (`ProxySaida`) que valida a URL, resolve o DNS, recusa IP privado e conecta no IP já validado. Detalhes em [security.md](security.md).
 
-O SIMIO foi construído em **Python 3.11+ nativo com `asyncio` e SQLite**, sem frameworks pesados de orquestração (como LangGraph ou CrewAI).
-
-Por que essa escolha:
-- **Fluxo determinístico e auditável**: o caminho de cada candidato é conhecido (`Descoberta → Coleta → Identidade → Marca → Conformidade → Revisão → Decisão Final`). Agentes não conversam livremente entre si; o `Orchestrator` controla cada transição e passa contratos Pydantic estritos (`extra="forbid"`) de uma etapa para a outra.
-- **Persistência e retomada nativa**: cada transição de estado, consulta executada, evidência coletada e chamada de LLM é gravada imediatamente em SQLite (`output/simio.db`). Se o processo for interrompido ou atingir o teto de orçamento, `simio resume` retoma do ponto exato sem pagar novamente por análises de IA já concluídas.
-- **Segurança por padrão**: o navegador Chromium nunca acessa a internet diretamente; cada página cria um `EgressProxy` local que valida a URL, resolve o DNS, bloqueia IPs privados/internos e fixa o IP validado na conexão.
-
-<p align="center">
-  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
-</p>
-
-## <img src="../assets/icones/agentes.svg" width="22" height="22" valign="middle"> 2. Estrutura de módulos
+## Módulos
 
 ```
 src/simio/
-  cli.py                   Interface de linha de comando (Typer): hunt, resume, report, status, doctor, test
-  config.py                Configurações tipadas (pydantic-settings, prefixo SIMIO_, leitura de .env)
-  logging_setup.py         Logs estruturados (JSONL em output/logs/simio.jsonl) com redação de segredos
-  core/
-    models.py              Modelos Pydantic compartilhados entre todos os módulos
-    state.py               Máquina de estados do candidato e regras de transição permitidas
-    storage.py             Persistência SQLite com migrações versionadas, checkpoints e lease de campanha
-    orchestrator.py        Pipeline assíncrono, pool de workers, retry/backoff, orçamento e retomada
-    decision.py            ScoringConfig, guardrails determinísticos e composição da FinalDecision
-    urls.py                Normalização canônica de URLs, extração de domínio registrável (PSL offline)
-  agents/
-    discovery.py           Hipóteses de busca (H1–H7 marca/produto/canais, H8 domínios semelhantes, H9 COBANs, H10 fraudes, H11 NaPista, H12/H13 logo antiga), modos de campanha (FOCUS_MODES), planejamento intercalado, deduplicação e priorização
-    evidence.py            Construção do catálogo de evidências (E-*) e extração determinística de sinais
-    identity.py            Extração/validação de CNPJ (numérico e alfanumérico), razão social e cruzamento COBAN
-    brand.py               BrandAnalyst (Gemini multimodal + heurística offline + cross_check)
-    compliance.py          Mapeamento determinístico para a Resolução CMN nº 4.935/2021 e cláusulas contratuais
-    reviewer.py            Reviewer cético (LLM + desafios determinísticos de validação)
-    visual.py              Comparação de imagem sem IA: logo antiga (B vermelho + V azul) nos screenshots, indícios por nome de arquivo e recortes
-  providers/
-    llm.py                 LLMGateway: reserva de orçamento, semáforo de concorrência, retry e reparo de JSON
-    vertex.py              Integração oficial com google-genai (Vertex AI) e Google Search Grounding
-    grounding.py           Conector de descoberta via Grounding com resolução segura de redirecionamentos
-    search.py              Conectores de busca (Serper paginado, Google Lens via Serper, Brave, urlscan.io, crt.sh) e importadores
-    typosquat.py           Domínios semelhantes (typo/combosquatting/troca de TLD) resolvidos por DNS (fonte `typosquat`)
-    mock.py                Provedor determinístico em memória para testes automatizados
-  collectors/
-    browser.py             Coleta via Playwright/Chromium headless, screenshots, extração DOM e manifesto SHA-256
-  security/
-    url_policy.py          Política anti-SSRF (validação sintática e resolução DNS contra redes privadas)
-    egress_proxy.py        Proxy HTTP/CONNECT por página com DNS pinning
-  reporting/
-    data.py                Carregamento consistente de registros por campanha e ordenação por criticidade
-    __init__.py            generate_reports(): dossiês, recortes da logo antiga, Excel, HTML e PDF da campanha
-    excel.py               Planilha consolidada (.xlsx), até 10 abas (inclui "Logo antiga" com recortes) e proteção contra fórmula injection
-    campaign_html.py       Relatório consolidado da campanha (HTML), base do PDF
-    pdf.py                 Conversão do relatório consolidado em PDF (Chromium do Playwright)
-    dossier.py             Geração dos dossiês HTML individuais (Jinja2 com autoescape e Content-Security-Policy)
+  cli.py                   comandos (Typer): investigar, retomar, enriquecer, relatorio, status, diagnostico, testar
+  configuracoes.py         configurações tipadas (pydantic-settings, prefixo SIMIO_, lê o .env)
+  config_logs.py           log JSONL em resultados/registros/simio.jsonl, com segredos mascarados
+  nucleo/
+    modelos.py             modelos Pydantic compartilhados (Candidata, Evidencia, AvaliacaoMarca, DecisaoFinal...)
+    estado.py              máquina de estados da candidata e transições permitidas
+    armazenamento.py       SQLite: esquema, migrações, checkpoints, trava de campanha, uso do LLM
+    traducao_legado.py     migração v3 do banco: tabelas, colunas e valores de inglês para português
+    caminhos.py            nomes de pastas e arquivos de saída e id legível da campanha
+    orquestrador.py        pipeline assíncrono, paralelismo, novas tentativas, orçamento e retomada
+    decisao.py             ConfigPontuacao, salvaguardas determinísticas e composição da DecisaoFinal
+    urls.py                normalização de URL e domínio registrável (lista de sufixos offline)
+  agentes/
+    descoberta.py          hipóteses de busca (H1 a H14), modos de campanha, planejamento, deduplicação e fila
+    evidencia.py           catálogo de evidências (E-*) e sinais determinísticos da página
+    identidade.py          CNPJ (numérico e alfanumérico), razão social e cruzamento com o cadastro de COBANs
+    marca.py               AnalistaMarca: Gemini multimodal, heurística offline e verificação cruzada
+    conformidade.py        mapeamento para a Res. CMN 4.935/2021 e requisitos contratuais, sem LLM
+    revisor.py             Revisor cético (LLM + contestações determinísticas)
+    visual.py              comparação de imagem sem IA para a logo antiga e recortes
+    triagem_ameacas.py     nível de ameaça (Crítico a Sem ameaça) a partir de fatos já gravados
+    inteligencia_dominio.py  RDAP e DNS sobre HTTPS dos achados; detecção de plataformas de hospedagem
+  provedores/
+    llm.py                 GatewayLLM: orçamento, concorrência, novas tentativas e reparo de JSON
+    vertex.py              cliente google-genai (Vertex AI) e Google Search Grounding
+    grounding.py           conector de descoberta via Grounding, com resolução segura dos redirecionamentos
+    busca.py               Serper, Google Lens via Serper, Brave, urlscan.io, crt.sh e importação de URLs
+    typosquat.py           domínios parecidos com os oficiais, testados só por DNS
+    mock.py                provedor em memória para os testes
+  coletores/
+    navegador.py           coleta com Playwright/Chromium: capturas, DOM, formulários e manifesto SHA-256
+  seguranca/
+    politica_url.py        política anti-SSRF (sintaxe da URL e DNS contra redes privadas)
+    proxy_saida.py         proxy HTTP/CONNECT por página, com DNS fixado
+  relatorios/
+    __init__.py            gerar_relatorios(): arquiva a geração anterior e grava tudo de novo
+    dados.py               carrega os registros de uma campanha e ordena por criticidade
+    rotulos.py             rótulos legíveis dos códigos gravados no banco e paleta de cores
+    excel.py               relatorio.xlsx, com neutralização de fórmulas
+    html_campanha.py       relatorio.html (base do PDF)
+    html_ameacas.py        ameacas.html
+    pdf.py                 relatorio.pdf, impresso pelo Chromium do Playwright
+    dossie.py              dossiês HTML por página
+    paginas.py             ambiente Jinja2 (autoescape)
+    templates/             base.html.j2 (layout comum), relatorio_campanha, relatorio_ameacas, dossie
   prompts/
-    brand_analyst.md       Prompt versionado do analista de marca (brand-analyst/v6)
-    reviewer.md            Prompt versionado do revisor cético (reviewer/v4)
-  knowledge/
-    cmn_4935.toml          Texto literal dos artigos da Resolução CMN nº 4.935/2021
-  brands/
-    bv.toml                Perfil da marca Banco BV (domínios, perfis sociais, CNPJs, regexes, vocabulário, typosquatting e logo antiga)
-    assets/                Imagens de referência (ex.: bv_legacy_logo.png)
+    analista_marca.md      prompt do analista (analista-marca/v9)
+    revisor.md             prompt do revisor (revisor/v6)
+    modo_ameacas.md        adendo da campanha de ameaças (modo-ameacas/v3)
+  conhecimento/
+    cmn_4935.toml          texto literal dos artigos usados da Res. CMN 4.935/2021
+  marcas/
+    bv.toml                perfil do Banco BV
+    assets/bv_logo_antiga.png  referência da logo antiga
 scripts/
-  prepare_coban_registry.py  Limpa a exportação de COBANs ativos e gera data/coban_registry_bv.csv
-  check_secrets.py           Varredura de segredos na árvore e no histórico do Git
+  preparar_cadastro_coban.py   limpa a exportação de COBANs e grava data/coban_registry_bv.csv
+  verificar_segredos.py        procura segredos e arquivos proibidos nos arquivos do git (--historico: todos os commits)
+  migrar_resultados.py         move campanhas de output/ para o layout de resultados/
+tests/
+  unitarios/  integracao/  e2e/  reais/    reais/ só roda com `simio testar --real`
 ```
 
-<p align="center">
-  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
-</p>
+## Máquina de estados da candidata
 
-## <img src="../assets/icones/classificacao.svg" width="22" height="22" valign="middle"> 3. Máquina de estados do candidato
-
-Cada URL única descoberta em uma campanha percorre os seguintes estados em `core/state.py`:
+Cada URL única de uma campanha é uma candidata e segue os estados de `nucleo/estado.py`:
 
 ```
-DISCOVERED ──► QUEUED ──► COLLECTING ──► COLLECTED ──► ANALYZING ──► REVIEWING ──► COMPLETED
-                 ▲            │                            │             │   └───► INCONCLUSIVE
-                 └────────────┘ (falha transitória)        │             └───────► QUEUED (RECOLLECT, máx. 1x)
-                                                           └─────────────────────► COMPLETED / INCONCLUSIVE
-qualquer etapa em voo ──► FAILED (após SIMIO_MAX_ATTEMPTS falhas internas)
+DESCOBERTA -> NA_FILA -> COLETANDO -> COLETADA -> ANALISANDO -> REVISANDO -> CONCLUIDA
+                 ^           |                       |             |  \-> INCONCLUSIVA
+                 +-----------+ falha transitória     |             +----> NA_FILA (nova coleta pedida pelo revisor)
+                                                     +------------------> CONCLUIDA / INCONCLUSIVA
+qualquer etapa -> FALHOU (depois de SIMIO_MAX_TENTATIVAS falhas)
 ```
 
-### Garantias operacionais da máquina de estados:
-1. **Transições atômicas (*Compare-and-Set*)**: toda transição é validada contra `TRANSITIONS`, gravada na tabela `state_transitions` dentro de uma transação SQLite (`BEGIN IMMEDIATE`) e verifica o estado esperado do candidato.
-2. **Lease de campanha única (`campaign_leases`)**: enquanto um processo executa `hunt` ou `resume` em uma campanha, ele mantém um *lease* com *heartbeat* a cada 30 segundos (expiração em 120 segundos). Isso impede que dois terminais processem a mesma campanha ao mesmo tempo.
-3. **Isolamento de falhas entre workers**: os candidatos são processados em paralelo até o limite de `--workers`. Se um candidato sofrer um erro inesperado, apenas ele é marcado como `FAILED`, sem derrubar os demais workers nem fechar a instância compartilhada do Chromium.
-4. **Proteção contra "candidato veneno" (`recover_in_flight`)**: o contador de tentativas (`attempts`) é incrementado **antes** de iniciar a etapa de coleta ou análise. Se um candidato travar ou derrubar o processo repetidamente até atingir `max_attempts`, o `resume` o move automaticamente para `FAILED` em vez de entrar em loop infinito.
-5. **Reaproveitamento de análises pagas (`evidence_id`)**: cada avaliação (`identity`, `brand`, `compliance`, `review`, `final`) é salva vinculada ao `id` da evidência coletada. Se uma campanha parar no meio da etapa de revisão por falta de orçamento, ao rodar `simio resume` a análise já feita pelo `BrandAnalyst` para aquela evidência é reaproveitada do banco sem nova chamada à Vertex AI.
+O que isso garante:
 
-<p align="center">
-  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
-</p>
+- Toda transição é conferida contra `TRANSICOES`, gravada em `transicoes_estado` dentro de `BEGIN IMMEDIATE` e só acontece se a candidata ainda estiver no estado esperado.
+- Uma campanha só roda em um processo por vez. Quem executa `investigar` ou `retomar` mantém uma trava em `travas_campanha` com pulso a cada 30 s; a trava vence depois de 120 s sem pulso.
+- Um erro inesperado numa candidata a leva para `FALHOU` sem derrubar as outras nem o Chromium compartilhado.
+- O contador de tentativas sobe antes de começar a coleta ou a análise. Uma página que derruba o processo várias vezes vai para `FALHOU` no `retomar` (`recuperar_em_andamento`) em vez de entrar em loop.
+- Etapas interrompidas recomeçam de um estado estável (`RETOMAR_DE`): coleta volta para a fila, análise e revisão voltam para `COLETADA`.
+- Cada avaliação (identidade, marca, conformidade, revisão, final) fica ligada ao id da evidência. Se a campanha parar na revisão, a análise de marca daquela evidência é reaproveitada sem nova chamada à Vertex AI.
+- `FALHOU` só volta para a fila com `simio retomar --repetir-falhas`. O revisor pode pedir nova coleta até `SIMIO_MAX_RECOLETAS` vezes (padrão 1).
 
-## <img src="../assets/icones/busca.svg" width="22" height="22" valign="middle"> 4. Descoberta: fontes, hipóteses e planejamento (`agents/discovery.py`)
+## Descoberta (`agentes/descoberta.py`)
 
 ```
-build_hypotheses(marca)  ──►  H1–H7, H10, H11   (varredura aberta, sem depender de COBANs)
-coban_hypotheses(base)   ──►  H9               (opcional, sempre no fim da fila)
-TyposquatConnector       ──►  H8               (DNS, sem acessar páginas)
-LensSearch               ──►  H12              (busca reversa da logo antiga)
-build_legacy_logo_hypotheses() ──► H13         (só em --focus logo-antiga, substitui a varredura aberta)
-build_threat_hypotheses()      ──► H14+H10+H7  (só em --focus ameacas, sem H9)
-                                   │
-                                   ▼
-             plan(): uma lista por fonte, intercaladas (zip)
-   grounding: 1 prompt por hipótese │ serper/brave: 1 consulta por dork
-   typosquat: 1 consulta por semente │ crtsh: padrões de domínio
-                                   │
-                                   ▼
-         run() ─► deduplicate() ─► prioritise() ─► fila (--limit)
+montar_hipoteses(marca)              H1-H7, H10, H11   varredura ampla, não depende do cadastro de COBANs
+hipoteses_coban(cadastro)            H9                opcional, sempre no fim da fila
+ConectorTyposquat                    H8                só DNS, não abre páginas
+BuscaLens                            H12               busca reversa da logo antiga
+montar_hipoteses_logo_antiga(marca)  H13               só em --foco logo-antiga, no lugar da varredura ampla
+montar_hipoteses_ameacas(marca)      H14 + H10 + H7    só em --foco ameacas, sem H9
+            |
+            v
+plano: uma lista por fonte, intercaladas
+  grounding: 1 prompt por hipótese     serper/brave: 1 consulta por dork
+  typosquat: 1 consulta por semente    crtsh: padrões de domínio da marca
+            |
+            v
+execução -> deduplicar() -> priorizar() -> fila (corta em --limite)
 ```
 
-| Fonte | Unidade de consulta | Consultas na rodada BV |
+| Fonte | Unidade de consulta | Na varredura ampla do BV |
 |---|---|---|
-| `grounding` | Prompt com a hipótese e seus dorks (o Gemini faz cerca de 18 buscas por prompt) | 38 + até 10 de H9 |
-| `serper` | Um dork executado literalmente, em páginas de 10 resultados (`SIMIO_SERPER_PAGES`) | 128 + até 40 de H9 |
-| `typosquat` | Uma semente (`typo:bancobv.com.br`) ou rótulo (`combo:bv`), com cerca de 1.900 domínios no total | 7 |
-| `crtsh` | Padrão de domínio da marca | 3 |
+| `grounding` | prompt com a hipótese e seus dorks (o Gemini faz cerca de 18 buscas por prompt) | 38, mais até 10 de H9 |
+| `serper` | um dork, executado como está escrito, em páginas de 10 resultados (`SIMIO_PAGINAS_SERPER`) | 128, mais até 40 de H9 |
+| `typosquat` | uma semente (`typo:bancobv.com.br`) ou rótulo (`combo:bv`); cerca de 1.900 domínios no total | 7 |
+| `crtsh` | padrão de domínio da marca | 3 |
 | `lens` | URL pública de uma imagem da logo antiga (3 créditos cada) | 1 |
 
-- **Orçamento**: `SIMIO_MAX_SEARCH_QUERIES` corta a lista intercalada; 300 cobre o plano completo (cerca de 230 consultas).
-- **Retomada**: consultas já executadas na campanha são puladas no `resume`.
-- **Logo antiga na análise**: antes do `BrandAnalyst`, `visual.detect_legacy_logo()` compara os screenshots (já com hash) com as referências do perfil. Os achados entram no catálogo como `E-VIS-LEGACY-*` e a regra `apply_legacy_logo_rule()` fixa o piso `REVIEW_REQUIRED`/`HIGH`, que `compose_final()` mantém mesmo após o revisor.
-- **Campanhas focadas** (`HuntOptions.focus`, gravado nos parâmetros da campanha e respeitado pelo `resume`):
-  - `DiscoveryAgent(focus=...)` troca as hipóteses abertas pelas do modo e ignora fontes que só listam domínios (`typosquat`, `crtsh`, `urlscan`); as fontes padrão do modo ficam em `FOCUS_DEFAULT_SOURCES`.
-  - Em `_analyze()`, depois da comparação de imagem e da identidade, uma página sem logo confirmada e sem `legacy_logo_hints()` (imagem com o nome da marca no arquivo ou no `alt`) é encerrada com um `BrandAssessment` `focus:logo-antiga` (`NO_INDICATION`, ou `INCONCLUSIVE` se a coleta falhou), sem chamar os modelos. A limitação fica registrada na decisão final.
-- **Inteligência de domínio**: `agents/domain_intel.py` (`enrich_campaign`) consulta RDAP do domínio e do IP e DNS sobre HTTPS para os hosts dos achados; `hosting_platform()` reconhece inquilinos de plataformas (lista própria + parte privada da Public Suffix List). O resultado fica em `campaigns/<ID>/domain-intel.json` (sem migração de banco) e alimenta a aba "Domínios", três colunas da aba "Ameaças" e os dossiês. Comando `simio enrich`; o `hunt`/`resume` chamam antes do relatório.
-- **Modo de ameaças**: `prioritise(..., focus="ameacas")` mantém e prioriza construtores gratuitos; `FOCUS_WITHOUT_COBANS` desliga H9. Na análise, `classify_input()` transforma os campos de formulário em `E-FORM-*` e `apply_sensitive_data_rule()` fixa o piso `REVIEW_REQUIRED`/`HIGH` para página com a marca que pede credenciais; `compose_final()` mantém o piso após o revisor.
-- **Links opacos do Serper**: `SerperSearch.run()` transforma resultados `google.com/goto` com `displayedLink` em candidato da página inicial do domínio (`recovered_from_google_redirect`, -1 na fila); redes sociais e resultados sem domínio ficam só no registro da consulta.
-- **Rotação de COBANs**: `Storage.searched_coban_cnpjs()` guarda quais correspondentes já foram pesquisados com sucesso; a próxima campanha começa pelos que faltam.
+`SIMIO_MAX_CONSULTAS_BUSCA` corta a lista intercalada; 300 cobre o plano completo (cerca de 230 consultas). Como as fontes são intercaladas, um limite pequeno ainda passa por todas elas. No `retomar`, consultas já feitas na campanha são puladas.
 
-<p align="center">
-  <img src="../assets/banners/divisoria-simples.svg" alt="Divisória" width="100%">
-</p>
+O cadastro de COBANs entra em rodízio: `Armazenamento.cnpjs_coban_pesquisados()` sabe quais correspondentes já foram pesquisados com sucesso, e a campanha seguinte começa pelos que faltam.
 
-## <img src="../assets/icones/validado.svg" width="22" height="22" valign="middle"> 5. Controle de orçamento e resiliência de LLM (`providers/llm.py`)
+Resultados `google.com/goto?url=...` do Serper que trazem o domínio exibido (`displayedLink`) viram candidata da página inicial daquele domínio (`recuperado_de_redirecionamento_google`, com uma pequena penalidade na fila). Redes sociais e resultados sem domínio ficam só no registro da consulta.
 
-- **Reserva prévia de requisições e tokens (`Budget`)**: antes de disparar qualquer chamada à Vertex AI, o `LLMGateway` reserva no banco 1 requisição e uma estimativa conservadora de tokens (`caracteres / 3 + 1800 por imagem + max_output_tokens`). Isso garante que múltiplos workers paralelos não ultrapassem o teto de `--max-llm-requests` ou `--max-tokens`.
-- **Pausa limpa por orçamento (`PAUSED_BUDGET`)**: quando o orçamento se esgota, o orquestrador interrompe novas chamadas, devolve o candidato atual ao estado estável `COLLECTED` e finaliza a execução com status `PAUSED_BUDGET`, gerando os relatórios parciais do que já foi concluído.
-- **Autorreparo de JSON estruturado**: todas as saídas do modelo são validadas pelo schema Pydantic correspondente (`BrandAnalysisOutput` ou `ReviewOutput`). Se o modelo retornar um JSON fora do contrato, o `LLMGateway` faz automaticamente uma tentativa de reparo enviando os erros de validação do Pydantic de volta ao modelo.
-- **Degradação graciosa**: se a Vertex AI estiver inacessível por erro de permissão/configuração (`LLMUnavailable`), o orquestrador degrada apenas o agente afetado para o analisador heurístico determinístico e registra a limitação no relatório final.
+### Campanhas focadas
 
-<p align="center">
-  <img src="../assets/banners/footer.svg" alt="SIMIO Footer" width="100%">
-</p>
+O foco (`OpcoesInvestigacao.foco`) fica gravado nos parâmetros da campanha e o `retomar` respeita.
+
+- `AgenteDescoberta(foco=...)` troca as hipóteses da varredura ampla pelas do modo e pula fontes que não servem ao modo (`typosquat`, `crtsh` e `urlscan` na logo antiga; `lens` em ameaças). As fontes padrão estão em `FONTES_PADRAO_FOCO`.
+- Na logo antiga, `_analisar()` roda primeiro a comparação de imagem e a identidade. Página sem logo confirmada e sem `pistas_logo_antiga()` (imagem com o nome da marca no arquivo ou no `alt`) é encerrada com uma avaliação `foco:logo-antiga` (Sem indício, ou Inconclusiva se a coleta falhou), sem chamar os modelos. A limitação fica registrada na decisão final.
+- Em ameaças, `priorizar(..., foco="ameacas")` mantém e prioriza construtores de site gratuitos (que a varredura ampla descarta) e `FOCOS_SEM_COBANS` desliga a H9. Na análise, `classificar_campo_entrada()` transforma os campos de formulário em evidências `E-FORM-*`, e `aplicar_regra_dados_sensiveis()` põe o piso Requer revisão / Alta em página com a marca que pede credencial.
+
+### Logo antiga na análise
+
+Antes do `AnalistaMarca`, `visual.detectar_logo_antiga()` compara as capturas (já com hash) com as referências do perfil. Os achados entram no catálogo como `E-VIS-LEGACY-*` e `aplicar_regra_logo_antiga()` põe o piso Requer revisão / Alta, que `compor_final()` mantém mesmo depois do revisor.
+
+### Inteligência de domínio
+
+`agentes/inteligencia_dominio.py` (`enriquecer_campanha`) consulta RDAP do domínio e do IP e DNS sobre HTTPS para os hosts dos achados (Indício forte, Requer revisão ou página que pede credencial). `plataforma_hospedagem()` reconhece páginas hospedadas em plataformas (lista própria mais a parte privada da Public Suffix List). O resultado vai para `campanhas/<id>/dominios.json`, sem tabela no banco, e alimenta a aba Domínios, colunas da aba Ameaças e os dossiês. Roda no fim do `investigar` e do `retomar`, ou com `simio enriquecer`.
+
+## Orçamento e falhas do LLM (`provedores/llm.py`)
+
+- Antes de cada chamada, o `GatewayLLM` reserva no banco uma requisição e uma estimativa conservadora de tokens (`caracteres / 3 + 1800 por imagem + máximo de saída`). Assim vários trabalhadores em paralelo não passam de `--max-requisicoes-llm` nem de `--max-tokens`. A reserva é acertada com o uso real quando a resposta chega.
+- Quando o orçamento acaba, o orquestrador para de chamar o modelo, devolve a candidata atual para `COLETADA`, encerra a campanha como `PAUSADA_ORCAMENTO` e gera relatórios parciais. `simio retomar` com limites maiores continua.
+- Toda resposta é validada pelo modelo Pydantic correspondente (`SaidaAnaliseMarca` ou `SaidaRevisao`). Se vier fora do contrato, o gateway faz uma tentativa de reparo mandando os erros de validação de volta ao modelo.
+- Se a Vertex AI estiver inacessível por permissão ou configuração (`LLMIndisponivel`), só o agente afetado cai para a heurística, e a limitação aparece no relatório.
+
+## Banco e migrações (`nucleo/armazenamento.py`)
+
+O esquema tem versão em `schema_migrations`. Um banco novo já nasce no esquema atual (v3). Um banco antigo é migrado ao ser aberto por qualquer comando:
+
+- v1 e v2: esquema original, com tabelas e valores em inglês.
+- v3: `traducao_legado.migrar_v3()` renomeia tabelas, colunas e índices e reescreve o conteúdo gravado (JSON das evidências e avaliações, códigos como `STRONG_INDICATION` para `INDICIO_FORTE`, famílias de hipótese como `H1-identity` para `H1-identidade`). Roda numa transação com as chaves estrangeiras desligadas e confere as referências no final.
+
+A migração do banco não move arquivos. Para trazer pastas do layout antigo (`output/`) use `scripts/migrar_resultados.py`; veja [deployment.md](deployment.md#migrar-do-layout-antigo).
+
+## Layout de saída (`nucleo/caminhos.py`)
+
+Todos os nomes de pasta e arquivo saem de `caminhos.py`. O id da campanha é `AAAA-MM-DD_HHhMM_<marca>_<modo>` no horário de Brasília (`-2`, `-3` se repetir). Cada candidata é identificada nos arquivos por `<host>_<8 primeiros caracteres do id>`. As evidências ficam em `evidencias/<host>_<id>/tentativa-N/` e o banco guarda o caminho relativo à pasta da campanha, sempre com `/`. Antes de gravar relatórios novos, `arquivar_relatorios_anteriores()` move os atuais para `anteriores/<data>/` e corrige os links para as evidências. A árvore completa está no [README](../README.md#onde-ficam-os-resultados).
