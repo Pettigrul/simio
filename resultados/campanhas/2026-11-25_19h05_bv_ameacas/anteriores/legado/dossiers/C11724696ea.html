@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C11724696ea</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C11724696ea — tournasol.fr</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://tournasol.fr/boleto-bv/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2026-11-12 (13 dias) · Hosting Concepts B.V. d/b/a Openprovider</div><div class="kv"><b>Titular do domínio</b>oculto (serviço de privacidade)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (172.67.167.9); Cloudflare, Inc. (104.21.57.214)</div>
+<div class="kv"><b>DNS (NS / MX)</b>meadow.ns.cloudflare.com, vicky.ns.cloudflare.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>NONE</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Embora a renderização atual da página tenha resultado em tela em branco, o registro de indexação de busca demonstra que o site atuava simulando canal oficial de emissão de boletos e acesso a contratos de financiamento do Banco BV sem qualquer identificação de parceiro ou correspondente bancário. Diante da alta sensibilidade do serviço ofertado (golpe de 2ª via de boleto / phishing), enquadra-se como canal suspeito de personificação oficial pendente de revisão.
+[Revisor: HUMAN_REVIEW] Existe conflito entre a renderização atual da página (tela totalmente em branco, sem texto ou elementos visíveis) e o registro indexado em E-DISC-001, que reportava atividade suspeita de emissão de boletos e validação simulando o Banco BV. Como a página pode ter sido desativada ou estar aplicando técnicas de cloaking, não é possível confirmar com segurança a infração em tempo real sem verificação humana.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>uso destacado de logotipo/identidade visual ou linguagem da instituição sem CNPJ/declaração de correspondente: elevado a STRONG_INDICATION (HIGH)</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C11724696ea/attempt-2/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 2d4cf258ab668eed683ccb68a2d11fc91a42d4985b94427e1264c94a70ba17ae</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C11724696ea/attempt-2/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 2d4cf258ab668eed683ccb68a2d11fc91a42d4985b94427e1264c94a70ba17ae</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://tournasol.fr/boleto-bv/ (domínio: tournasol.fr)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): tournasol.fr — **URL:** `http://tournasol.fr/` | Sem CNPJ ou razão social legítima identificável no conteúdo visível | **O que oferece ou pede:** Simula serviços de emissão de &#34;2ª via de boletos&#34;, &#34;Validador de Boletos&#34;, inserção de &#34;Número de Contrato&#34; e redirecionamento de cliques com o comando &#34;Acesse sua conta clicando aqui: Financiamento/Leasing&#34; | **Uso da marca e risco associado:** Utiliza expressamente menções a &#34;Banco BV&#34;, &#34;BV Financeira&#34; e &#34;Banco Votorantim (código 655)&#34;</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C11724696ea/attempt-2/viewport.png (sha256 2d4cf258ab668eed…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C11724696ea/attempt-2/fullpage.png (sha256 2d4cf258ab668eed…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>(sem título)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>O histórico indexado da página descreve fluxos de 2ª via de boleto, validação de boletos e inserção de número de contrato em domínio não pertencente ao conglomerado BV.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência de dados cadastrais legítimos ou CNPJ de correspondente no domínio tournasol.fr.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Tentativa de se passar por canal oficial de suporte a financiamentos/leasing e cobrança.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Página renderizada retornou em branco no momento da captura automatizada, impossibilitando conferência visual direta do layout.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] SERVICE_JOURNEY: Indício de canal falso simulando serviços transacionais da instituição (emissão e validação de boletos, login para financiamento/leasing e solicitação de número de contrato) em domínio de terceiro não oficial. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Ausência de razão social, CNPJ ou identificação de empresa terceira responsável pela intermediação, associada ao uso direto das marcas Banco BV, BV Financeira e Banco Votorantim. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> </span></li><li>[HIGH] CONSUMER_CONFUSION: Apresentação e estrutura voltadas a induzir o cliente a acreditar que está acessando o ambiente oficial de emissão de boletos e serviços de financiamento do banco. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A URL &#39;https://tournasol.fr/boleto-bv/&#39; possui slug direcionado especificamente a &#39;boleto-bv&#39; sob domínio francês (.fr) não relacionado ao Banco BV.</li><li>A captura em tempo de execução retornou uma página visualmente em branco, sem texto ou elementos gráficos renderizados no viewport.</li><li>O registro de busca e grounding (E-DISC-001) indica que o domínio simulava ferramentas de 2ª via de boleto, validador de boletos e acesso a conta de financiamento/leasing citando expressamente &#39;Banco BV&#39;, &#39;BV Financeira&#39; e &#39;Banco Votorantim (código 655)&#39; sem CNPJ correspondente.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível visualizar o layout gráfico atual devido à tela em branco na captura, dependendo da evidência de busca indexada (E-DISC-001) para análise do histórico e atividade do endereço.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Embora a renderização atual da página tenha resultado em tela em branco, o registro de indexação de busca demonstra que o site atuava simulando canal oficial de emissão de boletos e acesso a contratos de financiamento do Banco BV sem qualquer identificação de parceiro ou correspondente bancário. Diante da alta sensibilidade do serviço ofertado (golpe de 2ª via de boleto / phishing), enquadra-se como canal suspeito de personificação oficial pendente de revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:tournasol.fr</span></div>
+      <div class="kv"><b>Confiança</b>NONE</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>tournasol.fr</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Existe conflito entre a renderização atual da página (tela totalmente em branco, sem texto ou elementos visíveis) e o registro indexado em E-DISC-001, que reportava atividade suspeita de emissão de boletos e validação simulando o Banco BV. Como a página pode ter sido desativada ou estar aplicando técnicas de cloaking, não é possível confirmar com segurança a infração em tempo real sem verificação humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Página em branco na coleta ao vivo vs. registro em índice de busca</td><td>HIGH</td><td>A captura ao vivo da URL resultou em uma página totalmente em branco sem conteúdo textual ou gráfico visível, enquanto o registro em índice de busca aponta para histórico de página simulando emissão de boletos do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-SHOT-VIEWPORT</li><li>E-SHOT-FULL</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo (inteligência de ameaças e proteção de marca): Aplicativos falsos (APK), páginas de login e pedidos de atualização de dados em nome da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;app Banco BV&#34; OR &#34;aplicativo BV&#34; OR &#34;BV apk&#34; OR &#34;baixar app BV&#34; OR &#34;Banco BV apk&#34;) -site:play.google.com -site:apps.apple.com -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br
+  - (&#34;acesse sua conta&#34; OR &#34;atualize seus dados&#34; OR &#34;atualização cadastral&#34; OR &#34;token&#34; OR &#34;desbloqueio&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos) que possam se passar pela instituição ou enganar seus clientes. Para cada uma, informe a URL, quem parece operar a página e o que ela oferece ou pede (login, senha, CPF, dados de cartão, token, boleto ou Pix, download de aplicativo, contato por WhatsApp/Telegram) e por que parece falsa ou perigosa.<br><span class="muted">H10-fraud:app-phishing</span></td><td class="mono">https://tournasol.fr/boleto-bv/</td><td>tournasol.fr<br><span class="muted">**URL:** `http://tournasol.fr/` | Sem CNPJ ou razão social legítima identificável no conteúdo visível | **O que oferece ou pede:** Simula serviços de emissão de &#34;2ª via de boletos&#34;, &#34;Validador de Boletos&#34;, inserção de &#34;Número de Contrato&#34; e redirecionamento de cliques com o comando &#34;Acesse sua conta clicando aqui: Financiamento/Leasing&#34; | **Uso da marca e risco associado:** Utiliza expressamente menções a &#34;Banco BV&#34;, &#34;BV Financeira&#34; e &#34;Banco Votorantim (código 655)&#34;</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 23:10:16.863676+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.57.214</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C11724696ea/attempt-2/manifest.json<br>sha256 2571e44a3d303da22072adb402da85fff262e5dca6d08b07ab816a6b6b4e1e1b</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://tournasol.fr/boleto-bv/<br>Final: https://tournasol.fr/boleto-bv/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C11724696ea/attempt-2/viewport.png</td><td class="mono">2d4cf258ab668eed683ccb68a2d11fc91a42d4985b94427e1264c94a70ba17ae</td><td>5625</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C11724696ea/attempt-2/fullpage.png</td><td class="mono">2d4cf258ab668eed683ccb68a2d11fc91a42d4985b94427e1264c94a70ba17ae</td><td>5625</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C11724696ea/attempt-2/page.html.txt</td><td class="mono">a7fe83ec64bb23eb28090598db3d166ed98e52e39d1afbbfd74c579553f93e4e</td><td>39</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C11724696ea/attempt-2/text.txt</td><td class="mono">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td>0</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C11724696ea/attempt-2/page.json</td><td class="mono">d321e6086568b17854cbced0ac4c7f308c79b5bc7e88ef5672d597a8bf728b64</td><td>322</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:32+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T23:09:31+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:09:35+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:09:35+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:09:56+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:10:16+00:00</td><td>REVIEWING</td><td>QUEUED</td><td>reviewer requested recollection: A captura de tela resultou em tela totalmente em branco apesar do retorno HTTP 200. Uma nova coleta pode resolver eventual falha transitória de renderização ou timeout de scripts.</td></tr>
+      <tr><td>2026-11-25T23:10:16+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:10:20+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:10:20+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:10:36+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:10:51+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

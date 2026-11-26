@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cebbbe761d9",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://economia.ig.com.br/2021-12-27/justica-boleto-falso-whatsapp.html",
+  "final_url": "https://economia.ig.com.br/2021-12-27/justica-boleto-falso-whatsapp.html",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.18.28.20",
+  "collected_at": "2026-11-25T23:31:35.300798+00:00",
+  "manifest_written_at": "2026-11-25T23:31:47.342300+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cebbbe761d9/attempt-1/viewport.png",
+      "sha256": "8d52af0f754ba28e042e580a5a5eb1e51cf504be41ed273450bb9c0bb66e1027",
+      "size_bytes": 640275
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cebbbe761d9/attempt-1/fullpage.png",
+      "sha256": "be2ff0f52f18befcf5d85028612d323998e03a8c464b5dc63f2d53b015ead382",
+      "size_bytes": 1427200
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cebbbe761d9/attempt-1/page.html.txt",
+      "sha256": "d55fb51da2fea39899c53d66cf77c55b2c8ce81d277f869c38604fee8f8f9c2f",
+      "size_bytes": 167432
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cebbbe761d9/attempt-1/text.txt",
+      "sha256": "f36c243e0532722485d9373149b008b84c45ded7c82e002c7482e75a2145548f",
+      "size_bytes": 3967
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cebbbe761d9/attempt-1/page.json",
+      "sha256": "1bad68028c7847f68d97cc10f36f0afb86316a806e602e59b9303e77d851eb2a",
+      "size_bytes": 19791
+    }
+  ],
+  "blocked_requests": [
+    "https://match.sharethrough.com/universal/v1?supply_id=UGEG1p93 -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com/universal/v1?supply_id=av4BPcZO&gdpr=0&gdpr_consent= -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com:443 -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

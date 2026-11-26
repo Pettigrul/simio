@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cc79730683c",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://fgts-facilita-mobapps.ru.aptoide.com/",
+  "final_url": "https://fgts-facilita-mobapps.ru.aptoide.com/app",
+  "redirect_chain": [
+    "https://fgts-facilita-mobapps.ru.aptoide.com/",
+    "https://fgts-facilita-mobapps.ru.aptoide.com/app",
+    "https://fgts-facilita-mobapps.ru.aptoide.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.20.24.150",
+  "collected_at": "2026-11-25T23:16:52.879384+00:00",
+  "manifest_written_at": "2026-11-25T23:17:00.169770+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cc79730683c/attempt-1/viewport.png",
+      "sha256": "4de2593f886c67fb3a2eb100b6785bc969b6a974fd53ed8ac31fd5c1c7fc6444",
+      "size_bytes": 42872
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cc79730683c/attempt-1/fullpage.png",
+      "sha256": "4de2593f886c67fb3a2eb100b6785bc969b6a974fd53ed8ac31fd5c1c7fc6444",
+      "size_bytes": 42872
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cc79730683c/attempt-1/page.html.txt",
+      "sha256": "309228ea37cb544804466a10f345e11ea312860a1a26afca50a95e6c6ccfaabf",
+      "size_bytes": 45039
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cc79730683c/attempt-1/text.txt",
+      "sha256": "023ce6963f7bb80e24f88f3454664d7039fc023a315909af5d13c630ebb791cd",
+      "size_bytes": 310
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cc79730683c/attempt-1/page.json",
+      "sha256": "6ccfbd506262ffe41896d7e63ae2122dbb5d351071b2c27090377d0568d99a3c",
+      "size_bytes": 1504
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

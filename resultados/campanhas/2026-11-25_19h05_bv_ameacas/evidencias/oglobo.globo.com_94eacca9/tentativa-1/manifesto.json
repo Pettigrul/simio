@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C94eacca940",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://oglobo.globo.com/economia/defesa-do-consumidor/proteste-vai-justica-contra-bancos-bmg-bv-por-dificultarem-pagamento-de-financiamento-13658454",
+  "final_url": "https://oglobo.globo.com/economia/defesa-do-consumidor/proteste-vai-justica-contra-bancos-bmg-bv-por-dificultarem-pagamento-de-financiamento-13658454",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "186.192.83.83",
+  "collected_at": "2026-11-25T23:24:58.306797+00:00",
+  "manifest_written_at": "2026-11-25T23:25:09.079617+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C94eacca940/attempt-1/viewport.png",
+      "sha256": "de07bf311822e8df584120948ed0a540701b7118ef443f85ae87ec94b26a00a0",
+      "size_bytes": 510092
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C94eacca940/attempt-1/fullpage.png",
+      "sha256": "371d362dcc0e11ae81e3a146715b89a40446feca644bdeba2bdc052a3f7ad278",
+      "size_bytes": 1539361
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C94eacca940/attempt-1/page.html.txt",
+      "sha256": "2781a80a9209efebb99b27ac7e7f2bfcaec0641794a79bef0dcd1e8e5bdac037",
+      "size_bytes": 122482
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C94eacca940/attempt-1/text.txt",
+      "sha256": "b4ab16cb83869a0332fec3fbfa912b367797f36d051654e27e2f72bf98ded0a9",
+      "size_bytes": 3583
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C94eacca940/attempt-1/page.json",
+      "sha256": "6a89c2d1ba0773d92601f95efc4ab329f5c03d35ebdfc6689aa3219aa3ea4195",
+      "size_bytes": 21057
+    }
+  ],
+  "blocked_requests": [
+    "https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -> DNS resolution failed for invstatic101.creativecdn.com: [Errno -2] Name or service not known",
+    "https://cocoon.globo.com/v2/user/logged -> DNS resolution failed for cocoon.globo.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com:443 -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

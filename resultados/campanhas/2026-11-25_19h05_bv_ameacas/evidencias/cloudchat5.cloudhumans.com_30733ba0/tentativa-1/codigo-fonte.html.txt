@@ -1,0 +1,1112 @@
+<html lang="pt_BR" class="light" style="--dynamic-hover-color: #daa5c1;"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/runtime-61999843546f56fab908.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/156-0cfe12a6e1414a8a96c9.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/2893-55fce75e2611dc00ebfa.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/2922-7b8ece7f979a9f4b6cd0.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/3632-317051d23c9ada18498e.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/1278-cdd6ca428822690dc5a1.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/9768-45808ea4b43e29ca6ac6.js" defer="defer"></script>
+<script src="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/js/portal-50c7be73749f861607b9.js" defer="defer"></script>
+    <link rel="stylesheet" href="https://cdn-cloudchat.cloudhumans.com/4.0-c1f0b15/packs/css/portal-abe3c8f9.css">
+    <style>
+      #appearance-dropdown[data-current-theme="system"] .check-mark-icon.light-theme,
+      #appearance-dropdown[data-current-theme="system"] .check-mark-icon.dark-theme,
+      #appearance-dropdown[data-current-theme="dark"] .check-mark-icon.light-theme,
+      #appearance-dropdown[data-current-theme="dark"] .check-mark-icon.system-theme,
+      #appearance-dropdown[data-current-theme="light"] .check-mark-icon.dark-theme,
+      #appearance-dropdown[data-current-theme="light"] .check-mark-icon.system-theme {
+        display: none;
+      }
+    </style>
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="udTTl9o_de9T9bkF5IT3VN9D9Vnutw1TSUmkMuIw-z2xEsrJwfJ1UZRr2k5eEq2qD1od11I4axxNfkd6EqXXvQ">
+        <title>Extrato Automático: como funciona e como ativar | Financeiro</title>
+    <meta name="description" content="Conecte seu banco à Fintera com o Extrato Automático e faça a conciliação bancária todos os dias, sem importar extratos manualmente.">
+
+    <link rel="icon" type="image/png" href="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNE1JQnc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--620782e097623269473bbdf5ee67a0920255d4e8/favicon.png">
+
+
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // we can use document.body here but that would mean pushing this script inside the body
+        // since the body is not created yet. This is done to avoid FOUC, at a tiny cost of Time to Interactive
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.add('light')
+      }
+    </script>
+  </head>
+  <body data-portal-widget-token="">
+    <div id="portal" class="antialiased">
+      <main class="flex flex-col min-h-screen bg-white main-content dark:bg-slate-900" role="main">
+          <header class="sticky top-0 z-50 w-full bg-white shadow-sm dark:bg-slate-900">
+  <nav class="flex max-w-7xl px-4 mx-auto md:px-8" aria-label="Top">
+    <div class="flex items-center w-full py-5 overflow-hidden">
+      <a href="/hc/financeiro/pt_BR" class="flex items-center h-10 text-lg font-semibold text-slate-900 dark:text-white">
+          <img src="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBL0VuQmc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8ea938a3628044f8555e20386411f2fc24776399/favicon.png" class="w-auto h-10 mr-2">
+        Financeiro
+      </a>
+    </div>
+
+    <div class="flex items-center justify-between gap-2 sm:gap-5">
+        <div class="hidden px-1 py-2 ml-8 cursor-pointer border-l-1 border-slate-50 dark:border-slate-800 md:block">
+          <div class="flex-grow flex-shrink-0">
+            <a id="header-action-button" target="_blank" rel="noopener noreferrer nofollow" href="https://www.fintera.com.br/" class="flex flex-row items-center gap-1 text-sm font-medium whitespace-nowrap text-slate-800 dark:text-slate-100 stroke-slate-700 dark:stroke-slate-200">
+              <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.5 3H3.5C2.94772 3 2.5 3.44772 2.5 4V12C2.5 12.5523 2.94772 13 3.5 13H11.5C12.0523 13 12.5 12.5523 12.5 12V9" stroke-width="1.2" stroke-linecap="round"></path>
+<path d="M9.5 3H12.3C12.4105 3 12.5 3.08954 12.5 3.2V6" stroke-linecap="round"></path>
+<path d="M12 3.5L6 9.5" stroke-width="1.2" stroke-linecap="round"></path>
+</svg>
+
+              Site
+            </a>
+          </div>
+        </div>
+
+      <div class="relative flex-grow flex-shrink-0 px-1 py-2 cursor-pointer">
+        <button id="toggle-appearance" class="flex justify-between min-w-[76px] flex-row items-center stroke-slate-700 dark:stroke-slate-200 text-slate-800 dark:text-slate-100 gap-1" type="button">
+          <div data-theme="system" class="flex-row items-center gap-1 theme-button flex">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4H4C3.44772 4 3 4.44773 3 5.00002V10.0001C3 10.5524 3.44772 11.0002 4 11.0002H12C12.5523 11.0002 13 10.5524 13 10.0001V5.00002C13 4.44773 12.5523 4 12 4Z" stroke-width="1.00001" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M6 13H10" stroke-width="1.00001" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M8 11V13" stroke-width="1.00001" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+            <span class="text-sm font-medium">Sistema</span>
+          </div>
+          <div data-theme="light" class="flex-row items-center gap-1 theme-button hidden">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.0001 10.3998C9.32559 10.3998 10.4001 9.32529 10.4001 7.99982C10.4001 6.67436 9.32559 5.59985 8.0001 5.59985C6.67462 5.59985 5.6001 6.67436 5.6001 7.99982C5.6001 9.32529 6.67462 10.3998 8.0001 10.3998Z" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M8 2V3.19998" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M8 12.8V14" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M3.75806 3.75781L4.60406 4.6038" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M11.396 11.3958L12.242 12.2417" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2 7.99976H3.2" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12.8 7.99976H14.0001" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M4.60406 11.3958L3.75806 12.2417" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12.242 3.75781L11.396 4.6038" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+            <span class="text-sm font-medium">Claro</span>
+          </div>
+          <div data-theme="dark" class="flex-row items-center gap-1 theme-button hidden">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3C7.33696 3.66304 6.96447 4.56232 6.96447 5.5C6.96447 6.43768 7.33696 7.33696 8 8C8.66304 8.66304 9.56232 9.03553 10.5 9.03553C11.4377 9.03553 12.337 8.66304 13 8C13 8.9889 12.7068 9.9556 12.1573 10.7778C11.6079 11.6001 10.827 12.241 9.91342 12.6194C8.99979 12.9978 7.99446 13.0969 7.02455 12.9039C6.05465 12.711 5.16373 12.2348 4.46447 11.5355C3.76521 10.8363 3.289 9.94535 3.09608 8.97545C2.90315 8.00555 3.00217 7.00021 3.3806 6.08658C3.75904 5.17295 4.39991 4.39206 5.22215 3.84265C6.0444 3.29324 7.01109 3 8 3Z" stroke-width="1.11111" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+            <span class="text-sm font-medium">Escuro</span>
+          </div>
+          <div class="flex items-center px-1 pointer-events-none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+          </div>
+        </button>
+        <div id="appearance-dropdown" data-current-theme="system" class="absolute flex-col w-32 h-auto bg-white border border-solid rounded dark:bg-slate-900 top-9 right-1 border-slate-100 dark:border-slate-800" aria-hidden="true" style="display: none;" data-dropdown="appearance-dropdown">
+          <button id="toggle-theme-button" data-theme="system" class="flex flex-row items-center justify-between gap-1 px-2 py-2 border-b border-solid border-slate-100 dark:border-slate-800 stroke-slate-700 dark:stroke-slate-200 text-slate-800 dark:text-slate-100">
+            <div class="flex flex-row items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4H4C3.44772 4 3 4.44773 3 5.00002V10.0001C3 10.5524 3.44772 11.0002 4 11.0002H12C12.5523 11.0002 13 10.5524 13 10.0001V5.00002C13 4.44773 12.5523 4 12 4Z" stroke-width="1.00001" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M6 13H10" stroke-width="1.00001" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M8 11V13" stroke-width="1.00001" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+              <span class="text-xs font-medium">Sistema</span>
+            </div>
+            <span class="check-mark-icon system-theme">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.2121 5L5.87879 11.3333L3 8.45455" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+            </span>
+          </button>
+          <button id="toggle-theme-button" data-theme="light" class="flex flex-row items-center justify-between gap-1 px-2 py-2 border-b border-solid border-slate-100 dark:border-slate-800 stroke-slate-700 dark:stroke-slate-200 text-slate-800 dark:text-slate-100">
+            <div class="flex flex-row items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.0001 10.3998C9.32559 10.3998 10.4001 9.32529 10.4001 7.99982C10.4001 6.67436 9.32559 5.59985 8.0001 5.59985C6.67462 5.59985 5.6001 6.67436 5.6001 7.99982C5.6001 9.32529 6.67462 10.3998 8.0001 10.3998Z" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M8 2V3.19998" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M8 12.8V14" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M3.75806 3.75781L4.60406 4.6038" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M11.396 11.3958L12.242 12.2417" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2 7.99976H3.2" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12.8 7.99976H14.0001" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M4.60406 11.3958L3.75806 12.2417" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12.242 3.75781L11.396 4.6038" stroke-width="1.19999" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+              <span class="text-xs font-medium">Claro</span>
+            </div>
+            <span class="check-mark-icon light-theme">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.2121 5L5.87879 11.3333L3 8.45455" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+            </span>
+          </button>
+          <button id="toggle-theme-button" data-theme="dark" class="flex flex-row items-center justify-between gap-1 px-2 py-2 stroke-slate-700 dark:stroke-slate-200 text-slate-800 dark:text-slate-100">
+            <div class="flex flex-row items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3C7.33696 3.66304 6.96447 4.56232 6.96447 5.5C6.96447 6.43768 7.33696 7.33696 8 8C8.66304 8.66304 9.56232 9.03553 10.5 9.03553C11.4377 9.03553 12.337 8.66304 13 8C13 8.9889 12.7068 9.9556 12.1573 10.7778C11.6079 11.6001 10.827 12.241 9.91342 12.6194C8.99979 12.9978 7.99446 13.0969 7.02455 12.9039C6.05465 12.711 5.16373 12.2348 4.46447 11.5355C3.76521 10.8363 3.289 9.94535 3.09608 8.97545C2.90315 8.00555 3.00217 7.00021 3.3806 6.08658C3.75904 5.17295 4.39991 4.39206 5.22215 3.84265C6.0444 3.29324 7.01109 3 8 3Z" stroke-width="1.11111" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+              <span class="text-xs font-medium">Escuro</span>
+            </div>
+            <span class="check-mark-icon dark-theme">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.2121 5L5.87879 11.3333L3 8.45455" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+            </span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+        
+
+
+<div id="portal-bg" class="bg-white dark:bg-slate-900 shadow-inner">
+  <div id="portal-bg-gradient" class="pt-8 pb-8 md:pt-14 md:pb-6">
+    <div class="max-w-7xl px-4 md:px-8 mx-auto">
+      <div class="flex flex-col lg:pl-[17.5rem]">
+        
+<div class="flex flex-row items-center gap-px mb-6">
+  <a class="text-slate-500 dark:text-slate-200 text-sm gap-1 hover:cursor-pointer false leading-8 font-semibold" href="/hc/financeiro/pt_BR">
+    Principal
+  </a>
+  <span class="w-4 h-4 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center text-xs text-slate-500 dark:text-slate-300"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+    <a class="text-slate-500 dark:text-slate-200 text-sm gap-1 whitespace-nowrap hover:cursor-pointer false leading-8 font-semibold" href="/hc/financeiro/pt_BR/categories/extrato-automatico">
+    Extrato Automático
+    </a>
+    <span class="w-4 h-4 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center text-xs text-slate-500 dark:text-slate-300"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+    <span class="min-w-0 overflow-hidden text-sm font-semibold text-slate-800 dark:text-slate-100 text-ellipsis whitespace-nowrap">Ative o Extrato Automático na Fintera</span>
+</div>
+<div class="flex items-start justify-between gap-4">
+  <h1 class="text-3xl font-semibold leading-normal md:tracking-normal md:text-4xl text-slate-900 dark:text-white">
+    Ative o Extrato Automático na Fintera
+  </h1>
+  <div id="edit-article-entrypoint" data-edit-url="/app/accounts/130/portals/financeiro/pt_BR/articles/2265" data-edit-label="Editar este artigo" class="hidden shrink-0"></div>
+</div>
+<div class="flex flex-col items-start justify-between w-full pt-6 md:flex-row md:items-center">
+  <div class="flex items-start space-x-1">
+    <span class="flex items-center text-base font-medium text-slate-600 dark:text-slate-400">
+     Última atualização em Oct 06, 2026
+    </span>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex max-w-7xl w-full px-4 md:px-8 mx-auto gap-10">
+    <nav aria-label="Categorias" class="hidden lg:block w-60 shrink-0 lg:self-stretch">
+  <div data-hc-sidebar="" class="sticky py-8 pr-6 border-r border-solid top-24 border-slate-100 dark:border-slate-800" style="top: -164px;">
+    <h2 class="px-2 mb-3 text-xs font-semibold tracking-wide uppercase text-slate-500 dark:text-slate-400">
+      Categorias
+    </h2>
+    <ul class="flex flex-col gap-1">
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">🚀</span>
+                <span class="line-clamp-2">Primeiros passos</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/visao-geral-tela-inicial">Visão geral: tela inicial</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/primeiros-passos-no-financeiro">Começando no Financeiro: configurações iniciais</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/passo-a-passo">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">💸</span>
+                <span class="line-clamp-2">Movimentações</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/importancia-do-fluxo-de-caixa">Importância do Fluxo de Caixa</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorio-de-fluxo-de-caixa-modelo-antigo">Relatório de Fluxo de Caixa (Modelo Antigo)</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-usar-o-fluxo-de-caixa">Utilizando o Fluxo de Caixa</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/desfazer-uma-conciliacao-bancaria">Desfazer uma conciliação bancária</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/anexar-arquivo-no-contas-a-pagar-e-receber">Anexar arquivo a partir de um lançamento do Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/excluir-lancamento-recorrente">Excluir um lançamento recorrente no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/desfazer-pagamento-ou-recebimento">Desfazer um pagamento/recebimento no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/informar-impostos-no-contas-a-pagar-e-receber">Informar impostos no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/excluir-uma-conta-a-pagar-e-receber">Excluir uma Conta a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/criar-um-lancamento-no-contas-a-pagar-e-receber">Criar um lançamento no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/gerar-um-recibo-a-partir-do-contas-a-pagar-e-receber">Gerar um Recibo a partir do Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/pesquisar-um-lancamento-no-contas-a-pagar-e-receber">Pesquisar um lançamento no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/edicao-em-massa-no-contas-a-pagar-e-receber">Realizar uma edição em massa de lançamentos no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/gerar-relatorio-no-contas-a-pagar-e-receber">Gerar Relatório no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/pagamento-recebimento-parcial-de-contas-a-pagar-e-receber">Pagamento/Recebimento Parcial de Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/para-que-serve-o-fluxo-de-caixa">Para que serve o Fluxo de Caixa?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/conta-normal-recorrente-ou-parcelada">Conta Normal, Recorrente ou Parcelada no Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/painel-de-movimentacoes-do-contas-a-pagar-e-receber">Painel de Movimentações do Contas a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/clonar-uma-conta-a-pagar-e-receber">Clonar uma Conta a Pagar e Receber</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/saldo-do-fluxo-de-caixa">Saldo do Fluxo de Caixa</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/pagar-e-receber-em-massa">Pagar e Receber em massa</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/qual-regra-automatica-foi-aplicada">O que ocorre quando aplico uma Regra Automática em um lançamento?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/rateio-de-centros-de-custo-receita-no-financeiro">Rateio de centros de custo/receita no Financeiro</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/ratear-lancamento-entre-centros-de-custo">Como ratear meu lançamento no Contas a Pagar/Receber?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-gerar-um-relatorio-de-rateios">Como gerar um relatório de rateio de centro de custo e receita?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/conciliar-permutas-em-um-unico-movimento">Como conciliar permutas (Pagar e Receber) em um único movimento</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/movimentacoes">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">📅</span>
+                <span class="line-clamp-2">Agendamento de Pagamentos</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/status-do-agendamento-de-pagamento">Agendamento de pagamento: entenda os status e ícones</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-cancelar-um-agendamento-de-pagamento">Como cancelar um agendamento de pagamento?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/bancos-integrados-ao-agendamento-de-pagamento">Através de quais bancos posso integrar e realizar o Agendamento de Pagamento na Fintera?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-agendar-pagamentos">Configure o Agendamento de Pagamentos e programe suas contas sem sair da plataforma</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/agendamento-automatico">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">🏦</span>
+                <span class="line-clamp-2">Contas</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/lancamentos-no-cartao-de-credito">Cadastrar, excluir, clonar e mover lançamentos no Cartão de Crédito</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/criar-lancamentos-em-lote-no-cartao">Criar lançamentos em lote no cartão</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorio-de-conta-tipo-cartao-de-credito">Relatório de conta tipo Cartão de Crédito</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/importar-extrato-ofx-manualmente">Importar manualmente o extrato bancário .OFX para o Financeiro</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/excluir-arquivar-clonar-e-anexar-em-contas">Contas financeiras: exclua, arquive, clone e anexe</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/dividir-um-lancamento-bancario">Dividir um lançamento bancário</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/contas-financeiras">Como cadastrar uma conta financeira</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorio-de-conta-corrente-dinheiro-e-investimento">Gerar relatório em contas tipo Corrente, Dinheiro e Investimento</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/ajustar-ou-excluir-saldo-da-conta">Ajustar ou excluir saldo da conta</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/transferencias-entre-contas-financeiras">Transferências entre contas financeiras</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/cadastrar-um-lancamento-manual-em-suas-contas-financeiras">Cadastrar um lançamento manual em suas contas financeiras</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/resolver-duplicidades-no-extrato-bancario">Resolver duplicidades no extrato bancário</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/editar-ou-desfazer-uma-divisao-de-lancamento">Editar ou desfazer uma divisão de lançamento</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/pagar-valor-minimo-da-fatura-do-cartao">Quero pagar o valor mínimo da fatura do meu cartão de crédito. Como faço?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/cartao-de-credito-gastos-corporativos">Cartão de crédito: organize e detalhe seus gastos corporativos</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/contas">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">✅</span>
+                <span class="line-clamp-2">Conciliação</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/conciliar-valor-unificado-no-extrato">Como conciliar seus lançamentos do Contas a Pagar/Receber quando o valor do movimento está unificado?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/conciliar-movimento-sem-lancamento-cadastrado">Conciliar um movimento sem lançamento cadastrado</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/conciliar-lancamentos-a-partir-da-tela-de-conciliacao-bancaria">Conciliar lançamentos a partir da tela de Conciliação</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/conciliar-a-partir-do-lancamento">Conciliar a partir do lançamento no Contas a Pagar/Receber</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/conciliacao">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">📈</span>
+                <span class="line-clamp-2">Análises</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/orcamentos">Orçamentos</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/linha-do-tempo">Linha do Tempo</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/visao-consolidada">Visão Consolidada</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-ajuste-gerencial">Relatórios Dinâmicos: Ajuste Gerencial</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/anlises">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">📝</span>
+                <span class="line-clamp-2">Cadastros</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/categorias-e-subcategorias">Categorias e Subcategorias</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/centros-de-custo-receita">Centros de Custo e Receita</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/classificadores-personalizados">Classificadores Personalizados</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/clientes-e-fornecedores">Clientes e Fornecedores</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/criar-regras-em-uma-conta-de-recebiveis">Criar regras em uma Conta de Recebíveis</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/regras-automaticas">Regras Automáticas</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/anexar-arquivos">Anexar arquivos</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/cadastrar-uma-conta-de-recebiveis">Cadastrar uma Conta de Recebíveis</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-criar-uma-regra-automatica-com-rateio">Como criar uma regra automática com rateio?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-anexar-varios-arquivos-de-uma-unica-vez">Como anexar vários arquivos de uma única vez?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/o-novo-cnpj-alfanumerico-na-fintera">O novo CNPJ alfanumérico na Fintera</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/arquivar-categorias-e-subcategorias">Arquivando categorias e subcategorias</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/cadastros">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">⚙️</span>
+                <span class="line-clamp-2">Configurações</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/cadastro-edicao-exclusao-de-entidades">Cadastro, edição e exclusão de Entidades</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/exportar-o-contas-a-pagar-e-receber-para-planilha">Exportar o Contas a Pagar e Receber para planilha</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/configuracoes">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">📊</span>
+                <span class="line-clamp-2">Relatórios Dinâmicos</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-conheca-o-painel-e-crie-o-seu-primeiro-relatorio">Conheça e inicie seu primeiro Relatório Dinâmico</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-como-criar">Relatórios Dinâmicos: Como criar</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-como-gerar">Relatórios Dinâmicos: Como gerar</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-como-editar">Relatórios Dinâmicos: Como editar</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-matriz-orcamentaria">Relatórios Dinâmicos: Matriz Orçamentária</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/relatorios-dinamicos-configuracoes">Relatórios Dinâmicos: Configurações</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/relatorios-dinamicos">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-700 dark:text-slate-200" style="">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">❓</span>
+                <span class="line-clamp-2">Perguntas frequentes</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-falar-com-o-suporte-fintera">Precisa de ajuda? Fale com a Fintera em um clique</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/esqueci-minha-senha-como-faco">Esqueci minha senha. Como faço?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-importar-seus-dados-atraves-de-planilhas">Como importar seus dados através de planilhas?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/como-obter-uma-copia-dos-seus-dados">Como obter uma cópia (backup) dos seus dados?</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/glossario-da-fintera">Glossário Fintera</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/trocar-cartao-de-credito-da-mensalidade">Como trocar seu cartão de cobrança</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/perguntas-frequentes">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="group" open="">
+            <summary class="flex items-center justify-between gap-2 px-2 py-1.5 text-sm font-semibold list-none border-l-2 border-solid border-transparent rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800 [&amp;::-webkit-details-marker]:hidden text-slate-900 dark:text-white" style="border-left-color: #FF69B4">
+              <span class="flex items-start gap-2 min-w-0">
+                  <span class="text-base leading-5 shrink-0">🤖</span>
+                <span class="line-clamp-2">Extrato Automático</span>
+              </span>
+              <span class="w-4 h-4 shrink-0 [&amp;&gt;svg]:w-3 [&amp;&gt;svg]:h-3 flex items-center justify-center transition-transform group-open:rotate-90"><svg class="w-4 h-4 fill-current text-slate-500 dark:text-slate-400" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.47 4.22a.75.75 0 0 0 0 1.06L15.19 12l-6.72 6.72a.75.75 0 1 0 1.06 1.06l7.25-7.25a.75.75 0 0 0 0-1.06L9.53 4.22a.75.75 0 0 0-1.06 0Z"></path>
+</svg>
+</span>
+            </summary>
+            <ul class="flex flex-col py-1 pl-2 ml-3 border-l border-solid border-slate-100 dark:border-slate-800">
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-semibold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-800" aria-current="page" href="/hc/financeiro/articles/ative-o-extrato-automatico-na-fintera">Ative o Extrato Automático na Fintera</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-itau">Itaú: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-sicoob">Sicoob: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-inter">Inter: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-banco-do-brasil">Banco do Brasil: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-bradesco">Bradesco: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-santander">Santander: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-sicredi">Sicredi: ativando o Extrato Automático</a>
+                </li>
+                <li>
+                  <a class="block px-2 py-1 text-sm rounded-md font-normal text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/articles/extrato-automatico-caixa">Caixa Econômica Federal: ativando o Extrato Automático</a>
+                </li>
+              <li>
+                <a class="block px-2 py-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" href="/hc/financeiro/pt_BR/categories/extrato-automatico">Visualizar tudo</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+    </ul>
+  </div>
+</nav>
+
+  <article id="cw-article-content" class="article-content flex-grow flex-2 text-slate-800 dark:text-slate-50 text-lg max-w-4xl prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-0 prose-h3:text-lg prose-code:[&amp;&gt;p]:p-1 prose-code:[&amp;&gt;p]:rounded-sm prose-code:[&amp;&gt;p]:bg-black-100 dark:prose-code:[&amp;&gt;p]:bg-black-600 prose-code:after:content-none prose-code:before:content-none prose dark:prose-invert break-words w-full pt-8 pb-12">
+    <p>Muitas vezes sua gestão financeira pode ser desafiadora e trabalhosa quando falamos de processos diários burocráticos e rotineiros.</p>
+<p>Um exemplo é a conciliação bancária realizada pela importação manual do extrato bancário: ela costuma ser uma tarefa que ocupa um tempo precioso da sua equipe com acessos a diferentes portais de bancos, senhas e permissões.</p>
+<p>Isso sem falar nos casos em que a empresa trabalha com mais de um banco e conta corrente, sendo necessário acessar cada uma delas para exportar o extrato e em seguida importá-lo no Financeiro.</p>
+<hr>
+<h2 id="sabia-que-voce-pode-descomplicar-esse-processo" class="scroll-mt-24 heading">Sabia que você pode descomplicar esse processo?<a class="permalink text-slate-600 ml-3" href="#sabia-que-voce-pode-descomplicar-esse-processo" title="Sabia que você pode descomplicar esse processo?" data-turbolinks="false">#</a></h2>
+<p>Com a <strong>importação automática do extrato do seu banco</strong>, você configura apenas uma vez e recebe o extrato de forma automática, todos os dias pela manhã.</p>
+<p>Assim, você recebe os dados da conta todos os dias, sem precisar importar extratos manualmente.</p>
+<div class="callout callout--warning" data-type="warning"><p>⚠️ <strong>Importante</strong>: o passo a passo exibido para cada banco demonstra o processo padrão de ativação do extrato automático para a grande parte dos bancos ofertados.</p>
+<p>Para alguns bancos o processo pode variar em etapas e complexidade. Por isso, nossa equipe acompanha você até a ativação completa.</p>
+</div>
+<p>Converse com nossa equipe de atendimento pelo e-mail <a href="mailto:suporte@fintera.com.br"><strong>suporte@fintera.com.br</strong></a> e ative essa funcionalidade!</p>
+<hr>
+<p>Abaixo, confira os <strong>BANCOS OFERTADOS</strong> e <strong>INSTRUÇÕES PARA ATIVAÇÃO</strong>:</p>
+<div class="table-scroll-wrapper"><table>
+<thead>
+<tr>
+<th><strong>Banco</strong></th>
+<th><strong>Pessoa Física (PF)</strong></th>
+<th><strong>Pessoa Jurídica (PJ)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Banco Bmg</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco BRB</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco BV</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco do Brasil</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco do Nordeste do Brasil S.A.</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco Mercantil</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco Paulista</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banco Sofisa</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Banrisul</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Bradesco</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>BTGPactual</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>C6 Bank</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Caixa</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Citi</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Crefisa</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>InfinitePay</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Inter</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Itaú</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Mercado Pago</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Next</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Nubank</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>PagBank</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>PagueVeloz (Serasa)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>PicPay</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Porto Bank</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Porto Bank Empresas</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>QI SCD</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>RecargaPay</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Rede Celcoin</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Safra</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>SafraPay</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Santander</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Sicoob</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Sicredi</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Stone Pagamentos</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Toro Investimentos</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Unicred</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>XP Investimentos</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h3 id="veja-um-exemplo-de-como-configurar-o-seu-extrato-bancario-de-forma-automatica-na-fintera" class="scroll-mt-24 heading">Veja um exemplo de como configurar o seu extrato bancário de forma automática na Fintera<a class="permalink text-slate-600 ml-3" href="#veja-um-exemplo-de-como-configurar-o-seu-extrato-bancario-de-forma-automatica-na-fintera" title="Veja um exemplo de como configurar o seu extrato bancário de forma automática na Fintera" data-turbolinks="false">#</a></h3>
+<p>No Financeiro, em <strong>Contas &gt; Conta Corrente</strong>, localize a conta a qual você solicitou a funcionalidade e clique no submenu <strong>Extratos</strong>.</p>
+<p>Em tela, será exibido o novo botão rosa <strong>Conectar conta</strong>. Clique sobre o mesmo para iniciar a ativação:</p>
+<p><img src="https://918495959441-central-de-ajuda-nexaaas.s3.us-east-1.amazonaws.com/faq-migration/1789754074734-file-ORKpoLKUIF.gif?cw_image_align=center" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" data-zoom-initialized="true"></p>
+<p>Basta seguir sequencialmente as indicações descritas na janela em tela, selecionando o banco desejado e preencher campos de <strong>Conta</strong>, <strong>Agência</strong> e <strong>Senha Eletrônica</strong> (as mesmas informações que são utilizadas no <em>internet banking</em> e aplicativo Itaú).</p>
+<p>Veja como é fácil:</p>
+<p><img src="https://918495959441-central-de-ajuda-nexaaas.s3.us-east-1.amazonaws.com/faq-migration/1789754076844-file-dZKSULt0b7.gif?cw_image_align=center" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" data-zoom-initialized="true"></p>
+<p>Em instantes você ativou o extrato automático e, todos os dias pela manhã, já conta com sua importação realizada automaticamente.</p>
+<p>E assim como o Itaú, outros bancos permitem a atualização de seus movimentos bancários em tempo real: com um único clique você pode conferir, a qualquer momento, a posição atual da sua conta bancária.</p>
+<hr>
+<p><img src="https://918495959441-central-de-ajuda-nexaaas.s3.us-east-1.amazonaws.com/faq-migration/1789754077497-file-gueEGObCQ2.png?cw_image_align=center" style="display: block; margin-left: auto; margin-right: auto; cursor: pointer;" data-zoom-initialized="true"></p>
+
+  </article>
+  <div class="hidden lg:block w-56 shrink-0 py-6 scroll-mt-24 pl-4"><div class="sticky top-24 py-2 overflow-auto"><nav class="max-w-2xl"><ol role="list" class="flex flex-col gap-2 text-base border-l-2 border-solid border-slate-100 dark:border-slate-800"><li class="leading-6 border-l-2 relative -left-0.5 border-solid border-slate-100 dark:border-slate-800"><p class="py-1 px-3"><a href="#sabia-que-voce-pode-descomplicar-esse-processo" data-turbolinks="false" class="font-medium text-sm tracking-[0.28px] cursor-pointer text-slate-700 dark:text-slate-100">
+              Sabia que você pode descomplicar esse processo?
+            </a></p></li><li class="leading-6 border-l-2 relative -left-0.5 border-solid border-slate-100 dark:border-slate-800"><p class="py-1 px-3 ml-5"><a href="#veja-um-exemplo-de-como-configurar-o-seu-extrato-bancario-de-forma-automatica-na-fintera" data-turbolinks="false" class="font-medium text-sm tracking-[0.28px] cursor-pointer text-slate-700 dark:text-slate-100">
+              Veja um exemplo de como configurar o seu extrato bancário de forma automática na Fintera
+            </a></p></li></ol></nav></div></div>
+</div>
+<style>
+  .article-content li > p {
+    margin: 0;
+  }
+
+  #cw-article-content .callout {
+    border-radius: 0.375rem;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    border-left: 4px solid;
+  }
+
+  #cw-article-content .callout > p:first-child { margin-top: 0; }
+  #cw-article-content .callout > p:last-child { margin-bottom: 0; }
+
+  #cw-article-content .callout--info {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+    color: #1e3a5f;
+  }
+  .dark #cw-article-content .callout--info {
+    background: #1e293b;
+    border-left-color: #60a5fa;
+    color: #bfdbfe;
+  }
+
+  #cw-article-content .callout--warning {
+    background: #fffbeb;
+    border-left-color: #f59e0b;
+    color: #78350f;
+  }
+  .dark #cw-article-content .callout--warning {
+    background: #1c1917;
+    border-left-color: #fbbf24;
+    color: #fde68a;
+  }
+
+  #cw-article-content .callout--success {
+    background: #f0fdf4;
+    border-left-color: #22c55e;
+    color: #14532d;
+  }
+  .dark #cw-article-content .callout--success {
+    background: #0f1f17;
+    border-left-color: #4ade80;
+    color: #bbf7d0;
+  }
+
+  #cw-article-content .callout--error {
+    background: #fef2f2;
+    border-left-color: #ef4444;
+    color: #7f1d1d;
+  }
+  .dark #cw-article-content .callout--error {
+    background: #1f0d0d;
+    border-left-color: #f87171;
+    color: #fecaca;
+  }
+
+  #cw-article-content .table-scroll-wrapper {
+    overflow-x: auto;
+    margin: 1rem 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  #cw-article-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+  }
+  #cw-article-content th,
+  #cw-article-content td {
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    min-width: 7.5rem;
+    word-break: break-word;
+  }
+  #cw-article-content th {
+    background: #f8fafc;
+    font-weight: 600;
+  }
+  .dark #cw-article-content th,
+  .dark #cw-article-content td {
+    border-color: #334155;
+  }
+  .dark #cw-article-content th {
+    background: #1e293b;
+  }
+</style>
+
+          
+<footer class="pt-16 pb-8 flex flex-col items-center justify-center">
+  <div class="mx-auto max-w-2xl text-center py-2">
+    <div class="flex items-center gap-2">
+
+        <img class="w-4 h-4" alt="CloudHumans" src="/brand-assets/logo_thumbnail.svg">
+      <p class="text-slate-700 dark:text-slate-300 text-sm font-medium text-center">
+        Criado por
+
+          <a class="hover:underline" href="https://cloudhumans.com" target="_blank" rel="noopener noreferrer nofoll/ow">Cloud Humans</a>
+
+      </p>
+    </div>
+  </div>
+</footer>
+
+      </main>
+    </div>
+  
+  <style>
+  html.dark {
+    --dynamic-portal-bg: url(/assets/images/hc/hexagon-dark.svg) color-mix(in srgb, #FF69B4 20%, black);
+    --dynamic-portal-bg-gradient: linear-gradient(to bottom, transparent, #151718);
+    --dynamic-hover-bg-color: color-mix(in srgb, #FF69B4 5%, #1B1B1B);
+  }
+
+  html.light {
+    --dynamic-portal-bg: url(/assets/images/hc/hexagon-light.svg) color-mix(in srgb, #FF69B4 20%, white);
+    --dynamic-portal-bg-gradient: linear-gradient(to bottom, transparent, white);
+    --dynamic-hover-bg-color: color-mix(in srgb, #FF69B4 5%, #F9F9F9);
+  }
+
+  /* Portal background */
+  #portal-bg {
+    background: var(--dynamic-portal-bg);
+  }
+  /* Portal background gradient */
+  #portal-bg-gradient {
+    background-image: var(--dynamic-portal-bg-gradient);
+  }
+  /* Category block item hover color */
+  #category-item:hover {
+    background-color: var(--dynamic-hover-bg-color);
+  }
+
+  /* Header section */
+  #header-action-button:hover,
+  #toggle-appearance:hover,
+  #toggle-theme-button:hover {
+    color: var(--dynamic-hover-color);
+    stroke: var(--dynamic-hover-color);
+  }
+  #category-block:hover {
+    border-color: var(--dynamic-hover-color);
+  }
+  #category-block:hover #category-name  {
+    color: var(--dynamic-hover-color);
+  }
+  </style>
+
+  <script>
+    window.portalConfig = {
+      portalSlug: 'financeiro',
+      portalColor: '#FF69B4',
+      theme: '',
+      customDomain: '',
+      hostURL: 'https://cloudchat5.cloudhumans.com',
+      localeCode: 'pt_BR',
+      searchTranslations: {
+        searchPlaceholder: 'Pesquisar por artigo por título ou corpo...',
+        emptyPlaceholder: 'Nenhum resultado encontrado.',
+        loadingPlaceholder: 'Procurando...',
+        resultsTitle: 'Resultados de pesquisa',
+      },
+      isPlainLayoutEnabled: 'false',
+      tocHeader: 'Nesta página'
+    };
+  </script>
+  <div id="permanent-holder" data-turbolinks-permanent=""></div>
+
+</body></html>

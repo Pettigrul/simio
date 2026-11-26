@@ -1,0 +1,58 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C7b1204662d",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.poder360.com.br/poder-economia/itau-bv-e-inter-demitem-cerca-de-600-funcionarios/",
+  "final_url": "https://www.poder360.com.br/poder-economia/itau-bv-e-inter-demitem-cerca-de-600-funcionarios/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.20.30.50",
+  "collected_at": "2026-11-25T23:11:34.967633+00:00",
+  "manifest_written_at": "2026-11-25T23:11:47.032156+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C7b1204662d/attempt-1/viewport.png",
+      "sha256": "425e495873ab31c47fd1529712b89f2c082359202d19cf1bc526ca135f61bcfd",
+      "size_bytes": 997325
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C7b1204662d/attempt-1/fullpage.png",
+      "sha256": "dde0d8dbeb00cf115e8c025aa54a46f66978085789874cce44f07dc418f813e1",
+      "size_bytes": 1724085
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C7b1204662d/attempt-1/page.html.txt",
+      "sha256": "dee1baf500be3423d95f5cb0602522cfdb0d53e8f773d8f9afd45e5a15bb8ded",
+      "size_bytes": 292965
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C7b1204662d/attempt-1/text.txt",
+      "sha256": "eb641755f44199b4acfce1dc7edf0dd79b00be79dd1ba0b720b9328b4615d95c",
+      "size_bytes": 8136
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C7b1204662d/attempt-1/page.json",
+      "sha256": "1b7e18e4dedd39ff9b42c20058876c510a8e50aa37a19db436b9c317d0d97660",
+      "size_bytes": 90773
+    }
+  ],
+  "blocked_requests": [
+    "https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -> DNS resolution failed for invstatic101.creativecdn.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com/universal/v1?supply_id=v5hJK9Sl -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://i.liadm.com/s/31327?bidder_id=14481&bidder_uuid=awdrMdHM7ogAOcQmA-Z9IAAA%266211&gpdr=&gdpr_consent=&us_privacy=&gpp=&gpp_sid= -> DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com:443 -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

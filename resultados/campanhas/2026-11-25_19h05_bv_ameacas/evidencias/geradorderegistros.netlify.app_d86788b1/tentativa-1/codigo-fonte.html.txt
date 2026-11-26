@@ -1,0 +1,372 @@
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=19a32cc0-dc52-428f-99b7-cef3cac2731d
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<title>Gerador de Registros - Negociação</title>
+<link rel="icon" href="img/logo_sem_fundo.png" type="image/png">
+    
+    <link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<link href="style.css" rel="stylesheet"><!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5BGL1RN109"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5BGL1RN109');
+</script></head>
+<body onkeydown="handleEscKey(event)">
+<button aria-label="Alternar tema" class="theme-toggle" id="themeToggle">
+<svg class="theme-icon sun-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" x2="12" y1="1" y2="3"></line>
+<line x1="12" x2="12" y1="21" y2="23"></line>
+<line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line>
+<line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line>
+<line x1="1" x2="3" y1="12" y2="12"></line>
+<line x1="21" x2="23" y1="12" y2="12"></line>
+<line x1="4.22" x2="5.64" y1="19.78" y2="18.36"></line>
+<line x1="18.36" x2="19.78" y1="5.64" y2="4.22"></line>
+</svg>
+<svg class="theme-icon moon-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+</svg>
+</button>
+<div class="container">
+<div class="logo-container">
+    <img src="img/Logo_com_nome.png" alt="Gerador de Registros" class="logo-img">
+</div>
+<form id="formulario">
+<div class="field-block">
+<div class="field-row">
+<div class="field-item">
+<label class="campo-obrigatorio" for="saldoDevedor">Saldo Devedor:</label>
+<input autocomplete="off" id="saldoDevedor" name="saldoDevedor" type="text" style="">
+<span class="error-message" id="saldoDevedor-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="valorCliente">Valor do cliente:</label>
+<input autocomplete="off" id="valorCliente" name="valorCliente" type="text" style="">
+</div>
+<div class="field-item">
+<label for="cod">Código:</label>
+<input autocomplete="off" id="cod" maxlength="40" name="cod" type="text" style="">
+<span class="error-message" id="cod-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="atendenteInput">Atendente:</label>
+<input autocomplete="off" id="atendenteInput" name="atendente" type="text" style="">
+<span class="error-message" id="atendenteInput-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div class="field-row">
+<div class="field-item">
+<label for="valorAprovado">Valor aprovado:</label>
+<input autocomplete="off" id="valorAprovado" name="valorAprovado" type="text" style="">
+<span class="error-message" id="valorAprovado-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="minimoAnalise">Mínimo Análise:</label>
+<input autocomplete="off" id="minimoAnalise" name="minimoAnalise" type="text" style="">
+<span class="error-message" id="minimoAnalise-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="descontoLabel" id="descontoLabel">Desconto (%):</label>
+<input autocomplete="off" id="desconto" name="desconto" readonly="" type="text" style="">
+<p class="desconto-status" id="descontoStatus"></p>
+</div>
+</div>
+</div>
+<div class="field-block">
+<div class="field-row">
+<div class="field-item" style="flex: 1;">
+<label for="situacaoSelect">Situação:</label>
+<select id="situacaoSelect" name="situacao">
+<option value="">Selecione</option>
+<option>VERIFICAÇÃO DE VALORES SEM CAMPANHA</option>
+<option>VALOR DA QUITAÇÃO É MAIOR QUE A DÍVIDA</option>
+<option>CAMPANHA APROVADA, SEM BOLETO E MINUTA</option>
+<option>CAMPANHA APROVADA, COM BOLETO E MINUTA</option>
+<option>VERIFICAÇÃO DE VALORES COM PROPOSTA EM ANÁLISE</option>
+<option>CAMPANHA E ENCAMINHADO VALORES PARA ANÁLISE</option>
+<option>SOMENTE O VALOR P/ ANÁLISE BANCÁRIA</option>
+<option>VALOR ENCAMINHADO PERMANECE EM ANÁLISE BANCÁRIA</option>
+<option>VALOR VEIO APROVADO DA ANÁLISE BANCÁRIA</option>
+<option>PROPOSTA RECUSADA E CONTRAPROPOSTA MEDIANTE ANÁLISE</option>
+<option>REVALIDAÇÃO DE PROPOSTA</option>
+<option>ATUALIZAÇÃO DE PARCELAS</option>
+<option>VALORES EM QUE TEVE UNIFICAÇÃO DAS DÍVIDAS</option>
+<option>CAMPANHA EM QUE O CLIENTE POSSUI CONTRATO COVID</option>
+<option>AGUARDANDO ATUALIZAÇÃO DE VALORES</option>
+<option>ACORDO PARCELADO EM PROCESSO DE FORMALIZAÇÃO</option>
+<option>CONTRATOS QUE ESTÃO EM TRANSFERÊNCIA</option>
+<option>CONFIRMAÇÃO DO CLIENTE PARA ENVIO DE PROPOSTA</option>
+<option>CONTRATO FEITO EM AGÊNCIA BANCÁRIA</option>
+<option>CONTRATOS DA OMNI QUE NÃO NEGOCIA</option>
+<option>SOLICITAÇÃO DE PROCURAÇÃO</option>
+<option>REGISTRO PARA AVALIAÇÃO DA ENTREGA AMIGÁVEL</option>
+<option>ACORDO QUE O CLIENTE FEZ DIRETO COM O BANCO</option>
+<option>CLIENTE REALIZOU ENTREGA AMIGAVEL E TEVE CONFIRMAÇÃO</option>
+<option>QUITADO CLIENTE COM CONFIRMAÇÃO</option>
+<option>QUITADO APROVADO</option>
+<option>SOLICITAR INFORMAÇÕES COM O CLIENTE VIA WHATSAPP</option>
+<option>SCRIPT 1 MÊS EM ATRASO COM O BANCO</option>
+<option>SCRIPT 2 MESES EM ATRASO COM O BANCO</option>
+<option>SCRIPT 3 MESES EM ATRASO COM O BANCO</option>
+<option>SCRIPT 4 MESES EM ATRASO COM O BANCO</option>
+<option>ATENDIMENTO RECEPTIVO</option>
+<option>ATENDIMENTO VIA CHAT</option>
+<option>ATENDIMENTO VIA LIGACAO</option>
+<option>ATENDIMENTO VIA WHATSAPP</option>
+</select>
+</div>
+</div>
+<div id="unificacaoCampos" style="display: none; margin-top: 15px;">
+<div class="field-item" style="width: 100%;">
+<label for="detalhamentoDividas">Detalhamento das Dívidas:</label>
+<textarea id="detalhamentoDividas" name="detalhamentoDividas" rows="4" style=""></textarea>
+<span class="error-message" id="detalhamentoDividas-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div id="parcelamentoCampos" style="display: none; margin-top: 15px;">
+<div class="field-row">
+<div class="field-item">
+<label for="numParcelas">Nº Parcelas:</label>
+<input id="numParcelas" name="numParcelas" type="text" style="">
+<span class="error-message" id="numParcelas-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="valorParcelas">Valor das Parcelas:</label>
+<input id="valorParcelas" name="valorParcelas" type="text" style="">
+<span class="error-message" id="valorParcelas-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="valorEntrada">Valor Entrada:</label>
+<input id="valorEntrada" name="valorEntrada" type="text" style="">
+</div>
+</div>
+</div>
+<div id="contatoAssessoriaCampos" style="display: none; margin-top: 15px;">
+<div class="field-item">
+<label class="campo-obrigatorio" for="contatoAssessoria">Contato Assessoria:</label>
+<input autocomplete="off" id="contatoAssessoria" name="contatoAssessoria" type="text" style="">
+<span class="error-message" id="contatoAssessoria-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div id="veiculoPlacaCampos" style="display: none; margin-top: 15px;">
+<div class="field-row">
+<div class="field-item">
+<label class="campo-obrigatorio" for="veiculo">Veículo:</label>
+<input autocomplete="off" id="veiculo" name="veiculo" type="text" style="">
+<span class="error-message" id="veiculo-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label class="campo-obrigatorio" for="placa">Placa:</label>
+<input autocomplete="off" id="placa" name="placa" type="text" style="">
+<span class="error-message" id="placa-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+</div>
+<!-- Adicionar junto às outras divs de campos condicionais -->
+<div id="atualizacaoParcelasCampos" style="display: none; margin-top: 15px;">
+  <div class="field-row">
+    <div class="field-item">
+      <label class="campo-obrigatorio" for="parcelaInicio">Parcela Inicial:</label>
+      <input autocomplete="off" id="parcelaInicio" name="parcelaInicio" type="text" placeholder="Ex: 01" style="">
+      <span class="error-message" id="parcelaInicio-erro">Este campo é obrigatório.</span>
+    </div>
+    <div class="field-item">
+      <label class="campo-obrigatorio" for="parcelaFim">Parcela Final:</label>
+      <input autocomplete="off" id="parcelaFim" name="parcelaFim" type="text" placeholder="Ex: 10" style="">
+      <span class="error-message" id="parcelaFim-erro">Este campo é obrigatório.</span>
+    </div>
+  </div>
+</div>
+<div id="tipoAcordoCampos" style="display: none; margin-top: 15px;">
+<div class="field-item">
+<label for="tipoAcordo">Tipo de Acordo:</label>
+<select id="tipoAcordoSelect" name="tipoAcordo">
+<option value="">Selecione</option>
+<option>ATUALIZAÇÃO DE PARCELAS</option>
+<option>REFINANCIAMENTO</option>
+<option>QUITAÇÃO PARCELADA</option>
+<option>RENEGOCIAÇÃO</option>
+</select>
+<span class="error-message" id="tipoAcordoSelect-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div id="tipoEntregaCampos" style="display: none; margin-top: 15px;">
+<div class="field-item">
+<label for="tipoEntrega">Tipo de Entrega:</label>
+<select id="tipoEntregaSelect" name="tipoEntrega">
+<option value="">Selecione</option>
+<option>ENTREGA 100% QUITATIVA</option>
+<option>ENTREGA COM SALDO REMANESCENTE</option>
+</select>
+<span class="error-message" id="tipoEntregaSelect-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div id="whatsappInfoCampos" style="display: none; margin-top: 15px;">
+<div class="field-row">
+<div class="field-item">
+<label for="Whatsapp">Whatsapp:</label>
+<input autocomplete="off" id="seuWhatsappInput" name="seuWhatsapp" type="text" style="">
+<span class="error-message" id="seuWhatsappInput-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label for="horario">Horário:</label>
+<input autocomplete="off" id="horarioInput" maxlength="5" name="horario" placeholder="Ex: 11H00" type="text" style="">
+<span class="error-message" id="horarioInput-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+</div>
+<div class="field-row" style="margin-top: 20px;">
+<div class="field-item" style="flex: 1;">
+<label for="contatoSelect">Contato com cliente:</label>
+<select id="contatoSelect" name="contato">
+<option value="">Selecione</option>
+<option>COM SUCESSO</option>
+<option>SEM SUCESSO</option>
+<option>VIA WHATSAPP</option>
+</select>
+<span class="error-message" id="contato-erro">O campo "Contato com cliente" é obrigatório para esta situação.</span>
+</div>
+</div>
+<div id="dispoeValoresCampos" style="display: none; margin-top: 15px;">
+<div class="field-item" style="flex: 1;">
+<label for="dispoeValoresSelect">Dispõe de Valores?</label>
+<select id="dispoeValoresSelect" name="dispoeValores">
+<option value="">Selecione</option>
+<option>SIM</option>
+<option>NÃO</option>
+<option>ESTÁ MAJORANDO</option>
+</select>
+<span class="error-message" id="dispoeValores-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div id="telefoneCampos" style="display: none; margin-top: 15px;">
+<div class="field-item">
+<label class="campo-obrigatorio" for="telefone">Telefone:</label>
+<input autocomplete="off" id="telefone" name="telefone" type="text" style="">
+<span class="error-message" id="telefone-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+</div>
+<div class="form-buttons">
+<button type="submit">Gerar Registro </button>
+<button class="btn-info" onclick="abrirModalPesquisaCodigo()" type="button">Pesquisar Código</button>
+</div>
+</form>
+<h3>Registro Gerado</h3>
+<div class="resultado-container">
+  <div class="edit-controls" style="display: none;">
+    <button id="btnEditar" class="btn-edit" onclick="toggleEdicao()">Editar Registro</button>
+    <button id="btnCancelar" class="btn-cancel" onclick="cancelarEdicao()" style="display: none;">Cancelar</button>
+  </div>
+  <pre id="resultado"></pre>
+</div>
+<div class="action-buttons">
+<button onclick="copiarScript()">Copiar</button>
+<button onclick="limparCampos()">Limpar</button>
+</div>
+<p id="mensagemCopia"></p>
+</div>
+<div class="modal" id="modalPesquisaCodigo">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">Pesquisa de Código</span>
+<span class="close" onclick="fecharModalPesquisaCodigo()">×</span>
+</div>
+<div class="field-block">
+<div class="field-row">
+<div class="field-item">
+<label class="campo-obrigatorio" for="bancoPesquisa">Banco:</label>
+<select id="bancoPesquisa" name="bancoPesquisa">
+<option value="">Selecione</option>
+<option>PANAMERICANO</option>
+<option>BV FINANCEIRA</option>
+<option>SANTANDER</option>
+<option>BRADESCO</option>
+<option>ITAÚ</option>
+<option>OMNI</option>
+<option>SAFRA</option>
+<option>RENNER</option>
+<option>VW</option>
+<option>RCI</option>
+<option>GMAC</option>
+<option>SANTANA</option>
+<option>DAYCOVAL</option>
+<option>SINOSSERRA</option>
+<option>PORTO SEGURO</option>
+<option>PSA - STELLANTIS</option>
+<option>TOYOTA</option>
+<option>YAMAHA</option>
+<option>BANESTES</option>
+<option>C6 BANK</option>
+<option>CREDITAS</option>
+<option>FORD</option>
+<option>HONDA</option>
+<option>HYUNDAI</option>
+<option>MERCEDES BENZ</option>
+</select>
+<span class="error-message" id="bancoPesquisa-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+<div class="field-row">
+<div class="field-item">
+<label class="campo-obrigatorio" for="tipoPesquisa">Pesquisar por:</label>
+<select id="tipoPesquisa" name="tipoPesquisa">
+<option value="">Selecione</option>
+<option>CODIGO</option>
+<option>ASSESSORIA</option>
+<option>TELEFONE</option>
+</select>
+<span class="error-message" id="tipoPesquisa-erro">Este campo é obrigatório.</span>
+</div>
+<div class="field-item">
+<label class="campo-obrigatorio" for="valorPesquisa">Termo de Busca:</label>
+<input autocomplete="off" id="valorPesquisa" name="valorPesquisa" type="text" style="">
+<span class="error-message" id="valorPesquisa-erro">Este campo é obrigatório.</span>
+</div>
+</div>
+</div>
+<div class="modal-buttons">
+<button class="btn-secondary" onclick="fecharModalPesquisaCodigo()">Cancelar</button>
+<button class="btn-primary" onclick="pesquisarCodigo()">Pesquisar</button>
+</div>
+<div class="search-results" id="resultadosPesquisa" style="display: none;"></div>
+</div>
+</div>
+<button aria-label="Links Auxiliares" class="sidebar-toggle" onclick="toggleSidebar()" title="Links Auxiliares">
+<svg class="sidebar-icon" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<line x1="3" x2="21" y1="12" y2="12"></line>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<line x1="3" x2="21" y1="18" y2="18"></line>
+</svg>
+</button>
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-title">Links Auxiliares</div>
+<button aria-label="Fechar menu" class="sidebar-close" onclick="toggleSidebar()">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="sidebar-links">
+<a class="sidebar-link" href="https://www.queroquitar.com.br/" target="_blank">Quero Quitar</a>
+<a class="sidebar-link" href="https://renegocie.arc4ucapital.com/" target="_blank">Arcau</a>
+<a class="sidebar-link" href="https://www.renegocie.gruporecovery.com/registro/?utm_source=recovery&amp;utm_medium=organico&amp;utm_campaign=site_pf_organico_clique_link_site_redirect_lp-rv_organico_step1_consultar-gratis" target="_blank">Recovery</a>
+<a class="sidebar-link" href="https://renegocie.bancopan.com.br/" target="_blank">Renegocie Pan</a>
+<a class="sidebar-link" href="https://renegociacao.itau.com.br//" target="_blank">Renegocie Itaú</a>
+<a class="sidebar-link" href="https://www.santander.com.br/renegocie/home" target="_blank">Renegocie Santander</a>
+<a class="sidebar-link" href="https://www.itapevarec.com.br/Nembus/Home" target="_blank">Portal Itapeva</a>
+</div>
+</div>
+<script src="script.js"></script>
+
+</body></html>

@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cbe97da7908</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cbe97da7908 — virtual360.io</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://bancobv.virtual360.io/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>senha — possível coleta de credenciais</div>
+      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Amazon.com, Inc. (32.200.20.254); Amazon Technologies Inc. (54.174.208.164); Amazon Data Services Northern Virginia (100.63.32.82)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ns-1056.awsdns-04.org, ns-1659.awsdns-15.co.uk, ns-318.awsdns-39.com, ns-840.awsdns-41.net / smtp.google.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>trustandsafety@support.aws.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>NONE</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página bancobv.virtual360.io configura um portal corporativo de gestão de parceiros e fornecedores (Virtual360) com integração SSO com o Banco BV. Embora apresente indícios técnicos de serviço SaaS contratado/homologado, o uso ostensivo da marca e a solicitação de credenciais fora dos domínios oficiais registrados do banco demandam revisão para homologação de canal oficial/fornecedor autorizado.
+[Revisor: DOWNGRADE] A página bancobv.virtual360.io pertence a uma plataforma corporativa B2B de gestão de terceiros/fornecedores integrada ao SSO Azure corporativo do Banco BV. Não se trata de correspondente bancário, promotora de crédito ou loja de veículos captando clientes, enquadrando-se fora do escopo de fiscalização da Resolução CMN nº 4.935/2021. Portanto, downgrade para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>uso destacado de logotipo/identidade visual ou linguagem da instituição sem CNPJ/declaração de correspondente: elevado a STRONG_INDICATION (HIGH)</li><li>resultado revisado para NO_INDICATION, mas a página usa a marca e pede senha; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Cbe97da7908/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 5707dae8cf8b4fdb1a3979a462db21741b30f43297694e93e96fa92eac8b43a2</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Cbe97da7908/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 5707dae8cf8b4fdb1a3979a462db21741b30f43297694e93e96fa92eac8b43a2</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://bancobv.virtual360.io/users/sign_in (domínio: bancobv.virtual360.io)</td></tr>
+      <tr id="E-REDIR"><td class="mono"><b>E-REDIR</b></td><td>network</td><td>url</td><td>Cadeia de redirecionamento: https://bancobv.virtual360.io/ -&gt; https://bancobv.virtual360.io/users/sign_in</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Entrar — Caso seja cliente, acesse pelo link da sua empresa. Entrar Portal V360. Login por SSO. Login Banco BV. Entrar. Para continuar, faça login ou registre-se. Se o ...</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): virtual360.io — ### 3. `https://virtual360.io` (Portal V360 - Login Integrado Banco BV) | **Quem opera:** Plataforma de gestão/fornecedores Virtual360 | **O que pede/oferece:** Opção explícita de &#34;Login Banco BV&#34; por SSO, solicitando **Senha** e código **OTP / Token** com validade temporária | **Uso da marca e conformidade (CMN nº 4.935/2021):** Emprega o nome do Banco BV diretamente como mecanismo de autenticação de usuários</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cbe97da7908/attempt-1/viewport.png (sha256 5707dae8cf8b4fdb…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cbe97da7908/attempt-1/fullpage.png (sha256 5707dae8cf8b4fdb…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Entrar</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>MANUAIS DE USUÁRIO</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Manuais de usuário Manual do Parceiro Para continuar, faça login ou registre-se. Faça Login/Registre-se pelo Portal V360 ou pelo link da sua empresa: Caso seja fornecedor, acesse pelo portal V360 Caso seja cliente, acesse pelo link da sua empresa Entrar Portal V360 Login por SSO Login Banco BV</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Entrar Portal V360 &lt;javascript:void(0)&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Login Banco BV &lt;https://bancobv.virtual360.io/users/saml/sign_in?idp_entity_id=https%3A%2F%2Fsts.windows.net%2Fce047754-5e4b-4c19-847a-3c612155b684%2F&amp;issuer=https%3A%2F%2Fbancobv.virtual360.io%2Fusers%2Fsaml%2Fmetadata&gt;</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Manual do Parceiro</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Login Banco BV</td></tr>
+      <tr id="E-FORM-001"><td class="mono"><b>E-FORM-001</b></td><td>form</td><td>page</td><td>Campo de formulário que pede SENHA (type=password, name=user[password], placeholder=Senha, rótulo=Senha)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Destaque centralizado ao logotipo institucional moderno do Banco BV em conjunto com a marca Portal V360.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Subdomínio bancobv.virtual360.io não pertencente aos domínios institucionais oficiais mapeados do Banco BV, ausente de dados cadastrais como CNPJ.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Página de autenticação solicitando senha e oferecendo integração SSO vinculada ao Banco BV.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-CTA-2">E-CTA-2</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso proeminente do logotipo oficial contemporâneo do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Não se trata de oferta direta de crédito ao consumidor final em balcão de correspondente, mas de portal corporativo para parceiros/fornecedores.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-FOLD">E-FOLD</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: A página utiliza com grande destaque a identidade visual e o logotipo oficial atual do Banco BV no fundo e no card de autenticação. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Ambiente de login e autenticação com opção de SSO institucional (&#39;Login Banco BV&#39;) redirecionando para endpoint SAML/Azure STS corporativo e campo para captura de senha. — <span class="mono"><a href="#E-CTA-2">E-CTA-2</a> <a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Utilização do subdomínio &#39;bancobv&#39; sob o domínio de terceiro &#39;virtual360.io&#39; sem exibição clara de CNPJ ou razão social da operadora da plataforma no rodapé. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] SERVICE_JOURNEY: A integração via SAML SSO aponta para infraestrutura STS Microsoft Azure corporativa (ce047754-5e4b-4c19-847a-3c612155b684), sugerindo plataforma SaaS legítima de gestão de parceiros/fornecedores homologada. — <span class="mono"><a href="#E-CTA-2">E-CTA-2</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio hospeda o &#39;Portal do Parceiro&#39; na plataforma Virtual360 (virtual360.io).</li><li>O subdomínio utilizado é bancobv.virtual360.io.</li><li>Exibe o logotipo oficial atual do Banco BV (monograma BV com &#39;banco&#39; em caixa baixa, sem a identidade legada B vermelho/V azul).</li><li>Contém fluxo de login com captura de senha local e botão &#39;Login Banco BV&#39; via SAML SSO.</li><li>Não apresenta CNPJ visível na tela de autenticação.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Necessidade de confirmação interna junto à área de TI/Segurança da Informação e Compras do Banco BV sobre a homologação oficial da plataforma Virtual360 para portal de parceiros.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página bancobv.virtual360.io configura um portal corporativo de gestão de parceiros e fornecedores (Virtual360) com integração SSO com o Banco BV. Embora apresente indícios técnicos de serviço SaaS contratado/homologado, o uso ostensivo da marca e a solicitação de credenciais fora dos domínios oficiais registrados do banco demandam revisão para homologação de canal oficial/fornecedor autorizado.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:virtual360.io</span></div>
+      <div class="kv"><b>Confiança</b>NONE</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>virtual360.io</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CTA-2">E-CTA-2</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FORM-001">E-FORM-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página bancobv.virtual360.io pertence a uma plataforma corporativa B2B de gestão de terceiros/fornecedores integrada ao SSO Azure corporativo do Banco BV. Não se trata de correspondente bancário, promotora de crédito ou loja de veículos captando clientes, enquadrando-se fora do escopo de fiscalização da Resolução CMN nº 4.935/2021. Portanto, downgrade para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Fora do escopo de correspondente bancário (COBAN)</td><td>HIGH</td><td>A plataforma Virtual360 é uma solução SaaS B2B de gestão de parceiros e fornecedores, e não uma loja de veículos, empresa de energia solar ou promotora de crédito voltada à oferta de serviços financeiros ao consumidor.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+      <tr><td>Canal corporativo com autenticação institucional legítima</td><td>HIGH</td><td>O botão &#39;Login Banco BV&#39; realiza autenticação federada (SAML SSO) diretamente no tenant Microsoft Azure corporativo da instituição financeira (sts.windows.net/ce047754...), confirmando tratar-se de ferramenta corporativa homologada para uso interno/fornecedores.</td><td class="mono"><a href="#E-CTA-2">E-CTA-2</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-CTA-2</li><li>E-DISC-002</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;Banco BV&#34; login<br><span class="muted">H14-threat:login-falso</span></td><td class="mono">https://bancobv.virtual360.io/</td><td>Entrar<br><span class="muted">Caso seja cliente, acesse pelo link da sua empresa. Entrar Portal V360. Login por SSO. Login Banco BV. Entrar. Para continuar, faça login ou registre-se. Se o ...</span></td></tr>
+      <tr><td>grounding</td><td>Objetivo (inteligência de ameaças e proteção de marca): Portais falsos de parceiro/correspondente (roubo de acesso de lojistas e promotoras).
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;portal do parceiro&#34; OR &#34;portal parceiro&#34; OR &#34;acesso parceiro&#34; OR &#34;área do parceiro&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) login -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (intitle:&#34;parceiro BV&#34; OR intitle:&#34;BV parceiros&#34; OR intitle:&#34;portal BV&#34;) (login OR acesso OR senha) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos) que possam se passar pela instituição ou enganar seus clientes. Para cada uma, informe a URL, quem parece operar a página e o que ela oferece ou pede (login, senha, CPF, dados de cartão, token, boleto ou Pix, download de aplicativo, contato por WhatsApp/Telegram) e por que parece falsa ou perigosa.<br><span class="muted">H14-threat:portal-parceiro-falso</span></td><td class="mono">https://bancobv.virtual360.io/</td><td>virtual360.io<br><span class="muted">### 3. `https://virtual360.io` (Portal V360 - Login Integrado Banco BV) | **Quem opera:** Plataforma de gestão/fornecedores Virtual360 | **O que pede/oferece:** Opção explícita de &#34;Login Banco BV&#34; por SSO, solicitando **Senha** e código **OTP / Token** com validade temporária | **Uso da marca e conformidade (CMN nº 4.935/2021):** Emprega o nome do Banco BV diretamente como mecanismo de autenticação de usuários</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 22:39:31.152433+00:00</div>
+      <div class="kv"><b>IP do servidor</b>100.63.32.82</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cbe97da7908/attempt-1/manifest.json<br>sha256 1741cadf20d50d4478cfd2c1986184fa1f997ed34fd2ba2637c011ae07e3d56e</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://bancobv.virtual360.io/<br>Final: https://bancobv.virtual360.io/users/sign_in</p>
+<p class="mono">Redirecionamentos: https://bancobv.virtual360.io/</p>    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cbe97da7908/attempt-1/viewport.png</td><td class="mono">5707dae8cf8b4fdb1a3979a462db21741b30f43297694e93e96fa92eac8b43a2</td><td>215113</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cbe97da7908/attempt-1/fullpage.png</td><td class="mono">5707dae8cf8b4fdb1a3979a462db21741b30f43297694e93e96fa92eac8b43a2</td><td>215113</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cbe97da7908/attempt-1/page.html.txt</td><td class="mono">467f67a731a423fb3f752f2102bfb04f31220caefc6525ac51acc5b600b49020</td><td>45143</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cbe97da7908/attempt-1/text.txt</td><td class="mono">098b548a5fe0e2d71dfb3da662c649677d0f5a4c13f1ed99f618f823e92eeee6</td><td>302</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cbe97da7908/attempt-1/page.json</td><td class="mono">e53b11631faf46f0c0bcb08eaf667310a8ebdeb80cbadbde946a417e5b81af0f</td><td>2398</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:24+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 8.0)</td></tr>
+      <tr><td>2026-11-25T22:39:31+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:39:36+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T22:39:36+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T22:40:06+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T22:40:19+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

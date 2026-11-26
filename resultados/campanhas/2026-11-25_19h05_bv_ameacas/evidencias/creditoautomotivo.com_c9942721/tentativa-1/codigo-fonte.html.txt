@@ -1,0 +1,587 @@
+<html lang="pt-BR" class="js"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>CrediAuto · crédito automotivo multi-banco</title>
+<meta name="description" content="O CrediAuto consulta vários bancos ao mesmo tempo e devolve um ranking de condições, score próprio e a chance de aprovação de cada proposta. Para concessionárias, lojas e revendas.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CrediAuto">
+<meta property="og:title" content="CrediAuto · crédito automotivo multi-banco">
+<meta property="og:description" content="Do cliente ao melhor banco, em segundos. Ranking de condições, score e chance de aprovação por proposta.">
+<meta property="og:image" content="/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="CrediAuto · consulta vários bancos e rankeia o melhor crédito.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CrediAuto · crédito automotivo multi-banco">
+<meta name="twitter:description" content="Do cliente ao melhor banco, em segundos. Ranking de condições, score e chance de aprovação por proposta.">
+<meta name="twitter:image" content="/assets/img/og.png">
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="apple-touch-icon" href="/assets/img/favicon.png">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin="">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700,800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Kode+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>.ic i{font-size:20px;line-height:1}</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#31ddab"></stop><stop offset="1" stop-color="#27c498"></stop></linearGradient>
+</defs></svg>
+
+<!-- marca (SVG) usada no nav/footer -->
+<template id="mark">
+  <svg viewBox="0 0 48 40" fill="none" aria-hidden="true">
+    <path d="M4 30C4 30 7.5 16 12.5 16H30c5 0 9.5 7.5 11.5 14" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="M3 30h7M20.5 30h6M38 30h7" stroke="url(#g)" stroke-width="3" stroke-linecap="round"></path>
+    <circle cx="15.5" cy="31.2" r="3.9" fill="#fff" stroke="url(#g)" stroke-width="3"></circle>
+    <circle cx="32.5" cy="31.2" r="3.9" fill="#fff" stroke="url(#g)" stroke-width="3"></circle>
+    <path d="M13.5 21.5l5.5 5.5L33 12.5" stroke="url(#g)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+</template>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">
+  <div class="wrap">
+    <span><b>Novo:</b> consulte vários bancos ao mesmo tempo e receba o ranking em segundos.</span>
+    <a href="#motor">Ver como funciona
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="CrediAuto">
+      <img class="brand-logo" src="/assets/img/logotipo.png" alt="CrediAuto" width="162" height="26">
+    </a>
+    <nav class="nav-links">
+      <a href="#motor">Como funciona</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#quem">Para quem é</a>
+      <a href="#api">API</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-dark" href="/entrar">Entrar no painel</a>
+      <button class="burger" id="burger" aria-label="Menu"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>Do cliente ao <span class="g">melhor banco</span>, em segundos.</h1>
+      <p class="sub">Mais que uma calculadora de parcelas, o CrediAuto <b>consulta, pontua e rankeia</b> o crédito de cada proposta. Para concessionárias, lojas e revendas.</p>
+      <div class="feature-row">
+        <span class="f"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Multi-banco</span>
+        <span class="sep"></span>
+        <span class="f"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Score 0 a 1000</span>
+        <span class="sep"></span>
+        <span class="f"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>API por CPF e CNPJ</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="/entrar">Entrar no painel
+          <svg class="arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        <a class="btn btn-ghost btn-lg" href="#motor">Ver como funciona</a>
+      </div>
+    </div>
+
+    <!-- diagrama de fluxo: operação -> CrediAuto -> bancos -->
+    <div class="flow" aria-hidden="true">
+      <svg viewBox="0 0 580 468" role="img">
+        <defs><filter id="hubshadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#18181b" flood-opacity="0.16"></feDropShadow></filter></defs>
+        <!-- wires hub -> bancos -->
+        <path class="wire" d="M352 234 C392 234 392 74 430 74"></path>
+        <path class="wire" d="M352 234 C392 234 392 158 430 158"></path>
+        <path class="wire" d="M352 234 C392 234 392 312 430 312"></path>
+        <path class="wire" d="M352 234 C392 234 392 396 430 396"></path>
+        <path class="wire-live" d="M352 234 C392 234 392 74 430 74"></path>
+        <path class="wire-live" d="M352 234 C392 234 392 158 430 158"></path>
+        <path class="wire-live" d="M352 234 C392 234 392 312 430 312"></path>
+        <path class="wire-live" d="M352 234 C392 234 392 396 430 396"></path>
+        <!-- wire operacao -> hub -->
+        <path class="wire" d="M158 238 C198 238 200 234 236 234"></path>
+        <path class="wire-live" d="M158 238 C198 238 200 234 236 234"></path>
+
+        <!-- operacao -->
+        <rect class="node" x="8" y="196" width="150" height="86" rx="12"></rect>
+        <text class="flow-label" x="24" y="222">OPERAÇÃO</text>
+        <text x="24" y="246" style="font-family:var(--display);font-weight:700;font-size:16px;fill:#18181b">Onix LT 2021</text>
+        <text class="flow-chip" x="24" y="266" style="fill:#55555f">R$ 68.000 · 48x</text>
+
+        <!-- label wire -->
+        <text class="flow-label" x="166" y="229" style="font-size:9px">CPF 782</text>
+
+        <!-- hub CrediAuto (favicon) -->
+        <rect x="238" y="182" width="114" height="104" rx="24" fill="#fff" stroke="var(--line-2)" stroke-width="1.2" filter="url(#hubshadow)"></rect>
+        <image href="/assets/img/favicon.png" x="247" y="186" width="96" height="96" preserveAspectRatio="xMidYMid meet"></image>
+        <text class="flow-label" x="295" y="306" text-anchor="middle" style="fill:#6f6f7a">motor</text>
+
+        <!-- bancos -->
+        <g>
+          <rect class="node" x="430" y="44" width="142" height="60" rx="12" style="stroke:var(--green-line)"></rect>
+          <circle class="pulse" cx="446" cy="60" r="4" fill="#27c498"></circle>
+          <text class="flow-chip" x="460" y="66" style="font-weight:600;fill:#18181b">Banco PAN</text>
+          <text class="flow-chip" x="460" y="86" style="fill:#0c7a59">1.89% a.m.</text>
+        </g>
+        <g>
+          <rect class="node" x="430" y="128" width="142" height="60" rx="12"></rect>
+          <text class="flow-chip" x="446" y="150" style="font-weight:600;fill:#18181b">BV Financeira</text>
+          <text class="flow-chip" x="446" y="170" style="fill:#55555f">2.04% a.m.</text>
+        </g>
+        <g>
+          <rect class="node" x="430" y="282" width="142" height="60" rx="12"></rect>
+          <text class="flow-chip" x="446" y="304" style="font-weight:600;fill:#18181b">Santander</text>
+          <text class="flow-chip" x="446" y="324" style="fill:#55555f">2.12% a.m.</text>
+        </g>
+        <g>
+          <rect class="node" x="430" y="366" width="142" height="60" rx="12"></rect>
+          <text class="flow-chip" x="446" y="388" style="font-weight:600;fill:#18181b">Itaú</text>
+          <text class="flow-chip" x="446" y="408" style="fill:#55555f">2.20% a.m.</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FAIXA DE BANCOS -->
+<div class="band">
+  <div class="wrap">
+    <div class="lbl">As revendas que vendem mais <b>comparam crédito</b> em um lugar só</div>
+    <div class="banks">
+      <span>Banco PAN</span><span>BV</span><span>Santander</span><span>Itaú</span><span>Bradesco</span><span>Omni</span>
+    </div>
+  </div>
+</div>
+
+<!-- MÓDULOS (zigzag) -->
+<section class="section" id="motor">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker"><span class="dot"></span>A plataforma</div>
+      <h2 style="margin-top:16px">Não é uma calculadora de parcelas. É uma decisão.</h2>
+      <p class="sub">A partir dos dados do veículo e do cliente, o sistema consulta vários bancos de uma vez e organiza as respostas num ranking acionável, já com o caminho para aumentar a aprovação.</p>
+    </div>
+
+    <div class="rows2" id="modulos">
+      <!-- Destaque: Motor / ranking -->
+      <div class="feat reveal">
+        <div class="viz">
+          <div class="panel">
+            <div class="top"><i></i><i></i><i></i><span class="t">ranking de bancos</span></div>
+            <div class="body">
+              <div class="mini-rank">
+                <div class="r best"><span class="bk">Banco PAN</span><span class="bar"><i style="width:88%"></i></span><span class="v">1.89%</span><span class="tag">melhor</span></div>
+                <div class="r"><span class="bk">BV Financeira</span><span class="bar"><i style="width:74%"></i></span><span class="v">2.04%</span><span class="v">48x</span></div>
+                <div class="r"><span class="bk">Santander</span><span class="bar"><i style="width:66%"></i></span><span class="v">2.12%</span><span class="v">60x</span></div>
+                <div class="r"><span class="bk">Itaú</span><span class="bar"><i style="width:58%"></i></span><span class="v">2.20%</span><span class="v">36x</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copy">
+          <div class="kicker"><span class="dot"></span>Motor multi-banco</div>
+          <h3>Da operação ao ranking de bancos, em segundos.</h3>
+          <ul class="checks">
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Consulta simultânea a vários bancos, sem retrabalho.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Ordenável por parcela, taxa, chance de aprovação ou comissão.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Mostra o motivo das recusas e sugere como reverter.</li>
+          </ul>
+          <a class="link" href="/analises">Ver no painel
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        </div>
+      </div>
+
+      <!-- Par: Score + Esteira -->
+      <div class="pair">
+      <div class="pcard reveal">
+        <div class="viz">
+          <div class="panel">
+            <div class="top"><i></i><i></i><i></i><span class="t">score e probabilidade</span></div>
+            <div class="body">
+              <div class="gauge">
+                <div class="ring" style="--p:78"><div class="in"><div><div class="n">782</div><div class="s">SCORE</div></div></div></div>
+                <div class="meta">
+                  <div class="m"><span>Probabilidade</span><b style="color:#0c7a59">82%</b></div>
+                  <div class="m"><span>Faixa de risco</span><b>Baixo</b></div>
+                  <div class="m" style="border:0"><span>Melhor condição</span><b>48x · R$ 1.890</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copy">
+          <div class="kicker"><span class="dot"></span>Score e probabilidade</div>
+          <h3>Score próprio e a chance de aprovação de cada proposta.</h3>
+          <ul class="checks">
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Score de crédito automotivo de 0 a 1000.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Probabilidade de aprovação calculada por perfil.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Sugestão automática para viabilizar a aprovação.</li>
+          </ul>
+          <a class="link" href="/proposta">Ver uma proposta
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        </div>
+      </div>
+
+      <div class="pcard reveal" data-d="1">
+        <div class="viz">
+          <div class="panel">
+            <div class="top"><i></i><i></i><i></i><span class="t">esteira de propostas</span></div>
+            <div class="body">
+              <div class="pipe">
+                <div class="st on"><span class="d">1</span><span class="nm">Cliente e veículo</span><span class="pct">ok</span></div>
+                <div class="st on"><span class="d">2</span><span class="nm">Análise multi-banco</span><span class="pct">ok</span></div>
+                <div class="st"><span class="d">3</span><span class="nm">Melhor condição</span><span class="pct">82%</span></div>
+                <div class="st"><span class="d">4</span><span class="nm">Formalização</span><span class="pct">·</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copy">
+          <div class="kicker"><span class="dot"></span>Esteira comercial</div>
+          <h3>Do cadastro do cliente ao fechamento, numa esteira só.</h3>
+          <ul class="checks">
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Criação de proposta em quatro etapas guiadas.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Cliente com dados financeiros, flag de restrição e histórico.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Envio por WhatsApp, podendo ocultar os bancos.</li>
+          </ul>
+          <a class="link" href="/propostas">Ver as propostas
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        </div>
+      </div>
+      </div>
+
+      <!-- Fechamento: Comissões -->
+      <div class="closer reveal">
+        <div class="viz">
+          <div class="panel">
+            <div class="top"><i></i><i></i><i></i><span class="t">comissões por banco</span></div>
+            <div class="body">
+              <div class="bars">
+                <div class="b"><div class="col" style="height:58%"></div><div class="lb">PAN</div></div>
+                <div class="b"><div class="col" style="height:82%"></div><div class="lb">BV</div></div>
+                <div class="b"><div class="col mut" style="height:46%"></div><div class="lb">Sant.</div></div>
+                <div class="b"><div class="col" style="height:68%"></div><div class="lb">Itaú</div></div>
+                <div class="b"><div class="col mut" style="height:36%"></div><div class="lb">Brad.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copy">
+          <div class="kicker"><span class="dot"></span>Financeiro e analytics</div>
+          <h3>Comissões, relatórios e inteligência da operação.</h3>
+          <ul class="checks">
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Split de comissão entre loja e vendedor, com ranking.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Volume financiado, funil e aprovação por banco.</li>
+            <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Alertas automáticos, tendências e motivos de reprovação.</li>
+          </ul>
+          <a class="link" href="/relatorios">Ver os relatórios
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLOGAN (faixa escura) -->
+<section class="devzone">
+  <div class="wrap">
+    <p class="slogan reveal">Pare de <em>ligar para cada banco</em>. Consulte <span class="g">todos de uma vez</span> e receba, em segundos, <em>o ranking do melhor crédito</em> para cada cliente.</p>
+  </div>
+</section>
+
+<!-- CARD DO MOTOR (avança sobre o branco) -->
+<section class="vault-section">
+  <div class="wrap">
+    <div class="vault-card reveal">
+      <div class="mp-grid">
+        <div class="mp-copy">
+          <div class="kicker"><span class="dot"></span>O motor de crédito</div>
+          <h2>Uma única <em>inteligência de crédito</em>, no painel e na API.</h2>
+          <p class="sub">O mesmo motor que serve o time interno alimenta os parceiros externos. Sem planilha, sem ligar pra cada banco, sem decidir no escuro.</p>
+          <a class="btn btn-primary btn-lg" href="#motor">Ver como funciona
+            <svg class="arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        </div>
+        <div class="mp-viz">
+          <div class="mp-code" aria-hidden="true">consulta multi-banco
+score: 782
+prob: 0.82
+rank[0]: PAN  1.89
+rank[1]: BV   2.04
+rank[2]: SAN  2.12
+cpf: ***.***.***-**
+parcela: R$ 2.187
+prazo: 48x · entrada 15k
+status: aprovado</div>
+          <svg class="iso" viewBox="0 0 620 440" aria-hidden="true">
+            <defs><radialGradient id="ig" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#31ddab" stop-opacity=".42"></stop><stop offset="1" stop-color="#31ddab" stop-opacity="0"></stop></radialGradient></defs>
+            <!-- glow -->
+            <ellipse cx="310" cy="235" rx="200" ry="110" fill="url(#ig)"></ellipse>
+            <!-- board -->
+            <path d="M60 220 L310 345 L310 371 L60 246 Z" fill="#090a0c"></path>
+            <path d="M560 220 L310 345 L310 371 L560 246 Z" fill="#0d0e11"></path>
+            <path d="M310 95 L560 220 L310 345 L60 220 Z" fill="#16171c" stroke="rgba(255,255,255,.08)" stroke-width="1.2"></path>
+            <!-- grid -->
+            <path class="grid" d="M185 157 L435 282 M122 189 L372 314 M435 157 L185 282 M498 189 L248 314"></path>
+            <!-- wires -->
+            <path class="wire" d="M310 206 L475 215 M310 206 L392 286 M310 206 L227 286 M310 206 L145 215 M310 206 L227 144 M310 206 L392 144"></path>
+            <path class="wire-live" d="M310 206 L475 215 M310 206 L392 286 M310 206 L227 286 M310 206 L145 215 M310 206 L227 144 M310 206 L392 144"></path>
+            <!-- ring nodes -->
+            <g>
+              <rect x="465" y="208.5" width="20" height="13" rx="4" fill="#1a1b21" stroke="rgba(255,255,255,.16)"></rect><circle cx="475" cy="215" r="2.3" fill="#31ddab"></circle>
+              <rect x="382" y="279.5" width="20" height="13" rx="4" fill="#1a1b21" stroke="rgba(255,255,255,.16)"></rect><circle cx="392" cy="286" r="2.3" fill="#31ddab"></circle>
+              <rect x="217" y="279.5" width="20" height="13" rx="4" fill="#1a1b21" stroke="rgba(255,255,255,.16)"></rect><circle cx="227" cy="286" r="2.3" fill="#31ddab"></circle>
+              <rect x="135" y="208.5" width="20" height="13" rx="4" fill="#1a1b21" stroke="rgba(255,255,255,.16)"></rect><circle cx="145" cy="215" r="2.3" fill="#31ddab"></circle>
+              <rect x="217" y="137.5" width="20" height="13" rx="4" fill="#1a1b21" stroke="rgba(255,255,255,.16)"></rect><circle cx="227" cy="144" r="2.3" fill="#31ddab"></circle>
+              <rect x="382" y="137.5" width="20" height="13" rx="4" fill="#1a1b21" stroke="rgba(255,255,255,.16)"></rect><circle cx="392" cy="144" r="2.3" fill="#31ddab"></circle>
+            </g>
+            <!-- center chip (logo) -->
+            <ellipse cx="310" cy="212" rx="92" ry="48" fill="url(#ig)"></ellipse>
+            <rect x="283" y="170" width="54" height="54" rx="15" fill="#fff"></rect>
+            <image href="/assets/img/favicon.png" x="286" y="173" width="48" height="48" preserveAspectRatio="xMidYMid meet"></image>
+          </svg>
+        </div>
+      </div>
+      <div class="vault-tiles">
+        <div class="vt"><div class="ic"><i class="ph ph-bank"></i></div><div class="nm">Multi-banco</div></div>
+        <div class="vt"><div class="ic"><i class="ph ph-gauge"></i></div><div class="nm">Score 0 a 1000</div></div>
+        <div class="vt"><div class="ic"><i class="ph ph-list-numbers"></i></div><div class="nm">Ranking acionável</div></div>
+        <div class="vt"><div class="ic"><i class="ph ph-warning-circle"></i></div><div class="nm">Motivo das recusas</div></div>
+        <div class="vt"><div class="ic"><i class="ph ph-scales"></i></div><div class="nm">Modo negociação</div></div>
+        <div class="vt"><div class="ic"><i class="ph ph-sliders-horizontal"></i></div><div class="nm">Automação</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- API / DEV -->
+<section class="section tight" id="api">
+  <div class="wrap">
+    <div class="devpanel on-dark reveal">
+      <div class="pad">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center" class="api-top">
+          <div>
+            <div class="kicker"><span class="dot"></span>Para desenvolvedores</div>
+            <h2 style="margin-top:16px">O mesmo motor, aberto para seus parceiros.</h2>
+            <p class="sub">Concessionárias e sistemas externos consultam crédito por CPF e CNPJ direto dos próprios sistemas, com portal, chaves, sandbox e webhooks.</p>
+            <div style="margin-top:26px"><a class="btn btn-ghost" href="/api">Ver a documentação
+              <svg class="arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+          </div>
+          <div class="code">
+            <div class="top"><i></i><i></i><i></i><span class="f">consulta de crédito</span></div>
+<pre><span class="m">POST</span> <span class="n">/v1/analises</span>
+{
+  <span class="k">"cpf"</span>: <span class="s">"***.***.***-**"</span>,
+  <span class="k">"valor"</span>: <span class="n">68000</span>,
+  <span class="k">"entrada"</span>: <span class="n">15000</span>,
+  <span class="k">"prazo"</span>: <span class="n">48</span>
+}
+
+<span class="m">200 OK</span>
+{
+  <span class="k">"score"</span>: <span class="n">782</span>,
+  <span class="k">"probabilidade"</span>: <span class="n">0.82</span>,
+  <span class="k">"ranking"</span>: [
+    { <span class="k">"banco"</span>: <span class="s">"PAN"</span>, <span class="k">"taxa"</span>: <span class="n">1.89</span> },
+    { <span class="k">"banco"</span>: <span class="s">"BV"</span>, <span class="k">"taxa"</span>: <span class="n">2.04</span> }
+  ]
+}</pre>
+          </div>
+        </div>
+
+        <!-- fluxo escuro: parceiro -> motor -> bancos -->
+        <div class="flow-dark" aria-hidden="true">
+          <svg viewBox="0 0 1040 220" role="img">
+            <!-- wires -->
+            <path class="wire" d="M190 110 H300"></path>
+            <path class="wire" d="M520 110 H640"></path>
+            <path class="wire" d="M740 110 C790 110 790 54 860 54"></path>
+            <path class="wire" d="M740 110 H860"></path>
+            <path class="wire" d="M740 110 C790 110 790 166 860 166"></path>
+            <path class="wire-live" d="M190 110 H300"></path>
+            <path class="wire-live" d="M520 110 H640"></path>
+            <path class="wire-live" d="M740 110 C790 110 790 54 860 54"></path>
+            <path class="wire-live" d="M740 110 H860"></path>
+            <path class="wire-live" d="M740 110 C790 110 790 166 860 166"></path>
+
+            <!-- parceiro -->
+            <rect class="node" x="40" y="80" width="150" height="60" rx="12"></rect>
+            <text x="60" y="108" style="font-size:14px;font-weight:600">Parceiro</text>
+            <text class="mut" x="60" y="128" style="font-family:var(--mono);font-size:11px">envia CPF / CNPJ</text>
+
+            <!-- hub motor -->
+            <rect class="hub" x="300" y="64" width="220" height="92" rx="18"></rect>
+            <rect x="321" y="85" width="50" height="50" rx="13" fill="#fff"></rect>
+            <image href="/assets/img/favicon.png" x="324" y="88" width="44" height="44" preserveAspectRatio="xMidYMid meet"></image>
+            <text x="388" y="112" style="font-size:15px;font-weight:600;fill:#fff">Motor CrediAuto</text>
+            <text class="mut" x="388" y="132" style="font-family:var(--mono);font-size:11px">score + ranking</text>
+
+            <!-- ranking retorno -->
+            <rect class="node" x="640" y="80" width="100" height="60" rx="12"></rect>
+            <text x="660" y="108" style="font-size:13px;font-weight:600">Ranking</text>
+            <text class="mut" x="660" y="128" style="font-family:var(--mono);font-size:11px">em JSON</text>
+
+            <!-- bancos -->
+            <rect class="node" x="860" y="30" width="140" height="48" rx="11"></rect>
+            <text x="878" y="59" style="font-size:13px">Banco PAN</text>
+            <rect class="node" x="860" y="86" width="140" height="48" rx="11"></rect>
+            <text x="878" y="115" style="font-size:13px">BV / Santander</text>
+            <rect class="node" x="860" y="142" width="140" height="48" rx="11"></rect>
+            <text x="878" y="171" style="font-size:13px">Itaú / Bradesco</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="dev-tiles">
+        <div class="t"><span class="ic"><i class="ph ph-browsers"></i></span><span class="nm">Portal do parceiro</span><span class="ds">Gestão de acesso, consumo e documentação.</span></div>
+        <div class="t"><span class="ic"><i class="ph ph-key"></i></span><span class="nm">Chaves de API</span><span class="ds">Credenciais por parceiro, com escopo e limite.</span></div>
+        <div class="t"><span class="ic"><i class="ph ph-flask"></i></span><span class="nm">Sandbox</span><span class="ds">Ambiente de teste com dados de exemplo.</span></div>
+        <div class="t"><span class="ic"><i class="ph ph-webhooks-logo"></i></span><span class="nm">Webhooks</span><span class="ds">Eventos de status enviados em tempo real.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É (tabs) -->
+<section class="section soft" id="quem">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="kicker"><span class="dot"></span>Para quem é</div>
+      <h2 style="margin-top:16px">Feito para os três lados da operação.</h2>
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-p="gestor"><span class="dot"></span>Gestor</button>
+        <button class="tab" data-p="vendedor"><span class="dot"></span>Vendedor</button>
+        <button class="tab" data-p="parceiro"><span class="dot"></span>Parceiro via API</button>
+      </div>
+    </div>
+
+    <div class="rows" style="margin-top:34px">
+      <div class="row reveal" style="gap:48px">
+        <div class="copy">
+          <div class="pane" data-p="gestor">
+            <h3>Dono da operação, no controle de ponta a ponta.</h3>
+            <ul class="checks" style="margin-bottom:0">
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Configura taxas, regras, bancos, lojas e comissões.</li>
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Governança de usuários, perfis e permissões.</li>
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Acompanha resultados por loja e por vendedor em tempo real.</li>
+            </ul>
+          </div>
+          <div class="pane" data-p="vendedor" hidden="">
+            <h3>O dia a dia da venda, sem fricção.</h3>
+            <ul class="checks" style="margin-bottom:0">
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Cria análises e propostas em poucos cliques.</li>
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Compara bancos e negocia a melhor condição na hora.</li>
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Acompanha a própria comissão a cada fechamento.</li>
+            </ul>
+          </div>
+          <div class="pane" data-p="parceiro" hidden="">
+            <h3>Crédito como serviço, dentro do seu sistema.</h3>
+            <ul class="checks" style="margin-bottom:0">
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Envia CPF ou CNPJ e recebe bancos e condições na hora.</li>
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Integração por API REST, com sandbox e webhooks.</li>
+              <li><span class="ck"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Sem construir motor de crédito do zero.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="viz">
+          <div class="panel">
+            <div class="top"><i></i><i></i><i></i><span class="t">creditoautomotivo.com/painel</span></div>
+            <div class="body" style="display:grid;gap:10px">
+              <div class="pipe"><div class="st on"><span class="d"><i class="ph ph-user" style="font-size:12px"></i></span><span class="nm">Perfil e permissões</span><span class="pct">ativo</span></div></div>
+              <div class="mini-rank"><div class="r"><span class="bk">Meta do mês</span><span class="bar"><i style="width:72%"></i></span><span class="v">72%</span><span class="v">R$ 1,2M</span></div></div>
+              <div class="pipe"><div class="st"><span class="d"><i class="ph ph-chart-line-up" style="font-size:12px"></i></span><span class="nm">Aprovação da loja</span><span class="pct">74%</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECNOLOGIA (selos) -->
+<section class="section soft" id="tecnologia">
+  <div class="wrap">
+    <div class="trust reveal">
+      <div class="trust-head">
+        <div class="kicker"><span class="dot"></span>A plataforma</div>
+        <h2>Uma plataforma para a operação de crédito inteira.</h2>
+        <p>Da análise multi-banco à comissão do vendedor, com IA nativa e API para parceiros. Multiempresa, do primeiro cadastro ao fechamento.</p>
+        <a class="btn btn-dark" href="/entrar">Entrar no painel
+          <svg class="arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+      <div class="trust-grid">
+        <div class="tcard"><div class="tile a"><i class="ph ph-identification-card"></i></div><h3>PF e PJ</h3><div class="tsub">Crédito por CPF e CNPJ</div></div>
+        <div class="tcard"><div class="tile b"><i class="ph ph-buildings"></i></div><h3>Multiempresa</h3><div class="tsub">Empresas, filiais e lojas</div></div>
+        <div class="tcard"><div class="tile c"><i class="ph ph-sparkle"></i></div><h3>IA nativa</h3><div class="tsub">Assistente e agente</div></div>
+        <div class="tcard"><div class="tile d"><i class="ph ph-sliders-horizontal"></i></div><h3>Governança</h3><div class="tsub">Taxas, regras e automações</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section tight" id="cta">
+  <div class="wrap wrap-wide">
+    <div class="final reveal">
+      <div class="final-fx" aria-hidden="true">
+        <span class="beam b1"></span>
+        <span class="beam b2"></span>
+        <span class="beam b3"></span>
+        <span class="glow"></span>
+      </div>
+      <div class="pad">
+        <h2>Veja o CrediAuto <em>funcionando</em> agora.</h2>
+        <p class="sub">O painel está no ar, com dados de exemplo. Entre e navegue pela operação inteira: dashboard e KPIs, esteira de propostas, análise multi-banco com ranking, comissões e relatórios.</p>
+        <div class="cta">
+          <a class="btn btn-primary btn-lg" href="/entrar">Entrar no painel
+            <svg class="arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <a class="btn btn-ghost btn-lg" href="#modulos">Ver os módulos</a>
+        </div>
+        <div class="final-foot">
+          <span class="fi"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Sem instalação</span>
+          <span class="fsep"></span>
+          <span class="fi"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Acesso imediato</span>
+          <span class="fsep"></span>
+          <span class="fi"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Todas as telas liberadas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="/" aria-label="CrediAuto">
+          <img class="brand-logo brand-white" src="/assets/img/logotipo.png" alt="CrediAuto" width="162" height="26">
+        </a>
+        <p class="tg">Plataforma de crédito automotivo multi-banco para concessionárias, lojas e revendas.</p>
+      </div>
+      <nav>
+        <div><h3>Plataforma</h3><a href="#motor">Como funciona</a><a href="#modulos">Módulos</a><a href="#api">API</a></div>
+        <div><h3>Para quem é</h3><a href="#quem">Gestor</a><a href="#quem">Vendedor</a><a href="#quem">Parceiro</a></div>
+        <div><h3>Painel</h3><a href="/entrar">Entrar</a><a href="/relatorios">Relatórios</a><a href="/inteligencia">Inteligência</a></div>
+        <div><h3>Acesso</h3><a href="/entrar">Entrar no painel</a></div>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 CrediAuto. Todos os direitos reservados.</span>
+      <span>Dados exibidos são de exemplo.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+
+
+</body></html>

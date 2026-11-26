@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C980c476298",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.simplyhired.com.br/search?q=bv+financeira&l=alphaville%2C+sp",
+  "final_url": "https://www.simplyhired.com.br/search?q=bv+financeira&l=alphaville%2C+sp",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.18.39.201",
+  "collected_at": "2026-11-25T23:12:25.102119+00:00",
+  "manifest_written_at": "2026-11-25T23:12:29.167513+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C980c476298/attempt-1/viewport.png",
+      "sha256": "f9b73661c89d3ade00df5bcca7225f97c0dc2a16be342a239b97948b90fbc841",
+      "size_bytes": 68656
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C980c476298/attempt-1/fullpage.png",
+      "sha256": "4e1299630ae715d8aa7265e655af57c8458e83d7aeaee735508eaac2e57e95ee",
+      "size_bytes": 76628
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C980c476298/attempt-1/page.html.txt",
+      "sha256": "026163be66ab51a8b15344981e19d468f2075c2fe53c1ee55deb743cfec3f539",
+      "size_bytes": 4263
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C980c476298/attempt-1/text.txt",
+      "sha256": "190bca035a3187e2b3888a01a0db9db65f4436570e0f99801e130ba6a7c38176",
+      "size_bytes": 699
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C980c476298/attempt-1/page.json",
+      "sha256": "ff47d9ccfe73a30e786e3f749ae257aa9c867c87afe7341e5d01509b0c463a90",
+      "size_bytes": 2126
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

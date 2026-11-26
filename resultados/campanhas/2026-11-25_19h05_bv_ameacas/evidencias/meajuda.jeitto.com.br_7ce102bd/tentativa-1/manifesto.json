@@ -1,0 +1,59 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C7ce102bd6a",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://meajuda.jeitto.com.br/",
+  "final_url": "https://meajuda.jeitto.com.br/hc/pt-br",
+  "redirect_chain": [
+    "https://meajuda.jeitto.com.br/",
+    "https://meajuda.jeitto.com.br/hc",
+    "https://meajuda.jeitto.com.br/hc/pt-br",
+    "https://meajuda.jeitto.com.br/",
+    "https://meajuda.jeitto.com.br/hc"
+  ],
+  "http_status": 403,
+  "server_ip": "104.18.30.6",
+  "collected_at": "2026-11-25T23:20:23.430161+00:00",
+  "manifest_written_at": "2026-11-25T23:20:30.871377+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C7ce102bd6a/attempt-1/viewport.png",
+      "sha256": "11b998a8937364242c802631b22b2790aaedf6ef31a8704fc6d514495372437c",
+      "size_bytes": 39962
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C7ce102bd6a/attempt-1/fullpage.png",
+      "sha256": "d725fae196e4b305e1fabe23430739912da0bfedd10689fbc0a368b851dd86e9",
+      "size_bytes": 39939
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C7ce102bd6a/attempt-1/page.html.txt",
+      "sha256": "4cc8700f384b798b45f62005d39b32e9bf0c6bc4ab5a112507520e27f45ca60d",
+      "size_bytes": 44865
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C7ce102bd6a/attempt-1/text.txt",
+      "sha256": "9be4277dbe95abe1eafa586fd3f87154a7df8229ebfb101abe0aa1bec7aecebd",
+      "size_bytes": 295
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C7ce102bd6a/attempt-1/page.json",
+      "sha256": "085986cfb5ded1a39a6b975d1029bebbcc59d4bcbb1391bcb50d04be9ea79fd6",
+      "size_bytes": 1459
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

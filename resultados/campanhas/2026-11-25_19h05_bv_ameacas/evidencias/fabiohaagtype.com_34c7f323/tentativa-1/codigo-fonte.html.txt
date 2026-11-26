@@ -1,0 +1,2120 @@
+<html lang="pt-br"><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<!-- Hotjar Tracking Code for Fabio Haag Type -->
+	<script type="text/javascript" async="" src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-YE8Q76RDLD&amp;cx=c&amp;gtm=4e6bh1"></script><script type="text/javascript" async="" src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script><script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DqDoLJqJmjhqr0vRwNZ2MCHA/recaptcha__pt_br.js" crossorigin="anonymous" integrity="sha384-PKv3ftwe1yWq5Lt7UsgloTaS0cOKIR5qem9egM5BbdfWo66obWY5VVQKxjk6g7Ws"></script><script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/DqDoLJqJmjhqr0vRwNZ2MCHA/recaptcha__pt_br.js" crossorigin="anonymous" integrity="sha384-PKv3ftwe1yWq5Lt7UsgloTaS0cOKIR5qem9egM5BbdfWo66obWY5VVQKxjk6g7Ws"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-TMW5QRW"></script><script>
+			(function(h,o,t,j,a,r){
+					h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+					h._hjSettings={hjid:4950518,hjsv:6};
+					a=o.getElementsByTagName('head')[0];
+					r=o.createElement('script');r.async=1;
+					r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+					a.appendChild(r);
+			})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+	</script><script async="" src="https://static.hotjar.com/c/hotjar-4950518.js?sv=6"></script>
+
+	<script>
+		window.addEventListener("bento:ready", () => {
+			/**
+			* Bento Form Tracker Snippet - Fabio Haag
+			*/
+
+			// Adiciona trigger de submit nos forms existentes
+			document.querySelectorAll('form.bento-formkit').forEach(form => {
+				addBentoFormTracker(jQuery(form));
+			})
+
+			// $form: objeto jQuery do form
+			function addBentoFormTracker($form) {
+				var email_field = $form.find('[type=email]');
+
+				if (email_field) {
+					var page_language = document.documentElement.lang;
+
+					// Registra função que será executada quando o form for enviado
+					$form.find("button[type=submit]")?.[0].addEventListener("click", () => {
+						// Previne o envio do formulário
+						event.preventDefault();
+
+						var email = email_field.val();
+
+						// Trackeia sub pelo e-mail
+						bento.identify(email);
+						bento.track("$subscribe");
+
+						// Trackeia língua da página
+						if (page_language) {
+							bento.track(`language ${page_language}`);
+						}
+
+						showSuccessMessage(event.target);
+
+						// Fecha o popup (se houver)
+						$form.closest('.c-newsletter').find('.c-newsletter__close').click();
+
+						jQuery.ajax({
+							url: "https://fabiohaagtype.com/wp-admin/admin-ajax.php",
+							method: "POST",
+							dataType: "json",
+							data: {
+								action: "bento_subscribe_newsletter",
+								email: email,
+								nonce: "1072f901de"
+							},
+							success: function(res) {},
+							error: function(err) {
+								console.error("AJAX error:", err);
+							}
+						});
+					}, true);
+				}
+			}
+
+			function showSuccessMessage(target) {
+				const originalFontSize = target.style['font-size'];
+				const originalInnerText = target.innerText;
+
+				target.style['font-size'] = '26px';
+				target.innerText = '✔';
+
+				setTimeout(() => {
+					target.style['font-size'] = originalFontSize;
+					target.innerText = originalInnerText;
+				}, 3000);
+			}
+		});
+	</script>
+
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="alternate" hreflang="pt-br" href="https://fabiohaagtype.com/">
+<link rel="alternate" hreflang="en" href="https://fabiohaagtype.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://fabiohaagtype.com/">
+    <script>
+    (function() {
+        'use strict';
+        
+        var UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        var CLICK_IDS = ['gclid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id', 'twclid', 'dclid'];
+        var COOKIE_DAYS = 30;
+        
+        // ============================================
+        // UTILIDADES
+        // ============================================
+        function getUrlParam(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param) || '';
+        }
+        
+        function setCookie(name, value, days) {
+            if (!value) return;
+            var expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + '=' + encodeURIComponent(value) + 
+                              ';expires=' + expires.toUTCString() + 
+                              ';path=/;SameSite=Lax';
+        }
+        
+        function getCookie(name) {
+            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? decodeURIComponent(match[2]) : '';
+        }
+        
+        function setStorage(key, value) {
+            try {
+                if (value) localStorage.setItem(key, value);
+            } catch(e) {}
+        }
+        
+        function getStorage(key) {
+            try {
+                return localStorage.getItem(key) || '';
+            } catch(e) {
+                return '';
+            }
+        }
+        
+        // Salva em cookie E localStorage (redundância)
+        function saveData(key, value, days) {
+            if (!value) return;
+            setCookie(key, value, days);
+            setStorage(key, value);
+        }
+        
+        // Lê de cookie OU localStorage (fallback)
+        function getData(key) {
+            return getCookie(key) || getStorage(key);
+        }
+        
+        // ============================================
+        // DETECÇÃO DE FONTE VIA REFERRER
+        // ============================================
+        function parseReferrer() {
+            var ref = document.referrer;
+            if (!ref) return null;
+            
+            try {
+                var refUrl = new URL(ref);
+                var refHost = refUrl.hostname.toLowerCase();
+                
+                // Ignora referrer do próprio site
+                if (refHost === window.location.hostname) return null;
+                
+                // Mapeamento de domínios para source/medium
+                var sources = {
+                    // Google
+                    'google': { source: 'google', medium: 'organic' },
+                    'google.com': { source: 'google', medium: 'organic' },
+                    'google.com.br': { source: 'google', medium: 'organic' },
+                    // Facebook/Meta
+                    'facebook.com': { source: 'facebook', medium: 'social' },
+                    'fb.com': { source: 'facebook', medium: 'social' },
+                    'l.facebook.com': { source: 'facebook', medium: 'social' },
+                    'lm.facebook.com': { source: 'facebook', medium: 'social' },
+                    'm.facebook.com': { source: 'facebook', medium: 'social' },
+                    'web.facebook.com': { source: 'facebook', medium: 'social' },
+                    // Instagram
+                    'instagram.com': { source: 'instagram', medium: 'social' },
+                    'l.instagram.com': { source: 'instagram', medium: 'social' },
+                    // LinkedIn
+                    'linkedin.com': { source: 'linkedin', medium: 'social' },
+                    'lnkd.in': { source: 'linkedin', medium: 'social' },
+                    // Twitter/X
+                    'twitter.com': { source: 'twitter', medium: 'social' },
+                    'x.com': { source: 'twitter', medium: 'social' },
+                    't.co': { source: 'twitter', medium: 'social' },
+                    // YouTube
+                    'youtube.com': { source: 'youtube', medium: 'social' },
+                    'youtu.be': { source: 'youtube', medium: 'social' },
+                    // TikTok
+                    'tiktok.com': { source: 'tiktok', medium: 'social' },
+                    // Bing
+                    'bing.com': { source: 'bing', medium: 'organic' },
+                    // Yahoo
+                    'yahoo.com': { source: 'yahoo', medium: 'organic' },
+                    'search.yahoo.com': { source: 'yahoo', medium: 'organic' },
+                    // DuckDuckGo
+                    'duckduckgo.com': { source: 'duckduckgo', medium: 'organic' },
+                    // Pinterest
+                    'pinterest.com': { source: 'pinterest', medium: 'social' },
+                    'pin.it': { source: 'pinterest', medium: 'social' },
+                    // Reddit
+                    'reddit.com': { source: 'reddit', medium: 'social' },
+                    // WhatsApp
+                    'whatsapp.com': { source: 'whatsapp', medium: 'social' },
+                    'api.whatsapp.com': { source: 'whatsapp', medium: 'social' },
+                    // Telegram
+                    'telegram.org': { source: 'telegram', medium: 'social' },
+                    't.me': { source: 'telegram', medium: 'social' },
+                    // Email providers (webmail)
+                    'mail.google.com': { source: 'gmail', medium: 'email' },
+                    'outlook.live.com': { source: 'outlook', medium: 'email' },
+                    'outlook.office.com': { source: 'outlook', medium: 'email' },
+                    'mail.yahoo.com': { source: 'yahoo_mail', medium: 'email' }
+                };
+                
+                // Busca correspondência exata primeiro
+                if (sources[refHost]) {
+                    return sources[refHost];
+                }
+                
+                // Busca parcial (para subdomínios)
+                for (var domain in sources) {
+                    if (refHost.indexOf(domain) !== -1) {
+                        return sources[domain];
+                    }
+                }
+                
+                // Referrer desconhecido - usa o domínio como source
+                return {
+                    source: refHost.replace('www.', ''),
+                    medium: 'referral'
+                };
+                
+            } catch(e) {
+                return null;
+            }
+        }
+        
+        // ============================================
+        // DETECÇÃO DE CLICK IDS (gclid, fbclid, etc)
+        // ============================================
+        function detectClickId() {
+            for (var i = 0; i < CLICK_IDS.length; i++) {
+                var clickId = getUrlParam(CLICK_IDS[i]);
+                if (clickId) {
+                    var mapping = {
+                        'gclid': { source: 'google', medium: 'cpc' },
+                        'fbclid': { source: 'facebook', medium: 'cpc' },
+                        'msclkid': { source: 'bing', medium: 'cpc' },
+                        'ttclid': { source: 'tiktok', medium: 'cpc' },
+                        'li_fat_id': { source: 'linkedin', medium: 'cpc' },
+                        'twclid': { source: 'twitter', medium: 'cpc' },
+                        'dclid': { source: 'google', medium: 'display' }
+                    };
+                    return {
+                        clickIdName: CLICK_IDS[i],
+                        clickIdValue: clickId,
+                        inferred: mapping[CLICK_IDS[i]] || null
+                    };
+                }
+            }
+            return null;
+        }
+        
+        // ============================================
+        // CAPTURA PRINCIPAL
+        // ============================================
+        function captureAttribution() {
+            var now = new Date().toISOString();
+            
+            // 1. Verifica se há UTMs na URL
+            var hasUtm = false;
+            var utmData = {};
+            
+            for (var i = 0; i < UTM_PARAMS.length; i++) {
+                var param = UTM_PARAMS[i];
+                var value = getUrlParam(param);
+                if (value) {
+                    hasUtm = true;
+                    utmData[param] = value;
+                }
+            }
+            
+            // 2. Se tem UTMs, salva normalmente
+            if (hasUtm) {
+                // Entry: só salva se não existir
+                for (var param in utmData) {
+                    var entryKey = param + '_entry';
+                    if (!getData(entryKey)) {
+                        saveData(entryKey, utmData[param], COOKIE_DAYS);
+                    }
+                }
+                
+                // Last: sempre atualiza
+                for (var param in utmData) {
+                    var lastKey = param + '_last';
+                    saveData(lastKey, utmData[param], COOKIE_DAYS);
+                }
+                
+                // Salva timestamp e landing page
+                if (!getData('first_visit_at')) {
+                    saveData('first_visit_at', now, COOKIE_DAYS);
+                    saveData('landing_page_entry', window.location.href, COOKIE_DAYS);
+                }
+                saveData('last_visit_at', now, COOKIE_DAYS);
+                saveData('landing_page_last', window.location.href, COOKIE_DAYS);
+                
+                return; // UTMs encontradas, não precisa de fallback
+            }
+            
+            // 3. Sem UTMs - tenta detectar via click ID (gclid, fbclid, etc)
+            var clickIdData = detectClickId();
+            if (clickIdData && clickIdData.inferred) {
+                // Salva o click ID
+                saveData(clickIdData.clickIdName + '_entry', clickIdData.clickIdValue, COOKIE_DAYS);
+                saveData(clickIdData.clickIdName + '_last', clickIdData.clickIdValue, COOKIE_DAYS);
+                
+                // Infere UTMs do click ID
+                var inferredUtm = {
+                    'utm_source': clickIdData.inferred.source,
+                    'utm_medium': clickIdData.inferred.medium,
+                    'utm_campaign': '(auto-detected)',
+                    'utm_term': '',
+                    'utm_content': ''
+                };
+                
+                // Entry: só salva se não existir
+                for (var param in inferredUtm) {
+                    var entryKey = param + '_entry';
+                    if (!getData(entryKey) && inferredUtm[param]) {
+                        saveData(entryKey, inferredUtm[param], COOKIE_DAYS);
+                    }
+                }
+                
+                // Last: sempre atualiza
+                for (var param in inferredUtm) {
+                    var lastKey = param + '_last';
+                    if (inferredUtm[param]) {
+                        saveData(lastKey, inferredUtm[param], COOKIE_DAYS);
+                    }
+                }
+                
+                if (!getData('first_visit_at')) {
+                    saveData('first_visit_at', now, COOKIE_DAYS);
+                    saveData('landing_page_entry', window.location.href, COOKIE_DAYS);
+                }
+                saveData('last_visit_at', now, COOKIE_DAYS);
+                saveData('landing_page_last', window.location.href, COOKIE_DAYS);
+                
+                return;
+            }
+            
+            // 4. Sem UTMs e sem click ID - tenta detectar via referrer
+            var referrerData = parseReferrer();
+            if (referrerData) {
+                var inferredUtm = {
+                    'utm_source': referrerData.source,
+                    'utm_medium': referrerData.medium,
+                    'utm_campaign': '(auto-detected)',
+                    'utm_term': '',
+                    'utm_content': ''
+                };
+                
+                // Entry: só salva se não existir
+                for (var param in inferredUtm) {
+                    var entryKey = param + '_entry';
+                    if (!getData(entryKey) && inferredUtm[param]) {
+                        saveData(entryKey, inferredUtm[param], COOKIE_DAYS);
+                    }
+                }
+                
+                // Last: sempre atualiza (mas NÃO sobrescreve com vazio se já tem valor)
+                for (var param in inferredUtm) {
+                    var lastKey = param + '_last';
+                    if (inferredUtm[param]) {
+                        saveData(lastKey, inferredUtm[param], COOKIE_DAYS);
+                    }
+                }
+                
+                // Salva referrer original também
+                saveData('referrer_entry', document.referrer, COOKIE_DAYS);
+                saveData('referrer_last', document.referrer, COOKIE_DAYS);
+            }
+            
+            // 5. Salva timestamps e landing page mesmo sem atribuição
+            if (!getData('first_visit_at')) {
+                saveData('first_visit_at', now, COOKIE_DAYS);
+                saveData('landing_page_entry', window.location.href, COOKIE_DAYS);
+                
+                // Se é primeira visita sem nenhuma fonte, marca como direto
+                if (!getData('utm_source_entry')) {
+                    saveData('utm_source_entry', '(direct)', COOKIE_DAYS);
+                    saveData('utm_medium_entry', '(none)', COOKIE_DAYS);
+                }
+            }
+            
+            saveData('last_visit_at', now, COOKIE_DAYS);
+            saveData('landing_page_last', window.location.href, COOKIE_DAYS);
+        }
+        
+        // ============================================
+        // PUSH PARA DATALAYER
+        // ============================================
+        function pushToDataLayer() {
+            var data = {};
+            var allKeys = [
+                'utm_source_entry', 'utm_medium_entry', 'utm_campaign_entry', 'utm_term_entry', 'utm_content_entry',
+                'utm_source_last', 'utm_medium_last', 'utm_campaign_last', 'utm_term_last', 'utm_content_last',
+                'gclid_entry', 'gclid_last', 'fbclid_entry', 'fbclid_last',
+                'referrer_entry', 'referrer_last',
+                'landing_page_entry', 'landing_page_last',
+                'first_visit_at', 'last_visit_at'
+            ];
+            
+            for (var i = 0; i < allKeys.length; i++) {
+                var value = getData(allKeys[i]);
+                if (value) {
+                    data[allKeys[i]] = value;
+                }
+            }
+            
+            if (Object.keys(data).length > 0) {
+                window.dataLayerPYS = window.dataLayerPYS || [];
+                window.dataLayer.push(data);
+            }
+        }
+        
+        // ============================================
+        // EXECUTA
+        // ============================================
+        captureAttribution();
+        pushToDataLayer();
+        
+    })();
+    </script>
+    
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<script data-cfasync="false" data-pagespeed-no-defer="">
+	var gtm4wp_datalayer_name = "dataLayer";
+	var dataLayer = dataLayer || [];
+	const gtm4wp_use_sku_instead = 0;
+	const gtm4wp_currency = 'BRL';
+	const gtm4wp_product_per_impression = 10;
+	const gtm4wp_clear_ecommerce = false;
+	const gtm4wp_datalayer_max_timeout = 2000;
+</script>
+<!-- End Google Tag Manager for WordPress by gtm4wp.com -->
+<!-- Google Tag Manager by PYS -->
+    <script data-cfasync="false" data-pagespeed-no-defer="">
+	    window.dataLayerPYS = window.dataLayerPYS || [];
+	</script>
+<!-- End Google Tag Manager by PYS -->
+	<!-- This site is optimized with the Yoast SEO plugin v27.6 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Fabio Haag Type - Fontes para marcas: crie distinção, licencie com clareza.</title>
+	<meta name="description" content="Marcas fortes, tipos expressivos.">
+	<link rel="canonical" href="https://fabiohaagtype.com/">
+	<link rel="next" href="https://fabiohaagtype.com/page/2/">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Fabio Haag Type">
+	<meta property="og:description" content="Simplificamos o licenciamento de fontes e criamos tipografias expressivas que materializam estratégias de marca.">
+	<meta property="og:url" content="https://fabiohaagtype.com/">
+	<meta property="og:site_name" content="Fabio Haag Type">
+	<meta property="og:image" content="https://fabiohaagtype.com/wp-content/uploads/2017/02/cropped-Artboard-4@1x.jpg">
+	<meta property="og:image:width" content="512">
+	<meta property="og:image:height" content="512">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@fabiohaag">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"CollectionPage","@id":"https:\/\/fabiohaagtype.com\/","url":"https:\/\/fabiohaagtype.com\/","name":"Fabio Haag Type - Fontes para marcas: crie distinção, licencie com clareza.","isPartOf":{"@id":"https:\/\/fabiohaagtype.com\/#website"},"description":"Marcas fortes, tipos expressivos.","breadcrumb":{"@id":"https:\/\/fabiohaagtype.com\/#breadcrumb"},"inLanguage":"pt-BR"},{"@type":"BreadcrumbList","@id":"https:\/\/fabiohaagtype.com\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/fabiohaagtype.com\/#website","url":"https:\/\/fabiohaagtype.com\/","name":"Fabio Haag Type","description":"Fontes para marcas: crie distinção, licencie com clareza.","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/fabiohaagtype.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"pt-BR"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<script type="application/javascript" id="pys-version-script">console.log('PixelYourSite PRO version 12.5.3');</script>
+<link rel="dns-prefetch" href="//app.bentonow.com">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="alternate" type="application/rss+xml" title="Feed para Fabio Haag Type »" href="https://fabiohaagtype.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Fabio Haag Type »" href="https://fabiohaagtype.com/comments/feed/">
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel="stylesheet" id="dashicons-css" href="https://fabiohaagtype.com/wp-includes/css/dashicons.min.css?ver=fb3db6046759ac26732322c3cc41f38b" media="all">
+<link rel="stylesheet" id="thickbox-css" href="https://fabiohaagtype.com/wp-includes/js/thickbox/thickbox.css?ver=fb3db6046759ac26732322c3cc41f38b" media="all">
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<link rel="stylesheet" id="wc-blocks-style-css" href="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks.css?ver=wc-10.7.0" media="all">
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel="stylesheet" id="cookie-law-info-css" href="https://fabiohaagtype.com/wp-content/plugins/cookie-law-info/legacy/public/css/cookie-law-info-public.css?ver=3.5.0" media="all">
+<link rel="stylesheet" id="cookie-law-info-gdpr-css" href="https://fabiohaagtype.com/wp-content/plugins/cookie-law-info/legacy/public/css/cookie-law-info-gdpr.css?ver=3.5.0" media="all">
+<link rel="stylesheet" id="eh-style-css" href="https://fabiohaagtype.com/wp-content/plugins/payment-gateway-stripe-and-woocommerce-integration/assets/css/eh-style.css?ver=5.0.8" media="all">
+<link rel="stylesheet" id="wcml-dropdown-0-css" href="//fabiohaagtype.com/wp-content/plugins/woocommerce-multilingual/templates/currency-switchers/legacy-dropdown/style.css?ver=5.5.5" media="all">
+<style id="woocommerce-inline-inline-css">
+.woocommerce form .form-row .required { visibility: visible; }
+/*# sourceURL=woocommerce-inline-inline-css */
+</style>
+<link rel="stylesheet" id="wpml-legacy-horizontal-list-0-css" href="https://fabiohaagtype.com/wp-content/plugins/wpml-multilingual-cms/templates/language-switchers/legacy-list-horizontal/style.min.css?ver=1" media="all">
+<link rel="stylesheet" id="theme-style-bundle-css" href="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/dist/index.css?ver=13c53e13fb1473454434bb5d65d343d7" media="all">
+<link rel="stylesheet" id="fabio-haag-type-2020-style-css" href="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/style.css?ver=1.0.0" media="all">
+<style id="fabio-haag-type-2020-style-inline-css">
+
+						@font-face {
+							font-family: "MargemNova";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2026/11/MargemNovaVariable-v2.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "MargemNova";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2026/11/MargemNovaVariable-v2.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Drika";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2026/06/DrikaVarSite.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Drika";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2026/06/DrikaVarSite.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Suspire";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/SuspireVariable-Regular.ttf") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Suspire";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/SuspireVariable-Italic.ttf") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Aconchego";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2026/04/AconchegoSite4.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Aconchego";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2026/04/AconchegoSite4.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Pitanga";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PitangaVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Pitanga";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PitangaVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Passo";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PassoVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Passo";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PassoVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Passeio";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PasseioVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Passeio";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PasseioVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Curiosa";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/CuriosaVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Curiosa";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/CuriosaVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Versos";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/VersosVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Versos";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/VersosVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Pausa";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PausaVariable-Roman.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Pausa";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/PausaVariable-Italic.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Seiva";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/SeivaVariable-Roman.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Seiva";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/SeivaVariable-Italic.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Salva";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2025/08/SalvaV2Variable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Salva";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/2025/08/SalvaV2Variable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Igual";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Igual";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "IgualUI";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariableUI.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "IgualUI";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariableUI.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "MargemUpright";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/MargemVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "MargemUpright";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/MargemVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "MargemRounded";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/MargemRoundedVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "MargemRounded";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/MargemRoundedVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+						@font-face {
+							font-family: "Upright";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/SuaVariable.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Lembra";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/LembraVariable-Roman-1.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: normal;
+						}
+						@font-face {
+							font-family: "Lembra";
+							src: url("https://fabiohaagtype.com/wp-content/uploads/fonts/LembraVariable-Italic.woff") format("truetype");
+							font-display: swap;
+							font-weight: 100 1000;
+							font-stretch: 75% 150%;
+							font-style: italic;
+						}
+/*# sourceURL=fabio-haag-type-2020-style-inline-css */
+</style>
+<link rel="stylesheet" id="fabio-haag-type-2020-woocommerce-style-css" href="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/woocommerce.css?ver=1.0.0" media="all">
+<style id="fabio-haag-type-2020-woocommerce-style-inline-css">
+@font-face {
+				font-family: "star";
+				src: url("https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/fonts/star.eot");
+				src: url("https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/fonts/star.eot?#iefix") format("embedded-opentype"),
+					url("https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/fonts/star.woff") format("woff"),
+					url("https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/fonts/star.ttf") format("truetype"),
+					url("https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/fonts/star.svg#star") format("svg");
+				font-weight: normal;
+				font-style: normal;
+			}
+/*# sourceURL=fabio-haag-type-2020-woocommerce-style-inline-css */
+</style>
+<script id="jquery-core-js-extra">
+var pysTikTokRest = {"restApiUrl":"https://fabiohaagtype.com/wp-json/pys-tiktok/v1/event","debug":"1"};
+var pysFacebookRest = {"restApiUrl":"https://fabiohaagtype.com/wp-json/pys-facebook/v1/event","debug":"1"};
+//# sourceURL=jquery-core-js-extra
+</script>
+<script id="jquery-core-js" src="https://fabiohaagtype.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://fabiohaagtype.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script id="wpml-cookie-js-extra">
+var wpml_cookies = {"wp-wpml_current_language":{"value":"pt-br","expires":1,"path":"/"}};
+var wpml_cookies = {"wp-wpml_current_language":{"value":"pt-br","expires":1,"path":"/"}};
+//# sourceURL=wpml-cookie-js-extra
+</script>
+<script data-wp-strategy="defer" defer="" id="wpml-cookie-js" src="https://fabiohaagtype.com/wp-content/plugins/wpml-multilingual-cms/res/js/cookies/language-cookie.js?ver=494000"></script>
+<script id="cookie-law-info-js-extra">
+var Cli_Data = {"nn_cookie_ids":[],"cookielist":[],"non_necessary_cookies":{"non-necessary":["mailchimp_landing_site","VISITOR_INFO1_LIVE","GPS","YSC","IDE"]},"ccpaEnabled":"","ccpaRegionBased":"","ccpaBarEnabled":"","strictlyEnabled":["necessary","obligatoire"],"ccpaType":"gdpr","js_blocking":"","custom_integration":"","triggerDomRefresh":"","secure_cookies":""};
+var cli_cookiebar_settings = {"animate_speed_hide":"500","animate_speed_show":"500","background":"#efeff4","border":"#b1a6a6c2","border_on":"","button_1_button_colour":"#000000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":"1","button_1_new_win":"","button_2_button_colour":"#ffffff","button_2_button_hover":"#cccccc","button_2_link_colour":"#000000","button_2_as_button":"","button_2_hidebar":"","button_3_button_colour":"#000","button_3_button_hover":"#000000","button_3_link_colour":"#a5a5a5","button_3_as_button":"","button_3_new_win":"","button_4_button_colour":"#ffffff","button_4_button_hover":"#cccccc","button_4_link_colour":"#000000","button_4_as_button":"","button_7_button_colour":"#61a229","button_7_button_hover":"#4e8221","button_7_link_colour":"#fff","button_7_as_button":"1","button_7_new_win":"","font_family":"inherit","header_fix":"","notify_animate_hide":"1","notify_animate_show":"1","notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":"","scroll_close_reload":"","accept_close_reload":"","reject_close_reload":"","showagain_tab":"","showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#333","show_once_yn":"","show_once":"10000","logging_on":"","as_popup":"","popup_overlay":"1","bar_heading_text":"","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"};
+var log_object = {"ajax_url":"https://fabiohaagtype.com/wp-admin/admin-ajax.php"};
+//# sourceURL=cookie-law-info-js-extra
+</script>
+<script id="cookie-law-info-js" src="https://fabiohaagtype.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.5.0"></script>
+<script data-wp-strategy="defer" defer="" id="wc-js-cookie-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.10.7.0"></script>
+<script id="wc-cart-fragments-js-extra">
+var wc_cart_fragments_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_38ffadc6d02ca116051a043ffaca90a9-pt-br","fragment_name":"wc_fragments_38ffadc6d02ca116051a043ffaca90a9","request_timeout":"5000"};
+//# sourceURL=wc-cart-fragments-js-extra
+</script>
+<script data-wp-strategy="defer" defer="" id="wc-cart-fragments-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=10.7.0"></script>
+<script data-wp-strategy="defer" defer="" id="wc-jquery-blockui-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.10.7.0"></script>
+<script id="wc-add-to-cart-js-extra">
+var wc_add_to_cart_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_view_cart":"Ver carrinho","cart_url":"https://fabiohaagtype.com","is_cart":"","cart_redirect_after_add":"no"};
+//# sourceURL=wc-add-to-cart-js-extra
+</script>
+<script data-wp-strategy="defer" defer="" id="wc-add-to-cart-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=10.7.0"></script>
+<script id="woocommerce-js-extra">
+var woocommerce_params = {"ajax_url":"/wp-admin/admin-ajax.php","wc_ajax_url":"/?wc-ajax=%%endpoint%%","i18n_password_show":"Mostrar senha","i18n_password_hide":"Ocultar senha"};
+//# sourceURL=woocommerce-js-extra
+</script>
+<script data-wp-strategy="defer" defer="" id="woocommerce-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=10.7.0"></script>
+<script id="fh_opentype-js" src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
+<link rel="https://api.w.org/" href="https://fabiohaagtype.com/wp-json/"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://fabiohaagtype.com/xmlrpc.php?rsd">
+
+<meta name="generator" content="WPML ver:4.9.4 stt:1,43;">
+<script>document.createElement( "picture" );if(!window.HTMLPictureElement && document.addEventListener) {window.addEventListener("DOMContentLoaded", function() {var s = document.createElement("script");s.src = "https://fabiohaagtype.com/wp-content/plugins/webp-express/js/picturefill.min.js";document.body.appendChild(s);});}</script>
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<!-- GTM Container placement set to automatic -->
+<script data-cfasync="false" data-pagespeed-no-defer="">
+	var dataLayer_content = {"pagePostType":"frontpage"};
+	dataLayer.push( dataLayer_content );
+</script>
+<script data-cfasync="false" data-pagespeed-no-defer="">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TMW5QRW');
+</script>
+<!-- End Google Tag Manager for WordPress by gtm4wp.com --><script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script><meta name="facebook-domain-verification" content="az5703c93ybwq9ofj2jvzirvy9hbds">	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<link rel="icon" href="https://fabiohaagtype.com/wp-content/uploads/2017/02/cropped-Artboard-4@1x-32x32.jpg" sizes="32x32">
+<link rel="icon" href="https://fabiohaagtype.com/wp-content/uploads/2017/02/cropped-Artboard-4@1x-192x192.jpg" sizes="192x192">
+<link rel="apple-touch-icon" href="https://fabiohaagtype.com/wp-content/uploads/2017/02/cropped-Artboard-4@1x-180x180.jpg">
+<meta name="msapplication-TileImage" content="https://fabiohaagtype.com/wp-content/uploads/2017/02/cropped-Artboard-4@1x-270x270.jpg">
+<style id="wp-custom-css">
+span.required {
+    display: none;
+}
+</style>
+<link rel="stylesheet" id="wordfence-ls-login-css" href="https://fabiohaagtype.com/wp-content/plugins/wordfence/modules/login-security/css/login.1778685035.css?ver=1.1.16" media="all">
+
+</head>
+
+<body class="home blog wp-theme-fuerzastudio theme-fuerzastudio woocommerce-js default-bg hfeed woocommerce-active page-loaded">
+	
+<!-- GTM Container placement set to automatic -->
+<!-- Google Tag Manager (noscript) -->
+				<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TMW5QRW" height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->	<div id="page" class="site">
+		<a class="skip-link screen-reader-text" href="#primary">Pular para o conteúdo</a>
+
+	<header id="masthead" class="scroll-header site-header" data-js="scroll-header">
+		<div class="site-header__menu">
+			<a class="site-header__logo-wrapper" href="https://fabiohaagtype.com"><img class="site-header__logo" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/logo-vertical.svg" alt="Fabio Haag Type"></a>
+
+			<div class="site-header__language site-header__language--mobile">
+													<a href="https://fabiohaagtype.com/" class="language__link  language__link--pt-br language__link--is-active">
+								<span class="language__currency">R$</span>
+								<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g opacity="0.25" filter="url(#filter0_f_3747_26355)">
+							<path d="M28 29V6H5V24.43H20.08L28 29Z" fill="black"></path>
+							</g>
+							<path d="M28 28V5H5V23.43H20.08L28 28Z" fill="#5CBA6B"></path>
+							<path d="M16.5319 19.6L25.8319 14.2L16.5319 8.83002L7.17188 14.2L16.5319 19.6Z" fill="#FFCC05"></path>
+							<path d="M16.5017 17.2C18.153 17.2 19.4917 15.8613 19.4917 14.21C19.4917 12.5586 18.153 11.22 16.5017 11.22C14.8504 11.22 13.5117 12.5586 13.5117 14.21C13.5117 15.8613 14.8504 17.2 16.5017 17.2Z" fill="#3B4ABF"></path>
+							<defs>
+							<filter id="filter0_f_3747_26355" x="0" y="1" width="33" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+							<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+							<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+							<feGaussianBlur stdDeviation="2.5" result="effect1_foregroundBlur_3747_26355"></feGaussianBlur>
+							</filter>
+							</defs>
+							</svg>							</a>
+													<a href="https://fabiohaagtype.com/en/" class="language__link  language__link--en ">
+								<span class="language__currency">U$</span>
+								<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_3747_26375)">
+							<g opacity="0.25" filter="url(#filter0_f_3747_26375)">
+							<path d="M6 30V7H29V25.43H13.92L6 30Z" fill="black"></path>
+							</g>
+							<path d="M5 5V23.43V28L12.92 23.43H28.01V5H5Z" fill="white"></path>
+							<path d="M28.01 13.17V10.31H14.46V8.2H28.01V5H5V13.17H28.01Z" fill="#F26657"></path>
+							<path d="M5 20V28L13 23.5H28L28.01 20H5Z" fill="#F26657"></path>
+							<path d="M28.01 15.28H5V18.14H28.01V15.28Z" fill="#F26657"></path>
+							<path d="M14.45 5H5V13.17H14.45V5Z" fill="#3B4ABF"></path>
+							</g>
+							<defs>
+							<filter id="filter0_f_3747_26375" x="1" y="2" width="33" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+							<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+							<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+							<feGaussianBlur stdDeviation="2.5" result="effect1_foregroundBlur_3747_26375"></feGaussianBlur>
+							</filter>
+							<clipPath id="clip0_3747_26375">
+							<rect width="34" height="34" fill="white"></rect>
+							</clipPath>
+							</defs>
+							</svg>
+														</a>
+						
+					</div>
+
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="menu-toggle__line"></span>
+					<span class="menu-toggle__line"></span>
+					<span class="menu-toggle__line"></span>
+				</button>
+
+				<nav class="site-navigation main-navigation">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">Menu Primário</button>
+
+					<div class="menu-main-navigation-portuguese-container"><ul id="primary-menu" class="menu nav-menu"><li id="menu-item-17669" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17669 has-submenu"><span class="menu-text-and-arrow"><a href="#">Fontes prontas</a><span class="menu-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5.58773 8.3335L10.9211 13.6668L16.2544 8.3335" stroke="black" stroke-width="1.6"></path></svg></span></span><ul class="sub-menu sub-menu__black bigger emphasis"><li class="menu-item cta-button"><a href="https://fabiohaagtype.com/loja" class="submenu-button">Ver todas</a></li><ul class="submenu-items"><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/aconchego/" style="font-family: Aconchego;">Aconchego</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/curiosa/" style="font-family: Curiosa;">Curiosa</a></li><li class="menu-item bigger new-item"><a href="https://fabiohaagtype.com/font/drika/" style="font-family: Drika;">Drika</a><span class="new-item-text">Nova</span></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/igual/" style="font-family: Igual;">Igual</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/lembra/" style="font-family: Lembra;">Lembra</a></li><li class="menu-item bigger new-item"><a href="https://fabiohaagtype.com/fonte/margem-nova/" style="font-family: MargemNova;">Margem Nova</a><span class="new-item-text">Nova</span></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/margem/" style="font-family: MargemUpright;">Margem</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/passeio/" style="font-family: Passeio;">Passeio</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/passo/" style="font-family: Passo;">Passo</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/pausa/" style="font-family: Pausa;">Pausa</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/pitanga/" style="font-family: Pitanga;">Pitanga</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/salva/" style="font-family: Salva;">Salva</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/seiva/" style="font-family: Seiva;">Seiva</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/sua/" style="font-family: Upright;">Sua</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/suspire/" style="font-family: Suspire;">Suspire</a></li><li class="menu-item bigger"><a href="https://fabiohaagtype.com/fonte/versos/" style="font-family: Versos;">Versos</a></li></ul></ul></li>
+<li id="menu-item-25389" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25389 has-submenu"><span class="menu-text-and-arrow"><a href="#">Serviços</a><span class="menu-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5.58773 8.3335L10.9211 13.6668L16.2544 8.3335" stroke="black" stroke-width="1.6"></path></svg></span></span><ul class="sub-menu sub-menu__black not-emphasis"><ul class="submenu-items"><li class="menu-item "><a href="https://fabiohaagtype.com/category/fontes-exclusivas/">Fontes Sob medida</a></li><li class="menu-item "><a href="https://fabiohaagtype.com/category/modificadas/">Fontes Modificadas</a></li><li class="menu-item "><a href="https://fabiohaagtype.com/category/logotipos/">Logotipos</a></li></ul></ul></li>
+<li id="menu-item-5268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5268 no-has-submenu"><a href="https://fabiohaagtype.com/quem-somos/">Quem somos</a></li>
+<li id="menu-item-17701" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17701 no-has-submenu"><a href="https://fabiohaagtype.com/blog/">Blog</a></li>
+</ul></div>
+									</nav><!-- #site-navigation -->
+
+				<div class="site-header__actions">
+					<div class="site-header__cart">
+						<a class="cart-contents site-header__actions__link">
+    <img class="site-header__cart__image" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/shopping-cart-icon.svg">
+    </a>
+					</div>
+
+					<div class="site-header__account" data-logged="">
+    <a class="site-header__actions__link">
+        <img src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/user-icon.svg">
+            </a>
+</div>
+
+
+					<div class="site-header__language">
+													<a href="https://fabiohaagtype.com/" class="language__link  language__link--pt-br language__link--is-active">
+								<span class="language__currency">R$</span>
+								<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g opacity="0.25" filter="url(#filter0_f_3747_26355)">
+							<path d="M28 29V6H5V24.43H20.08L28 29Z" fill="black"></path>
+							</g>
+							<path d="M28 28V5H5V23.43H20.08L28 28Z" fill="#5CBA6B"></path>
+							<path d="M16.5319 19.6L25.8319 14.2L16.5319 8.83002L7.17188 14.2L16.5319 19.6Z" fill="#FFCC05"></path>
+							<path d="M16.5017 17.2C18.153 17.2 19.4917 15.8613 19.4917 14.21C19.4917 12.5586 18.153 11.22 16.5017 11.22C14.8504 11.22 13.5117 12.5586 13.5117 14.21C13.5117 15.8613 14.8504 17.2 16.5017 17.2Z" fill="#3B4ABF"></path>
+							<defs>
+							<filter id="filter0_f_3747_26355" x="0" y="1" width="33" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+							<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+							<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+							<feGaussianBlur stdDeviation="2.5" result="effect1_foregroundBlur_3747_26355"></feGaussianBlur>
+							</filter>
+							</defs>
+							</svg>							</a>
+													<a href="https://fabiohaagtype.com/en/" class="language__link  language__link--en ">
+								<span class="language__currency">U$</span>
+								<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_3747_26375)">
+							<g opacity="0.25" filter="url(#filter0_f_3747_26375)">
+							<path d="M6 30V7H29V25.43H13.92L6 30Z" fill="black"></path>
+							</g>
+							<path d="M5 5V23.43V28L12.92 23.43H28.01V5H5Z" fill="white"></path>
+							<path d="M28.01 13.17V10.31H14.46V8.2H28.01V5H5V13.17H28.01Z" fill="#F26657"></path>
+							<path d="M5 20V28L13 23.5H28L28.01 20H5Z" fill="#F26657"></path>
+							<path d="M28.01 15.28H5V18.14H28.01V15.28Z" fill="#F26657"></path>
+							<path d="M14.45 5H5V13.17H14.45V5Z" fill="#3B4ABF"></path>
+							</g>
+							<defs>
+							<filter id="filter0_f_3747_26375" x="1" y="2" width="33" height="33" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+							<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+							<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+							<feGaussianBlur stdDeviation="2.5" result="effect1_foregroundBlur_3747_26375"></feGaussianBlur>
+							</filter>
+							<clipPath id="clip0_3747_26375">
+							<rect width="34" height="34" fill="white"></rect>
+							</clipPath>
+							</defs>
+							</svg>
+														</a>
+						
+					</div>
+				</div>
+			</div>
+		</header><!-- #masthead -->
+
+		<div class="cart-modal__background"></div>
+
+		<div class="cart-modal">
+			<div class="widget_shopping_cart_content">
+<div class="cart-modal__header">
+	<p class="cart-modal__header__title">seu carrinho</p>
+	<img class="cart-modal__header__close" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/close.svg">
+</div>
+
+	<span class="cart-modal_updating">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="54px" height="54px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+			<circle cx="50" cy="50" fill="none" stroke="#000000" stroke-width="8" r="40" stroke-dasharray="188.49555921538757 64.83185307179586">
+				<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+			</circle>
+		</svg>
+	</span>
+	<p class="cart-modal__empty">Vazio</p>
+
+<script>
+	(function() {
+		jQuery(document).ready(function($) {
+			//Starts with open cart if the link is sharing
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			const open = urlParams.get('products');
+
+			if (open) {
+				openCart();
+			}
+
+			//update product id in the button attribute 'save' when selected any of variations options
+			$('input.select-license-radio').on('click', function() {
+				let radio_val = $(this).val();
+
+				let button = $(this).closest(".licenses-cointainer-mini-cart").find('.buttons-change-cart .save');
+
+				button.attr('data-product_id', radio_val);
+			});
+
+			//when click in the save button, remove the product and add it again
+			$('.buttons-change-cart .save').on('click', function(e) {
+				e.preventDefault();
+				const $thisbutton = $(this);
+				let productId = $thisbutton[0].dataset.product_id;
+				const items = $('.cart-modal__footer').data('cart-items');
+				if (items.length > 1) {
+					if (typeof items !== 'undefined') {
+						const cartItems = items.split(',');
+						let validate = cartItems.includes(productId);
+						if (validate) {
+							return
+						}
+					}
+				} else {
+					let item = items.toString();
+					if (item == productId) {
+						return
+					}
+				}
+
+				$(`.add_to_cart_button[data-product_id="${ productId }"]`).addClass("disabled");
+
+				$(`.summary .select__option[data-value="${productId}"]`).click();
+				$(`.add_to_cart_button[data-product_id="${productId}"]`).parent().addClass('licences__item__multi-form--show');
+
+				$thisbutton.closest('.buttons-change-cart').find('a.hidden-button').click();
+				$('.cart-modal').addClass('updating');
+
+				changeButtonStatus();
+			});
+
+			//Botão para descartar a alteração dentro do carrinho
+			$('.buttons-change-cart .remove').on('click', function(e) {
+				e.preventDefault();
+				$('.cart-modal__item__licenses-show').show();
+				$(this).closest('.cart-modal__license.cart-modal__license--hidden').slideUp();
+			});
+
+			//for the each variation option save in the save button the attribute id of respective variation
+			$("input.select-license-radio:checked").each(function() {
+				let button = $(this).closest(".licenses-cointainer-mini-cart").find('.buttons-change-cart .save');
+				button.attr('data-product_id', $(this).val());
+			});
+
+			$('.cart-modal__license').hide();
+
+			$('.cart-modal__license').addClass('cart-modal__license--hidden');
+
+			$('.cart-modal__license .licences__item').css('backgroundColor', 'transparent');
+
+			$('.licenses__item__open-close').hide();
+
+			$('.cart-modal__item__licenses-show').on('click', function() {
+				$(this).parent().parent().parent().parent().next().slideDown();
+				$(this).hide();
+			});
+
+			$('.licenses-cointainer-mini-cart .licences__item__title-button').on('click', function() {
+				$('.licenses__item__open-close').slideUp();
+				$('.cart-modal__license .licences__item').css('backgroundColor', 'transparent');
+
+				if ($(this).parent().hasClass('is-open')) {
+					$(this).parent().removeClass('is-open');
+					$(this).parent().css('backgroundColor', 'transparent');
+					$(this).next().slideUp();
+				} else {
+					$('.cart-modal__license .licences__item').removeClass('is-open');
+					$(this).parent().addClass('is-open');
+					$(this).next().slideDown();
+					$(this).parent().removeAttr('style');
+				}
+				// const thisClass = e.target.getAttrribute('class');
+				// $(`.${thisClass}`).closest('.licenses__item__open-close').slideDown();
+			});
+
+			$('#licence-group-select').on('change', function(e) {
+				let price = e.target.options[event.target.selectedIndex].dataset.price
+				let radio = $(this).closest('.licences__item').find('input.select-license-radio');
+				radio.val($(this).val());
+				radio.parent().find('.license-name-price').html(
+					"Cliente ( <span class='price woocommerce-Price-amount amount'>" + price + "</span> )"
+				);
+
+				if (radio.is(':checked')) {
+					let button = $(this).closest(".licenses-cointainer-mini-cart").find('.buttons-change-cart .save');
+					button.attr('data-product_id', $(this).val());
+				}
+			});
+
+			function openCart() {
+				$('.cart-modal__background').addClass('cart-modal__background--show');
+				$('.cart-modal').addClass('cart-modal--show');
+			}
+
+			function copy(copyEl) {
+				const tempInput = document.createElement('input');
+				document.body.appendChild(tempInput)
+				tempInput.value = copyEl.textContent
+				tempInput.select();
+				document.execCommand('copy', false);
+				tempInput.remove();
+			}
+
+			const copyBtn = document.querySelector('.cart-modal__footer__share__button');
+
+			if (copyBtn) {
+				copyBtn.addEventListener('click', function(e) {
+					const link = document.querySelector('.cart-modal__share a');
+					copy(link);
+
+					const copyLabel = e.target.getAttribute('data-copy');
+					const copiedLabel = e.target.getAttribute('data-copied');
+
+					e.target.textContent = copiedLabel;
+					setTimeout(() => {
+						e.target.textContent = copyLabel;
+					}, 3000);
+				});
+			}
+
+			$('.cart-modal__footer__share p').on('click', function() {
+				$(this).toggleClass('open');
+				$('.cart-modal__share').toggleClass('close');
+			});
+
+			$('.cart-modal__footer__share__close').on('click', function() {
+				$(this).parent().addClass('close');
+				$('.cart-modal__footer__share p').removeClass('open');
+			});
+
+			// Função para deixar desabilitado os botões de compra dos item que já estão dentro do carrinho
+			function changeButtonStatus() {
+				$('.button_licence.disabled').removeClass('disabled');
+				const items = $('.cart-modal__footer').data('cart-items');
+				$(`.button_licence[data-product_id="${ items }"]`).addClass("disabled");
+
+				if (typeof items !== 'undefined' && typeof items === 'string') {
+					const cartItems = items.split(',');
+					cartItems.map((item) => {
+						$(`.button_licence[data-product_id="${ item }"]`).addClass("disabled");
+					});
+				}
+			}
+
+			changeButtonStatus();
+		});
+	})();
+</script>
+
+</div>
+		</div>
+
+	<div class="widget_myaccount_login"><div class="woocommerce-notices-wrapper"></div>
+<div class="login-modal__background"></div>
+<div class="login-modal" id="login-modal">
+	<div class="login-modal__header">
+		<div class="login-modal__header__actions">
+			<img class="login-modal__header__close" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/close.svg">
+		</div>
+		<div class="login-modal__header__items">
+			<p class="login-modal__header__item">entrar</p>
+		</div>
+	</div>
+
+	<section class="c-login-control login">
+		<form id="popup-login" class="login-modal__form c-login-control-email-password woocommerce-form woocommerce-form-login login" method="post" data-action="login-modal">
+						<div class="login-modal__form__row input login-modal__form-email">
+				<label for="username">E-mail</label>
+				<input type="text" name="username" id="username" autocomplete="username" value="" style="">
+			</div>
+
+			
+			<div class="login-modal__form__row login-modal__form__row--action c-login-control-sign-in">
+				<input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="63e86485c0" style=""><input type="hidden" name="_wp_http_referer" value="/" style="">				<button type="submit" class="button button--primary" name="login" value="avançar">avançar</button>
+			</div>
+
+					</form>
+
+	</section>
+
+	<div class="g-recaptcha" data-sitekey="6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf" data-callback="validateRegisterUserPopup" data-size="invisible" style="display: none;"><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-7u739s3ovad" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf&amp;co=aHR0cHM6Ly9mYWJpb2hhYWd0eXBlLmNvbTo0NDM.&amp;hl=pt-BR&amp;v=DqDoLJqJmjhqr0vRwNZ2MCHA&amp;size=invisible&amp;anchor-ms=20000&amp;execute-ms=30000&amp;ovv=CADq00gF&amp;cb=pwk5egfcci7"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div></div>
+
+<div class="woocommerce-notices-wrapper"></div>
+<div class="login-modal__background"></div>
+<div class="login-modal" id="login-access-code">
+	<div class="login-modal__header">
+		<div class="login-modal__header__actions">
+			<img class="login-modal__header__close" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/close.svg">
+		</div>
+		<div class="login-modal__header__items">
+			<p class="login-modal__header__item">entrar</p>
+		</div>
+	</div>
+
+	
+		<form method="post" id="popup-login-access-code" class="login-modal__form woocommerce-form woocommerce-form-access-code access-code" data-action="login-access-code">
+			<p class="login-modal__form__intro">
+								Enviamos um <strong>código de acesso</strong> para o e-mail				<strong id="access_email_display"></strong>.
+				Digite abaixo para entrar na sua conta.			</p>
+
+			<input type="hidden" id="access_email" value="" style="">
+			<input type="hidden" name="wp-action" id="wp-action" autocomplete="wp-action" value="verify_email_exists" style="">
+			<div class="login-modal__form__row access-code access-code-ctn login-modal__form-access-code">
+				<label for="access_code">Digite o código</label>
+			<div class="access-code__wrapper">
+			<input class="digit" type="text" maxlength="1" pattern="\d*" inputmode="numeric" style="">
+			<input class="digit" type="text" maxlength="1" pattern="\d*" inputmode="numeric" style="">
+			<input class="digit" type="text" maxlength="1" pattern="\d*" inputmode="numeric" style="">
+			<input class="digit" type="text" maxlength="1" pattern="\d*" inputmode="numeric" style="">
+			<input class="digit" type="text" maxlength="1" pattern="\d*" inputmode="numeric" style="">
+			</div>
+
+			<input type="hidden" name="access_code" id="access_code" style="">
+
+				</div>
+
+				<p class="login-modal__form__row login-modal__form__row--action">
+					<input type="hidden" id="woocommerce-register-nonce" name="woocommerce-register-nonce" value="c67cd175c2" style=""><input type="hidden" name="_wp_http_referer" value="/" style="">					<button type="submit" class="register-button button button--primary" name="register" value="Acessar">Acessar</button>
+				</p>
+
+				<div class="login-modal__form__row login-modal__form__row__footer">
+					<p>Não recebeu o código?</p>
+					<a href="#" data-action="send-access-code" data-bound="true">Enviar código novamente</a>
+				</div>
+
+			<div class="login-modal__form__row login-modal__form-error" style="display:none;">
+
+				<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="11.4502" cy="11.6451" r="11" fill="#F8F8F9"></circle>
+				<path d="M14.5213 14.7163C14.3337 14.9038 14.0794 15.0092 13.8142 15.0092C13.5489 15.0092 13.2946 14.9038 13.107 14.7163L8.1573 9.76656C7.96977 9.57902 7.86441 9.32466 7.86441 9.05945C7.86441 8.79423 7.96977 8.53988 8.1573 8.35234C8.34484 8.16481 8.59919 8.05945 8.86441 8.05945C9.12963 8.05945 9.38398 8.16481 9.57152 8.35234L14.5213 13.3021C14.7088 13.4896 14.8142 13.744 14.8142 14.0092C14.8142 14.2744 14.7088 14.5288 14.5213 14.7163Z" fill="#F26657"></path>
+				<path d="M8.1576 14.7162C7.97006 14.5287 7.86471 14.2743 7.86471 14.0091C7.86471 13.7439 7.97006 13.4895 8.1576 13.302L13.1073 8.35225C13.2949 8.16471 13.5492 8.05936 13.8145 8.05936C14.0797 8.05936 14.334 8.16471 14.5216 8.35225C14.7091 8.53978 14.8145 8.79414 14.8145 9.05936C14.8145 9.32457 14.7091 9.57893 14.5216 9.76646L9.57181 14.7162C9.38428 14.9037 9.12992 15.0091 8.86471 15.0091C8.59949 15.0091 8.34514 14.9037 8.1576 14.7162Z" fill="#F26657"></path>
+				</svg>
+
+				<span>Código inválido. Preencha novamente.</span>
+			</div>
+		</form>
+
+	
+	<div class="g-recaptcha" data-sitekey="6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf" data-callback="validateRegisterUserPopup" data-size="invisible" style="display: none;"><div class="grecaptcha-badge" data-style="none" style="width: 256px; height: 60px; position: fixed; visibility: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-eroahwqfknxb" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf&amp;co=aHR0cHM6Ly9mYWJpb2hhYWd0eXBlLmNvbTo0NDM.&amp;hl=pt-BR&amp;v=DqDoLJqJmjhqr0vRwNZ2MCHA&amp;size=invisible&amp;anchor-ms=20000&amp;execute-ms=30000&amp;ovv=CADq00gF&amp;cb=cd8nvnfl7fu4"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div></div>
+
+
+
+<div class="woocommerce-notices-wrapper"></div>
+<div class="login-modal__background"></div>
+<div class="login-modal" id="login-access-code-confirmed">
+
+			<div class="confirmed-code">
+			<div class="confirmed-code__loader"></div>
+
+							<p class="login-modal__form__confirmed-code">
+					<strong>Código de acesso confirmado</strong>.<br>Entrando...				</p>
+						</div>
+	
+</div>
+
+
+<div class="woocommerce-notices-wrapper"></div>
+<div class="login-modal__background"></div>
+<div class="login-modal" id="register-modal">
+	<div class="login-modal__header">
+		<div class="login-modal__header__actions">
+			<img class="login-modal__header__close" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/close.svg">
+		</div>
+		<div class="login-modal__header__items">
+			<p class="login-modal__header__item">entrar</p>
+		</div>
+	</div>
+
+	
+		<form method="post" id="popup-register" class="login-modal__form woocommerce-form woocommerce-form-register register" data-action="register-modal">
+			<p class="login-modal__form__intro">
+				É sua primeira vez aqui, por favor preencha as informações abaixo para receber seu <strong>código de acesso.</strong>			</p>
+			<input type="hidden" name="wp-action" id="wp-action" autocomplete="wp-action" value="verify_email_exists" style="">			<div class="login-modal__form__row input">
+				<label for="reg_username">Primeiro nome</label>
+				<input type="text" name="username" id="reg_username" autocomplete="username" value="" style="">			</div>
+
+			<div class="login-modal__form__row input">
+				<label for="reg_lastname">Sobrenome</label>
+				<input type="text" name="lastname" id="reg_lastname" autocomplete="lastname" value="" style="">			</div>
+
+
+			<div class="form-row validate-optional checkbox__container woocommerce-form__label woocommerce-form__label-for-checkbox checkbox ">
+				<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="use-news" id="use-news" style="">
+				<label for="use-news">
+					Me avise sobre novas fontes brasileiras e promoções. Garantimos a privacidade dos seus dados e o cancelamento fácil a qualquer momento.				</label>
+			</div>
+
+			<div class="form-row validate-required checkbox__container woocommerce-form__label woocommerce-form__label-for-checkbox checkbox terms-field">
+				<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="use-terms" id="use-terms" style="">
+				<label for="use-terms">
+					Declaro que li e estou de acordo com os <a target="_blank" href="https://www.dropbox.com/scl/fi/hggqim0fwujmdi0hyp8a1/EULAs-Portugues.pdf?rlkey=gz1mkr39nuqnkhrrqmc2mgbdw&amp;raw=1">Termos de uso</a> e <a target="_blank" href="https://fabiohaagtype.com/politica-de-privacidade/">Política de privacidade</a>				</label>
+			</div>
+
+			<p class="login-modal__form__row login-modal__form__row--action">
+				<input type="hidden" id="woocommerce-register-nonce" name="woocommerce-register-nonce" value="c67cd175c2" style=""><input type="hidden" name="_wp_http_referer" value="/" style="">				<button type="submit" class="register-button button button--primary" name="register" value="Registrar">Cadastrar</button>
+			</p>
+
+		</form>
+
+	
+	<div class="g-recaptcha" data-sitekey="6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf" data-callback="validateRegisterUserPopup" data-size="invisible" style="display: none;"><div class="grecaptcha-badge" data-style="none" style="width: 256px; height: 60px; position: fixed; visibility: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-e7fm19329d0p" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf&amp;co=aHR0cHM6Ly9mYWJpb2hhYWd0eXBlLmNvbTo0NDM.&amp;hl=pt-BR&amp;v=DqDoLJqJmjhqr0vRwNZ2MCHA&amp;size=invisible&amp;anchor-ms=20000&amp;execute-ms=30000&amp;ovv=CADq00gF&amp;cb=uddn8ne3m16"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-2" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div></div>
+
+
+
+</div>
+
+<main id="primary" class="site-main home">
+  <section class="header-section">
+    <img class="header-section__bg-img header-section__bg-img--mobile" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/bg-home-mobile.svg">
+    <img class="header-section__bg-img header-section__bg-img--left" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/home-bg-left.svg">
+    <img class="header-section__bg-img header-section__bg-img--right" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/home-bg-right.svg">
+    <div class="header-section__container">
+      <div class="header-section-wrapper-heading">
+        <h1 class="header-section__heading">Fontes para marcas:</h1>
+        <div class="header-section__title">
+          <p><strong>Crie distinção,<br>
+</strong>licencie com clareza.<strong><br>
+</strong></p>
+        </div>
+      </div>
+
+      <div id="carousel" class="carousel header-section__carousel-container">
+        <div class="items carousel__items">
+          33280<div class="item carousel__item">
+    <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2026/11/Margem-Nova-Website-Cover-Horizontal.png.webp" type="image/webp"><img class="carousel__item__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2026/11/Margem-Nova-Website-Cover-Horizontal.png"></picture>
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">Margem Nova</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/fonte/margem-nova/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>31959<div class="item carousel__item item--visible">
+    <img class="carousel__item__img" src="https://fabiohaagtype.com/wp-content/uploads/2026/06/Website-Cover.png">
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">Drika</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/fonte/drika/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>29696<div class="item carousel__item">
+    <img class="carousel__item__img" src="https://fabiohaagtype.com/wp-content/uploads/2026/02/Natura-Website-Cover-Horizontal.png">
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">Tipografia Natura: Com Licença, Neutralidade</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/tipografia-natura-com-licenca-neutralidade/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>23544<div class="item carousel__item">
+    <img class="carousel__item__img" src="https://fabiohaagtype.com/wp-content/uploads/2026/04/Aconchego-Cover-Italics.png">
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">Aconchego</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/fonte/aconchego/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>19746<div class="item carousel__item">
+    <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/03/Pitanga-Cover.jpg.webp" type="image/webp"><img class="carousel__item__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2024/03/Pitanga-Cover.jpg"></picture>
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">Pitanga</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/fonte/pitanga/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>19065<div class="item carousel__item">
+    <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/01/AirIndia-Web-Cover-2.jpg.webp" type="image/webp"><img class="carousel__item__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2024/01/AirIndia-Web-Cover-2.jpg"></picture>
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">AirIndia: uma fonte sob medida honrando a cultura local para uma companhia aérea global</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/airindia-uma-fonte-sob-medida-honrando-a-cultura-local-para-uma-companhia-aerea-global/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>18842<div class="item carousel__item">
+    <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2023/12/Itau-Cover.png.webp" type="image/webp"><img class="carousel__item__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2023/12/Itau-Cover.png"></picture>
+    <div class="carousel__item__img__shade"></div>
+    <div class="carousel__item__info">
+    <h1 class="carousel__title">Uma história do novo logotipo Itaú: explorar, encontrar e lapidar</h1>
+    <a class="carousel__cta-button" href="https://fabiohaagtype.com/itau/">
+        leia mais        
+        <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold_black.svg">
+    </a>
+    </div>
+</div>        </div>
+        <div class="carousel__controls">
+          <span id="carousel-slide-number" class="carousel__controls__slide-number">2/7</span>
+          <button id="carousel-previous-button" class="carousel__controls__previous">
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrow.svg">
+          </button>
+          <div id="carousel-gauge-container" class="carousel__controls__gauge">
+            <svg id="carousel-gauge" viewBox="0 0 34 34">
+              <path d="M17 1.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#fff" ;="" stroke-width="2" stroke-dasharray="42, 100"></path>
+            </svg>
+            <img id="carousel-timer-pause-icon" class="carousel__controls__gauge__icon carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/pause.svg">
+            <img id="carousel-timer-resume-icon" class="carousel__controls__gauge__icon carousel__icon carousel__controls__gauge__icon--hidden" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/play.svg">
+          </div>
+          <button id="carousel-next-button" class="carousel__controls__next">
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrow.svg">
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="header-section__container">
+    <h2 class="header-section__subtitle default-bg--anchor">Somos um estúdio tipográfico que acredita na força da expressividade para aumentar o valor de marcas.</h2>
+  </div>
+
+  <h3 class="type-tester__title-mobile">fontes prontas</h3>
+  
+<p id="type-tester-info" class="hidden" data-info="{&quot;Margem Nova&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2026/11/MargemNovaVariable-v2.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;MargemNova&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2026/11/MargemNovaVariable-v2.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;MargemNova&quot;}},&quot;Drika&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2026/06/DrikaVarSite.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Drika&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2026/06/DrikaVarSite.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Drika&quot;}},&quot;Suspire&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/SuspireVariable-Regular.ttf&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Suspire&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/SuspireVariable-Italic.ttf&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Suspire&quot;}},&quot;Aconchego&quot;:{&quot;Normal&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2026/04/AconchegoSite4.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Aconchego&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2026/04/AconchegoSite4.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Aconchego&quot;}},&quot;Pitanga&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PitangaVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Pitanga&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PitangaVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Pitanga&quot;}},&quot;Passo&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PassoVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Passo&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PassoVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Passo&quot;}},&quot;Passeio&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PasseioVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Passeio&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PasseioVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Passeio&quot;}},&quot;Curiosa&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/CuriosaVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Curiosa&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/CuriosaVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Curiosa&quot;}},&quot;Versos&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/VersosVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Versos&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/VersosVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Versos&quot;}},&quot;Pausa&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PausaVariable-Roman.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Pausa&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/PausaVariable-Italic.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Pausa&quot;}},&quot;Seiva&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/SeivaVariable-Roman.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Seiva&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/SeivaVariable-Italic.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Seiva&quot;}},&quot;Salva&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2025/08/SalvaV2Variable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Salva&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/2025/08/SalvaV2Variable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Salva&quot;}},&quot;Igual&quot;:{&quot;Normal&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Igual&quot;},&quot;Normal Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Igual&quot;},&quot;UI&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariableUI.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;IgualUI&quot;},&quot;UI Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/IgualVariableUI.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;IgualUI&quot;}},&quot;Margem&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/MargemVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;MargemUpright&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/MargemVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;MargemUpright&quot;},&quot;Rounded&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/MargemRoundedVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;MargemRounded&quot;},&quot;Rounded Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/MargemRoundedVariable.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;MargemRounded&quot;}},&quot;Sua&quot;:{&quot;Upright&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/SuaVariable.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Upright&quot;}},&quot;Lembra&quot;:{&quot;Regular&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/LembraVariable-Roman-1.woff&quot;,&quot;isItalic&quot;:false,&quot;style&quot;:&quot;Lembra&quot;},&quot;Italic&quot;:{&quot;fontUrl&quot;:&quot;https://fabiohaagtype.com/wp-content/uploads/fonts/LembraVariable-Italic.woff&quot;,&quot;isItalic&quot;:true,&quot;style&quot;:&quot;Lembra&quot;}}}"></p>
+<script>
+    const axisLanguage = {
+        size: 'Tamanho',
+        wdth: 'Largura',
+        wght: 'Peso',
+        ital: 'Itálico',
+        opsz: 'Tamanho Óptico',
+    }
+</script>
+
+<section id="type-tester" class="type-tester__container">
+    <div class="typer-tester__header">
+        <input type="text" spellcheck="false" placeholder="Seu texto aqui..." class="general-text" style="">
+        <div class="slider__container">
+            <label>Tamanho</label>
+            <input type="range" min="32" max="307.2" class="general-font-size" style="">
+        </div>
+    </div>
+
+
+    
+<div class="container container--finished" data-js="font-container" data-info="{&quot;wght&quot;:&quot;400&quot;,&quot;wdth&quot;:&quot;100&quot;,&quot;opsz&quot;:&quot;60&quot;,&quot;isItalic&quot;:false,&quot;isRounded&quot;:false,&quot;isUI&quot;:false,&quot;font&quot;:&quot;Margem Nova&quot;}" id="container-0">
+    <div class="header">
+        <div class="selects">
+            <div class="font__family">
+                Margem Nova            </div>
+        <div class="select__opsz select__container"><button class="with-arrow select__btn">TNT</button><div class="select__content"><p class="select__option" data-value="12" data-licence="undefined">Regular</p><p class="select__option" data-value="36" data-licence="undefined">Display</p><p class="select__option" data-value="60" data-licence="undefined">TNT</p></div></div><div class="select__wdth select__container"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="75" data-licence="undefined">Condensed</p><p class="select__option" data-value="86" data-licence="undefined">Narrow</p><p class="select__option" data-value="100" data-licence="undefined">Regular</p></div></div><div class="select__wght select__container"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="100" data-licence="undefined">Thin</p><p class="select__option" data-value="300" data-licence="undefined">Light</p><p class="select__option" data-value="400" data-licence="undefined">Regular</p><p class="select__option" data-value="500" data-licence="undefined">Medium</p><p class="select__option" data-value="700" data-licence="undefined">Bold</p><p class="select__option" data-value="800" data-licence="undefined">XBold</p><p class="select__option" data-value="900" data-licence="undefined">Black</p></div></div><div class="select__ital select__container hidden"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="1" data-licence="undefined">Regular</p></div></div><div class="select__style select__container"><button class="with-arrow select__btn">Upright</button><div class="select__content"><p class="select__option" data-value="Upright" data-licence="undefined">Upright</p><p class="select__option" data-value="Italic" data-licence="undefined">Italic</p></div></div></div>
+        <div class="actions">
+            <div class="sliders"><div class="slider__container"><label>tamanho</label><input type="range" min="32" max="218.56" class="input__size" style="--before-content: '137.2457831325301 px'; --before-left: 56.41390605302857%;"></div><div class="slider__container"><label>tamanho óptico</label><input type="range" min="12" max="60" style="--before-content: '60'; --before-left: 100%;"></div><div class="slider__container"><label>largura</label><input type="range" min="75" max="100" style="--before-content: '100'; --before-left: 100%;"></div><div class="slider__container"><label>peso</label><input type="range" min="100" max="900" style="--before-content: '400'; --before-left: 37.5%;"></div><div class="slider__container"><label>itálico</label><input type="range" min="0" max="1" style="--before-content: '0'; --before-left: 0%;"></div></div>
+            <div class="toggle__container">
+                <button class="with-arrow toggle__feature">OT</button>
+                <a class="button button--primary button--small" href="https://fabiohaagtype.com/fonte/margem-nova/">
+                    Veja Mais                </a>
+            </div>
+        </div>
+    </div>
+    <div class="features__container"><div><div class="checkbox__container radio__container"><input type="radio" name="figure-0" data-feature="pnum" style=""><label>Proportional Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-0" data-feature="tnum" style=""><label>Tabular Figures</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="case" style=""><label>Case-Sensitive Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="frac" style=""><label>Fractions</label></div><div class="checkbox__container"><input type="checkbox" data-feature="liga" style=""><label>Standard Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ordn" style=""><label>Ordinals</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="rvrn" style=""><label>Reverse Order Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss01" style=""><label>Stylistic Set 01</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss02" style=""><label>Stylistic Set 02</label></div></div></div>
+    <div class="content">
+        <p class="content__text--mobile" style="font-family: MargemNova; --font-opsz: 60; --font-wdth: 100; --font-wght: 400; --font-ital: undefined;">
+            Margem Nova        </p>
+        <p class="content__text" data-sample-text="NEW Tight Not Touching" style="font-family: MargemNova; font-style: normal; --font-opsz: 60; --font-wdth: 100; --font-wght: 400; --font-ital: 0; font-variation-settings: 'opsz' var(--font-opsz), 'wdth' var(--font-wdth), 'wght' var(--font-wght), 'ital' var(--font-ital); --font-case: off; --font-frac: off; --font-liga: on; --font-ordn: off; --font-pnum: off; --font-rvrn: off; --font-ss01: off; --font-ss02: off; --font-tnum: on; font-feature-settings: 'case' var(--font-case), 'frac' var(--font-frac), 'liga' var(--font-liga), 'ordn' var(--font-ordn), 'pnum' var(--font-pnum), 'rvrn' var(--font-rvrn), 'ss01' var(--font-ss01), 'ss02' var(--font-ss02), 'tnum' var(--font-tnum); font-size: 137.246px;" contenteditable="true" spellcheck="false">
+            NEW Tight Not Touching        </p>
+    </div>
+</div>
+<div class="container container--finished" data-js="font-container" data-info="{&quot;wght&quot;:&quot;950&quot;,&quot;wdth&quot;:&quot;100&quot;,&quot;opsz&quot;:&quot;0&quot;,&quot;isItalic&quot;:false,&quot;isRounded&quot;:false,&quot;isUI&quot;:false,&quot;font&quot;:&quot;Drika&quot;}" id="container-1">
+    <div class="header">
+        <div class="selects">
+            <div class="font__family">
+                Drika            </div>
+        <div class="select__wght select__container"><button class="with-arrow select__btn">Ultra</button><div class="select__content"><p class="select__option" data-value="100" data-licence="undefined">Thin</p><p class="select__option" data-value="170" data-licence="undefined">UltraLight</p><p class="select__option" data-value="240" data-licence="undefined">ExtraLight</p><p class="select__option" data-value="320" data-licence="undefined">Light</p><p class="select__option" data-value="400" data-licence="undefined">Regular</p><p class="select__option" data-value="500" data-licence="undefined">Medium</p><p class="select__option" data-value="600" data-licence="undefined">SemiBold</p><p class="select__option" data-value="700" data-licence="undefined">Bold</p><p class="select__option" data-value="750" data-licence="undefined">ExtraBold</p><p class="select__option" data-value="800" data-licence="undefined">Black</p><p class="select__option" data-value="850" data-licence="undefined">ExtraBlack</p><p class="select__option" data-value="900" data-licence="undefined">Max</p><p class="select__option" data-value="950" data-licence="undefined">Ultra</p><p class="select__option" data-value="1000" data-licence="undefined">UltraTouch</p></div></div><div class="select__ital select__container hidden"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="1" data-licence="undefined">Regular</p></div></div><div class="select__style select__container"><button class="with-arrow select__btn">Upright</button><div class="select__content"><p class="select__option" data-value="Upright" data-licence="undefined">Upright</p><p class="select__option" data-value="Italic" data-licence="undefined">Italic</p></div></div></div>
+        <div class="actions">
+            <div class="sliders"><div class="slider__container"><label>tamanho</label><input type="range" min="32" max="218.56" class="input__size" style="--before-content: '90.70349650349651 px'; --before-left: 31.466282431119485%;"></div><div class="slider__container"><label>peso</label><input type="range" min="100" max="1000" style="--before-content: '950'; --before-left: 94.44444444444444%;"></div><div class="slider__container"><label>itálico</label><input type="range" min="0" max="1" style="--before-content: '0'; --before-left: 0%;"></div></div>
+            <div class="toggle__container">
+                <button class="with-arrow toggle__feature">OT</button>
+                <a class="button button--primary button--small" href="https://fabiohaagtype.com/fonte/drika/">
+                    Veja Mais                </a>
+            </div>
+        </div>
+    </div>
+    <div class="features__container"><div><div class="checkbox__container radio__container"><input type="radio" name="figure-1" data-feature="pnum" style=""><label>Proportional Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-1" data-feature="tnum" style=""><label>Tabular Figures</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="case" style=""><label>Case-Sensitive Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="frac" style=""><label>Fractions</label></div><div class="checkbox__container"><input type="checkbox" data-feature="liga" style=""><label>Standard Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ordn" style=""><label>Ordinals</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="rlig" style=""><label>Required Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss01" style=""><label>Stylistic Set 01</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss02" style=""><label>Stylistic Set 02</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss03" style=""><label>Stylistic Set 03</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="ss04" style=""><label>Stylistic Set 04</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss05" style=""><label>Stylistic Set 05</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss06" style=""><label>Stylistic Set 06</label></div></div></div>
+    <div class="content">
+        <p class="content__text--mobile" style="font-family: Drika; --font-wght: 950; --font-ital: undefined;">
+            Drika        </p>
+        <p class="content__text" data-sample-text="Uma sans sem medo de ser" style="font-family: Drika; font-style: normal; --font-wght: 950; --font-ital: 0; font-variation-settings: 'wght' var(--font-wght), 'ital' var(--font-ital); --font-case: off; --font-frac: off; --font-liga: on; --font-ordn: off; --font-pnum: off; --font-rlig: off; --font-ss01: off; --font-ss02: off; --font-ss03: off; --font-ss04: off; --font-ss05: off; --font-ss06: off; --font-tnum: on; font-feature-settings: 'case' var(--font-case), 'frac' var(--font-frac), 'liga' var(--font-liga), 'ordn' var(--font-ordn), 'pnum' var(--font-pnum), 'rlig' var(--font-rlig), 'ss01' var(--font-ss01), 'ss02' var(--font-ss02), 'ss03' var(--font-ss03), 'ss04' var(--font-ss04), 'ss05' var(--font-ss05), 'ss06' var(--font-ss06), 'tnum' var(--font-tnum); font-size: 90.7035px;" contenteditable="true" spellcheck="false">
+            Uma sans sem medo de ser        </p>
+    </div>
+</div>
+<div class="container container--finished" data-js="font-container" data-info="{&quot;wght&quot;:&quot;700&quot;,&quot;wdth&quot;:&quot;100&quot;,&quot;opsz&quot;:&quot;0&quot;,&quot;isItalic&quot;:true,&quot;isRounded&quot;:false,&quot;isUI&quot;:false,&quot;font&quot;:&quot;Suspire&quot;}" id="container-2">
+    <div class="header">
+        <div class="selects">
+            <div class="font__family">
+                Suspire            </div>
+        <div class="select__wght select__container"><button class="with-arrow select__btn">Bold</button><div class="select__content"><p class="select__option" data-value="100" data-licence="undefined">Thin</p><p class="select__option" data-value="200" data-licence="undefined">ExtraLight</p><p class="select__option" data-value="300" data-licence="undefined">Light</p><p class="select__option" data-value="400" data-licence="undefined">Regular</p><p class="select__option" data-value="500" data-licence="undefined">Medium</p><p class="select__option" data-value="600" data-licence="undefined">SemiBold</p><p class="select__option" data-value="700" data-licence="undefined">Bold</p><p class="select__option" data-value="800" data-licence="undefined">ExtraBold</p><p class="select__option" data-value="900" data-licence="undefined">Black</p></div></div><div class="select__style select__container"><button class="with-arrow select__btn">Italic</button><div class="select__content"><p class="select__option" data-value="Upright" data-licence="undefined">Upright</p><p class="select__option" data-value="Italic" data-licence="undefined">Italic</p></div></div></div>
+        <div class="actions">
+            <div class="sliders"><div class="slider__container"><label>tamanho</label><input type="range" min="32" max="218.56" class="input__size" style="--before-content: '121.3936 px'; --before-left: 47.91680960548885%;"></div><div class="slider__container"><label>peso</label><input type="range" min="100" max="900" style="--before-content: '700'; --before-left: 75%;"></div><div class="slider__container"><label>itálico</label><input type="range" min="0" max="1" style="--before-content: '1'; --before-left: 100%;"></div></div>
+            <div class="toggle__container">
+                <button class="with-arrow toggle__feature">OT</button>
+                <a class="button button--primary button--small" href="https://fabiohaagtype.com/fonte/suspire/">
+                    Veja Mais                </a>
+            </div>
+        </div>
+    </div>
+    <div class="features__container"><div><div class="checkbox__container radio__container"><input type="radio" name="figure-2" data-feature="lnum" style=""><label>Lining Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-2" data-feature="onum" style=""><label>Oldstyle Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-2" data-feature="pnum" style=""><label>Proportional Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-2" data-feature="tnum" style=""><label>Tabular Figures</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="case" style=""><label>Case-Sensitive Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="frac" style=""><label>Fractions</label></div><div class="checkbox__container"><input type="checkbox" data-feature="liga" style=""><label>Standard Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ordn" style=""><label>Ordinals</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="rvrn" style=""><label>Reverse Order Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss01" style=""><label>Stylistic Set 01</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss02" style=""><label>Stylistic Set 02</label></div><div class="checkbox__container"><input type="checkbox" data-feature="zero" style=""><label>Slashed Zero</label></div></div></div>
+    <div class="content">
+        <p class="content__text--mobile" style="font-family: Suspire; --font-wght: 700;">
+            Suspire        </p>
+        <p class="content__text" data-sample-text="Like a river, let it flow" style="font-family: Suspire; font-style: italic; --font-wght: 700; --font-ital: 1; font-variation-settings: 'wght' var(--font-wght), 'ital' var(--font-ital); --font-case: off; --font-frac: off; --font-liga: on; --font-lnum: off; --font-onum: off; --font-ordn: off; --font-pnum: off; --font-rvrn: off; --font-ss01: off; --font-ss02: off; --font-tnum: on; --font-zero: off; font-feature-settings: 'case' var(--font-case), 'frac' var(--font-frac), 'liga' var(--font-liga), 'lnum' var(--font-lnum), 'onum' var(--font-onum), 'ordn' var(--font-ordn), 'pnum' var(--font-pnum), 'rvrn' var(--font-rvrn), 'ss01' var(--font-ss01), 'ss02' var(--font-ss02), 'tnum' var(--font-tnum), 'zero' var(--font-zero); font-size: 121.394px;" contenteditable="true" spellcheck="false">
+            Like a river, let it flow        </p>
+    </div>
+</div>
+<div class="container container--finished" data-js="font-container" data-info="{&quot;wght&quot;:&quot;300&quot;,&quot;wdth&quot;:&quot;100&quot;,&quot;opsz&quot;:&quot;100&quot;,&quot;isItalic&quot;:false,&quot;isRounded&quot;:false,&quot;isUI&quot;:false,&quot;font&quot;:&quot;Aconchego&quot;}" id="container-3">
+    <div class="header">
+        <div class="selects">
+            <div class="font__family">
+                Aconchego            </div>
+        <div class="select__opsz select__container"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="12" data-licence="undefined">Text</p><p class="select__option" data-value="13" data-licence="undefined">Regular</p></div></div><div class="select__wght select__container"><button class="with-arrow select__btn">Light</button><div class="select__content"><p class="select__option" data-value="100" data-licence="undefined">Thin</p><p class="select__option" data-value="200" data-licence="undefined">ExtraLight</p><p class="select__option" data-value="300" data-licence="undefined">Light</p><p class="select__option" data-value="400" data-licence="undefined">Regular</p><p class="select__option" data-value="500" data-licence="undefined">Medium</p><p class="select__option" data-value="600" data-licence="undefined">SemiBold</p><p class="select__option" data-value="700" data-licence="undefined">Bold</p><p class="select__option" data-value="800" data-licence="undefined">ExtraBold</p><p class="select__option" data-value="900" data-licence="undefined">Black</p></div></div><div class="select__ital select__container hidden"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="1" data-licence="undefined">Regular</p></div></div><div class="select__style select__container"><button class="with-arrow select__btn">Normal</button><div class="select__content"><p class="select__option" data-value="Normal" data-licence="undefined">Normal</p><p class="select__option" data-value="Italic" data-licence="undefined">Italic</p></div></div></div>
+        <div class="actions">
+            <div class="sliders"><div class="slider__container"><label>tamanho</label><input type="range" min="32" max="218.56" class="input__size" style="--before-content: '95.38977948897444 px'; --before-left: 33.97822656999058%;"></div><div class="slider__container"><label>tamanho óptico</label><input type="range" min="12" max="13" style="--before-content: '13'; --before-left: 100%;"></div><div class="slider__container"><label>peso</label><input type="range" min="100" max="900" style="--before-content: '300'; --before-left: 25%;"></div><div class="slider__container"><label>itálico</label><input type="range" min="0" max="1" style="--before-content: '0'; --before-left: 0%;"></div></div>
+            <div class="toggle__container">
+                <button class="with-arrow toggle__feature">OT</button>
+                <a class="button button--primary button--small" href="https://fabiohaagtype.com/fonte/aconchego/">
+                    Veja Mais                </a>
+            </div>
+        </div>
+    </div>
+    <div class="features__container"><div><div class="checkbox__container radio__container"><input type="radio" name="figure-3" data-feature="pnum" style=""><label>Proportional Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-3" data-feature="tnum" style=""><label>Tabular Figures</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="calt" style=""><label>Contextual Alternates</label></div><div class="checkbox__container"><input type="checkbox" data-feature="case" style=""><label>Case-Sensitive Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="frac" style=""><label>Fractions</label></div><div class="checkbox__container"><input type="checkbox" data-feature="liga" style=""><label>Standard Ligatures</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="ordn" style=""><label>Ordinals</label></div><div class="checkbox__container"><input type="checkbox" data-feature="rlig" style=""><label>Required Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss01" style=""><label>Stylistic Set 01</label></div></div></div>
+    <div class="content">
+        <p class="content__text--mobile" style="font-family: Aconchego; --font-opsz: 13; --font-wght: 300; --font-ital: undefined;">
+            Aconchego        </p>
+        <p class="content__text" data-sample-text="Where the good vibes meet" style="font-family: Aconchego; font-style: normal; --font-opsz: 13; --font-wght: 300; --font-ital: 0; font-variation-settings: 'opsz' var(--font-opsz), 'wght' var(--font-wght), 'ital' var(--font-ital); --font-calt: off; --font-case: off; --font-frac: off; --font-liga: on; --font-ordn: off; --font-pnum: off; --font-rlig: off; --font-ss01: off; --font-tnum: on; font-feature-settings: 'calt' var(--font-calt), 'case' var(--font-case), 'frac' var(--font-frac), 'liga' var(--font-liga), 'ordn' var(--font-ordn), 'pnum' var(--font-pnum), 'rlig' var(--font-rlig), 'ss01' var(--font-ss01), 'tnum' var(--font-tnum); font-size: 95.3898px;" contenteditable="true" spellcheck="false">
+            Where the good vibes meet        </p>
+    </div>
+</div>
+<div class="container container--finished" data-js="font-container" data-info="{&quot;wght&quot;:&quot;1000&quot;,&quot;wdth&quot;:&quot;100&quot;,&quot;opsz&quot;:&quot;0&quot;,&quot;isItalic&quot;:false,&quot;isRounded&quot;:false,&quot;isUI&quot;:false,&quot;font&quot;:&quot;Pitanga&quot;}" id="container-4">
+    <div class="header">
+        <div class="selects">
+            <div class="font__family">
+                Pitanga            </div>
+        <div class="select__wght select__container"><button class="with-arrow select__btn">ExtraBold</button><div class="select__content"><p class="select__option" data-value="100" data-licence="undefined">Thin</p><p class="select__option" data-value="200" data-licence="undefined">ExtraLight</p><p class="select__option" data-value="300" data-licence="undefined">Light</p><p class="select__option" data-value="400" data-licence="undefined">Regular</p><p class="select__option" data-value="500" data-licence="undefined">Medium</p><p class="select__option" data-value="600" data-licence="undefined">SemiBold</p><p class="select__option" data-value="700" data-licence="undefined">Bold</p><p class="select__option" data-value="800" data-licence="undefined">ExtraBold</p></div></div><div class="select__ital select__container hidden"><button class="with-arrow select__btn">Regular</button><div class="select__content"><p class="select__option" data-value="1" data-licence="undefined">Regular</p></div></div><div class="select__style select__container"><button class="with-arrow select__btn">Upright</button><div class="select__content"><p class="select__option" data-value="Upright" data-licence="undefined">Upright</p><p class="select__option" data-value="Italic" data-licence="undefined">Italic</p></div></div></div>
+        <div class="actions">
+            <div class="sliders"><div class="slider__container"><label>tamanho</label><input type="range" min="32" max="218.56" class="input__size" style="--before-content: '116.73646857631465 px'; --before-left: 45.42049130377072%;"></div><div class="slider__container"><label>peso</label><input type="range" min="100" max="800" style="--before-content: '800'; --before-left: 100%;"></div><div class="slider__container"><label>itálico</label><input type="range" min="0" max="1" style="--before-content: '0'; --before-left: 0%;"></div></div>
+            <div class="toggle__container">
+                <button class="with-arrow toggle__feature">OT</button>
+                <a class="button button--primary button--small" href="https://fabiohaagtype.com/fonte/pitanga/">
+                    Veja Mais                </a>
+            </div>
+        </div>
+    </div>
+    <div class="features__container"><div><div class="checkbox__container radio__container"><input type="radio" name="figure-4" data-feature="pnum" style=""><label>Proportional Figures</label></div><div class="checkbox__container radio__container"><input type="radio" name="figure-4" data-feature="tnum" style=""><label>Tabular Figures</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="case" style=""><label>Case-Sensitive Forms</label></div><div class="checkbox__container"><input type="checkbox" data-feature="frac" style=""><label>Fractions</label></div><div class="checkbox__container"><input type="checkbox" data-feature="liga" style=""><label>Standard Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ordn" style=""><label>Ordinals</label></div></div><div><div class="checkbox__container"><input type="checkbox" data-feature="rlig" style=""><label>Required Ligatures</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss01" style=""><label>Stylistic Set 01</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss02" style=""><label>Stylistic Set 02</label></div><div class="checkbox__container"><input type="checkbox" data-feature="ss03" style=""><label>Stylistic Set 03</label></div></div></div>
+    <div class="content">
+        <p class="content__text--mobile" style="font-family: Pitanga; --font-wght: 800; --font-ital: undefined;">
+            Pitanga        </p>
+        <p class="content__text" data-sample-text="Unpredictable ways" style="font-family: Pitanga; font-style: normal; --font-wght: 800; --font-ital: 0; font-variation-settings: 'wght' var(--font-wght), 'ital' var(--font-ital); --font-case: off; --font-frac: off; --font-liga: on; --font-ordn: off; --font-pnum: off; --font-rlig: off; --font-ss01: off; --font-ss02: off; --font-ss03: off; --font-tnum: on; font-feature-settings: 'case' var(--font-case), 'frac' var(--font-frac), 'liga' var(--font-liga), 'ordn' var(--font-ordn), 'pnum' var(--font-pnum), 'rlig' var(--font-rlig), 'ss01' var(--font-ss01), 'ss02' var(--font-ss02), 'ss03' var(--font-ss03), 'tnum' var(--font-tnum); font-size: 116.736px;" contenteditable="true" spellcheck="false">
+            Unpredictable ways        </p>
+    </div>
+</div>        <a class="section__cta-button button button--tertiary" href="https://fabiohaagtype.com/loja">ver todas fontes prontas</a>
+    </section>
+
+
+  <section class="custom-fonts-section">
+    <div class="custom-fonts-section__container">
+      <div class="custom-fonts-section__title-container">
+        <h1 class="custom-fonts-section__title">não encontrou seu tipo?</h1>
+        <h2 class="custom-fonts-section__subtitle">Criamos fontes sob medida que fortalecem marcas e trazem resultados concretos:</h2>
+      </div>
+
+      <div class="posts-container">
+        <a class="posts-container__card" href="https://fabiohaagtype.com/tipografia-totvs-desenhada-para-marcar/">
+    <div class="posts-container__card__container">
+        <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2026/06/TOTVS-Cover-Vertical.jpg.webp" type="image/webp"><img class="posts-container__card__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2026/06/TOTVS-Cover-Vertical.jpg"></picture>
+    </div>
+    
+    <div class="posts-container__card__footer">
+        <h1 class="posts-container__card__title">
+            totvs        </h1>
+        
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </div>
+</a><a class="posts-container__card" href="https://fabiohaagtype.com/tipografia-natura-com-licenca-neutralidade/">
+    <div class="posts-container__card__container">
+        <img class="posts-container__card__img" src="https://fabiohaagtype.com/wp-content/uploads/2026/02/Natura-Website-Cover-Vertical.png">
+    </div>
+    
+    <div class="posts-container__card__footer">
+        <h1 class="posts-container__card__title">
+            Natura        </h1>
+        
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </div>
+</a><a class="posts-container__card" href="https://fabiohaagtype.com/e-hora-de-falarmos-sobre-a-tipografia-da-chiquinho/">
+    <div class="posts-container__card__container">
+        <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2025/06/2025-06-09-Case-Chiquinho-Website-Cover-Vertical.png.webp" type="image/webp"><img class="posts-container__card__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2025/06/2025-06-09-Case-Chiquinho-Website-Cover-Vertical.png"></picture>
+    </div>
+    
+    <div class="posts-container__card__footer">
+        <h1 class="posts-container__card__title">
+            chiquinho sorvetes        </h1>
+        
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </div>
+</a><a class="posts-container__card" href="https://fabiohaagtype.com/ze-delivery-digital-e-o-vernacular-entram-em-um-bar/">
+    <div class="posts-container__card__container">
+        <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/09/Ze-Cover-Vertical.png.webp" type="image/webp"><img class="posts-container__card__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2024/09/Ze-Cover-Vertical.png"></picture>
+    </div>
+    
+    <div class="posts-container__card__footer">
+        <h1 class="posts-container__card__title">
+            zé delivery        </h1>
+        
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </div>
+</a>      </div>
+
+      <div class="custom-fonts-section__logos-container">
+        <h1 class="custom-fonts-section__cta-title">Já trabalhamos para estas marcas:</h1>
+        <img class="custom-fonts-section__logos-img custom-fonts-section__logos-img--desktop" src="https://fabiohaagtype.com/wp-content/uploads/2024/02/Clientes-Desktop.svg">
+        <img class="custom-fonts-section__logos-img custom-fonts-section__logos-img--mobile" src="https://fabiohaagtype.com/wp-content/uploads/2024/02/Clientes-Mobile.svg">
+      </div>
+
+      <div class="custom-fonts-section__logos-2-container">
+        <h1 class="custom-fonts-section__cta-title">Colaborando com estes estúdios:</h1>
+        <img class="custom-fonts-section__logos-img custom-fonts-section__logos-img--desktop" src="https://fabiohaagtype.com/wp-content/uploads/2024/02/Estudios-Desktop.svg">
+        <img class="custom-fonts-section__logos-img custom-fonts-section__logos-img--mobile" src="https://fabiohaagtype.com/wp-content/uploads/2024/02/Estudios-Mobile.svg">
+
+        <div>
+          <a class="section__cta-button button button--tertiary default-bg--white-anchor link-logo" href="https://fabiohaagtype.com/quem-somos/">
+            Mais sobre o estúdio          </a>
+        </div>
+      </div>
+
+      <div class="custom-fonts-section__bottom-container">
+        <h1 class="custom-fonts-section__cta-title">Na placa do campo de futebol ou no botão de um app, cada palavra escrita, além de dizer, precisa mostrar.</h1>
+        <a class="section__cta-button button button--tertiary default-bg--white-anchor" href="https://fabiohaagtype.com/category/fontes-exclusivas/">
+           saiba mais sobre fontes sob medida</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="footer-section">
+    <div class="footer-section__header">
+      <p class="footer-section__title">últimos textos</p>
+      <a class="footer-section__cta with-arrow" href="https://fabiohaagtype.com/minha-desorganizada-lista-de-livros/">leia mais</a>
+    </div>
+    <div class="posts-container">
+      <div class="c-slider swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swiper-slide-active" style="width: 303.5px;">
+    <a class="posts-container__card" href="https://fabiohaagtype.com/minha-desorganizada-lista-de-livros/">
+        <div class="posts-container__card__container">
+            <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2026/06/Livros-Cover-Site-Vertical.jpg.webp" type="image/webp"><img class="posts-container__card__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2026/06/Livros-Cover-Site-Vertical.jpg"></picture>
+        </div>
+        <p class="posts-container__card__title">
+            Minha desorganizada lista de livros        </p>
+
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </a>
+</div><div class="swiper-slide swiper-slide-next" style="width: 303.5px;">
+    <a class="posts-container__card" href="https://fabiohaagtype.com/o-real-valor-do-retorno-do-craft-no-design/">
+        <div class="posts-container__card__container">
+            <img class="posts-container__card__img" src="https://fabiohaagtype.com/wp-content/uploads/2026/03/Cover-Site-Vertical.jpg">
+        </div>
+        <p class="posts-container__card__title">
+            O real valor do retorno do ‘craft’ no design        </p>
+
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </a>
+</div><div class="swiper-slide" style="width: 303.5px;">
+    <a class="posts-container__card" href="https://fabiohaagtype.com/fontes-cores/">
+        <div class="posts-container__card__container">
+            <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2025/11/Cores-Capa-Vertical.jpg.webp" type="image/webp"><img class="posts-container__card__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2025/11/Cores-Capa-Vertical.jpg"></picture>
+        </div>
+        <p class="posts-container__card__title">
+            FONTES &gt; CORES        </p>
+
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </a>
+</div><div class="swiper-slide" style="width: 303.5px;">
+    <a class="posts-container__card" href="https://fabiohaagtype.com/as-certezas-que-eu-tinha/">
+        <div class="posts-container__card__container">
+            <picture><source srcset="https://fabiohaagtype.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2025/09/Certezas-Blog-Cover-Vertical.jpg.webp" type="image/webp"><img class="posts-container__card__img webpexpress-processed" src="https://fabiohaagtype.com/wp-content/uploads/2025/09/Certezas-Blog-Cover-Vertical.jpg"></picture>
+        </div>
+        <p class="posts-container__card__title">
+            As Certezas Que Eu Tinha        </p>
+
+        <span class="posts-container__card__button">
+            leia mais            
+            <img class="carousel__icon" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/lineArrowBold.svg">
+        </span>
+    </a>
+</div>        </div>
+
+        <div class="c-slider__nav">
+          <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-lock"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+<section>
+  <div class="newsletter__wrapper">
+    <div class="newsletter__title">Quer ser o primeiro a saber de fontes novas?</div>
+    <div class="newsletter__content">
+      <form action="https://track.bentonow.com/forms/556802fb0fc9d382a6c79ff0733696fb/$subscribe?hardened=true" method="POST" enctype="multipart/form-data" class="bento-formkit">
+        <div class="newsletter__email input">
+          <label for="email">E-mail</label>
+          <input type="email" name="email" placeholder="Seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" autocomplete="off" style="">
+          <input type="hidden" name="redirect" value="https://fabiohaagtype.com" autocomplete="off" style="">
+        </div>
+        <div class="newsletter__button button--disabled">
+          <button type="submit" class="bento-formkit-button">Assinar</button>
+        </div>
+        <div class="bento-formkit-disclosure">By signing up, you agree to our Privacy Policy and Terms of Service. We may send you occasional newsletters and promotional emails about our products and services. You can opt-out at any time.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="c-newsletter">
+  <div class="c-newsletter__content">
+    <div class="c-newsletter__header">
+      <h2 class="newsletter__title">Quer ser o primeiro a saber de fontes novas? </h2>
+      <div class="c-newsletter__close">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18" stroke="black" stroke-linejoin="round"></path>
+          <path d="M6 6L18 18" stroke="black" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="c-newsletter__body">
+      <h5 class="newsletter__subtitle">Assine nossa newsletter</h5>
+      
+      <form action="https://track.bentonow.com/forms/556802fb0fc9d382a6c79ff0733696fb/$subscribe?hardened=true" method="POST" enctype="multipart/form-data" class="bento-formkit">
+        <div class="newsletter__email input">
+          <label for="email">E-mail</label>
+          <input type="email" name="email" placeholder="Seu email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" autocomplete="off" style="">
+          <input type="hidden" name="redirect" value="https://fabiohaagtype.com" autocomplete="off" style="">
+        </div>
+        <div class="newsletter__button button--disabled">
+          <button type="submit" class="bento-formkit-button">Assinar</button>
+        </div>
+        <div class="bento-formkit-disclosure">By signing up, you agree to our Privacy Policy and Terms of Service. We may send you occasional newsletters and promotional emails about our products and services. You can opt-out at any time.</div>
+      </form>
+    </div>
+  </div>
+</section>
+<footer id="colophon" class="site-footer">
+	<a href="https://fabiohaagtype.com"><img class="site-footer__logo" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/logo-vertical.svg" alt="Fabio Haag Type"></a>
+
+	<nav class="site-navigation main-navigation">
+		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+			<span class="menu-toggle__line"></span>
+			<span class="menu-toggle__line"></span>
+			<span class="menu-toggle__line"></span>
+		</button>
+		<div class="menu-footer-container"><ul id="primary-menu" class="menu nav-menu"><li id="menu-item-25864" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25864"><a href="https://fabiohaagtype.com/loja/">Fontes Prontas</a></li>
+<li id="menu-item-25867" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25867"><a href="#">Serviços</a></li>
+<li id="menu-item-25866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25866"><a href="https://fabiohaagtype.com/quem-somos/">Quem Somos</a></li>
+<li id="menu-item-25865" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25865"><a href="https://fabiohaagtype.com/blog/">Blog</a></li>
+</ul></div>	</nav>
+
+	<div class="site-footer__links">
+		<a href="https://www.instagram.com/fabiohaagtype" target="_blank" alt="Instagram"><img src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/instagram-icon.svg" alt="Instagram"></a>
+		<a href="https://www.linkedin.com/company/fabio-haag-type" target="_blank" alt="Linkedin"><img src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/linkedin-icon.svg" alt="Linkedin"></a>
+		<a href="https://www.behance.net/fabiohaagtype" target="_blank" alt="Behance"><img src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/resources/images/behance-icon.svg" alt="Behance"></a>
+	</div>
+</footer><!-- #colophon -->
+
+<div class="site-footer__info">
+	<p class="site-footer__trademark">© 2026 Fabio Haag Type / VLF Design Ltda</p>
+	<div class="site-footer__pages">
+		<a href="https://fabiohaagtype.com/termos-condicoes/">Termos e Condições</a>
+		<a href="https://fabiohaagtype.com/politica-de-privacidade/">Política de Privacidade</a>
+	</div>
+</div>
+
+</div><!-- #page -->
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/fuerzastudio/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<!--googleoff: all--><div id="cookie-law-info-bar" data-nosnippet="true" data-cli-style="cli-style-v2" style="background-color: rgb(239, 239, 244); color: rgb(51, 51, 51); font-family: inherit; bottom: 0px; position: fixed; display: block;"><span><div class="cli-bar-container cli-style-v2"><div class="cli-bar-message">Ao clicar em “Aceitar todos os cookies”, você concorda com o armazenamento de cookies no seu dispositivo para melhorar a navegação no site e análise do uso do site para ajudar em nossos esforços de marketing. Leia nossa <a href="https://fabiohaagtype.com/en/privacy-policy/" id="CONSTANT_OPEN_URL" target="_blank" class="cli-plugin-main-link" style="display: inline-block; color: rgb(0, 0, 0);">Política de Privacidade</a>. <a role="button" class="cli_settings_button" style="color: rgb(0, 0, 0);">Configurações de cookies</a></div><div class="cli-bar-btn_container"><a role="button" data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button wt-cli-accept-btn" style="display: inline-block; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">Aceitar todos os cookies</a></div><a role="button" id="cookie_action_close_header_reject" class="cookie_action_close_header_reject cli_action_button wt-cli-reject-btn" data-cli_action="reject" style="color: rgb(165, 165, 165);">X</a></div></span></div><div id="cookie-law-info-again" style="display: none; background-color: rgb(239, 239, 244); color: rgb(51, 51, 51); position: fixed; font-family: inherit; width: auto; bottom: 0px; right: 100px;" data-nosnippet="true"><span id="cookie_hdr_showagain">Política de Cookies e Privacidade</span></div><div class="cli-modal" data-nosnippet="true" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+	<div class="cli-modal-content cli-bar-popup">
+		  <button type="button" class="cli-modal-close" id="cliModalClose">
+			<svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+			<span class="wt-cli-sr-only">Fechar</span>
+		  </button>
+		  <div class="cli-modal-body">
+			<div class="cli-container-fluid cli-tab-container">
+	<div class="cli-row">
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+			<div class="cli-privacy-overview">
+				<h4>Visão geral sobre nossa política</h4>				<div class="cli-privacy-content">
+					<div class="cli-privacy-content-text">Este site usa cookies para melhorar sua experiência enquanto você navega pelo site. Destes cookies, os que são categorizados como necessários são armazenados no seu navegador, pois são essenciais para o funcionamento das funcionalidades básicas do si...</div>
+				</div>
+				<a class="cli-privacy-readmore" aria-label="Mostrar mais" role="button" data-readmore-text="Mostrar mais" data-readless-text="Mostrar menos"></a>			</div>
+		</div>
+		<div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+												<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+								Necessary							</a>
+																						<div class="wt-cli-necessary-checkbox">
+									<input type="checkbox" class="cli-user-preference-checkbox" id="wt-cli-checkbox-necessary" data-id="checkbox-necessary" checked="checked" style="">
+									<label class="form-check-label" for="wt-cli-checkbox-necessary">Necessary</label>
+								</div>
+								<span class="cli-necessary-caption">Sempre ativado</span>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="necessary">
+								<div class="wt-cli-cookie-description">
+									Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.								</div>
+							</div>
+						</div>
+					</div>
+																	<div class="cli-tab-section">
+						<div class="cli-tab-header">
+							<a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="non-necessary" data-toggle="cli-toggle-tab">
+								Non-necessary							</a>
+																						<div class="cli-switch">
+									<input type="checkbox" id="wt-cli-checkbox-non-necessary" class="cli-user-preference-checkbox" data-id="checkbox-non-necessary" checked="checked" style="">
+									<label for="wt-cli-checkbox-non-necessary" class="cli-slider" data-cli-enable="Ativado" data-cli-disable="Desativado"><span class="wt-cli-sr-only">Non-necessary</span></label>
+								</div>
+													</div>
+						<div class="cli-tab-content">
+							<div class="cli-tab-pane cli-fade" data-id="non-necessary">
+								<div class="wt-cli-cookie-description">
+									Any cookies that may not be particularly necessary for the website to function and is used specifically to collect user personal data via analytics, ads, other embedded contents are termed as non-necessary cookies. It is mandatory to procure user consent prior to running these cookies on your website.								</div>
+							</div>
+						</div>
+					</div>
+										</div>
+	</div>
+</div>
+		  </div>
+		  <div class="cli-modal-footer">
+			<div class="wt-cli-element cli-container-fluid cli-tab-container">
+				<div class="cli-row">
+					<div class="cli-col-12 cli-align-items-stretch cli-px-0">
+						<div class="cli-tab-footer wt-cli-privacy-overview-actions">
+						
+															<a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn">SALVAR E ACEITAR</a>
+													</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all-->	<script>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<script id="wcml-mc-scripts-js-extra">
+var wcml_mc_settings = {"wcml_spinner":"https://fabiohaagtype.com/wp-content/plugins/wpml-multilingual-cms/res/img/ajax-loader.gif","current_currency":{"code":"BRL","symbol":"&#82;&#36;"},"cache_enabled":""};
+//# sourceURL=wcml-mc-scripts-js-extra
+</script>
+<script data-wp-strategy="defer" defer="" id="wcml-mc-scripts-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce-multilingual/res/js/wcml-multi-currency.min.js?ver=5.5.5"></script>
+<script id="thickbox-js-extra">
+var thickboxL10n = {"next":"Pr\u00f3ximo \u00bb","prev":"\u00ab Anterior","image":"Imagem","of":"de","close":"Fechar","noiframes":"Este recurso necessita frames embutidos. Voc\u00ea desativou iframes ou seu navegador n\u00e3o os suporta.","loadingAnimation":"https://fabiohaagtype.com/wp-includes/js/thickbox/loadingAnimation.gif"};
+//# sourceURL=thickbox-js-extra
+</script>
+<script id="thickbox-js" src="https://fabiohaagtype.com/wp-includes/js/thickbox/thickbox.js?ver=3.1-20121105"></script>
+<script id="bento-js-js-extra">
+var bento_wordpress_sdk_params = {"ajax_url":"https://fabiohaagtype.com/wp-admin/admin-ajax.php","user_logged_in":"","woocommerce_enabled":"1","woocommerce_cart_count":"0"};
+//# sourceURL=bento-js-js-extra
+</script>
+<script id="bento-js-js" src="https://app.bentonow.com/556802fb0fc9d382a6c79ff0733696fb.js?woocommerce=1&amp;ver=fb3db6046759ac26732322c3cc41f38b"></script>
+<script id="gtm4wp-ecommerce-generic-js" src="https://fabiohaagtype.com/wp-content/plugins/duracelltomi-google-tag-manager/dist/js/gtm4wp-ecommerce-generic.js?ver=1.22.3"></script>
+<script id="gtm4wp-woocommerce-js" src="https://fabiohaagtype.com/wp-content/plugins/duracelltomi-google-tag-manager/dist/js/gtm4wp-woocommerce.js?ver=1.22.3"></script>
+<script id="fabio-haag-type-2020-components-checkbox-js" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/js/typeTester/checkbox.js?ver=54570ef6e425d09e6d57af8876329d6d"></script>
+<script id="fabio-haag-type-2020-components-select-js" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/js/typeTester/select.js?ver=54570ef6e425d09e6d57af8876329d6d"></script>
+<script id="fabio-haag-type-2020-components-slider-js" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/js/typeTester/slider.js?ver=54570ef6e425d09e6d57af8876329d6d"></script>
+<script id="fh_typetester-js" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/js/typeTester/index.js?ver=54570ef6e425d09e6d57af8876329d6d"></script>
+<script id="wp-hooks-js" src="https://fabiohaagtype.com/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d"></script>
+<script id="wp-i18n-js" src="https://fabiohaagtype.com/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="wp-url-js" src="https://fabiohaagtype.com/wp-includes/js/dist/url.min.js?ver=bb0f766c3d2efe497871"></script>
+<script id="wp-api-fetch-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", {"translation-revision-date":"2025-10-27 23:52:10+0000","generator":"GlotPress\/4.0.3","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=2; plural=n > 1;","lang":"pt_BR"},"You are probably offline.":["Voc\u00ea provavelmente est\u00e1 offline."],"Media upload failed. If this is a photo or a large image, please scale it down and try again.":["Falha ao enviar a m\u00eddia. Se for uma foto ou imagem grande, reduza o tamanho e tente novamente."],"The response is not a valid JSON response.":["A resposta n\u00e3o \u00e9 um JSON v\u00e1lido."],"An unknown error occurred.":["Um erro desconhecido ocorreu."]}},"comment":{"reference":"wp-includes\/js\/dist\/api-fetch.js"}} );
+//# sourceURL=wp-api-fetch-js-translations
+</script>
+<script id="wp-api-fetch-js" src="https://fabiohaagtype.com/wp-includes/js/dist/api-fetch.min.js?ver=d7efe4dc1468d36c39b8"></script>
+<script id="wp-api-fetch-js-after">
+wp.apiFetch.use( wp.apiFetch.createRootURLMiddleware( "https://fabiohaagtype.com/wp-json/" ) );
+wp.apiFetch.nonceMiddleware = wp.apiFetch.createNonceMiddleware( "a8411a2193" );
+wp.apiFetch.use( wp.apiFetch.nonceMiddleware );
+wp.apiFetch.use( wp.apiFetch.mediaUploadMiddleware );
+wp.apiFetch.nonceEndpoint = "https://fabiohaagtype.com/wp-admin/admin-ajax.php?action=rest-nonce";
+//# sourceURL=wp-api-fetch-js-after
+</script>
+<script id="react-js" src="https://fabiohaagtype.com/wp-includes/js/dist/vendor/react.min.js?ver=18.3.1.1"></script>
+<script id="react-dom-js" src="https://fabiohaagtype.com/wp-includes/js/dist/vendor/react-dom.min.js?ver=18.3.1.1"></script>
+<script id="wp-escape-html-js" src="https://fabiohaagtype.com/wp-includes/js/dist/escape-html.min.js?ver=3f093e5cca67aa0f8b56"></script>
+<script id="wp-element-js" src="https://fabiohaagtype.com/wp-includes/js/dist/element.min.js?ver=15ba804677f72a8db97b"></script>
+<script id="react-jsx-runtime-js" src="https://fabiohaagtype.com/wp-includes/js/dist/vendor/react-jsx-runtime.min.js?ver=18.3.1"></script>
+<script id="wp-deprecated-js" src="https://fabiohaagtype.com/wp-includes/js/dist/deprecated.min.js?ver=990e85f234fee8f7d446"></script>
+<script id="wp-dom-js" src="https://fabiohaagtype.com/wp-includes/js/dist/dom.min.js?ver=66a6cf58e0c4cd128af0"></script>
+<script id="wp-is-shallow-equal-js" src="https://fabiohaagtype.com/wp-includes/js/dist/is-shallow-equal.min.js?ver=5d84b9f3cb50d2ce7d04"></script>
+<script id="wp-keycodes-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", {"translation-revision-date":"2025-10-27 23:52:10+0000","generator":"GlotPress\/4.0.3","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=2; plural=n > 1;","lang":"pt_BR"},"Tilde":["Til"],"Backtick":["Acento grave"],"Period":["Ponto"],"Comma":["V\u00edrgula"]}},"comment":{"reference":"wp-includes\/js\/dist\/keycodes.js"}} );
+//# sourceURL=wp-keycodes-js-translations
+</script>
+<script id="wp-keycodes-js" src="https://fabiohaagtype.com/wp-includes/js/dist/keycodes.min.js?ver=aa1a141e3468afe7f852"></script>
+<script id="wp-priority-queue-js" src="https://fabiohaagtype.com/wp-includes/js/dist/priority-queue.min.js?ver=1f0e89e247bc0bd3f9b9"></script>
+<script id="wp-undo-manager-js" src="https://fabiohaagtype.com/wp-includes/js/dist/undo-manager.min.js?ver=27bb0ae036a2c9d4a1b5"></script>
+<script id="wp-compose-js" src="https://fabiohaagtype.com/wp-includes/js/dist/compose.min.js?ver=edb5a8c0b5bf71686403"></script>
+<script id="wp-private-apis-js" src="https://fabiohaagtype.com/wp-includes/js/dist/private-apis.min.js?ver=835912f0086b9e59aed4"></script>
+<script id="wp-redux-routine-js" src="https://fabiohaagtype.com/wp-includes/js/dist/redux-routine.min.js?ver=64f9f5001aabc046c605"></script>
+<script id="wp-data-js" src="https://fabiohaagtype.com/wp-includes/js/dist/data.min.js?ver=1756b6a2676c1b3369ab"></script>
+<script id="wp-data-js-after">
+( function() {
+	var userId = 0;
+	var storageKey = "WP_DATA_USER_" + userId;
+	wp.data
+		.use( wp.data.plugins.persistence, { storageKey: storageKey } );
+} )();
+//# sourceURL=wp-data-js-after
+</script>
+<script id="fabio-haag-type-2020-register-user-js-extra">
+var wp_vars = {"_wp_nonce":"a8411a2193","rest_url":"https://fabiohaagtype.com/wp-json/","recaptcha_sitekey":"6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf","user_newsletter":"false"};
+//# sourceURL=fabio-haag-type-2020-register-user-js-extra
+</script>
+<script id="fabio-haag-type-2020-register-user-js" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/js/registerUser.js?ver=1.0.0"></script>
+<script id="theme-script-bundle-js-extra">
+var wp_vars = {"_wp_nonce":"a8411a2193","rest_url":"https://fabiohaagtype.com/wp-json/","recaptcha_sitekey":"6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf","user_newsletter":"false"};
+var wpParams = {"url":"/wp-admin/admin-ajax.php"};
+var wcCheckoutL10n = {"makeLogin":"Fazer login","requireFieldMessage":"Este \u00e9 um campo obrigat\u00f3rio.","invalidEmailMessage":"O email informado n\u00e3o \u00e9 v\u00e1lido","invalidEmailFormatMessage":"Formato de email inv\u00e1lido","popupErrorMessage":"O e-mail inserido j\u00e1 foi cadastrado!","continueGenericText":"Continuar","paymentMethodTexts":{"eh_stripe_checkout":"CONTINUAR PARA O CART\u00c3O","paypal":"CONTINUAR PARA O PAYPAL","woo-mercado-pago-basic":"CONTINUAR PARA O PIX","woo-mercado-pago-credits":"CONTINUAR COM PARCELAMENTO"}};
+//# sourceURL=theme-script-bundle-js-extra
+</script>
+<script id="theme-script-bundle-js" src="https://fabiohaagtype.com/wp-content/themes/fuerzastudio/dist/index.js?ver=13c53e13fb1473454434bb5d65d343d7"></script>
+<script id="cart-widget-js-extra">
+var actions = {"is_lang_switched":"0","force_reset":"0"};
+//# sourceURL=cart-widget-js-extra
+</script>
+<script data-wp-strategy="defer" defer="" id="cart-widget-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce-multilingual/res/js/cart_widget.min.js?ver=5.5.5"></script>
+<script id="sourcebuster-js-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js?ver=10.7.0"></script>
+<script id="wc-order-attribution-js-extra">
+var wc_order_attribution = {"params":{"lifetime":1.0e-5,"session":30,"base64":false,"ajaxurl":"https://fabiohaagtype.com/wp-admin/admin-ajax.php","prefix":"wc_order_attribution_","allowTracking":true},"fields":{"source_type":"current.typ","referrer":"current_add.rf","utm_campaign":"current.cmp","utm_source":"current.src","utm_medium":"current.mdm","utm_content":"current.cnt","utm_id":"current.id","utm_term":"current.trm","utm_source_platform":"current.plt","utm_creative_format":"current.fmt","utm_marketing_tactic":"current.tct","session_entry":"current_add.ep","session_start_time":"current_add.fd","session_pages":"session.pgs","session_count":"udata.vst","user_agent":"udata.uag"}};
+//# sourceURL=wc-order-attribution-js-extra
+</script>
+<script id="wc-order-attribution-js" src="https://fabiohaagtype.com/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js?ver=10.7.0"></script>
+<script id="jquery-bind-first-js" defer="" src="https://fabiohaagtype.com/wp-content/plugins/pixelyoursite-pro/dist/scripts/jquery.bind-first-0.2.3.min.js"></script>
+<script id="js-cookie-pys-js" defer="" src="https://fabiohaagtype.com/wp-content/plugins/pixelyoursite-pro/dist/scripts/js.cookie-2.1.3.min.js?ver=2.1.3"></script>
+<script id="js-sha256-js" defer="" src="https://fabiohaagtype.com/wp-content/plugins/pixelyoursite-pro/dist/scripts/sha256.js?ver=0.11.0"></script>
+<script id="js-tld-js" defer="" src="https://fabiohaagtype.com/wp-content/plugins/pixelyoursite-pro/dist/scripts/tld.min.js?ver=2.3.1"></script>
+<script id="pys-js-extra">
+var pysOptions = {"staticEvents":{"facebook":{"init_event":[{"delay":0,"type":"static","ajaxFire":true,"name":"PageView","pixelIds":["5596107953779536"],"eventID":"29a5dda6-d528-4ead-9adf-b690f3c19ffb","params":{"post_category":"Blog, Ideias","page_title":"Fabio Haag Type","post_type":"page","plugin":"PixelYourSite","event_url":"fabiohaagtype.com/","user_role":"guest"},"e_id":"init_event","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}]}},"dynamicEvents":[],"triggerEvents":[],"triggerEventTypes":[],"triggerLogic":[],"triggerFrequency":[],"facebook":{"pixelIds":["5596107953779536"],"advancedMatchingEnabled":true,"advancedMatching":[],"removeMetadata":true,"wooVariableAsSimple":false,"serverApiEnabled":true,"send_external_id":true,"enabled_medical":false,"do_not_track_medical_param":["event_url","post_title","page_title","landing_page","content_name","categories","category_name","tags"],"meta_ldu":false},"google_ads":{"conversion_ids":["AW-18013147080"],"enhanced_conversion":["index_0"],"woo_purchase_conversion_track":"current_event","woo_initiate_checkout_conversion_track":"current_event","woo_add_to_cart_conversion_track":"current_event","woo_view_content_conversion_track":"current_event","woo_view_category_conversion_track":"current_event","edd_purchase_conversion_track":"current_event","edd_initiate_checkout_conversion_track":"current_event","edd_add_to_cart_conversion_track":"current_event","edd_view_content_conversion_track":"current_event","edd_view_category_conversion_track":"current_event","wooVariableAsSimple":true,"crossDomainEnabled":false,"crossDomainAcceptIncoming":false,"crossDomainDomains":[]},"debug":"","siteUrl":"https://fabiohaagtype.com","ajaxUrl":"https://fabiohaagtype.com/wp-admin/admin-ajax.php","ajax_event":"627513f55f","trackUTMs":"1","trackTrafficSource":"1","user_id":"0","enable_lading_page_param":"1","cookie_duration":"7","enable_event_day_param":"1","enable_event_month_param":"1","enable_event_time_param":"1","enable_remove_target_url_param":"1","enable_remove_download_url_param":"1","visit_data_model":"first_visit","last_visit_duration":"60","enable_auto_save_advance_matching":"1","enable_success_send_form":"","enable_automatic_events":"","enable_event_video":"","enable_rage_click":"","rage_click_threshold":"3","enable_video_speed":"","ajaxForServerEvent":"1","ajaxForServerStaticEvent":"1","useSendBeacon":"1","send_external_id":"1","external_id_expire":"180","track_cookie_for_subdomains":"1","google_consent_mode":"1","data_persistency":"keep_data","advance_matching_form":{"enable_advance_matching_forms":true,"advance_matching_fn_names":["first_name","first-name","first name","name"],"advance_matching_ln_names":["last_name","last-name","last name"],"advance_matching_tel_names":["phone","tel"],"advance_matching_em_names":[]},"advance_matching_url":{"enable_advance_matching_url":true,"advance_matching_fn_names":[],"advance_matching_ln_names":[],"advance_matching_tel_names":[],"advance_matching_em_names":[]},"track_dynamic_fields":[],"gdpr":{"ajax_enabled":true,"all_disabled_by_api":true,"facebook_disabled_by_api":false,"tiktok_disabled_by_api":false,"analytics_disabled_by_api":false,"google_ads_disabled_by_api":false,"pinterest_disabled_by_api":false,"bing_disabled_by_api":false,"reddit_disabled_by_api":false,"externalID_disabled_by_api":false,"facebook_prior_consent_enabled":true,"tiktok_prior_consent_enabled":true,"analytics_prior_consent_enabled":true,"google_ads_prior_consent_enabled":true,"pinterest_prior_consent_enabled":true,"bing_prior_consent_enabled":true,"cookiebot_integration_enabled":false,"cookiebot_facebook_consent_category":"marketing","cookiebot_tiktok_consent_category":"marketing","cookiebot_analytics_consent_category":"statistics","cookiebot_google_ads_consent_category":"marketing","cookiebot_pinterest_consent_category":"marketing","cookiebot_bing_consent_category":"marketing","cookie_notice_integration_enabled":false,"cookie_law_info_integration_enabled":true,"real_cookie_banner_integration_enabled":false,"consent_magic_integration_enabled":false,"analytics_storage":{"enabled":true,"value":"granted","filter":false},"ad_storage":{"enabled":true,"value":"granted","filter":false},"ad_user_data":{"enabled":true,"value":"granted","filter":false},"ad_personalization":{"enabled":true,"value":"granted","filter":false}},"cookie":{"disabled_all_cookie":false,"disabled_start_session_cookie":false,"disabled_advanced_form_data_cookie":false,"disabled_landing_page_cookie":false,"disabled_first_visit_cookie":false,"disabled_trafficsource_cookie":false,"disabled_utmTerms_cookie":false,"disabled_utmId_cookie":false,"disabled_google_alternative_id":false},"tracking_analytics":{"TrafficLanding":"http://undefined","TrafficUtms":[],"TrafficUtmsId":[],"userDataEnable":true,"userData":{"emails":[],"phones":[],"addresses":[]},"use_encoding_provided_data":true,"use_multiple_provided_data":true},"GATags":{"ga_datalayer_type":"default","ga_datalayer_name":"dataLayerPYS","gclid_alternative_enabled":false,"gclid_alternative_param":""},"automatic":{"enable_youtube":true,"enable_vimeo":true,"enable_video":false},"woo":{"enabled":true,"enabled_save_data_to_orders":true,"addToCartOnButtonEnabled":true,"addToCartOnButtonValueEnabled":true,"addToCartOnButtonValueOption":"price","woo_purchase_on_transaction":true,"woo_view_content_variation_is_selected":true,"singleProductId":null,"affiliateEnabled":false,"removeFromCartSelector":"form.woocommerce-cart-form .remove","addToCartCatchMethod":"add_cart_hook","is_order_received_page":false,"containOrderId":false,"affiliateEventName":"Lead"},"edd":{"enabled":false},"cache_bypass":"1795648493"};
+//# sourceURL=pys-js-extra
+</script>
+<script id="pys-js" defer="" src="https://fabiohaagtype.com/wp-content/plugins/pixelyoursite-pro/dist/scripts/public.js?ver=12.5.3"></script>
+<script id="wordfence-ls-recaptcha-js" src="https://www.google.com/recaptcha/api.js?render=6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf&amp;ver=fb3db6046759ac26732322c3cc41f38b"></script>
+<script id="wordfence-ls-login-js-extra">
+var WFLS_LOGIN_TRANSLATIONS = {"Message to Support":"Mensagem para o suporte","Send":"Enviar","An error was encountered while trying to send the message. Please try again.":"Um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to send the message. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","Login failed with status code 403. Please contact the site administrator.":"Login failed with status code 403. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.","Login failed with status code 503. Please contact the site administrator.":"Login failed with status code 503. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.","Wordfence 2FA Code":"C\u00f3digo de 2FA do Wordfence","Remember for 30 days":"Lembrar por 30 dias","Log In":"Acessar","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to authenticate. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar autenticar. Tente novamente.","The Wordfence 2FA Code can be found within the authenticator app you used when first activating two-factor authentication. You may also use one of your recovery codes.":"O c\u00f3digo 2FA do Wordfence pode ser encontrado no aplicativo autenticador que voc\u00ea usou ao ativar a autentica\u00e7\u00e3o de dois fatores pela primeira vez. Voc\u00ea tamb\u00e9m pode usar um de seus c\u00f3digos de recupera\u00e7\u00e3o."};
+var WFLSVars = {"ajaxurl":"/wp-admin/admin-ajax.php","nonce":"db81a7f490","recaptchasitekey":"6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf","useCAPTCHA":"1","allowremember":"","verification":null};
+var WFLS_LOGIN_TRANSLATIONS = {"Message to Support":"Mensagem para o suporte","Send":"Enviar","An error was encountered while trying to send the message. Please try again.":"Um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to send the message. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","Login failed with status code 403. Please contact the site administrator.":"Login failed with status code 403. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.","Login failed with status code 503. Please contact the site administrator.":"Login failed with status code 503. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.","Wordfence 2FA Code":"C\u00f3digo de 2FA do Wordfence","Remember for 30 days":"Lembrar por 30 dias","Log In":"Acessar","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to authenticate. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar autenticar. Tente novamente.","The Wordfence 2FA Code can be found within the authenticator app you used when first activating two-factor authentication. You may also use one of your recovery codes.":"O c\u00f3digo 2FA do Wordfence pode ser encontrado no aplicativo autenticador que voc\u00ea usou ao ativar a autentica\u00e7\u00e3o de dois fatores pela primeira vez. Voc\u00ea tamb\u00e9m pode usar um de seus c\u00f3digos de recupera\u00e7\u00e3o."};
+var WFLSVars = {"ajaxurl":"/wp-admin/admin-ajax.php","nonce":"db81a7f490","recaptchasitekey":"6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf","useCAPTCHA":"1","allowremember":"","verification":null};
+var WFLS_LOGIN_TRANSLATIONS = {"Message to Support":"Mensagem para o suporte","Send":"Enviar","An error was encountered while trying to send the message. Please try again.":"Um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to send the message. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","Login failed with status code 403. Please contact the site administrator.":"Login failed with status code 403. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.","Login failed with status code 503. Please contact the site administrator.":"Login failed with status code 503. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.","Wordfence 2FA Code":"C\u00f3digo de 2FA do Wordfence","Remember for 30 days":"Lembrar por 30 dias","Log In":"Acessar","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to authenticate. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar autenticar. Tente novamente.","The Wordfence 2FA Code can be found within the authenticator app you used when first activating two-factor authentication. You may also use one of your recovery codes.":"O c\u00f3digo 2FA do Wordfence pode ser encontrado no aplicativo autenticador que voc\u00ea usou ao ativar a autentica\u00e7\u00e3o de dois fatores pela primeira vez. Voc\u00ea tamb\u00e9m pode usar um de seus c\u00f3digos de recupera\u00e7\u00e3o."};
+var WFLSVars = {"ajaxurl":"/wp-admin/admin-ajax.php","nonce":"db81a7f490","recaptchasitekey":"6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf","useCAPTCHA":"1","allowremember":"","verification":null};
+var WFLS_LOGIN_TRANSLATIONS = {"Message to Support":"Mensagem para o suporte","Send":"Enviar","An error was encountered while trying to send the message. Please try again.":"Um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to send the message. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar enviar a mensagem. Tente novamente.","Login failed with status code 403. Please contact the site administrator.":"Login failed with status code 403. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 403. Please contact the site administrator.","Login failed with status code 503. Please contact the site administrator.":"Login failed with status code 503. Please contact the site administrator.","\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.":"\u003Cstrong\u003EERROR\u003C/strong\u003E: Login failed with status code 503. Please contact the site administrator.","Wordfence 2FA Code":"C\u00f3digo de 2FA do Wordfence","Remember for 30 days":"Lembrar por 30 dias","Log In":"Acessar","\u003Cstrong\u003EERROR\u003C/strong\u003E: An error was encountered while trying to authenticate. Please try again.":"\u003Cstrong\u003EERRO\u003C/strong\u003E: um erro foi encontrado ao tentar autenticar. Tente novamente.","The Wordfence 2FA Code can be found within the authenticator app you used when first activating two-factor authentication. You may also use one of your recovery codes.":"O c\u00f3digo 2FA do Wordfence pode ser encontrado no aplicativo autenticador que voc\u00ea usou ao ativar a autentica\u00e7\u00e3o de dois fatores pela primeira vez. Voc\u00ea tamb\u00e9m pode usar um de seus c\u00f3digos de recupera\u00e7\u00e3o."};
+var WFLSVars = {"ajaxurl":"/wp-admin/admin-ajax.php","nonce":"db81a7f490","recaptchasitekey":"6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf","useCAPTCHA":"1","allowremember":"","verification":null};
+//# sourceURL=wordfence-ls-login-js-extra
+</script>
+<script id="wordfence-ls-login-js" src="https://fabiohaagtype.com/wp-content/plugins/wordfence/modules/login-security/js/login.1778685035.js?ver=1.1.16"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://fabiohaagtype.com/wp-includes/js/wp-emoji-release.min.js?ver=fb3db6046759ac26732322c3cc41f38b"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://fabiohaagtype.com/wp-includes/js/wp-emoji-loader.min.js
+</script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if( typeof woocommerce_price_slider_params !== 'undefined' ) {
+				woocommerce_price_slider_params.currency_format_symbol = wcml_mc_settings.current_currency.symbol;
+			}
+		/* ]]> */
+		</script>
+		
+<script type="text/javascript">
+	_linkedin_partner_id = "2799705";
+	window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+	window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+	(function () {
+		var s = document.getElementsByTagName("script")[0];
+		var b = document.createElement("script");
+		b.type = "text/javascript";
+		b.async = true;
+		b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+		s.parentNode.insertBefore(b, s);
+	})();
+</script> <noscript> <img height="1" width="1" style="display:none;" alt=""
+		src="https://px.ads.linkedin.com/collect/?pid=2799705&fmt=gif" /> </noscript>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;33131c48261b452f9c91440e1b547b9d&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+<div class="widget_shopping_cart_live_region screen-reader-text" role="status"></div><div><div class="grecaptcha-badge" data-style="none" style="width: 256px; height: 60px; position: fixed; visibility: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-cx4eyrunwcju" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le3EjYpAAAAADX11BD8jo8kV0ZESf8ZN__U6dFf&amp;co=aHR0cHM6Ly9mYWJpb2hhYWd0eXBlLmNvbTo0NDM.&amp;hl=pt-BR&amp;v=DqDoLJqJmjhqr0vRwNZ2MCHA&amp;size=invisible&amp;anchor-ms=20000&amp;execute-ms=30000&amp;ovv=CADq00gF&amp;cb=msx53ho5ezk2"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></body></html>

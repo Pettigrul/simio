@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C2b496bd1d0</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C2b496bd1d0 — webnode.page</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://supermaxcred.webnode.page/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Plataforma</b>webnode.page — o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</div><div class="kv"><b>Titular do domínio</b>— (dono só identificável pela plataforma)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: A100 ROW GmbH (3.79.173.192); A100 ROW GmbH (18.185.25.67)</div>
+<div class="kv"><b>Contatos de abuso (takedown)</b>trustandsafety@support.aws.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>NONE</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento comercial Maxcred opera como intermediador/promotora de crédito multibancos e cita a &#39;BV Financeira&#39; exclusivamente em texto. Embora utilize identidade própria e não reproduza logotipos do banco, a ausência de CNPJ visível e da declaração regulatória de correspondente bancário (Resolução CMN nº 4.935/2021) enquadra o caso como comunicação ambígua que requer revisão.
+[Revisor: CONFIRM] A Maxcred atua como promotora de crédito/correspondente bancário ofertando produtos financeiros vinculados à &#39;BV Financeira&#39; e outros bancos. Embora possua identidade visual própria e não utilize indevidamente o logotipo da instituição, não apresenta CNPJ, razão social ou os avisos regulatórios obrigatórios (declaração de correspondente bancário e contatos de ouvidoria, conforme Res. CMN 4.935/2021), configurando parceria com transparência insuficiente que requer revisão.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C2b496bd1d0/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 866cb136fd8e1a7d2b722b41f8e9a75c38a516827c021aa2ffd7ebf991a9a579</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C2b496bd1d0/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a183b27f9a6fbd65d2c419d7cd174cdcbf5eb38b250dac282f83ea1852138490</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://supermaxcred.webnode.page/ (domínio: supermaxcred.webnode.page)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Maxcred — Empréstimos Consignado trabalhamos com o Banco BMG e BV Financeira, em até 58 meses para pagar,com taxas especiais de acordo com a política de incentivo do ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C2b496bd1d0/attempt-1/viewport.png (sha256 866cb136fd8e1a7d…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C2b496bd1d0/attempt-1/fullpage.png (sha256 a183b27f9a6fbd65…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Maxcred</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://supermaxcred.webnode.page/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Maxcred</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Enquete</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Gostou do nosso Site?</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Pesquisar no site</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Contato</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Enquete</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Você achou o que procurava?</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Novidades</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Envie-nos a sua avaliação de nossos serviços</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Bem-vindo ao nosso novo website!</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Maxcred Maxcred Página inicial Sobre Nós Serviços Novidades Escreva-nos Contato Maxcred A Maxcred é uma empresa sólida e familiar,tem como objetivo atender a você: Aposentados Pensionistas INSS Funcionários Públicos Federais Empréstimos Consignado trabalhamos com o Banco BMG e BV Financeira, em até 58 meses para pagar,com taxas especiais de acordo com a política de incentivo do Governo Federal. Refinanciamos seu contrato com o BMG Refinanciamento de Veículos (Banco Fibra, Daycoval, Sul Financeira e Rodobens). SAIA DO SUFOCO SORRINDO!!! Visite-nos em nosso endereço: Av Brasília ,946 sala 03 - Jd. Campanário - Diadema - CEP 09931-400 - SP Enquete Gostou do nosso Site? Sim (8) Não (9) Total de votos: 17 Pesquisar no site Contato Maxcred Av Brasília ,946 sala 03 - Jd. Campanário - Diadema - CEP 09931-400 - SP (011)4092-2874 Enquete Você achou o que procurava? Sim, eu encontrei tudo o que eu estava procurando. (12) Não, continuo tentando encontrar o que preciso... (7) Total de votos: 19 Novidades Envie-nos a sua avaliação de nossos serviços 17/05/2012 02:52 Você utilizou os nossos serviços e já tem algo a dizer sobre nós? Por favor, não hesite em nos... Bem-vindo ao nosso novo website! 17/05/2012 02:51 Nós gostaríamos de anunciar o lançamento de nosso novo website. Aqui você poderá encontrar... Página Inicial Mapa do site RSS Imprimir</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Empréstimos Consignado trabalhamos com o Banco BMG e BV Financeira, em até 58 meses para pagar,com taxas especiais de acordo com a política de incentivo do Governo Federal.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Refinanciamento de Veículos (Banco Fibra, Daycoval, Sul Financeira e Rodobens).SAIA DO SUFOCO SORRINDO!!!</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Visite-nos em nosso endereço: Av Brasília ,946 sala 03 - Jd. Campanário - Diadema - CEP 09931-400 - SP</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Av Brasília ,946 sala 03 - Jd. Campanário - Diadema - CEP 09931-400 - SP</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A identidade visual própria da Maxcred predomina no cabeçalho e corpo da página, sem reprodução visual das cores ou símbolos institucionais do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>A promotora identifica-se comercialmente como Maxcred e informa endereço em Diadema/SP e telefone fixo, mas não divulga CNPJ nem razão social.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência da declaração explícita de correspondente bancário e dos canais de ouvidoria da instituição contratante.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O texto refere-se em terceira pessoa à intermediação de crédito (&#39;trabalhamos com o Banco BMG e BV Financeira&#39;), sem simulação de canal oficial.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>Não foram detectados logotipos do Banco BV ou da BV Financeira; há apenas menção textual.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Não há simuladores ativos com coleta de credenciais bancárias ou senhas sensíveis no conteúdo visualizado.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Disponibiliza endereço físico em Diadema/SP e telefone comercial fixo próprio da Maxcred.</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Contexto multibancos e multimarcas evidente, minimizando risco de personificação direta, embora a ausência de CNPJ dificulte a verificação do credenciamento.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página oferece produtos de crédito informando que trabalha com &#39;BV Financeira&#39; e outros bancos, mas não exibe a declaração formal obrigatória de correspondente bancário nem dados de ouvidoria conforme a Resolução CMN nº 4.935/2021. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: O estabelecimento apresenta a marca comercial Maxcred e endereço físico, porém não divulga razão social completa nem CNPJ. — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] VISUAL_IDENTITY: Identidade visual própria da Maxcred com logotipo próprio e sem reprodução de marcas gráficas do Banco BV. — <span class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[HIGH] CONSUMER_CONFUSION: Contexto multimarcas citando diversos bancos (BMG, BV Financeira, Banco Fibra, Daycoval, Sul Financeira, Rodobens). — <span class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-002">E-TXT-002</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Website hospedado no subdomínio gratuito supermaxcred.webnode.page com publicação datada de 2012.</li><li>Promotora de crédito &#39;Maxcred&#39; ofertando empréstimos consignados e refinanciamento de veículos.</li><li>Menção textual simples à BV Financeira juntamente com o Banco BMG, Daycoval, Fibra e Rodobens.</li><li>Nenhum logotipo oficial ou legado do Banco BV visível na página.</li><li>Presença de endereço físico e telefone fixo de Diadema/SP, porém sem exibição de CNPJ.</li><li>Inexistência de avisos regulatórios de correspondente bancário (Res. CMN 4.935/2021) e de canais de ouvidoria.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível confirmar se a Maxcred possui contrato ativo de correspondente bancário com o Banco BV devido à ausência de CNPJ no website.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento comercial Maxcred opera como intermediador/promotora de crédito multibancos e cita a &#39;BV Financeira&#39; exclusivamente em texto. Embora utilize identidade própria e não reproduza logotipos do banco, a ausência de CNPJ visível e da declaração regulatória de correspondente bancário (Resolução CMN nº 4.935/2021) enquadra o caso como comunicação ambígua que requer revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:webnode.page</span></div>
+      <div class="kv"><b>Confiança</b>NONE</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>webnode.page</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TXT-001">E-TXT-001</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A Maxcred atua como promotora de crédito/correspondente bancário ofertando produtos financeiros vinculados à &#39;BV Financeira&#39; e outros bancos. Embora possua identidade visual própria e não utilize indevidamente o logotipo da instituição, não apresenta CNPJ, razão social ou os avisos regulatórios obrigatórios (declaração de correspondente bancário e contatos de ouvidoria, conforme Res. CMN 4.935/2021), configurando parceria com transparência insuficiente que requer revisão.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>(site:wixsite.com OR site:weebly.com OR site:site123.me OR site:webnode.page) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR acordo OR quitação OR empréstimo OR login)<br><span class="muted">H14-threat:hospedagem-gratuita</span></td><td class="mono">https://supermaxcred.webnode.page/</td><td>Maxcred<br><span class="muted">Empréstimos Consignado trabalhamos com o Banco BMG e BV Financeira, em até 58 meses para pagar,com taxas especiais de acordo com a política de incentivo do ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 22:51:59.626542+00:00</div>
+      <div class="kv"><b>IP do servidor</b>18.185.25.67</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C2b496bd1d0/attempt-1/manifest.json<br>sha256 48f77ef1cc1e5bf3b95093f3e0d37abca7d89037e296c54cd84e0706c2371b9b</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://supermaxcred.webnode.page/<br>Final: https://supermaxcred.webnode.page/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C2b496bd1d0/attempt-1/viewport.png</td><td class="mono">866cb136fd8e1a7d2b722b41f8e9a75c38a516827c021aa2ffd7ebf991a9a579</td><td>261243</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C2b496bd1d0/attempt-1/fullpage.png</td><td class="mono">a183b27f9a6fbd65d2c419d7cd174cdcbf5eb38b250dac282f83ea1852138490</td><td>270790</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C2b496bd1d0/attempt-1/page.html.txt</td><td class="mono">55ded70593c826fb3fdf31ea7ba7e855191ff91f378d0b4af41fac0cae913351</td><td>31363</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C2b496bd1d0/attempt-1/text.txt</td><td class="mono">f17ab6b497fca64c8f25438d162fea167546041c7ec6bae6109d0ec2076122bc</td><td>1481</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C2b496bd1d0/attempt-1/page.json</td><td class="mono">a3cd240311a486cea853ec183810f3127626b68ec3fafc2d8896a32fa746f457</td><td>8727</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:28+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.5)</td></tr>
+      <tr><td>2026-11-25T22:51:59+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:52:17+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T22:52:17+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T22:52:34+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T22:52:40+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

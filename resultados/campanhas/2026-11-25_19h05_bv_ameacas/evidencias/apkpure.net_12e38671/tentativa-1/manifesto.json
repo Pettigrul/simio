@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C12e386710e",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://apkpure.net/",
+  "final_url": "https://apkpure.net/",
+  "redirect_chain": [
+    "https://apkpure.net/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.20.35.177",
+  "collected_at": "2026-11-25T23:14:20.341602+00:00",
+  "manifest_written_at": "2026-11-25T23:14:28.230790+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C12e386710e/attempt-1/viewport.png",
+      "sha256": "972db30cfa912de960578b739f4a1899eb0ebf094e69231ffb28d02e083097c0",
+      "size_bytes": 37329
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C12e386710e/attempt-1/fullpage.png",
+      "sha256": "972db30cfa912de960578b739f4a1899eb0ebf094e69231ffb28d02e083097c0",
+      "size_bytes": 37329
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C12e386710e/attempt-1/page.html.txt",
+      "sha256": "c651955f4ac91dd6cb18cc7874ca5f68cccc7302cd5dcf4391775899fe0807ee",
+      "size_bytes": 44784
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C12e386710e/attempt-1/text.txt",
+      "sha256": "f5fcdcd2e0366bec5c2f15ed8d71d07aa34a6016c814b1c8e4dbf5bb8592a5e7",
+      "size_bytes": 285
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C12e386710e/attempt-1/page.json",
+      "sha256": "6b3ca2a36e5d70fad158747899a6a319ff98604526a7228e03692cb2464db1f9",
+      "size_bytes": 1429
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

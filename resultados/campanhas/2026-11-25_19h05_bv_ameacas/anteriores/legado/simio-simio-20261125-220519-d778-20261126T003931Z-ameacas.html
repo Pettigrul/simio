@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO · Inteligência de ameaças · simio-20261125-220519-d778</title>
+<style>
+  :root { --ink:#101828; --muted:#475467; --line:#E4E7EC; --bg:#F9FAFB;
+          --crit:#912018; --crit-bg:#FDE7E4; --high:#B42318; --high-bg:#FEF1EF; --med:#B54708; --med-bg:#FEF6E7;
+          --low:#475467; --low-bg:#F2F4F7; --brand:#1C3FAA; }
+  * { box-sizing: border-box; }
+  body { margin:0; font: 14px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:var(--brand); color:#fff; padding:28px 40px; }
+  header h1 { margin:0 0 4px; font-size:22px; font-weight:650; }
+  header p { margin:0; opacity:.85; }
+  main { max-width:1180px; margin:0 auto; padding:24px 40px 60px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin:0 0 8px; }
+  .tile { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 16px; min-width:120px; }
+  .tile b { display:block; font-size:24px; font-variant-numeric:tabular-nums; }
+  .tile.CRÍTICO b { color:var(--crit); } .tile.ALTO b { color:var(--high); } .tile.MÉDIO b { color:var(--med); } .tile.BAIXO b { color:var(--low); }
+  .cats { color:var(--muted); margin:6px 0 24px; }
+  .note { background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:8px; padding:10px 14px; color:var(--muted); margin-bottom:24px; }
+  h2 { font-size:17px; margin:28px 0 12px; }
+  .card { display:grid; grid-template-columns: 300px 1fr; gap:18px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; }
+  .card.CRÍTICO { border-left:5px solid var(--crit); } .card.ALTO { border-left:5px solid var(--high); } .card.MÉDIO { border-left:5px solid var(--med); }
+  .shot { width:300px; height:200px; object-fit:cover; object-position:top; border:1px solid var(--line); border-radius:8px; background:var(--bg); }
+  .noshot { width:300px; height:200px; display:flex; align-items:center; justify-content:center; color:var(--muted); border:1px dashed var(--line); border-radius:8px; font-size:12px; text-align:center; padding:12px; }
+  .pill { display:inline-block; font-size:11px; font-weight:650; letter-spacing:.02em; border-radius:999px; padding:2px 10px; margin:0 6px 6px 0; }
+  .pill.CRÍTICO { background:var(--crit-bg); color:var(--crit); } .pill.ALTO { background:var(--high-bg); color:var(--high); } .pill.MÉDIO { background:var(--med-bg); color:var(--med); } .pill.BAIXO { background:var(--low-bg); color:var(--low); }
+  .pill.cat { background:#EEF2FF; color:#2D3A8C; font-weight:550; }
+  .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; word-break:break-all; margin:4px 0 8px; }
+  ul.facts { margin:6px 0 10px 18px; padding:0; }
+  .kv { display:grid; grid-template-columns: 190px 1fr; gap:2px 12px; font-size:13px; }
+  .kv dt { color:var(--muted); } .kv dd { margin:0; word-break:break-word; }
+  details { margin-top:8px; color:var(--muted); font-size:12.5px; }
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; font-size:13px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--bg); color:var(--muted); font-weight:600; }
+  td.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; word-break:break-all; }
+  a { color:var(--brand); }
+  @media (max-width: 800px) { main { padding:16px; } .card { grid-template-columns:1fr; } .shot, .noshot { width:100%; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Inteligência de ameaças e proteção de marca</h1>
+  <p>Campanha simio-20261125-220519-d778 · gerado em 26/11/2026 00:39 UTC</p>
+</header>
+<main>
+  <div class="summary">
+<div class="tile CRÍTICO"><b>16</b>CRÍTICO</div><div class="tile ALTO"><b>12</b>ALTO</div><div class="tile MÉDIO"><b>18</b>MÉDIO</div><div class="tile BAIXO"><b>17</b>BAIXO</div>  </div>
+  <div class="cats">Domínio semelhante (typosquatting) (25) · Falso canal oficial (17) · Personificação da marca (16) · Hospedagem gratuita (11) · Domínio recente (11) · Perfil/post falso em rede social (9) · Domínio com a marca (7) · Boleto / quitação / atendimento (6) · Golpe com a marca como isca (6) · Coleta de credenciais (phishing) (3) · Canal de mensagens (2)</div>
+  <div class="note">O nível vem de fatos verificáveis (campos de senha/cartão, personificação registrada pelo analisador, domínio com a marca ou parecido, APK fora das lojas, hospedagem gratuita, idade do domínio). Empresas identificadas que usam a própria marca são tema de conformidade e não entram aqui. URLs estão desarmadas (<code>hxxps</code>, <code>[.]</code>) para evitar acesso acidental.</div>
+
+  <h2>CRÍTICO (16)</h2>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C34b8591052/attempt-1/viewport.png" alt="Captura da página devpartner.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 14.0</span><span class="pill cat">Coleta de credenciais (phishing)</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio com a marca</span>      <div class="url">hxxps://bvauto-admin-stage[.]devpartner[.]com[.]br/</div>
+      <ul class="facts"><li>pede senha numa página que se apresenta com a marca</li><li>o analisador registrou personificação da instituição</li><li>a marca está no nome do domínio (bvauto-admin-stage.devpartner.com.br)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Dados pedidos</dt><dd>cpf, senha</dd><dt>Domínio criado</dt><dd>2004-06-18 (8195 dias)</dd><dt>Titular</dt><dd>Devpartner Tecnologia da Informação Ltda (CNPJ 07.121.836/0001-93)</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.67.174.205); Cloudflare, Inc. (104.21.72.42)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C34b8591052.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página utiliza a marca &#39;Banco BV&#39; e a identidade visual &#39;BV relacionar&#39; de maneira ostensiva em domínio externo (devpartner.com.br), configurando uma tela de login que exige CPF e Senha sem qualquer identificação societária, aviso regulatório ou link para os canais oficiais do banco, apresentando características de impersonação e risco de coleta indevida de credenciais.
+[Revisor: CONFIRM] Confirma-se a classificacao de STRONG_INDICATION com prioridade HIGH. A pagina em dominio de terceiro (bvauto-admin-stage.devpartner.com.br) apresenta uso ostensivo da marca e identidade visual do Banco BV (&#39;BV relacionar&#39; e logotipo oficial do Banco BV), solicitando credenciais sensiveis (CPF e senha) at</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cde32f8ad4f/attempt-1/viewport.png" alt="Captura da página lovable.app" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 13.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio com a marca</span><span class="pill cat">Hospedagem gratuita</span><span class="pill cat">Boleto / quitação / atendimento</span>      <div class="url">hxxps://bvboleto[.]lovable[.]app/blocked</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>a marca está no nome do domínio (bvboleto.lovable.app)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>página com a marca em plataforma gratuita/de terceiros (lovable.app)</li><li>oferece 2ª via do boleto citando a marca</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>lovable.app (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · LOVABLE-APP (185.41.148.1, SE); LOVABLE-APP (185.41.148.2, SE)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@lovable.dev</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cde32f8ad4f.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página em análise utilizava o subdomínio &#39;bvboleto.lovable.app&#39; para simular um canal oficial de validação e emissão de 2ª via de boletos do Banco BV, configurando tentativa grave de personificação de canal bancário (phishing/fraude). O site foi derrubado pela plataforma de hospedagem (&#39;Website Takedown Notice&#39;) por violações de segurança e políticas contra roubo de dados/impersonação, confirmando o caráter fraudulento.
+[Revisor: CONFIRM] A hipótese do analista é confirmada. As evidências do índice de busca (E-DISC-001) e o subdomínio (E-URL) demonstram que a página se apresentava diretamente como canal oficial do Banco BV para emissão de 2ª via e validação de boletos, caracterizando flagr</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<div class="noshot">sem captura (página fora do ar ou bloqueada; classificação apoiada no que foi indexado)</div>    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 13.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio com a marca</span><span class="pill cat">Domínio recente</span><span class="pill cat">Boleto / quitação / atendimento</span>      <div class="url">hxxps://www[.]bvfinanon[.]com/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>a marca está no nome do domínio (www.bvfinanon.com)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>domínio registrado há 117 dias</li><li>oferece quitação de contrato, quitação de financiamento citando a marca</li><li>indício forte na análise SIMIO</li><li>fora do ar hoje (não resolve)</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-07-31 (117 dias) · GoDaddy.com, LLC</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>não</dd>
+<dt>Contatos de abuso</dt><dd>abuse@godaddy.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C8c4313c542.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora a coleta direta via navegador tenha retornado falha de DNS (E-COLLECT), os registros indexados em E-DISC-001 documentam com clareza o uso de combosquatting (&#39;bvfinanon.com&#39;) com o objetivo explícito de se passar pelo Banco BV para oferecer quitação de contratos e 2ª via de boletos, caracterizando canal fraudulento de impersonação direta (Resolução CMN nº 4.935/2021).
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cbe97da7908/attempt-1/viewport.png" alt="Captura da página virtual360.io" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 12.0</span><span class="pill cat">Coleta de credenciais (phishing)</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio com a marca</span>      <div class="url">hxxps://bancobv[.]virtual360[.]io/users/sign_in</div>
+      <ul class="facts"><li>pede senha numa página que se apresenta com a marca</li><li>o analisador registrou que a página se passa por canal oficial</li><li>a marca está no nome do domínio (bancobv.virtual360.io)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Dados pedidos</dt><dd>senha</dd>        <dt>Resolve hoje</dt><dd>sim · Amazon.com, Inc. (32.200.20.254); Amazon Technologies Inc. (54.174.208.164); Amazon Data Services Northern Virginia (100.63.32.82)</dd>
+<dt>Contatos de abuso</dt><dd>trustandsafety@support.aws.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cbe97da7908.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página bancobv.virtual360.io configura um portal corporativo de gestão de parceiros e fornecedores (Virtual360) com integração SSO com o Banco BV. Embora apresente indícios técnicos de serviço SaaS contratado/homologado, o uso ostensivo da marca e a solicitação de credenciais fora dos domínios oficiais registrados do banco demandam revisão para homologação de canal oficial/fornecedor autorizado.
+[Revisor: DOWNGRADE] A página bancobv.virtual360.io pertence a uma plataforma corporativa B2B de gestão de terceiros/fornecedores integrada ao SSO Azure corporativo do Banco BV. Não se trata de correspondente bancário, promotora de crédito ou loja de veículos captando clientes, enquadrando-se fora </details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cc5253714f0/attempt-1/viewport.png" alt="Captura da página iuppi.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 11.0</span><span class="pill cat">Coleta de credenciais (phishing)</span><span class="pill cat">Personificação da marca</span>      <div class="url">hxxps://portalcreditobv[.]iuppi[.]com[.]br/accounts/auth/login?redirect=/</div>
+      <ul class="facts"><li>pede senha numa página que se apresenta com a marca</li><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Dados pedidos</dt><dd>senha</dd><dt>Domínio criado</dt><dd>2020-07-15 (2324 dias)</dd><dt>Titular</dt><dd>pessoa física (dados pessoais omitidos — LGPD)</dd>        <dt>Resolve hoje</dt><dd>sim · Google LLC (34.8.104.130)</dd>
+<dt>Contatos de abuso</dt><dd>google-cloud-compliance@google.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cc5253714f0.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página em &#39;portalcreditobv.iuppi.com.br&#39; opera uma tela de autenticação que se intitula &#39;Portal de Crédito BV&#39; e exibe o logotipo oficial do Banco BV para capturar usuário e senha. Trata-se de um domínio não oficial sem qualquer identificação de empresa terceira responsável ou declaração regulatória de correspondente bancário, caracterizando forte risco de personificação de canal oficial (ou phishing/painel não autorizado).
+[Revisor: CONFIRM] Confirma-se a classificação de STRONG_INDICATION com prioridade HIGH. A página em domínio de terceiro (portalcreditobv.iuppi.com.br) emula integralmente um canal oficial do Banco BV, intitulando-se &#39;Portal de Crédito BV&#39;, exibindo o logotipo oficial d</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C330df8a9e5/attempt-1/viewport.png" alt="Captura da página site123.me" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 10.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Hospedagem gratuita</span><span class="pill cat">Boleto / quitação / atendimento</span>      <div class="url">hxxps://5f19c19ae121e[.]site123[.]me/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>página com a marca em plataforma gratuita/de terceiros (site123.me)</li><li>oferece Atualizar boleto citando a marca</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>site123.me (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · BUNNYWAY, informacijske storitve d.o.o. (193.162.131.15, BR)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@bunnycdn.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C330df8a9e5.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página hospedada no domínio gratuito site123.me personifica diretamente a instituição financeira (&#39;BV Financeira&#39;), utilizando sua denominação, logomarca antiga legada (B vermelho e V azul) e alegando oferecer serviços financeiros sensíveis (quitação de dívidas e 2ª via de boletos BV com desconto). O tráfego é direcionado para um contato de WhatsApp individual, sem qualquer identificação de CNPJ, razão social ou transparência regulatória de correspondente bancário (Resolução CMN nº 4.935/2021). Caracteriza-se flagrante imitação/impersonação da instituição com alto potencial lesivo ao consumidor.
+[Revisor: CONFIRM] A página em domínio gratuito (site123.me) apropria-se do nome &#39;BV Financeira</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C2bb3230b43/attempt-1/viewport.png" alt="Captura da página site123.me" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 10.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Hospedagem gratuita</span><span class="pill cat">Boleto / quitação / atendimento</span>      <div class="url">hxxps://5f80e6978e6a7[.]site123[.]me/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>página com a marca em plataforma gratuita/de terceiros (site123.me)</li><li>oferece Antecipação de Parcelas citando a marca</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>site123.me (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · BUNNYWAY, informacijske storitve d.o.o. (193.162.131.15, BR)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@bunnycdn.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C2bb3230b43.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de clara personificação indevida (impersonation) da instituição financeira BV Financeira / Banco BV. O site utiliza subdomínio gratuito, exibe a identidade visual antiga descontinuada, arroga-se a identidade da marca em 1ª pessoa (&#39;Somos BV&#39;) e direciona o consumidor a contatos não oficiais (WhatsApp pessoal e conta de Gmail disfarçada de SAC) para negociação de quitação de financiamento e 2ª via de boleto com descontos fictícios.
+[Revisor: CONFIRM] A página hospedada em plataforma gratuita simula diretamente a BV Financeira / Banco BV, utilizando o logotipo antigo oficial no topo (E-VIS-LEGACY-001, E-SHOT-VIEWPORT), afirmando expressamente &#39;Somos BV&#39; (E-TXT-006) e ofertando serviço</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C98241869d2/attempt-1/viewport.png" alt="Captura da página weebly.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 9.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio com a marca</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://emprestimobv[.]weebly[.]com/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>a marca está no nome do domínio (emprestimobv.weebly.com)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>página com a marca em plataforma gratuita/de terceiros (weebly.com)</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>weebly.com (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Weebly, Inc. (74.115.51.8); Weebly, Inc. (74.115.51.9)</dd>
+<dt>Contatos de abuso</dt><dd>weebly-abuse@squareup.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/C98241869d2.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora a coleta direta tenha sido barrada por bloqueio de segurança/WAF (HTTP 403), os dados de indexação prévia (E-DISC-001) e o domínio (E-URL) indicam a criação de página em plataforma gratuita (Weebly) intitulada &#39;BV FINANCEIRA&#39; para oferta de empréstimos, simulando presença oficial da instituição financeira sem comprovação de identificação de correspondente ou CNPJ próprio. Requer revisão manual prioritária.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C478d9d5cb1/attempt-1/viewport.png" alt="Captura da página site123.me" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://5f8d9d38e2eb5[.]site123[.]me/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>página com a marca em plataforma gratuita/de terceiros (site123.me)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>site123.me (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · BUNNYWAY, informacijske storitve d.o.o. (193.162.131.15, BR)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@bunnycdn.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C478d9d5cb1.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página em questão configura evidente caso de impersonação e risco de fraude bancária (D_STRONG_IMPERSONATION). Apresentando-se sob a alcunha genérica de &#39;CENTRAL DE ATENDIMENTO&#39; e disponibilizando o e-mail &#39;bv.financeira.centralatendimento@gmail.com&#39;, o site visa capturar clientes da instituição financeira ofertando quitação de parcelas e segunda via de boletos sem identificar nenhuma empresa legalmente constituída, violando frontalmente a Resolução CMN nº 4.935/2021 e indicando severo risco de golpe.
+[Revisor: CONFIRM] A página atua como assessoria financeira / central de atendimento irregular, oferecendo serviços sensíveis como emissão de 2ª via de boleto e quitação de financiamento de v</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Ce4d835dff3/attempt-1/viewport.png" alt="Captura da página weebly.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://assessoriapositiva001[.]weebly[.]com/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>página com a marca em plataforma gratuita/de terceiros (weebly.com)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>weebly.com (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Weebly, Inc. (74.115.51.9); Weebly, Inc. (74.115.51.8)</dd>
+<dt>Contatos de abuso</dt><dd>weebly-abuse@squareup.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ce4d835dff3.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora o acesso web direto tenha sido bloqueado por barreira anti-bot da Cloudflare, os registros de indexação (E-DISC-001 e E-DISC-002) revelam que a página em assessoriapositiva001.weebly.com se apresentava ostensivamente como &#39;BV FINANCEIRA&#39;, ofertando quitação de boletos BV com descontos expressivos. A estrutura é condizente com sites fraudulentos voltados à aplicação de golpes em clientes inadimplentes, ensejando classificação como D_STRONG_IMPERSONATION e prioridade HIGH.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C56e6270db6/attempt-1/viewport.png" alt="Captura da página facilitabr.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://facilitabr[.]com/dados-pessoais</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>domínio registrado há 106 dias</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-08-11 (106 dias) · HOSTINGER operations, UAB</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Vercel, Inc (76.76.21.21)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@vercel.com, abuse-tracker@hostinger.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C56e6270db6.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O domínio facilitabr.com opera uma página de simulação de financiamento veicular com coleta de CPF intitulada &#39;Simulador de financiamento | banco BV&#39;. O site utiliza elementos visuais e slogan característicos do Banco BV (&#39;o banco especialista&#39;) e admite em sua meta description tratar-se de uma &#39;réplica demonstrativa&#39;. O operador omite totalmente seu CNPJ, dados de contato e a declaração obrigatória de correspondente bancário prevista na Resolução CMN nº 4.935/2021, configurando forte indício de impersonação e captação indevida de dados.
+[Revisor: CONFIRM] A página em facilitabr.com opera como captadora de propostas/crédito (&#39;Facilita Crédito&#39;) e utiliza diretamente a marca no título (&#39;Simul</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<div class="noshot">sem captura (página fora do ar ou bloqueada; classificação apoiada no que foi indexado)</div>    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://portal[.]aberturacontadigital[.]com/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>domínio registrado há 42 dias</li><li>indício forte na análise SIMIO</li><li>fora do ar hoje (não resolve)</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-10-14 (42 dias) · GoDaddy.com, LLC</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>não</dd>
+<dt>Contatos de abuso</dt><dd>abuse@godaddy.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C79a0befc0d.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora o domínio esteja atualmente inacessível por falha de resolução DNS, os dados indexados pelo Google Search Grounding (E-DISC-001) revelam uma clara infraestrutura de impersonação direta (phishing bancário). A página se passa pelo Banco BV, solicitando credenciais sensíveis (&#39;CPF, CNPJ ou e-mail&#39;, &#39;Senha&#39;) sob o pretexto de acesso à conta digital em ambiente pretensamente seguro, caracterizando simulação fraudulenta de canal oficial.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cacbe45d690/attempt-1/viewport.png" alt="Captura da página weebly.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Hospedagem gratuita</span><span class="pill cat">Boleto / quitação / atendimento</span>      <div class="url">hxxps://quitacaoonline[.]weebly[.]com/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>página com a marca em plataforma gratuita/de terceiros (weebly.com)</li><li>oferece Quitação de contrato citando a marca</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>weebly.com (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Weebly, Inc. (74.115.51.9); Weebly, Inc. (74.115.51.8)</dd>
+<dt>Contatos de abuso</dt><dd>weebly-abuse@squareup.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cacbe45d690.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora a coleta direta via navegador tenha sido bloqueada por proteção anti-bot (HTTP 403), a evidência de descoberta E-DISC-001 demonstra que o site utiliza a denominação &#39;BV FINANCEIRA&#39; e promove quitação de contratos em domínio de terceiro (Weebly). A oferta de serviços financeiros sensíveis mimetizando a instituição bancária sem identificação comercial configura forte risco de confusão e canal falso, justificando classificação como C_POSSIBLE_OFFICIAL_CHANNEL com prioridade ALTA.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cf6ce50890d/attempt-1/viewport.png" alt="Captura da página lovable.app" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://voucherreservas[.]lovable[.]app/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>página com a marca em plataforma gratuita/de terceiros (lovable.app)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>lovable.app (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · LOVABLE-APP (185.41.148.2, SE); LOVABLE-APP (185.41.148.1, SE)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@lovable.dev</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cf6ce50890d.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página hospeda em subdomínio de terceiros (lovable.app) uma réplica de portal de contingência que personifica diretamente o Banco BV. Faz uso não autorizado dos CNPJs e endereços da matriz do banco, redige avisos em primeira pessoa afirmando instabilidade no sistema oficial e disponibiliza opções críticas de negociação, emissão de boletos e quitação de contratos. Caracteriza personificação grave e direta (Cenário D).
+[Revisor: CONFIRM] A página em domínio não oficial (lovable.app) personifica diretamente o Banco BV alegando ser um canal emergencial decorrente de suposta instabilidade no portal oficial. Utiliza indevidamente a razão social, os CNPJs oficiais e o endereço da matriz do banco </details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C655ba9fad3/attempt-1/viewport.png" alt="Captura da página weebly.com" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://xn--assessoriaboletosj-gsb[.]weebly[.]com/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>página com a marca em plataforma gratuita/de terceiros (weebly.com)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>weebly.com (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Weebly, Inc. (74.115.51.9); Weebly, Inc. (74.115.51.8)</dd>
+<dt>Contatos de abuso</dt><dd>weebly-abuse@squareup.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C655ba9fad3.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Apesar do bloqueio do acesso direto pelo Cloudflare/Weebly (HTTP 403), os registros públicos indexados (E-DISC-001 e E-DISC-002) evidenciam a personificação direta da instituição financeira (&#39;Nós da BV Financeira&#39;) ofertando serviços críticos de quitação e boletos via WhatsApp. Trata-se de estrutura típica de fraude/phishing bancário e impersonação dolosa.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card CRÍTICO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C26ea824c57/attempt-1/viewport.png" alt="Captura da página xvarnesotmgg.surf" loading="lazy">    </div>
+    <div>
+      <span class="pill CRÍTICO">CRÍTICO · 8.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://xvarnesotmgg[.]surf/vnwpohnnfwyvqjglcqtsnidltmxzxezs</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>domínio registrado há 18 dias</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-11-07 (18 dias) · Sav.com LLC</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.67.148.196); Cloudflare, Inc. (104.21.11.105)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, abuse-contact@sav.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C26ea824c57.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Apesar de a página atualmente retornar código de erro HTTP 520 (Cloudflare), os registros de descoberta (E-DISC-001) evidenciam a oferta de download não oficial de aplicativo da BV Financeira (&#39;App bv financeira apk&#39;) sob domínio suspeito, configurando forte indício de personificação maliciosa e risco de segurança aos clientes.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <h2>ALTO (12)</h2>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C6e911dda72/attempt-1/viewport.png" alt="Captura da página vercel.app" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 7.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Hospedagem gratuita</span>      <div class="url">hxxps://nei-motos[.]vercel[.]app/financiamento</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>página com a marca em plataforma gratuita/de terceiros (vercel.app)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>vercel.app (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Vercel, Inc (216.198.79.2); Vercel, Inc (64.29.17.2); Vercel, Inc (216.198.79.194)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@vercel.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C6e911dda72.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O estabelecimento comercial (loja de motocicletas) oferta financiamento veicular utilizando textos institucionais que se expressam na primeira pessoa como se fossem o próprio Banco BV (&#39;aqui no banco BV&#39;, &#39;financiar com a gente&#39;, &#39;nós liberamos o valor&#39;). Aliado a isso, omite o CNPJ da empresa e não apresenta a declaração regulatória obrigatória de correspondente bancário (Resolução CMN nº 4.935/2021), captando leads para simulação via WhatsApp. O conjunto de fatores configura forte indício de canal disfarçado de oficial e indução a erro.
+[Revisor: CONFIRM] O estabelecimento comercial (loja/revenda de motos) é público-alvo da investigação. A página copia integralmente textos institucionais d</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C6bea0a7301/attempt-1/viewport.png" alt="Captura da página wa.me" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 7.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Canal de mensagens</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://wa[.]me/schullzerregularizaoprocessos?lang=af_ZA</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>contato direto por mensageiro (WhatsApp/Telegram)</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C6bea0a7301.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de um caso grave de usurpação de identidade institucional (impersonation). O operador da conta do WhatsApp utiliza o nome do Banco BV, sua identidade visual oficial, fotos de sua sede e apropria-se do CNPJ da matriz da instituição para simular um canal oficial de renegociação/regularização de contratos e busca e apreensão, sem qualquer transparência regulatória de correspondente bancário.
+[Revisor: CONFIRM] A classificação como STRONG_INDICATION (prioridade HIGH) é integralmente confirmada. O perfil comercial no WhatsApp opera usurpação ostensiva da marca Banco BV: exibe logotipos oficiais em destaque no banner e avatar (E-SHOT-VIEWPORT, E-SHOT-FULL), apropria-se do CNPJ da matriz d</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cbcbb6cb195/attempt-1/viewport.png" alt="Captura da página khasukcwclue.cam" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://khasukcwclue[.]cam/soewgdiwhvmkqdtgxdus</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>domínio registrado há 87 dias</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-08-30 (87 dias) · Spaceship, Inc.</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.21.45.103); Cloudflare, Inc. (172.67.213.36)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, abuse@spaceship.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cbcbb6cb195.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página web encontra-se inoperante (erro 520), impedindo inspeção do layout ativo. Contudo, as evidências indexadas em E-DISC-001 apontam que o site se apresentava sob o pretexto de &#39;Acesso parceiro bv login&#39; e &#39;Online Banking&#39;, configurando potencial canal simulado de acesso ou suporte oficial do Banco BV em domínio de terceiro não autorizado.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cc867ac9e83/attempt-1/viewport.png" alt="Captura da página softonic.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Personificação da marca</span>      <div class="url">hxxps://safe-purchase[.]de[.]softonic[.]com/android</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Plataforma</dt><dd>softonic.com (dono só identificável pela plataforma)</dd>        <dt>Resolve hoje</dt><dd>sim · Fastly, Inc. (151.101.1.91); Fastly, Inc. (151.101.65.91)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@fastly.com</dd>        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cc867ac9e83.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora a coleta direta tenha retornado HTTP 412, os dados indexados em E-DISC-001 demonstram que a página disponibiliza download de binário APK atribuindo expressamente o desenvolvimento a &#39;Banco Votorantim SA&#39;. A personificação deliberada do nome institucional em ambiente externo para distribuição de executáveis configura grave indício de impersonação e risco de fraude.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C11724696ea/attempt-2/viewport.png" alt="Captura da página tournasol.fr" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Domínio recente</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://tournasol[.]fr/boleto-bv/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>domínio registrado há 13 dias</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-11-12 (13 dias) · Hosting Concepts B.V. d/b/a Openprovider</dd><dt>Titular</dt><dd>oculto (serviço de privacidade)</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.67.167.9); Cloudflare, Inc. (104.21.57.214)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/C11724696ea.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora a renderização atual da página tenha resultado em tela em branco, o registro de indexação de busca demonstra que o site atuava simulando canal oficial de emissão de boletos e acesso a contratos de financiamento do Banco BV sem qualquer identificação de parceiro ou correspondente bancário. Diante da alta sensibilidade do serviço ofertado (golpe de 2ª via de boleto / phishing), enquadra-se como canal suspeito de personificação oficial pendente de revisão.
+[Revisor: HUMAN_REVIEW] Existe conflito entre a renderização atual da página (tela totalmente em branco, sem texto ou elementos visíveis) e o registro indexado em E-DISC-001, que reportava atividade suspeita de emissão de boletos e val</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cac00fc265d/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 6.0</span><span class="pill cat">Personificação da marca</span><span class="pill cat">Perfil/post falso em rede social</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DBPCKxyPjd3/</div>
+      <ul class="facts"><li>o analisador registrou personificação da instituição</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cac00fc265d.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação no Instagram se passa diretamente pela &#39;Empresa BV Financeira&#39; ao divulgar processo seletivo para vendedor de consórcio, direcionando candidatos para um endereço de e-mail gratuito não corporativo (bvcurriculo6@gmail.com). A ausência total de CNPJ, razão social e declaração de correspondente bancário, somada ao uso indevido do nome e marca institucional em captação de dados de terceiros, configura forte personificação (D_STRONG_IMPERSONATION).
+[Revisor: CONFIRM] A publicação veiculada no perfil do Instagram divulga vaga de emprego afirmando expressamente &#39;Empresa BV Financeira abre vagas para Vendedor(a) de Consórcio&#39;, utilizando o logotipo e a denominação &#39;BV Financeira&#39; na peç</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C661918e6f6/attempt-1/viewport.png" alt="Captura da página quitarbvfinanceira.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxp://quitarbvfinanceira[.]com/</div>
+      <ul class="facts"><li>domínio semelhante a bvfinanceira (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li><li>domínio registrado há 170 dias</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-06-08 (170 dias) · Hosting Concepts B.V. d/b/a Registrar.eu</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · DC-Germany (185.53.179.136, DE)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@teaminternet.com, abuse@registrar.eu</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página alvo retornou status HTTP 410 (Gone), demonstrando que o conteúdo foi retirado do ar. Apesar do registro de domínio &#39;quitarbvfinanceira.com&#39; constituir forte indício de registro abusivo de marca (typosquatting voltado a quitação), a ausência de conteúdo comercial ativo impossibilita a auditoria de conduta ou conformidade como correspondente bancário no momento da análise.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cb56c71d8f5/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/p/DaYAYYKDlbL/?__d=1%253Futm_source%253Dig_embed</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Cb56c71d8f5.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação da Norte Motors promove produtos de crédito veicular com destaque publicitário massivo para a marca BV Financeira (&#39;Café da BV Financeira&#39;), utilizando o logotipo da instituição em evidência central sem cumprir os deveres de transparência da Resolução CMN nº 4.935/2021 (ausência de declaração de correspondente bancário, omissão de CNPJ/razão social e de canais de ouvidoria). Enquadra-se como forte indicação de irregularidade de publicidade de correspondente bancário.
+[Revisor: CONFIRM] Confirma-se a classificacao STRONG_INDICATION com prioridade HIGH. A publicacao no perfil da loja de automoveis Norte Motors (E-SHOT-VIEWPORT, E-SHOT-FULL) promove captacao de financimanto veicula</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Ca7277531bd/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DFsRTcuulU6/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/Ca7277531bd.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Trata-se de estabelecimento do setor automotivo (loja/shopping de veículos multimarcas) divulgando opções de financiamento com o Banco BV. Embora a identificação da loja esteja presente no perfil e no cenário, o vídeo exibe a apresentadora uniformizada com a camiseta oficial do Banco BV e material promocional de &#39;BV / corretora de seguros&#39;, sem informar a razão social/CNPJ da empresa e sem incluir a declaração regulatória obrigatória de correspondente bancário nos termos da Resolução CMN nº 4.935/2021. A situação configura comunicação ambígua com uso de elementos oficiais do banco que podem confundir o consumidor sobre a exata natureza da relação jurídica.
+[Revisor: CONFIRM] A publicação con</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C0aac91af35/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span><span class="pill cat">Golpe com a marca como isca</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DVvzavTgWcR/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C0aac91af35.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social de loja de veículos utiliza a marca do Banco BV em destaque no nome do feirão comercial (&#39;FEIRÃO DE VEÍCULOS BV Banco&#39;) e exibe o logotipo institucional no banner do vídeo, omitindo integralmente a razão social/CNPJ e a declaração obrigatória de correspondente bancário estabelecida pela Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] A publicação no Instagram pertence a uma revendedora de veículos (&#39;Pontual Veículos&#39;) promovendo um evento intitulado &#39;FEIRÃO DE VEÍCULOS BV Banco!&#39;. Na arte exibida no reel (E-SHOT-FULL), há o uso em destaque do logotipo da instituição financeira (inclusive em versão legada) em conjunto com ofertas de crédito e financiamento facilita</details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C6695f51a08/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DWaHL1BgZsn/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C6695f51a08.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social promove produto financeiro específico (&#39;Empréstimo com Garantia de Veículo BV&#39;) utilizando o logotipo oficial do Banco BV em destaque e dominando a peça visual publicitária. Não há apresentação clara da razão social ou CNPJ da intermediadora, tampouco a declaração expressa de correspondente bancário exigida pelo art. 14 da Resolução CMN nº 4.935/2021, configurando forte indício de irregularidade por indução do consumidor a crer que se trata de canal ou anúncio oficial da instituição.
+[Revisor: CONFIRM] A publicação em rede social (Instagram reel) promovida por promotora/correspondente financeiro (@dome_financas) utiliza a identidade visual e o logotipo oficial do </details>    </div>
+  </div>
+  <div class="card ALTO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C32f394020b/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill ALTO">ALTO · 5.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DX9d5F7N8N3/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>indício forte na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>STRONG_INDICATION · <a href="dossiers/C32f394020b.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social promove financiamento automotivo em um &#39;Feirão BV Financeira&#39; exibindo com grande destaque visual o logotipo oficial do Banco BV, mas sem divulgar razão social, CNPJ ou a declaração obrigatória de correspondente bancário (Res. CMN 4.935/2021). Esse padrão de overbranding sem conformidade cadastral e regulatória caracteriza indício forte de irregularidade publicitária.
+[Revisor: CONFIRM] O perfil melomultimarcas1 corresponde a uma revenda de veículos que veicula publicação em rede social promovendo &#39;FEIRÃO BV Financeira&#39; e captação de clientes para financiamento automotivo. O reel exibe em destaque central o logotipo oficial do Banco BV e da marca NaPista sem conte</details>    </div>
+  </div>
+  <h2>MÉDIO (18)</h2>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C5a39960569/attempt-1/viewport.png" alt="Captura da página bancobva.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://bancobva[.]com[.]br/</div>
+      <ul class="facts"><li>domínio semelhante a bancobv.com.br (addition)</li><li>domínio registrado há 54 dias</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-10-02 (54 dias)</dd><dt>Titular</dt><dd>pessoa física (dados pessoais omitidos — LGPD)</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.67.154.117); Cloudflare, Inc. (104.21.5.101)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>NO_INDICATION</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Página fora do escopo de correspondentes bancários ou intermediação de crédito do Banco BV. Trata-se de uma plataforma comercial de IPTV (BVA TV), sem qualquer relação com a marca investigada ou com serviços financeiros.
+[Revisor: DOWNGRADE] Trata-se de um site de streaming e IPTV comercial denominado &#39;BVA TV&#39;. O domínio bancobva.com.br acionou o filtro heurístico por conter a substring &#39;bancobv&#39;, mas não possui qualquer relação com o Banco BV, não oferta produtos financeiros e está fora do escopo de correspondentes bancários ou parceiros comerciais.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C89b0263ccf/attempt-1/viewport.png" alt="Captura da página bvcredito.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://bvcredito[.]com/</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>domínio registrado há 62 dias</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-09-25 (62 dias) · Cloudflare, Inc.</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.21.81.15); Cloudflare, Inc. (172.67.137.123)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, registrar-abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>NO_INDICATION</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página analisada consiste em um portal/blog de artigos e dicas sobre aplicativos móveis (WhatsApp, rastreamento, Uber, etc.), sem qualquer oferta de crédito, financiamento ou serviço bancário. Trata-se de conteúdo fora do escopo de fiscalização de correspondentes bancários, classificado como NOT_RELEVANT.
+[Revisor: DOWNGRADE] O domínio bvcredito.com abriga um blog de tecnologia e aplicativos em espanhol (tutoriais sobre Uber, WhatsApp, Chrome), sem qualquer relação comercial com o Banco BV, sem prestação de serviços de crédito e fora do escopo de correspondentes bancários. As regras determinísticas geraram falso positivo ao categorizar artigos sobre WhatsApp como canais de contato. Aplica-</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C59a0c4a031/attempt-1/viewport.png" alt="Captura da página bvoficial.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxps://bvoficial[.]com[.]br/</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>domínio registrado há 107 dias</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-08-10 (107 dias) · HSTDOMAINS</dd><dt>Titular</dt><dd>pessoa física (dados pessoais omitidos — LGPD)</dd>        <dt>Resolve hoje</dt><dd>sim · Cogent Communications, LLC (154.12.249.145)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cogentco.com</dd>        <dt>Análise SIMIO</dt><dd>NO_INDICATION</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página analisada pertence a um evento de entretenimento e música (&#39;BV Oficial&#39;), configurando caso claro de homônimo não bancário fora do escopo de auditoria de correspondentes bancários. Não há utilização de marcas do Banco BV nem oferta de serviços financeiros.
+[Revisor: DOWNGRADE] Trata-se de um caso flagrante de homônimo não bancário da sigla &#39;BV&#39;, voltado à venda de ingressos de festival sertanejo/churrasco com patrocinadores de bebidas (Brahma, Red Bull, etc.). Não há oferta de crédito, financiamento ou uso indevido da marca Banco BV, enquadrando-se nas diretrizes de downgrade para NO_INDICATION com prioridade LOW.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C1ed836ead1/attempt-1/viewport.png" alt="Captura da página bvoficial.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span><span class="pill cat">Domínio recente</span>      <div class="url">hxxp://bvoficial[.]com/</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>domínio registrado há 107 dias</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-08-10 (107 dias) · HOSTINGER operations, UAB</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · HOSTINGER-CDN (2.57.91.93, LT)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@hostinger.com, abuse-tracker@hostinger.com</dd>        <dt>Análise SIMIO</dt><dd>NO_INDICATION</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O domínio bvoficial.com está suspenso e exibe apenas a tela de aviso padrão da empresa de hospedagem Hostinger. Não existe oferta de crédito ou atividade de correspondente bancário (COBAN) em funcionamento, estando fora do escopo de auditoria da Resolução CMN nº 4.935/2021.
+[Revisor: DOWNGRADE] A página hospeda apenas um aviso padrão da Hostinger informando que o domínio está suspenso por pendência de validação de e-mail junto à ICANN. Não há presença de loja de veículos, empresa de energia solar ou correspondente bancário (COBAN) ofertando serviços de crédito, estando fora do escopo da Resolução CMN nº 4.935/2021. Trata-se de domínio inativo/estacionado, justificando o downgrade para NO_IND</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C66042e1c59/attempt-1/viewport.png" alt="Captura da página aptoide.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://fgts-facilita-mobapps[.]bd[.]aptoide[.]com/app</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2009-09-01 (6294 dias) · eNom, LLC</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.20.24.150); Cloudflare, Inc. (172.66.150.34)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, abuse@enom.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/C66042e1c59.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página de destino na plataforma Aptoide teve seu conteúdo visual direto bloqueado por verificação Cloudflare. Entretanto, os dados de busca indexados (E-DISC-001) revelam a distribuição de um aplicativo Android relacionado a FGTS que utiliza a razão social e o CNPJ do Banco BV Financeira S.A. Essa apropriação dos dados institucionais em uma plataforma não oficial gera risco significativo de confusão do consumidor e possível canal apócrifo/não autorizado, justificando classificação como C_POSSIBLE_OFFICIAL_CHANNEL e prioridade HIGH.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C51f920a782/attempt-1/viewport.png" alt="Captura da página appbrain.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://www[.]appbrain[.]com/app/fgts-%7C-saque-e-calend%C3%A1rio-2026/br.com.delxmobile.consultafgts</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2010-01-07 (6166 dias) · Cloudflare, Inc.</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.66.40.249); Cloudflare, Inc. (172.66.43.7)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, registrar-abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/C51f920a782.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Embora a coleta direta no site www.appbrain.com tenha sido bloqueada por desafio anti-bot (HTTP 403), os registros de descoberta (E-DISC-001) revelam que o aplicativo indexado apropria-se do CNPJ e razão social oficiais do Banco BV Financeira S.A., declarando suposta certificação de correspondente e coletando dados sensíveis (CPF e PIS/NIS) para empréstimo FGTS com redirecionamento para WhatsApp. Em conformidade com a seção 3 das diretrizes para coletas com navegador bloqueado, o caso é classificado como C_POSSIBLE_OFFICIAL_CHANNEL sob REVIEW_REQUIRED com prioridade HIGH devido ao risco de confusão do consumidor e captação indevida de dados.
+[Revisor: HUMAN_REVIEW] Questionamentos registrado</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Ca8921591ea/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/Dcd4bYrOCio/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Ca8921591ea.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A publicação em rede social promove um feirão automotivo apresentando o evento como uma &#39;Super ação da BV FINANCEIRA!&#39; com destaque absoluto para o balão inflável institucional com a marca e logotipo do Banco BV. Ao atribuir a ação diretamente ao banco e divulgar condições de crédito sem apresentar a declaração obrigatória de correspondente bancário (Res. CMN 4.935/2021) nem os dados cadastrais (CNPJ/razão social) das revendas responsáveis, gera confusão sobre a oficialidade da iniciativa, configurando indício forte de irregularidade.
+[Revisor: CONFIRM] A publicação realizada por perfil de divulgação local em conjunto com revendas de veículos promove feirão automotivo e ofertas de crédito at</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cbd4fdb9b48/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DfVUC_zPC15/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cbd4fdb9b48.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>Publicação em rede social (Reel do Instagram) promovida pela empresa de energia solar &#39;Otimize Solar&#39; utilizando ostensivamente a marca do Banco BV em campanha promocional denominada &#39;Feirão Solar BV&#39;. O vídeo exibe apresentadora vestindo camiseta e posicionada à frente de banner com o logotipo oficial do Banco BV (&#39;Feirão Solar BV&#39;), além de chamada textual destacando &#39;O ÚLTIMO FEIRÃO BV DO ANO CHEGOU!&#39;. A publicação não traz identificação cadastral (razão social ou CNPJ) nem qualquer declaração regulatória de correspondente bancário ou relação de intermediação independente, contrariando o art. 14, II e III da Resolução CMN nº 4.935/2021 e configurando forte risco de confusão ao consumidor </details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C411d787fbe/attempt-1/viewport.png" alt="Captura da página instagram.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Falso canal oficial</span><span class="pill cat">Perfil/post falso em rede social</span>      <div class="url">hxxps://www[.]instagram[.]com/reel/DfaqNLagui5/</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/C411d787fbe.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>[Revisor: CONFIRM] A publicação em rede social pertence a uma revendedora de veículos (@centralveiculos__) promovendo um evento comercial sob o título &#39;Live Feirão BANCO BV!&#39;, utilizando balões e materiais com a identidade visual do Banco BV no showroom (E-TXT-001, E-SHOT-VIEWPORT). Não há identificação clara de razão social, CNPJ ou os avisos regulatórios de correspondente bancário exigidos pela Resolução CMN 4.935/2021, configurando uso de marca com vínculo e conformidade regulatória pendentes de auditoria.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cd6a74bf0f4/attempt-1/viewport.png" alt="Captura da página itapevarec.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 4.0</span><span class="pill cat">Falso canal oficial</span>      <div class="url">hxxps://www[.]itapevarec[.]com[.]br/Nembus/Home</div>
+      <ul class="facts"><li>o analisador registrou que a página se passa por canal oficial</li><li>marcado para revisão na análise SIMIO</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2008-12-04 (6565 dias)</dd><dt>Titular</dt><dd>Itapeva Recuperacao de Creditos Ltda (CNPJ 09.154.383/0001-27)</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.66.157.105); Cloudflare, Inc. (104.20.26.112)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>REVIEW_REQUIRED · <a href="dossiers/Cd6a74bf0f4.html">dossiê</a></dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O portal investigado pertence à Itapeva Recuperação de Crédito, empresa especializada na negociação e recuperação de créditos cedidos. A menção ao Banco BV ocorre estritamente na identificação de carteiras/credores parceiros (&#39;Tem dívida com alguma dessas empresas?&#39;), ao lado de diversas outras instituições financeiras. No entanto, foi constatado o uso do logotipo antigo e descontinuado da BV Financeira (monograma com B vermelho sobre V azul), o que infringe as diretrizes atuais de uso de marca do Banco BV e requer alinhamento e atualização cadastral junto ao parceiro.
+[Revisor: DOWNGRADE] A página pertence ao Portal Itapeva, empresa de recuperação de crédito e renegociação de dívidas. A pre</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cc968307cda/attempt-1/viewport.png" alt="Captura da página bv-digital.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxp://bv-digital[.]com/</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2026-05-01 (208 dias) · HOSTINGER operations, UAB</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · HOSTINGER-HOSTING (187.124.223.116, FR)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@hostinger.com, abuse-tracker@hostinger.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página não carregou conteúdo útil ou funcional no momento da coleta, apresentando falha técnica de conexão (HTTP 502). Apesar de o nome de domínio apontar para padrão sugestivo de typosquatting com a marca investigada, a ausência total de conteúdo renderizado impossibilita a análise de identidade comercial, uso de marca ou conformidade com a Resolução CMN nº 4.935/2021, tornando o caso inconclusivo.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Ca12a9ecf55/attempt-1/viewport.png" alt="Captura da página bvapp.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxps://www[.]hugedomains[.]com/domain_profile.cfm?d=bvapp.com</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2003-10-31 (8426 dias) · TurnCommerce, Inc. DBA NameBright.com</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.26.7.37); Cloudflare, Inc. (172.67.70.191); Cloudflare, Inc. (104.26.6.37)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, support@namebright.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O domínio bvapp.com redireciona para o serviço de comercialização de domínios HugeDomains, encontrando-se protegido por tela de validação da Cloudflare. Não há oferta de crédito ou atividade de correspondente bancário (COBAN), tratando-se de conteúdo fora do escopo de monitoramento regulatório da Resolução CMN nº 4.935/2021.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cf7ab1cd399/attempt-1/viewport.png" alt="Captura da página bvfinanceira.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxp://ww547[.]bvfinanceira[.]com/?tkn=19vnMT3S</div>
+      <ul class="facts"><li>domínio semelhante a bvfinanceira.com.br (tld-swap)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2002-02-20 (9044 dias) · Dynadot Inc</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Google LLC (34.160.121.137)</dd>
+<dt>Contatos de abuso</dt><dd>google-cloud-compliance@google.com, abuse@dynadot.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página do domínio bvfinanceira.com encontra-se indisponível ou bloqueada para o coletor, exibindo apenas o texto &#39;Forbidden&#39; sem qualquer conteúdo publicitário, formulário de captura ou identidade visual da instituição. Embora o domínio apresente características de typosquatting em relação à marca histórica BV Financeira, a ausência total de conteúdo ativo impossibilita a classificação como correspondente bancário ou canal em operação, ensejando a classificação de evidência insuficiente (INCONCLUSIVE).
+[Revisor: CONFIRM] A página acessada através do domínio &#39;bvfinanceira.com&#39; (redirecionada para &#39;ww547.bvfinanceira.com&#39;) retornou apenas a mensagem &#39;Forbidden&#39;, sem qualquer elemento visual,</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C1d6e5dfafe/attempt-1/viewport.png" alt="Captura da página bvportal.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxp://bvportal[.]com/</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2017-09-12 (3361 dias) · CSC Corporate Domains, Inc.</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · G-CUST-CJ01 (46.29.91.242, GB)</dd>
+<dt>Contatos de abuso</dt><dd>peering@sub6.com, domainabuse@cscglobal.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página falhou ao carregar (HTTP 502 TimeoutError) e nenhum conteúdo comercial, institucional ou de correspondente bancário foi renderizado. Não há evidências suficientes para determinar a finalidade de uso do domínio.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/Cac90a73739/attempt-1/viewport.png" alt="Captura da página cartaobv.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxps://www[.]hugedomains[.]com/domain_profile.cfm?d=cartaobv.com</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2003-10-31 (8426 dias) · TurnCommerce, Inc. DBA NameBright.com</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.26.7.37); Cloudflare, Inc. (172.67.70.191); Cloudflare, Inc. (104.26.6.37)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, support@namebright.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O endereço acessado trata-se de um domínio estacionado/à venda na plataforma HugeDomains, protegido por tela de verificação Cloudflare. Não há presença de correspondente bancário (COBAN), revenda de veículos ou oferta de serviços de crédito, estando o conteúdo fora do escopo de fiscalização da Res. CMN nº 4.935/2021.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C5bbccc47e0/attempt-1/viewport.png" alt="Captura da página feiraobv.com.br" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxp://feiraobv[.]com[.]br/</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2022-10-25 (1492 dias)</dd><dt>Titular</dt><dd>Ponto A Studio de Publicidade LTDA. (CNPJ 36.642.328/0001-59)</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (172.67.163.104); Cloudflare, Inc. (104.21.74.215)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A tentativa de coleta no endereço &#39;http://feiraobv.com.br/&#39; retornou erro de conexão HTTP 522 (Cloudflare Connection timed out), impedindo a visualização de qualquer conteúdo real do site. Embora o domínio faça uso da marca Banco BV combinada com termo do setor (&#39;feirão&#39;), não há dados suficientes para determinar a natureza das atividades, eventuais abusos de marca ou o cumprimento das normas regulatórias.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C6aced6ba68/attempt-1/viewport.png" alt="Captura da página portalbv.com" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio semelhante (typosquatting)</span>      <div class="url">hxxps://www[.]hugedomains[.]com/domain_profile.cfm?d=portalbv.com</div>
+      <ul class="facts"><li>domínio semelhante a bv (combosquatting)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+<dt>Domínio criado</dt><dd>2003-10-31 (8426 dias) · TurnCommerce, Inc. DBA NameBright.com</dd><dt>Titular</dt><dd>não publicado</dd>        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.26.7.37); Cloudflare, Inc. (172.67.70.191); Cloudflare, Inc. (104.26.6.37)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com, support@namebright.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>O domínio pesquisado redireciona para um marketplace de venda de domínios (HugeDomains), encontrando-se atualmente sem operação comercial ou conteúdo relacionado à intermediação de crédito. Trata-se de página fora do escopo de correspondentes bancários e sem indícios de infração ou confusão de marca.
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+  <div class="card MÉDIO">
+    <div>
+<img class="shot" src="../../campaigns/simio-20261125-220519-d778/evidence/C2199d59471/attempt-1/viewport.png" alt="Captura da página appstor.io" loading="lazy">    </div>
+    <div>
+      <span class="pill MÉDIO">MÉDIO · 3.0</span><span class="pill cat">Domínio com a marca</span>      <div class="url">hxxps://parceiro-bv[.]appstor[.]io/</div>
+      <ul class="facts"><li>a marca está no nome do domínio (parceiro-bv.appstor.io)</li><li>o domínio com a marca tem conteúdo que cita a instituição</li></ul>
+      <dl class="kv">
+        <dt>Resolve hoje</dt><dd>sim · Cloudflare, Inc. (104.26.0.73); Cloudflare, Inc. (104.26.1.73)</dd>
+<dt>Contatos de abuso</dt><dd>abuse@cloudflare.com</dd>        <dt>Análise SIMIO</dt><dd>INCONCLUSIVE</dd>
+      </dl>
+<details><summary>Justificativa do analisador</summary>A página em questão pertence a um diretório/agregador de aplicativos (appstor.io) listando informações públicas sobre o aplicativo oficial do Banco BV para lojistas parceiros. Trata-se de plataforma de catálogo de apps e não de um correspondente bancário ou estabelecimento comercial comercializando crédito, enquadrando-se fora do escopo da auditoria (NOT_RELEVANT).
+[Revisor: CONFIRM] Nenhum questionamento determinístico; indícios mantidos.</details>    </div>
+  </div>
+
+  <h2>Monitorar (17)</h2>
+  <table>
+    <tr><th>URL</th><th>Por quê</th><th>Domínio criado</th><th>Titular</th></tr>
+    <tr><td class="mono">hxxp://bancobv[.]com/</td><td>domínio semelhante a bancobv.com.br (tld-swap)</td><td>2021-05-08 (2027 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://bffinanceira[.]com[.]br/404.html</td><td>domínio semelhante a bvfinanceira.com.br (replacement)</td><td>2026-01-08 (321 dias)</td><td>pessoa física (dados pessoais omitidos — LGPD)</td></tr>
+    <tr><td class="mono">hxxp://bv-auto[.]com/</td><td>domínio semelhante a bv (combosquatting)</td><td>2023-09-21 (1161 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://www[.]bookvalueappraisals[.]com/</td><td>domínio semelhante a bv.com.br (tld-swap)</td><td>2020-05-19 (2382 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://bv[.]digital/</td><td>domínio semelhante a bv.com.br (tld-swap)</td><td>2024-12-20 (705 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://bv[.]org/</td><td>domínio semelhante a bv.com.br (tld-swap)</td><td>1996-08-20 (11054 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://bvautos[.]com/</td><td>domínio semelhante a bv (combosquatting)</td><td>2006-12-12 (7288 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://www[.]bvcentral[.]com/</td><td>domínio semelhante a bv (combosquatting)</td><td>2025-07-14 (499 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxp://bvconsignado[.]com/</td><td>domínio semelhante a bv (combosquatting)</td><td>2025-11-15 (375 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxps://bvonline[.]com/</td><td>domínio semelhante a bv (combosquatting)</td><td>2002-05-06 (8969 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxps://www[.]terox[.]si/</td><td>domínio semelhante a bv (combosquatting); fora do ar hoje (não resolve)</td><td></td><td></td></tr>
+    <tr><td class="mono">hxxp://nalista[.]com[.]br/</td><td>domínio semelhante a napista.com.br (replacement)</td><td>2005-11-25 (7670 dias)</td><td>Officinalis Distribuidora de Cosméticos LTDA (CNPJ 07.507.202/0001-73)</td></tr>
+    <tr><td class="mono">hxxps://www[.]valusourcesoftware[.]com/obv/</td><td>domínio semelhante a bv (combosquatting)</td><td>2004-10-08 (8083 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxps://bv[.]apk[.]cafe/</td><td>a marca está no nome do domínio (bv.apk.cafe)</td><td>2024-10-07 (779 dias)</td><td>não publicado</td></tr>
+    <tr><td class="mono">hxxps://canalexecutivoblog[.]wordpress[.]com/2024/10/16/banco-bv-capta-r-60-milhoes-em-operacao-inedita-no-pais/</td><td>página com a marca em plataforma gratuita/de terceiros (wordpress.com)</td><td></td><td></td></tr>
+    <tr><td class="mono">hxxps://comparabem[.]com[.]br/company/bv-financeira</td><td>oferece emitir boleto citando a marca</td><td></td><td></td></tr>
+    <tr><td class="mono">hxxps://wa[.]me/cavalcante_caminhoes?lang=et</td><td>contato direto por mensageiro (WhatsApp/Telegram); marcado para revisão na análise SIMIO</td><td></td><td></td></tr>
+  </table>
+
+  <h2>Registros defensivos do próprio grupo (3)</h2>
+  <table>
+    <tr><th>Domínio</th><th>Titular</th></tr>
+<tr><td class="mono">bvcartao.com.br</td><td>BANCO VOTORANTIM S/A</td></tr><tr><td class="mono">bvfinanceiracartao.com.br</td><td>BANCO VOTORANTIM S/A</td></tr><tr><td class="mono">cartaobv.com.br</td><td>BANCO VOTORANTIM S/A</td></tr>  </table>
+</main>
+</body>
+</html>

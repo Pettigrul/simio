@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C78e930f1d1",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.livelo.com.br/",
+  "final_url": "https://www.livelo.com.br/",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "2.18.20.69",
+  "collected_at": "2026-11-25T22:50:43.616162+00:00",
+  "manifest_written_at": "2026-11-25T22:50:47.026239+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C78e930f1d1/attempt-1/viewport.png",
+      "sha256": "50b7d46c43a2c52f16875eeb5527ff8affb16f557058925b59575651c437838f",
+      "size_bytes": 23362
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C78e930f1d1/attempt-1/fullpage.png",
+      "sha256": "50b7d46c43a2c52f16875eeb5527ff8affb16f557058925b59575651c437838f",
+      "size_bytes": 23362
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C78e930f1d1/attempt-1/page.html.txt",
+      "sha256": "1728b8f6752b1cf9e807e50b04a136076cbdd4a0980b68afd887ba773bb514af",
+      "size_bytes": 757
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C78e930f1d1/attempt-1/text.txt",
+      "sha256": "87fcf9632eef5b18c00212c9c2027e6e40ae669aebaf4f6cd726c69b73d15c5e",
+      "size_bytes": 197
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C78e930f1d1/attempt-1/page.json",
+      "sha256": "c3b8819f1cede091bd403b695554815044475f678eb3378011a9d9c871d32619",
+      "size_bytes": 759
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

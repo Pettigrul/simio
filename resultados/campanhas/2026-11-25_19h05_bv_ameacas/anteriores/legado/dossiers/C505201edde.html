@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C505201edde</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C505201edde — facilitacarro.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://facilitacarro.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2020-04-24 (2406 dias)</div><div class="kv"><b>Titular do domínio</b>pessoa física (dados pessoais omitidos — LGPD)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (172.67.165.230); Cloudflare, Inc. (104.21.49.189)</div>
+<div class="kv"><b>DNS (NS / MX)</b>amy.ns.cloudflare.com, randy.ns.cloudflare.com / route1.mx.cloudflare.net, route2.mx.cloudflare.net, route3.mx.cloudflare.net</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento Facilita Carro (Martins Veículos) opera legitimamente como intermediador de crédito veicular multimarcas na região de Camaquã/RS, deixando claro no rodapé que não é banco nem financeira. Não há impersonação ou apropriação indevida da identidade do Banco BV. Contudo, enquadra-se em comunicação ambígua / inconformidade com a Resolução CMN nº 4.935/2021 devido à ausência de declaração formal de correspondente bancário (com menção aos bancos contratantes e canais de ouvidoria) e à falta de divulgação do CNPJ da empresa intermediadora, além de associar a BV Financeira a apelos comerciais específicos de dispensa de score mínimo.
+[Revisor: CONFIRM] A página pertence a uma revendedora e facilitadora de crédito veicular legítima (Facilita Carro / Martins Veículos), atuando em contexto multibancos equânime sem tentativa de impersonação do Banco BV. Contudo, atua como intermediadora de financiamento automotivo coletando dados pessoais (CPF) e divulgando condições específicas atribuídas à &#39;BV Financeira&#39; (&#39;Pode aceitar restrição&#39;, &#39;Score mínimo: Sem mínimo&#39;) sem apresentar o CNPJ/razão social da empresa e sem os devidos avisos regulatórios de correspondente bancário e canais de ouvidoria previstos na Resolução CMN nº 4.935/2021. Configura parceria ambígua / vínculo não formalizado, justificando a manutenção de REVIEW_REQUIRED.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C505201edde/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 8a28ca2aa4ac1fe79bcc2557e68d7ef5fafb13cbc23cdcbe83b1ce0ebaefc837</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C505201edde/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 c667f5bf8d4c9ca15b7c0ef8b25e8b4bbbbcd73bd42d2ac62c3b9c181b91117f</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://facilitacarro.com.br/ (domínio: facilitacarro.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): facilitacarro.com.br — **URL:** `https://facilitacarro.com.br` | **Operador Aparente:** Facilita Carro / Martins Ecossistema Automotivo | **Como utiliza a marca BV:** Lista com destaque comercial a &#34;BV Financeira&#34; afirmando que a instituição *&#34;Pode aceitar restrição&#34;* e possui *&#34;Score mínimo: Sem mínimo&#34;*, associando a marca ao slogan *&#34;Crédito aprovado começa por aqui&#34;* | **O que oferece e pede:** Promete simulação em minutos e encaminhamento bancário facilitado; pede **dados pessoais** para simulação de propostas e direcionamento para fechamento via **WhatsApp** | **Risco / Motivo de Alerta:** Induz o consumidor a crer que o Banco BV dispensa score e aceita negativados de forma automática, criando expectativas falsas para forçar a coleta de dados e contato via canais privados</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C505201edde/attempt-1/viewport.png (sha256 8a28ca2aa4ac1fe7…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C505201edde/attempt-1/fullpage.png (sha256 c667f5bf8d4c9ca1…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Facilita Carro — Financiamento Veicular em Camaquã, RS</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Simule, pré-aprove e financie seu carro com 10+ bancos parceiros. Resposta em 24h. Por Martins Veículos — 46 anos na Costa Doce, RS.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Facilita Carro</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Facilita Carro — Financiamento Veicular</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Simule parcelas, compare bancos e pré-aprove seu crédito. 10+ bancos, resposta em 24h. Por Martins Veículos.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://facilitacarro.com.br/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Seu próximo carro. Com o crédito certo.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Do simulador ao volante em 3 passos</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Simule e envie</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Negociação em 24h</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Documentação e contrato</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Instituições financeiras com quem trabalhamos</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>46 anos de reputação por trás de cada proposta.</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Descubra suas chances de aprovação</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Encontramos a melhor taxa para você</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Perguntas frequentes</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Crédito aprovado começa por aqui.</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Tudo que você precisa, em um só lugar.</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Facilita Carro por Martins Veículos Falar agora O que você precisa hoje? Seminovo Carro usado revisado com financiamento Mais buscado Zero KM Carro novo direto da concessionária Refinanciamento Seu carro quitado vira crédito Consórcio Sem juros — parcelas menores Pessoa Jurídica Frota, MEI, Uber e apps FGTS como entrada Use seu FGTS para reduzir parcelas Facilitador de Crédito Veicular · Costa Doce, RS Seu próximo carro. Com o crédito certo. Simule parcelas, compare condições dos bancos parceiros e envie sua proposta. Cuidamos de toda a documentação — você foca em escolher o carro. Taxas competitivas do mercado Resposta em até 24h 12 instituições parceiras Intermediação gratuita 46 anos de operação 12+ bancos parceiros 24h retorno da proposta Simulador de parcelas Resultado indicativo — taxa real definida pelo banco parceiro Valor do veículo R$ 50.000 R$ 15.000 R$ 300.000 Entrada 20 % · R$ 10.000 0% 50% Prazo 24 m 36 m 48 m 60 m 72 m Resultado estimado Financiado R$ 40.000 Parcela R$ 1.239 Total R$ 59.454 Quero essa condição →</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Facilita Carro Por Martins Veículos · Rua Assis Brasil, 336 · Camaquã, RS · (51) 3228-1234 Privacidade · Termos · Martins Veículos © 2026 Facilita Carro. Facilitador e intermediador de crédito veicular — não somos banco, financeira nem fintech. Todo crédito é concedido por instituições financeiras parceiras reguladas pelo Banco Central do Brasil. Sujeito à análise de crédito.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Falar agora &lt;https://wa.me/555132281234&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Seminovo Carro usado revisado com financiamento MAIS BUSCADO</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Zero KM Carro novo direto da concessionária</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Refinanciamento Seu carro quitado vira crédito</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Consórcio Sem juros — parcelas menores</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Pessoa Jurídica Frota, MEI, Uber e apps</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>FGTS como entrada Use seu FGTS para reduzir parcelas</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>24m</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>36m</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>48m</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>60m</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>72m</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Quero essa condição →</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Até R$ 1.500</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>R$ 1.500 – 2.500</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>R$ 2.500 – 3.500</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>R$ 3.500 – 5.000</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>R$ 5.000 – 8.000</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>R$ 8.000 – 15.000</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>Acima de R$ 15.000</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>Não</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>nav</td><td>Falar agora &lt;https://wa.me/555132281234&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>WhatsApp &lt;https://wa.me/555132281234&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;BV&#39; src=https://www.google.com/s2/favicons?domain=bv.com.br&amp;sz=64 (28x28, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Simule parcelas, compare condições dos bancos parceiros e envie sua proposta. Cuidamos de toda a documentação — você foca em escolher o carro.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>12 instituições parceiras</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>bancos parceiros</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Resultado indicativo — taxa real definida pelo banco parceiro</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Simulação indicativa baseada em taxa de referência de mercado. Parcela, taxa e aprovação dependem da análise da instituição financeira parceira. Condições sujeitas a alteração.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Enviamos sua proposta para as instituições financeiras parceiras e retornamos com as melhores condições para seu perfil.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>BANCOS PARCEIROS</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Encaminhamos sua proposta para as instituições que melhor se adequam ao seu perfil. O crédito é oferecido por bancos e financeiras regulados pelo Banco Central do Brasil.</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>BV</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Banco Pan</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>Informações de referência. A taxa de juros real é definida por cada instituição financeira no momento da análise, com base no seu perfil e no veículo. A Facilita Carro não define nem garante taxas, prazos ou aprovação — essas decisões são exclusivamente dos parceiros regulados pelo Banco Central.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>BV Financeira</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Banco Pan</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Omni Banco</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>Prazos e critérios de perfil são referências gerais e podem variar. A taxa efetiva é definida pela instituição financeira após análise individual. Aprovação sujeita à validação de crédito do parceiro.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Não somos banco nem financeira. Somos um facilitador especializado em crédito veicular, operando com o rigor da Martins Veículos. Sua proposta vai para uma equipe que conhece as instituições parceiras pelo nome — e negocia condições reais todo dia.</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Relacionamento com 12 instituições financeiras parceiras</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Atendimento presencial — não é portal anônimo</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Preencha o formulário. Nossa equipe analisa e retorna em até 24h com as melhores condições entre os bancos parceiros.</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>WHATSAPP *</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>BANCO PREFERIDO</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>BV Financeira</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Banco Pan</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Omni Banco</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Simule parcelas, envie sua proposta e deixa que a gente negocia com os bancos — tudo gratuito, sem compromisso.</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Zero KM Autorizada</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>zerokmautorizada.com.br</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>© 2026 Facilita Carro. Facilitador e intermediador de crédito veicular — não somos banco, financeira nem fintech. Todo crédito é concedido por instituições financeiras parceiras reguladas pelo Banco Central do Brasil. Sujeito à análise de crédito.</td></tr>
+      <tr id="E-FORM-001"><td class="mono"><b>E-FORM-001</b></td><td>form</td><td>page</td><td>Campo de formulário que pede CPF (type=text, name=cpf, placeholder=000.000.000-00 (opcional), rótulo=CPF)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>Identidade visual própria da Facilita Carro / Martins Veículos com paleta de cores neutra e vinho, sem mimetização da identidade institucional do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>Identificação comercial evidente como &#39;Facilita Carro por Martins Veículos&#39; e endereço físico, porém sem divulgação de CNPJ e razão social.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Ausência do cumprimento dos requisitos do art. 14 da Resolução CMN nº 4.935/2021 (ausência de menção expressa à condição de correspondente bancário da BV e omissão de canais de ouvidoria).</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-029">E-TXT-029</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Apresentação em 3ª pessoa como facilitador multimarcas/multibancos que encaminha propostas para análise, embora atribua flexibilidade de score e restrição à BV Financeira.</td><td class="mono"><a href="#E-TXT-008">E-TXT-008</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-016">E-TXT-016</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Uso de ícone/marca de pequenas dimensões inserido em grade comparativa de 12 instituições financeiras parceiras, sem destaque desproporcional ou overbranding.</td><td class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-TXT-009">E-TXT-009</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Simulador próprio genérico que capta dados de contato (nome, WhatsApp, CPF opcional) e direciona para atendimento da equipe local, sem phishing de senhas ou credenciais bancárias.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-TXT-019">E-TXT-019</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da loja/facilitador (telefone e WhatsApp com DDD 51 de Camaquã/RS), sem alegação de canal oficial do banco.</td><td class="mono"><a href="#E-NAV">E-NAV</a> <a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>O rodapé esclarece expressamente que a empresa não é banco nem financeira e que o crédito é concedido pelas instituições parceiras, minimizando o risco de se passar pelo banco.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-029">E-TXT-029</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: O estabelecimento atua como intermediador e facilitador de crédito veicular citando o Banco BV / BV Financeira entre instituições parceiras, porém não apresenta a declaração formal e obrigatória de correspondente bancário regulamentada pela Resolução CMN nº 4.935/2021, omitindo CNPJ, razão social e canais de ouvidoria da instituição contratante. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-016">E-TXT-016</a> <a href="#E-TXT-029">E-TXT-029</a> </span></li><li>[MEDIUM] INSTITUTIONAL_LANGUAGE: A página atribui condições comerciais específicas e promessas de crédito à marca BV Financeira, destacando que &#39;Pode aceitar restrição&#39; e &#39;Score mínimo: Sem mínimo&#39;, sem ressalva regulatória formal da instituição financeira. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Embora informe o nome comercial Facilita Carro / Martins Veículos e endereço físico em Camaquã/RS, a página omite o CNPJ e a razão social da pessoa jurídica responsável pela intermediação e coleta de dados cadastrais (CPF e WhatsApp). — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FORM-001">E-FORM-001</a> <a href="#E-TXT-020">E-TXT-020</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] CONSUMER_CONFUSION: Presença de aviso explicativo no rodapé declarando explicitamente: &#39;não somos banco, financeira nem fintech. Todo crédito é concedido por instituições financeiras parceiras reguladas pelo Banco Central do Brasil&#39;. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-029">E-TXT-029</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identidade própria de revendedora e facilitadora de crédito veicular com 46 anos de mercado local (&#39;Martins Veículos&#39; em Camaquã/RS), predominando sobre as marcas dos bancos. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-META-1">E-META-1</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-FTR">E-FTR</a> </span></li><li>[HIGH] LOGO_USAGE: Contexto multibancos/multimarcas legítimo, onde o Banco BV / BV Financeira é apenas uma entre doze instituições financeiras mencionadas em grade comparativa equânime. — <span class="mono"><a href="#E-HEAD-6">E-HEAD-6</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio facilitacarro.com.br hospeda serviço de facilitação e intermediação de financiamento veicular vinculado à Martins Veículos de Camaquã/RS.</li><li>A marca BV Financeira é listada em conjunto com outros 11 bancos (Bradesco, Sicredi, Cresol, Caixa, Itaú, Santander, SICOOB, Daycoval, C6, Banco Pan e Omni).</li><li>No card da BV Financeira consta a indicação de que &#39;Pode aceitar restrição&#39; e que o &#39;Score mín: Sem mínimo&#39;.</li><li>A página disponibiliza formulário para envio de proposta com coleta de dados básicos (nome, telefone/WhatsApp, CPF opcional, renda estimada).</li><li>O rodapé declara que o estabelecimento é intermediador e não instituição financeira, mas não indica CNPJ nem a declaração regulamentar de correspondente bancário com canais de ouvidoria conforme a Resolução CMN nº 4.935/2021.</li><li>Não foi identificado uso de logotipo legado (B vermelho + V azul).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Verificar se a Martins Veículos / Facilita Carro possui contrato formal ativo de correspondente bancário homologado junto ao Banco BV.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O estabelecimento Facilita Carro (Martins Veículos) opera legitimamente como intermediador de crédito veicular multimarcas na região de Camaquã/RS, deixando claro no rodapé que não é banco nem financeira. Não há impersonação ou apropriação indevida da identidade do Banco BV. Contudo, enquadra-se em comunicação ambígua / inconformidade com a Resolução CMN nº 4.935/2021 devido à ausência de declaração formal de correspondente bancário (com menção aos bancos contratantes e canais de ouvidoria) e à falta de divulgação do CNPJ da empresa intermediadora, além de associar a BV Financeira a apelos comerciais específicos de dispensa de score mínimo.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Facilita Carro<br><span class="mono">domain:facilitacarro.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>facilitacarro.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Facilita Carro</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>(51) 3228-1234</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): facilitacarro.com.br — **URL:** `https://facilitacarro.com.br` | **Operador Aparente:** Facilita Carro / Martins Ecossistema Automotivo | **Como utiliza a marca BV:** List</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Falar agora &lt;https://wa.me/555132281234&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp &lt;https://wa.me/555132281234&gt;</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-TXT-011">E-TXT-011</a> <a href="#E-TXT-012">E-TXT-012</a> <a href="#E-TXT-016">E-TXT-016</a> <a href="#E-TXT-020">E-TXT-020</a> <a href="#E-TXT-029">E-TXT-029</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-FTR">E-FTR</a> <a href="#E-NAV">E-NAV</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence a uma revendedora e facilitadora de crédito veicular legítima (Facilita Carro / Martins Veículos), atuando em contexto multibancos equânime sem tentativa de impersonação do Banco BV. Contudo, atua como intermediadora de financiamento automotivo coletando dados pessoais (CPF) e divulgando condições específicas atribuídas à &#39;BV Financeira&#39; (&#39;Pode aceitar restrição&#39;, &#39;Score mínimo: Sem mínimo&#39;) sem apresentar o CNPJ/razão social da empresa e sem os devidos avisos regulatórios de correspondente bancário e canais de ouvidoria previstos na Resolução CMN nº 4.935/2021. Configura parceria ambígua / vínculo não formalizado, justificando a manutenção de REVIEW_REQUIRED.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo (inteligência de ameaças e proteção de marca): Falso empréstimo: crédito &#39;pré-aprovado&#39;, liberação imediata ou cobrança antecipada em nome da marca.
+Execute no Google Search as seguintes consultas (dorks):
+  - (&#34;crédito pré-aprovado&#34; OR &#34;empréstimo aprovado&#34; OR &#34;liberação imediata&#34; OR &#34;sem consulta&#34; OR &#34;para negativados&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+  - (&#34;taxa de liberação&#34; OR &#34;depósito antecipado&#34; OR &#34;taxa de cadastro&#34; OR &#34;pagamento antecipado&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (empréstimo OR crédito OR financiamento) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos) que possam se passar pela instituição ou enganar seus clientes. Para cada uma, informe a URL, quem parece operar a página e o que ela oferece ou pede (login, senha, CPF, dados de cartão, token, boleto ou Pix, download de aplicativo, contato por WhatsApp/Telegram) e por que parece falsa ou perigosa.<br><span class="muted">H10-fraud:falso-emprestimo</span></td><td class="mono">https://facilitacarro.com.br/</td><td>facilitacarro.com.br<br><span class="muted">**URL:** `https://facilitacarro.com.br` | **Operador Aparente:** Facilita Carro / Martins Ecossistema Automotivo | **Como utiliza a marca BV:** Lista com destaque comercial a &#34;BV Financeira&#34; afirmando que a instituição *&#34;Pode aceitar restrição&#34;* e possui *&#34;Score mínimo: Sem mínimo&#34;*, associando a marca ao slogan *&#34;Crédito aprovado começa por aqui&#34;* | **O que oferece e pede:** Promete simulação em minutos e encaminhamento bancário facilitado; pede **dados pessoais** para simulação de propostas e direcionamento para fechamento via **WhatsApp** | **Risco / Motivo de Alerta:** Induz o consumidor a crer que o Banco BV dispensa score e aceita negativados de forma automática, criando expectativas falsas para forçar a coleta de dados e contato via canais privados</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 22:52:40.671027+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.49.189</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C505201edde/attempt-1/manifest.json<br>sha256 80c8fb79cb303131efd296ff8946716a2974cdd0f01cfd57977e4bd7392b8e57</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://facilitacarro.com.br/<br>Final: https://facilitacarro.com.br/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C505201edde/attempt-1/viewport.png</td><td class="mono">8a28ca2aa4ac1fe79bcc2557e68d7ef5fafb13cbc23cdcbe83b1ce0ebaefc837</td><td>131641</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C505201edde/attempt-1/fullpage.png</td><td class="mono">c667f5bf8d4c9ca15b7c0ef8b25e8b4bbbbcd73bd42d2ac62c3b9c181b91117f</td><td>1047198</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C505201edde/attempt-1/page.html.txt</td><td class="mono">b0856e3035856b9d39836a131e8295d67d84ba706154f88574b58413a51226fd</td><td>95369</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C505201edde/attempt-1/text.txt</td><td class="mono">26f249b02e643fdebaa1b45ef6c17f8c650772b22e721ad417a35e9fd30bac52</td><td>7863</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C505201edde/attempt-1/page.json</td><td class="mono">6abc7532e098b515326f6646d681ff18f510e724fc19ff5324b43cfbb96c44a9</td><td>23972</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:28+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.5)</td></tr>
+      <tr><td>2026-11-25T22:52:40+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:52:47+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T22:52:47+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T22:53:13+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T22:53:20+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

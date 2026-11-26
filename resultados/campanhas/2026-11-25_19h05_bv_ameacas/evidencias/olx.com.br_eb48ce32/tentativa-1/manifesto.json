@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Ceb48ce328b",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.olx.com.br/anuncios/passo-moto",
+  "final_url": "https://www.olx.com.br/anuncios/passo-moto",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "104.18.42.220",
+  "collected_at": "2026-11-25T23:09:13.854089+00:00",
+  "manifest_written_at": "2026-11-25T23:09:17.879030+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Ceb48ce328b/attempt-1/viewport.png",
+      "sha256": "7c6dd75026171c490d0001a4b2be73d63944a7f1f575c20bb6ca6032a690b57a",
+      "size_bytes": 66906
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Ceb48ce328b/attempt-1/fullpage.png",
+      "sha256": "15c42d10469a9390c1f5bbceead7a44bd01de2a2078b64ad95dcab9dca9498e7",
+      "size_bytes": 75352
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Ceb48ce328b/attempt-1/page.html.txt",
+      "sha256": "5c2e1af80db3da051efbee1653f60de33b8857adb0b00de3a1a2a0e16ec5511b",
+      "size_bytes": 5901
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Ceb48ce328b/attempt-1/text.txt",
+      "sha256": "9e152d168c83afe31dfac78ccfa67cfe6ff53074f6bb59f7cd3b3ad437a0f1a3",
+      "size_bytes": 691
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Ceb48ce328b/attempt-1/page.json",
+      "sha256": "d520dc80eedb6be40e2b61d3212300f568e14af3bff64bb421e1d07d2f9f5f62",
+      "size_bytes": 2102
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page",
+    "possible bot challenge/CAPTCHA detected; no bypass attempted"
+  ],
+  "not_inspected": [
+    "conteúdo real possivelmente oculto por desafio anti-bot",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C1448fbc030",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://api.mziq.com/",
+  "final_url": "https://api.mziq.com/",
+  "redirect_chain": [],
+  "http_status": 404,
+  "server_ip": "34.198.236.243",
+  "collected_at": "2026-11-25T23:14:21.896434+00:00",
+  "manifest_written_at": "2026-11-25T23:14:26.017095+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C1448fbc030/attempt-1/viewport.png",
+      "sha256": "d6fc64447e35d50f33416e5abef0f88c30e1472cb7665966e08a1677a0681130",
+      "size_bytes": 8684
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C1448fbc030/attempt-1/fullpage.png",
+      "sha256": "d6fc64447e35d50f33416e5abef0f88c30e1472cb7665966e08a1677a0681130",
+      "size_bytes": 8684
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C1448fbc030/attempt-1/page.html.txt",
+      "sha256": "2496cff907525a639c235175e5c450c719f8d610d734feba6768d9b2e34820d6",
+      "size_bytes": 250
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C1448fbc030/attempt-1/text.txt",
+      "sha256": "964c777939fbcc7ea7c185d3761f8c8a9e37bbc851f6f51f35450b8ec8afbe07",
+      "size_bytes": 31
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C1448fbc030/attempt-1/page.json",
+      "sha256": "2ea2130dd5043761d39d1c5c256aaa838faf79e4f2b8d7ac98fff6fda4a24a19",
+      "size_bytes": 445
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 404: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cd6a74bf0f4</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cd6a74bf0f4 — itapevarec.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://www.itapevarec.com.br/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>C_POSSIBLE_OFFICIAL_CHANNEL</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo + comparação de imagem)</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2008-12-04 (6565 dias)</div><div class="kv"><b>Titular do domínio</b>Itapeva Recuperacao de Creditos Ltda (CNPJ 09.154.383/0001-27)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Cloudflare, Inc. (172.66.157.105); Cloudflare, Inc. (104.20.26.112)</div>
+<div class="kv"><b>DNS (NS / MX)</b>joan.ns.cloudflare.com, mark.ns.cloudflare.com / itapevarec-com-br.mail.protection.outlook.com</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@cloudflare.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O portal investigado pertence à Itapeva Recuperação de Crédito, empresa especializada na negociação e recuperação de créditos cedidos. A menção ao Banco BV ocorre estritamente na identificação de carteiras/credores parceiros (&#39;Tem dívida com alguma dessas empresas?&#39;), ao lado de diversas outras instituições financeiras. No entanto, foi constatado o uso do logotipo antigo e descontinuado da BV Financeira (monograma com B vermelho sobre V azul), o que infringe as diretrizes atuais de uso de marca do Banco BV e requer alinhamento e atualização cadastral junto ao parceiro.
+[Revisor: DOWNGRADE] A página pertence ao Portal Itapeva, empresa de recuperação de crédito e renegociação de dívidas. A presença do logotipo da BV Financeira (mesmo em sua versão legada) ocorre em contexto estritamente informativo e referencial de identificação de carteiras de dívidas ativas para negociação, ao lado de dezenas de outros bancos e varejistas. Não há desvio regulatório sob a ótica de COBANs de originação de crédito nem risco de confusão do consumidor sobre a identidade do operador.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>uso destacado de logotipo/identidade visual ou linguagem da instituição sem CNPJ/declaração de correspondente: elevado a STRONG_INDICATION (HIGH)</li><li>revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>Logotipo antigo — comparação de imagem</h2>
+    <p class="muted">Regiões dos screenshots comparadas com a referência da logo descontinuada (B vermelho sobre V azul), sem uso de IA.</p>
+    <table>
+      <thead><tr><th>Screenshot</th><th>Posição (x, y)</th><th>Tamanho</th><th>Similaridade</th><th>Imagem</th></tr></thead>
+      <tbody>
+        <tr><td>E-SHOT-VIEWPORT</td><td>367, 793</td><td>38×28 px</td><td>0.86</td><td class="mono">https://www.itapevarec.com.br/Nembus/Images/logo-bvfinanceira.png</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Cd6a74bf0f4/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 afa660aeb250f886401dce871fa6da7a86a6160bbbc56359027e1317a96dafe7</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Cd6a74bf0f4/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 ab01216148a929a64645d7d92559220b21724acd62cac7f3d5df5a13c7e6420f</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-VIS-LEGACY-001"><td class="mono"><b>E-VIS-LEGACY-001</b></td><td>visual</td><td>viewport (acima da dobra)</td><td>Comparação de imagem (determinística, sem IA): logotipo ANTIGO de Banco BV (B vermelho sobre V azul) em E-SHOT-VIEWPORT, posição x=367 y=793, 38x28px, similaridade 0.86; imagem: https://www.itapevarec.com.br/Nembus/Images/logo-bvfinanceira.png</td></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://www.itapevarec.com.br/Nembus/Home (domínio: www.itapevarec.com.br)</td></tr>
+      <tr id="E-REDIR"><td class="mono"><b>E-REDIR</b></td><td>network</td><td>url</td><td>Cadeia de redirecionamento: https://www.itapevarec.com.br/ -&gt; https://www.itapevarec.com.br/Nembus/Home</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Portal Itapeva - Recuperação de Crédito — Consulte seu CPF/CNPJ Já tem cadastro? Acesse aqui. Já tem cadastro? Acesse ... BV Financeira; Yamaha; Banco Pan; Pernambucanas; Bradesco; Bradescard; Renner ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cd6a74bf0f4/attempt-1/viewport.png (sha256 afa660aeb250f886…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cd6a74bf0f4/attempt-1/fullpage.png (sha256 ab01216148a929a6…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Portal Itapeva - Recuperação de Crédito</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>og:title: Portal Itapeva - Recuperação de Crédito</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Tem dívida com alguma dessas empresas?</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Fechar acordo com a Itapeva é fácil</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Negociar agora</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Solicitar Documentos</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Histórias de Clientes</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Entenda os Termos técnicos</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Conheça a Itapeva</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Uma das principais empresas de recuperação de crédito do Brasil!</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Sua melhor negociação está aqui</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Veja como é fácil negociar com a Itapeva</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Depoimentos</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>Dicas financeiras</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>Fale conosco</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>CONHEÇA A ITAPEVA CANAIS DE ATENDIMENTO 2ª VIA DE BOLETO ENTRAR</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Conheça a Itapeva Canais de Atendimento 2ª Via de Boleto Entrar Consulte seu CPF/CNPJ Já tem cadastro? Acesse aqui OUTROS SERVIÇOS 2ª Via de Boleto CARTA DE QUITAÇÃO Tem dívida com alguma dessas empresas? Clique na marca e negocie com condições especiais, 100% online. Política de Cookies Usamos cookies para garantir que você obtenha a melhor experiência em nosso site. Fechar</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>HORÁRIO DE ATENDIMENTO: 2ª A 6ª: 8H ÀS 19H00 | SÁB: 8H ÀS 14H SIGA A ITAPEVA NAS REDES SOBRE A ITAPEVA Quem somos Termos de Uso Política de Privacidade Política de Cookies Antifraude ATENDIMENTO AO CLIENTE Whatsapp Outros canais de atendimento Ouvidoria FIQUE POR DENTRO Como usar o portal Itapeva Dicas de gestão financeira História dos clientes Dúvidas frequentes Termos Técnicos Negociar Agora Solicitar 2ª Via do Boleto Carta de Quitação Siga a Itapeva nas Redes Procure nossa empresa no © Copyright 2021-2026 - Todos os direitos reservados.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td> &lt;https://www.itapevarec.com.br/Nembus/Home&gt; | CONHEÇA A ITAPEVA &lt;https://www.itapevarec.com.br/Nembus/portal/whowe&gt; | CANAIS DE ATENDIMENTO &lt;https://www.itapevarec.com.br/Nembus/portal/contactourteam&gt; | 2ª VIA DE BOLETO &lt;https://www.itapevarec.com.br/Nembus/portal/segundaviaboleto&gt; | ENTRAR &lt;https://www.itapevarec.com.br/Nembus/login&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>CANAIS DE ATENDIMENTO &lt;https://www.itapevarec.com.br/Nembus/portal/contactourteam&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>2ª VIA DE BOLETO &lt;https://www.itapevarec.com.br/Nembus/portal/segundaviaboleto&gt;</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>header</td><td>ENTRAR &lt;https://www.itapevarec.com.br/Nembus/login&gt;</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Consultar</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>2ª VIA DE BOLETO &lt;https://www.itapevarec.com.br/Nembus/Portal/segundaviaboleto&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>CARTA DE QUITAÇÃO &lt;https://www.itapevarec.com.br/Nembus/Portal/cartadequitacao&gt;</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Ver parceiros anteriores</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Ver mais parceiros</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Quero negociar &lt;https://www.itapevarec.com.br/Nembus/login&gt;</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Acessar &lt;https://www.itapevarec.com.br/Nembus/login&gt;</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>‹</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>›</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>WHATSAPP &lt;https://www.itapevarec.com.br/Nembus/Portal/whatsapp&gt;</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>E-MAIL &lt;https://www.itapevarec.com.br/Nembus/Portal/sendmessage&gt;</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>Fechar &lt;https://www.itapevarec.com.br/Nembus/Home&gt;</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>footer</td><td>Whatsapp &lt;https://www.itapevarec.com.br/Nembus/portal/whatsapp&gt;</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>footer</td><td>Outros canais de atendimento &lt;https://www.itapevarec.com.br/Nembus/portal/contactourteam&gt;</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>footer</td><td>Ouvidoria &lt;https://www.itapevarec.com.br/Nembus/portal/ombudsmanoffice&gt;</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>footer</td><td>Negociar Agora &lt;https://www.itapevarec.com.br/Nembus/login&gt;</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>footer</td><td>Solicitar 2ª Via do Boleto &lt;https://www.itapevarec.com.br/Nembus/portal/segundaviaboleto&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>WHATSAPP &lt;https://www.itapevarec.com.br/Nembus/Portal/whatsapp&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>0800 770 5989 &lt;tel:08007705989&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/ItapevaRec&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/itapevarec&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>footer</td><td>Whatsapp &lt;https://www.itapevarec.com.br/Nembus/portal/whatsapp&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>footer</td><td> &lt;https://www.facebook.com/ItapevaRec&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>footer</td><td> &lt;https://www.instagram.com/itapevarec&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td>Fale conosco pelo WhatsApp &lt;https://www.itapevarec.com.br/Nembus/portal/whatsapp&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;Itapeva&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo.png (180x29, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;BV - Loft&#39; src=https://www.itapevarec.com.br/cdn/images/banner-20261013172129.png (1365x398, acima da dobra)</td></tr>
+      <tr id="E-IMG-3"><td class="mono"><b>E-IMG-3</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;BV- Quero Quero&#39; src=https://www.itapevarec.com.br/cdn/images/banner-20261013172036.png (1365x398, acima da dobra)</td></tr>
+      <tr id="E-IMG-4"><td class="mono"><b>E-IMG-4</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Santander&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-santander2.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-5"><td class="mono"><b>E-IMG-5</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;BV Financeira&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-bvfinanceira.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-6"><td class="mono"><b>E-IMG-6</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Yamaha&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-yamaha.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-7"><td class="mono"><b>E-IMG-7</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Banco Pan&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-banco-pan02.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-8"><td class="mono"><b>E-IMG-8</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Pernambucanas&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-pernambucanas.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-9"><td class="mono"><b>E-IMG-9</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Bradesco&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-bradesco2.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-10"><td class="mono"><b>E-IMG-10</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Bradescard&#39; src=https://www.itapevarec.com.br/Nembus/Images/parceiros/logo-bradescard-vermelho.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-11"><td class="mono"><b>E-IMG-11</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Renner&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-renner.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-12"><td class="mono"><b>E-IMG-12</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Losango&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-losango.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-13"><td class="mono"><b>E-IMG-13</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Itaú&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-itau.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-14"><td class="mono"><b>E-IMG-14</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Riachuelo&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-riachuelo.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-15"><td class="mono"><b>E-IMG-15</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Caixa Econômica Federal&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-caixa-economica-federal02.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-16"><td class="mono"><b>E-IMG-16</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Marisa&#39; src=https://www.itapevarec.com.br/Nembus/images/logo-marisa.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-17"><td class="mono"><b>E-IMG-17</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Ponto&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-ponto.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-18"><td class="mono"><b>E-IMG-18</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Casas Bahia&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-casas-bahia.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-19"><td class="mono"><b>E-IMG-19</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;Digio&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-digio.png (110x32, acima da dobra)</td></tr>
+      <tr id="E-IMG-20"><td class="mono"><b>E-IMG-20</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;FortBrasil&#39; src=https://www.itapevarec.com.br/Nembus/Images/logo-fortbrasil.svg (110x32, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>CANAIS DE ATENDIMENTO</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>2ª VIA DE BOLETO</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Consulte seu CPF/CNPJ</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>2ª VIA DE BOLETO</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>CARTA DE QUITAÇÃO</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Clique aqui e solicite a 2ª via de boleto, Carta de Quitação e Notificação de Cessão</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>A Itapeva existe para ajudar você a recuperar sua vida financeira e voltar a crescer. Assim, apoiamos e nos comprometemos em oferecer facilidade no atendimento e soluções flexíveis, garantindo uma resolução ágil em poucos cliques no nosso Portal.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>BOLETO. QUER SOLICITAR 2ª VIA?</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>CARTA DE QUITAÇÃO: ACESSE FÁCIL A SUA</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>&#34;Minha experiência foi excelente. Tudo resolvido com a maior rapidez e o atendimento foi o melhor possível. Muito além das minhas expectativas.&#34;.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>“Negociação amigável, dentro das minhas condições, boletos enviados na data certa. Não tenho do que reclamar, e na última parcela, mesmo com um pequeno atraso, os juros foram baixos. Fiquei muito satisfeito com o atendimento.”.</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>“Fiquei muito satisfeito?! Desejo que vcs continuem com essa forma de atendimento. Muito obrigado a toda a equipe por me ajudar a conquistar meus créditos de volta, pois hoje em dia é difícil pagar uma? vez que os perde. Vocês conseguiram fazer de uma forma que eu consegui pagar. Parabéns!!!”.</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>“Meu atendimento foi muito claro e objetivo. Muito fácil negociar condições, e o melhor, renegociar as prestações. Se todos fossem assim, seriam poucos casos de inadimplência. Só tenho a agradecer. Obrigado Itapeva!&#34;</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Quando o banco toma o veículo, a dívida continua? Entenda como funciona Perder um veículo por falta de pagame...</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>WHATSAPP</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>HORÁRIO DE ATENDIMENTO:</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>ATENDIMENTO AO CLIENTE</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Whatsapp</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Outros canais de atendimento</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Ouvidoria</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Solicitar 2ª Via do Boleto</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Carta de Quitação</td></tr>
+      <tr id="E-FORM-001"><td class="mono"><b>E-FORM-001</b></td><td>form</td><td>page</td><td>Campo de formulário que pede CPF (type=text, name=identitynumber, placeholder=Digite aqui seu CPF/CNPJ)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O site possui identidade comercial própria dominante da empresa Itapeva Recuperação de Crédito, sem mimetizar o Banco BV.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-HEAD-7">E-HEAD-7</a> <a href="#E-HEAD-8">E-HEAD-8</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Presença do logotipo legado da BV Financeira (duas cores, B vermelho sobreposto ao V azul), elemento visual descontinuado.</td><td class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="CONFUSION">CONFUSION</td><td>Aplicação de logotipo desatualizado do conglomerado BV em carrossel de origens de créditos/parceiros.</td><td class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NEUTRAL">NEUTRAL</td><td>O portal atua como empresa de recuperação de créditos e cessão de dívidas, não como correspondente bancário para concessão de crédito.</td><td class="mono"><a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="LEGITIMATE">LEGITIMATE</td><td>A linguagem é voltada para renegociação de dívidas em nome próprio (Itapeva) referentes a contratos cedidos por diversas empresas parceiras.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-2">E-HEAD-2</a> <a href="#E-TXT-007">E-TXT-007</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A consulta por CPF destina-se a verificar pendências financeiras registradas na base da recuperadora de crédito.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-CTA-4">E-CTA-4</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="LEGITIMATE">LEGITIMATE</td><td>Canais de contato próprios da Itapeva (WhatsApp, 0800, e-mail e Ouvidoria da Itapeva).</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CTA-18">E-CTA-18</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Baixo risco de confusão de titularidade institucional, visto que a Itapeva figura expressamente ao lado de múltiplos outros credores (Santander, Pan, Bradesco, etc.), porém o uso de logotipo legado gera desalinhamento de marca.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-IMG-9">E-IMG-9</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] LOGO_USAGE: Utilização do logotipo antigo e descontinuado da BV Financeira (monograma com B vermelho sobreposto ao V azul) no carrossel de credores/parceiros para renegociação de dívidas. — <span class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[MEDIUM] VISUAL_IDENTITY: Exibição de identidade visual legada e descontinuada da instituição em ambiente web de terceiros, em desacordo com as diretrizes da marca atual Banco BV. — <span class="mono"><a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[LOW] DECLARED_COMMERCIAL_IDENTITY: Ausência de exibição explícita de CNPJ e razão social formal no rodapé da página inicial, embora a marca comercial Itapeva Recuperação de Crédito esteja evidente. — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Identidade corporativa própria bem definida da Itapeva Recuperação de Crédito, com portal e marca amplamente destacados. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-HEAD-8">E-HEAD-8</a> </span></li><li>[HIGH] CONSUMER_CONFUSION: Contexto multibanco/multicredor transparente na seção &#39;Tem dívida com alguma dessas empresas?&#39;, exibindo dezenas de outras instituições concorrentes. — <span class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-IMG-9">E-IMG-9</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio pertence à Itapeva Recuperação de Crédito, atuante no segmento de gestão e recuperação de créditos cedidos.</li><li>A marca BV Financeira é listada em conjunto com diversas outras instituições financeiras e varejistas em seção de consulta de dívidas.</li><li>Foi detectado e confirmado via E-VIS-LEGACY-001 o uso do logotipo antigo/legado da BV Financeira (B vermelho sobre V azul), com similaridade 0.86 na imagem logo-bvfinanceira.png.</li><li>Não há identificação de CNPJ no rodapé da página inicial, apenas links institucionais e canais de contato próprios da Itapeva.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Razão social exata e CNPJ da operação da Itapeva não constam expressos na página inicial capturada.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O portal investigado pertence à Itapeva Recuperação de Crédito, empresa especializada na negociação e recuperação de créditos cedidos. A menção ao Banco BV ocorre estritamente na identificação de carteiras/credores parceiros (&#39;Tem dívida com alguma dessas empresas?&#39;), ao lado de diversas outras instituições financeiras. No entanto, foi constatado o uso do logotipo antigo e descontinuado da BV Financeira (monograma com B vermelho sobre V azul), o que infringe as diretrizes atuais de uso de marca do Banco BV e requer alinhamento e atualização cadastral junto ao parceiro.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:itapevarec.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>itapevarec.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>20.261.013/1721-29 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-IMG-2">E-IMG-2</a></td><td>imagem alt=&#39;BV - Loft&#39; src=https://www.itapevarec.com.br/cdn/images/banner-20261013172129</td></tr>
+      <tr><td>cnpj</td><td>20.261.013/1720-36 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-IMG-3">E-IMG-3</a></td><td>imagem alt=&#39;BV- Quero Quero&#39; src=https://www.itapevarec.com.br/cdn/images/banner-20261013172036</td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/ItapevaRec</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/itapevarec</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 770 5989</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>08007705989</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WHATSAPP &lt;https://www.itapevarec.com.br/Nembus/Portal/whatsapp&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Fale conosco pelo WhatsApp &lt;https://www.itapevarec.com.br/Nembus/portal/whatsapp&gt;</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) com dígito verificador inválido ignorados: 20.261.013/1721-29, 20.261.013/1720-36</li><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-5">E-IMG-5</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-VIS-LEGACY-001">E-VIS-LEGACY-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Há declaração da condição de correspondente/prestador, mas outros elementos da página (DECLARED_COMMERCIAL_IDENTITY) podem contradizê-la ou reduzir seu efeito (destaque, legibilidade e identificação da contratante a verificar). A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-CTA-18">E-CTA-18</a> </span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página pertence ao Portal Itapeva, empresa de recuperação de crédito e renegociação de dívidas. A presença do logotipo da BV Financeira (mesmo em sua versão legada) ocorre em contexto estritamente informativo e referencial de identificação de carteiras de dívidas ativas para negociação, ao lado de dezenas de outros bancos e varejistas. Não há desvio regulatório sob a ótica de COBANs de originação de crédito nem risco de confusão do consumidor sobre a identidade do operador.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>TARGET_OUT_OF_SCOPE</td><td>HIGH</td><td>O site pertence à Itapeva Recuperação de Crédito, empresa especializada na gestão e cobrança de créditos cedidos, não se tratando de COBAN originador de crédito (loja de veículos, integrador solar ou promotora de financiamento).</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-HEAD-8">E-HEAD-8</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-007">E-TXT-007</a> </td></tr>
+      <tr><td>NOMINATIVE_MULTICREDITOR_USAGE</td><td>HIGH</td><td>A inclusão do logotipo antigo da BV Financeira ocorre estritamente em um carrossel referencial de credores (&#39;Tem dívida com alguma dessas empresas?&#39;) junto a mais de 15 instituições financeiras e varejistas, sem qualquer tentativa de personificação ou overbranding enganoso.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-IMG-4">E-IMG-4</a> <a href="#E-IMG-5">E-IMG-5</a> <a href="#E-IMG-6">E-IMG-6</a> <a href="#E-IMG-7">E-IMG-7</a> <a href="#E-IMG-9">E-IMG-9</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-HEAD-1</li><li>E-HEAD-8</li><li>E-IMG-4</li><li>E-IMG-6</li><li>E-IMG-7</li><li>E-IMG-9</li><li>E-SHOT-VIEWPORT</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>(&#34;consultar CPF&#34; OR &#34;consulte seu CPF&#34; OR &#34;digite seu CPF&#34;) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (acordo OR débito OR desconto OR boleto) -site:bv.com.br -site:bancobv.com.br -site:bvfinanceira.com.br -site:bvinvestimentos.com.br -site:napista.com.br -site:bvopen.com.br -site:meufinanciamentosolar.com.br -site:votorantim.com.br -site:vam.com.br -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br<br><span class="muted">H14-threat:boleto-pix-falso</span></td><td class="mono">https://www.itapevarec.com.br/</td><td>Portal Itapeva - Recuperação de Crédito<br><span class="muted">Consulte seu CPF/CNPJ Já tem cadastro? Acesse aqui. Já tem cadastro? Acesse ... BV Financeira; Yamaha; Banco Pan; Pernambucanas; Bradesco; Bradescard; Renner ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 23:23:36.187434+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.20.26.112</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cd6a74bf0f4/attempt-1/manifest.json<br>sha256 797ea2c0bb5677b650979b0d37b8a4890c3ddcd3025c1ba93dba8e34a87b3dd2</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://www.itapevarec.com.br/<br>Final: https://www.itapevarec.com.br/Nembus/Home</p>
+<p class="mono">Redirecionamentos: https://www.itapevarec.com.br/</p>    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cd6a74bf0f4/attempt-1/viewport.png</td><td class="mono">afa660aeb250f886401dce871fa6da7a86a6160bbbc56359027e1317a96dafe7</td><td>890114</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cd6a74bf0f4/attempt-1/fullpage.png</td><td class="mono">ab01216148a929a64645d7d92559220b21724acd62cac7f3d5df5a13c7e6420f</td><td>2108652</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cd6a74bf0f4/attempt-1/page.html.txt</td><td class="mono">3adfc373006b4f301332ac72fa4f2556a2cc07f44a5b5352858d3755f86a8e24</td><td>127624</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cd6a74bf0f4/attempt-1/text.txt</td><td class="mono">29a1a3d0d4835b5515d0299f22496f16b5cc00d4372919dee07ac563546a0e89</td><td>5116</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cd6a74bf0f4/attempt-1/page.json</td><td class="mono">e056ef070240b9fee3944a4236974ae0f77c17f7d4294a6bde98586d7e9f9470</td><td>35665</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:35+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-25T23:23:36+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:23:45+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:23:45+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:24:18+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:24:39+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

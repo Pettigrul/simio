@@ -1,0 +1,25 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cae6ec0b97f",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://canalexecutivoblog.wordpress.com/",
+  "final_url": "https://canalexecutivoblog.wordpress.com/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "192.0.78.12",
+  "collected_at": "2026-11-25T22:48:25.459954+00:00",
+  "manifest_written_at": "2026-11-25T22:48:33.398199+00:00",
+  "artifacts": [],
+  "blocked_requests": [
+    "https://sync.go.sonobi.com/uc.html?gdpr=&gdpr_consent=&us_privacy=1---&loc=https%3A%2F%2Famspbs.com%2Fsetuid%3Fbidder%3Dsonobi%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D%5BUID% -> DNS resolution failed for sync.go.sonobi.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com/universal/v1?supply_id=2TwkgUpM&gdpr=0&gdpr_consent=&us_privacy=1--- -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://usermatch.krxd.net:443 -> DNS resolution failed for usermatch.krxd.net: [Errno -5] No address associated with hostname"
+  ],
+  "errors": [
+    "network did not become idle (continuing)",
+    "collection error: Error: Page.evaluate: TypeError: (f.action || \"\").slice is not a function\n    at eval (eval at evaluate (:290:30), <anonymous>:99:65)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:290:30), <anonymous>:99:39)\n    at UtilityScript.evaluate (<anonymous>:297:18)\n    at UtilityScript.<anonymous"
+  ],
+  "not_inspected": [],
+  "hash_algorithm": "SHA-256"
+}

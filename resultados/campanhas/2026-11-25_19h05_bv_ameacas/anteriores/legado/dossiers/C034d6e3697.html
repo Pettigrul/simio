@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C034d6e3697</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-25T23:35:39+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C034d6e3697 — bancoseagencias.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>senha — possível coleta de credenciais</div>
+      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Página identificada como guia cadastral/diretório informativo de bancos e agências (&#39;Bancos e Agências&#39;). Conforme diretrizes de triagem, portais informativos, cadastrais ou de consulta de endereços/telefones que não operam como correspondentes bancários ou intermediários de crédito são classificados como fora de escopo (NOT_RELEVANT / NO_INDICATION).
+[Revisor: DOWNGRADE] O domínio bancoseagencias.com.br é um portal/guia cadastral de consulta de agências bancárias de todo o Brasil, fora do público-alvo da investigação de COBANs e parceiros comerciais de veículos, energia solar ou crédito. Conforme as diretrizes, guias cadastrais devem receber downgrade para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li><li>página fora dos domínios oficiais que usa a marca e pede senha: possível coleta de credenciais (phishing/painel falso); mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>resultado revisado para NO_INDICATION, mas a página usa a marca e pede senha; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C034d6e3697/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 8a15cc015d70dc659e580a6c947b2708da448735806cfae4349018646630d86c</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C034d6e3697/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 a62508b3a13d949cb16f2a875918ae5791efdd64eeccb5c5fbf6190184201f67</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/ (domínio: bancoseagencias.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Agência AGÊNCIA BANCO BV 2020 - BANCO BV S.A. - Bancos e agências — A agência está localizada na AV. DAS NAÇÕES UNIDAS, 14171. Qual o horário de funcionamento da Agência AGÊNCIA BANCO BV? A agência funciona de Segunda à Sexta ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C034d6e3697/attempt-1/viewport.png (sha256 8a15cc015d70dc65…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C034d6e3697/attempt-1/fullpage.png (sha256 a62508b3a13d949c…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Agência AGÊNCIA BANCO BV 2020 - BANCO BV S.A.</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Agência 2020 do BANCO BV S.A. localizada no bairro VILA GERTRUDES, em SAO PAULO/SP. Confira o endereço, telefone, central de atendimento, outras agências na região e mais informações.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Bancos e agências</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Agência AGÊNCIA BANCO BV 2020 - BANCO BV S.A.</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Agência 2020 do BANCO BV S.A. localizada no bairro VILA GERTRUDES, em SAO PAULO/SP. Confira o endereço, telefone, central de atendimento, outras agências na região e mais informações.</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Agência AGÊNCIA BANCO BV 2020 BANCO BV S.A.</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Informações sobre a agência</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Contato</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Quais os serviços ofertados pela agência AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Perguntas frequentes sobre a agência AGÊNCIA BANCO BV</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Qual é o número de telefone de atendimento ao cliente da AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Onde fica a agência AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>Qual o horário de funcionamento da Agência AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Comentários sobre essa agência AGÊNCIA BANCO BV</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Deixe um comentário</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>Mapa da localização</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>★ Top 5 agências</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>⌖ Top states</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>☰ Links rápidos</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>⚙ Ferramentas</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>B Bancos e Agências Início Agências Caixas eletrônicos Ferramentas Sobre Encontrar agência →</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>B Bancos e Agências Início Agências Caixas eletrônicos Ferramentas Sobre Encontrar agência → Home › SP › SAO PAULO › VILA GERTRUDES › Agência AGÊNCIA BANCO BV 2020 – BANCO BV S.A. IR PARA: Informações Serviços Mapa FAQ Comentários Avalie esta agência: Avalie essa agência Ligar na agência B Bancos e Agências Encontre agências e informações financeiras em todo o Brasil. VER FERRAMENTAS LOCALIZAÇÃO VERIFICADA Agência AGÊNCIA BANCO BV 2020 BANCO BV S.A. ⌖ SAO PAULO, SP Informações sobre a agência</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>B Bancos e Agências Descubra os principais bancos, seus endereços e telefones. Ache tudo o que precisa com o Bancos e Agências. in 𝕏 f ★ Top 5 agências Agência MATRIZ 0 – 321 SOCIEDADE DE… Agência MATRIZ 0 – 4UM DISTRIBUIDORA DE… Agência MATRIZ 0 – A55 SOCIEDADE DE… Agência MATRIZ 0 – ABC BRASIL DISTRIBUIDORA… Agência MATRIZ 0 – ABN AMRO CLEARING… ⌖ Top states São Paulo Rio de Janeiro Minas Gerais Distrito Federal ☰ Links rápidos Bancos por cidade Blog Sobre o projeto Política de privacidade Termos de uso ⚙ Ferramentas Todas as ferramentas Calculadora de juros compostos Simulador de financiamento Conversor de moedas © 2026 Bancos e Agências. Dados sujeitos a atualização.</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>B Bancos e Agências &lt;https://bancoseagencias.com.br/&gt; | Início &lt;https://bancoseagencias.com.br/&gt; | Agências &lt;https://bancoseagencias.com.br/#estados&gt; | Caixas eletrônicos &lt;https://bancoseagencias.com.br/caixas-eletronicos/&gt; | Ferramentas &lt;https://bancoseagencias.com.br/ferramentas/&gt; | Sobre &lt;https://bancoseagencias.com.br/sobre/&gt; | Encontrar agência → &lt;https://bancoseagencias.com.br/#estados&gt; | Home &lt;https://bancoseagencias.com.br/&gt; | SP &lt;https://bancoseagencias.com.br/sp/&gt; | SAO PAULO &lt;https://bancoseagencias.com.br/sp/sao-paulo/&gt; | VILA GERTRUDES &lt;https://bancoseagencias.com.br/sp/sao-paulo/vila-gertrudes/&gt; | Informações &lt;https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/#information&gt; | Serviços &lt;https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/#services&gt; | Mapa &lt;https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/#map&gt; | FAQ &lt;https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/#faq&gt; | Comentários &lt;https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/#comments&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Encontrar agência → &lt;https://bancoseagencias.com.br/#estados&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Play Video</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>Play</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Play Video</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Publicar comentário</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Carregar mapa</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Ligar na agência &lt;tel:1151713393&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>WhatsApp &lt;https://api.whatsapp.com/send?text=Ag%C3%AAncia%20AG%C3%8ANCIA%20BANCO%20BV%202020%20%26%238211%3B%20BANCO%20BV%20S.A.%20https%3A%2F%2Fbancoseagencias.com.br%2Fsp%2Fagencia-2020-banco-bv-s-a%2F&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td>Telegram &lt;https://t.me/share/url?url=https%3A%2F%2Fbancoseagencias.com.br%2Fsp%2Fagencia-2020-banco-bv-s-a%2F&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>footer</td><td>f &lt;https://www.facebook.com/people/Bancos-e-Ag%C3%AAncias/61573872549322/&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page</td><td>imagem alt=&#39;Video channel logo&#39; src=https://assets.open.video/open-video-white-logo.png (98x16, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Bancos e Agências</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Agência AGÊNCIA BANCO BV 2020 – BANCO BV S.A.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>Bancos e Agências</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Agência AGÊNCIA BANCO BV 2020</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>BANCO BV S.A.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>BANCO</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>BANCO BV S.A.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>Banco Múltiplo</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>CNPJ</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>CEP</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>COMPLEMENTO DO ENDEREÇO</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>TELEFONE</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>ENDEREÇO COMPLETO</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>TELEFONE</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>CEP</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>Quais os serviços ofertados pela agência AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>Atendimento e Negócios PF</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>Atendimento e Negócios PJ</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Atendimento e Negócios Agro</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>Perguntas frequentes sobre a agência AGÊNCIA BANCO BV</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Qual é o número de telefone de atendimento ao cliente da AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>O telefone de atendimento ao cliente da agência é (11) 5171-3393.</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>Onde fica a agência AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Qual o horário de funcionamento da Agência AGÊNCIA BANCO BV?</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Comentários sobre essa agência AGÊNCIA BANCO BV</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>O seu endereço de e-mail não será publicado. Campos obrigatórios são marcados com *</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>Bancos e Agências</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>Descubra os principais bancos, seus endereços e telefones. Ache tudo o que precisa com o Bancos e Agências.</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Bancos por cidade</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>© 2026 Bancos e Agências. Dados sujeitos a atualização.</td></tr>
+      <tr id="E-FORM-001"><td class="mono"><b>E-FORM-001</b></td><td>form</td><td>page</td><td>Campo de formulário que pede SENHA (type=textarea, name=d08e7b90a3, rótulo=Comentário *)</td></tr>
+      <tr id="E-FORM-002"><td class="mono"><b>E-FORM-002</b></td><td>form</td><td>page</td><td>Campo de formulário que pede SENHA (type=textarea, name=comment, rótulo=hp-comment)</td></tr>
+      <tr id="E-NET-BLOCKED"><td class="mono"><b>E-NET-BLOCKED</b></td><td>network</td><td>collection</td><td>27 requisição(ões) bloqueadas pela política: https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -&gt; DNS resolution failed for invstatic101.creativecdn.com: [Errno -2] Name or service not known; https://i.liadm.com/s/88342?bidder_id=246498&amp;bidder_uuid=4615864625892018691363 -&gt; DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known; https://i.liadm.com/s/88342?bidder_id=246498&amp;bidder_uuid=4615864625892018691363&amp;gpp_s=&amp;gpp_as= -&gt; DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known; https://pixel.rubiconproject.com/tap.php?v=4939&amp;nid=1902&amp;gdpr=0&amp;put=SeCBpknm0PNSsNP0SbWc80_m1aVS4NCiSuTFqUaZ -&gt; request cap reached; https://cm.g.doubleclick.net/pixel?gdpr=0&amp;google_nid=B765081F39B1F7&amp;google_push=&amp;google_hm=GoG90e6PrLuBemhUlrD-Ow -&gt; request cap reached</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site bancoseagencias.com.br atua como um guia cadastral e diretório informativo de agências bancárias no Brasil, não se passando pela instituição nem comercializando produtos de crédito.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-028">E-TXT-028</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>A página apenas agrega dados públicos cadastrais de agência bancária (endereço, telefone, horário). Os campos de formulário identificados são seções de comentários/avaliação do portal.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> <a href="#E-TXT-025">E-TXT-025</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: Marca no título/nome do site — <span class="mono"><a href="#E-TITLE">E-TITLE</a> </span></li><li>[HIGH] INSTITUTIONAL_LANGUAGE: Expressões de oficialidade associadas à marca: AGÊNCIA BANCO BV — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-5">E-HEAD-5</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Página usa a marca e pede senha — <span class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio bancoseagencias.com.br é um portal informativo e diretório de busca de agências bancárias em todo o país.</li><li>A página apresenta dados cadastrais da agência 2020 do Banco BV S.A. (endereço na Av. das Nações Unidas, telefone e dados de contato público).</li><li>Não há oferta ou intermediação de crédito por correspondente bancário (COBAN), tratando-se estritamente de diretório cadastral/guia de cidades fora do escopo da investigação.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Página identificada como guia cadastral/diretório informativo de bancos e agências (&#39;Bancos e Agências&#39;). Conforme diretrizes de triagem, portais informativos, cadastrais ou de consulta de endereços/telefones que não operam como correspondentes bancários ou intermediários de crédito são classificados como fora de escopo (NOT_RELEVANT / NO_INDICATION).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Bancos e agências<br><span class="mono">domain:bancoseagencias.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>bancoseagencias.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>61.573.872/5493-22 <b>(dígito inválido)</b></td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td>f &lt;https://www.facebook.com/people/Bancos-e-Ag%C3%AAncias/61573872549322</td></tr>
+      <tr><td>institution_name_displayed</td><td>BANCO BV S.A</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>Agência AGÊNCIA BANCO BV 2020 BANCO BV S.A</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>VERIFICADA Agência AGÊNCIA BANCO BV 2020 BANCO BV S.A</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/people/Bancos-e-Ag%C3%AAncias/61573872549322/</td><td class="mono"><a href="#E-CONTACT-4">E-CONTACT-4</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Bancos e agências</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>1151713393</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>phone</td><td>(11) 5171-3393</td><td class="mono"><a href="#E-TXT-022">E-TXT-022</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>WhatsApp &lt;https://api.whatsapp.com/send?text=Ag%C3%AAncia%20AG%C3%8ANCIA%20BANCO%20BV%202020%20%26%238211%3B%20BANCO%20BV%20S.A.%20https%3A%2F%2Fbancoseagencias.com.br%2Fsp%2Fagencia-2020-banco-bv-s-a</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) com dígito verificador inválido ignorados: 61.573.872/5493-22</li><li>a página se apresenta com o nome da instituição (BANCO BV S.A; Agência AGÊNCIA BANCO BV 2020 BANCO BV S.A; VERIFICADA Agência AGÊNCIA BANCO BV 2020 BANCO BV S.A); isso é identidade declarada/visual, não a identidade do responsável</li><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-DISC-001">E-DISC-001</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-HEAD-4">E-HEAD-4</a> <a href="#E-HEAD-5">E-HEAD-5</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a> <a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">O domínio bancoseagencias.com.br é um portal/guia cadastral de consulta de agências bancárias de todo o Brasil, fora do público-alvo da investigação de COBANs e parceiros comerciais de veículos, energia solar ou crédito. Conforme as diretrizes, guias cadastrais devem receber downgrade para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Guia cadastral e diretório de informações bancárias</td><td>HIGH</td><td>O site &#39;Bancos e Agências&#39; (bancoseagencias.com.br) é um diretório informativo/guia cadastral público de agências bancárias e contatos, não constituindo correspondente bancário (COBAN), revenda de veículos, empresa de energia solar ou promotora de crédito comercial.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-HDR">E-HDR</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-028">E-TXT-028</a> </td></tr>
+      <tr><td>Detecção indevida de formulário de senha</td><td>MEDIUM</td><td>Os campos sinalizados como pedido de senha em E-FORM-001 e E-FORM-002 são na realidade campos de texto para envio de comentários na página (incluindo honeypots antispam típicos de blogs), não se tratando de captura de credenciais ou phishing bancário.</td><td class="mono"><a href="#E-FORM-001">E-FORM-001</a> <a href="#E-FORM-002">E-FORM-002</a> <a href="#E-HEAD-10">E-HEAD-10</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-HDR</li><li>E-FTR</li><li>E-TXT-028</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;agência Banco BV&#34; endereço<br><span class="muted">H10-fraud:agencia-listagem</span></td><td class="mono">https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/</td><td>Agência AGÊNCIA BANCO BV 2020 - BANCO BV S.A. - Bancos e agências<br><span class="muted">A agência está localizada na AV. DAS NAÇÕES UNIDAS, 14171. Qual o horário de funcionamento da Agência AGÊNCIA BANCO BV? A agência funciona de Segunda à Sexta ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 23:22:11.876579+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.72.151</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C034d6e3697/attempt-1/manifest.json<br>sha256 96975a5dff722d9e151545abfc8029011b976acfe16ace067703cf82ad057b3c</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/<br>Final: https://bancoseagencias.com.br/sp/agencia-2020-banco-bv-s-a/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C034d6e3697/attempt-1/viewport.png</td><td class="mono">8a15cc015d70dc659e580a6c947b2708da448735806cfae4349018646630d86c</td><td>129533</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C034d6e3697/attempt-1/fullpage.png</td><td class="mono">a62508b3a13d949cb16f2a875918ae5791efdd64eeccb5c5fbf6190184201f67</td><td>637006</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C034d6e3697/attempt-1/page.html.txt</td><td class="mono">525595e285ae46f6a330f2a2fac94223e0213fe4656f921ed4392af173cc31f5</td><td>248146</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C034d6e3697/attempt-1/text.txt</td><td class="mono">3c28117ebe43c78f9167d6b5c2876856fd2312528e2e84c6b8f9146a5808624a</td><td>3230</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C034d6e3697/attempt-1/page.json</td><td class="mono">42615c1ad8b6136767f3be930e800d1afddd3ba08f888023e14dbf7458431c28</td><td>23413</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+<h3>Requisições bloqueadas pela política de rede</h3><ul class="mono"><li>https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -&gt; DNS resolution failed for invstatic101.creativecdn.com: [Errno -2] Name or service not known</li><li>https://i.liadm.com/s/88342?bidder_id=246498&amp;bidder_uuid=4615864625892018691363 -&gt; DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known</li><li>https://i.liadm.com/s/88342?bidder_id=246498&amp;bidder_uuid=4615864625892018691363&amp;gpp_s=&amp;gpp_as= -&gt; DNS resolution failed for i.liadm.com: [Errno -2] Name or service not known</li><li>https://pixel.rubiconproject.com/tap.php?v=4939&amp;nid=1902&amp;gdpr=0&amp;put=SeCBpknm0PNSsNP0SbWc80_m1aVS4NCiSuTFqUaZ -&gt; request cap reached</li><li>https://cm.g.doubleclick.net/pixel?gdpr=0&amp;google_nid=B765081F39B1F7&amp;google_push=&amp;google_hm=GoG90e6PrLuBemhUlrD-Ow -&gt; request cap reached</li><li>https://token.rubiconproject.com/token?pid=2974&amp;pt=n&amp;a=1 -&gt; request cap reached</li><li>https://s.amazon-adsystem.com/dcm?pid=94c5f526-dc47-4863-976e-c5fbd9bde1f8 -&gt; request cap reached</li><li>https://match.adsrvr.org/track/cmf/rubicon -&gt; request cap reached</li><li>https://token.rubiconproject.com/token?pid=25470 -&gt; request cap reached</li><li>https://pixel.rubiconproject.com/exchange/sync.php?p=a9us -&gt; request cap reached</li><li>https://cm.g.doubleclick.net/pixel?google_nid=rubicon&amp;google_cm&amp;google_sc&amp;process_consent=T -&gt; request cap reached</li><li>https://aax-eu.amazon-adsystem.com/s/dcm?pid=fd2c2d83-30e4-42d2-9dea-d40519bcd8e7 -&gt; request cap reached</li><li>https://id.rlcdn.com/709414.gif -&gt; request cap reached</li><li>https://token.rubiconproject.com/token?pid=36584 -&gt; request cap reached</li><li>https://token.rubiconproject.com/token?pid=2249&amp;pt=n -&gt; request cap reached</li><li>https://match.prod.bidr.io/cookie-sync/rp?bee_sync_partners=rp -&gt; request cap reached</li><li>https://pixel.rubiconproject.com/exchange/sync.php?p=18694 -&gt; request cap reached</li><li>https://pixel.rubiconproject.com/exchange/sync.php?p=sovrn -&gt; request cap reached</li><li>https://pixel.rubiconproject.com/exchange/sync.php?p=pbs-yahoo-exchange -&gt; request cap reached</li><li>https://pixel.rubiconproject.com/exchange/sync.php?p=pbs-adaptmx -&gt; request cap reached</li><li>https://sync.ipredictive.com/d/sync/cookie/generic?https://pixel.rubiconproject.com/tap.php?v=17149&amp;nid=2861&amp;put=${ADELPHIC_CUID}&amp;expires=30 -&gt; request cap reached</li><li>https://ut.pubmatic.com/geo?pubid=159035 -&gt; request cap reached</li><li>https://eus.rubiconproject.com/usync.js -&gt; request cap reached</li><li>https://image6.pubmatic.com/AdServer/PugMaster?sec=1&amp;async=1&amp;kdntuid=1&amp;rnd=77021483&amp;p=159035&amp;s=0&amp;a=0&amp;ptask=ALL&amp;np=0&amp;fp=0&amp;rp=0&amp;mpc=0&amp;spug=1&amp;coppa=0&amp;gdpr=0&amp;gdpr_consent=&amp;us_privacy=&amp;gpp=&amp;gpp_sid= -&gt; request cap reached</li><li>https://pagead2.googlesyndication.com/pagead/gen_204?initSuccess=f&amp;latency=5004&amp;slotLoadingDone=f&amp;gptCorrelatorRetrieved=t&amp;gptStreamCorrelatorRetrieved=t&amp;lid=184&amp;sdkv=h.3.800.0&amp;e=44715336%2C95331589%2 -&gt; request cap reached</li><li>https://pagead2.googlesyndication.com/pagead/gen_204?cslots=0&amp;cslots_scoped=0&amp;dispcorr=1&amp;streamcorr=1&amp;isgptpresent=1&amp;loc=https%3A%2F%2Fbancoseagencias.com.br%2F&amp;ref=https%3A%2F%2Fbancoseagencias.com.b -&gt; request cap reached</li><li>https://pagead2.googlesyndication.com/pagead/gen_204?csrvinit=1&amp;lid=151&amp;sdkv=h.3.800.0&amp;e=44715336%2C95331589%2C95332046%2C95338774%2C95403043%2C95408328&amp;id=ima_html5&amp;c=97742014301617&amp;domain=bancoseage -&gt; request cap reached</li></ul>  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:35+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 1.0)</td></tr>
+      <tr><td>2026-11-25T23:22:11+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:22:21+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:22:21+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:22:34+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:22:42+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

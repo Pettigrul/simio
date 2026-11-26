@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C2199d59471",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://parceiro-bv.appstor.io/",
+  "final_url": "https://parceiro-bv.appstor.io/",
+  "redirect_chain": [
+    "https://parceiro-bv.appstor.io/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.26.0.73",
+  "collected_at": "2026-11-25T22:51:50.307834+00:00",
+  "manifest_written_at": "2026-11-25T22:51:56.653187+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C2199d59471/attempt-1/viewport.png",
+      "sha256": "ea4e15bbefeb13c357160d61504c0e5c2a146df7282979b5c4274e61e1c06557",
+      "size_bytes": 40352
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C2199d59471/attempt-1/fullpage.png",
+      "sha256": "ea4e15bbefeb13c357160d61504c0e5c2a146df7282979b5c4274e61e1c06557",
+      "size_bytes": 40352
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C2199d59471/attempt-1/page.html.txt",
+      "sha256": "d1eba88f4db27af21889512b49ddc25727ea4a16c17c247b8cd1f8b49ad16e10",
+      "size_bytes": 44846
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C2199d59471/attempt-1/text.txt",
+      "sha256": "48d5cccd58072637aed79dc1bc47bfb69c0063a84e99f738c0ad92f20807e6ac",
+      "size_bytes": 296
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C2199d59471/attempt-1/page.json",
+      "sha256": "1656c4224744f05afa84ea00ebbe4c6679907f8f304d0daae923e41d4d344b2a",
+      "size_bytes": 1462
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

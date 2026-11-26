@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C9717311e3b</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C9717311e3b — wordpress.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://deniwaycredito.wordpress.com/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>MEDIUM</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>MEDIUM</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Plataforma</b>wordpress.com — o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</div><div class="kv"><b>Titular do domínio</b>— (dono só identificável pela plataforma)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Automattic, Inc (192.0.78.12); Automattic, Inc (192.0.78.13)</div>
+<div class="kv"><b>Contatos de abuso (takedown)</b>abuse@automattic.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>NONE</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Embora a coleta direta via navegador tenha apresentado falha técnica, as informações indexadas em mecanismos de busca (E-DISC-001) apontam para um site hospedado em plataforma gratuita (WordPress.com) oferecendo serviços de crédito e financiamento automotivo com menção direta à BV Financeira. A ausência de transparência sobre a condição de correspondente bancário e a falta de dados cadastrais visíveis justificam a classificação como comunicação ambígua, requerendo revisão.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>acesso direto no navegador local bloqueado/indisponível; avaliação baseada nas evidências indexadas na descoberta (E-DISC-*)</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>acesso direto pelo navegador indisponível/bloqueado; identidade examinada apenas a partir das evidências indexadas na descoberta (E-DISC-*)</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <p>Nenhum screenshot disponível.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://deniwaycredito.wordpress.com/ (domínio: deniwaycredito.wordpress.com)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: FAILED; HTTP 200; ocorrências: network did not become idle (continuing); collection error: Error: Page.evaluate: TypeError: (f.action || &#34;&#34;).slice is not a function
+    at eval (eval at evaluate (:290:30), &lt;anonymous&gt;:99:65)
+    at Array.map (&lt;anonymous&gt;)
+    at eval (eval at evaluate (:290:30), &lt;anonymous&gt;:99:39)
+    at UtilityScript.evaluate (&lt;anonymous&gt;:297:18)
+    at UtilityScript.&lt;anonymous</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Financiamento de Automóveis — ... BV financeira, essa ação ajuda você a financiar um carro novo, afinal de ... Empréstimo, Crédito e Investimento. O Caminho Certo para Seu Crédito com as ...</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Identidade comercial baseada em subdomínio gratuito no WordPress sem dados cadastrais formais (CNPJ/Razão Social) identificáveis.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Oferta de financiamento de automóveis citando a BV Financeira sem declaração visível de correspondente bancário independente.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Não foi possível avaliar os elementos visuais devido à falha técnica na coleta de tela.</td><td class="mono"><a href="#E-COLLECT">E-COLLECT</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Uso de logotipo não pôde ser verificado em virtude da indisponibilidade de renderização da página.</td><td class="mono"><a href="#E-COLLECT">E-COLLECT</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O trecho indexado apresenta texto promocional genérico sobre financiamento automotivo (&#39;O Caminho Certo para Seu Crédito&#39;).</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Jornada de serviço não pôde ser completamente mapeada por ausência de captura de formulários.</td><td class="mono"><a href="#E-COLLECT">E-COLLECT</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Canais de contato diretos não foram recuperados nos dados parciais indexados.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>A intermediação de crédito sob denominação de BV Financeira em domínio amador pode gerar dúvidas quanto à relação jurídica formal com a instituição financeira.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: A página oferece financiamento de automóveis mencionando a BV Financeira sem apresentar identificação clara de correspondente bancário regulamentado (Resolução CMN nº 4.935/2021) ou dados cadastrais completos nas evidências indexadas. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-URL">E-URL</a> </span></li><li>[MEDIUM] DECLARED_COMMERCIAL_IDENTITY: O domínio gratuito no WordPress (&#39;deniwaycredito&#39;) indica atuação como intermediador ou promotora de crédito (&#39;Deniway Crédito&#39;), mas não apresenta CNPJ ou razão social identificável nas evidências coletadas. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-001">E-DISC-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A coleta direta do navegador falhou com erro de execução (E-COLLECT).</li><li>O domínio investigado é deniwaycredito.wordpress.com (E-URL).</li><li>O índice de busca indica oferta de financiamento de automóveis e serviços de empréstimo e crédito associados ao nome BV Financeira (E-DISC-001).</li><li>Não há identificação de CNPJ ou razão social formal no fragmento indexado (E-DISC-001).</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>Não foi possível visualizar a disposição gráfica completa da página, logotipos ou formulários devido à falha técnica na captura web.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Embora a coleta direta via navegador tenha apresentado falha técnica, as informações indexadas em mecanismos de busca (E-DISC-001) apontam para um site hospedado em plataforma gratuita (WordPress.com) oferecendo serviços de crédito e financiamento automotivo com menção direta à BV Financeira. A ausência de transparência sobre a condição de correspondente bancário e a falta de dados cadastrais visíveis justificam a classificação como comunicação ambígua, requerendo revisão.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:wordpress.com</span></div>
+      <div class="kv"><b>Confiança</b>NONE</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>wordpress.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+<p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → REVIEW_REQUIRED / MEDIUM</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>(site:blogspot.com OR site:wordpress.com OR site:godaddysites.com OR site:hostingersite.com) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR acordo OR quitação OR empréstimo)<br><span class="muted">H14-threat:hospedagem-gratuita</span></td><td class="mono">https://deniwaycredito.wordpress.com/</td><td>Financiamento de Automóveis<br><span class="muted">... BV financeira, essa ação ajuda você a financiar um carro novo, afinal de ... Empréstimo, Crédito e Investimento. O Caminho Certo para Seu Crédito com as ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>FAILED (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 22:48:31.712483+00:00</div>
+      <div class="kv"><b>IP do servidor</b>192.0.78.12</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C9717311e3b/attempt-3/manifest.json<br>sha256 d8109297f3846e2cf6be110e32b2057cbb5d35c643c89425365869a5935c13c6</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://deniwaycredito.wordpress.com/<br>Final: https://deniwaycredito.wordpress.com/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>collection error: Error: Page.evaluate: TypeError: (f.action || &#34;&#34;).slice is not a function
+    at eval (eval at evaluate (:290:30), &lt;anonymous&gt;:99:65)
+    at Array.map (&lt;anonymous&gt;)
+    at eval (eval at evaluate (:290:30), &lt;anonymous&gt;:99:39)
+    at UtilityScript.evaluate (&lt;anonymous&gt;:297:18)
+    at UtilityScript.&lt;anonymous</li></ul>
+<h3>Requisições bloqueadas pela política de rede</h3><ul class="mono"><li>https://sync.go.sonobi.com/uc.html?gdpr=&amp;gdpr_consent=&amp;us_privacy=1---&amp;loc=https%3A%2F%2Famspbs.com%2Fsetuid%3Fbidder%3Dsonobi%26gdpr%3D%26gdpr_consent%3D%26gpp%3D%26gpp_sid%3D%26f%3Db%26uid%3D%5BUID% -&gt; DNS resolution failed for sync.go.sonobi.com: [Errno -2] Name or service not known</li><li>https://match.sharethrough.com/universal/v1?supply_id=2TwkgUpM&amp;gdpr=0&amp;gdpr_consent=&amp;us_privacy=1--- -&gt; DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known</li><li>https://match.sharethrough.com:443 -&gt; DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known</li></ul>  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:26+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 3.5)</td></tr>
+      <tr><td>2026-11-25T22:48:07+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:48:16+00:00</td><td>COLLECTING</td><td>QUEUED</td><td>transient collection failure, retry 1</td></tr>
+      <tr><td>2026-11-25T22:48:19+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:48:27+00:00</td><td>COLLECTING</td><td>QUEUED</td><td>transient collection failure, retry 2</td></tr>
+      <tr><td>2026-11-25T22:48:31+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:48:40+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T22:48:40+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T22:48:51+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T22:48:51+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

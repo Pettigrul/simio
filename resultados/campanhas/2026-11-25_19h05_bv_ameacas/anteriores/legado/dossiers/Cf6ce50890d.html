@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Cf6ce50890d</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Cf6ce50890d — lovable.app</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://voucherreservas.lovable.app/</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>D_STRONG_IMPERSONATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Plataforma</b>lovable.app — o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</div><div class="kv"><b>Titular do domínio</b>— (dono só identificável pela plataforma)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: LOVABLE-APP (185.41.148.2, SE); LOVABLE-APP (185.41.148.1, SE)</div>
+<div class="kv"><b>Contatos de abuso (takedown)</b>abuse@lovable.dev</div>      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página hospeda em subdomínio de terceiros (lovable.app) uma réplica de portal de contingência que personifica diretamente o Banco BV. Faz uso não autorizado dos CNPJs e endereços da matriz do banco, redige avisos em primeira pessoa afirmando instabilidade no sistema oficial e disponibiliza opções críticas de negociação, emissão de boletos e quitação de contratos. Caracteriza personificação grave e direta (Cenário D).
+[Revisor: CONFIRM] A página em domínio não oficial (lovable.app) personifica diretamente o Banco BV alegando ser um canal emergencial decorrente de suposta instabilidade no portal oficial. Utiliza indevidamente a razão social, os CNPJs oficiais e o endereço da matriz do banco para oferecer serviços críticos (boletos, quitação de contrato e negociação). A classificação como STRONG_INDICATION com prioridade HIGH é plenamente justificada.</p>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Cf6ce50890d/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 50b21cae31e6f45be301810bdac6ad595f098e001f474178fde84da8078eb342</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Cf6ce50890d/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 b7e906cb3ac7951a23ce8df67d267915af399cfa1a80fb55e8755d601f90ac15</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://voucherreservas.lovable.app/ (domínio: voucherreservas.lovable.app)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Voucher e Reservas B.V — Portal do Cliente — Banco B.V S.A. - CNPJ: 01.858.774/0001-10. Avenida das Nações Unidas, 14.171, Torre A, 12⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP. Banco B.V ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Cf6ce50890d/attempt-1/viewport.png (sha256 50b21cae31e6f45b…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Cf6ce50890d/attempt-1/fullpage.png (sha256 b7e906cb3ac7951a…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Voucher e Reservas B.V — Portal do Cliente</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Portal do cliente Voucher e Reservas B.V. Acesse suas reservas, vouchers e informações de viagem.</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: Voucher e Reservas B.V — Portal do Cliente</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: Acesse seus vouchers e reservas de forma rápida e segura.</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>author: Lovable</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>Voucher e Reservas Portal Sobre Contato</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Voucher e Reservas Portal Sobre Contato Portal Seguro ⚠️ Informamos que nosso Portal do Cliente está temporariamente indisponível devido a uma atualização de sistema. Enquanto isso, todo atendimento está sendo realizado exclusivamente por aqui, com total segurança. Negociação Boletos Quitação de Contrato Olá B.V Edit with</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Copyright © 2026 todos os direitos reservados Banco B.V S.A. - CNPJ: 01.858.774/0001-10 Avenida das Nações Unidas, 14.171, Torre A, 12⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP Banco B.V S.A. - CNPJ: 59.588.111/0001-03 Avenida das Nações Unidas, 14.171, Torre A, 18⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Portal &lt;https://voucherreservas.lovable.app/#portal&gt; | Sobre &lt;https://voucherreservas.lovable.app/#sobre&gt; | Contato &lt;https://voucherreservas.lovable.app/#contato&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Dismiss</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>Enquanto isso, todo atendimento está sendo realizado exclusivamente por aqui, com total segurança.</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>BOLETOS</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>QUITAÇÃO DE CONTRATO</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Banco B.V S.A. - CNPJ: 01.858.774/0001-10</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Avenida das Nações Unidas, 14.171, Torre A, 12⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Banco B.V S.A. - CNPJ: 59.588.111/0001-03</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>Avenida das Nações Unidas, 14.171, Torre A, 18⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Uso indevido da razão social e dos CNPJs oficiais do conglomerado Banco BV no rodapé sem identificar qualquer terceiro responsável.</td><td class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-006">E-TXT-006</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência de identificação de correspondente bancário independente nos termos da Resolução CMN 4.935/2021; o site atua como se fosse o próprio banco.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>Discurso em 1ª pessoa plural (&#39;nosso Portal do Cliente&#39;, &#39;todo atendimento está sendo realizado exclusivamente por aqui&#39;) simulando comunicação de canal de contingência oficial.</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Disponibilização de botões de autosserviço sensíveis (&#39;NEGOCIAÇÃO&#39;, &#39;BOLETOS&#39;, &#39;QUITAÇÃO DE CONTRATO&#39;, &#39;OLÁ B.V&#39;).</td><td class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Estrutura típica de engenharia social/phishing simulando atendimento emergencial para captura de pagamentos de boletos e contratos de clientes BV.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A página utiliza diretamente o nome &#39;Banco B.V S.A.&#39; e os CNPJs oficiais da instituição financeira (01.858.774/0001-10 e 59.588.111/0001-03) no rodapé, associados ao endereço oficial da sede corporativa, simulando ser o canal próprio do banco em um domínio de terceiros (lovable.app). — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-FTR">E-FTR</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-007">E-TXT-007</a> </span></li><li>[HIGH] INSTITUTIONAL_LANGUAGE: Comunicação em 1ª pessoa alegando ser o canal oficial do banco em contingência (&#39;Informamos que nosso Portal do Cliente está temporariamente indisponível devido a uma atualização de sistema. Enquanto isso, todo atendimento está sendo realizado exclusivamente por aqui, com total segurança&#39;). — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Oferta de serviços financeiros altamente sensíveis associados à marca B.V, como emissão de boletos, quitação de contrato e negociação através de botões interativos direcionados para canal externo (&#39;Olá B.V&#39;). — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </span></li><li>[HIGH] CONSUMER_CONFUSION: Página não oficial criada em plataforma de terceiros (lovable.app) que se apropria da identidade cadastral do Banco BV para induzir clientes a realizar pagamentos, quitação de contratos e negociações de boletos sob pretexto de instabilidade do portal oficial. — <span class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>O domínio voucherreservas.lovable.app não pertence à infraestrutura oficial do Banco BV.</li><li>A página apresenta uma mensagem informando que o portal do cliente estaria temporariamente indisponível e redirecionando o atendimento para a própria página.</li><li>São exibidos botões de ação para &#39;NEGOCIAÇÃO&#39;, &#39;BOLETOS&#39;, &#39;QUITAÇÃO DE CONTRATO&#39; e &#39;OLÁ B.V&#39;.</li><li>No rodapé são copiados os dados cadastrais oficiais do Banco BV (CNPJs 01.858.774/0001-10 e 59.588.111/0001-03) e seus respectivos endereços na Avenida das Nações Unidas.</li><li>Não há identificação de correspondente bancário ou razão social de terceiro responsável pela página.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>—</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página hospeda em subdomínio de terceiros (lovable.app) uma réplica de portal de contingência que personifica diretamente o Banco BV. Faz uso não autorizado dos CNPJs e endereços da matriz do banco, redige avisos em primeira pessoa afirmando instabilidade no sistema oficial e disponibiliza opções críticas de negociação, emissão de boletos e quitação de contratos. Caracteriza personificação grave e direta (Cenário D).</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>SP Banco B.V S.A<br><span class="mono">domain:lovable.app</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>lovable.app</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>cnpj</td><td>01.858.774/0001-10</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td>Índice de busca (serper): Voucher e Reservas B.V — Portal do Cliente — Banco B.V S.A. - CNPJ: 01.858.774/0001-10</td></tr>
+      <tr><td>cnpj</td><td>59.588.111/0001-03</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td>da das Nações Unidas, 14.171, Torre A, 12⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP Banco B.V S.A. - CNPJ: 59.588.111/0001-03</td></tr>
+      <tr><td>legal_name</td><td>SP Banco B.V S.A</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>CNPJ(s) da instituição (perfil da marca) ou citados logo após o nome da instituição, com outro CNPJ presente na página, tratados como referência à contratante: 01.858.774/0001-10, 59.588.111/0001-03</li><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TITLE">E-TITLE</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-TXT-006">E-TXT-006</a> <a href="#E-TXT-007">E-TXT-007</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-TXT-002">E-TXT-002</a> <a href="#E-TXT-003">E-TXT-003</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>CONFIRM</b> → STRONG_INDICATION / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página em domínio não oficial (lovable.app) personifica diretamente o Banco BV alegando ser um canal emergencial decorrente de suposta instabilidade no portal oficial. Utiliza indevidamente a razão social, os CNPJs oficiais e o endereço da matriz do banco para oferecer serviços críticos (boletos, quitação de contrato e negociação). A classificação como STRONG_INDICATION com prioridade HIGH é plenamente justificada.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td colspan="4">Nenhum questionamento</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>(site:web.app OR site:firebaseapp.com OR site:lovable.app OR site:canva.site) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;)<br><span class="muted">H14-threat:hospedagem-gratuita</span></td><td class="mono">https://voucherreservas.lovable.app/</td><td>Voucher e Reservas B.V — Portal do Cliente<br><span class="muted">Banco B.V S.A. - CNPJ: 01.858.774/0001-10. Avenida das Nações Unidas, 14.171, Torre A, 12⁰ andar, Vila Gertrudes, CEP: 04794-000, São Paulo - SP. Banco B.V ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 23:26:52.045080+00:00</div>
+      <div class="kv"><b>IP do servidor</b>185.41.148.1</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Cf6ce50890d/attempt-1/manifest.json<br>sha256 d09f6f8df922189ebd3f76ec58f3acf2137010cb3876b1134d23b3efd548aabb</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://voucherreservas.lovable.app/<br>Final: https://voucherreservas.lovable.app/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Cf6ce50890d/attempt-1/viewport.png</td><td class="mono">50b21cae31e6f45be301810bdac6ad595f098e001f474178fde84da8078eb342</td><td>43395</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Cf6ce50890d/attempt-1/fullpage.png</td><td class="mono">b7e906cb3ac7951a23ce8df67d267915af399cfa1a80fb55e8755d601f90ac15</td><td>74703</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Cf6ce50890d/attempt-1/page.html.txt</td><td class="mono">14791190cbc160bc06dd53108434cf654b8ca8b8d15641f337f43daea8d78a1a</td><td>14601</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Cf6ce50890d/attempt-1/text.txt</td><td class="mono">e77e7bfd62168ff76f7ce99c1f08ecd0c0e754e9003cf278fb157042c0afdccc</td><td>693</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Cf6ce50890d/attempt-1/page.json</td><td class="mono">65c37eefae504dedd0640ff2fcf321c3c7a288fdab28a791d559d456d3df98e4</td><td>4317</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:36+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 0.5)</td></tr>
+      <tr><td>2026-11-25T23:26:52+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:26:59+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:26:59+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:27:30+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:27:40+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

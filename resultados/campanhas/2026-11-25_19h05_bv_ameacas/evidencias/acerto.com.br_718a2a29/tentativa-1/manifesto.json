@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C718a2a2920",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://acerto.com.br/limpe-seu-nome/ativos",
+  "final_url": "https://acerto.com.br/limpe-seu-nome/ativos",
+  "redirect_chain": [],
+  "http_status": 403,
+  "server_ip": "95.101.31.44",
+  "collected_at": "2026-11-25T23:28:52.353838+00:00",
+  "manifest_written_at": "2026-11-25T23:28:55.661007+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C718a2a2920/attempt-1/viewport.png",
+      "sha256": "4bba2f73e5f76d5af4e29ca384541d14cbf82961d732b2bf7001365d469fc89f",
+      "size_bytes": 23944
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C718a2a2920/attempt-1/fullpage.png",
+      "sha256": "4bba2f73e5f76d5af4e29ca384541d14cbf82961d732b2bf7001365d469fc89f",
+      "size_bytes": 23944
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C718a2a2920/attempt-1/page.html.txt",
+      "sha256": "efc0140bfc02c08c84223688dd881bad3232c2074c69504bc5896f8551ef9b69",
+      "size_bytes": 310
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C718a2a2920/attempt-1/text.txt",
+      "sha256": "29e8a2c1515dc63ce3bb87c3b206dd65d712c0ef95d9bfc5cbdd023edca65074",
+      "size_bytes": 214
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C718a2a2920/attempt-1/page.json",
+      "sha256": "e2181163acaeb972a4d52cf9f8cf90373faf7e7f63b3fb4dca60d27459837c43",
+      "size_bytes": 793
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

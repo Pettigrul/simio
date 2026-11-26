@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C891ba14512",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.ibm.com/",
+  "final_url": "https://www.ibm.com/br-pt",
+  "redirect_chain": [
+    "https://www.ibm.com/"
+  ],
+  "http_status": 200,
+  "server_ip": "23.201.216.231",
+  "collected_at": "2026-11-25T23:20:34.191288+00:00",
+  "manifest_written_at": "2026-11-25T23:20:46.267320+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C891ba14512/attempt-1/viewport.png",
+      "sha256": "f3d8c379858dd9e240379cec5b224a6237591d10583571fbf3d45b7ff5423d42",
+      "size_bytes": 165909
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C891ba14512/attempt-1/fullpage.png",
+      "sha256": "bd46768002ab2830acfc6eb0f3a82537159c6f2118e5b8190a830abb4b5e59f7",
+      "size_bytes": 906497
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C891ba14512/attempt-1/page.html.txt",
+      "sha256": "bdd6bedce3b1b0864e97f16b5a74286c099992b2ff49abb4276b3664946dd0fd",
+      "size_bytes": 837079
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C891ba14512/attempt-1/text.txt",
+      "sha256": "f664264f9c727ebf7dd2627e056891e98cd57dea2d0897dcd57d4c28eb42df44",
+      "size_bytes": 4899
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C891ba14512/attempt-1/page.json",
+      "sha256": "d87f4060bb44bf3a7a79578fdf0b602c2b06cc97238f5fa41eea794d7ce1e99c",
+      "size_bytes": 19754
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

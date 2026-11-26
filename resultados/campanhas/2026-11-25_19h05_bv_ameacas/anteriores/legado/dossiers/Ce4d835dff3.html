@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê Ce4d835dff3</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">Ce4d835dff3 — weebly.com</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://assessoriapositiva001.weebly.com/</p>
+      </div>
+      <div>
+        <span class="badge STRONG_INDICATION">STRONG_INDICATION</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>D_STRONG_IMPERSONATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>STRONG_INDICATION</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Plataforma</b>weebly.com — o responsável pela página só é identificável pela plataforma (denúncia de abuso ou ordem judicial)</div><div class="kv"><b>Titular do domínio</b>— (dono só identificável pela plataforma)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Weebly, Inc. (74.115.51.9); Weebly, Inc. (74.115.51.8)</div>
+<div class="kv"><b>Contatos de abuso (takedown)</b>weebly-abuse@squareup.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>MEDIUM</div>
+      <div class="kv"><b>Suficiência da evidência</b>PARTIAL</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Embora o acesso web direto tenha sido bloqueado por barreira anti-bot da Cloudflare, os registros de indexação (E-DISC-001 e E-DISC-002) revelam que a página em assessoriapositiva001.weebly.com se apresentava ostensivamente como &#39;BV FINANCEIRA&#39;, ofertando quitação de boletos BV com descontos expressivos. A estrutura é condizente com sites fraudulentos voltados à aplicação de golpes em clientes inadimplentes, ensejando classificação como D_STRONG_IMPERSONATION e prioridade HIGH.
+[Revisor: HUMAN_REVIEW] Questionamentos registrados; encaminhado para revisão humana.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>acesso direto no navegador local bloqueado/indisponível; avaliação baseada nas evidências indexadas na descoberta (E-DISC-*)</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>conteúdo real possivelmente oculto por desafio anti-bot</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>acesso direto pelo navegador indisponível/bloqueado; identidade examinada apenas a partir das evidências indexadas na descoberta (E-DISC-*)</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Ce4d835dff3/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 0b87e7e2747cde18180b10bdd997d7e55f122c900df1fdc233c84158ba958381</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/Ce4d835dff3/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 97c1111f004508804bc03c57f0893a0cf73e2617451fb65249c1f57219ef6bf3</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://assessoriapositiva001.weebly.com/ (domínio: assessoriapositiva001.weebly.com)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: FAILED; HTTP 403; ocorrências: HTTP 403: page content is an error page; possible bot challenge/CAPTCHA detected; no bypass attempted</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (grounding): weebly.com — **Páginas de Phishing / Fraude de Boleto e Quitação:** Estruturas clonadas ou falsos canais de autoatendimento que usam dados cadastrais do banco para atrair clientes inadimplentes, direcionando-os ao WhatsApp para envio de boletos adulterados ou recebimento via Pix</td></tr>
+      <tr id="E-DISC-002"><td class="mono"><b>E-DISC-002</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): MY SITE - Home — BV FINANCEIRA. SOLICITE ATENDIMENTO AGORA MESMO. Quite agora mesmo suas ... QUITAÇÃO DE BOLETO BV. COM ATÉ 70% DE DESCONTO QUITE AGORA MESMO SEU BOLETO ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/Ce4d835dff3/attempt-1/viewport.png (sha256 0b87e7e2747cde18…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/Ce4d835dff3/attempt-1/fullpage.png (sha256 97c1111f00450880…)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>O carregamento direto da página foi bloqueado por desafio Cloudflare (HTTP 403), inviabilizando a inspeção visual dos elementos gráficos da página original.</td><td class="mono"><a href="#E-COLLECT">E-COLLECT</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="CONFUSION">CONFUSION</td><td>Página indexada como &#39;BV FINANCEIRA&#39; sob domínio gratuito Weebly, sem explicitar razão social legítima ou CNPJ.</td><td class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="CONFUSION">CONFUSION</td><td>Inexistência de avisos de correspondente bancário independente, atuando sob pretexto de atendimento oficial do banco.</td><td class="mono"><a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="CONFUSION">CONFUSION</td><td>Uso de linguagem institucional de cobrança/quitação de contrato (&#39;Quite agora mesmo seu boleto&#39;, &#39;Com até 70% de desconto&#39;).</td><td class="mono"><a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>Não foi possível verificar a presença ou conformidade dos logotipos devido ao bloqueio da página.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="CONFUSION">CONFUSION</td><td>Indícios consistentes de canal falso para captação de clientes inadimplentes visando pagamento de boletos adulterados ou via Pix.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="CONFUSION">CONFUSION</td><td>Captação de contato imediato fora dos canais oficiais do Banco BV.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="CONFUSION">CONFUSION</td><td>Alto risco de engano do consumidor que busca atendimento ou renegociação de dívidas com o Banco BV.</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[HIGH] INSTITUTIONAL_LANGUAGE: A página utiliza o nome da instituição (&#39;BV FINANCEIRA&#39;) e termos de serviço oficial (&#39;SOLICITE ATENDIMENTO AGORA MESMO&#39;, &#39;QUITAÇÃO DE BOLETO BV. COM ATÉ 70% DE DESCONTO&#39;) apresentando-se diretamente em nome do banco para negociação e liquidação de dívidas. — <span class="mono"><a href="#E-DISC-002">E-DISC-002</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Oferta de quitação de boletos e descontos em nome da BV Financeira direcionando para canal não oficial/WhatsApp, característico de página de golpe de boleto/quitação fraudulenta. — <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> </span></li><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Domínio hospedado em plataforma gratuita (&#39;weebly.com&#39;) sob o prefixo &#39;assessoriapositiva001&#39;, sem identificação clara de razão social ou CNPJ de correspondente bancário regular. — <span class="mono"><a href="#E-URL">E-URL</a> <a href="#E-DISC-002">E-DISC-002</a> </span></li><li>[HIGH] CORRESPONDENT_TRANSPARENCY: Ausência de declaração de correspondente bancário nos termos da Resolução CMN nº 4.935/2021, simulando ser o canal próprio de atendimento do banco. — <span class="mono"><a href="#E-DISC-002">E-DISC-002</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>Nenhum</li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Acesso direto à URL resultou em bloqueio Cloudflare (HTTP 403: &#39;Sorry, you have been blocked&#39;).</li><li>Os metadados e fragmentos indexados no mecanismo de busca revelam que a página intitulava-se &#39;BV FINANCEIRA&#39; em site gratuito Weebly.</li><li>O conteúdo indexado promove &#39;QUITAÇÃO DE BOLETO BV. COM ATÉ 70% DE DESCONTO QUITE AGORA MESMO SEU BOLETO&#39;, configurando forte indicativo de página fraudulenta/golpe do boleto.</li><li>Não há identificação de CNPJ ou razão social de correspondente bancário autorizado nos dados indexados.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>A página atual pode ter sido desativada ou estar sob desafio permanente de acesso automatizado, dependendo de validação manual.</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Embora o acesso web direto tenha sido bloqueado por barreira anti-bot da Cloudflare, os registros de indexação (E-DISC-001 e E-DISC-002) revelam que a página em assessoriapositiva001.weebly.com se apresentava ostensivamente como &#39;BV FINANCEIRA&#39;, ofertando quitação de boletos BV com descontos expressivos. A estrutura é condizente com sites fraudulentos voltados à aplicação de golpes em clientes inadimplentes, ensejando classificação como D_STRONG_IMPERSONATION e prioridade HIGH.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>—<br><span class="mono">domain:weebly.com</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>weebly.com</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Índice de busca (grounding): weebly.com — **Páginas de Phishing / Fraude de Boleto e Quitação:** Estruturas clonadas ou falsos canais de autoatendimento que usam dados cadastrais do banco para atrair </td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NO_INDICATION_OBSERVED</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+    <p><b>Evidência observada:</b> <span class="mono">—</span></p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> <a href="#E-URL">E-URL</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-DISC-001">E-DISC-001</a> <a href="#E-DISC-002">E-DISC-002</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(heuristic-reviewer-v1)</span></h2>
+    <p>Decisão: <b>HUMAN_REVIEW</b> → STRONG_INDICATION / HIGH</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Questionamentos registrados; encaminhado para revisão humana.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+      <tr><td>evidence_sufficiency</td><td>HIGH</td><td>Coleta parcial ou desafio anti-bot: conteúdo pode estar incompleto.</td><td class="mono"><a href="#E-COLLECT">E-COLLECT</a> </td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>grounding</td><td>Objetivo (inteligência de ameaças e proteção de marca): Páginas com a marca em hospedagem gratuita/efêmera (padrão de kits de phishing).
+Execute no Google Search as seguintes consultas (dorks):
+  - (site:vercel.app OR site:netlify.app OR site:pages.dev OR site:github.io) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;)
+  - (site:web.app OR site:firebaseapp.com OR site:lovable.app OR site:canva.site) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;)
+  - (site:wixsite.com OR site:weebly.com OR site:site123.me OR site:webnode.page) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR acordo OR quitação OR empréstimo OR login)
+  - (site:blogspot.com OR site:wordpress.com OR site:godaddysites.com OR site:hostingersite.com) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR acordo OR quitação OR empréstimo)
+Liste de forma abrangente as páginas públicas encontradas (até 12 resultados distintos) que possam se passar pela instituição ou enganar seus clientes. Para cada uma, informe a URL, quem parece operar a página e o que ela oferece ou pede (login, senha, CPF, dados de cartão, token, boleto ou Pix, download de aplicativo, contato por WhatsApp/Telegram) e por que parece falsa ou perigosa.<br><span class="muted">H14-threat:hospedagem-gratuita</span></td><td class="mono">https://assessoriapositiva001.weebly.com/</td><td>weebly.com<br><span class="muted">**Páginas de Phishing / Fraude de Boleto e Quitação:** Estruturas clonadas ou falsos canais de autoatendimento que usam dados cadastrais do banco para atrair clientes inadimplentes, direcionando-os ao WhatsApp para envio de boletos adulterados ou recebimento via Pix</span></td></tr>
+      <tr><td>serper</td><td>(site:wixsite.com OR site:weebly.com OR site:site123.me OR site:webnode.page) (&#34;Banco BV&#34; OR &#34;bv financeira&#34;) (boleto OR acordo OR quitação OR empréstimo OR login)<br><span class="muted">H14-threat:hospedagem-gratuita</span></td><td class="mono">https://assessoriapositiva001.weebly.com/</td><td>MY SITE - Home<br><span class="muted">BV FINANCEIRA. SOLICITE ATENDIMENTO AGORA MESMO. Quite agora mesmo suas ... QUITAÇÃO DE BOLETO BV. COM ATÉ 70% DE DESCONTO QUITE AGORA MESMO SEU BOLETO ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>FAILED (HTTP 403)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 22:39:42.280221+00:00</div>
+      <div class="kv"><b>IP do servidor</b>74.115.51.8</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/Ce4d835dff3/attempt-1/manifest.json<br>sha256 546e375b888907c9f7a986a27577854c25b1c115159899d3d9e7cbd47f9320a7</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://assessoriapositiva001.weebly.com/<br>Final: https://assessoriapositiva001.weebly.com/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/Ce4d835dff3/attempt-1/viewport.png</td><td class="mono">0b87e7e2747cde18180b10bdd997d7e55f122c900df1fdc233c84158ba958381</td><td>67810</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/Ce4d835dff3/attempt-1/fullpage.png</td><td class="mono">97c1111f004508804bc03c57f0893a0cf73e2617451fb65249c1f57219ef6bf3</td><td>76094</td></tr>
+      <tr><td>html</td><td class="mono">evidence/Ce4d835dff3/attempt-1/page.html.txt</td><td class="mono">45ae31fe14bb058964da5a8e147f3d9d84f1349fac916476747ba6e88544540f</td><td>4255</td></tr>
+      <tr><td>text</td><td class="mono">evidence/Ce4d835dff3/attempt-1/text.txt</td><td class="mono">d78ac00170aa56ba79d0d05e2d1e441cddefed9292ce459a5cd492347f970d71</td><td>691</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/Ce4d835dff3/attempt-1/page.json</td><td class="mono">5b3caf07bc206cfddab110938c63380d1204662fcad3315dd8699550e00d0a3a</td><td>2102</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>HTTP 403: page content is an error page</li><li>possible bot challenge/CAPTCHA detected; no bypass attempted</li><li>conteúdo real possivelmente oculto por desafio anti-bot</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:24+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 7.5)</td></tr>
+      <tr><td>2026-11-25T22:39:42+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T22:39:46+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T22:39:46+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T22:40:24+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T22:40:24+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

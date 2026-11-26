@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C1fb3e75650</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-26T00:39:31+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C1fb3e75650 — maiscredit.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>SIM — logotipo descontinuado (modelo)</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>nenhum campo de senha, cartão ou token</div>
+<div class="kv"><b>Domínio criado em</b>2013-01-15 (5062 dias)</div><div class="kv"><b>Titular do domínio</b>pessoa física (dados pessoais omitidos — LGPD)</div>      <div class="kv"><b>Resolve hoje</b>sim · hospedagem: Hostinger International Limited (167.88.34.243, BR)</div>
+<div class="kv"><b>DNS (NS / MX)</b>ns2.maiscredit.com.br, ns1.maiscredit.com.br / mail.maiscredit.com.br</div><div class="kv"><b>Contatos de abuso (takedown)</b>abuse@hostinger.com</div>      <div class="kv"><b>Identidade (categoria)</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Página fora do escopo de auditoria de correspondentes bancários (COBANs). Trata-se de artigo publicado por empresa de consultoria financeira (&#39;Mais Credit Consultoria&#39;) para atração de clientes interessados em renegociação e revisão de juros de financiamento veicular. A menção ao Banco BV / BV Financeira ocorre estritamente em contexto editorial/informativo comparativo ao lado de múltiplos outros bancos, sem qualquer tentativa de intermediação de crédito em nome do BV ou personificação da instituição.
+[Revisor: DOWNGRADE] A página em análise é um artigo de blog/portal de consultoria de crédito e revisão contratual (Mais Credit Consultoria) abordando ações revisionais e renegociação de juros de financiamento. Não se trata de um correspondente bancário comercializando produtos do Banco BV nem de loja de veículos/energia solar com sobreuso de marca. Conforme as diretrizes de escopo, menções em contexto editorial/revisional e comparativo com múltiplos bancos justificam o rebaixamento para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li><li>uso da identidade visual antiga da marca (logotipo descontinuado): terceiros, inclusive correspondentes, não podem utilizá-la; mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>revisor sugeriu NO_INDICATION, mas a página usa o logotipo antigo; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C1fb3e75650/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 cd27f51f14ed634aeb2dce9985147f2362db14f8b068555ff75e891a91d40bc9</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C1fb3e75650/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 1bd8d7e91c4f23e7ad6863cfa897f094e19a2f30d1561a0eb5dc41f917d9cfb6</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/ (domínio: maiscredit.com.br)</td></tr>
+      <tr id="E-COLLECT"><td class="mono"><b>E-COLLECT</b></td><td>network</td><td>collection</td><td>Status da coleta: OK; HTTP 200; ocorrências: network did not become idle (continuing)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): Você Financiou um Veículo e esta pagando Juros Abusivos? Veja — ... BV Financeira, Banco PAN, Safra, além de cooperativas de crédito de grande ... quitação com desconto. Conclusão, livre-se dos Juros Abusivos. Financiar ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C1fb3e75650/attempt-1/viewport.png (sha256 cd27f51f14ed634a…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C1fb3e75650/attempt-1/fullpage.png (sha256 1bd8d7e91c4f23e7…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>Você Financiou um Veículo e esta pagando Juros Abusivos? Veja</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: Descubra se você está pagando juros abusivos no financiamento do seu veículo! Faça uma Análise Gratuita com a Mais Credit e reduza até 80%</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:site_name: Mais Credit Consultoria</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:title: Você Financiou um Veículo e esta pagando Juros Abusivos? Veja</td></tr>
+      <tr id="E-META-4"><td class="mono"><b>E-META-4</b></td><td>meta</td><td>head</td><td>og:description: Descubra se você está pagando juros abusivos no financiamento do seu veículo! Faça uma Análise Gratuita com a Mais Credit e reduza até 80%</td></tr>
+      <tr id="E-META-5"><td class="mono"><b>E-META-5</b></td><td>meta</td><td>head</td><td>author: Bruna Guglielmo</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>Você Financiou um Veículo? Veja os Juros Abusivos!</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>1. O Cenário dos Financiamentos no Brasil sem Juros Abusivos: Veja Grandes Bancos e Cooperativas</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>A ilusão da parcela que cabe no bolso (Juros Abusivos)</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>2. Juros Abusivos: Existe uma taxa padrão para financiamento de veículos?</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>A resposta direta é: Não existe uma taxa fixa ou teto único.</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>O papel balizador do Banco Central (Bacen)</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>3. O que diz o Banco Central e as recentes mudanças regulatórias</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>A Resolução nº 3.518 do Conselho Monetário Nacional</td></tr>
+      <tr id="E-HEAD-9"><td class="mono"><b>E-HEAD-9</b></td><td>heading</td><td>page</td><td>Aprimoramento da transparência e o Custo Efetivo Total (CET)</td></tr>
+      <tr id="E-HEAD-10"><td class="mono"><b>E-HEAD-10</b></td><td>heading</td><td>page</td><td>Resoluções sobre Portabilidade de Crédito</td></tr>
+      <tr id="E-HEAD-11"><td class="mono"><b>E-HEAD-11</b></td><td>heading</td><td>page</td><td>4. Seguro, Tarifas e Custo Efetivo Total (CET): O que é incluído no financiamento?</td></tr>
+      <tr id="E-HEAD-12"><td class="mono"><b>E-HEAD-12</b></td><td>heading</td><td>page</td><td>O Custo Efetivo Total (CET) explicado</td></tr>
+      <tr id="E-HEAD-13"><td class="mono"><b>E-HEAD-13</b></td><td>heading</td><td>page</td><td>O que pode e o que não pode ser incluído no financiamento? Pode conciderar Juros Abusivos?</td></tr>
+      <tr id="E-HEAD-14"><td class="mono"><b>E-HEAD-14</b></td><td>heading</td><td>page</td><td>5. Como identificar se o seu contrato possui irregularidades</td></tr>
+      <tr id="E-HEAD-15"><td class="mono"><b>E-HEAD-15</b></td><td>heading</td><td>page</td><td>Sinais de alerta comuns nos contratos de financiamento:</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>Home A Mais Credit Serviços Histórias de Sucesso Contato Cálculo Online 0800 580 0910 Você Financiou um Veículo? Veja os Juros Abusivos! uma realidade financeira preocupante: milhares de consumidores pagam mensalmente valores muito acima do justo devido à cobrança de juros abusivos e tarifas embutidas de forma irregular. O financiamento de veículos tornou-se uma das modalidades de crédito mais acessíveis e utilizadas no Brasil. Seja para adquirir o carro próprio para o dia a dia, para o trabalho por aplicativo ou para renovar a frota de um pequeno negócio, milhões de brasileiros recorrem anualmente a instituições financeiras tradicionais — como Itaú, Bradesco, Santander, BV Financeira, Banco PAN, Safra, além de cooperativas de crédito de grande expressão como Sicredi e Sicoob — para viabilizar a compra de um automóvel. Faça sua Análise Grauita Prencha o formulário e descubra o valor real das suas parcelas sem juros abusivos!</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Home &lt;https://maiscredit.com.br/&gt; | A Mais Credit &lt;https://maiscredit.com.br/a-mais-credit-nova/&gt; | Serviços &lt;https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/#&gt; | Histórias de Sucesso &lt;https://maiscredit.com.br/historias-de-sucesso/&gt; | Contato &lt;https://maiscredit.com.br/contato/&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>page</td><td>Cálculo Online &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C3%A1lise%20Gratuita!!&gt;</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>page</td><td>Pesquisar</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>page</td><td>Enviar</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Cálculo Online &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C3%A1lise%20Gratuita!!&gt;</td></tr>
+      <tr id="E-CONTACT-2"><td class="mono"><b>E-CONTACT-2</b></td><td>contact</td><td>page</td><td>0800 580 0910 &lt;tel:08005800910&gt;</td></tr>
+      <tr id="E-CONTACT-3"><td class="mono"><b>E-CONTACT-3</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C3%A1lise%20Gratuita!!&gt;</td></tr>
+      <tr id="E-CONTACT-4"><td class="mono"><b>E-CONTACT-4</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C3%A1lise%20Gratuita!!&gt;</td></tr>
+      <tr id="E-CONTACT-5"><td class="mono"><b>E-CONTACT-5</b></td><td>contact</td><td>page</td><td> &lt;tel:08005800910&gt;</td></tr>
+      <tr id="E-CONTACT-6"><td class="mono"><b>E-CONTACT-6</b></td><td>contact</td><td>page</td><td> &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C3%A1lise%20Gratuita!!&gt;</td></tr>
+      <tr id="E-CONTACT-7"><td class="mono"><b>E-CONTACT-7</b></td><td>contact</td><td>page</td><td> &lt;https://www.instagram.com/maiscreditoficial/&gt;</td></tr>
+      <tr id="E-CONTACT-8"><td class="mono"><b>E-CONTACT-8</b></td><td>contact</td><td>page</td><td> &lt;https://www.facebook.com/MaisCredit&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>page (acima da dobra)</td><td>imagem alt=&#39;&#39; src=https://maiscredit.com.br/wp-content/uploads//2025/04/logo.svg (190x46, acima da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>O financiamento de veículos tornou-se uma das modalidades de crédito mais acessíveis e utilizadas no Brasil. Seja para adquirir o carro próprio para o dia a dia, para o trabalho por aplicativo ou para renovar a frota de um pequeno negócio, milhões de brasileiros recorrem anualmente a instituições financeiras tradicionais — como Itaú, Bradesco, Santander, BV Financeira, Banco PAN, Safra, além de</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>Neste artigo completo, vamos analisar detalhadamente como funcionam os juros de financiamento no Brasil, o que diz o Banco Central sobre as taxas aplicadas pelas principais instituições, quais são os encargos que compõem o Custo Efetivo Total (CET) e de que maneira você pode identificar se o seu contrato apresenta irregularidades e buscar a renegociação para equilibrar o seu orçamento.</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>1. O Cenário dos Financiamentos no Brasil sem Juros Abusivos: Veja Grandes Bancos e Cooperativas</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>Quando um consumidor decide financiar um veículo, ele geralmente pesquisa qual instituição oferece a menor taxa de juros ou a melhor condição de aprovação. Gigantes do setor bancário, como Itaú Unibanco, Bradesco, Santander, BV Financeira, Banco PAN e Banco Safra, dominam o mercado de crédito automotivo há décadas. Paralelamente, o sistema cooperativo, representado por gigantes como Sicredi e</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>Apesar da diversidade de marcas e modelos de atendimento, a estrutura matemática por trás de um contrato de financiamento de veículo segue lógicas padronizadas e reguladas pelo mercado financeiro nacional. Contudo, a liberdade tarifária concedida às instituições financeiras muitas vezes abre margem para a aplicação de taxas que superam com folga a média de mercado divulgada pelo Banco Central.</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Ao focar apenas na prestação mensal, perde-se de vista o montante total pago ao final do contrato. Um veículo financiado em 48 ou 60 vezes pode facilmente custar o equivalente a dois carros e meio ao término das parcelas. Quando a essa conta somam-se juros excessivos, tarifas não autorizadas e seguros casados, o sonho do veículo próprio transforma-se em um peso financeiro insustentável.</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>No Brasil, o sistema financeiro opera sob o regime de juros livres. Isso significa que cada banco, financeira ou cooperativa tem autonomia para definir a taxa de juros que cobrará em suas operações de crédito, considerando o seu custo de captação de recursos, o risco de inadimplência do cliente e a sua margem de lucro desejada.</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>O papel balizador do Banco Central (Bacen)</td></tr>
+      <tr id="E-TXT-009"><td class="mono"><b>E-TXT-009</b></td><td>text</td><td>page</td><td>Apesar de não existir uma taxa fixa, os bancos não podem cobrar juros infinitos ou arbitrários. O Banco Central do Brasil monitora diariamente e publica semanalmente a Taxa Média de Juros de Mercado para diferentes modalidades de crédito, incluindo o financiamento de veículos novos e usados.</td></tr>
+      <tr id="E-TXT-010"><td class="mono"><b>E-TXT-010</b></td><td>text</td><td>page</td><td>Como funciona na prática? Se a taxa média divulgada pelo Banco Central para financiamento de veículos em um determinado mês for de, por exemplo, 1,8% ao mês (cerca de 23,8% ao ano), um contrato que apresente uma taxa de 3,5% ao mês (quase o dobro da média) entra imediatamente no radar de análise de abusividade.</td></tr>
+      <tr id="E-TXT-011"><td class="mono"><b>E-TXT-011</b></td><td>text</td><td>page</td><td>A jurisprudência e o entendimento de mercado: Os órgãos de defesa do consumidor e os especialistas em renegociação financeira utilizam as tabelas do Banco Central como parâmetro comparativo essencial. Quando a taxa cobrada por um banco supera de forma expressiva a média de mercado praticada à época da assinatura do contrato — sem justificativa plausível baseada no risco concreto do cliente —,</td></tr>
+      <tr id="E-TXT-012"><td class="mono"><b>E-TXT-012</b></td><td>text</td><td>page</td><td>3. O que diz o Banco Central e as recentes mudanças regulatórias</td></tr>
+      <tr id="E-TXT-013"><td class="mono"><b>E-TXT-013</b></td><td>text</td><td>page</td><td>Nos últimos anos, o Banco Central e o Conselho Monetário Nacional (CMN) implementaram diversas resoluções e normativas com o objetivo de dar maior transparência aos contratos de crédito, proteger o consumidor contra práticas abusivas e facilitar a portabilidade e a renegociação de dívidas.</td></tr>
+      <tr id="E-TXT-014"><td class="mono"><b>E-TXT-014</b></td><td>text</td><td>page</td><td>Esta norma foi um marco na regulamentação de tarifas bancárias, estabelecendo que a cobrança de tarifas em operações de crédito (como abertura de cadastro ou avaliação de bens) só pode ocorrer se expressamente prevista no contrato e desde que o serviço tenha sido efetivamente prestado. A norma eliminou uma série de cobranças cumulativas e abusivas que os bancos praticavam rotineiramente nas</td></tr>
+      <tr id="E-TXT-015"><td class="mono"><b>E-TXT-015</b></td><td>text</td><td>page</td><td>O Banco Central tornou obrigatória a divulgação clara do Custo Efetivo Total (CET) em todas as propostas e contratos de crédito. O CET engloba não apenas os juros nominais, mas todas as tarifas, tributos, seguros e encargos incidentes sobre a operação. A exigência legal é que o cliente saiba exatamente quanto vai pagar antes de assinar, evitando surpresas desagradáveis após a liberação do recurso.</td></tr>
+      <tr id="E-TXT-016"><td class="mono"><b>E-TXT-016</b></td><td>text</td><td>page</td><td>As normativas de portabilidade permitiram que o consumidor que identificasse taxas elevadas em seu banco original pudesse migrar a sua dívida para outra instituição financeira que oferecesse condições melhores. Embora a portabilidade seja um direito, na prática, muitos consumidores enfrentam barreiras operacionais e burocráticas impostas pelos grandes bancos, tornando a renegociação direta e a</td></tr>
+      <tr id="E-TXT-017"><td class="mono"><b>E-TXT-017</b></td><td>text</td><td>page</td><td>O CET é o indicador mais importante do seu contrato. Ele expressa o custo percentual anual real da operação. Se você quer comparar duas propostas de financiamento, não olhe apenas para a taxa de juros nominal anunciada pelo gerente do banco; olhe para o CET. É nele que estão somadas todas as despesas obrigatórias da operação.</td></tr>
+      <tr id="E-TXT-018"><td class="mono"><b>E-TXT-018</b></td><td>text</td><td>page</td><td>O que é: Valor cobrado pelo banco para realizar a pesquisa de cadastro, verificação de crédito e abertura da ficha do cliente.</td></tr>
+      <tr id="E-TXT-019"><td class="mono"><b>E-TXT-019</b></td><td>text</td><td>page</td><td>Regra: É permitida apenas uma vez no início do relacionamento com o banco para aquela operação específica. Cobranças duplicadas ou nomenclaturas fantasmas (como “tarifa de emissão de carnê” ou “serviço de terceiros”) são frequentemente consideradas irregulares.</td></tr>
+      <tr id="E-TXT-020"><td class="mono"><b>E-TXT-020</b></td><td>text</td><td>page</td><td>O que é: Custo cobrado pela instituição financeira para avaliar o veículo que está sendo dado como garantia.</td></tr>
+      <tr id="E-TXT-021"><td class="mono"><b>E-TXT-021</b></td><td>text</td><td>page</td><td>Regra: Só pode ser cobrada se o serviço de vistoria e avaliação tiver sido efetivamente prestado. Muitas vezes, os bancos cobram essa taxa de forma genérica sem que o veículo tenha passado por uma avaliação física real nos moldes declarados.</td></tr>
+      <tr id="E-TXT-022"><td class="mono"><b>E-TXT-022</b></td><td>text</td><td>page</td><td>Regra: A legislação brasileira proíbe estritamente a venda casada (Art. 39 do Código de Defesa do Consumidor). O banco não pode condicionar a aprovação do financiamento do veículo à contratação de um seguro específico da seguradora do próprio conglomerado bancário, tampouco incluir o valor do seguro no contrato sem a autorização destacada e a livre escolha do cliente.</td></tr>
+      <tr id="E-TXT-023"><td class="mono"><b>E-TXT-023</b></td><td>text</td><td>page</td><td>O que é: Taxas cobradas para remunerar correspondentes bancários ou serviços de despachante para registro do contrato no Detran.</td></tr>
+      <tr id="E-TXT-024"><td class="mono"><b>E-TXT-024</b></td><td>text</td><td>page</td><td>Identificar se o seu financiamento com bancos como Itaú, Bradesco, Santander, BV Financeira, Banco PAN, Safra, Sicredi ou Sicoob apresenta abusividades exige uma avaliação técnica e detalhada de cada cláusula contratual.</td></tr>
+      <tr id="E-TXT-025"><td class="mono"><b>E-TXT-025</b></td><td>text</td><td>page</td><td>Taxas de juros muito acima da média do Banco Central: Contratos firmados com taxas mensais que ultrapassam amplamente o patamar médio divulgado para o período da contratação.</td></tr>
+      <tr id="E-TXT-026"><td class="mono"><b>E-TXT-026</b></td><td>text</td><td>page</td><td>Descontos de até 80% para a quitação: Para os clientes que possuem parcelas em atraso ou que desejam encerrar o vínculo com o banco de uma vez por todas, a Mais Credit negocia condições especiais de liquidação antecipada, podendo alcançar descontos de até 80% para a quitação total da dívida.</td></tr>
+      <tr id="E-TXT-027"><td class="mono"><b>E-TXT-027</b></td><td>text</td><td>page</td><td>instituição financeira.</td></tr>
+      <tr id="E-TXT-028"><td class="mono"><b>E-TXT-028</b></td><td>text</td><td>page</td><td>7. Passo a Passo: O que fazer se você financiou com os grandes bancos ou cooperativas</td></tr>
+      <tr id="E-TXT-029"><td class="mono"><b>E-TXT-029</b></td><td>text</td><td>page</td><td>Se você realizou um financiamento de veículo com o Itaú, Bradesco, Santander, BV Financeira, Banco PAN, Safra, Sicredi, Sicoob ou qualquer outra instituição, siga este roteiro prático para proteger o seu patrimônio e o seu orçamento:</td></tr>
+      <tr id="E-TXT-030"><td class="mono"><b>E-TXT-030</b></td><td>text</td><td>page</td><td>Localize a Cópia do seu Contrato: O primeiro documento necessário é a Cédula de Crédito Bancário (CCB) ou o contrato de financiamento original fornecido pelo banco no momento da compra. Se você não o tiver em mãos, pode solicitá-lo diretamente pelo aplicativo do banco ou pelos canais de atendimento ao cliente.</td></tr>
+      <tr id="E-TXT-031"><td class="mono"><b>E-TXT-031</b></td><td>text</td><td>page</td><td>Solicite a Planilha de Evolução da Dívida: Peça à instituição financeira o demonstrativo de cálculo de evolução do saldo devedor, detalhando o que foi pago em juros, amortização e encargos até o momento atual.</td></tr>
+      <tr id="E-TXT-032"><td class="mono"><b>E-TXT-032</b></td><td>text</td><td>page</td><td>Avalie as Oportunidades de Renegociação: Com os resultados da análise em mãos, verifique as opções disponíveis para reduzir o valor das parcelas mensais ou negociar um plano vantajoso de quitação com desconto.</td></tr>
+      <tr id="E-TXT-033"><td class="mono"><b>E-TXT-033</b></td><td>text</td><td>page</td><td>Financiar um veículo não deve ser sinônimo de sufoco financeiro ou de enriquecimento ilícito por parte de instituições que aplicam taxas desalinhadas com a realidade econômica do país. Conhecer seus direitos, entender o que compõe o Custo Efetivo Total (CET) e monitorar as diretrizes do Banco Central são atitudes fundamentais para qualquer consumidor consciente.</td></tr>
+      <tr id="E-TXT-034"><td class="mono"><b>E-TXT-034</b></td><td>text</td><td>page</td><td>Se você desconfia que está pagando juros abusivos em seu financiamento com bancos como Itaú, Bradesco, Santander, BV Financeira, Banco PAN, Safra, Sicredi ou Sicoob, não espere a dívida se tornar impagável.</td></tr>
+      <tr id="E-TXT-035"><td class="mono"><b>E-TXT-035</b></td><td>text</td><td>page</td><td>WhatsApp</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="LEGITIMATE">LEGITIMATE</td><td>O site possui identidade comercial própria consolidada (&#39;Mais Credit Consultoria&#39;), operando como empresa de consultoria e revisão contratual de juros abusivos.</td><td class="mono"><a href="#E-META-2">E-META-2</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-NAV">E-NAV</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O texto tem caráter informativo e de captação para serviços próprios de consultoria/revisão de dívidas, citando a BV Financeira apenas de forma contextual ao lado de múltiplos outros bancos concorrentes.</td><td class="mono"><a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-TXT-029">E-TXT-029</a> <a href="#E-TXT-034">E-TXT-034</a> </td></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>Predomínio total da identidade visual da Mais Credit Consultoria. A marca do Banco BV/BV Financeira aparece apenas em arte ilustrativa genérica reunindo logotipos de diversos bancos de varejo.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>O logotipo legado da BV Financeira é exibido apenas em miniatura em imagem ilustrativa de fachada bancária genérica junto a logos do Itaú, Bradesco, Santander, PAN, Safra, Sicoob e Sicredi.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>A entidade não se apresenta como correspondente bancário e não oferta produtos de crédito do Banco BV; trata-se de consultoria de renegociação/revisão.</td><td class="mono"><a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Inexistência de risco de confusão; o consumidor é claramente informado de que está contratando análise e consultoria da Mais Credit contra cobranças de juros bancários.</td><td class="mono"><a href="#E-META-1">E-META-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-026">E-TXT-026</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FOLD">E-FOLD</a> <a href="#E-TITLE">E-TITLE</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: A página é claramente identificada como sendo da Mais Credit Consultoria, com logotipo e canais de contato próprios. — <span class="mono"><a href="#E-META-2">E-META-2</a> <a href="#E-IMG-1">E-IMG-1</a> <a href="#E-NAV">E-NAV</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>Página de artigo/blog da empresa &#39;Mais Credit Consultoria&#39; sobre cobrança de juros abusivos em financiamento de veículos.</li><li>A marca BV Financeira é mencionada textualmente em listas exemplificativas de instituições financeiras do mercado automotivo (Itaú, Bradesco, Santander, Banco PAN, Safra, Sicredi, Sicoob).</li><li>Na imagem de capa da postagem consta uma colagem de logotipos de vários bancos, na qual figura a marca legada da BV Financeira.</li><li>A empresa não atua como correspondente bancário ofertando produtos do Banco BV, mas sim como consultoria de revisão contratual.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">Página fora do escopo de auditoria de correspondentes bancários (COBANs). Trata-se de artigo publicado por empresa de consultoria financeira (&#39;Mais Credit Consultoria&#39;) para atração de clientes interessados em renegociação e revisão de juros de financiamento veicular. A menção ao Banco BV / BV Financeira ocorre estritamente em contexto editorial/informativo comparativo ao lado de múltiplos outros bancos, sem qualquer tentativa de intermediação de crédito em nome do BV ou personificação da instituição.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>UNKNOWN_IDENTITY</div>
+      <div class="kv"><b>Entidade</b>Mais Credit Consultoria<br><span class="mono">domain:maiscredit.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Nenhum CNPJ ou razão social identificáveis no conteúdo coletado.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>maiscredit.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.instagram.com/maiscreditoficial/</td><td class="mono"><a href="#E-CONTACT-7">E-CONTACT-7</a></td><td></td></tr>
+      <tr><td>social_profile</td><td>https://www.facebook.com/MaisCredit</td><td class="mono"><a href="#E-CONTACT-8">E-CONTACT-8</a></td><td></td></tr>
+      <tr><td>trade_name</td><td>Mais Credit Consultoria</td><td class="mono"><a href="#E-META-2">E-META-2</a></td><td></td></tr>
+      <tr><td>phone</td><td>0800 580 0910</td><td class="mono"><a href="#E-FOLD">E-FOLD</a></td><td></td></tr>
+      <tr><td>phone</td><td>08005800910</td><td class="mono"><a href="#E-CONTACT-2">E-CONTACT-2</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Cálculo Online &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td> &lt;https://api.whatsapp.com/send?phone=551122174760&amp;text=Ol%C3%A1,%20tudo%20bem%3F%20Estava%20Navegando%20no%20Site%20da%20Mais%20Credit%20e%20Gostaria%20de%20solicitar%20a%20minha%20An%C3%A1lise%20Gra</td><td class="mono"><a href="#E-CONTACT-3">E-CONTACT-3</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TITLE">E-TITLE</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-CONTACT-3">E-CONTACT-3</a> <a href="#E-CONTACT-4">E-CONTACT-4</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página em análise é um artigo de blog/portal de consultoria de crédito e revisão contratual (Mais Credit Consultoria) abordando ações revisionais e renegociação de juros de financiamento. Não se trata de um correspondente bancário comercializando produtos do Banco BV nem de loja de veículos/energia solar com sobreuso de marca. Conforme as diretrizes de escopo, menções em contexto editorial/revisional e comparativo com múltiplos bancos justificam o rebaixamento para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>CLASSIFICATION_DISCREPANCY</td><td>HIGH</td><td>A página pertence à Mais Credit Consultoria e consiste em um artigo informativo/comercial voltado à revisão e renegociação de juros abusivos em contratos de financiamento de veículos. A menção à BV Financeira ocorre em contexto estritamente comparativo e editorial, em conjunto com diversas outras instituições bancárias (Itaú, Bradesco, Santander, Safra, PAN), sem qualquer tentativa de se passar por correspondente bancário (COBAN) ou canal oficial do Banco BV.</td><td class="mono"><a href="#E-META-2">E-META-2</a> <a href="#E-HEAD-1">E-HEAD-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-TXT-001">E-TXT-001</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-024">E-TXT-024</a> <a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> </td></tr>
+      <tr><td>domain_attribution</td><td>MEDIUM</td><td>Responsável pela página não identificado; a conclusão sobre a marca não pode ser atribuída a um estabelecimento específico.</td><td class="mono"><a href="#E-URL">E-URL</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-META-2</li><li>E-IMG-1</li><li>E-TXT-001</li><li>E-TXT-004</li><li>E-TXT-029</li><li>E-SHOT-VIEWPORT</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>&#34;quitação com desconto&#34; &#34;bv financeira&#34;<br><span class="muted">H10-fraud:quitacao-limpa-nome</span></td><td class="mono">https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/</td><td>Você Financiou um Veículo e esta pagando Juros Abusivos? Veja<br><span class="muted">... BV Financeira, Banco PAN, Safra, além de cooperativas de crédito de grande ... quitação com desconto. Conclusão, livre-se dos Juros Abusivos. Financiar ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 23:05:50.586024+00:00</div>
+      <div class="kv"><b>IP do servidor</b>167.88.34.243</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C1fb3e75650/attempt-1/manifest.json<br>sha256 dc3399027f9a1c7ddd4a7851e93ea432df40393326e8f7f806792dcc064f0039</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/<br>Final: https://maiscredit.com.br/voce-financiou-um-veiculo-e-esta-pagando-juros-abusivos-veja/</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C1fb3e75650/attempt-1/viewport.png</td><td class="mono">cd27f51f14ed634aeb2dce9985147f2362db14f8b068555ff75e891a91d40bc9</td><td>525571</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C1fb3e75650/attempt-1/fullpage.png</td><td class="mono">1bd8d7e91c4f23e7ad6863cfa897f094e19a2f30d1561a0eb5dc41f917d9cfb6</td><td>1672872</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C1fb3e75650/attempt-1/page.html.txt</td><td class="mono">b086faf68eabfab15bbf0b9e839f2d9a12e3630326150284c0186608f1bd480f</td><td>144948</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C1fb3e75650/attempt-1/text.txt</td><td class="mono">d85bb788c5acb9cf012ce9a196bb3aadfdf5a9bdd739054a9ecb9a58f9b0e20b</td><td>14934</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C1fb3e75650/attempt-1/page.json</td><td class="mono">bb2688912831db27c5b0374c1d9b15fc8cb8687b9e6aa035ec6e4c98d140aada</td><td>26542</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>network did not become idle (continuing)</li><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:31+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T23:05:50+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:06:01+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:06:01+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:06:17+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:06:29+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

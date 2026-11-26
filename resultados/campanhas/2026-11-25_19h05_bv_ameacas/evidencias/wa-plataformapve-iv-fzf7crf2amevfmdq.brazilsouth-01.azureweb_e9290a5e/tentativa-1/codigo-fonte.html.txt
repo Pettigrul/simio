@@ -1,0 +1,217 @@
+<html><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+    <title>PVE</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="klQwPtybT-8v6y2YX36QIiO0Pf9ZTfJZ1jUVU5fBbYhaBwPm5HHKNMCL0o3OMhWPDPNa_7D9Vw7VyY5_GzY6pQ">
+    
+
+    
+
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <link rel="stylesheet" href="/assets/application-c2c8ff27.css" data-turbo-track="reload">
+<link rel="stylesheet" href="/assets/loading-cc587045.css" data-turbo-track="reload">
+<link rel="stylesheet" href="/assets/reset-e03cbc3f.css" data-turbo-track="reload">
+    <script src="/assets/devise-fb633140.js" data-turbo-track="reload" type="module"></script>
+  <style id="theme-variables">
+        .t1161z0 {
+              --rarui-colors-surface-brand: rgba(118, 116, 201, 1);
+  --rarui-colors-surface-brand-subdued: rgba(118, 116, 201, 0.1);
+  --rarui-colors-surface-brand-hover: rgba(118, 116, 201, 0.1);
+  --rarui-colors-surface-brand-press: rgba(118, 116, 201, 0.2);
+  --rarui-colors-content-brand: rgba(118, 116, 201, 1);
+  --rarui-colors-content-brand-alt: rgba(18, 14, 37, 1);
+  --rarui-colors-content-on-brand: rgba(252, 252, 253, 1);
+  --rarui-colors-border-brand: rgba(118, 116, 201, 1);
+  --rarui-colors-border-brand-alt: rgba(170, 141, 206, 1);
+  --rarui-colors-surface-success-subdued: rgba(150, 244, 172, 0.1);
+  --rarui-colors-content-success: rgba(38, 163, 67, 1);
+        }
+    </style></head>
+
+  <body>
+    <rarui-theme-provider theme="base" data-controller="theme loading" data-theme-target="themeProvider">
+      <rarui-box data-loading-target="backdrop" display="flex" position="fixed" top="0" bottom="0" left="0" right="0" background-color="$overlay" z-index="$900" opacity="0.8" justify-content="center" align-content="center" align-items="center" style="display: none;">
+  <div class="loader"></div>
+</rarui-box>
+
+      <rarui-box>
+        <rarui-box display="grid" grid-template-columns="{&quot;xs&quot;:&quot;repeat(1,minmax(0px,1fr))&quot;,&quot;lg&quot;:&quot;minmax(0px,62.5fr) minmax(0px,37.5fr)&quot;}" min-height="100vh" background-color="$background">
+  <rarui-box display="flex" flex-direction="column" align-items="center" padding="$s" box-sizing="border-box">
+    <rarui-box display="flex" align-items="center" justify-content="space-between" width="100%">
+      <rarui-box display="{&quot;xs&quot;:&quot;none&quot;,&quot;lg&quot;:&quot;flex&quot;}">
+        <rarui-toggle size="large" label="Modo Claro" data-theme-target="changeThemeDesktop" data-action="rarui-toggle-change-&gt;theme#toggle">
+  <rarui-icon slot="unchecked" color="$invert" name="lightbulb-filled" size="small"></rarui-icon>
+  <rarui-icon slot="checked" color="$brand" name="lightbulb-outlined" size="small"></rarui-icon>
+</rarui-toggle>
+
+      </rarui-box>
+      <rarui-box display="{&quot;xs&quot;:&quot;flex&quot;,&quot;lg&quot;:&quot;none&quot;}">
+        <rarui-toggle size="large" data-theme-target="changeThemeMobile" data-action="rarui-toggle-change-&gt;theme#toggle">
+  <rarui-icon slot="unchecked" color="$invert" name="lightbulb-filled" size="small"></rarui-icon>
+  <rarui-icon slot="checked" color="$brand" name="lightbulb-outlined" size="small"></rarui-icon>
+</rarui-toggle>
+
+      </rarui-box>
+      <rarui-box></rarui-box>
+    </rarui-box>
+
+    <rarui-box width="100%" max-width="{&quot;xs&quot;:&quot;364px&quot;,&quot;md&quot;:&quot;406px&quot;}" margin-top="{&quot;xs&quot;:&quot;$md&quot;,&quot;md&quot;:&quot;$3xl&quot;}">
+      <rarui-box display="flex" justify-content="center" margin-bottom="$xs">
+        <img alt="PVE logomarca" style="width: 100%; height: auto" src="/assets/logo-assinatura-9b968799.png">
+      </rarui-box>
+      <rarui-box display="flex" gap="$xs" flex-direction="column">
+          
+        <rarui-box display="flex" gap="$xs" flex-direction="column">
+          <rarui-title as="h4" text-align="center" color="$primary">Boas-vindas</rarui-title>
+          <rarui-text color="$secondary" font-size="$s" text-align="center">Escolha seu tipo de acesso para continuar.</rarui-text>
+        </rarui-box>
+        
+  
+<rarui-tabs aria-label="Tipo de Acesso" underlined="true" full="true" selectedtab="0">
+  <rarui-box label="Participante" data-aba-inicial="" display="flex" flex-direction="column" width="100%" padding-top="$xs" aria-hidden="false" role="tabpanel" aria-label="Participante" style="display: block;">
+    <form data-controller="reabilitar-envio" data-action="input-&gt;reabilitar-envio#habilitar rarui-checkbox-change-&gt;reabilitar-envio#habilitar" class="new_respondente" id="new_respondente" novalidate="novalidate" action="/login" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="VHQypIxrrPtfpSF1uz-Ltjpo7y3lBsIfXeVArn7kfgs6F5oVD-AOAffMtWpYdXiOfZ2EPj4Al469QkisISEEpg" autocomplete="off" style="">
+      <rarui-box display="flex" gap="$xs" flex-direction="column" width="100%">
+          <rarui-box display="flex" flex-direction="column" flex="1" class="">
+      <rarui-box margin-bottom="$3xs">
+        <rarui-label for="respondente_token">
+          Código de acesso *
+        </rarui-label>
+        
+      </rarui-box>
+    <rarui-input type="text" id="respondente_token" name="respondente[token]" value="" appearance="" placeholder="" size="large" class="codigo-acesso" required="" data-controller="codigo-acesso uppercase form-mask" data-maska="[&quot;******&quot;]" border="" divider=""></rarui-input>
+  </rarui-box>
+
+
+        <rarui-box display="flex" flex-direction="column" gap="$4xs">
+          <rarui-box display="flex" align-items="center" gap="$3xs">
+            <input type="hidden" name="respondente[termos_de_uso]" id="respondente_termos_de_uso" value="false" autocomplete="off" style="">
+            <rarui-checkbox value="true" id="respondente_termos_de_uso" name="respondente[termos_de_uso]" aria-label="Concordo com os Termos de Uso"></rarui-checkbox>
+            <rarui-text font-size="$s" color="$primary" aria-hidden="true">Concordo com os</rarui-text>
+            <rarui-link href="#" target="_blank" rel="noopener noreferrer" appearance="brand" size="small">Termos de Uso</rarui-link>
+          </rarui-box>
+        </rarui-box>
+
+        <rarui-button type="submit" full="true" appearance="brand" variant="solid" size="medium" data-reabilitar-envio-target="botao">Acessar plataforma</rarui-button>
+      </rarui-box>
+</form>  </rarui-box>
+
+  <rarui-box label="Equipe do programa" display="flex" gap="$xs" flex-direction="column" width="100%" padding-top="$xs" aria-hidden="true" role="tabpanel" aria-label="Equipe do programa" style="display: none;">
+    <form data-turbo="false" class="new_usuario" id="new_usuario" novalidate="novalidate" action="/admin/login" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="x07_Gl0U-Sog8VyNhI3Tm6xWcupbtTllJWLtqm8T9UmiF1W-OwQdrPlUF-i3HUensfyBmOWvoMoTaLJTEJlnXA" autocomplete="off" style="">
+      <rarui-box display="flex" gap="$xs" flex-direction="column">
+          <rarui-box display="flex" flex-direction="column" flex="1" class="">
+      <rarui-box margin-bottom="$3xs">
+        <rarui-label for="usuario_email">
+          E-mail institucional *
+        </rarui-label>
+        
+      </rarui-box>
+    <rarui-input type="text" id="usuario_email" name="usuario[email]" value="" appearance="" placeholder="" required="" border="" divider=""></rarui-input>
+  </rarui-box>
+
+
+          <rarui-box display="flex" flex-direction="column" flex="1" class="">
+      <rarui-box margin-bottom="$3xs">
+        <rarui-label for="usuario_password">
+          Senha *
+        </rarui-label>
+      </rarui-box>
+    <rarui-input-password id="usuario_password" name="usuario[password]" appearance="" placeholder="" required="&quot;&quot;" border="" divider=""></rarui-input-password>
+  </rarui-box>
+
+
+        <rarui-button type="submit" full="true" appearance="brand" variant="solid" size="medium">Entrar na plataforma</rarui-button>
+      </rarui-box>
+</form>
+    <rarui-box display="flex" align-items="center" justify-content="center">
+      <rarui-text color="$secondary" white-space="nowrap">Esqueceu sua senha?</rarui-text>
+      <a href="/admin/password/new">
+        <rarui-button variant="text" appearance="brand" size="medium">Recupere aqui</rarui-button>
+</a>    </rarui-box>
+
+    <rarui-box id="separador-acesso-equipe" display="flex" gap="$xs" align-items="center">
+      <rarui-divider size="100%" style="width: 100%;"></rarui-divider>
+      <rarui-text color="$secondary" text-align="center">ou</rarui-text>
+      <rarui-divider size="100%" style="width: 100%;"></rarui-divider>
+    </rarui-box>
+
+    <rarui-box display="flex" align-items="center" justify-content="center" padding-top="$s">
+      <form data-turbo="false" action="/usuarios/auth/entra_id" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Z8gdmnwHXSkds0KWtH_Wtl8rMSEYmWG-h3KeoyJgQamSdXPZRmiJvcvTvFGgukYsE4wfYsOT02adDiCesbjynw" autocomplete="off" style="">
+        <rarui-button type="submit" variant="tonal" appearance="brand" size="medium">
+          <rarui-icon name="user-filled" size="small"></rarui-icon>
+          <rarui-text color="$brand" text-align="center" font-weight="$medium">Login com Microsoft</rarui-text>
+        </rarui-button>
+</form>    </rarui-box>
+  </rarui-box>
+</rarui-tabs>
+
+
+        
+      </rarui-box>
+    </rarui-box>
+
+    <rarui-box display="flex" flex-direction="column" align-items="center" margin-top="{&quot;xs&quot;:&quot;$md&quot;,&quot;md&quot;:&quot;$3xl&quot;}" padding-bottom="{&quot;xs&quot;:&quot;$md&quot;,&quot;md&quot;:&quot;$lg&quot;}" width="100%" max-width="{&quot;xs&quot;:&quot;239px&quot;,&quot;md&quot;:&quot;478px&quot;}">
+      <rarui-divider direction="horizontal" size="100%" type="$solid" thickness="$2" color="$divider" style="width: 100%;"></rarui-divider>
+      <rarui-box display="flex" flex-direction="column" align-items="center" width="100%" position="relative" margin-top="{&quot;xs&quot;:&quot;$xs&quot;,&quot;md&quot;:&quot;$none&quot;}">
+        <rarui-box position="{&quot;xs&quot;:&quot;static&quot;,&quot;md&quot;:&quot;absolute&quot;}" top="0" left="0">
+          <rarui-text as="p" color="$disabled" font-weight="$semiBold" font-size="$xxs">REALIZAÇÃO</rarui-text>
+        </rarui-box>
+        <rarui-box display="{&quot;xs&quot;:&quot;grid&quot;,&quot;md&quot;:&quot;none&quot;}" grid-template-columns="repeat(2,minmax(0px,1fr))" justify-items="center" align-items="center" gap="$md" width="100%" margin-top="$md" margin-bottom="$xs">
+          <img height="26" alt="Instituto Votorantim" src="/assets/logos-footer/instituto-votorantim-d6a33cff.svg">
+<img height="26" alt="Logo BNDES" src="/assets/logos-footer/bndes-8b1a1939.svg">
+<img height="26" alt="Logo Votorantim" src="/assets/logos-footer/votorantim-86b7db60.svg">
+<img height="26" alt="Logo Votorantim Cimentos" src="/assets/logos-footer/votorantim-cimentos-9b37c290.svg">
+<img height="26" alt="Logo Banco BV" src="/assets/logos-footer/banco-bv-84ecb5c9.svg">
+<img height="26" alt="Logo Auren" src="/assets/logos-footer/auren-617ba977.svg">
+<img height="26" alt="Logo Nexa" src="/assets/logos-footer/nexa-e7eda40b.svg">
+<img height="26" alt="Logo Citrosuco" src="/assets/logos-footer/citrosuco-8287af56.svg">
+<img height="26" alt="Logo CBA" src="/assets/logos-footer/cba-760eb761.svg">
+<img height="26" alt="Logo Reservas Votorantim" src="/assets/logos-footer/votorantim-reservas-b41228a9.svg">
+
+        </rarui-box>
+        <rarui-box display="{&quot;xs&quot;:&quot;none&quot;,&quot;md&quot;:&quot;flex&quot;}" flex-wrap="wrap" justify-content="center" align-items="center" gap="$s" width="100%" margin-top="$s">
+          <img alt="Instituto Votorantim" src="/assets/logos-footer/instituto-votorantim-d6a33cff.svg" width="70" height="70">
+<img alt="Logo BNDES" src="/assets/logos-footer/bndes-8b1a1939.svg" width="70" height="70">
+<img alt="Logo Votorantim" src="/assets/logos-footer/votorantim-86b7db60.svg" width="70" height="70">
+<img alt="Logo Votorantim Cimentos" src="/assets/logos-footer/votorantim-cimentos-9b37c290.svg" width="70" height="70">
+<img alt="Logo Banco BV" src="/assets/logos-footer/banco-bv-84ecb5c9.svg" width="70" height="70">
+<img alt="Logo Auren" src="/assets/logos-footer/auren-617ba977.svg" width="70" height="70">
+<img alt="Logo Nexa" src="/assets/logos-footer/nexa-e7eda40b.svg" width="70" height="70">
+<img alt="Logo Citrosuco" src="/assets/logos-footer/citrosuco-8287af56.svg" width="70" height="70">
+<img alt="Logo CBA" src="/assets/logos-footer/cba-760eb761.svg" width="70" height="70">
+<img alt="Logo Reservas Votorantim" src="/assets/logos-footer/votorantim-reservas-b41228a9.svg" width="70" height="70">
+
+        </rarui-box>
+      </rarui-box>
+      <rarui-text font-size="$xs" color="$secondary">© 2026 Instituto Votorantim.</rarui-text>
+      <rarui-text font-size="$xs" color="$secondary">2.4.0</rarui-text>
+    </rarui-box>
+
+  </rarui-box>
+  <rarui-box display="{&quot;xs&quot;:&quot;none&quot;,&quot;lg&quot;:&quot;flex&quot;}" align-self="start" position="sticky" top="0" height="100vh" background-image="url('/assets/grafismo-pve-e00c9a96.svg')" background-size="cover" background-position="center" background-repeat="no-repeat">
+  </rarui-box>
+</rarui-box>
+
+      </rarui-box>
+    <!----><slot></slot></rarui-theme-provider>
+  
+
+</body></html>

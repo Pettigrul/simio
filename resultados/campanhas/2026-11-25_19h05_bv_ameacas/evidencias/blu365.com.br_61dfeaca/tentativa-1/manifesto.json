@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C61dfeacae6",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://blu365.com.br/",
+  "final_url": "https://blu365.com.br/",
+  "redirect_chain": [
+    "https://blu365.com.br/"
+  ],
+  "http_status": 403,
+  "server_ip": "162.159.134.42",
+  "collected_at": "2026-11-25T22:50:31.171328+00:00",
+  "manifest_written_at": "2026-11-25T22:50:38.672658+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C61dfeacae6/attempt-1/viewport.png",
+      "sha256": "15f846bff92f6235674a64ad83ba09eecb747a27d1eba12b938160a51315af67",
+      "size_bytes": 38932
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C61dfeacae6/attempt-1/fullpage.png",
+      "sha256": "15f846bff92f6235674a64ad83ba09eecb747a27d1eba12b938160a51315af67",
+      "size_bytes": 38932
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C61dfeacae6/attempt-1/page.html.txt",
+      "sha256": "17a2f232f0cb1aecd46f041001904cc0f4e8237b987c0e0e4d48b713b21f5270",
+      "size_bytes": 44809
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C61dfeacae6/attempt-1/text.txt",
+      "sha256": "f18903fe895afba946767af990fcf2908749ef1d1b0069a39fccc1e2b7245c58",
+      "size_bytes": 287
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C61dfeacae6/attempt-1/page.json",
+      "sha256": "cfa87c2de834e4deb82f0c1572a0e51530a0d9968bff996e245d43db65df2af8",
+      "size_bytes": 1435
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

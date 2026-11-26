@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file: data:; style-src 'unsafe-inline'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMIO — Dossiê C772cb6a024</title>
+<style>
+  :root {
+    --bv-blue-primary: #0B5FFF;
+    --bv-blue-primary-hover: #0047D4;
+    --bv-blue-dark: #001A6B;
+    --bv-blue-medium: #003087;
+    --bv-text-primary: #272833;
+    --bv-text-secondary: #6B6C7E;
+    --bv-text-heading: #20262C;
+    --bv-text-white: #FFFFFF;
+    --bv-bg-main: #FFFFFF;
+    --bv-bg-light: #F5F5F5;
+    --bv-bg-blue-light: #EFF4FB;
+    --bv-surface-border: #E7E7ED;
+    --bv-radius-sm: 4px;
+    --bv-radius-md: 8px;
+    --bv-radius-lg: 12px;
+    --bv-radius-pill: 999px;
+    --strong: #b42318;
+    --strong-bg: #fce8e6;
+    --review: #b54708;
+    --review-bg: #fef3d6;
+    --inc: #475467;
+    --inc-bg: #e7e7ed;
+    --none: #067647;
+    --none-bg: #e6f4ea;
+  }
+  body {
+    font-family: "BV Leve Textos", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bv-text-primary);
+    background: var(--bv-bg-light);
+    margin: 0;
+    padding: 0 0 64px;
+  }
+  .header-banner {
+    background: linear-gradient(135deg, var(--bv-blue-dark) 0%, var(--bv-blue-medium) 60%, var(--bv-blue-primary) 100%);
+    color: var(--bv-text-white);
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(0, 26, 107, 0.15);
+  }
+  .header-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  .header-titles h1 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bv-text-white);
+  }
+  .header-titles p {
+    font-size: 13px;
+    margin: 4px 0 0;
+    color: #cadcff;
+  }
+  .meta-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 14px;
+    border-radius: var(--bv-radius-pill);
+    font-size: 12px;
+    color: var(--bv-text-white);
+  }
+  .container {
+    max-width: 1140px;
+    margin: 24px auto 0;
+    padding: 0 16px;
+  }
+  .card {
+    background: var(--bv-bg-main);
+    border: 1px solid var(--bv-surface-border);
+    border-radius: var(--bv-radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  h2 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--bv-blue-dark);
+    border-bottom: 2px solid var(--bv-bg-blue-light);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+  }
+  h3 {
+    font-family: "BV Leve Titulos", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bv-text-heading);
+    margin: 20px 0 8px;
+  }
+  .muted { color: var(--bv-text-secondary); }
+  code, .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--bv-radius-pill);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .STRONG_INDICATION { background: var(--strong-bg); color: var(--strong); border: 1px solid var(--strong); }
+  .REVIEW_REQUIRED { background: var(--review-bg); color: var(--review); border: 1px solid var(--review); }
+  .INCONCLUSIVE { background: var(--inc-bg); color: var(--inc); border: 1px solid var(--inc); }
+  .NO_INDICATION { background: var(--none-bg); color: var(--none); border: 1px solid var(--none); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; }
+  .kv {
+    background: var(--bv-bg-blue-light);
+    border: 1px solid #dbe6f7;
+    border-radius: var(--bv-radius-md);
+    padding: 10px 14px;
+  }
+  .kv b {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bv-blue-dark);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+  }
+  table { border-collapse: collapse; width: 100%; border-radius: var(--bv-radius-md); overflow: hidden; }
+  th, td { border: 1px solid var(--bv-surface-border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--bv-bg-blue-light); color: var(--bv-blue-dark); font-size: 12px; font-weight: 600; }
+  td { word-break: break-word; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .shots img { width: 100%; border: 1px solid var(--bv-surface-border); border-radius: var(--bv-radius-md); }
+  .shots figure { margin: 0; }
+  .note {
+    border-left: 4px solid var(--bv-blue-primary);
+    background: var(--bv-bg-blue-light);
+    padding: 12px 16px;
+    border-radius: 0 var(--bv-radius-md) var(--bv-radius-md) 0;
+    margin: 16px 0;
+  }
+  .CONFUSION { color: var(--strong); font-weight: 600; }
+  .LEGITIMATE { color: var(--none); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) { .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="header-banner">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-titles">
+        <h1>SIMIO · Dossiê Pericial de Candidato</h1>
+        <p>Sistema de Investigação de Marca e Identidade Online</p>
+      </div>
+    </div>
+    <div class="meta-tag">
+      Campanha: <b>simio-20261125-220519-d778</b> · Gerado em: 2026-11-25T23:35:39+00:00
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+      <div>
+        <h1 style="font-family:'BV Leve Titulos', 'Inter', sans-serif; font-size: 22px; color: var(--bv-blue-dark); margin:0 0 6px;">C772cb6a024 — vmleiloes.com.br</h1>
+        <p class="mono" style="margin:0 0 12px; color:var(--bv-blue-primary);">https://vmleiloes.com.br/lote/2328/sobrado</p>
+      </div>
+      <div>
+        <span class="badge REVIEW_REQUIRED">REVIEW_REQUIRED</span>
+      </div>
+    </div>
+
+    <p style="margin: 8px 0 0;">
+      Prioridade: <b>HIGH</b> · Cenário: <b>B_AMBIGUOUS_COMMUNICATION</b> · Revisão humana: <b>PENDING</b>
+    </p>
+
+    <div class="note">
+      <b>Aviso de Integridade:</b> Este dossiê apresenta indícios automatizados para apoio à auditoria e proteção de marca. Não constitui conclusão regulatória vinculante. As conclusões devem ser verificadas contra as evidências brutas (screenshots, catálogo e manifestos com hash SHA-256). Conteúdo de terceiros é exibido como texto puro; links não são clicáveis por segurança.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Decisão Consolidada</h2>
+    <div class="grid">
+      <div class="kv"><b>Classificação</b>REVIEW_REQUIRED</div>
+      <div class="kv"><b>Prioridade</b>HIGH</div>
+      <div class="kv"><b>Identidade visual antiga</b>não identificada</div>
+      <div class="kv"><b>Dados sensíveis pedidos</b>senha — possível coleta de credenciais</div>
+      <div class="kv"><b>Identidade (categoria)</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Confiança da atribuição</b>LOW</div>
+      <div class="kv"><b>Confiança da extração</b>HIGH</div>
+      <div class="kv"><b>Suficiência da evidência</b>SUFFICIENT</div>
+    </div>
+    <h3>Justificativa</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página auditada é um site de leilões judiciais (VM Leilões) que lista um imóvel leiloado por determinação judicial. A menção à BV Financeira ocorre exclusivamente no âmbito de terceiros interessados nos autos processuais, sem nenhuma oferta ou intermediação de produtos de crédito. Conforme as diretrizes de escopo, páginas de processos judiciais e leilões que não ofertam crédito estão fora do escopo de auditoria de COBANs, sendo classificadas como NOT_RELEVANT / NO_INDICATION com prioridade LOW.
+[Revisor: DOWNGRADE] A página é de leilão judicial de imóvel promovido por leiloeiro oficial. A menção à BV Financeira se restringe estritamente aos dados do processo (terceiro interessado/ônus fiduciário anterior). Não se trata de correspondente bancário, loja de veículos ou promotora de crédito. Enquadra-se nas hipóteses de downgrade para NO_INDICATION com prioridade LOW.</p>
+    <h3>Regras de consistência aplicadas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li><li>página fora dos domínios oficiais que usa a marca e pede senha: possível coleta de credenciais (phishing/painel falso); mantido no mínimo REVIEW_REQUIRED com prioridade HIGH</li><li>resultado revisado para NO_INDICATION, mas a página usa a marca e pede senha; mantido para revisão humana</li></ul>
+    <h3>Limitações</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li><li>requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</li></ul>
+  </div>
+
+
+  <div class="card">
+    <h2>2. Screenshots</h2>
+    <div class="shots">
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C772cb6a024/attempt-1/viewport.png" alt="Área visível inicial (E-SHOT-VIEWPORT)">
+        <figcaption class="muted" style="margin-top:6px;">Área visível inicial (E-SHOT-VIEWPORT) · <span class="mono">sha256 7b04c29958e4376721ad963da79d6dcd1988204853dbd3afd03f76f57e341d85</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../../../campaigns/simio-20261125-220519-d778/evidence/C772cb6a024/attempt-1/fullpage.png" alt="Página completa (E-SHOT-FULL)">
+        <figcaption class="muted" style="margin-top:6px;">Página completa (E-SHOT-FULL) · <span class="mono">sha256 238079e38b2b0c696c56b587ab4c1fd77cc8b985040c1ee81e83e746bba69a4d</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Catálogo de Evidências (Dados Brutos Observados)</h2>
+    <table>
+      <tr><th style="width:120px">Ref</th><th style="width:100px">Tipo</th><th style="width:100px">Local</th><th>Conteúdo</th></tr>
+      <tr id="E-URL"><td class="mono"><b>E-URL</b></td><td>domain</td><td>url</td><td>URL final: https://vmleiloes.com.br/lote/2328/sobrado (domínio: vmleiloes.com.br)</td></tr>
+      <tr id="E-DISC-001"><td class="mono"><b>E-DISC-001</b></td><td>text</td><td>search_index</td><td>Índice de busca (serper): SOBRADO - VM Leilões — ... BV FINANCEIRA S.A. CRÉDITO, FINANCIAMENTOS E INVESTIMENTOS, MAURO CESAR HONORATO BROSTULIN. BEM: SOBRADO nº 04 do Residencial das Oliveiras na Rua Salvador ...</td></tr>
+      <tr id="E-SHOT-VIEWPORT"><td class="mono"><b>E-SHOT-VIEWPORT</b></td><td>screenshot</td><td>viewport</td><td>evidence/C772cb6a024/attempt-1/viewport.png (sha256 7b04c29958e43767…)</td></tr>
+      <tr id="E-SHOT-FULL"><td class="mono"><b>E-SHOT-FULL</b></td><td>screenshot</td><td>page</td><td>evidence/C772cb6a024/attempt-1/fullpage.png (sha256 238079e38b2b0c69…)</td></tr>
+      <tr id="E-TITLE"><td class="mono"><b>E-TITLE</b></td><td>title</td><td>head</td><td>VM Leilões - SOBRADO</td></tr>
+      <tr id="E-META-1"><td class="mono"><b>E-META-1</b></td><td>meta</td><td>head</td><td>description: SOBRADO nº 04 do Residencial das Oliveiras na Rua Salvador Ferrante, nº 1.667, Boqueirão, Curitiba-PR, com área total exclusiva de 86,12m², com d...</td></tr>
+      <tr id="E-META-2"><td class="mono"><b>E-META-2</b></td><td>meta</td><td>head</td><td>og:title: VM Leilões - SOBRADO</td></tr>
+      <tr id="E-META-3"><td class="mono"><b>E-META-3</b></td><td>meta</td><td>head</td><td>og:description: SOBRADO nº 04 do Residencial das Oliveiras na Rua Salvador Ferrante, nº 1.667, Boqueirão, Curitiba-PR, com área total exclusiva de 86,12m², com d...</td></tr>
+      <tr id="E-CANONICAL"><td class="mono"><b>E-CANONICAL</b></td><td>meta</td><td>head</td><td>https://vmleiloes.com.br/lote/2328/sobrado</td></tr>
+      <tr id="E-HEAD-1"><td class="mono"><b>E-HEAD-1</b></td><td>heading</td><td>page</td><td>SOBRADO</td></tr>
+      <tr id="E-HEAD-2"><td class="mono"><b>E-HEAD-2</b></td><td>heading</td><td>page</td><td>Informações do leilão</td></tr>
+      <tr id="E-HEAD-3"><td class="mono"><b>E-HEAD-3</b></td><td>heading</td><td>page</td><td>Descrição do lote</td></tr>
+      <tr id="E-HEAD-4"><td class="mono"><b>E-HEAD-4</b></td><td>heading</td><td>page</td><td>Informações adicionais</td></tr>
+      <tr id="E-HEAD-5"><td class="mono"><b>E-HEAD-5</b></td><td>heading</td><td>page</td><td>Documentação</td></tr>
+      <tr id="E-HEAD-6"><td class="mono"><b>E-HEAD-6</b></td><td>heading</td><td>page</td><td>Leiloeiro responsável</td></tr>
+      <tr id="E-HEAD-7"><td class="mono"><b>E-HEAD-7</b></td><td>heading</td><td>page</td><td>Receba novidades</td></tr>
+      <tr id="E-HEAD-8"><td class="mono"><b>E-HEAD-8</b></td><td>heading</td><td>page</td><td>SUA PRIVACIDADE</td></tr>
+      <tr id="E-HDR"><td class="mono"><b>E-HDR</b></td><td>text</td><td>header</td><td>(41) 99969-9934 (whatsApp) / atendimento@vmleiloes.com.br Login Esqueci a minha senha INÍCIO LEILÕES VENDA DIRETA INSTITUCIONAL CONTATO CADASTRE-SE | VENDIDO Contato Imprimir SOBRADO www.vmleiloes.com.br</td></tr>
+      <tr id="E-FOLD"><td class="mono"><b>E-FOLD</b></td><td>text</td><td>viewport (acima da dobra)</td><td>(41) 99969-9934 (whatsApp) / atendimento@vmleiloes.com.br Login Esqueci a minha senha INÍCIO Leilões VENDA DIRETA Institucional CONTATO Cadastre-se Início Agenda Leilão 626 Lote 10 VENDIDO Contato Imprimir SOBRADO www.vmleiloes.com.br + 2 fotos Informações do leilão Vendido Maior lance (2º leilão) por AVPEREIRA Precisa de ajuda? Entre em contato conosco Sua privacidade Usamos cookies para melhorar sua experiência e analisar o tráfego do site. Cookies de análise são opcionais. Política de Privacidade Recusar Aceitar cookies</td></tr>
+      <tr id="E-FTR"><td class="mono"><b>E-FTR</b></td><td>text</td><td>footer</td><td>Rua Joinville, 3870 Sala 02 São José dos Pinhais - PR NAVEGAÇÃO Agenda Sobre FAQ Termos Privacidade Contato Cadastre-se Esqueceu a senha? (41) 99969-9934 (whatsApp) / (41) 99611-9934 (Somente Ligações) atendimento@vmleiloes.com.br NEWSLETTER Receba novidades Inscreva-se e se mantenha atualizado. Seu nome Seu e-mail Copyright 2026 — VM Leilões — Todos os direitos reservados. Desenvolvido por Leilotech Preferências de cookies</td></tr>
+      <tr id="E-NAV"><td class="mono"><b>E-NAV</b></td><td>nav</td><td>header</td><td>Esqueci a minha senha &lt;https://vmleiloes.com.br/esqueci-senha&gt; |  &lt;https://vmleiloes.com.br/&gt; | INÍCIO &lt;https://vmleiloes.com.br/&gt; | VENDA DIRETA &lt;https://vmleiloes.com.br/venda-direta&gt; | CONTATO &lt;https://vmleiloes.com.br/contato&gt; | CADASTRE-SE &lt;https://vmleiloes.com.br/cadastre-se&gt; | Início &lt;https://vmleiloes.com.br/&gt; | Agenda &lt;https://vmleiloes.com.br/agenda&gt; | Leilão 626 &lt;https://vmleiloes.com.br/leilao/626&gt;</td></tr>
+      <tr id="E-CTA-1"><td class="mono"><b>E-CTA-1</b></td><td>cta</td><td>header</td><td>Silenciar notificações de lances</td></tr>
+      <tr id="E-CTA-2"><td class="mono"><b>E-CTA-2</b></td><td>cta</td><td>header</td><td>Login</td></tr>
+      <tr id="E-CTA-3"><td class="mono"><b>E-CTA-3</b></td><td>cta</td><td>header</td><td>LEILÕES</td></tr>
+      <tr id="E-CTA-4"><td class="mono"><b>E-CTA-4</b></td><td>cta</td><td>header</td><td>INSTITUCIONAL</td></tr>
+      <tr id="E-CTA-5"><td class="mono"><b>E-CTA-5</b></td><td>cta</td><td>header</td><td>CADASTRE-SE &lt;https://vmleiloes.com.br/cadastre-se&gt;</td></tr>
+      <tr id="E-CTA-6"><td class="mono"><b>E-CTA-6</b></td><td>cta</td><td>header</td><td>Contato</td></tr>
+      <tr id="E-CTA-7"><td class="mono"><b>E-CTA-7</b></td><td>cta</td><td>header</td><td>Imprimir</td></tr>
+      <tr id="E-CTA-8"><td class="mono"><b>E-CTA-8</b></td><td>cta</td><td>page</td><td>Abrir galeria de fotos</td></tr>
+      <tr id="E-CTA-9"><td class="mono"><b>E-CTA-9</b></td><td>cta</td><td>page</td><td>Foto 2</td></tr>
+      <tr id="E-CTA-10"><td class="mono"><b>E-CTA-10</b></td><td>cta</td><td>page</td><td>Foto 3</td></tr>
+      <tr id="E-CTA-11"><td class="mono"><b>E-CTA-11</b></td><td>cta</td><td>page</td><td>+ 2 fotos</td></tr>
+      <tr id="E-CTA-12"><td class="mono"><b>E-CTA-12</b></td><td>cta</td><td>page</td><td>Foto 5</td></tr>
+      <tr id="E-CTA-13"><td class="mono"><b>E-CTA-13</b></td><td>cta</td><td>page</td><td>Informações do leilão</td></tr>
+      <tr id="E-CTA-14"><td class="mono"><b>E-CTA-14</b></td><td>cta</td><td>page</td><td>Copiar número do processo</td></tr>
+      <tr id="E-CTA-15"><td class="mono"><b>E-CTA-15</b></td><td>cta</td><td>page</td><td>Descrição do lote</td></tr>
+      <tr id="E-CTA-16"><td class="mono"><b>E-CTA-16</b></td><td>cta</td><td>page</td><td>Informações adicionais</td></tr>
+      <tr id="E-CTA-17"><td class="mono"><b>E-CTA-17</b></td><td>cta</td><td>page</td><td>Contato</td></tr>
+      <tr id="E-CTA-18"><td class="mono"><b>E-CTA-18</b></td><td>cta</td><td>page</td><td>PDF 05 - EDITAL DE LEILÃO.pdf &lt;https://cdn.leilotech.workers.dev/vmleiloes/documentos/leilao/626/dGogPgVZALIExgLtiglQbkleKcCVePgNmGhCYmzK888R9AVK1G1yLAlnbsmq.pdf&gt;</td></tr>
+      <tr id="E-CTA-19"><td class="mono"><b>E-CTA-19</b></td><td>cta</td><td>page</td><td>PDF MATRICULA 62044.pdf &lt;https://cdn.leilotech.workers.dev/vmleiloes/documentos/leilao/626/7phwxANOsuxRb9m7qIKI0Kddx1LNA9PT78tztbyZ6DYXl4o7g3VJS0UQMoNl.pdf&gt;</td></tr>
+      <tr id="E-CTA-20"><td class="mono"><b>E-CTA-20</b></td><td>cta</td><td>page</td><td>PDF Documento Banco.pdf &lt;https://cdn.leilotech.workers.dev/vmleiloes/documentos/leilao/626/4ieV3lcqFu5SRLKK7pz9B412PpfRrF0oyyBs9gJzDYhKFObLeigZyLbQuMmr.pdf&gt;</td></tr>
+      <tr id="E-CONTACT-1"><td class="mono"><b>E-CONTACT-1</b></td><td>contact</td><td>page</td><td>Precisa de ajuda? Entre em contato conosco &lt;https://wa.me/5541996119934?text=Ola%2C+vim+pelo+site+e+gostaria+de+falar+com+a+equipe.&gt;</td></tr>
+      <tr id="E-IMG-1"><td class="mono"><b>E-IMG-1</b></td><td>image</td><td>header (acima da dobra)</td><td>imagem alt=&#39;vmleiloes&#39; src=https://cdn.leilotech.workers.dev/website/logos/primary_4wlFsRxOIK90Ro9uXbFgav8xytXXs0csHVgNNsPtdSui2LTQ4AzTZGnwvP4V.png (240x96, acima da dobra)</td></tr>
+      <tr id="E-IMG-2"><td class="mono"><b>E-IMG-2</b></td><td>image</td><td>footer</td><td>imagem alt=&#39;Logo&#39; src=https://cdn.leilotech.workers.dev/website/logos/footer_QoPgBk8KWN3uUVVxuHlHDRpajcySZykSu3BWPBAMWugiyvfDePEEzVdhvR2H.png (229x96, abaixo da dobra)</td></tr>
+      <tr id="E-TXT-001"><td class="mono"><b>E-TXT-001</b></td><td>text</td><td>page</td><td>(41) 99969-9934 (whatsApp) /</td></tr>
+      <tr id="E-TXT-002"><td class="mono"><b>E-TXT-002</b></td><td>text</td><td>page</td><td>atendimento@vmleiloes.com.br</td></tr>
+      <tr id="E-TXT-003"><td class="mono"><b>E-TXT-003</b></td><td>text</td><td>page</td><td>REQUERENTE: TOYOTA SULPAR LTDA e RBV - REDE BRASILEIRA DE VEICULOS LTDA</td></tr>
+      <tr id="E-TXT-004"><td class="mono"><b>E-TXT-004</b></td><td>text</td><td>page</td><td>TERCEIRO INTERESSADO: HSBC Bank Brasil S.A. - Banco Múltiplo, BV FINANCEIRA S.A. CRÉDITO, FINANCIAMENTOS E INVESTIMENTOS, MAURO CESAR HONORATO BROSTULIN</td></tr>
+      <tr id="E-TXT-005"><td class="mono"><b>E-TXT-005</b></td><td>text</td><td>page</td><td>ÔNUS: R-8 – ALIENAÇÃO FIDUCIARIA informado pelo Banco nos autos que está quitada; AV-10 – INDISPONIBILIDADE nestes autos; AV-11 – INDISPONIBILIDADE nos autos 0000146-87.2018.8.16.0196 da 5ª Vara Criminal de Curitiba; R-12 – ARRESTO nos autos 0008658-89.2023.8.16.0194 da 12ª Vara Cível de Curitiba</td></tr>
+      <tr id="E-TXT-006"><td class="mono"><b>E-TXT-006</b></td><td>text</td><td>page</td><td>Documento Banco.pdf</td></tr>
+      <tr id="E-TXT-007"><td class="mono"><b>E-TXT-007</b></td><td>text</td><td>page</td><td>(41) 99969-9934 (whatsApp) /</td></tr>
+      <tr id="E-TXT-008"><td class="mono"><b>E-TXT-008</b></td><td>text</td><td>page</td><td>atendimento@vmleiloes.com.br</td></tr>
+      <tr id="E-FORM-001"><td class="mono"><b>E-FORM-001</b></td><td>form</td><td>page</td><td>Campo de formulário que pede SENHA (type=password, name=password, placeholder=Senha, rótulo=Senha)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Análise de Marca <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash, brand-analyst/v7)</span></h2>
+    <h3>Dimensões Avaliadas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Sinal</th><th>Achado</th><th>Refs</th></tr>
+      <tr><td>VISUAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>O site possui identidade visual própria da VM Leilões (Leiloeiro Jair Vicente Martins), sem uso de elementos visuais do Banco BV.</td><td class="mono"><a href="#E-SHOT-VIEWPORT">E-SHOT-VIEWPORT</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+      <tr><td>DECLARED_COMMERCIAL_IDENTITY</td><td class="NEUTRAL">NEUTRAL</td><td>A entidade declara-se leiloeiro público oficial (Jair Vicente Martins / VM Leilões), sem qualquer tentativa de se passar por instituição financeira.</td><td class="mono"><a href="#E-TITLE">E-TITLE</a> <a href="#E-FTR">E-FTR</a> <a href="#E-HEAD-6">E-HEAD-6</a> </td></tr>
+      <tr><td>CORRESPONDENT_TRANSPARENCY</td><td class="NOT_ASSESSED">NOT_ASSESSED</td><td>A página não atua nem se apresenta como correspondente bancário; trata-se de leilão judicial de imóvel.</td><td class="mono"><a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> </td></tr>
+      <tr><td>INSTITUTIONAL_LANGUAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Linguagem puramente jurídica e descritiva de edital de leilão e autos judiciais.</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a> <a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> </td></tr>
+      <tr><td>LOGO_USAGE</td><td class="NEUTRAL">NEUTRAL</td><td>Não há exibição de logotipos do Banco BV.</td><td class="mono"><a href="#E-SHOT-FULL">E-SHOT-FULL</a> </td></tr>
+      <tr><td>SERVICE_JOURNEY</td><td class="NEUTRAL">NEUTRAL</td><td>Jornada restrita a cadastro e participação em leilões judiciais.</td><td class="mono"><a href="#E-NAV">E-NAV</a> <a href="#E-CTA-5">E-CTA-5</a> </td></tr>
+      <tr><td>CONTACT_CHANNELS</td><td class="NEUTRAL">NEUTRAL</td><td>Canais de contato próprios da empresa de leilões VM Leilões.</td><td class="mono"><a href="#E-HDR">E-HDR</a> <a href="#E-FTR">E-FTR</a> <a href="#E-CONTACT-1">E-CONTACT-1</a> </td></tr>
+      <tr><td>CONSUMER_CONFUSION</td><td class="NEUTRAL">NEUTRAL</td><td>Inexistência de risco de confusão; a menção à BV decorre unicamente da sua qualificação como terceiro interessado em processo judicial de execução/leilão.</td><td class="mono"><a href="#E-TXT-004">E-TXT-004</a> </td></tr>
+    </table>
+    <h3>Indícios de Confusão</h3>
+    <ul><li>[MEDIUM] LOGO_USAGE: Imagem possivelmente de logotipo da marca acima da dobra — <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></li><li>[MEDIUM] CORRESPONDENT_TRANSPARENCY: Nenhuma declaração de correspondente/independência observada no conteúdo coletado — <span class="mono"><a href="#E-FTR">E-FTR</a> <a href="#E-FOLD">E-FOLD</a> </span></li><li>[LOW] CONTACT_CHANNELS: Atendimento por WhatsApp sob identidade destacada da marca — <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> </span></li><li>[HIGH] SERVICE_JOURNEY: Página usa a marca e pede senha — <span class="mono"><a href="#E-FORM-001">E-FORM-001</a> </span></li></ul>
+    <h3>Indícios de Relação Legítima</h3>
+    <ul><li>[HIGH] DECLARED_COMMERCIAL_IDENTITY: Menção à BV Financeira estritamente como terceiro interessado em autos de processo judicial no edital de leilão de um imóvel. — <span class="mono"><a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> </span></li></ul>
+    <h3>Fatos Observados</h3>
+    <ul><li>A página pertence ao site vmleiloes.com.br, referente ao leilão judicial de um lote/sobrado conduzido pelo leiloeiro Jair Vicente Martins.</li><li>A marca BV Financeira S.A. é citada unicamente no campo &#39;TERCEIRO INTERESSADO&#39; de um processo judicial (TutCautAnt 0000081-21.2018.5.09.0008).</li><li>Não há oferta ou intermediação de crédito, nem atuação como correspondente bancário.</li><li>Nenhum logotipo ou identidade visual do Banco BV é utilizado na página.</li></ul>
+    <h3>Incertezas</h3>
+    <ul><li>divergência modelo × regras: o modelo indicou NOT_RELEVANT/NO_INDICATION, mas as regras determinísticas indicam B_AMBIGUOUS_COMMUNICATION; encaminhado para revisão (possível erro ou influência do conteúdo da página)</li></ul>
+    <h3>Síntese do Analista</h3>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página auditada é um site de leilões judiciais (VM Leilões) que lista um imóvel leiloado por determinação judicial. A menção à BV Financeira ocorre exclusivamente no âmbito de terceiros interessados nos autos processuais, sem nenhuma oferta ou intermediação de produtos de crédito. Conforme as diretrizes de escopo, páginas de processos judiciais e leilões que não ofertam crédito estão fora do escopo de auditoria de COBANs, sendo classificadas como NOT_RELEVANT / NO_INDICATION com prioridade LOW.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Identidade do Responsável</h2>
+    <div class="grid">
+      <div class="kv"><b>Categoria</b>OTHER_THIRD_PARTY</div>
+      <div class="kv"><b>Entidade</b>TOYOTA SULPAR LTDA<br><span class="mono">domain:vmleiloes.com.br</span></div>
+      <div class="kv"><b>Confiança</b>LOW</div>
+      <div class="kv"><b>Cadastro autorizado</b>sem correspondência</div>
+    </div>
+    <p style="margin-top:12px;">Empresa identificada na página sem declaração de relação de correspondente; anunciar produtos da marca não comprova vínculo.</p>
+    <h3>Fatos Observados</h3>
+    <table>
+      <tr><th>Tipo</th><th>Valor</th><th>Ref</th><th>Contexto</th></tr>
+      <tr><td>domain</td><td>vmleiloes.com.br</td><td class="mono"><a href="#E-URL">E-URL</a></td><td></td></tr>
+      <tr><td>institution_name_displayed</td><td>BV FINANCEIRA S.A</td><td class="mono"><a href="#E-DISC-001">E-DISC-001</a></td><td></td></tr>
+      <tr><td>email</td><td>atendimento@vmleiloes.com.br</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>TOYOTA SULPAR LTDA</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>REDE BRASILEIRA DE VEICULOS LTDA</td><td class="mono"><a href="#E-TXT-003">E-TXT-003</a></td><td></td></tr>
+      <tr><td>legal_name</td><td>HSBC Bank Brasil S.A</td><td class="mono"><a href="#E-TXT-004">E-TXT-004</a></td><td></td></tr>
+      <tr><td>phone</td><td>(41) 99969-9934</td><td class="mono"><a href="#E-HDR">E-HDR</a></td><td></td></tr>
+      <tr><td>phone</td><td>(41) 99611-9934</td><td class="mono"><a href="#E-FTR">E-FTR</a></td><td></td></tr>
+      <tr><td>whatsapp</td><td>Precisa de ajuda? Entre em contato conosco &lt;https://wa.me/5541996119934?text=Ola%2C+vim+pelo+site+e+gostaria+de+falar+com+a+equipe.&gt;</td><td class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a></td><td></td></tr>
+    </table>
+    <h3>Inferências de Associação (Não são Fatos)</h3>
+    <ul><li>a página se apresenta com o nome da instituição (BV FINANCEIRA S.A); isso é identidade declarada/visual, não a identidade do responsável</li><li>entidade agrupada pelo domínio registrável; um mesmo estabelecimento pode ter outros domínios não associados</li><li>base da associação: domínio (sem CNPJ)</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Mapeamento de Conformidade (Hipóteses)</h2>
+    <p class="muted">Mapeamento indicativo para apoio à auditoria. Não constitui conclusão regulatória; a decisão definitiva pertence à auditoria.</p>
+    <h3>Res. CMN 4.935/2021, art. 14, inciso II — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] II - vedação à utilização, pelo contratado, de logomarca ou de outros atributos que sejam similares aos adotados pela instituição contratante em suas agências, postos de atendimento, sítio eletrônico na internet, aplicativo ou outras plataformas de comunicação em rede;</blockquote>
+<p><b>Hipótese:</b> Uso de logomarca, uso excessivo/desproporcional ou de atributos similares aos adotados pela contratante em seus canais. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-IMG-1">E-IMG-1</a> <a href="#E-IMG-2">E-IMG-2</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul>    <h3>Res. CMN 4.935/2021, art. 14, inciso III, alíneas a e b — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 14. O contrato de correspondente deve estabelecer: [...] III - divulgação ao público, pelo contratado, de sua condição de prestador de serviços à instituição contratante, identificada pelo nome com que é conhecida no mercado, com descrição dos produtos e serviços oferecidos e canais de contato da instituição contratante, inclusive de sua ouvidoria, em local visível, em destaque e em formato legível, por meio de: a) sítio eletrônico do correspondente na internet, acessível na página inicial; b) aplicativo e outras plataformas de comunicação em rede do correspondente; [...]</blockquote>
+<p><b>Hipótese:</b> Divulgação ao público da condição de prestador de serviços/parceria ausente, insuficiente, ambígua ou sem destaque. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-FOLD">E-FOLD</a> <a href="#E-FTR">E-FTR</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li><li>canais de contato/ouvidoria da contratante não observados no material coletado (podem existir em páginas não inspecionadas)</li></ul>    <h3>Res. CMN 4.935/2021, art. 3º — NOT_APPLICABLE_UNLESS_COBAN</h3>
+    <p class="muted" style="margin-top:2px;">Fonte: NORMATIVE</p>
+    <blockquote class="kv" style="margin:8px 0;">Art. 3º O correspondente atua por conta e sob as diretrizes da instituição contratante, que assume inteira responsabilidade pelo atendimento prestado aos clientes e usuários por meio do contratado.</blockquote>
+<p><b>Hipótese:</b> Atendimento ao público prestado por meio do contratado em condições que podem não seguir as diretrizes da contratante. A norma disciplina correspondentes contratados; o responsável não foi identificado como correspondente.</p>    <p><b>Evidência observada:</b> <span class="mono"><a href="#E-CONTACT-1">E-CONTACT-1</a> <a href="#E-FORM-001">E-FORM-001</a> </span></p>
+<p><b>Informação faltante:</b></p><ul><li>confirmar se o responsável é correspondente contratado (relação pública da contratante — art. 21 — ou base interna)</li></ul><p class="note">Se o responsável não for correspondente contratado, os indícios podem caracterizar uso indevido de marca ou fraude, fora do escopo da Res. 4.935: avaliar encaminhamento às áreas jurídica/segurança.</p><p class="muted">Limitações: requisitos contratuais/internos não fornecidos: mapeamento limitado ao texto normativo</p>  </div>
+
+  <div class="card">
+    <h2>7. Revisão Crítica <span class="muted" style="font-size:13px; font-weight:normal;">(gemini-3.8-flash)</span></h2>
+    <p>Decisão: <b>DOWNGRADE</b> → NO_INDICATION / LOW</p>
+    <p style="white-space:pre-wrap; background:var(--bv-bg-light); padding:12px; border-radius:var(--bv-radius-md);">A página é de leilão judicial de imóvel promovido por leiloeiro oficial. A menção à BV Financeira se restringe estritamente aos dados do processo (terceiro interessado/ônus fiduciário anterior). Não se trata de correspondente bancário, loja de veículos ou promotora de crédito. Enquadra-se nas hipóteses de downgrade para NO_INDICATION com prioridade LOW.</p>
+    <table>
+      <tr><th>Tema</th><th>Severidade</th><th>Questionamento</th><th>Refs</th></tr>
+      <tr><td>Fora do escopo de COBAN / Menção processual judicial</td><td>HIGH</td><td>O site auditado pertence a uma leiloeira judicial (VM Leilões / Jair Vicente Martins). A única menção à &#39;BV FINANCEIRA S.A.&#39; ocorre no campo &#39;TERCEIRO INTERESSADO&#39; de um processo judicial relativo a leilão de imóvel, inexistindo oferta comercial, correspondência bancária ou uso indevido da marca Banco BV.</td><td class="mono"><a href="#E-TXT-004">E-TXT-004</a> <a href="#E-TXT-005">E-TXT-005</a> <a href="#E-SHOT-FULL">E-SHOT-FULL</a> <a href="#E-IMG-1">E-IMG-1</a> </td></tr>
+    </table>
+<h3>Evidências contraditórias</h3><ul><li>E-IMG-1</li><li>E-IMG-2</li><li>E-TXT-004</li><li>E-TXT-005</li><li>E-SHOT-FULL</li></ul>  </div>
+
+  <div class="card">
+    <h2>8. Origem da Descoberta</h2>
+    <table>
+      <tr><th>Fonte</th><th>Consulta / hipótese</th><th>URL original</th><th>Título / trecho</th></tr>
+      <tr><td>serper</td><td>leilões &#34;bv financeira&#34; carros<br><span class="muted">H10-fraud:leilao-retomados</span></td><td class="mono">https://vmleiloes.com.br/lote/2328/sobrado</td><td>SOBRADO - VM Leilões<br><span class="muted">... BV FINANCEIRA S.A. CRÉDITO, FINANCIAMENTOS E INVESTIMENTOS, MAURO CESAR HONORATO BROSTULIN. BEM: SOBRADO nº 04 do Residencial das Oliveiras na Rua Salvador ...</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>9. Cadeia de Custódia da Coleta</h2>
+    <div class="grid">
+      <div class="kv"><b>Status</b>OK (HTTP 200)</div>
+      <div class="kv"><b>Coletado em (UTC)</b>2026-11-25 23:11:10.413478+00:00</div>
+      <div class="kv"><b>IP do servidor</b>104.21.0.213</div>
+      <div class="kv"><b>Manifesto</b><span class="mono">evidence/C772cb6a024/attempt-1/manifest.json<br>sha256 1df31306a65f986584ba1d65ab394c11fa787e48a913103943527137f49b4604</span></div>
+    </div>
+    <p class="mono" style="margin-top:12px;">Original: https://vmleiloes.com.br/lote/2328/sobrado<br>Final: https://vmleiloes.com.br/lote/2328/sobrado</p>
+    <table>
+      <tr><th>Artefato</th><th>Caminho</th><th>SHA-256</th><th>Bytes</th></tr>
+      <tr><td>screenshot_viewport</td><td class="mono">evidence/C772cb6a024/attempt-1/viewport.png</td><td class="mono">7b04c29958e4376721ad963da79d6dcd1988204853dbd3afd03f76f57e341d85</td><td>725788</td></tr>
+      <tr><td>screenshot_full</td><td class="mono">evidence/C772cb6a024/attempt-1/fullpage.png</td><td class="mono">238079e38b2b0c696c56b587ab4c1fd77cc8b985040c1ee81e83e746bba69a4d</td><td>1035522</td></tr>
+      <tr><td>html</td><td class="mono">evidence/C772cb6a024/attempt-1/page.html.txt</td><td class="mono">5fc8a0b7a649261a6ebb017cecf4bc9007a03f979041cdb722d347bebd4c35e9</td><td>78067</td></tr>
+      <tr><td>text</td><td class="mono">evidence/C772cb6a024/attempt-1/text.txt</td><td class="mono">0d8f8229ba7954e390ec27b13661db93b1b8d18b25c35ff743ad74e8e4114785</td><td>3456</td></tr>
+      <tr><td>page_data</td><td class="mono">evidence/C772cb6a024/attempt-1/page.json</td><td class="mono">2a23f7e87727f5d82c02b5b822281f47b27cad28d17e3f78c76cfb98b5fef1e3</td><td>16528</td></tr>
+    </table>
+    <h3>Ocorrências e conteúdo não inspecionado</h3>
+    <ul><li>apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Histórico de Estados</h2>
+    <table>
+      <tr><th>Quando</th><th>De</th><th>Para</th><th>Nota</th></tr>
+      <tr><td>2026-11-25T22:38:33+00:00</td><td>DISCOVERED</td><td>QUEUED</td><td>prioritised (score 2.0)</td></tr>
+      <tr><td>2026-11-25T23:11:10+00:00</td><td>QUEUED</td><td>COLLECTING</td><td></td></tr>
+      <tr><td>2026-11-25T23:11:18+00:00</td><td>COLLECTING</td><td>COLLECTED</td><td></td></tr>
+      <tr><td>2026-11-25T23:11:18+00:00</td><td>COLLECTED</td><td>ANALYZING</td><td></td></tr>
+      <tr><td>2026-11-25T23:11:31+00:00</td><td>ANALYZING</td><td>REVIEWING</td><td></td></tr>
+      <tr><td>2026-11-25T23:11:39+00:00</td><td>REVIEWING</td><td>COMPLETED</td><td></td></tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

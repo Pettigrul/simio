@@ -1,0 +1,438 @@
+<html lang="pt-br" data-periodo="noite"><head>
+    <!-- Meta tags básicas -->
+    <meta charset="utf-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=bc8913ca-7afd-490c-a853-b7f58562ad91
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Perfil profissional de David Santos Magalhães — Engenheiro de Software Pleno no Itaú Unibanco. Python, PySpark, PostgreSQL, AWS.">
+    <meta name="author" content="David Santos Magalhães">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="David Santos Magalhães | Engenheiro de Software Pleno">
+    <meta property="og:description" content="Engenheiro de Software Pleno no Itaú Unibanco. Confira meu perfil profissional.">
+    <meta property="og:image" content="./img/padrao/foto-perfil-2.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/padrao/logo.png">
+
+    <!-- Bootstrap 5.3.3 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Fancybox 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.css" crossorigin="anonymous">
+
+    <!-- Google Fonts: Comfortaa (display) + Inter (body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+
+    <!-- CSS customizado -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Anti-flash: aplica período antes da renderização para evitar flash de estilo -->
+    <script>
+        (function () {
+            var VALIDOS = ['inicio-manha', 'fim-manha', 'tarde', 'fim-tarde', 'noite', 'madrugada'];
+            function detectar() {
+                var m = new Date().getHours() * 60 + new Date().getMinutes();
+                if (m >= 300 && m < 480)  return 'inicio-manha';
+                if (m >= 480 && m < 720)  return 'fim-manha';
+                if (m >= 720 && m < 1020) return 'tarde';
+                if (m >= 1020 && m < 1110) return 'fim-tarde';
+                if (m >= 1110 || m < 30)  return 'noite';
+                return 'madrugada';
+            }
+            var salvo = sessionStorage.getItem('periodo_manual');
+            var periodo = (salvo && VALIDOS.indexOf(salvo) !== -1) ? salvo : detectar();
+            document.documentElement.setAttribute('data-periodo', periodo);
+        })();
+    </script>
+
+    <title>David Santos Magalhães | Engenheiro de Software Pleno</title>
+</head>
+
+<body id="body">
+
+    <!-- Planos de fundo — camadas de crossfade por período do dia -->
+    <div id="fundo-transicao" class="fundo fixed-top"></div>
+    <div id="fundo-principal" class="fundo fixed-top" style="background-image: url(&quot;./img/periodos_do_dia/5_img_fundo_noite.png&quot;);"></div>
+    <div id="assinatura" class="assinatura fixed-top"></div>
+
+    <!-- Aviso de privacidade LGPD -->
+    <div id="consent-banner" class="consent-banner" role="alert" aria-live="polite">
+        <div class="consent-body">
+            <p class="consent-text">
+                Ao navegar neste site, coletamos dados técnicos de acesso
+                (origem da visita, dispositivo, navegador e data/hora), conforme a
+                <strong>LGPD (Lei 13.709/2018)</strong>.
+                <button type="button" class="btn-link-inline" data-bs-toggle="modal" data-bs-target="#modalPrivacidade">
+                    Saiba mais
+                </button>.
+                Se quiser, pode se identificar opcionalmente
+                <span class="pii-note">(dados pessoais)</span>:
+            </p>
+            <div class="consent-fields">
+                <input type="text" id="consent-nome" class="consent-input" placeholder="Seu nome (opcional)" maxlength="80" autocomplete="name" aria-label="Nome — dado pessoal, preenchimento opcional" style="">
+                <input type="text" id="consent-perfil" class="consent-input" placeholder="Seu @perfil ou rede social (opcional)" maxlength="120" aria-label="Perfil social — dado pessoal, preenchimento opcional" style="">
+            </div>
+        </div>
+        <div class="consent-actions">
+            <button id="consent-accept" class="btn-consent btn-consent-accept">Entendi</button>
+            <button id="consent-decline" class="btn-consent btn-consent-decline">Recusar</button>
+        </div>
+    </div>
+
+    <!-- Indicador de modo limitado (visível enquanto visitante não está identificado) -->
+    <div id="limited-mode-indicator" class="limited-mode-indicator" role="status" aria-live="polite">
+        <span>Modo limitado —
+            <button id="indicator-btn-identificar" class="btn-link-inline">Identificar-me</button>
+        </span>
+    </div>
+
+    <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+    <div class="container-fluid main-container">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+
+                <div class="card-perfil">
+
+                    <!-- Seletor de período (dot discreto no canto do card) -->
+                    <div id="periodo-dot-wrapper" class="periodo-dot-wrapper">
+                        <button id="periodo-dot" class="periodo-dot auto-ativo" aria-label="Selecionar período do dia" aria-expanded="false" aria-haspopup="listbox" title="Trocar período do dia">
+                            <span id="periodo-dot-icon" class="periodo-dot-icon" aria-hidden="true">🌙</span>
+                        </button>
+                        <div id="periodo-popover" class="periodo-popover" role="listbox" aria-label="Períodos do dia">
+                            <div class="periodo-opcoes">
+                                <button class="periodo-opcao" data-key="inicio-manha" role="option" aria-label="Início da manhã (5h–8h)" aria-selected="false">🌅</button>
+                                <button class="periodo-opcao" data-key="fim-manha" role="option" aria-label="Fim da manhã (8h–12h)" aria-selected="false">☀️</button>
+                                <button class="periodo-opcao" data-key="tarde" role="option" aria-label="Tarde (12h–17h)" aria-selected="false">🌤️</button>
+                                <button class="periodo-opcao" data-key="fim-tarde" role="option" aria-label="Fim de tarde (17h–18h30)" aria-selected="false">🌇</button>
+                                <button class="periodo-opcao ativo" data-key="noite" role="option" aria-label="Noite (18h30–0h30)" aria-selected="true">🌙</button>
+                                <button class="periodo-opcao" data-key="madrugada" role="option" aria-label="Madrugada (0h30–5h)" aria-selected="false">🌌</button>
+                            </div>
+                            <button id="btn-periodo-auto" class="periodo-auto-btn auto-ativo" title="Retornar ao período automático por horário">
+                                ⏱ auto
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Foto de perfil com anel gradiente animado -->
+                    <div class="img-container">
+                        <div class="foto-ring">
+                            <a href="./img/padrao/foto-perfil-2.jpg" data-fancybox="gallery-perfil" data-caption="David Santos Magalhães" aria-label="Ver foto de perfil em tamanho maior">
+                                <img src="./img/padrao/foto-perfil-2.jpg" class="foto-perfil" alt="David Santos Magalhães — foto de perfil">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Identificação profissional -->
+                    <div class="perfil-info stagger-1">
+                        <h1 class="title">David Santos Magalhães</h1>
+                        <h2 class="subtitle">Engenheiro de Software Pleno</h2>
+                    </div>
+
+                    <!-- CTA Sobre Mim -->
+                    <div class="cta-wrapper stagger-2">
+                        <button type="button" class="btn-sobre access-locked" data-locked-bs-toggle="modal" data-locked-bs-target="#modalSobreMim">
+                            Sobre mim
+                        </button>
+                    </div>
+
+                    <!-- Redes Sociais -->
+                    <nav class="redes-sociais stagger-3" aria-label="Redes sociais">
+                        <ul>
+                            <li>
+                                <a href="https://www.linkedin.com/in/david-santos-ab2b7916a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="access-locked">
+                                    <img src="./img/padrao/icon-linkedin.png" alt="LinkedIn" class="icon-social icon-linkedin">
+                                    <span>LinkedIn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/david.smagalhaes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="access-locked">
+                                    <img src="./img/padrao/icon-instagram.png" alt="Instagram" class="icon-social">
+                                    <span>Instagram</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/davidsm2k" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="access-locked">
+                                    <img src="./img/padrao/icon-github.png" alt="GitHub" class="icon-social">
+                                    <span>GitHub</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Divisor -->
+                    <div class="section-divider stagger-4"></div>
+
+                    <!-- Credenciais -->
+                    <p class="section-label stagger-4">Credenciais</p>
+                    <div class="certificados stagger-4">
+                        <button class="icone-btn access-locked" aria-label="Ver certificados da Força Aérea Brasileira" data-locked-bs-toggle="modal" data-locked-bs-target="#modalFab">
+                            <img src="./img/padrao/icon-fab.png" alt="FAB">
+                            <span>Força Aérea</span>
+                        </button>
+                        <button class="icone-btn access-locked" aria-label="Ver diplomas acadêmicos" data-locked-bs-toggle="modal" data-locked-bs-target="#modalAcademico">
+                            <img src="./img/padrao/icon-diploma.png" alt="Diplomas">
+                            <span>Diplomas</span>
+                        </button>
+                        <button class="icone-btn access-locked" aria-label="Ver cursos extras" data-locked-bs-toggle="modal" data-locked-bs-target="#modalCursosExtras">
+                            <img src="./img/padrao/icon-curso.png" alt="Cursos" class="icon-curso">
+                            <span>Cursos</span>
+                        </button>
+                    </div>
+
+                </div><!-- /card-perfil -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Link de gerenciamento de cookies (LGPD — direito de revogar) -->
+    <div class="cookies-mgmt-wrapper">
+        <button id="btn-revogar-consentimento" class="btn-gerenciar-cookies" aria-label="Gerenciar preferências de cookies e consentimento">
+            Gerenciar cookies
+        </button>
+    </div>
+
+
+    <!-- ===================== MODAIS ===================== -->
+
+    <!-- Modal Sobre Mim -->
+    <div class="modal fade" id="modalSobreMim" tabindex="-1" aria-labelledby="modalSobreMimLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header t-header-dark">
+                    <h5 class="modal-title modal-title-white" id="modalSobreMimLabel">Sobre mim</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="historia">
+                        <p>
+                            Meu nome é David Santos Magalhães, sou <strong>Engenheiro de Software Pleno</strong> no
+                            Itaú Unibanco e apaixonado por tecnologia. Minha trajetória não foi linear — e é
+                            exatamente isso que me tornou o profissional que sou hoje.
+                        </p>
+                        <p>
+                            Tudo começou aos 16 anos, quando entrei no mercado de trabalho como negociador de
+                            cobrança, atuando na recuperação de créditos de grandes bancos como BV Financeira,
+                            Santander e Bradesco. Essa experiência me ensinou comunicação, resiliência e a
+                            capacidade de encontrar soluções mesmo nas situações mais desafiadoras.
+                        </p>
+                        <p>
+                            Em 2017, ingressei na <strong>Força Aérea Brasileira</strong>, onde servi por 4 anos.
+                            Fui responsável por liderar equipes, elaborar relatórios, controlar documentos sigilosos
+                            e atender o público. Foi na FAB que desenvolvi disciplina, atenção aos detalhes,
+                            responsabilidade pessoal e uma mentalidade voltada ao crescimento contínuo — valores
+                            que carrego para cada desafio profissional.
+                        </p>
+                        <p>
+                            Paralelamente ao serviço militar, iniciei em 2019 a graduação em
+                            <strong>Análise e Desenvolvimento de Sistemas</strong> pela UNICID, concluída em 2020.
+                            Em 2021, após deixar a FAB, mergulhei no <strong>Bootcamp Full Stack Java Jr da
+                            Generation Brasil</strong> — três meses intensivos onde desenvolvi habilidades em
+                            Java, Spring Boot, MySQL e Angular, além de reforçar proatividade, trabalho em equipe
+                            e orientação ao futuro.
+                        </p>
+                        <p>
+                            Em agosto de 2021 ingressei no <strong>Itaú Unibanco como estagiário de TI</strong>,
+                            atuando em projetos de finanças com <strong>Python</strong> e serviços da
+                            <strong>AWS</strong> (Glue, S3 e EC2) para manipulação e distribuição de dados
+                            bancários entre setores internos. Fui efetivado em janeiro de 2022 como Engenheiro de
+                            Software Júnior e, em maio de 2025, promovido a
+                            <strong>Engenheiro de Software Pleno</strong>.
+                        </p>
+                        <p>
+                            Hoje trabalho diariamente com <strong>Python, PySpark, PostgreSQL e Grafana</strong>,
+                            sempre buscando evoluir e entregar valor real por meio da tecnologia. Em 2023 concluí
+                            também a segunda graduação em <strong>Gestão de Tecnologia da Informação</strong>
+                            pela UNICID.
+                        </p>
+                        <p>
+                            Se quiser conversar sobre tecnologia, trocar experiências ou tiver alguma oportunidade,
+                            fique à vontade para me chamar pelas redes sociais. Será um prazer!
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal FAB -->
+    <div class="modal fade t-modal gray" id="modalFab" tabindex="-1" aria-labelledby="modalFabLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFabLabel">Força Aérea Brasileira</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-section-label text-center">ELOGIO</p>
+                    <div class="modal-card">
+                        <a href="./img/fab/elogio.jpg" data-fancybox="gallery-fab" data-caption="Elogio — Força Aérea Brasileira">
+                            <img class="img-fluid" src="./img/fab/elogio.jpg" alt="Elogio FAB">
+                        </a>
+                    </div>
+                    <p class="modal-section-label text-center mt-4">CERTIFICADO</p>
+                    <div class="modal-card">
+                        <a href="./img/fab/certificado1.jpg" data-fancybox="gallery-fab" data-caption="Certificado FAB — Parte 1">
+                            <img class="img-fluid" src="./img/fab/certificado1.jpg" alt="Certificado FAB — Parte 1">
+                        </a>
+                        <a href="./img/fab/certificado2.jpg" data-fancybox="gallery-fab" data-caption="Certificado FAB — Parte 2">
+                            <img class="img-fluid" src="./img/fab/certificado2.jpg" alt="Certificado FAB — Parte 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diplomas -->
+    <div class="modal fade t-modal green" id="modalAcademico" tabindex="-1" aria-labelledby="modalAcademicoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAcademicoLabel">Diplomas Acadêmicos</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-section-label text-center">Análise e Desenvolvimento de Sistemas</p>
+                    <p class="modal-period text-center">Jan. 2019 – Dez. 2020</p>
+                    <div class="modal-card">
+                        <a href="./img/diploma/diploma-ads.jpg" data-fancybox="gallery-diploma" data-caption="Diploma — ADS">
+                            <img class="img-fluid" src="./img/diploma/diploma-ads.jpg" alt="Diploma ADS">
+                        </a>
+                    </div>
+                    <p class="modal-section-label text-center mt-4">Gestão de Tecnologia da Informação</p>
+                    <p class="modal-period text-center">Ago. 2021 – Jun. 2023</p>
+                    <div class="modal-card">
+                        <a href="./img/diploma/diploma-gti.jpg" data-fancybox="gallery-diploma" data-caption="Diploma — GTI">
+                            <img class="img-fluid" src="./img/diploma/diploma-gti.jpg" alt="Diploma GTI">
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cursos Extras -->
+    <div class="modal fade t-modal blue" id="modalCursosExtras" tabindex="-1" aria-labelledby="modalCursosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCursosLabel">Cursos Extras</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-section-label">Generation Brasil — Bootcamp Full Stack Java</p>
+                    <p class="modal-period text-center">Mar. 2021 – Jun. 2021</p>
+                    <div class="modal-card">
+                        <a href="./img/certificado/generation-brasil.png" data-fancybox="gallery-cursos" data-caption="Certificado — Generation Brasil">
+                            <img class="img-fluid" src="./img/certificado/generation-brasil.png" alt="Certificado Generation Brasil">
+                        </a>
+                    </div>
+                    <p class="text-center mt-3 modal-period">
+                        Projeto de conclusão:
+                        <a href="https://remedion.netlify.app/#/inicio" target="_blank" rel="noopener noreferrer">RemediOn</a>
+                    </p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Política de Privacidade -->
+    <div class="modal fade" id="modalPrivacidade" tabindex="-1" aria-labelledby="modalPrivacidadeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header t-header-dark">
+                    <h5 class="modal-title modal-title-white" id="modalPrivacidadeLabel">Política de Privacidade</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="historia">
+                        <p><strong>Responsável:</strong> David Santos Magalhães — davidsm2k@gmail.com</p>
+
+                        <p><strong>Dados coletados</strong><br>
+                        Ao aceitar, coletamos dados técnicos <em>não-pessoais</em>: data e hora do acesso,
+                        origem da visita (rede social ou acesso direto), tipo de dispositivo, resolução de tela,
+                        idioma do navegador e URL acessada. Opcionalmente, você pode informar seu nome e perfil
+                        social — esses são dados pessoais e seu fornecimento é <em>voluntário</em>.</p>
+
+                        <p><strong>Finalidade</strong><br>
+                        Os dados são usados exclusivamente para entender quem visita este portfólio e por qual
+                        canal, sem fins comerciais ou compartilhamento com terceiros.</p>
+
+                        <p><strong>Armazenamento</strong><br>
+                        Os dados são enviados por e-mail ao titular deste site e não são armazenados em banco
+                        de dados. O consentimento é registrado no seu navegador (localStorage) e pode ser
+                        revogado a qualquer momento clicando em <em>"Gerenciar cookies"</em> na página.</p>
+
+                        <p><strong>Google Analytics</strong><br>
+                        Se aceito, o Google Analytics 4 é carregado com anonimização de IP ativada
+                        (<code>anonymize_ip: true</code>), em conformidade com a LGPD e o GDPR.</p>
+
+                        <p><strong>Seus direitos (LGPD — Lei 13.709/2018)</strong><br>
+                        Você tem direito a: confirmar a existência de tratamento, acessar seus dados,
+                        solicitar correção ou eliminação, revogar consentimento e opor-se ao tratamento.
+                        Para exercer qualquer direito, entre em contato pelo e-mail acima.</p>
+
+                        <p><strong>Última atualização:</strong> Maio de 2026</p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap 5.3.3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Fancybox 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        Fancybox.bind("[data-fancybox]", {
+            groupAll: false,
+            Toolbar: { display: { left: [], middle: [], right: ["close"] } }
+        });
+    </script>
+
+    <!-- Container dos toasts de controle de acesso -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 11000;" id="toast-container-access" aria-live="polite" aria-atomic="true">
+    <div id="access-denied-toast" class="toast access-denied-toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+            <div class="toast-header access-denied-toast-header">
+                <strong class="me-auto">Acesso restrito</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Fechar"></button>
+            </div>
+            <div class="toast-body">
+                Visitantes não identificados não podem acessar dados pessoais.
+                <button id="toast-btn-identificar" class="btn-toast-link">
+                    Identificar-me agora
+                </button>
+            </div>
+        </div></div>
+
+    <!-- Scripts próprios -->
+    <script src="./js/config.js"></script>
+    <script src="./js/analytics.js"></script>
+    <script src="./js/period-theme.js"></script>
+    <script src="./js/visitor-tracker.js"></script>
+    <script src="./js/access-controller.js"></script>
+
+
+
+</body></html>

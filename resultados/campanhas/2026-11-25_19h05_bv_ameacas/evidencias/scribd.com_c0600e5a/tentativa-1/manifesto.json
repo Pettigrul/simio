@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cc0600e5a18",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.scribd.com/document/666954416/Termo-de-Compromisso",
+  "final_url": "https://pt.scribd.com/document/666954416/Termo-de-Compromisso",
+  "redirect_chain": [
+    "https://www.scribd.com/document/666954416/Termo-de-Compromisso"
+  ],
+  "http_status": 200,
+  "server_ip": "151.101.250.152",
+  "collected_at": "2026-11-25T23:25:20.628624+00:00",
+  "manifest_written_at": "2026-11-25T23:25:27.532869+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cc0600e5a18/attempt-1/viewport.png",
+      "sha256": "c372b94ab87b75b588d918d5b599c4abf85549c4a23d0ad5b928034240848478",
+      "size_bytes": 192330
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cc0600e5a18/attempt-1/fullpage.png",
+      "sha256": "e4117ce5b1960de07ada762c999a3738b11e6db89777c14586a12602a75c0dd4",
+      "size_bytes": 665661
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cc0600e5a18/attempt-1/page.html.txt",
+      "sha256": "a1814fb590f13f1d3b37939d7be8fe85c909800d328a38b47f51a9c4010bf3ad",
+      "size_bytes": 1402771
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cc0600e5a18/attempt-1/text.txt",
+      "sha256": "f63970341c5973979bb30ee82a00b72d66464816ecfb713effd49732669ac5b4",
+      "size_bytes": 6512
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cc0600e5a18/attempt-1/page.json",
+      "sha256": "432f445e3e20910f69a74e12155cc7a387cea300339043b0a8b874b9fd22d630",
+      "size_bytes": 44429
+    }
+  ],
+  "blocked_requests": [
+    "https://m.stripe.com/6 -> DNS resolution failed for m.stripe.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

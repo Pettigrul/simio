@@ -1,0 +1,671 @@
+<html class="bancobv" data-assis-steps-hold="true"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><style id="ace_searchbox">.ace_search {background-color: #ddd;color: #666;border: 1px solid #cbcbcb;border-top: 0 none;overflow: hidden;margin: 0;padding: 4px 6px 0 4px;position: absolute;top: 0;z-index: 99;white-space: normal;}.ace_search.left {border-left: 0 none;border-radius: 0px 0px 5px 0px;left: 0;}.ace_search.right {border-radius: 0px 0px 0px 5px;border-right: 0 none;right: 0;}.ace_search_form, .ace_replace_form {margin: 0 20px 4px 0;overflow: hidden;line-height: 1.9;}.ace_replace_form {margin-right: 0;}.ace_search_form.ace_nomatch {outline: 1px solid red;}.ace_search_field {border-radius: 3px 0 0 3px;background-color: white;color: black;border: 1px solid #cbcbcb;border-right: 0 none;outline: 0;padding: 0;font-size: inherit;margin: 0;line-height: inherit;padding: 0 6px;min-width: 17em;vertical-align: top;min-height: 1.8em;box-sizing: content-box;}.ace_searchbtn {border: 1px solid #cbcbcb;line-height: inherit;display: inline-block;padding: 0 6px;background: #fff;border-right: 0 none;border-left: 1px solid #dcdcdc;cursor: pointer;margin: 0;position: relative;color: #666;}.ace_searchbtn:last-child {border-radius: 0 3px 3px 0;border-right: 1px solid #cbcbcb;}.ace_searchbtn:disabled {background: none;cursor: default;}.ace_searchbtn:hover {background-color: #eef1f6;}.ace_searchbtn.prev, .ace_searchbtn.next {padding: 0px 0.7em}.ace_searchbtn.prev:after, .ace_searchbtn.next:after {content: "";border: solid 2px #888;width: 0.5em;height: 0.5em;border-width:  2px 0 0 2px;display:inline-block;transform: rotate(-45deg);}.ace_searchbtn.next:after {border-width: 0 2px 2px 0 ;}.ace_searchbtn_close {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;border-radius: 50%;border: 0 none;color: #656565;cursor: pointer;font: 16px/16px Arial;padding: 0;height: 14px;width: 14px;top: 9px;right: 7px;position: absolute;}.ace_searchbtn_close:hover {background-color: #656565;background-position: 50% 100%;color: white;}.ace_button {margin-left: 2px;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-o-user-select: none;-ms-user-select: none;user-select: none;overflow: hidden;opacity: 0.7;border: 1px solid rgba(100,100,100,0.23);padding: 1px;box-sizing:    border-box!important;color: black;}.ace_button:hover {background-color: #eee;opacity:1;}.ace_button:active {background-color: #ddd;}.ace_button.checked {border-color: #3399ff;opacity:1;}.ace_search_options{margin-bottom: 3px;text-align: right;-webkit-user-select: none;-moz-user-select: none;-o-user-select: none;-ms-user-select: none;user-select: none;clear: both;}.ace_search_counter {float: left;font-family: arial;padding: 0 8px;}
+/*# sourceURL=ace/css/ace_searchbox */</style><style id="ace-dracula">.ace-dracula .ace_gutter {background: #282a36;color: rgb(144,145,148)}.ace-dracula .ace_print-margin {width: 1px;background: #44475a}.ace-dracula {background-color: #282a36;color: #f8f8f2}.ace-dracula .ace_cursor {color: #f8f8f0}.ace-dracula .ace_marker-layer .ace_selection {background: #44475a}.ace-dracula.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px #282a36;border-radius: 2px}.ace-dracula .ace_marker-layer .ace_step {background: rgb(198, 219, 174)}.ace-dracula .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid #a29709}.ace-dracula .ace_marker-layer .ace_active-line {background: #44475a}.ace-dracula .ace_gutter-active-line {background-color: #44475a}.ace-dracula .ace_marker-layer .ace_selected-word {box-shadow: 0px 0px 0px 1px #a29709;border-radius: 3px;}.ace-dracula .ace_fold {background-color: #50fa7b;border-color: #f8f8f2}.ace-dracula .ace_keyword {color: #ff79c6}.ace-dracula .ace_constant.ace_language {color: #bd93f9}.ace-dracula .ace_constant.ace_numeric {color: #bd93f9}.ace-dracula .ace_constant.ace_character {color: #bd93f9}.ace-dracula .ace_constant.ace_character.ace_escape {color: #ff79c6}.ace-dracula .ace_constant.ace_other {color: #bd93f9}.ace-dracula .ace_support.ace_function {color: #8be9fd}.ace-dracula .ace_support.ace_constant {color: #6be5fd}.ace-dracula .ace_support.ace_class {font-style: italic;color: #66d9ef}.ace-dracula .ace_support.ace_type {font-style: italic;color: #66d9ef}.ace-dracula .ace_storage {color: #ff79c6}.ace-dracula .ace_storage.ace_type {font-style: italic;color: #8be9fd}.ace-dracula .ace_invalid {color: #F8F8F0;background-color: #ff79c6}.ace-dracula .ace_invalid.ace_deprecated {color: #F8F8F0;background-color: #bd93f9}.ace-dracula .ace_string {color: #f1fa8c}.ace-dracula .ace_comment {color: #6272a4}.ace-dracula .ace_variable {color: #50fa7b}.ace-dracula .ace_variable.ace_parameter {font-style: italic;color: #ffb86c}.ace-dracula .ace_entity.ace_other.ace_attribute-name {color: #50fa7b}.ace-dracula .ace_entity.ace_name.ace_function {color: #50fa7b}.ace-dracula .ace_entity.ace_name.ace_tag {color: #ff79c6}.ace-dracula .ace_invisible {color: #626680;}.ace-dracula .ace_indent-guide {background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWNgYGBgYHB3d/8PAAOIAdULw8qMAAAAAElFTkSuQmCC) right repeat-y}
+/*# sourceURL=ace/css/ace-dracula */</style><style>    .error_widget_wrapper {        background: inherit;        color: inherit;        border:none    }    .error_widget {        border-top: solid 2px;        border-bottom: solid 2px;        margin: 5px 0;        padding: 10px 40px;        white-space: pre-wrap;    }    .error_widget.ace_error, .error_widget_arrow.ace_error{        border-color: #ff5a5a    }    .error_widget.ace_warning, .error_widget_arrow.ace_warning{        border-color: #F1D817    }    .error_widget.ace_info, .error_widget_arrow.ace_info{        border-color: #5a5a5a    }    .error_widget.ace_ok, .error_widget_arrow.ace_ok{        border-color: #5aaa5a    }    .error_widget_arrow {        position: absolute;        border: solid 5px;        border-top-color: transparent!important;        border-right-color: transparent!important;        border-left-color: transparent!important;        top: -5px;    }</style><style id="ace-tm">.ace-tm .ace_gutter {background: #f0f0f0;color: #333;}.ace-tm .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-tm .ace_fold {background-color: #6B72E6;}.ace-tm {background-color: #FFFFFF;color: black;}.ace-tm .ace_cursor {color: black;}.ace-tm .ace_invisible {color: rgb(191, 191, 191);}.ace-tm .ace_storage,.ace-tm .ace_keyword {color: blue;}.ace-tm .ace_constant {color: rgb(197, 6, 11);}.ace-tm .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-tm .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-tm .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-tm .ace_invalid {background-color: rgba(255, 0, 0, 0.1);color: red;}.ace-tm .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-tm .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-tm .ace_support.ace_type,.ace-tm .ace_support.ace_class {color: rgb(109, 121, 222);}.ace-tm .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-tm .ace_string {color: rgb(3, 106, 7);}.ace-tm .ace_comment {color: rgb(76, 136, 107);}.ace-tm .ace_comment.ace_doc {color: rgb(0, 102, 255);}.ace-tm .ace_comment.ace_doc.ace_tag {color: rgb(128, 159, 191);}.ace-tm .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-tm .ace_variable {color: rgb(49, 132, 149);}.ace-tm .ace_xml-pe {color: rgb(104, 104, 91);}.ace-tm .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-tm .ace_heading {color: rgb(12, 7, 255);}.ace-tm .ace_list {color:rgb(185, 6, 144);}.ace-tm .ace_meta.ace_tag {color:rgb(0, 22, 142);}.ace-tm .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-tm .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-tm.ace_multiselect .ace_selection.ace_start {box-shadow: 0 0 3px 0px white;}.ace-tm .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-tm .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-tm .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-tm .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-tm .ace_gutter-active-line {background-color : #dcdcdc;}.ace-tm .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-tm .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">.ace_br1 {border-top-left-radius    : 3px;}.ace_br2 {border-top-right-radius   : 3px;}.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}.ace_br4 {border-bottom-right-radius: 3px;}.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}.ace_br8 {border-bottom-left-radius : 3px;}.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}.ace_editor {position: relative;overflow: hidden;padding: 0;font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;direction: ltr;text-align: left;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}.ace_scroller {position: absolute;overflow: hidden;top: 0;bottom: 0;background-color: inherit;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;cursor: text;}.ace_content {position: absolute;box-sizing: border-box;min-width: 100%;contain: style size layout;font-variant-ligatures: no-common-ligatures;}.ace_dragging .ace_scroller:before{position: absolute;top: 0;left: 0;right: 0;bottom: 0;content: '';background: rgba(250, 250, 250, 0.01);z-index: 1000;}.ace_dragging.ace_dark .ace_scroller:before{background: rgba(0, 0, 0, 0.01);}.ace_selecting, .ace_selecting * {cursor: text !important;}.ace_gutter {position: absolute;overflow : hidden;width: auto;top: 0;bottom: 0;left: 0;cursor: default;z-index: 4;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;contain: style size layout;}.ace_gutter-active-line {position: absolute;left: 0;right: 0;}.ace_scroller.ace_scroll-left {box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;}.ace_gutter-cell {position: absolute;top: 0;left: 0;right: 0;padding-left: 19px;padding-right: 6px;background-repeat: no-repeat;}.ace_gutter-cell.ace_error {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: 2px center;}.ace_gutter-cell.ace_warning {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");background-position: 2px center;}.ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");background-position: 2px center;}.ace_dark .ace_gutter-cell.ace_info {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");}.ace_scrollbar {contain: strict;position: absolute;right: 0;bottom: 0;z-index: 6;}.ace_scrollbar-inner {position: absolute;cursor: text;left: 0;top: 0;}.ace_scrollbar-v{overflow-x: hidden;overflow-y: scroll;top: 0;}.ace_scrollbar-h {overflow-x: scroll;overflow-y: hidden;left: 0;}.ace_print-margin {position: absolute;height: 100%;}.ace_text-input {position: absolute;z-index: 0;width: 0.5em;height: 1em;opacity: 0;background: transparent;-moz-appearance: none;appearance: none;border: none;resize: none;outline: none;overflow: hidden;font: inherit;padding: 0 1px;margin: 0 -1px;contain: strict;-ms-user-select: text;-moz-user-select: text;-webkit-user-select: text;user-select: text;white-space: pre!important;}.ace_text-input.ace_composition {background: transparent;color: inherit;z-index: 1000;opacity: 1;}.ace_composition_placeholder { color: transparent }.ace_composition_marker { border-bottom: 1px solid;position: absolute;border-radius: 0;margin-top: 1px;}[ace_nocontext=true] {transform: none!important;filter: none!important;clip-path: none!important;mask : none!important;contain: none!important;perspective: none!important;mix-blend-mode: initial!important;z-index: auto;}.ace_layer {z-index: 1;position: absolute;overflow: hidden;word-wrap: normal;white-space: pre;height: 100%;width: 100%;box-sizing: border-box;pointer-events: none;}.ace_gutter-layer {position: relative;width: auto;text-align: right;pointer-events: auto;height: 1000000px;contain: style size layout;}.ace_text-layer {font: inherit !important;position: absolute;height: 1000000px;width: 1000000px;contain: style size layout;}.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {contain: style size layout;position: absolute;top: 0;left: 0;right: 0;}.ace_hidpi .ace_text-layer,.ace_hidpi .ace_gutter-layer,.ace_hidpi .ace_content,.ace_hidpi .ace_gutter {contain: strict;will-change: transform;}.ace_hidpi .ace_text-layer > .ace_line, .ace_hidpi .ace_text-layer > .ace_line_group {contain: strict;}.ace_cjk {display: inline-block;text-align: center;}.ace_cursor-layer {z-index: 4;}.ace_cursor {z-index: 4;position: absolute;box-sizing: border-box;border-left: 2px solid;transform: translatez(0);}.ace_multiselect .ace_cursor {border-left-width: 1px;}.ace_slim-cursors .ace_cursor {border-left-width: 1px;}.ace_overwrite-cursors .ace_cursor {border-left-width: 0;border-bottom: 1px solid;}.ace_hidden-cursors .ace_cursor {opacity: 0.2;}.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {opacity: 0;}.ace_smooth-blinking .ace_cursor {transition: opacity 0.18s;}.ace_animate-blinking .ace_cursor {animation-duration: 1000ms;animation-timing-function: step-end;animation-name: blink-ace-animate;animation-iteration-count: infinite;}.ace_animate-blinking.ace_smooth-blinking .ace_cursor {animation-duration: 1000ms;animation-timing-function: ease-in-out;animation-name: blink-ace-animate-smooth;}@keyframes blink-ace-animate {from, to { opacity: 1; }60% { opacity: 0; }}@keyframes blink-ace-animate-smooth {from, to { opacity: 1; }45% { opacity: 1; }60% { opacity: 0; }85% { opacity: 0; }}.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {position: absolute;z-index: 3;}.ace_marker-layer .ace_selection {position: absolute;z-index: 5;}.ace_marker-layer .ace_bracket {position: absolute;z-index: 6;}.ace_marker-layer .ace_error_bracket {position: absolute;border-bottom: 1px solid #DE5555;border-radius: 0;}.ace_marker-layer .ace_active-line {position: absolute;z-index: 2;}.ace_marker-layer .ace_selected-word {position: absolute;z-index: 4;box-sizing: border-box;}.ace_line .ace_fold {box-sizing: border-box;display: inline-block;height: 11px;margin-top: -2px;vertical-align: middle;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");background-repeat: no-repeat, repeat-x;background-position: center center, top left;color: transparent;border: 1px solid black;border-radius: 2px;cursor: pointer;pointer-events: auto;}.ace_dark .ace_fold {}.ace_fold:hover{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");}.ace_tooltip {background-color: #FFF;background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));border: 1px solid gray;border-radius: 1px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);color: black;max-width: 100%;padding: 3px 4px;position: fixed;z-index: 999999;box-sizing: border-box;cursor: default;white-space: pre;word-wrap: break-word;line-height: normal;font-style: normal;font-weight: normal;letter-spacing: normal;pointer-events: none;}.ace_folding-enabled > .ace_gutter-cell {padding-right: 13px;}.ace_fold-widget {box-sizing: border-box;margin: 0 -12px 0 1px;display: none;width: 11px;vertical-align: top;background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");background-repeat: no-repeat;background-position: center;border-radius: 3px;border: 1px solid transparent;cursor: pointer;}.ace_folding-enabled .ace_fold-widget {display: inline-block;   }.ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");}.ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");}.ace_fold-widget:hover {border: 1px solid rgba(0, 0, 0, 0.3);background-color: rgba(255, 255, 255, 0.2);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);}.ace_fold-widget:active {border: 1px solid rgba(0, 0, 0, 0.4);background-color: rgba(0, 0, 0, 0.05);box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);}.ace_dark .ace_fold-widget {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");}.ace_dark .ace_fold-widget.ace_end {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget.ace_closed {background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");}.ace_dark .ace_fold-widget:hover {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);background-color: rgba(255, 255, 255, 0.1);}.ace_dark .ace_fold-widget:active {box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);}.ace_inline_button {border: 1px solid lightgray;display: inline-block;margin: -1px 8px;padding: 0 5px;pointer-events: auto;cursor: pointer;}.ace_inline_button:hover {border-color: gray;background: rgba(200,200,200,0.2);display: inline-block;pointer-events: auto;}.ace_fold-widget.ace_invalid {background-color: #FFB4B4;border-color: #DE5555;}.ace_fade-fold-widgets .ace_fold-widget {transition: opacity 0.4s ease 0.05s;opacity: 0;}.ace_fade-fold-widgets:hover .ace_fold-widget {transition: opacity 0.05s ease 0.05s;opacity:1;}.ace_underline {text-decoration: underline;}.ace_bold {font-weight: bold;}.ace_nobold .ace_bold {font-weight: normal;}.ace_italic {font-style: italic;}.ace_error-marker {background-color: rgba(255, 0, 0,0.2);position: absolute;z-index: 9;}.ace_highlight-marker {background-color: rgba(255, 255, 0,0.2);position: absolute;z-index: 8;}.ace_mobile-menu {position: absolute;line-height: 1.5;border-radius: 4px;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none;user-select: none;background: white;box-shadow: 1px 3px 2px grey;border: 1px solid #dcdcdc;color: black;}.ace_dark > .ace_mobile-menu {background: #333;color: #ccc;box-shadow: 1px 3px 2px grey;border: 1px solid #444;}.ace_mobile-button {padding: 2px;cursor: pointer;overflow: hidden;}.ace_mobile-button:hover {background-color: #eee;opacity:1;}.ace_mobile-button:active {background-color: #ddd;}.ace_placeholder {font-family: arial;transform: scale(0.9);transform-origin: left;white-space: pre;opacity: 0.7;margin: 0 10px;}
+/*# sourceURL=ace/css/ace_editor.css */</style>
+    <title>
+      Entrar
+    </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+
+    <!--[if !(IE)]><!--> <link rel="preload" href="/assets/fontawesome-webfont-2adefcbc041e7d18fcf2d417879dc5a09997aa64d675b7a3c4b6ce33da13f3fe.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin="anonymous"> <!--<![endif]-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="turbo-prefetch" content="false">
+
+    <link rel="stylesheet" href="/assets/application-c317373adb496399b287da3b875ade1b2b69429ea536a04b11712561090fc822.css" media="all" data-turbo-track="reload">
+
+            <link rel="icon" type="image/x-icon" href="/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRnRGelFFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--2ac3a38e4d280d6f7f2e5f03a1a0c528289b0f6e/favicon.ico">
+        
+<style>
+  body:not(.enable-ds) {
+  #header div#app-logo {
+  background-position: 0px 0px;
+  background-size: contain;
+  height: 40px;
+}
+
+#header-navbar {
+  background-color: rgba(var(--secondary-500), 1);
+
+  li {
+    color: rgba(var(--primary-500), 1) !important;
+  }
+
+  li.active {
+    color: rgba(var(--secondary-500), 1) !important;
+    background-color: rgba(var(--primary-500), 1);
+
+    .nav-link {
+      color: rgba(var(--secondary-500), 1) !important;
+    }
+  }
+
+  li:not(.active) {
+    &:not(:hover),
+    &:hover {
+      color: rgba(var(--white), 1);
+
+      a.nav-link:hover,
+      a.nav-link:not(:hover) {
+        color: rgba(var(--white), 1);
+      }
+    }
+  }
+}
+
+#notes-list .left-message .card > .trix-content {
+  color: rgba(var(--white), 1);
+}
+}
+
+
+  :root {
+      --client-logo-img-url: url("/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRmRGelFFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--c5768785d60024429c88783e4e99d2f6d50b8b7f/logo.webp");
+
+      --login-background-img-url: url("/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRmxGelFFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--368429bca942871e3838b0665185ed1f006a2cff/login_background.webp");
+
+        --primary-100: 234,237,246;
+        --text-primary-100: 0,0,0;
+        --primary-150: 216,222,238;
+        --text-primary-150: 0,0,0;
+        --primary-200: 199,207,230;
+        --text-primary-200: 0,0,0;
+        --primary-250: 181,191,223;
+        --text-primary-250: 0,0,0;
+        --primary-300: 163,176,215;
+        --text-primary-300: 0,0,0;
+        --primary-350: 145,161,207;
+        --text-primary-350: 0,0,0;
+        --primary-400: 128,146,199;
+        --text-primary-400: 0,0,0;
+        --primary-450: 110,130,192;
+        --text-primary-450: 0,0,0;
+        --primary-500: 92,115,184;
+        --text-primary-500: 255,255,255;
+        --primary-550: 76,101,174;
+        --text-primary-550: 255,255,255;
+        --primary-600: 68,90,157;
+        --text-primary-600: 255,255,255;
+        --primary-650: 61,80,139;
+        --text-primary-650: 255,255,255;
+        --primary-700: 53,70,121;
+        --text-primary-700: 255,255,255;
+        --primary-750: 45,60,103;
+        --text-primary-750: 255,255,255;
+        --primary-800: 37,49,86;
+        --text-primary-800: 255,255,255;
+        --primary-850: 30,39,68;
+        --text-primary-850: 255,255,255;
+        --primary-900: 22,29,50;
+        --text-primary-900: 255,255,255;
+        --secondary-100: 255,255,255;
+        --text-secondary-100: 0,0,0;
+        --secondary-150: 242,251,253;
+        --text-secondary-150: 0,0,0;
+        --secondary-200: 220,244,249;
+        --text-secondary-200: 0,0,0;
+        --secondary-250: 199,236,245;
+        --text-secondary-250: 0,0,0;
+        --secondary-300: 177,229,241;
+        --text-secondary-300: 0,0,0;
+        --secondary-350: 156,222,237;
+        --text-secondary-350: 0,0,0;
+        --secondary-400: 134,215,233;
+        --text-secondary-400: 0,0,0;
+        --secondary-450: 113,208,229;
+        --text-secondary-450: 0,0,0;
+        --secondary-500: 91,201,225;
+        --text-secondary-500: 0,0,0;
+        --secondary-550: 69,194,221;
+        --text-secondary-550: 0,0,0;
+        --secondary-600: 48,187,217;
+        --text-secondary-600: 0,0,0;
+        --secondary-650: 37,173,202;
+        --text-secondary-650: 0,0,0;
+        --secondary-700: 33,154,181;
+        --text-secondary-700: 0,0,0;
+        --secondary-750: 29,136,159;
+        --text-secondary-750: 0,0,0;
+        --secondary-800: 25,118,138;
+        --text-secondary-800: 255,255,255;
+        --secondary-850: 21,99,116;
+        --text-secondary-850: 255,255,255;
+        --secondary-900: 17,81,95;
+        --text-secondary-900: 255,255,255;
+        --accent-100: 188,224,229;
+        --text-accent-100: 0,0,0;
+        --accent-150: 170,216,222;
+        --text-accent-150: 0,0,0;
+        --accent-200: 152,207,214;
+        --text-accent-200: 0,0,0;
+        --accent-250: 133,199,207;
+        --text-accent-250: 0,0,0;
+        --accent-300: 115,190,200;
+        --text-accent-300: 0,0,0;
+        --accent-350: 97,182,193;
+        --text-accent-350: 0,0,0;
+        --accent-400: 78,173,186;
+        --text-accent-400: 0,0,0;
+        --accent-450: 67,159,171;
+        --text-accent-450: 0,0,0;
+        --accent-500: 60,142,153;
+        --text-accent-500: 0,0,0;
+        --accent-550: 53,125,135;
+        --text-accent-550: 255,255,255;
+        --accent-600: 46,108,116;
+        --text-accent-600: 255,255,255;
+        --accent-650: 38,91,98;
+        --text-accent-650: 255,255,255;
+        --accent-700: 31,74,80;
+        --text-accent-700: 255,255,255;
+        --accent-750: 24,57,61;
+        --text-accent-750: 255,255,255;
+        --accent-800: 17,40,43;
+        --text-accent-800: 255,255,255;
+        --accent-850: 10,23,25;
+        --text-accent-850: 255,255,255;
+        --accent-900: 3,6,6;
+        --text-accent-900: 255,255,255;
+        --dark-100: 0,0,249;
+        --text-dark-100: 255,255,255;
+        --dark-150: 0,0,224;
+        --text-dark-150: 255,255,255;
+        --dark-200: 0,0,198;
+        --text-dark-200: 255,255,255;
+        --dark-250: 0,0,173;
+        --text-dark-250: 255,255,255;
+        --dark-300: 0,0,147;
+        --text-dark-300: 255,255,255;
+        --dark-350: 0,0,122;
+        --text-dark-350: 255,255,255;
+        --dark-400: 0,0,96;
+        --text-dark-400: 255,255,255;
+        --dark-450: 0,0,71;
+        --text-dark-450: 255,255,255;
+        --dark-500: 0,0,45;
+        --text-dark-500: 255,255,255;
+        --dark-550: 0,0,20;
+        --text-dark-550: 255,255,255;
+        --dark-600: 0,0,0;
+        --text-dark-600: 255,255,255;
+        --dark-650: 0,0,0;
+        --text-dark-650: 255,255,255;
+        --dark-700: 0,0,0;
+        --text-dark-700: 255,255,255;
+        --dark-750: 0,0,0;
+        --text-dark-750: 255,255,255;
+        --dark-800: 0,0,0;
+        --text-dark-800: 255,255,255;
+        --dark-850: 0,0,0;
+        --text-dark-850: 255,255,255;
+        --dark-900: 0,0,0;
+        --text-dark-900: 255,255,255;
+  }
+</style>
+
+
+    <script src="/assets/gem_application-f445a45cf57306b83e689f3db309cc9415a080a1c7f0a3be4e6668b4d6143146.js" data-turbo-track="reload"></script>
+    <script src="/assets/application-3b729efc4e9e7afe405835973a2d3183e44d538f80bdb86826f0a9438d52a78c.js" data-turbo-track="reload" type="module"></script>
+
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="cLIat0Jx-LUCTz_jKBBdArz77Lmr7xPQ6ZAGYBfAqOvpUfqvxnuKIpzbScyKNJLzY5_arfuIo3JOS7rTKN8QEA">
+    <meta name="action-cable-url" content="/cable">
+
+    
+
+    
+  <style type="text/css">
+    .left-sidebar .sidebar-switch i:before {
+      content: '\f059';
+    }
+  </style>
+
+
+    <meta name="turbo-refresh-scroll" content="preserve">
+  </head>
+
+
+  <body class="sign_in sessions new session-page">
+    
+    <div id="content" class="h-100 p-0 w-100 d-flex flex-column container-fluid">
+    <header id="header-wrapper">
+
+      <nav id="header">
+
+        <a id="app-logo-link" href="/">
+          <div id="app-logo">
+          </div>
+</a>
+        
+      <div id="quicksearch-bar">
+  <form data-turbo-frame="quicksearch-results" data-show-visibility-on-submit="#quicksearch-results" class="simple_form form clear-form" action="/processes/quicksearch" accept-charset="UTF-8" method="get">
+
+    <div class="input-group mb-3">
+      <input class="form-control string search optional form-control" autocomplete="off" data-hide-visibility-on-change="#quicksearch-results" type="search" name="quicksearch[filters_query_string]" id="quicksearch_filters_query_string" style="">
+
+      <button class="btn btn-primary input-group-text" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+</form>
+  <turbo-frame style="display:none;" id="quicksearch-results" target="_top">
+    <div class="loading" role="status">
+      <i class="fa fa-spin fa-circle-o-notch" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="right"></i>
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</turbo-frame></div>
+
+
+          <div id="helper-menu" class="helper-navigation header-menu">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+              <i class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <a class="dropdown-item dropdown-toggle btn btn-secondary dropdown-close-button">
+                <span class="fw-bold">Voltar</span>
+              </a>
+
+
+
+
+
+
+                  <a class="dropdown-item application-item" data-turbo="true" href="https://www.v360.io/politicas-de-privacidade/">
+                    <span>
+                      <i class="text-center fa fa-check fa-lg" style="min-width:23px;"></i> Política de Privacidade
+                    </span>
+</a>
+
+
+
+
+
+                  <a class="dropdown-item application-item" data-turbo="true" href="https://www.v360.io/politicas-de-seguranca/">
+                    <span>
+                      <i class="text-center fa fa-shield fa-lg" style="min-width:23px;"></i> Politica de Segurança
+                    </span>
+</a>
+
+            </ul>
+          </div>
+
+
+
+        <div id="account" class="header-menu">
+
+        </div>
+
+        <a id="v360-logo" href="/">
+          <div id="logo"></div>
+</a>      </nav>
+    <nav id="header-navbar">
+  <ul class="navbar-nav">
+  </ul>
+</nav>
+
+  </header>
+
+
+    <div class="left-sidebar sidebar" data-expanded="false">
+  <div class="left-sidebar-wrapper sidebar-wrapper">
+    
+  
+        <div class="col-12 ps-0 pe-0 widget-wrapper">
+          <div class="widget-container" id="manual_table_list-container">
+            <div class="card">
+              <div class="card-body">
+
+                  <div id="manual_table_list" class="widget loadable loaded" data-url="/user_manuals/widgets/user_manuals"><div>
+  <h2 class="widget-title text-uppercase text-primary-dark">
+    <i class="fa fa-file-text pe-2"></i> Manuais de usuário
+  </h2>
+
+  <hr>
+
+  <div data-container=".widget">
+    <div>
+      <ul>
+
+          <li class="clickable fw-bold" data-url="/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOGRZREE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--442c3ea594101d3a5d6907208f55704ee41a784f/Manual-PortalParceiro.pdf">
+            Manual do Parceiro
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+var amount_manuals = $('ul > li.clickable').length;
+
+if (amount_manuals === 0) {
+  $('.left-sidebar').addClass('visually-hidden');
+}
+</script>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  </div>
+  <button class="left-sidebar-switch sidebar-switch btn">
+    <i class="fa fa-chevron-left"></i>
+  </button>
+</div>
+
+
+  <div id="main" class="main" role="main">
+    <div class="container-fluid">
+      <div class="row gutters">
+        
+        
+
+  <div class="sign-form " id="step-0">
+  <div id="app-logo"></div>
+
+                <div class="alert alert-danger animated pulse">Para continuar, faça login ou registre-se.</div>
+
+
+    <div class="alert alert-warning" role="alert">
+      <p>Faça Login/Registre-se pelo Portal V360 ou pelo link da sua empresa:</p>
+      <ul class="ul-pre-login">
+        <li>Caso seja fornecedor, acesse pelo portal V360</li>
+        <li>Caso seja cliente, acesse pelo link da sua empresa</li>
+      </ul>
+    </div>
+
+  <a href="javascript:void(0)" data-toggle-visibility="#step-1, #step-0" data-toggle-velocity="0" class="v-btn v-btn-primary w-100" id="login_portal" aria-expanded="true">
+    Entrar Portal V360
+  </a>
+
+  <hr>
+  <p class="v-paragraph text-center"> Login por SSO </p>
+
+    <a class="v-btn v-btn-secondary saml-link w-100 mt-2" href="/users/saml/sign_in?idp_entity_id=https%3A%2F%2Fsts.windows.net%2Fce047754-5e4b-4c19-847a-3c612155b684%2F&amp;issuer=https%3A%2F%2Fbancobv.virtual360.io%2Fusers%2Fsaml%2Fmetadata">Login Banco BV </a>
+</div>
+
+
+<style>
+#otp_step {
+  display: none;
+}
+
+#otp_success_message {
+  display: none;
+}
+
+.sign-form:has(.display-otp) #otp_step,
+.sign-form:has(.display-otp) #otp_success_message {
+  display: block;
+}
+
+.sign-form:has(.display-otp) #error-messages-container{
+  display: none;
+}
+</style>
+
+<form data-turbo="true" class="simple_form sign-form hide" id="step-1" autocomplete="off" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="cLIat0Jx-LUCTz_jKBBdArz77Lmr7xPQ6ZAGYBfAqOvpUfqvxnuKIpzbScyKNJLzY5_arfuIo3JOS7rTKN8QEA" autocomplete="off" style="">
+  <div id="app-logo"></div>
+
+  <h4>Entrar</h4>
+
+  <div id="error-messages-container">
+                  <div class="alert alert-danger animated pulse">Para continuar, faça login ou registre-se.</div>
+
+  </div>
+
+  <div class="alert alert-success" role="alert" id="otp_success_message">
+    <p>Se o seu email existir em nosso banco de dados, você receberá um email com um código. O Código tem validade de 4 minutos:</p>
+  </div>
+
+  <div class="form-inputs">
+    <div class="form-group mb-3 email required user_email"><label class="control-label form-label d-none email required" for="user_email"><abbr title="obrigatório">*</abbr> E-mail</label><div><div class="input-group">
+      <span class="input-group-text" title="E-mail">
+        <i class="fa fa-envelope"></i>
+      </span>
+      <input class="string optional form-control" input_html="id pre_otp_login" placeholder="E-mail" type="text" name="user[login]" id="user_login" style="">
+</div></div></div>  </div>
+
+  <div class="form-inputs">
+    <div class="form-group mb-3 password optional user_password"><label class="control-label form-label d-none password optional" for="user_password">Senha</label><div><div class="input-group">
+      <span class="input-group-text" title="Senha">
+        <i class="fa fa-lock"></i>
+      </span>
+      <input class="password optional form-control" autocomplete="off" placeholder="Senha" type="password" name="user[password]" id="user_password" style="">
+</div></div></div>  </div>
+
+  <div class="form-inputs" id="otp_step">
+    <div class="form-group mb-3 string optional user_otp_attempt"><label class="control-label form-label d-none string optional" for="user_otp_attempt">Otp attempt</label><div><div class="input-group">
+      <span class="input-group-text" title="Código recebido via email">
+        <i class="fa fa-lock"></i>
+      </span>
+      <input class="string optional form-control" autocomplete="off" placeholder="Código recebido via email" type="text" name="user[otp_attempt]" id="user_otp_attempt" style="">
+</div></div></div>  </div>
+
+  <div id="otp_trigger_container"></div>
+
+
+
+  
+
+<button class="v-btn btn v-btn-primary submit-button w-100" type="submit" data-ph-track="true">
+  
+  Login
+
+</button>
+
+<div class="sign-form-links">
+  <hr>
+
+
+    <a class="v-btn v-btn-secondary w-100 px-1" href="/users/sign_up">Inscrever-se</a>
+
+    <a class="v-btn v-btn-secondary w-100 px-1" href="/users/password/new">Esqueceu sua senha?</a>
+
+    <a class="v-btn v-btn-secondary w-100 px-1" href="/users/confirmation/new">Não recebeu instruções de confirmação?</a>
+
+
+</div>
+
+
+<hr>
+
+  <a href="javascript:void(0)" id="button_back" data-toggle-visibility="#step-0, #step-1" data-toggle-velocity="0" class="btn btn-secondary w-100 px-1" aria-expanded="true"> Voltar </a>
+
+</form>
+
+
+
+
+      </div>
+
+        
+      
+      
+<script>
+  $(document).ready(function() {
+    var $modal = $('#cookies-modal');
+    if ($modal.length) {
+      $modal.modal('show');
+    }
+  });
+</script>
+
+      
+
+    </div>
+  </div>
+
+
+</div>
+
+
+    <script type="text/javascript">
+      
+    </script>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" data-upload-wait-message="Finalizando o envio do anexo…">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="loading" role="status">
+        <i class="fa fa-spin fa-circle-o-notch" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="right"></i>
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+      <p class="loading-modal-message text-center mx-3 mb-3 d-none"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function addModalOpenClass(e) {
+    if ($('.modal:visible').length) {
+      $('body').addClass('modal-open');
+    }
+  }
+
+  $('#loadingModal').on('hidden.bs.modal', addModalOpenClass);
+</script>
+
+    
+
+<div class="modal fade errorModal" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="dialog_container" class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            
+          </button>
+        </div>
+
+        <div class="modal-body p-4">
+          <div class="d-flex flex-column justify-content-center align-items-center m-4">
+            <div id="div_icon">
+              <span class="fa fa-times" aria-hidden="true">
+            </span></div>
+          </div>
+
+          <div class="d-flex flex-column justify-content-center align-items-center m-2">
+            <h4 id="title">Erros encontrados</h4>
+          </div>
+
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <p class="preview_info">Foram encontrados os seguintes erros em 25 de novembro de 2026, 19:39:31. Para mais informações, contate o suporte com um print/evidência desta tela.</p>
+          </div>
+
+          <div class="d-flex flex-column justify-content-center align-items-center m-2">
+            <div id="message_container">
+              <span id="modalText" class="btn btn-sm modal-text">
+                
+              </span>
+            </div>
+            <div class="d-flex flex-row copy-button">
+              <i class="fa fa-check my-2" id="successIcon" aria-hidden="true"></i>
+              <i class="btn btn-primary fa fa-files-o my-2" onclick="copyToClipboard()" aria-hidden="true"></i>
+            </div>
+          </div>
+          
+      <div class="d-flex flex-column justify-content-center align-items-center m-4">
+        <button id="button_error_modal" class="btn btn-primary" data-bs-dismiss="modal">
+          <span id="agree_message">Ok, entendi</span>
+        </button>
+      </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+  function copyToClipboard() {
+    const textToCopy = document.getElementById('modalText').innerText;
+    navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      document.getElementById('successIcon').style.display = 'inline';
+    })
+  }
+</script>
+      <dialog class="v360-confirm-modal v360-modal fade centered" id="turbo-confirm-modal" data-v360-static="false" data-v360-keyboard="true">
+    <div class="v360-modal-dialog">
+      <div class="v360-modal-content">
+  <div class="v360-modal-header">
+  
+  
+  
+    <button type="button" class="v360-modal-close" data-v360-dismiss="modal" aria-label="Close"></button>
+</div>
+
+  <div class="v360-modal-body">
+        <div class="text-center">
+        <i class="fa fa-exclamation-triangle fa-4x text-warning" data-confirm-modal-icon="" aria-hidden="true"></i>
+        <h4 data-confirm-modal-title="">
+          Confirmação Necessária!
+        </h4>
+        <p data-confirm-modal-message="">
+          Por favor, confirme sua ação antes de prosseguir.
+        </p>
+      </div>
+
+</div>
+
+  <div class="border-0 v360-modal-footer">
+    <button class="v-btn btn v-btn-secondary" data-confirm-modal-cancel="" data-v360-dismiss="modal" data-ph-track="true" type="button">
+          Cancelar
+
+</button>
+
+        <button type="button" class="v-btn v-btn-primary" data-confirm-modal-confirm="">
+        Confirmar
+</button>
+</div>
+
+  
+</div>
+
+    </div>
+  </dialog>
+
+
+    
+    
+
+
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content container-content">
+      <div class="d-flex flex-column justify-content-center align-items-center box-icon">
+        <i class="fa fa-times mb-2" style="color: #630017; font-size: 32px" aria-hidden="true"></i>
+      </div>
+      <strong class="modal-title message-title"></strong>
+      <p class="message-body"></p>
+      <button type="button" class="btn btn-primary message-button" data-bs-dismiss="modal"></button>
+    </div>
+  </div>
+</div>
+
+
+
+    
+  
+
+<div id="draggable-live-region" aria-relevant="additions" aria-atomic="true" aria-live="assertive" role="log" style="position: fixed; width: 1px; height: 1px; top: -1px; overflow: hidden;"></div></body></html>

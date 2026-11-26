@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C89a6925ee3",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://napista.ir.aptoide.com/",
+  "final_url": "https://napista.ir.aptoide.com/app",
+  "redirect_chain": [
+    "https://napista.ir.aptoide.com/",
+    "https://napista.ir.aptoide.com/app",
+    "https://napista.ir.aptoide.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.20.24.150",
+  "collected_at": "2026-11-25T23:20:53.374614+00:00",
+  "manifest_written_at": "2026-11-25T23:20:59.890153+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C89a6925ee3/attempt-1/viewport.png",
+      "sha256": "b9120c8c80b97548419b536adcc9f2bebd604adea022cc2f5904101ff6dd6e01",
+      "size_bytes": 40210
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C89a6925ee3/attempt-1/fullpage.png",
+      "sha256": "b9120c8c80b97548419b536adcc9f2bebd604adea022cc2f5904101ff6dd6e01",
+      "size_bytes": 40210
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C89a6925ee3/attempt-1/page.html.txt",
+      "sha256": "b795a6c813a4fe3a36873adcf630ab243f2beb0e204df46d52d87bb85ec52cfe",
+      "size_bytes": 44962
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C89a6925ee3/attempt-1/text.txt",
+      "sha256": "6f1f22f3cd85b7e173f8db9b9ef975ea9e352aedfd8426c93decc4b2caa6d748",
+      "size_bytes": 296
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C89a6925ee3/attempt-1/page.json",
+      "sha256": "028e3d2caae47a66f5b12c252fdb9365b383e28c0706bb026a96bca27e488bef",
+      "size_bytes": 1462
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

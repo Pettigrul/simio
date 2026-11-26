@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C72be80a2c5",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://www.falandodeviagem.com.br/viewtopic.php?t=19783",
+  "final_url": "https://www.falandodeviagem.com.br/viewtopic.php?t=19783",
+  "redirect_chain": [
+    "https://www.falandodeviagem.com.br/viewtopic.php?t=19783"
+  ],
+  "http_status": 403,
+  "server_ip": "104.21.49.176",
+  "collected_at": "2026-11-25T23:24:12.950081+00:00",
+  "manifest_written_at": "2026-11-25T23:24:19.067459+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C72be80a2c5/attempt-1/viewport.png",
+      "sha256": "b36f0b9b10e895a670b55680d31203170db5cf6bdb6a477b352fa1a124a4f4fa",
+      "size_bytes": 41935
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C72be80a2c5/attempt-1/fullpage.png",
+      "sha256": "b36f0b9b10e895a670b55680d31203170db5cf6bdb6a477b352fa1a124a4f4fa",
+      "size_bytes": 41935
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C72be80a2c5/attempt-1/page.html.txt",
+      "sha256": "73d5d50d6ffa437f591c736a5b047c8d6cb39e7eeaab108462564c240427aff3",
+      "size_bytes": 44939
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C72be80a2c5/attempt-1/text.txt",
+      "sha256": "5a221d79fc710f0de14dc6a028122e3884bdad89fcbd0dd8a901f6cb4eef4ba0",
+      "size_bytes": 300
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C72be80a2c5/attempt-1/page.json",
+      "sha256": "34c39d92637d5f1a24965887618347382c314b0e68ff7cfd78db56edf5d87da6",
+      "size_bytes": 1474
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

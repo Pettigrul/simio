@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C9535633efc",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.baixaki.com.br/apps/financas-pessoais/banco-bv-conta-digital/android",
+  "final_url": "https://www.baixaki.com.br/apps/financas-pessoais/banco-bv-conta-digital/android",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "179.191.168.25",
+  "collected_at": "2026-11-25T22:54:58.011490+00:00",
+  "manifest_written_at": "2026-11-25T22:55:17.564702+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C9535633efc/attempt-1/viewport.png",
+      "sha256": "4de14af41f1c2e2193b00a6c6a69aec4e60bf76a14d2139e0397cdd7d3de2989",
+      "size_bytes": 89122
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C9535633efc/attempt-1/fullpage.png",
+      "sha256": "74c2c20573f7933d6789a3e0592064f5e5ad2fe42e8755bf1821dc712b009a38",
+      "size_bytes": 483511
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C9535633efc/attempt-1/page.html.txt",
+      "sha256": "e21525be114d071be592a5fb10118ff42bf46d885721d9bd3b76be772f179139",
+      "size_bytes": 820670
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C9535633efc/attempt-1/text.txt",
+      "sha256": "8701f16367b3bc75e86d65ab2160354a0b098ec7d7f91807a63c88b78f28084d",
+      "size_bytes": 5132
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C9535633efc/attempt-1/page.json",
+      "sha256": "11a1d050f5a838167242542d00903620352ab01b5b1444741db8cb3eef10d04d",
+      "size_bytes": 29362
+    }
+  ],
+  "blocked_requests": [
+    "https://match.sharethrough.com/universal/v1?supply_id=2TwkgUpM&gdpr=0&gdpr_consent=&us_privacy= -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com/universal/v1?supply_id=v5hJK9Sl -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com:443 -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [
+    "network did not become idle (continuing)"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

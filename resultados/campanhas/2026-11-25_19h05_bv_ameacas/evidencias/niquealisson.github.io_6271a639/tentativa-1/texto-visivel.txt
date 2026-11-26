@@ -1,0 +1,220 @@
+Nique Souza
+EN
+PT
+Olá, eu sou
+Nique Souza
+
+QA Enginee
+
+Baixar CV
+Entrar em contato
+5+
+anos com testes de software
+Web · Mobile · API
+automação em todas as camadas
+ISTQB® CTFL 4.0
+certificação de testes
+Porto, PT
+aberto a híbrido e remoto
+Sobre mim
+
+QA Engineer morando no Porto, Portugal. Comecei com testes em 2021 como estagiário no Brasil, passei por sistemas bancários no Banco BV e hoje testo produtos web e mobile na CEiiA / BEN4US. Desenho estratégias de automação para web, mobile e API, coloco tudo nas pipelines de CI e mantenho cada teste rastreável no Jira. Fora do trabalho eu construo e testo meus próprios produtos de ponta a ponta, o que me ensinou a enxergar qualidade também pelo lado de quem desenvolve.
+
+Experiência
+Software Tester (QA Engineer)
+
+CEiiA / BEN4US · Matosinhos, Portugal
+
+Abr 2026 – Atual
+
+Automação de testes web e mobile com Cypress, Playwright e Appium/Maestro (Java, Maven) em Android e iOS.
+Testes de API e de contrato a partir de specs Swagger/OpenAPI com Postman, Apidog, Cypress e Playwright.
+Casos de teste e rastreabilidade no Jira + Testiny; processos de QA documentados no Confluence.
+Responsável pelo versionamento e pela integração das suítes de teste no CI do GitLab.
+Cypress
+Playwright
+Appium
+Maestro
+Apidog
+GitLab CI
+Testiny
+Test Analyst / QA
+
+DATUM · cliente Banco BV (Banco Votorantim) · Remote
+
+Mai 2025 – Mar 2026
+
+QA de sistemas bancários em ambiente financeiro regulado, alocado em tempo integral no Banco BV.
+Cenários BDD automatizados com Cypress + Cucumber; validação de API com Postman.
+Consultas SQL em vários bancos relacionais para validar os resultados dos testes.
+Testes automatizados integrados às pipelines do Jenkins, versionados com Git e Bitbucket.
+Cypress
+Cucumber
+Postman
+SQL
+Jenkins
+Bitbucket
+Junior QA
+
+OléoPlan Nordeste · Brazil
+
+Jan 2024 – Jun 2025
+
+Automação de testes web com Cypress e Selenium; testes funcionais e não funcionais.
+Testes de regressão, monitoramento de performance e pipelines de teste com Jenkins e Git.
+Software QA Analyst
+
+Pipoca Ágil · Rio de Janeiro, Brazil
+
+Mai 2023 – Out 2023
+
+Automação de regressão com Cypress e Selenium, testes caixa-preta e exploratórios, análise de causa raiz.
+Estágios
+
+Sivirino.com · Secretaria de Ciência, Tecnologia e Inovação da Bahia
+
+2021 – 2023
+
+Testes funcionais e de aceite, casos de teste manuais, primeiros scripts automatizados e configuração de ambientes de teste.
+Ferramentas de QA
+Automação web
+
+Cypress · Playwright · Selenium WebDriver · Cucumber (BDD)
+
+Automação mobile
+
+Appium · Maestro · Android & iOS · testes visuais com OCR / OpenCV
+
+Testes de API
+
+Postman · Apidog · Swagger / OpenAPI · Playwright request · cypress-plugin-api
+
+CI/CD & versionamento
+
+Jenkins · GitLab CI · GitHub Actions · Git · GitHub · GitLab · Bitbucket
+
+Gestão de testes
+
+Jira · Testiny · Confluence · Trello · relatórios JUnit
+
+Linguagens e dados
+
+JavaScript · TypeScript · Java (Maven) · SQL (PostgreSQL, MySQL)
+
+Métodos
+
+BDD · TDD · ATDD · testes baseados em risco · Agile / Scrum
+
+Não funcionais
+
+K6 (performance) · testes exploratórios
+
+Projetos de QA
+
+O que eu construí, por quê, e as ideias de teste por trás.
+
+FRAMEWORK DE E2E MOBILE
+
+visual-e2e
+
+Testes mobile que leem a tela como o usuário: OCR + OpenCV, zero testIDs, zero sleeps.
+
+Problema: suítes E2E mobile quebram por seletor e espera fixa, e teste verde ainda deixa passar bug real.
+O que construí: uma camada em TypeScript sobre o Appium que acha textos com PaddleOCR e ícones com template matching do OpenCV, renderizados direto da fonte de ícones do próprio app.
+Ideias de teste: toda ação precisa de uma asserção, a asserção tem que ser falsa antes da ação (toque que não faz nada falha) e esperar é reler a tela, nunca sleep.
+Roda contra um app de corrida de verdade, com rotas de GPS simuladas. Inspirado no artigo “98% stable” da Shopify Engineering.
+TypeScript
+Appium
+PaddleOCR
+OpenCV
+Python
+
+Repositório em breve
+
+ARQUITETURA DE TESTES DE API
+
+Uma API REST, dois frameworks
+Cobertura de uma API de marketplace gerada a partir da spec OpenAPI, escrita duas vezes: 43 testes em Playwright e 75 em Cypress.
+O lado Playwright usa API Objects (uma classe por recurso, 12 no total) e fixtures por papel: usuário, admin e super-admin.
+O lado Cypress usa cypress-plugin-api para request e response aparecerem dentro do runner, o que ajuda quem lê o bug.
+Casos de teste e bugs seguem um fluxo documentado Testiny → Jira.
+Playwright
+Cypress
+TypeScript
+OpenAPI
+Testiny
+
+Trabalho profissional, código privado
+
+RELATÓRIOS DE TESTE
+
+jira-test-sync
+Um “Zephyr” caseiro: lê o JUnit XML gerado pelo GitLab CI e envia os resultados para o Jira.
+Cria ou atualiza uma issue de Test Case por teste, com uma Test Key estável para que novas execuções atualizem em vez de duplicar.
+Agrupa cada execução da pipeline num Test Cycle, então o time vê o que rodou, o que falhou e quando, sem sair do Jira.
+Node.js
+Jira REST API
+GitLab CI
+JUnit
+Produtos que construí e testei
+
+Projetos paralelos onde fui o desenvolvedor e o QA, da primeira tela até produção.
+
+Ritmo
+
+App de corrida com metas, zonas de frequência cardíaca, segmentos e um jogo multiplayer de “território” feito com polígonos reais de GPS. Também é o app onde o visual-e2e roda.
+
+React Native
+Expo
+TypeScript
+turf.js
+Escaninho
+
+SaaS multi-tenant para lojas de peças e oficinas de moto: estoque, vendas e ordens de serviço. Coberto por 66 arquivos de teste, incluindo 12 testes de sistema no navegador.
+
+Ruby on Rails
+PostgreSQL
+Minitest
+Capybara
+Sistema de vendas e estoque
+
+Sistema web em produção para um pequeno negócio de alimentos: vendas, estoque, parcelamento no cartão e comprovantes, com regras de acesso garantidas por row-level security no banco.
+
+Next.js
+TypeScript
+Supabase
+Postgres RLS
+Assistente financeiro no WhatsApp
+
+Bot de finanças da casa: gastos mandados por texto, áudio ou foto no WhatsApp caem num painel web com metas e orçamentos.
+
+Next.js
+Supabase
+Baileys (WhatsApp)
+Gemini
+Formação e certificações
+ISTQB® Certified Tester Foundation Level (CTFL) 4.0
+2024
+Bacharelado em Sistemas de Informação
+Unijorge · 2019 – 2022
+Programa de Testes de Software
+Júlio de Lima · 2023
+Selenium WebDriver & Java
+Inova Test · 2023
+Testes Funcionais com Selenium WebDriver
+Udemy · 2023
+Cypress: Direct to the Point
+Agilizei · 2023
+Contato
+
+E-mail
+
+niquealissonqa@gmail.com
+
+Linkedin
+
+@niquealisson
+
+Github
+
+@niquealisson

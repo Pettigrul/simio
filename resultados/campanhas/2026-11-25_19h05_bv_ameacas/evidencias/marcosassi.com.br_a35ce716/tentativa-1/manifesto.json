@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Ca35ce71697",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://marcosassi.com.br/alguns-bancos-facilitam-a-renegociacao-de-divida",
+  "final_url": "https://marcosassi.com.br/alguns-bancos-facilitam-a-renegociacao-de-divida",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.21.17.79",
+  "collected_at": "2026-11-25T22:46:02.964511+00:00",
+  "manifest_written_at": "2026-11-25T22:46:08.431813+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Ca35ce71697/attempt-1/viewport.png",
+      "sha256": "db1aac73de8fbe5360ce9ad5745fe082eb4f0b551ea22e1fe18b4004fece9044",
+      "size_bytes": 226812
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Ca35ce71697/attempt-1/fullpage.png",
+      "sha256": "13ba45658fc6c93cdf6c16cd88587bfe9bfc210fdffa73413daf519b77f8ddf5",
+      "size_bytes": 1344145
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Ca35ce71697/attempt-1/page.html.txt",
+      "sha256": "1da7784201c31525c024d3c298f170a06dbbebc556d0438d2c9969d720be1cdb",
+      "size_bytes": 502641
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Ca35ce71697/attempt-1/text.txt",
+      "sha256": "dc0d819de8acd48ef8d14958f3d4d189c82c558f930a37598c525c4b72621138",
+      "size_bytes": 75543
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Ca35ce71697/attempt-1/page.json",
+      "sha256": "6e2ab61359b24a56dc337db11409612766b00588180f56a66d8121a079019249",
+      "size_bytes": 143274
+    }
+  ],
+  "blocked_requests": [
+    "https://skillboxultra.live/go -> DNS resolution failed for skillboxultra.live: [Errno -2] Name or service not known"
+  ],
+  "errors": [],
+  "not_inspected": [
+    "screenshot completo limitado a 12000px (página com 41055px); texto integral preservado em text.txt",
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

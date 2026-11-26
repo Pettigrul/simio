@@ -1,0 +1,53 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C3faedeb9bb",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://www.norteleiloes.com.br/lote/75231",
+  "final_url": "https://www.norteleiloes.com.br/lote/75231",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "35.71.138.69",
+  "collected_at": "2026-11-25T23:06:43.059293+00:00",
+  "manifest_written_at": "2026-11-25T23:06:49.930450+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C3faedeb9bb/attempt-1/viewport.png",
+      "sha256": "16de6ff4c93da266f88f9e0889cccc2858320d78d18d756d3fa9640c90b195c3",
+      "size_bytes": 81322
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C3faedeb9bb/attempt-1/fullpage.png",
+      "sha256": "16de6ff4c93da266f88f9e0889cccc2858320d78d18d756d3fa9640c90b195c3",
+      "size_bytes": 81322
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C3faedeb9bb/attempt-1/page.html.txt",
+      "sha256": "7e2c7cd94fbcba7cf9d841b6c4c8addb5fdcee34149dbc0481e21a9ffd84d334",
+      "size_bytes": 63757
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C3faedeb9bb/attempt-1/text.txt",
+      "sha256": "48e73f4d3d8021119712890a9f9161cc43cbb1ef100ea326d607867b6f89a68c",
+      "size_bytes": 593
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C3faedeb9bb/attempt-1/page.json",
+      "sha256": "0eac000f03d92f1e4c282370d52b856e373090bc86c7f0d7afd22980f234e6f1",
+      "size_bytes": 11146
+    }
+  ],
+  "blocked_requests": [
+    "wss://elb-us.roisoft.com:8009/socket.io/?EIO=3&transport=websocket -> port 8009 not allowed"
+  ],
+  "errors": [],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

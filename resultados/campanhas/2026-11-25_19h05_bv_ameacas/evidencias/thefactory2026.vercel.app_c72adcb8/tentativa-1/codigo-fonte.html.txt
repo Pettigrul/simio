@@ -1,0 +1,745 @@
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Factory 2.0 · Tech for Humans</title>
+<meta name="description" content="A inteligência por trás do crédito — 21 de outubro, Learning Village, São Paulo.">
+<link rel="icon" type="image/svg+xml" href="assets/t4h-icon-white.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=DM+Sans:wght@500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --header-pad: 18px 48px;
+    --hero-cols: 1fr 1fr;
+    --hero-min-height: 820px;
+    --hero-content-pad: 64px 64px;
+    --section-pad: 96px 64px;
+    --h2-size: 42px;
+    --cta-pad: 110px 64px;
+    --cta-title-size: 48px;
+    --cta-cols: 0.9fr 1.1fr;
+    --arrow-display: flex;
+    --speaker-width: 230px;
+    --speaker-width-expanded: 520px;
+  }
+  @media (max-width: 899px) {
+    :root {
+      --header-pad: 14px 20px;
+      --hero-cols: 1fr;
+      --hero-min-height: auto;
+      --hero-content-pad: 48px 24px 40px;
+      --section-pad: 64px 20px;
+      --h2-size: 30px;
+      --cta-pad: 64px 24px;
+      --cta-title-size: 32px;
+      --cta-cols: 1fr;
+      --arrow-display: none;
+      --speaker-width: 62vw;
+      --speaker-width-expanded: 86vw;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  a { color: #48BA80; }
+  a:hover { color: #A0E5C2; }
+  ::selection { background: #48BA80; color: #000; }
+  img { max-width: 100%; }
+  @keyframes tf-fadeup { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Header */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--header-pad);
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .site-header .brand { display: flex; align-items: center; gap: 14px; }
+  .site-header .brand { min-width: 0; flex-shrink: 1; }
+  .site-header .brand img.logo { height: 44px; width: 111px; flex-shrink: 0; }
+  .site-header .brand .divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+  .site-header .brand img.wordmark { height: 19px; width: 113px; flex-shrink: 0; }
+  .nav-cta {
+    background: #48BA80; color: #000; font-weight: 700; font-size: 13px;
+    padding: 10px 16px; border-radius: 10px; text-decoration: none; white-space: nowrap;
+    display: none; flex-shrink: 0;
+  }
+  .nav-desktop { display: flex; align-items: center; gap: 32px; }
+  .nav-desktop a.nav-link { color: rgba(255,255,255,0.78); text-decoration: none; font-size: 15px; font-weight: 500; }
+  .nav-desktop a.nav-cta-desktop {
+    background: #48BA80; color: #000; font-weight: 700; font-size: 14px;
+    padding: 12px 22px; border-radius: 10px; text-decoration: none; transition: background 240ms;
+  }
+  .nav-desktop a.nav-cta-desktop:hover { background: #A0E5C2; }
+  @media (max-width: 899px) {
+    .nav-cta {
+      display: inline-flex; font-size: 12px; padding: 8px 12px; white-space: normal;
+      text-align: center; line-height: 1.25; max-width: 118px;
+    }
+    .nav-desktop { display: none; }
+    .site-header .brand { gap: 8px; }
+    .site-header .brand img.logo { height: 30px; width: 75px; }
+    .site-header .brand .divider { height: 16px; }
+    .site-header .brand img.wordmark { height: 13px; width: 77px; }
+  }
+  @media (max-width: 360px) {
+    .site-header .brand img.wordmark { display: none; }
+    .site-header .brand .divider { display: none; }
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; display: grid; grid-template-columns: var(--hero-cols);
+    min-height: var(--hero-min-height); background: #050705; margin-top: 76px;
+  }
+  .hero .hero-bg { position: absolute; inset: 0; background-image: url('uploads/bg-verde-tiras.webp'); background-size: cover; background-position: center; opacity: 0.55; }
+  .hero .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.75) 100%); }
+  .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: var(--hero-content-pad); }
+  .hero-title-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .hero-title-row h1 { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 85px; line-height: 1.05; letter-spacing: -0.02em; margin: 0; color: #fff; }
+  .hero-badge {
+    border: 2px solid rgba(160,229,194,0.5); color: #A0E5C2; font-size: 15px; font-weight: 600;
+    letter-spacing: 0.04em; padding: 6px 16px; border-radius: 8px; white-space: nowrap; align-self: center;
+  }
+  .hero-subtitle { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 34px; line-height: 1.2; letter-spacing: -0.01em; margin: 0; color: #fff; text-transform: uppercase; }
+  .hero-meta { font-size: 15px; font-weight: 600; color: #A0E5C2; margin: 0; letter-spacing: 0.01em; }
+  .hero-desc { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.75); max-width: 480px; margin: 0; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px; background: #48BA80; color: #000;
+    font-weight: 700; font-size: 15px; padding: 15px 26px; border-radius: 10px; text-decoration: none;
+    border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+  }
+  .btn-primary:hover { background: #A0E5C2; }
+
+  .hero-video-wrap { position: relative; z-index: 1; min-height: 320px; overflow: hidden; container-type: size; }
+  @media (max-width: 899px) {
+    /* container-type:size needs a definite height, not just a min-height,
+       to resolve cqh correctly — give it one, sized to a natural 16:9. */
+    .hero-video-wrap { height: 56.25vw; min-height: 200px; }
+  }
+  .hero-video-mask { position: absolute; inset: 0; overflow: hidden; }
+  .hero-video-mask iframe { position: absolute; top: 50%; left: 50%; width: 177.78cqh; height: 100cqh; min-width: 100cqw; min-height: 56.25cqw; transform: translate(-50%, -50%); pointer-events: none; border: 0; }
+  .hero-video-badge {
+    position: absolute; bottom: 0; right: 0; width: 220px; height: 151px;
+    background-image: url('uploads/Group 39517.png'); background-size: contain; background-repeat: no-repeat;
+    background-position: bottom right; opacity: 0.9; pointer-events: none; transform: scaleX(-1);
+  }
+
+  /* Speakers */
+  .speakers-section { position: relative; padding: var(--section-pad); background: #000; overflow: hidden; isolation: isolate; }
+  .speakers-section .section-bg {
+    position: absolute; inset: 0; z-index: 0; background-image: url('uploads/bg-preto-tiras.webp');
+    background-size: cover; background-position: center; opacity: 0.6; pointer-events: none;
+    transform: translateZ(0); will-change: transform;
+  }
+  .section-head { position: relative; z-index: 1; max-width: 640px; margin-bottom: 40px; }
+  .section-head .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #48BA80; text-transform: uppercase; }
+  .section-head h2 { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: var(--h2-size); margin: 12px 0 12px; color: #fff; letter-spacing: -0.01em; }
+  .section-head p { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.65); margin: 0; }
+
+  .carousel-row { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; }
+  .carousel-arrow {
+    flex: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2);
+    background: transparent; color: #fff; font-size: 18px; cursor: pointer;
+    display: var(--arrow-display); align-items: center; justify-content: center;
+  }
+  .carousel-arrow:hover { border-color: #48BA80; color: #48BA80; }
+  .speakers-track {
+    display: flex; gap: 16px; overflow-x: auto; scroll-behavior: smooth;
+    padding: 8px 4px 24px; flex: 1; cursor: grab; scrollbar-width: none;
+  }
+  .speakers-track::-webkit-scrollbar { display: none; }
+  .speakers-track.dragging { cursor: grabbing; scroll-behavior: auto; }
+
+  /*
+    .speaker-card is a plain flex item that auto-sizes to its inner wrapper's
+    content width — the actual width lives on .speaker-card-inner (a normal
+    block box) because some browsers don't reliably re-run flex layout when
+    flex-basis changes dynamically on an already-laid-out flex item.
+  */
+  .speaker-card { flex: 0 0 auto; }
+  .speaker-card-inner {
+    width: var(--speaker-width); min-height: 380px; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; cursor: pointer;
+    transition: width 320ms cubic-bezier(.2,.8,.2,1); display: flex; flex-direction: column;
+    contain: layout paint;
+  }
+  .speaker-card.expanded .speaker-card-inner { width: var(--speaker-width-expanded); border-color: #48BA80; flex-direction: row; }
+  .speaker-photo { flex: none; width: 100%; height: 260px; position: relative; }
+  .speaker-card.expanded .speaker-photo { width: 180px; height: auto; align-self: stretch; }
+  .speaker-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .speaker-info { padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+  .speaker-name { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 17px; color: #fff; margin: 0; }
+  .speaker-role { font-size: 13px; color: #A0E5C2; margin: 0; }
+  .speaker-bio {
+    display: none; margin-top: 10px; padding-top: 12px; border-left: 2px solid #48BA80;
+    padding-left: 14px; flex-direction: column; gap: 10px;
+  }
+  .speaker-card.expanded .speaker-bio { display: flex; }
+  .speaker-bio p { font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0; }
+  .speaker-bio a { font-size: 13px; font-weight: 600; text-decoration: none; }
+
+  /* Programação */
+  .program-section { position: relative; padding: var(--section-pad); background: #000; overflow: hidden; }
+  .program-decoration {
+    position: absolute; bottom: 0; right: 0; width: 220px; height: 151px;
+    background-image: url('uploads/Group 39517.png'); background-size: contain; background-repeat: no-repeat;
+    background-position: bottom right; opacity: 0.9; pointer-events: none; transform: scaleX(-1);
+  }
+  .program-grid {
+    position: relative; z-index: 1; max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 48px; align-items: start;
+  }
+  .program-head { position: sticky; top: 100px; }
+  .program-head .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #48BA80; text-transform: uppercase; }
+  .program-head h2 { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: var(--h2-size); margin: 12px 0 0; color: #fff; letter-spacing: -0.01em; }
+  .program-body { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+  .program-clip { position: relative; width: 100%; max-height: 460px; overflow: hidden; }
+  .program-clip.open { max-height: 4000px; }
+  .program-fade {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 140px; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,0), #000);
+  }
+  .program-clip.open .program-fade { display: none; }
+  .program-timeline { border-left: 4px solid #48BA80; padding-left: 32px; display: flex; flex-direction: column; gap: 28px; }
+  .prog-item { display: flex; flex-direction: column; gap: 4px; }
+  .prog-time { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.02em; color: #48BA80; }
+  .prog-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.2; color: #fff; }
+  .prog-people { display: flex; flex-direction: column; gap: 2px; }
+  .prog-people span { font-size: 16px; line-height: 1.45; color: rgba(255,255,255,0.6); }
+  .prog-cases { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+  .prog-case { border-left: 2px solid rgba(72,186,128,0.6); padding-left: 16px; display: flex; flex-direction: column; gap: 2px; }
+  .prog-case-title { font-size: 19px; font-weight: 500; line-height: 1.3; color: #fff; }
+  .prog-case-person { font-size: 15px; line-height: 1.4; color: rgba(255,255,255,0.6); }
+  .program-toggle {
+    background: transparent; color: #48BA80; border: 1.5px solid #48BA80; font-weight: 700; font-size: 15px;
+    padding: 13px 26px; border-radius: 10px; cursor: pointer; margin-left: 36px; font-family: 'Inter', sans-serif;
+  }
+  .program-toggle:hover { background: rgba(72,186,128,0.12); }
+  @media (max-width: 899px) {
+    .program-grid { grid-template-columns: 1fr; }
+    .program-head { position: static; }
+    .program-clip { max-height: 420px; }
+    .program-clip.open { max-height: 4000px; }
+    .prog-title { font-size: 21px; }
+  }
+
+  /* CTA */
+  .cta-section { position: relative; padding: var(--cta-pad); background: #000; overflow: hidden; }
+  .cta-decoration {
+    position: absolute; bottom: 0; left: -20px; width: 198px; height: 134px;
+    background-image: url('uploads/Group 39516.png'); background-size: contain; background-repeat: no-repeat;
+    opacity: 0.4; pointer-events: none; transform: scaleX(-1);
+  }
+  .cta-grid {
+    position: relative; z-index: 1; max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: var(--cta-cols); gap: 40px; align-items: center;
+  }
+  .cta-grid h2 { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: var(--cta-title-size); line-height: 1.15; margin: 0; color: #fff; }
+  .cta-subtitle { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 16px 0 0; max-width: 440px; }
+  .cta-form { display: flex; flex-direction: column; gap: 14px; max-width: 420px; text-align: left; }
+  .cta-form input {
+    width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.04); color: #fff; font-size: 15px; font-family: 'Inter', sans-serif;
+  }
+  .cta-form input.field-error { border-color: #FF6B6B; }
+  .form-error-msg { margin: 6px 0 0; font-size: 13px; color: #FF6B6B; display: none; }
+  .form-error-msg.visible { display: block; }
+  .cta-success {
+    display: none; max-width: 420px; text-align: left; box-sizing: border-box;
+    background: rgba(72,186,128,0.08); border: 1px solid rgba(72,186,128,0.35);
+    border-radius: 14px; padding: 28px 24px; animation: tf-fadeup 320ms ease both;
+  }
+  .cta-success.visible { display: block; }
+  .cta-success-icon {
+    width: 40px; height: 40px; border-radius: 999px; background: #48BA80; color: #000;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin-bottom: 14px;
+  }
+  .cta-success-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 19px; color: #fff; margin: 0 0 8px; }
+  .cta-success-text { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; }
+
+  /* Footer */
+  .site-footer {
+    padding: 32px 40px; background: #000; border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .site-footer .brand { display: flex; align-items: center; gap: 12px; }
+  .site-footer .brand img { height: 46px; width: 115px; }
+  .site-footer .brand span { color: rgba(255,255,255,0.3); font-size: 13px; }
+  .site-footer p { margin: 0; font-size: 13px; color: rgba(255,255,255,0.3); }
+</style>
+<script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/b485e332/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script></head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <img class="logo" src="assets/t4h-logo-white.png" alt="Tech for Humans">
+    <div class="divider"></div>
+    <img class="wordmark" src="uploads/The Factory.png" alt="The Factory">
+  </div>
+  <a class="nav-cta" href="#inscreva-se">Entrar na lista de espera</a>
+  <nav class="nav-desktop">
+    <a class="nav-link" href="#speakers">Palestrantes</a>
+    <a class="nav-link" href="#programacao">Programação</a>
+    <a class="nav-cta-desktop" href="#inscreva-se">Entrar na lista de espera →</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-title-row">
+      <h1>The Factory</h1>
+      <span class="hero-badge">2ª EDIÇÃO</span>
+    </div>
+    <p class="hero-subtitle">A inteligência por trás do crédito</p>
+    <p class="hero-meta">21 de outubro · 13h30 às 21h · Learning Village, São Paulo</p>
+    <p class="hero-desc">O crédito tradicional ficou caro demais para todo mundo. Nesta edição do The Factory, vamos discutir como operar com mais inteligência e menos custo.</p>
+    <div>
+      <a class="btn-primary" href="#inscreva-se">Entre na lista de espera <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-video-wrap">
+    <div class="hero-video-mask">
+      <iframe id="tf-hero-yt" src="https://www.youtube.com/embed/rZxoAP-PDKU?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;rel=0&amp;playsinline=1&amp;enablejsapi=1" title="GIF the factory 1" allow="autoplay; encrypted-media"></iframe>
+    </div>
+    <div class="hero-video-badge"></div>
+  </div>
+</section>
+
+<section id="speakers" class="speakers-section">
+  <div class="section-bg"></div>
+  <div class="section-head">
+    <span class="eyebrow">Palestrantes</span>
+    <h2>Conheça os speakers</h2>
+    <p>Executivos de administradoras, especialistas em crédito e lideranças de tecnologia debatendo os desafios do setor.</p>
+  </div>
+
+  <div class="carousel-row">
+    <button class="carousel-arrow carousel-prev" aria-label="Anterior">‹</button>
+
+    <div class="speakers-track" id="speakers-track">
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Camila Abdelmalack.webp" alt="Camila Abdelmalack" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Camila Abdelmalack</p>
+            <p class="speaker-role">Gerente Executiva de Estudos Econômicos, Serasa Experian</p>
+            <div class="speaker-bio">
+              <p>Responsável pela área de Estudos e Indicadores Econômicos da Serasa Experian, já foi economista-chefe na CM Capital Markets e na Veedha Investimentos. Desde 2022, é comentarista econômica na Jovem Pan.</p>
+              <a href="https://www.linkedin.com/in/camila-abdelmalack-01a97229/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Fernando wolff.webp" alt="Fernando Wolff" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Fernando Wolff</p>
+            <p class="speaker-role">Cofundador, Tech for Humans</p>
+            <div class="speaker-bio">
+              <p>Cofundador da Tech for Humans, consultoria de estratégia em IA que ajuda bancos, seguradoras e administradoras de consórcio a colocar agentes de IA em produção com segurança e impacto mensurável.</p>
+              <a href="https://www.linkedin.com/in/fernandonigriwolff/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Eduardo lins.webp" alt="Eduardo Lins" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Eduardo Lins</p>
+            <p class="speaker-role">Cofundador, Movile</p>
+            <div class="speaker-bio">
+              <p>Cofundador da Movile, grupo por trás de iFood, PlayKids, Wavy e Sympla. Suas estratégias viraram caso de estudo em Harvard e Stanford, onde deu aula por 7 anos. Hoje lidera a Empower, ajudando founders a escalar sem virar o gargalo do próprio negócio.</p>
+              <a href="https://www.linkedin.com/in/edulh/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Fernando Gianjiope.webp" alt="Fernando Gianjiope" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Fernando Gianjiope</p>
+            <p class="speaker-role">Fundador, Porto Vale</p>
+            <div class="speaker-bio">
+              <p>Considerado o maior vendedor de consórcio do país, fundou e consolidou a Porto Vale como a maior corretora de consórcios e seguros do Brasil. Mais de três décadas de mercado, com foco em disciplina comercial, formação de lideranças e visão estratégica de longo prazo.</p>
+              <a href="https://www.linkedin.com/in/fernando-gianjiope-49571184/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Marcos Loucao.webp" alt="Marcos Loução" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Marcos Loução</p>
+            <p class="speaker-role">CEO, Porto Bank</p>
+            <div class="speaker-bio">
+              <p>Há 18 anos no Grupo Porto, liderou a construção do Porto Bank do zero até se tornar uma instituição financeira completa. Hoje o banco soma R$ 811 milhões de lucro líquido, ROAE de 24,8% e cresce 22% ao ano, integrado a um ecossistema de 18 milhões de clientes.</p>
+              <a href="https://www.linkedin.com/in/marcosloucao/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Renan Torres.webp" alt="Renan Torres" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Renan Torres</p>
+            <p class="speaker-role">COO/CIO, CAIXA Consórcio</p>
+            <div class="speaker-bio">
+              <p>Diretor de Operações e Tecnologia da CAIXA Consórcio, com quase 20 anos unindo tecnologia e negócio em consórcios, seguros e previdência. Liderou a estruturação do ecossistema de TI das joint ventures CAIXA Consórcio e CAIXA Vida e Previdência.</p>
+              <a href="https://www.linkedin.com/in/renantorres-/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Cirlene Moreti.webp" alt="Cirlene Moreti" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Cirlene Moreti</p>
+            <p class="speaker-role">Superintendente de Operações, CAIXA Consórcio</p>
+            <div class="speaker-bio">
+              <p>Superintendente de Operações da CAIXA Consórcio, com mais de 20 anos de experiência em atendimento e operações em bancos e seguradoras. Já liderou centrais com centenas de posições, sempre com foco em elevar a experiência do cliente.</p>
+              <a href="https://www.linkedin.com/in/cirlene-moreti/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Patricia Rossi.webp" alt="Patricia Rossi" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Patricia Rossi</p>
+            <p class="speaker-role">Diretora de CSC, Processos e Automação, MAPFRE</p>
+            <div class="speaker-bio">
+              <p>Há 32 anos na MAPFRE, hoje é Diretora do Centro de Serviços Compartilhados, Processos e Automação. Economista com MBA em Business Innovation, lidera projetos de automação e process mining para reduzir fricção nas operações.</p>
+              <a href="https://www.linkedin.com/in/patricia-rossi-822b6a2b/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Nelson Alves.webp" alt="Nelson Alves" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Nelson Alves</p>
+            <p class="speaker-role">COO, MAPFRE Brasil</p>
+            <div class="speaker-bio">
+              <p>Chief Operating Officer da MAPFRE Brasil, com quase 19 anos de trajetória internacional no grupo — passou por direção financeira, controle e gestão de risco na Europa, Oriente Médio e África antes de assumir a operação no Brasil em 2026.</p>
+              <a href="https://www.linkedin.com/in/nelsonfilipealves/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Marcelo Augusto.webp" alt="Marcelo Augusto" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Marcelo Augusto</p>
+            <p class="speaker-role">Porto Bank</p>
+            <div class="speaker-bio">
+              <p>Mais de 25 anos de experiência em crédito e cobrança no varejo bancário. No banco BV, aplicou IA generativa em dados não estruturados e gerou R$ 40 milhões de resultado incremental em seis meses.</p>
+              <a href="https://www.linkedin.com/in/marcelo-augusto-rec/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" data-toggle="">
+        <div class="speaker-card-inner">
+          <div class="speaker-photo"><img src="uploads/Ana Igreja.webp" alt="Ana Igreja" loading="lazy"></div>
+          <div class="speaker-info">
+            <p class="speaker-name">Ana Igreja</p>
+            <p class="speaker-role">Coordenadora de Canais Digitais, Porto Bank</p>
+            <div class="speaker-bio">
+              <p>Lidera a estratégia de canais digitais na recuperação de crédito, com réguas de comunicação em app e WhatsApp. Sob a liderança dela, o digital chegou a 33% do share de recuperação geral.</p>
+              <a href="https://www.linkedin.com/in/ana-fl%C3%A1via-igreja-de-oliveira-879472a7/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-arrow carousel-next" aria-label="Próximo">›</button>
+  </div>
+</section>
+
+<section id="programacao" class="program-section">
+  <div class="program-decoration"></div>
+  <div class="program-grid">
+    <div class="program-head">
+      <span class="eyebrow">Programação</span>
+      <h2>Do cenário econômico à operação de crédito</h2>
+    </div>
+    <div class="program-body">
+      <div class="program-clip" id="program-clip">
+        <div class="program-timeline">
+          <div class="prog-item">
+            <span class="prog-time">13H30</span>
+            <span class="prog-title">Welcome coffee</span>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">14H00</span>
+            <span class="prog-title">Abertura</span>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">14H05</span>
+            <span class="prog-title">Cenário macroeconômico e crédito no Brasil</span>
+            <div class="prog-people">
+              <span>Camila Abdelmalack · Gerente Executiva de Estudos Econômicos, Serasa Experian</span>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">14H45</span>
+            <span class="prog-title">Painel: Crédito e inovação</span>
+            <div class="prog-people">
+              <span>Marcos Loução · CEO, Porto Bank</span>
+              <span>Fernando Gianjiope · CEO, Porto Vale</span>
+              <span>Fernando Wolff · CEO, T4H</span>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">15H40</span>
+            <span class="prog-title">Lançamentos</span>
+            <div class="prog-people">
+              <span>Fernando Wolff · CEO, T4H</span>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">15H50</span>
+            <span class="prog-title">Coffee break</span>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">16H15</span>
+            <span class="prog-title">Lançamentos</span>
+            <div class="prog-people">
+              <span>Luccas França · HEAD of BPO</span>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">16H30</span>
+            <span class="prog-title">Cases de IA</span>
+            <div class="prog-cases">
+              <div class="prog-case">
+                <span class="prog-case-title">MAPFRE Brasil: Experiência do Sinistro</span>
+                <span class="prog-case-person">Nelson Alves · COO, MAPFRE Brasil</span>
+                <span class="prog-case-person">Patricia Rossi · Diretora de CSC, Processos e Automação, MAPFRE Brasil</span>
+              </div>
+              <div class="prog-case">
+                <span class="prog-case-title">Porto Bank: Retenção de Cliente</span>
+                <span class="prog-case-person">Marcelo Augusto · Porto Bank</span>
+                <span class="prog-case-person">Ana Igreja · Coordenadora de Canais Digitais, Porto Bank</span>
+              </div>
+              <div class="prog-case">
+                <span class="prog-case-title">Painel CAIXA: A Jornada do Crédito ao Pagamento do Bem</span>
+                <span class="prog-case-person">Renan Torres · Diretor de Operações e Tecnologia (COO/CIO), CAIXA Consórcio</span>
+                <span class="prog-case-person">Cirlene Moreti · Superintendente de Operações, CAIXA Consórcio</span>
+              </div>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">17H30</span>
+            <span class="prog-title">Keynote: O mundo mudou</span>
+            <div class="prog-people">
+              <span>Eduardo Lins · Cofundador, Movile, iFood, Playkids, Wavy</span>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">18H15</span>
+            <span class="prog-title">A resposta ao Futuro</span>
+            <div class="prog-people">
+              <span>Fernando Wolff · CEO, T4H</span>
+            </div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">18H30</span>
+            <span class="prog-title">Início do happy hour (até 21h)</span>
+          </div>
+        </div>
+        <div class="program-fade"></div>
+      </div>
+      <button type="button" class="program-toggle" id="program-toggle" aria-expanded="false" aria-controls="program-clip">Ver programação completa</button>
+    </div>
+  </div>
+</section>
+
+<section id="inscreva-se" class="cta-section">
+  <div class="cta-decoration"></div>
+  <div class="cta-grid">
+    <div>
+      <h2>Entre na lista de espera</h2>
+      <p class="cta-subtitle">As inscrições para o The Factory já atingiram o limite de vagas. Você ainda pode entrar na nossa lista de espera e avisamos você quando abrirem novas vagas.</p>
+    </div>
+    <div>
+      <iframe name="mc-hidden-frame" title="mailchimp" style="display: none;"></iframe>
+      <form class="cta-form" id="cta-form" action="https://techforhumans.us5.list-manage.com/subscribe/post?u=26535a63acbc5fe8074ceb74c&amp;id=24ec7ff9d6&amp;f_id=002ebdedf0" method="post" name="mc-embedded-subscribe-form" target="mc-hidden-frame">
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+          <input type="text" name="b_26535a63acbc5fe8074ceb74c_24ec7ff9d6" tabindex="-1" value="" style="">
+        </div>
+        <input type="hidden" name="tags" value="4510126" style="">
+
+        <div>
+          <input type="text" name="FNAME" placeholder="Nome" style="">
+          <p class="form-error-msg">Preencha o nome.</p>
+        </div>
+        <div>
+          <input type="email" name="EMAIL" placeholder="E-mail" style="">
+          <p class="form-error-msg">Preencha o e-mail.</p>
+        </div>
+        <div>
+          <input type="tel" name="PHONE" placeholder="Telefone" style="">
+          <p class="form-error-msg">Preencha o telefone.</p>
+        </div>
+        <div>
+          <input type="text" name="COMPANY" placeholder="Empresa" style="">
+          <p class="form-error-msg">Preencha a empresa.</p>
+        </div>
+
+        <button type="submit" class="btn-primary">Entrar na lista de espera <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="cta-success" id="cta-success">
+        <div class="cta-success-icon" aria-hidden="true">✓</div>
+        <p class="cta-success-title">Você entrou na lista de espera!</p>
+        <p class="cta-success-text">Recebemos os seus dados. Avisaremos você por e-mail ou telefone caso surja uma vaga.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="brand">
+    <img src="assets/t4h-logo-white.png" alt="Tech for Humans">
+    <span>© 2026 The Factory · Tech for Humans</span>
+  </div>
+  <p>Learning Village, São Paulo</p>
+</footer>
+
+<script>
+(function () {
+  // Hero video: seamless loop via the YouTube IFrame API (avoids the
+  // rebuffer flash of the native loop=1&playlist trick).
+  var heroFrame = document.getElementById('tf-hero-yt');
+  function initHeroLoop() {
+    if (!window.YT || !window.YT.Player) return;
+    new YT.Player(heroFrame, {
+      events: {
+        onStateChange: function (e) {
+          if (e.data === YT.PlayerState.ENDED) {
+            e.target.seekTo(0);
+            e.target.playVideo();
+          }
+        }
+      }
+    });
+  }
+  if (window.YT && window.YT.Player) {
+    initHeroLoop();
+  } else {
+    window.onYouTubeIframeAPIReady = initHeroLoop;
+    var ytTag = document.createElement('script');
+    ytTag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytTag);
+  }
+
+  // Speaker carousel: drag-to-scroll + prev/next buttons.
+  var track = document.getElementById('speakers-track');
+  var isDown = false, startX = 0, startScroll = 0;
+
+  track.addEventListener('mousedown', function (e) {
+    isDown = true;
+    startX = e.pageX;
+    startScroll = track.scrollLeft;
+    track.classList.add('dragging');
+  });
+  window.addEventListener('mouseup', function () {
+    if (isDown) { isDown = false; track.classList.remove('dragging'); }
+  });
+  track.addEventListener('mouseleave', function () {
+    if (isDown) { isDown = false; track.classList.remove('dragging'); }
+  });
+  track.addEventListener('mousemove', function (e) {
+    if (!isDown) return;
+    track.scrollLeft = startScroll - (e.pageX - startX);
+  });
+
+  document.querySelector('.carousel-prev').addEventListener('click', function () {
+    track.scrollBy({ left: -260, behavior: 'smooth' });
+  });
+  document.querySelector('.carousel-next').addEventListener('click', function () {
+    track.scrollBy({ left: 260, behavior: 'smooth' });
+  });
+
+  // Speaker cards: click to expand (accordion — one at a time).
+  document.querySelectorAll('.speaker-card[data-toggle]').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var wasExpanded = card.classList.contains('expanded');
+      document.querySelectorAll('.speaker-card.expanded').forEach(function (c) {
+        c.classList.remove('expanded');
+      });
+      if (!wasExpanded) card.classList.add('expanded');
+    });
+  });
+  document.querySelectorAll('.speaker-bio a').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.stopPropagation(); });
+  });
+
+  // CTA form: client-side required-field validation before the Mailchimp POST.
+  var form = document.getElementById('cta-form');
+  var successMsg = document.getElementById('cta-success');
+  form.addEventListener('submit', function (e) {
+    var fields = ['FNAME', 'EMAIL', 'PHONE', 'COMPANY'];
+    var hasError = false;
+    fields.forEach(function (name) {
+      var input = form.elements[name];
+      var wrapper = input.closest('div');
+      var errorEl = wrapper.querySelector('.form-error-msg');
+      if (!input.value.trim()) {
+        hasError = true;
+        input.classList.add('field-error');
+        if (errorEl) errorEl.classList.add('visible');
+      } else {
+        input.classList.remove('field-error');
+        if (errorEl) errorEl.classList.remove('visible');
+      }
+    });
+    if (hasError) {
+      e.preventDefault();
+      return;
+    }
+    form.style.display = 'none';
+    successMsg.classList.add('visible');
+  });
+
+  // Programação: expand/collapse the full schedule.
+  var programClip = document.getElementById('program-clip');
+  var programToggle = document.getElementById('program-toggle');
+  programToggle.addEventListener('click', function () {
+    var open = programClip.classList.toggle('open');
+    programToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    programToggle.textContent = open ? 'Ver menos' : 'Ver programação completa';
+  });
+})();
+</script>
+
+
+
+</body></html>

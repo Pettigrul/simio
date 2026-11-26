@@ -1,0 +1,54 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C94b9f74cb6",
+  "attempt": 1,
+  "status": "OK",
+  "original_url": "https://bancoseagencias.com.br/",
+  "final_url": "https://bancoseagencias.com.br/",
+  "redirect_chain": [],
+  "http_status": 200,
+  "server_ip": "104.21.72.151",
+  "collected_at": "2026-11-25T23:24:40.555398+00:00",
+  "manifest_written_at": "2026-11-25T23:24:49.171783+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C94b9f74cb6/attempt-1/viewport.png",
+      "sha256": "d5a087e9bb1efe9b101e6842ae39d215118f77386873154b13cfe48fe52df20e",
+      "size_bytes": 212598
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C94b9f74cb6/attempt-1/fullpage.png",
+      "sha256": "2278c31d6c4c5b0cd649f7d6b6d127007f24322e93096659d2a983437de0c5f2",
+      "size_bytes": 501603
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C94b9f74cb6/attempt-1/page.html.txt",
+      "sha256": "5cd74deda97844b5c11bd33b5b3d0f9d711eb142821b9d3f8e37e53f51828e6b",
+      "size_bytes": 79925
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C94b9f74cb6/attempt-1/text.txt",
+      "sha256": "278471d33a01ac9b8d69fa7f4e9733e9f9d07e9a842aefd3408dea03be24f951",
+      "size_bytes": 2818
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C94b9f74cb6/attempt-1/page.json",
+      "sha256": "1ab07adfe95accd0dbcab29e2e244ef74a8ff0beef9f94ab9e775b8cd9658882",
+      "size_bytes": 16849
+    }
+  ],
+  "blocked_requests": [
+    "https://invstatic101.creativecdn.com/encrypted-signals/encrypted-tag-g.js -> DNS resolution failed for invstatic101.creativecdn.com: [Errno -2] Name or service not known",
+    "https://match.sharethrough.com/universal/v1?supply_id=v5hJK9Sl -> DNS resolution failed for match.sharethrough.com: [Errno -2] Name or service not known"
+  ],
+  "errors": [],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

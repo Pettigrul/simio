@@ -1,0 +1,231 @@
+Novo: consulte vários bancos ao mesmo tempo e receba o ranking em segundos.
+Ver como funciona
+Como funciona
+Módulos
+Para quem é
+API
+Entrar no painel
+Do cliente ao melhor banco, em segundos.
+
+Mais que uma calculadora de parcelas, o CrediAuto consulta, pontua e rankeia o crédito de cada proposta. Para concessionárias, lojas e revendas.
+
+Multi-banco
+Score 0 a 1000
+API por CPF e CNPJ
+Entrar no painel
+Ver como funciona
+OPERAÇÃO
+Onix LT 2021
+R$ 68.000 · 48x
+CPF 782
+motor
+Banco PAN
+1.89% a.m.
+BV Financeira
+2.04% a.m.
+Santander
+2.12% a.m.
+Itaú
+2.20% a.m.
+As revendas que vendem mais comparam crédito em um lugar só
+Banco PAN
+BV
+Santander
+Itaú
+Bradesco
+Omni
+A PLATAFORMA
+Não é uma calculadora de parcelas. É uma decisão.
+
+A partir dos dados do veículo e do cliente, o sistema consulta vários bancos de uma vez e organiza as respostas num ranking acionável, já com o caminho para aumentar a aprovação.
+
+ranking de bancos
+Banco PAN
+1.89%
+melhor
+BV Financeira
+2.04%
+48x
+Santander
+2.12%
+60x
+Itaú
+2.20%
+36x
+MOTOR MULTI-BANCO
+Da operação ao ranking de bancos, em segundos.
+Consulta simultânea a vários bancos, sem retrabalho.
+Ordenável por parcela, taxa, chance de aprovação ou comissão.
+Mostra o motivo das recusas e sugere como reverter.
+Ver no painel
+score e probabilidade
+782
+SCORE
+Probabilidade
+82%
+Faixa de risco
+Baixo
+Melhor condição
+48x · R$ 1.890
+SCORE E PROBABILIDADE
+Score próprio e a chance de aprovação de cada proposta.
+Score de crédito automotivo de 0 a 1000.
+Probabilidade de aprovação calculada por perfil.
+Sugestão automática para viabilizar a aprovação.
+Ver uma proposta
+esteira de propostas
+1
+Cliente e veículo
+ok
+2
+Análise multi-banco
+ok
+3
+Melhor condição
+82%
+4
+Formalização
+·
+ESTEIRA COMERCIAL
+Do cadastro do cliente ao fechamento, numa esteira só.
+Criação de proposta em quatro etapas guiadas.
+Cliente com dados financeiros, flag de restrição e histórico.
+Envio por WhatsApp, podendo ocultar os bancos.
+Ver as propostas
+comissões por banco
+PAN
+BV
+Sant.
+Itaú
+Brad.
+FINANCEIRO E ANALYTICS
+Comissões, relatórios e inteligência da operação.
+Split de comissão entre loja e vendedor, com ranking.
+Volume financiado, funil e aprovação por banco.
+Alertas automáticos, tendências e motivos de reprovação.
+Ver os relatórios
+
+Pare de ligar para cada banco. Consulte todos de uma vez e receba, em segundos, o ranking do melhor crédito para cada cliente.
+
+O MOTOR DE CRÉDITO
+Uma única inteligência de crédito, no painel e na API.
+
+O mesmo motor que serve o time interno alimenta os parceiros externos. Sem planilha, sem ligar pra cada banco, sem decidir no escuro.
+
+Ver como funciona
+consulta multi-banco
+score: 782
+prob: 0.82
+rank[0]: PAN  1.89
+rank[1]: BV   2.04
+rank[2]: SAN  2.12
+cpf: ***.***.***-**
+parcela: R$ 2.187
+prazo: 48x · entrada 15k
+status: aprovado
+Multi-banco
+Score 0 a 1000
+Ranking acionável
+Motivo das recusas
+Modo negociação
+Automação
+PARA DESENVOLVEDORES
+O mesmo motor, aberto para seus parceiros.
+
+Concessionárias e sistemas externos consultam crédito por CPF e CNPJ direto dos próprios sistemas, com portal, chaves, sandbox e webhooks.
+
+Ver a documentação
+consulta de crédito
+POST /v1/analises
+{
+  "cpf": "***.***.***-**",
+  "valor": 68000,
+  "entrada": 15000,
+  "prazo": 48
+}
+
+200 OK
+{
+  "score": 782,
+  "probabilidade": 0.82,
+  "ranking": [
+    { "banco": "PAN", "taxa": 1.89 },
+    { "banco": "BV", "taxa": 2.04 }
+  ]
+}
+Parceiro
+envia CPF / CNPJ
+Motor CrediAuto
+score + ranking
+Ranking
+em JSON
+Banco PAN
+BV / Santander
+Itaú / Bradesco
+Portal do parceiro
+Gestão de acesso, consumo e documentação.
+Chaves de API
+Credenciais por parceiro, com escopo e limite.
+Sandbox
+Ambiente de teste com dados de exemplo.
+Webhooks
+Eventos de status enviados em tempo real.
+PARA QUEM É
+Feito para os três lados da operação.
+GESTOR
+VENDEDOR
+PARCEIRO VIA API
+Dono da operação, no controle de ponta a ponta.
+Configura taxas, regras, bancos, lojas e comissões.
+Governança de usuários, perfis e permissões.
+Acompanha resultados por loja e por vendedor em tempo real.
+creditoautomotivo.com/painel
+Perfil e permissões
+ativo
+Meta do mês
+72%
+R$ 1,2M
+Aprovação da loja
+74%
+A PLATAFORMA
+Uma plataforma para a operação de crédito inteira.
+
+Da análise multi-banco à comissão do vendedor, com IA nativa e API para parceiros. Multiempresa, do primeiro cadastro ao fechamento.
+
+Entrar no painel
+PF e PJ
+CRÉDITO POR CPF E CNPJ
+Multiempresa
+EMPRESAS, FILIAIS E LOJAS
+IA nativa
+ASSISTENTE E AGENTE
+Governança
+TAXAS, REGRAS E AUTOMAÇÕES
+Veja o CrediAuto funcionando agora.
+
+O painel está no ar, com dados de exemplo. Entre e navegue pela operação inteira: dashboard e KPIs, esteira de propostas, análise multi-banco com ranking, comissões e relatórios.
+
+Entrar no painel
+Ver os módulos
+Sem instalação
+Acesso imediato
+Todas as telas liberadas
+
+Plataforma de crédito automotivo multi-banco para concessionárias, lojas e revendas.
+
+PLATAFORMA
+Como funciona
+Módulos
+API
+PARA QUEM É
+Gestor
+Vendedor
+Parceiro
+PAINEL
+Entrar
+Relatórios
+Inteligência
+ACESSO
+Entrar no painel
+© 2026 CrediAuto. Todos os direitos reservados.
+Dados exibidos são de exemplo.

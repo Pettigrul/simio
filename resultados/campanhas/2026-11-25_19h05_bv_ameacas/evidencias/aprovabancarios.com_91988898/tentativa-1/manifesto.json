@@ -1,0 +1,55 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "C9198889848",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "https://aprovabancarios.com/conteudos/",
+  "final_url": "https://aprovabancarios.com/conteudos/",
+  "redirect_chain": [
+    "https://aprovabancarios.com/conteudos/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.26.6.3",
+  "collected_at": "2026-11-25T23:29:49.522557+00:00",
+  "manifest_written_at": "2026-11-25T23:29:56.002186+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/C9198889848/attempt-1/viewport.png",
+      "sha256": "7c4633e050ba6914ff53c6ce2f849829333f36b5d128d1f07ed068ab1eeb395b",
+      "size_bytes": 39438
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/C9198889848/attempt-1/fullpage.png",
+      "sha256": "7c4633e050ba6914ff53c6ce2f849829333f36b5d128d1f07ed068ab1eeb395b",
+      "size_bytes": 39438
+    },
+    {
+      "kind": "html",
+      "path": "evidence/C9198889848/attempt-1/page.html.txt",
+      "sha256": "fc66d75ac29d5a291f9cede338a1474aebfe26acfaac30dcbf6d48bcbe272df7",
+      "size_bytes": 44863
+    },
+    {
+      "kind": "text",
+      "path": "evidence/C9198889848/attempt-1/text.txt",
+      "sha256": "b46ef7efcfdc812bd97182635abfbff8d7758aacbc1aa3e3f3561b35bf6b8521",
+      "size_bytes": 293
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/C9198889848/attempt-1/page.json",
+      "sha256": "0686dad875e3aa79615ddb0036b095a5e27b4e858d0ad3a51d25e7d836500724",
+      "size_bytes": 1453
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

@@ -1,0 +1,57 @@
+{
+  "collector": "browser-collector/1",
+  "candidate_id": "Cac90a73739",
+  "attempt": 1,
+  "status": "FAILED",
+  "original_url": "http://cartaobv.com/",
+  "final_url": "https://www.hugedomains.com/domain_profile.cfm?d=cartaobv.com",
+  "redirect_chain": [
+    "http://cartaobv.com/",
+    "https://www.hugedomains.com/domain_profile.cfm?d=cartaobv.com",
+    "http://cartaobv.com/"
+  ],
+  "http_status": 403,
+  "server_ip": "104.26.6.37",
+  "collected_at": "2026-11-25T22:48:13.256164+00:00",
+  "manifest_written_at": "2026-11-25T22:48:20.859116+00:00",
+  "artifacts": [
+    {
+      "kind": "screenshot_viewport",
+      "path": "evidence/Cac90a73739/attempt-1/viewport.png",
+      "sha256": "7fae9c3c5c9443296d77d4039f511ea9d02a06fce7a31cf73e039de256a4cfc5",
+      "size_bytes": 41032
+    },
+    {
+      "kind": "screenshot_full",
+      "path": "evidence/Cac90a73739/attempt-1/fullpage.png",
+      "sha256": "2b477e3ada2274b3072a5796d35cb42deec7ff6f17a1fbe0d61ea300b534b73d",
+      "size_bytes": 40831
+    },
+    {
+      "kind": "html",
+      "path": "evidence/Cac90a73739/attempt-1/page.html.txt",
+      "sha256": "498eca67903f986a8db495a16d5433d4d45d80549c1a17c7f1b1f144decb918b",
+      "size_bytes": 44969
+    },
+    {
+      "kind": "text",
+      "path": "evidence/Cac90a73739/attempt-1/text.txt",
+      "sha256": "d322c7b6b947c8d1f13c2e0c1c97b7b758264d140bc81cf40b9e0f35ed5aec3d",
+      "size_bytes": 293
+    },
+    {
+      "kind": "page_data",
+      "path": "evidence/Cac90a73739/attempt-1/page.json",
+      "sha256": "90d88c0c7e07d5a2930cf9a496318101c1a3e2f171c747db2a5f13a04bb83038",
+      "size_bytes": 1453
+    }
+  ],
+  "blocked_requests": [],
+  "errors": [
+    "HTTP 403: page content is an error page"
+  ],
+  "not_inspected": [
+    "apenas a URL descoberta foi inspecionada; páginas internas, formulários e fluxos após cliques não foram acessados"
+  ],
+  "hash_algorithm": "SHA-256"
+}

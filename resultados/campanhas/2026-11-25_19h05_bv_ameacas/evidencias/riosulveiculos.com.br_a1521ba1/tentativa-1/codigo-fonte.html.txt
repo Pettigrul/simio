@@ -1,0 +1,1009 @@
+<html class="not-ie js" lang="pt-BR"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <meta charset="windows-1252">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+            <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                    //console.log('unregister serviceWorker');
+                    for (let registration of registrations) {
+                        registration.unregister().then((boolean) => {
+                            boolean ? console.log('ServiceWorker unregister: OK') : console.log('ServiceWorker unregister: Failed')
+                        })
+                    }
+                });
+            } else {
+                //console.log('ServiceWorker unregister: NotFound');
+            }
+        </script>
+    
+    
+    <!-- Fonte do menu (Yanone Kaffeesatz) servida pelo nosso CDN e pre-carregada: antes vinha do Google Fonts
+         com display=optional e, quando nao chegava a tempo, a pagina ficava com a fonte reserva; na pagina
+         seguinte (ja em cache) aparecia a Yanone, e o menu parecia "trocar de fonte" entre as paginas. -->
+    <link rel="preload" href="https://cache.vendautos.com.br/fonts/YanoneKaffeesatz-Regular-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <!-- preconnect so para o fonts.gstatic.com: os arquivos de fonte so sao descobertos depois que o CSS do Google
+         chega. CDN e fonts.googleapis.com nao precisam: os arquivos deles estao logo abaixo e a conexao ja abre na hora
+         (o Lighthouse alerta com mais de 4 preconnect, contando os que o AdSense e o Analytics injetam). -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <!-- display=optional: com "swap" a fonte chegava depois e o menu passava de 2 linhas para 1,
+         empurrando a pagina inteira (CLS ~0,31 no computador; medido 0,001 com optional) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Oswald|Electrolize&amp;display=optional">
+
+    
+    <title>Soluções Financeiras - As melhores soluções em financiamento só aqui no RioSulVeiculos. - RioSulVeiculos</title>
+    <meta name="description" content="Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As melhores soluções em financiamento só aqui no RioSulVeiculos!">
+    <meta name="keywords" content="riosulveiculos, soluções financeiras, financiamento de veiculos, credito, financeiras, veiculo financiado, carro financiado, taxas de financiamento, caixa, bb, santander, panamericano, itau, hsbc, banco bmg, bradesco">
+    <link rel="canonical" href="https://www.riosulveiculos.com.br/solucoes-financeiras">
+    <meta name="author" content="RioSulVeiculos">
+    <meta property="fb:admins" content="100000474460538">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://www.riosulveiculos.com.br/solucoes-financeiras">
+    <meta name="twitter:image" content="https://cache.vendautos.com.br/images/6/og_image.png"><meta name="twitter:alt" content="Soluções Financeiras - As melhores soluções em financiamento só aqui no {SITE}."><meta property="og:image" content="https://cache.vendautos.com.br/images/6/og_image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Soluções Financeiras - As melhores soluções em financiamento só aqui no {SITE}."><link rel="image_src" href="https://cache.vendautos.com.br/images/6/og_image.png">    <meta property="fb:app_id" content="273339229703507">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="RioSulVeiculos">
+    <meta property="og:title" content="Soluções Financeiras - As melhores soluções em financiamento só aqui no RioSulVeiculos.">
+    <meta property="og:description" content="Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As melhores soluções em financiamento só aqui no RioSulVeiculos!">
+    <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="RioSulVeiculos"><meta name="twitter:title" content="Soluções Financeiras - As melhores soluções em financiamento só aqui no RioSulVeiculos."><meta name="twitter:url" content="https://www.riosulveiculos.com.br"><meta name="twitter:domain" content="riosulveiculos.com.br"><meta name="twitter:creator" content="@riosulveiculos"><meta name="twitter:widgets:new-embed-design" content="on">
+<meta name="twitter:widgets:csp" content="on"><meta name="twitter:description" content="Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As melhores soluções em financiamento só aqui no RioSulVeiculos!">    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/images/favicon/blue/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/blue/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/blue/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/blue/favicon-16x16.png">
+    <link rel="mask-icon" href="/images/favicon/blue/safari-pinned-tab.svg" color="#4390df">
+    <meta name="theme-color" content="#4390df">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="RioSulVeiculos">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#4390df">
+    <meta name="msapplication-TileColor" content="#4390df">
+    <meta name="msapplication-config" content="/images/favicon/blue/browserconfig.xml">
+    <meta name="msapplication-TileImage" content="/images/favicon/blue/mstile-150x150.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="RioSulVeiculos">
+    <meta name="application-url" content="https://www.riosulveiculos.com.br">
+    <meta http-equiv="last-modified" content="Thu, 20 Jul 2023 07:37:08 GMT">    <link rel="alternate" type="text/xml" title="Feed RSS do RioSulVeiculos" href="/feed.rss">
+
+    <!-- CSS do tema carregado normalmente (antes em segundo plano, com preload+onload): ele define o tamanho das
+         caixas das fotos, do menu e das colunas; quando chegava depois da primeira pintura, a pagina inteira
+         mudava de lugar (CLS). Sao ~14 KB compactados, do mesmo CDN dos outros CSS. -->
+    <link rel="stylesheet" href="https://cache.vendautos.com.br/theme/v2/blue.css">
+
+    <link rel="stylesheet" href="https://cache.vendautos.com.br/theme/v2/skeleton.css" media="screen">
+    <link rel="stylesheet" href="https://cache.vendautos.com.br/theme/v2/custom.css" media="screen">
+
+        
+    <!-- HTML5 Shiv + detect touch events -->
+    <!-- sincrono de proposito: com defer o LCP do celular piorou ~1 s nos testes -->
+    <script src="https://cache.vendautos.com.br/theme/v2/js/modernizr.custom.js"></script>
+        
+    <style>
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        img.lazy,
+        img.foto-lista {
+            display: block;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+            img.lazy:hover,
+            img.foto-lista:hover {
+                opacity: 1;
+                animation: flash 1.5s;
+            }
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: .4;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* acessibilidade */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
+        .pular-conteudo:focus {
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            z-index: 10000;
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 8px 12px;
+            clip-path: none;
+            background-color: var(--fundo-destaque);
+            color: var(--texto-destaque);
+        }
+        main:focus {
+            outline: none;
+        }
+        search {
+            display: block;
+        }
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
+
+        :root {
+            /* area minima de toque: 24px com mouse, 44px em tela de toque */
+            --area-toque: 24px;
+            --fundo-destaque: #fff;
+            --texto-destaque: #000;
+            --espaco-bloco: 25px;
+        }
+        @media (pointer: coarse) {
+            :root {
+                --area-toque: 44px;
+            }
+        }
+
+        /* logo com width/height no HTML: reserva o espaco sem distorcer quando a largura e limitada */
+        #logo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Menu: a Yanone Kaffeesatz e muito estreita. Com display=optional, quem nao recebe a fonte a tempo
+           fica com a reserva; esta reserva local reduzida ocupa a mesma largura e o menu cabe em 1 linha. */
+        @font-face {
+            font-family: "Yanone Kaffeesatz";
+            font-style: normal;
+            font-weight: 400;
+            font-display: optional;
+            src: url("https://cache.vendautos.com.br/fonts/YanoneKaffeesatz-Regular-latin.woff2") format("woff2");
+        }
+        @font-face {
+            font-family: "Yanone Reserva";
+            src: local("Arial"), local("Helvetica"), local("Roboto");
+            size-adjust: 74%;
+        }
+        .navigation > ul > li > a {
+            font-family: 'Yanone Kaffeesatz', 'Yanone Reserva', sans-serif;
+        }
+
+        /* celular/tablet: links e botoes com area de toque adequada */
+        @media (pointer: coarse) {
+            /* links soltos do topo (eram 14-19px de altura) */
+            #header .call a,
+            #header .adds a {
+                display: inline-flex;
+                align-items: center;
+                min-block-size: var(--area-toque);
+                padding-inline: 6px;
+            }
+            /* elementos ja em bloco/inline-block: so a altura minima, sem mudar o layout */
+            .navigation a,
+            .btn,
+            button,
+            input[type="submit"],
+            .pagination a {
+                min-block-size: var(--area-toque);
+            }
+        }
+
+        /* subtitulos (antes h1): mesmo tamanho visual de antes */
+        .widget-title.titulo-secao,
+        .section-title.titulo-secao {
+            font-size: 20px;
+        }
+        #sidebar .search-heading h2 {
+            margin: 0;
+        }
+
+        /* celular: texto base de 14px (o tema usa 12px) e campos com 16px (evita o zoom automatico do iOS) */
+        @media (max-width: 767px) {
+            body {
+                font-size: 14px;
+            }
+            input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+            select,
+            textarea {
+                font-size: 16px;
+            }
+        }
+
+        /* AdSense: espaco reservado (evita "pulo" do layout) e bloco escondido quando nao ha anuncio */
+        .adsense {
+            display: block;
+            width: 100%;
+            min-height: 100px;
+            margin: 0 auto var(--espaco-bloco);
+            text-align: center;
+        }
+        .adsense ins.adsbygoogle[data-ad-status="unfilled"] {
+            display: none !important;
+        }
+        .adsense:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+            min-height: 0;
+            margin: 0;
+        }
+        @media (max-width: 767px) {
+            .adsense {
+                min-height: 280px;
+            }
+        }
+
+        .google-maps {
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+        }
+        .google-maps iframe {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* mensagens de lista vazia (antes <h6><center>) */
+        .aviso-vazio {
+            margin-block: 1em;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* botao com aparencia de link (acoes que nao navegam) */
+        .link-telefone {
+            padding: 0;
+            border: 0;
+            background: none;
+            font: inherit;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* voltar ao topo: o tema esconde (#back-top display:none); mostrado apos rolar a pagina */
+        #back-top.visivel {
+            display: block;
+        }
+
+        /* rodape do celular (antes estilos inline) */
+        .rodape-mobile {
+            text-align: center;
+        }
+
+    </style>
+
+    
+</head>
+<body class="menu-1 h-style-1 text-1" id="topo">
+
+<a class="sr-only pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="wrap">
+
+    <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
+
+    <header id="header" class="clearfix">
+
+        <a href="https://www.riosulveiculos.com.br/" id="logo" rel="home" title="RioSulVeiculos">
+            <img src="https://cache.vendautos.com.br/images/6/logo.png" alt="RioSulVeiculos" width="569" height="95">
+        </a>
+        <div class="widget-container widget_search">
+                            <span class="call">
+                    <a href="/contato" title="Fale Conosco">Atendimento</a> |
+                    <a href="/anunciante/cadastro-revendedor" title="Cadastre sua revenda">Revendedor</a>
+                </span>
+                <br>
+
+                <span class="adds"><a href="/anunciante/painel-cliente" title="Anuncie seu veículo"><span class="text-orange" title="Anuncie seu veículo no RioSulVeiculos">Login</span></a> ou <a href="/anunciante/cadastro-particular" title="Cadastro Particular" target="_blank">Cadastre-se</a></span>
+            
+            <search>
+            <form action="/comprar" id="searchform" method="get" accept-charset="UTF-8">
+                <p>
+                    <label for="s" class="sr-only">Buscar veículos</label>
+                    <input type="search" name="s" id="s" autocomplete="off" enterkeyhint="search" placeholder="Ex.: gol 2012 Volta Redonda" style="">
+                    <button type="submit" id="searchsubmit" title="Efetuar busca rápida" aria-label="Buscar"></button>
+                </p>
+                <input type="hidden" value="buscar-resultado-s" name="form" style="">
+            </form>
+            </search>
+            <!--/ #searchform-->
+
+        </div>
+        <!--/ .widget-container-->
+
+        
+            <nav id="navigation" class="navigation" aria-label="Principal">
+
+                <ul>
+                    <li>
+                        <a href="https://www.riosulveiculos.com.br/" rel="home" title="RioSulVeiculos">Início</a>
+                    </li>
+                    <li>
+                        <a href="/buscar-por" title="Buscar por">Buscar por<span class="downarrowclass"></span></a>
+                        <ul>
+                            <li>
+                                <a href="/buscar-por-acessorio" title="Buscar por acessório">Acessório</a></li>
+                            <li>
+                                <a href="/buscar-por-ano" title="Buscar por ano">Ano</a></li>
+                            <li>
+                                <a href="/buscar-por-cidade" title="Buscar por cidade">Cidade</a></li>
+                            <li>
+                                <a href="/buscar-por-cor" title="Buscar por cor">Cor</a></li>
+                            <li>
+                                <a href="/buscar-por-fabricante" title="Buscar por fabricante">Fabricante</a></li>
+                            <li>
+                                <a href="/buscar-por-modelo" title="Buscar por modelo">Modelo</a></li>
+                            <li>
+                                <a href="/buscar-por-revenda" title="Buscar por revenda">Revenda</a></li>
+                            <li>
+                                <a href="/buscar-por-tipo-de-cliente" title="Buscar por tipo de cliente">Tipo de
+                                    cliente</a></li>
+                            <li>
+                                <a href="/buscar-por-tipo-de-combustivel" title="Buscar por tipo de combustível">Tipo de
+                                    combustível</a></li>
+                            <li>
+                                <a href="/buscar-por-tipo-de-veiculo" title="Buscar por tipo de veículo">Tipo de
+                                    veículo</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/comprar" title="Compre seu veículo">Comprar<span class="downarrowclass"></span></a><ul><li><a href="/comprar?form=buscar-por-tipo-de-veiculo&amp;tipo_veiculo_id=3&amp;tipo_veiculo=caminhao" title="Caminhão RioSulVeiculos">Caminhão</a></li><li><a href="/comprar?form=buscar-por-tipo-de-veiculo&amp;tipo_veiculo_id=1&amp;tipo_veiculo=carro" title="Carro RioSulVeiculos">Carro</a></li><li><a href="/comprar?form=buscar-por-tipo-de-veiculo&amp;tipo_veiculo_id=2&amp;tipo_veiculo=moto" title="Moto RioSulVeiculos">Moto</a></li><li><a href="/carros-usados" title="Carros usados">Carros usados</a></li><li><a href="/carros-novos" title="Carros novos">Carros novos</a></li><li><a href="/motos-usadas" title="Motos usadas">Motos usadas</a></li><li><a href="/motos-novas" title="Motos novas">Motos novas</a></li></ul></li>
+                    <li>
+                        <a href="/vender" title="Vender seu veículo">Vender<span class="downarrowclass"></span></a>
+                        <ul>
+                            <li>
+                                <a target="_blank" href="/anunciante/painel-cliente" title="Acesse a sua conta VendAutos">Central do cliente</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/anunciante/aplicativo-cliente" title="Aplicativo do cliente VendAutos">Aplicativo do cliente</a>
+                            </li>
+
+                            <li>
+                                <a href="/anunciante/cadastro-particular" title="Cadastre-se agora! É grátis!">Anuncie seu
+                                    Veículo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/revendas" title="Melhores revendas de veículos">Revendas<span class="downarrowclass"></span></a>
+                        <ul>
+                            <li><a href="/revendas/em/25/angra-dos-reis.html" title="Revendas em Angra dos Reis">Em Angra dos Reis</a></li><li><a href="/revendas/em/1/barra-do-pirai.html" title="Revendas em Barra do Piraí">Em Barra do Piraí</a></li><li><a href="/revendas/em/2/barra-mansa.html" title="Revendas em Barra Mansa">Em Barra Mansa</a></li><li><a href="/revendas/em/7/quatis.html" title="Revendas em Quatis">Em Quatis</a></li><li><a href="/revendas/em/8/resende.html" title="Revendas em Resende">Em Resende</a></li><li><a href="/revendas/em/9/tres-rios.html" title="Revendas em Três Rios">Em Três Rios</a></li><li><a href="/revendas/em/12/valenca.html" title="Revendas em Valença">Em Valença</a></li><li><a href="/revendas/em/10/vassouras.html" title="Revendas em Vassouras">Em Vassouras</a></li><li><a href="/revendas/em/11/volta-redonda.html" title="Revendas em Volta Redonda">Em Volta Redonda</a></li>                            <li>
+                                <a target="_blank" href="/anunciante/painel-revendedor" title="Gerencie seu estoque e muito mais">Painel do revendedor</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="/anunciante/aplicativo-revendedor" title="Seu aplicativo de gerenciamento de estoque">Aplicativo do revendedor</a>
+                            </li>
+                            <li>
+                                <a href="/anunciante/planos-revendedor" title="Planos para sua revenda">Planos
+                                    revenda</a>
+                            </li>
+                            <li>
+                                <a href="/anunciante/cadastro-revendedor" title="Cadastre sua revenda">Anuncie seu
+                                    Estoque</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/fabricantes" title="Fabricantes de veículos">Fabricantes</a></li>
+                    <li>
+                        <a href="/noticias" title="Notícias RioSulVeiculos">Notícias</a>
+                    </li>
+                    <li><a href="/ferramentas" title="Ferramentas RioSulVeiculos">Ferramentas<span class="downarrowclass"></span></a>
+                        <ul>
+                            <li>
+                                <a href="/calculo-e-simulacao-de-financiamento" title="Calcular valor do financiamento">Calcular
+                                    Financiamento</a>
+                            </li>
+                            <li>
+                                <a href="/calculo-e-simulacao-de-seguro" title="Calcular valor do seguro">Calcular
+                                    Seguro</a>
+                            </li>
+                            <li>
+                                <a href="/cidades" title="Cidades RioSulVeiculos">Cidades</a>
+                            </li>
+                            <li>
+                                <a href="/consulta-denatran" title="Consulta DENATRAN">Consulta Veicular</a>
+                            </li>
+                            <li>
+                                <a href="/financiamento-de-veiculos" title="Financiamento de veículos">Financiamento de
+                                    veículos</a>
+                            </li>
+                            <li>
+                                <a href="/ipva" title="Calcular valor do IPVA">IPVA</a>
+                            </li>
+                            <li>
+                                <a href="/orcamento-de-pecas" title="Orçamento de peças">Orçamento de Peças</a>
+                            </li>
+                            <li class="current-menu-item">
+                                <a aria-current="page" href="/solucoes-financeiras" title="Soluções financeiras">Soluções Financeiras</a>
+                            </li>
+                            <li>
+                                <a href="/tabela-de-precos-fipe-novo-usado" title="Tabela FIPE">Tabela Fipe</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/guia-de-produtos-servicos" title="Guia de produtos e serviços">Guia<span class="downarrowclass"></span></a>
+                        <ul>
+                            <li>
+                                <a href="/anunciante/cadastro-empresa" title="Cadastre sua empresa">Cadastre sua
+                                    empresa</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/contato" title="Fale conosco">Contato<span class="downarrowclass"></span></a>
+                        <ul>
+                            <li>
+                                <a href="/termos-de-uso" title="Termos de uso RioSulVeiculos">Termos de uso</a>
+                            </li>
+                            <li>
+                                <a href="/politica-de-privacidade" title="Política de privacidade RioSulVeiculos">Política
+                                    de privacidade</a>
+                            </li>
+                            <li>
+                                <a href="/sobre-nos" title="Sobre nós">Sobre nós</a>
+                            </li>
+                            <li>
+                                <a href="/como-funciona" title="Como funciona um Site de Classificados de Veículos">Como
+                                    funciona</a>
+                            </li>
+                            <li>
+                                <a href="/publicidade" title="Publicidade RioSulVeiculos">Publicidade</a>
+                            </li>
+                        </ul>
+                    </li>
+                                    </ul><select class="nav-responsive"><option value="" selected="">Clique aqui</option><option value="https://www.riosulveiculos.com.br/"> Início</option><option value="/buscar-por"> Buscar por</option><option value="/buscar-por-acessorio">-- Acessório</option><option value="/buscar-por-ano">-- Ano</option><option value="/buscar-por-cidade">-- Cidade</option><option value="/buscar-por-cor">-- Cor</option><option value="/buscar-por-fabricante">-- Fabricante</option><option value="/buscar-por-modelo">-- Modelo</option><option value="/buscar-por-revenda">-- Revenda</option><option value="/buscar-por-tipo-de-cliente">-- Tipo de
+                                    cliente</option><option value="/buscar-por-tipo-de-combustivel">-- Tipo de
+                                    combustível</option><option value="/buscar-por-tipo-de-veiculo">-- Tipo de
+                                    veículo</option><option value="/comprar"> Comprar</option><option value="/comprar?form=buscar-por-tipo-de-veiculo&amp;tipo_veiculo_id=3&amp;tipo_veiculo=caminhao">-- Caminhão</option><option value="/comprar?form=buscar-por-tipo-de-veiculo&amp;tipo_veiculo_id=1&amp;tipo_veiculo=carro">-- Carro</option><option value="/comprar?form=buscar-por-tipo-de-veiculo&amp;tipo_veiculo_id=2&amp;tipo_veiculo=moto">-- Moto</option><option value="/carros-usados">-- Carros usados</option><option value="/carros-novos">-- Carros novos</option><option value="/motos-usadas">-- Motos usadas</option><option value="/motos-novas">-- Motos novas</option><option value="/vender"> Vender</option><option value="/anunciante/painel-cliente">-- Central do cliente</option><option value="/anunciante/aplicativo-cliente">-- Aplicativo do cliente</option><option value="/anunciante/cadastro-particular">-- Anuncie seu
+                                    Veículo</option><option value="/revendas"> Revendas</option><option value="/revendas/em/25/angra-dos-reis.html">-- Em Angra dos Reis</option><option value="/revendas/em/1/barra-do-pirai.html">-- Em Barra do Piraí</option><option value="/revendas/em/2/barra-mansa.html">-- Em Barra Mansa</option><option value="/revendas/em/7/quatis.html">-- Em Quatis</option><option value="/revendas/em/8/resende.html">-- Em Resende</option><option value="/revendas/em/9/tres-rios.html">-- Em Três Rios</option><option value="/revendas/em/12/valenca.html">-- Em Valença</option><option value="/revendas/em/10/vassouras.html">-- Em Vassouras</option><option value="/revendas/em/11/volta-redonda.html">-- Em Volta Redonda</option><option value="/anunciante/painel-revendedor">-- Painel do revendedor</option><option value="/anunciante/aplicativo-revendedor">-- Aplicativo do revendedor</option><option value="/anunciante/planos-revendedor">-- Planos
+                                    revenda</option><option value="/anunciante/cadastro-revendedor">-- Anuncie seu
+                                    Estoque</option><option value="/fabricantes"> Fabricantes</option><option value="/noticias"> Notícias</option><option value="/ferramentas"> Ferramentas</option><option value="/calculo-e-simulacao-de-financiamento">-- Calcular
+                                    Financiamento</option><option value="/calculo-e-simulacao-de-seguro">-- Calcular
+                                    Seguro</option><option value="/cidades">-- Cidades</option><option value="/consulta-denatran">-- Consulta Veicular</option><option value="/financiamento-de-veiculos">-- Financiamento de
+                                    veículos</option><option value="/ipva">-- IPVA</option><option value="/orcamento-de-pecas">-- Orçamento de Peças</option><option value="/solucoes-financeiras">-- Soluções Financeiras</option><option value="/tabela-de-precos-fipe-novo-usado">-- Tabela Fipe</option><option value="/guia-de-produtos-servicos"> Guia</option><option value="/anunciante/cadastro-empresa">-- Cadastre sua
+                                    empresa</option><option value="/contato"> Contato</option><option value="/termos-de-uso">-- Termos de uso</option><option value="/politica-de-privacidade">-- Política
+                                    de privacidade</option><option value="/sobre-nos">-- Sobre nós</option><option value="/como-funciona">-- Como
+                                    funciona</option><option value="/publicidade">-- Publicidade</option></select>
+
+            </nav>
+            <!--/ #navigation-->
+        
+    </header>
+    <!--/ #header-->
+
+    <!-- - - - - - - - - - - - - - end Header - - - - - - - - - - - - - - - - -->
+
+    
+    <!-- - - - - - - - - - - - - - Top Panel - - - - - - - - - - - - - - - - -->
+
+    
+    <!-- - - - - - - - - - - - - end Top Panel - - - - - - - - - - - - - - - -->
+    <main id="conteudo" class="main" tabindex="-1"><section class="container sbl clearfix" style="min-height: 231px;">
+
+    <!-- - - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
+
+    <section id="content" class="two-thirds column">
+
+        <h1 class="section-title"><span>Soluções </span>Financeiras</h1>
+
+        
+        <p>Já sabe qual é o veículo dos seus sonhos? Agora você tem condições competitivas para torná-lo realidade. As
+            melhores soluções em financiamento só aqui no RioSulVeiculos!</p>
+
+        <ul class="list type-1">
+            <li><b><a href="/tabela-de-precos-fipe-novo-usado" title="Tabela de preços - Tabela de preços fipe" class="wrong">Consulte o valor na Tabela FIPE</a></b></li>
+            <li><b><a href="/ipva" title="IPVA - Imposto sobre Propriedade de Veículos Automotores" class="wrong">Consulte
+                        o valor IPVA</a></b></li>
+            <li><b><a href="/consulta-denatran" class="wrong" title="Consulta Gratuita de cadastro veicular DETRAN / DENATRAN">Consulta de Veículo DETRAN /
+                        DENATRAN</a></b><span></span></li>
+        </ul>
+
+        <h2>Bancos e Financeiras</h2>
+
+        
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.bancobmg.com.br" target="_blank" title="Banco BMG"><img class="entry-image" alt="Banco BMG" src="https://cache.vendautos.com.br/images/financeiras/banco_bmg.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.bancobmg.com.br" target="_blank" title="Banco BMG">
+							<h2 class="title">Banco BMG</h2>
+						</a><p>Se você ou sua empresa deseja adquirir um veículo ou frota, novo ou usado, o BMG realiza o financiamento de veículo através de CDC - Crédito Direto ao Consumidor ou Leasing, com rapidez e sem burocracia.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.bb.com.br" target="_blank" title="Banco do Brasil"><img class="entry-image" alt="Banco do Brasil" src="https://cache.vendautos.com.br/images/financeiras/bb.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.bb.com.br" target="_blank" title="Banco do Brasil">
+							<h2 class="title">Banco do Brasil</h2>
+						</a><p>No BB você não paga tarifas na contratação de operações de financiamento de veículos e ainda pode negociar a compra do seu carro à vista.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.itau.com.br/itaucred/" target="_blank" title="Banco Itaú"><img class="entry-image" alt="Banco Itaú" src="https://cache.vendautos.com.br/images/financeiras/itaucred.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.itau.com.br/itaucred/" target="_blank" title="Banco Itaú">
+							<h2 class="title">Banco Itaú</h2>
+						</a><p>As certificações ISO 9001 (versão 2000) do Banco Itaú Holding são comprovações formais de que todas as atividades relacionadas à qualidade do produto ou serviço certificado foram planejadas, implantadas e controladas de acordo com norma de reconhecimento internacional.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="https://financiamentos.bradesco" target="_blank" title="Bradesco Financiamentos"><img class="entry-image" alt="Bradesco Financiamentos" src="https://cache.vendautos.com.br/images/financeiras/bradesco.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="https://financiamentos.bradesco" target="_blank" title="Bradesco Financiamentos">
+							<h2 class="title">Bradesco Financiamentos</h2>
+						</a><p>A tradição do nome Finasa sempre foi referência no ramo de crédito e financiamento. A Finasa, que faz parte da Organização Bradesco, conta atualmente com mais de 120 filiais que, instaladas nas principais cidades do País, além do Distrito Federal, atendem a todo o território nacional.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.bvfinanceira.com.br" target="_blank" title="BV Financeira"><img class="entry-image" alt="BV Financeira" src="https://cache.vendautos.com.br/images/financeiras/bv_financeira.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.bvfinanceira.com.br" target="_blank" title="BV Financeira">
+							<h2 class="title">BV Financeira</h2>
+						</a><p>A BV é uma empresa do Grupo Votorantim, que atua no mercado de financiamento de veículos, crédito consignado, crédito para compra de material de construção e empréstimo pessoal.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.caixa.gov.br/pj/pj_comercial/mp/linha_credito/financiamentos/financiamento_veiculos/index.asp" target="_blank" title="Caixa"><img class="entry-image" alt="Caixa" src="https://cache.vendautos.com.br/images/financeiras/caixa.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.caixa.gov.br/pj/pj_comercial/mp/linha_credito/financiamentos/financiamento_veiculos/index.asp" target="_blank" title="Caixa">
+							<h2 class="title">Caixa</h2>
+						</a><p>O Financiamento de Veículos é uma linha de crédito para micro e pequenas empresas locadoras de veículos, destinada à aquisição de automóveis para locação.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.hsbc.com.br" target="_blank" title="HSBC"><img class="entry-image" alt="HSBC" src="https://cache.vendautos.com.br/images/financeiras/hsbc.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.hsbc.com.br" target="_blank" title="HSBC">
+							<h2 class="title">HSBC</h2>
+						</a><p>O Financiamento de Veículos do banco HSBC oferece as melhores taxas do mercado. E permite a você, cliente, optar pelo tipo de financiamento de veículo que melhor atenda às suas necessidades.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="https://www.bancopan.com.br/paravoce/SitePages/Financiamento.aspx?IDConteudo=4" target="_blank" title="Panamericano"><img class="entry-image" alt="Panamericano" src="https://cache.vendautos.com.br/images/financeiras/panamericano.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="https://www.bancopan.com.br/paravoce/SitePages/Financiamento.aspx?IDConteudo=4" target="_blank" title="Panamericano">
+							<h2 class="title">Panamericano</h2>
+						</a><p>É o dinheiro que você precisa para fazer o melhor negócio na compra do seu Carro, Caminhão, Ônibus ou Van. São excelentes taxas e até 60 meses para pagar.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->
+                <article class="entry clearfix secondary">
+
+                    <a href="http://www.santander.com.br" target="_blank" title="Santander Financiamentos"><img class="entry-image" alt="Santander Financiamentos" src="https://cache.vendautos.com.br/images/financeiras/santander.gif" style="height: 60px; width: 126px;"></a>
+
+					<div class="entry-body">
+
+						<a href="http://www.santander.com.br" target="_blank" title="Santander Financiamentos">
+							<h2 class="title">Santander Financiamentos</h2>
+						</a><p>Financie seu veículo sem sair de casa e economize tempo com documentação e vistoria.</p>
+					</div><!--/ .entry-body-->
+				</article><!--/ .entry-->        <!--/ #change-items-->
+
+        <div class="wp-pagenavi clearfix"></div>
+        <!--/ .wp-pagenavi-->
+
+    </section>
+    <!--/ #content-->
+
+    <!-- - - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - - -->
+
+
+    <!-- - - - - - - - - - - - - - - Sidebar - - - - - - - - - - - - - - - - -->
+
+    <aside id="sidebar" class="one-third column">
+
+    <div class="widget-container widget_custom_search">
+
+        <div class="search-heading">
+
+            <h2 class="widget-title titulo-secao"><span>Busca </span>rápida</h2>
+
+        </div>
+        <!--/ .search-heading-->
+
+        <div class="search-entry clearfix">
+
+            <form action="/comprar" class="form-panel">
+
+                <fieldset>
+                    <label for="tipo_veiculo_id">Tipo:</label>
+                    <select name="tipo_veiculo_id" id="tipo_veiculo_id" data-carrega="fabricante_id">
+                        <option value="0">Selecione</option><option value="3">Caminhão</option><option value="1">Carro</option><option value="2">Moto</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label for="fabricante_id">Fabricante:</label>
+                    <select name="fabricante_id" id="fabricante_id" data-carrega="modelo_id" data-carrega-extra="tipo_veiculo_id">
+                        <option value="0">Selecione</option><option value="3">AUDI</option><option value="5">BMW</option><option value="4">BYD</option><option value="78">CAN-AM</option><option value="28">CFMOTO</option><option value="81">CHERY</option><option value="20">CHEVROLET</option><option value="10">CITROËN</option><option value="134">CITYCOCO</option><option value="14">DODGE</option><option value="18">FIAT</option><option value="19">FORD</option><option value="22">HARLEY-DAVIDSON</option><option value="23">HONDA</option><option value="25">HYUNDAI</option><option value="65">IVECO</option><option value="112">JAC MOTORS</option><option value="26">JAGUAR</option><option value="27">JEEP</option><option value="31">KAWASAKI</option><option value="32">KIA</option><option value="33">LAND ROVER</option><option value="36">MERCEDES-BENZ</option><option value="41">MITSUBISHI</option><option value="45">NISSAN</option><option value="30">OMODA</option><option value="46">PEUGEOT</option><option value="50">RENAULT</option><option value="133">ROYAL ENFIELD</option><option value="120">SHINERAY</option><option value="92">SMART</option><option value="71">SSANGYONG</option><option value="53">SUBARU</option><option value="54">SUZUKI</option><option value="55">TOYOTA</option><option value="80">TRIUMPH </option><option value="58">VOLKSWAGEN</option><option value="59">VOLVO</option><option value="61">YAMAHA</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label for="precode">Preço:</label>
+                    <select name="precode" id="precode">
+                        <option value="0">de</option><option value="5000">R$ 5 mil</option><option value="10000">R$ 10 mil</option><option value="20000">R$ 20 mil</option><option value="22000">R$ 22 mil</option><option value="24000">R$ 24 mil</option><option value="26000">R$ 26 mil</option><option value="28000">R$ 28 mil</option><option value="30000">R$ 30 mil</option><option value="35000">R$ 35 mil</option><option value="40000">R$ 40 mil</option><option value="45000">R$ 45 mil</option><option value="50000">R$ 50 mil</option><option value="60000">R$ 60 mil</option><option value="70000">R$ 70 mil</option><option value="80000">R$ 80 mil</option><option value="90000">R$ 90 mil</option><option value="100000">R$ 100 mil</option><option value="120000">R$ 120 mil</option><option value="150000">R$ 150 mil</option><option value="200000">R$ 200 mil</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label>&nbsp;</label>
+                    <select name="precoate" id="precoate" aria-label="Preço até">
+                        <option value="0">até</option><option value="5000">R$ 5 mil</option><option value="10000">R$ 10 mil</option><option value="20000">R$ 20 mil</option><option value="22000">R$ 22 mil</option><option value="24000">R$ 24 mil</option><option value="26000">R$ 26 mil</option><option value="28000">R$ 28 mil</option><option value="30000">R$ 30 mil</option><option value="35000">R$ 35 mil</option><option value="40000">R$ 40 mil</option><option value="45000">R$ 45 mil</option><option value="50000">R$ 50 mil</option><option value="60000">R$ 60 mil</option><option value="70000">R$ 70 mil</option><option value="80000">R$ 80 mil</option><option value="90000">R$ 90 mil</option><option value="100000">R$ 100 mil</option><option value="120000">R$ 120 mil</option><option value="150000">R$ 150 mil</option><option value="200000">R$ 200 mil</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label for="anode">Ano:</label>
+                    <select name="anode" id="anode">
+                        <option value="0">de</option><option value="1973">1973</option><option value="1979">1979</option><option value="1992">1992</option><option value="1993">1993</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="2000">2000</option><option value="2003">2003</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label>&nbsp;</label>
+                    <select name="anoate" id="anoate" aria-label="Ano até">
+                        <option value="0">até</option><option value="1973">1973</option><option value="1979">1979</option><option value="1992">1992</option><option value="1993">1993</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="2000">2000</option><option value="2003">2003</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label for="tipo_combustivel_id">Combustível:</label>
+                    <select name="tipo_combustivel_id" id="tipo_combustivel_id">
+                        <option value="0">Selecione</option><option value="2">ÁLCOOL</option><option value="6">ÁLCOOL/GASOLINA</option><option value="8">ÁLCOOL/GASOLINA/GNV</option><option value="5">ÁLCOOL/GNV</option><option value="3">DIESEL</option><option value="11">ELÉTRICO</option><option value="10">ELÉTRICO/GASOLINA</option><option value="1">GASOLINA</option><option value="4">GASOLINA/GNV</option><option value="7">TETRAFUEL</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label for="cidade_id">Cidade:</label>
+                    <select name="cidade_id" id="cidade_id">
+                        <option value="0">Selecione</option><option value="2">Barra Mansa</option><option value="5">Pinheiral</option><option value="8">Resende</option><option value="11">Volta Redonda</option>                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <label for="modelo_id">Modelo:</label>
+                    <select name="modelo_id" id="modelo_id">
+                        <option value="0">Selecione</option>
+                    </select>
+                </fieldset>
+
+                <div class="clear"></div>
+
+                <style>
+                    #sidebar .form-panel button.advanced {
+                        padding: 0;
+                        border: 0;
+                        background: none;
+                        color: inherit;
+                        font: inherit;
+                        cursor: pointer;
+                    }
+
+                    #car_adv_search {
+                        margin-left: 0;
+                        margin-right: 0;
+                        padding-top: 5px;
+                        position: relative;
+                    }
+
+                    fieldset.field-check {
+                        padding: 0;
+                        width: auto;
+                        float: none;
+                    }
+
+                    fieldset.field-check p label {
+                        white-space: normal;
+                    }
+
+                    fieldset.field-check p label, .form-entry p.feature-check label {
+                        display: inline-block;
+                        cursor: pointer;
+                        position: relative;
+                        padding-left: 25px;
+                    }
+                </style>
+
+                <div id="car_adv_search" hidden="">
+                    <h4>Opcionais</h4>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="ai" type="checkbox" class="js_option_checkbox" value="1" name="adv[ai]" style="">
+                            <label class="check" for="ai">
+                                <strong>Air bag</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="al" type="checkbox" class="js_option_checkbox" value="1" name="adv[al]" style="">
+                            <label class="check" for="al">
+                                <strong>Alarme</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="ar" type="checkbox" class="js_option_checkbox" value="1" name="adv[ar]" style="">
+                            <label class="check" for="ar">
+                                <strong>Ar-condicionado</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="automatico" type="checkbox" class="js_option_checkbox" value="1" name="adv[aut]" style="">
+                            <label class="check" for="automatico">
+                                <strong>Câmbio Automático</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="dh" type="checkbox" class="js_option_checkbox" value="1" name="adv[dh]" style="">
+                            <label class="check" for="dh">
+                                <strong>Direção hidráulica</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="abs" type="checkbox" class="js_option_checkbox" value="1" name="adv[abs]" style="">
+                            <label class="check" for="abs">
+                                <strong>Freio ABS</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="ki" type="checkbox" class="js_option_checkbox" value="1" name="adv[ki]" style="">
+                            <label class="check" for="ki">
+                                <strong>Kit multimídia</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="te" type="checkbox" class="js_option_checkbox" value="1" name="adv[te]" style="">
+                            <label class="check" for="te">
+                                <strong>Travas elétricas</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+                    <fieldset class="field-check">
+                        <p>
+                            <input id="ve" type="checkbox" class="js_option_checkbox" value="1" name="adv[ve]" style="">
+                            <label class="check" for="ve">
+                                <strong>Vidros elétricos</strong>
+                            </label>
+                        </p>
+                    </fieldset>
+
+                </div>
+
+                <input type="hidden" value="buscar-resultado" name="form" style="">
+                <button id="submitSearch" class="submit-search" type="submit" title="Efetuar busca">Buscar</button>
+
+                <button type="button" id="click-advanced" class="advanced" aria-controls="car_adv_search" aria-expanded="false">[+] Busca Avançada</button>
+
+                <script>
+                    document.getElementById('click-advanced').addEventListener('click', function () {
+                        var painel = document.getElementById('car_adv_search');
+                        var abrir = painel.hidden;
+                        painel.hidden = !abrir;
+                        this.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+                        this.textContent = (abrir ? '[-]' : '[+]') + ' Busca Avançada';
+                    });
+                </script>
+
+            </form>
+            <!--/ .form-panel-->
+
+        </div>
+        <!--/ .search-entry-->
+
+    </div>
+    <!--/ .widget-container-->
+
+    
+    <div class="widget-container widget_latest"><h2 class="widget-title titulo-secao"><span>Veja </span>também</h2><ul><li><a class="thumb single-image" href="/veiculo/carro/volkswagen/2313358/nivus-flex-aut-4p.html" title="VOLKSWAGEN NIVUS 2024"><div class="thumb-sidebar"><img src="https://cache.vendautos.com.br/foto/veiculo/27/foto-1-2313358-1792843708.jpeg" loading="lazy" decoding="async" alt="VOLKSWAGEN NIVUS" class="foto-lista thumb-sidebar"></div><span class="video-icon">&nbsp;</span><span class="picture-icon">&nbsp;</span><span class="curtain"></span></a><div class="latest-entry"><a href="/veiculo/carro/volkswagen/2313358/nivus-flex-aut-4p.html" class="block" title="VOLKSWAGEN NIVUS 2024"><b>VOLKSWAGEN NIVUS FLEX AUT.</b></a><span class="block add-margin">2024, 50000 KM</span><a href="/veiculo/carro/volkswagen/2313358/nivus-flex-aut-4p.html" class="bold text-orange" title="VOLKSWAGEN NIVUS 2024">R$ 112.900,00</a></div><!--/ .latest-entry--></li><li><a class="thumb single-image" href="/veiculo/carro/honda/2313356/city-flex-aut-4p.html" title="HONDA CITY 2024"><div class="thumb-sidebar"><img src="https://cache.vendautos.com.br/foto/veiculo/27/foto-1-2313356-1792843704.jpeg" loading="lazy" decoding="async" alt="HONDA CITY" class="foto-lista thumb-sidebar"></div><span class="video-icon">&nbsp;</span><span class="picture-icon">&nbsp;</span><span class="curtain"></span></a><div class="latest-entry"><a href="/veiculo/carro/honda/2313356/city-flex-aut-4p.html" class="block" title="HONDA CITY 2024"><b>HONDA CITY FLEX AUT.</b></a><span class="block add-margin">2024, 11000 KM</span><a href="/veiculo/carro/honda/2313356/city-flex-aut-4p.html" class="bold text-orange" title="HONDA CITY 2024">R$ 103.900,00</a></div><!--/ .latest-entry--></li><li><a class="thumb single-image" href="/veiculo/carro/volkswagen/2313360/fox-comfortline-16-msi-flex-manual-4p.html" title="VOLKSWAGEN FOX 2018"><div class="thumb-sidebar"><img src="https://cache.vendautos.com.br/foto/veiculo/27/foto-1-2313360-1792843766.jpeg" loading="lazy" decoding="async" alt="VOLKSWAGEN FOX" class="foto-lista thumb-sidebar"></div><span class="video-icon">&nbsp;</span><span class="picture-icon">&nbsp;</span><span class="curtain"></span></a><div class="latest-entry"><a href="/veiculo/carro/volkswagen/2313360/fox-comfortline-16-msi-flex-manual-4p.html" class="block" title="VOLKSWAGEN FOX 2018"><b>VOLKSWAGEN FOX COMFORTLINE</b></a><span class="block add-margin">2018, 100 KM</span><a href="/veiculo/carro/volkswagen/2313360/fox-comfortline-16-msi-flex-manual-4p.html" class="bold text-orange" title="VOLKSWAGEN FOX 2018">R$ 58.900,00</a></div><!--/ .latest-entry--></li><li><a class="thumb single-image" href="/veiculo/carro/hyundai/2313357/creta-flex-aut-4p.html" title="HYUNDAI CRETA 2024"><div class="thumb-sidebar"><img src="https://cache.vendautos.com.br/foto/veiculo/27/foto-1-2313357-1792843706.jpeg" loading="lazy" decoding="async" alt="HYUNDAI CRETA" class="foto-lista thumb-sidebar"></div><span class="video-icon">&nbsp;</span><span class="picture-icon">&nbsp;</span><span class="curtain"></span></a><div class="latest-entry"><a href="/veiculo/carro/hyundai/2313357/creta-flex-aut-4p.html" class="block" title="HYUNDAI CRETA 2024"><b>HYUNDAI CRETA FLEX AUT.</b></a><span class="block add-margin">2024, 45000 KM</span><a href="/veiculo/carro/hyundai/2313357/creta-flex-aut-4p.html" class="bold text-orange" title="HYUNDAI CRETA 2024">R$ 107.900,00</a></div><!--/ .latest-entry--></li><li><a class="thumb single-image" href="/veiculo/carro/hyundai/2313362/hr-25-diesel-manual-2p.html" title="HYUNDAI HR 2016"><div class="thumb-sidebar"><img src="https://cache.vendautos.com.br/foto/veiculo/27/foto-1-2313362-1793096761.jpeg" loading="lazy" decoding="async" alt="HYUNDAI HR" class="foto-lista thumb-sidebar"></div><span class="video-icon">&nbsp;</span><span class="picture-icon">&nbsp;</span><span class="curtain"></span></a><div class="latest-entry"><a href="/veiculo/carro/hyundai/2313362/hr-25-diesel-manual-2p.html" class="block" title="HYUNDAI HR 2016"><b>HYUNDAI HR 2.5 DIESEL</b></a><span class="block add-margin">2016, 115000 KM</span><a href="/veiculo/carro/hyundai/2313362/hr-25-diesel-manual-2p.html" class="bold text-orange" title="HYUNDAI HR 2016">R$ 96.900,00</a></div><!--/ .latest-entry--></li></ul><a href="/carros-usados" class="see" title="Carros usados">Carros usados</a></div>    <!--/ .widget-container-->
+
+</aside>
+
+    <!-- - - - - - - - - - - - - end Sidebar - - - - - - - - - - - - - - - - -->
+
+</section><!--/.container -->
+</main>
+
+    
+            <!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+        <footer id="footer" class="container clearfix">
+            <section class="container clearfix">
+
+                <div class="four columns">
+
+                    <div class="widget-container widget_text">
+
+                        <h2 class="widget-title"><span>Carros </span>mais buscados</h2>
+
+                        <div class="textwidget">
+
+                            <ul class="hours">
+                                <li>CHEVROLET <span><a href="/comprar?s=onix&amp;form=buscar-resultado-s" title="Comprar ONIX">ONIX</a></span></li><li>HYUNDAI <span><a href="/comprar?s=hb&amp;form=buscar-resultado-s" title="Comprar HB">HB</a></span></li><li>FIAT <span><a href="/comprar?s=argo&amp;form=buscar-resultado-s" title="Comprar ARGO">ARGO</a></span></li><li>FIAT <span><a href="/comprar?s=cronos&amp;form=buscar-resultado-s" title="Comprar CRONOS">CRONOS</a></span></li><li>RENAULT <span><a href="/comprar?s=kwid&amp;form=buscar-resultado-s" title="Comprar KWID">KWID</a></span></li><li>FIAT <span><a href="/comprar?s=mobi&amp;form=buscar-resultado-s" title="Comprar MOBI">MOBI</a></span></li><li>VOLKSWAGEN <span><a href="/comprar?s=polo&amp;form=buscar-resultado-s" title="Comprar POLO">POLO</a></span></li>                            </ul>
+                            <!--/ .hours-->
+
+                        </div>
+
+                    </div>
+                    <!--/ .widget-container-->
+
+                </div>
+                <!--/ .four .columns-->
+
+                <div class="four columns">
+
+                    <div class="widget-container widget_text">
+
+                        <h2 class="widget-title"><span>Motos </span>mais buscadas</h2>
+
+                        <div class="textwidget">
+
+                            <ul class="hours">
+                                <li>HONDA <span><a href="/comprar?s=cg&amp;form=buscar-resultado-s" title="Comprar CG">CG</a></span></li><li>YAMAHA <span><a href="/comprar?s=fz25&amp;form=buscar-resultado-s" title="Comprar FZ25">FZ25</a></span></li><li>HONDA <span><a href="/comprar?s=nxr&amp;form=buscar-resultado-s" title="Comprar NXR">NXR</a></span></li><li>HONDA <span><a href="/comprar?s=cb&amp;form=buscar-resultado-s" title="Comprar CB">CB</a></span></li><li>YAMAHA <span><a href="/comprar?s=xtz&amp;form=buscar-resultado-s" title="Comprar XTZ">XTZ</a></span></li><li>YAMAHA <span><a href="/comprar?s=ys&amp;form=buscar-resultado-s" title="Comprar YS">YS</a></span></li><li>HONDA <span><a href="/comprar?s=pcx&amp;form=buscar-resultado-s" title="Comprar PCX">PCX</a></span></li>                            </ul>
+                            <!--/ .hours-->
+
+                        </div>
+                        <!--/ .textwidget-->
+
+                    </div>
+                    <!--/ .widget-container-->
+
+                </div>
+                <!--/ .four .columns-->
+
+                <div class="four columns">
+
+                    <div class="widget-container widget_text">
+
+                        <h2 class="widget-title"><span>Veículos </span>mais recentes</h2>
+
+                        <div class="textwidget">
+
+                            <ul class="hours">
+                                <li>→ <span><a href="/veiculo/carro/volkswagen/2316371/volkswagen-fox-trendline-10-flex-8v-manual-4p.html" title="Comprar VOLKSWAGEN FOX">VOLKSWAGEN FOX</a></span></li><li>→ <span><a href="/veiculo/carro/honda/2316370/honda-civic-exl-20-flex-16v-aut-4p.html" title="Comprar HONDA CIVIC">HONDA CIVIC</a></span></li><li>→ <span><a href="/veiculo/carro/hyundai/2316369/hyundai-hb-20-comfort-10-12v-flex-manual-4p.html" title="Comprar HYUNDAI HB">HYUNDAI HB</a></span></li><li>→ <span><a href="/veiculo/carro/volkswagen/2316368/volkswagen-nivus-highline-10-tsi-turbo-flex-aut-4p.html" title="Comprar VOLKSWAGEN NIVUS">VOLKSWAGEN NIVUS</a></span></li><li>→ <span><a href="/veiculo/carro/byd/2316367/song-pro-gs-15-16v-flex-manual-4p.html" title="Comprar SONG PRO">SONG PRO</a></span></li><li>→ <span><a href="/veiculo/carro/fiat/2316366/pulse-flex-aut-4p.html" title="Comprar PULSE FLEX">PULSE FLEX</a></span></li><li>→ <span><a href="/veiculo/carro/toyota/2316365/corolla-flex-aut-4p.html" title="Comprar COROLLA FLEX">COROLLA FLEX</a></span></li>                            </ul>
+                            <!--/ .hours-->
+
+                        </div>
+                        <!--/ .textwidget-->
+
+                    </div>
+                    <!--/ .widget-container-->
+
+                </div>
+                <!--/ .four .columns-->
+
+                <div class="four columns">
+
+                    <div class="widget-container widget_text">
+
+                        <h2 class="widget-title"><span>Revendas </span>mais acessadas</h2>
+
+                        <div class="textwidget">
+
+                            <ul class="hours">
+
+                                <li>→ <span><a href="/revenda/rj/barra-mansa/14242/lions-seminovos.html" title="LIONS SEMINOVOS">LIONS SEMINOVOS</a></span></li><li>→ <span><a href="/revenda/rj/resende/13542/crispim-veiculos.html" title="CRISPIM VEÍCULOS">CRISPIM VEÍCULOS</a></span></li><li>→ <span><a href="/revenda/rj/volta-redonda/13460/favorita-automoveis.html" title="FAVORITA AUTOMÓVEIS">FAVORITA AUTOMÓVEIS</a></span></li><li>→ <span><a href="/revenda/rj/barra-mansa/194/unicar-automoveis.html" title="UNICAR AUTOMÓVEIS">UNICAR AUTOMÓVEIS</a></span></li><li>→ <span><a href="/revenda/rj/barra-mansa/2260/viraliza-seminovos.html" title="VIRALIZA SEMINOVOS">VIRALIZA SEMINOVOS</a></span></li><li>→ <span><a href="/revenda/rj/barra-mansa/11946/trend-auto.html" title="TREND AUTO">TREND AUTO</a></span></li><li>→ <span><a href="/revenda/rj/volta-redonda/9858/luiz-intermediacoes.html" title="LUIZ INTERMEDIAÇÕES">LUIZ INTERMEDIAÇÕES</a></span></li>
+                            </ul>
+                            <!--/ .hours-->
+
+                        </div>
+                        <!--/ .textwidget-->
+
+                    </div>
+                    <!--/ .widget-container-->
+
+                </div>
+                <!--/ .four .columns-->
+
+
+                <div class="adjective clearfix">
+                    <p class="copyright">©2010-2026 RioSulVeiculos. Todos os direitos
+                        reservados.</p>
+                    <p class="developed"><a title="Twitter RioSulVeiculos" href="https://twitter.com/riosulveiculos" target="_blank" rel="noopener"><img title="Twitter RioSulVeiculos" alt="Twitter RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Twitter_Small.png" width="32" height="32"></a><a title="Facebook RioSulVeiculos" href="https://www.facebook.com/riosulveiculoss" target="_blank" rel="noopener"><img title="Facebook RioSulVeiculos" alt="Facebook RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Facebook_Small.png" width="32" height="32"></a><a title="Linktree RioSulVeiculos" href="https://linktr.ee/riosulveiculos" target="_blank" rel="noopener"><img title="Linktree RioSulVeiculos" alt="Linktree RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Linktree_Small.png" width="32" height="32"></a><a title="Instagram RioSulVeiculos" href="https://www.instagram.com/riosulveiculoss" target="_blank" rel="noopener"><img title="Instagram RioSulVeiculos" alt="Instagram RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Instagram_Small.png" width="32" height="32"></a><a title="WhatsApp RioSulVeiculos" href="https://bit.ly/whatsapp-riosulveiculos" target="_blank" rel="noopener"><img title="WhatsApp RioSulVeiculos" alt="WhatsApp RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/WhatsApp_Small.png" width="32" height="32"></a><a title="Telegram RioSulVeiculos" href="https://t.me/riosulveiculos" target="_blank" rel="noopener"><img title="Telegram RioSulVeiculos" alt="Telegram RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Telegram_Small.png" width="32" height="32"></a><a title="Threads RioSulVeiculos" href="https://www.threads.net/@riosulveiculoss" target="_blank" rel="noopener"><img title="Threads RioSulVeiculos" alt="Threads RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Threads_Small.png" width="32" height="32"></a><a title="Rss RioSulVeiculos" href="/feed.rss" target="_blank" rel="noopener"><img title="Rss RioSulVeiculos" alt="Rss RioSulVeiculos" src="https://cache.vendautos.com.br/images/icons/Rss_Small.png" width="32" height="32"></a><a title="Desenvolvido por MVSCOELHO" href="https://linktr.ee/mvscoelho" target="_blank" rel="noopener"><img title="Desenvolvido por MVSCOELHO" alt="MVSCOELHO" src="https://cache.vendautos.com.br/images/icons/Mvscoelho_Small.png" width="32" height="32"></a></p>
+
+                </div>
+                <!--/ .adjective-->
+
+            </section>
+            <!--/ .container-->
+        </footer>
+        <!--/ #footer-->
+        <!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->
+    
+</div>
+<!--/ .wrap-->
+
+
+<script src="https://cache.vendautos.com.br/theme/v2/js/jquery-1.7.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha384-6LwNpGeYDjlORU0Q5rfxEC8SQO6/FTh/VecUcvFvNx1gLMdX5dm8y1Y739D3lFSW" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js" integrity="sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o+ok+t/SAKlL5mvXLr0OXNi1Hp" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');</script>
+<script src="https://cache.vendautos.com.br/theme/v2/js/form-mask.js"></script><script src="https://cache.vendautos.com.br/theme/v2/js/custom.js"></script><script type="text/javascript" src="//cache.vendautos.com.br/theme/v2/js/jquery.easing.1.3.js"></script><script type="text/javascript" src="//cache.vendautos.com.br/theme/v2/js/jquery.cycle.all.min.js"></script><script type="text/javascript" src="//cache.vendautos.com.br/theme/v2/js/respond.min.js"></script>
+<a href="#topo" id="back-top" title="Voltar ao topo">Voltar ao topo</a>
+<script>
+    /* Voltar ao topo: aparece depois de 200px de rolagem */
+    (function () {
+        var botao = document.getElementById('back-top');
+        var pendente = false;
+        function atualiza() {
+            pendente = false;
+            botao.classList.toggle('visivel', window.scrollY > 200);
+        }
+        window.addEventListener('scroll', function () {
+            if (!pendente) {
+                pendente = true;
+                requestAnimationFrame(atualiza);
+            }
+        }, {passive: true});
+        atualiza();
+    })();
+</script>
+<script>
+    /* selects encadeados (tipo -> fabricante -> modelo, FIPE): data-carrega="<id do proximo select>" */
+    document.addEventListener('change', function (evento) {
+        var select = evento.target.closest('select[data-carrega]');
+        if (!select || typeof getOptions !== 'function') {
+            return;
+        }
+        var extra = select.dataset.carregaExtra ? document.getElementById(select.dataset.carregaExtra) : null;
+        getOptions(select.dataset.carrega, select.value, extra ? extra.value : undefined);
+    });
+</script>
+
+<script type="application/ld+json">[{"@context":"https:\/\/schema.org","@type":"WebSite","@id":"https:\/\/www.riosulveiculos.com.br\/#website","url":"https:\/\/www.riosulveiculos.com.br","name":"RioSulVeiculos","inLanguage":"pt-BR","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.riosulveiculos.com.br\/comprar?s={search_term_string}&form=buscar-resultado-s"},"query-input":"required name=search_term_string"}},{"@context":"https:\/\/schema.org","@type":"Organization","@id":"https:\/\/www.riosulveiculos.com.br\/#organization","url":"https:\/\/www.riosulveiculos.com.br","sameAs":["https:\/\/twitter.com\/riosulveiculos","https:\/\/www.facebook.com\/riosulveiculoss","https:\/\/www.instagram.com\/riosulveiculoss","https:\/\/t.me\/riosulveiculos","https:\/\/www.pinterest.com\/riosulveiculos","https:\/\/www.linkedin.com\/company\/riosulveiculos","https:\/\/www.tiktok.com\/@riosulveiculos","https:\/\/www.threads.net\/@riosulveiculoss","https:\/\/www.riosulcarros.com\/","https:\/\/www.riosulcarros.com.br\/","https:\/\/www.riosulveiculos.com\/"],"name":"RioSulVeiculos","foundingDate":"2010","areaServed":{"@type":"AdministrativeArea","name":"Sul Fluminense, RJ"},"alternateName":["Rio Sul Ve\u00edculos","RioSul Ve\u00edculos","RioSulCarros"],"description":"Classificados de ve\u00edculos online","disambiguatingDescription":"Bem-vindo ao RioSulVeiculos, o principal servi\u00e7o de classificados de ve\u00edculos do Sul Fluminense. Desde 2010, conectamos compradores e vendedores de carros, motos e outros ve\u00edculos de forma simples e eficiente. Encontre aqui uma ampla variedade de op\u00e7\u00f5es, pre\u00e7os competitivos e facilidades na negocia\u00e7\u00e3o. Acelere seu neg\u00f3cio automotivo conosco!","logo":{"@type":"ImageObject","caption":"Logo: RioSulVeiculos","contentUrl":"https:\/\/cache.vendautos.com.br\/images\/6\/og_image.png","url":"https:\/\/cache.vendautos.com.br\/images\/6\/og_image.png","width":1200,"height":630,"inLanguage":"pt-BR"},"telephone":"+5524999664047"}]</script>
+
+
+</body></html>
