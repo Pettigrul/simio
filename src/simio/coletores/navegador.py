@@ -279,7 +279,7 @@ async def iniciar_chromium(pw: Any, *, sandbox: bool) -> Any:
         "args": ARGS_CHROMIUM,
         "proxy": PROXY_POR_CONTEXTO,
         # O Playwright desliga o sandbox do Chromium por padrão. Aqui fica ligado, a não ser que o
-        # ambiente não consiga subir com ele (risco documentado em docs/security.md).
+        # ambiente não consiga subir com ele (risco documentado em docs/seguranca.md).
         "chromium_sandbox": sandbox,
     }
     try:
