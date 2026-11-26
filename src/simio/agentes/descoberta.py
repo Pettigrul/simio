@@ -1,6 +1,3 @@
-"""Discovery Agent: formulates investigative hypotheses, runs the available connectors within
-the query budget, deduplicates and prioritises candidate pages."""
-
 from __future__ import annotations
 
 import itertools
@@ -18,10 +15,10 @@ from simio.seguranca.politica_url import PoliticaUrl, ViolacaoPolitica
 
 log = logging.getLogger(__name__)
 
-# A connector is disabled for the rest of the run after this many consecutive errors.
+# Erros seguidos que desligam o conector até o fim da execução.
 MAX_ERROS_CONSECUTIVOS = 3
 
-# Shared hosting / social platforms where distinct paths belong to distinct third parties.
+# Plataformas em que cada caminho pertence a um terceiro diferente.
 DOMINIOS_PLATAFORMA_COMPARTILHADA = (
     "instagram.com",
     "facebook.com",
@@ -59,7 +56,6 @@ DOMINIOS_HOSPEDAGEM_EFEMERA = (
 )
 
 _HOSTS_CONSTRUTORES_ABANDONADOS = ("weebly.com", "site123.me")
-# Free/ephemeral hosting and site builders (reported as hosting context in threat campaigns).
 DOMINIOS_HOSPEDAGEM_GRATUITA = (
     *DOMINIOS_HOSPEDAGEM_EFEMERA,
     *_HOSTS_CONSTRUTORES_ABANDONADOS,
@@ -131,6 +127,10 @@ REGIOES_BR = {
 }
 
 
+def _termo_alternativo(marca: PerfilMarca) -> str:
+    return next((t for t in marca.termos_fortes if t.lower() != marca.nome_exibicao.lower()), marca.nome_exibicao)
+
+
 def _prompt_grounding_dork(descricao: str, dorks: list[str]) -> str:
     unido = "\n".join(f"  - {q}" for q in dorks)
     return (
@@ -144,17 +144,13 @@ def _prompt_grounding_dork(descricao: str, dorks: list[str]) -> str:
 
 
 def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
-    """Investigative hypotheses (sec. 4.2) incorporating the validated OSINT dork packages
-    (correspondent links, vehicle/solar/credit products, brand/logo in URL/title, feirão campaigns
-    and social media profiles)."""
     nome = marca.nome_exibicao
-    alt = next((t for t in marca.termos_fortes if t.lower() != nome.lower()), nome)
+    alt = _termo_alternativo(marca)
     excl = " ".join(f"-site:{d}" for d in marca.dominios_oficiais)
-    excl_ruido = (
-        f"{excl} -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br"
-    )
+    excl_ruido = f"{excl} -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br"
     hs: list[HipoteseBusca] = []
 
+    # TODO: os três montar_hipoteses* repetem este adicionar_h e as exclusões; dá para virar um helper só.
     def adicionar_h(hid: str, desc: str, dorks: list[str]) -> None:
         hs.append(
             HipoteseBusca(
@@ -165,7 +161,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
             )
         )
 
-    # ---- H1: Brand identity in title, URL and logo assets (packages: logo-nomes, nome-marca) ----
     adicionar_h(
         "H1-identidade:title-brand",
         "Terceiros e promotoras que usam a marca no título da página",
@@ -195,7 +190,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H2: Products (packages: veiculos, solar, outros-produtos) ----
     adicionar_h(
         f"H2-produto:{marca.produtos[0]}",
         "Páginas de financiamento de veículos de lojas e multimarcas com destaque para a marca",
@@ -243,7 +237,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H3: Correspondent relationship & service capture (packages: vinculo-explicito, vinculo-rodada2) ----
     adicionar_h(
         "H3-servico:correspondente-vinculo",
         "Correspondentes bancários e promotoras que declaram vínculo com a marca",
@@ -265,7 +258,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H4: Official-channel / official-partner claims (package: vinculo-rodada2) ----
     adicionar_h(
         "H4-linguagem-oficial",
         "Uso de expressões de oficialidade ('parceiro oficial', 'representante', 'correspondente autorizado', 'agência BV')",
@@ -277,7 +269,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H5: Feirão campaigns and regional establishments (package: feirao) ----
     adicionar_h(
         "H5-estabelecimento:feirao",
         "Lojas e multimarcas que divulgam 'Feirão Banco BV' / 'Feirão BV Financeira'",
@@ -286,7 +277,7 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
             f"(loja OR veículos OR seminovos OR multimarcas) {excl_ruido}",
         ],
     )
-    # Regional sweep over all 27 UFs (package uf-veiculos), one prompt per macro-region.
+    # As 27 UFs, um prompt de grounding por região.
     for regiao, ufs in REGIOES_BR.items():
         adicionar_h(
             f"H5-estabelecimento:regiao-{regiao}",
@@ -302,7 +293,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
             ],
         )
 
-    # ---- H6: Social media profiles & posts (packages: social-marketplace, feirao, nome-marca) ----
     adicionar_h(
         "H6-plataforma:Instagram",
         "Perfis, Reels e publicações no Instagram de lojas e correspondentes usando a marca ('Parceiro BV', 'Correspondente', 'Agência BV', 'Feirão Banco BV')",
@@ -340,7 +330,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H7: Threat Intelligence & Combosquatting / Sensitive Services (CTI / Brand Protection) ----
     adicionar_h(
         "H7-inteligencia-ameacas:sensitive-services",
         "Páginas de terceiros ofertando serviços sensíveis com a marca (2ª via boleto, quitação, negociação, quitação de contrato)",
@@ -361,7 +350,7 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- Packages from dorks.md not covered above --------------------------------------------
+    # Pacotes do dorks.md que ficaram de fora dos grupos acima.
     adicionar_h(
         "H2-produto:bancos-parceiros",
         "Lojas e integradores que listam a marca entre 'bancos parceiros' (logotipo em vitrine multibanco)",
@@ -403,7 +392,6 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H10: fraud typologies typical of bank / auto-finance brand abuse --------------------
     marcas_ou = f'("{nome}" OR "{alt}")'
     adicionar_h(
         "H10-fraude:leilao-retomados",
@@ -485,7 +473,7 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
         ],
     )
 
-    # ---- H11: NaPista (group marketplace brand) impersonation ---------------------------------
+    # NaPista é o marketplace de veículos do grupo.
     adicionar_h(
         "H11-napista:sites",
         "Sites e páginas de terceiros usando a marca NaPista como canal próprio ou oficial",
@@ -506,19 +494,18 @@ def montar_hipoteses(marca: PerfilMarca) -> list[HipoteseBusca]:
     return hs
 
 
-# Focused campaigns (``simio investigar --foco``): only one question is investigated.
-FOCO_AMPLA = "ampla"  # default broad sweep (stored as no focus: ``foco`` None)
+# Campanhas com foco (`simio investigar --foco`).
+FOCO_AMPLA = "ampla"  # gravada sem foco (foco=None)
 FOCO_LOGO_ANTIGA = "logo-antiga"
 FOCO_AMEACAS = "ameacas"
 MODOS_FOCO = (FOCO_AMPLA, FOCO_LOGO_ANTIGA, FOCO_AMEACAS)
-# Connectors used by a focused campaign when the operator does not choose them.
+# Fontes padrão quando o operador não escolhe.
 FONTES_PADRAO_FOCO = {
     FOCO_LOGO_ANTIGA: ("serper", "lens"),
     FOCO_AMEACAS: ("grounding", "serper", "typosquat", "crtsh", "urlscan", "brave"),
 }
-# Connectors that never contribute to a focused campaign.
 _PULADOS_POR_FOCO = {FOCO_LOGO_ANTIGA: {"typosquat", "crtsh", "urlscan"}, FOCO_AMEACAS: {"lens"}}
-# Focused campaigns detached from the correspondent context: no COBAN-seeded searches (H9).
+# Sem buscas a partir do cadastro de COBANs (H9).
 FOCOS_SEM_COBANS = frozenset({FOCO_AMEACAS})
 
 
@@ -535,11 +522,9 @@ def _prompt_grounding_ameaca(descricao: str, dorks: list[str]) -> str:
 
 
 def montar_hipoteses_ameacas(marca: PerfilMarca) -> list[HipoteseBusca]:
-    """Threat-intelligence campaign, detached from the correspondent (COBAN) context: fake login and
-    partner portals, credential/payment harvesting, fake apps and support channels, pages on free hosting
-    and data-selling panels, plus the fraud (H10) and sensitive-service (H7) hypotheses of the open sweep."""
+    """Ameaças sem ligação com correspondentes; reaproveita H7, H10 e o Telegram da varredura ampla."""
     nome = marca.nome_exibicao
-    alt = next((t for t in marca.termos_fortes if t.lower() != nome.lower()), nome)
+    alt = _termo_alternativo(marca)
     b = f'("{nome}" OR "{alt}")'
     excl = " ".join(f"-site:{d}" for d in marca.dominios_oficiais)
     ex = f"{excl} -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br"
@@ -646,12 +631,10 @@ def montar_hipoteses_ameacas(marca: PerfilMarca) -> list[HipoteseBusca]:
 
 
 def montar_hipoteses_logo_antiga(marca: PerfilMarca) -> list[HipoteseBusca]:
-    """Focused campaign on the *legacy* logo: pages where third parties show the brand's logo as an
-    image. Search engines index text, not logos, so the queries target the text that surrounds a
-    partner-bank showcase (dealers, solar integrators, credit brokers) in every state; the reverse
-    image search (``lens``) complements them with pages that never write the brand name."""
+    # Buscador indexa texto, não logo: as consultas miram o texto em volta das vitrines de bancos
+    # parceiros. O lens cobre as páginas que nem escrevem o nome da marca.
     nome = marca.nome_exibicao
-    alt = next((t for t in marca.termos_fortes if t.lower() != nome.lower()), nome)
+    alt = _termo_alternativo(marca)
     excl = " ".join(f"-site:{d}" for d in marca.dominios_oficiais)
     ex = f"{excl} -site:reclameaqui.com.br -site:jusbrasil.com.br -site:jus.br"
     hs: list[HipoteseBusca] = []
@@ -723,13 +706,12 @@ _SUFIXO_JURIDICO_RE = re.compile(
     r"(?i)(?<![\w])(?:ltda|limitada|me|epp|eireli|s\s*/\s*a|s\.?\s*a\.?|sociedade an[oô]nima|"
     r"sociedade simples|ss)(?![\w])\.?|&\s*(?:cia|companhia)\.?|(?<![\w])(?:cia|companhia)\.?\s*$"
 )
-_ID_PESSOA_RE = re.compile(r"\d{11}")  # MEI names embed the owner's CPF
+_ID_PESSOA_RE = re.compile(r"\d{11}")  # nome de MEI costuma trazer o CPF do dono
 _NOME_BANCO_RE = re.compile(r"(?i)^\s*(banco|bco|caixa econ|cooperativa de cr[eé]dito|cresol|sicoob|sicredi)\b")
 
 
 def nome_busca_coban(bruto: str) -> str | None:
-    """Searchable company name: legal suffixes and digits removed. None when the record should not
-    be searched (natural person / MEI with CPF, financial institution, too generic)."""
+    """Nome sem sufixo jurídico nem números; None para pessoa física/MEI, banco ou nome genérico."""
     if not bruto or _ID_PESSOA_RE.search(bruto) or _NOME_BANCO_RE.search(bruto):
         return None
     nome = re.sub(r"\d+", " ", _SUFIXO_JURIDICO_RE.sub(" ", bruto))
@@ -746,11 +728,8 @@ def hipoteses_coban(
     lote: int = 4,
     excluir: set[str] | None = None,
 ) -> tuple[list[HipoteseBusca], int]:
-    """H9: search the web presence of *registered* correspondents for misuse of the brand.
-
-    Complements (never replaces) the open-web hypotheses. Picks the most recently registered
-    correspondents not yet searched in earlier campaigns, so successive runs rotate through the
-    registry. Returns (hypotheses, number of correspondents selected)."""
+    """H9: presença on-line dos correspondentes cadastrados. Pega os cadastros mais recentes ainda
+    não pesquisados, para que campanhas seguidas façam rodízio. Retorna (hipóteses, qtd escolhida)."""
     if limite <= 0 or not registros:
         return [], 0
     excluir = excluir or set()
@@ -772,7 +751,7 @@ def hipoteses_coban(
         if len(escolhidos) >= limite:
             break
     excl = " ".join(f"-site:{d}" for d in marca.dominios_oficiais)
-    alt = next((t for t in marca.termos_fortes if t.lower() != marca.nome_exibicao.lower()), marca.nome_exibicao)
+    alt = _termo_alternativo(marca)
     saida: list[HipoteseBusca] = []
     for i in range(0, len(escolhidos), lote):
         grupo = escolhidos[i : i + lote]
@@ -829,25 +808,25 @@ class AgenteDescoberta:
     politica: PoliticaUrl
     max_consultas: int = 40
     diagnosticos: list[str] = field(default_factory=list)
-    # (connector, query) pairs already executed in an earlier (interrupted) run of the campaign:
-    # skipped on resume and counted against ``max_consultas``.
+    # (conector, consulta) já feitas numa execução interrompida: puladas ao retomar, mas contam no limite.
     ja_feitas: set[tuple[str, str]] = field(default_factory=set)
-    # Extra hypotheses appended after the open-web ones (e.g. H9 COBAN-seeded searches).
+    # Entram depois das hipóteses da web aberta (ex.: H9).
     hipoteses_extras: list[HipoteseBusca] = field(default_factory=list)
-    # Focused campaign (FOCUS_MODES): its own hypotheses replace the open-web sweep.
     foco: str | None = None
 
     def planejar(self, disponivel: list[Conector]) -> list[ConsultaPlanejada]:
-        """Interleave hypotheses across connectors so a small budget still diversifies."""
+        # Intercala os conectores para que um orçamento pequeno não fique todo numa fonte só.
         construtor = {FOCO_LOGO_ANTIGA: montar_hipoteses_logo_antiga, FOCO_AMEACAS: montar_hipoteses_ameacas}
         base = construtor.get(self.foco or "", montar_hipoteses)(self.marca)
         hips = base + list(self.hipoteses_extras)
         pulados = _PULADOS_POR_FOCO.get(self.foco or "", set())
+        # TODO: o plano depende de con.nome e de getattr/hasattr em "consultas"; melhor cada conector
+        # declarar as próprias consultas no protocolo Conector.
         por_conector: list[list[ConsultaPlanejada]] = []
         for con in disponivel:
             planos: list[ConsultaPlanejada] = []
             if con.nome in pulados:
-                self.diagnosticos.append(f"{con.nome}: not used in a focused campaign ({self.foco})")
+                self.diagnosticos.append(f"{con.nome}: não usado em campanha com foco ({self.foco})")
             elif con.nome == "grounding":
                 planos = [ConsultaPlanejada(con.nome, h, h.prompt_grounding) for h in hips]
             elif con.nome == "urlscan":
@@ -904,7 +883,7 @@ class AgenteDescoberta:
         desfecho.resultados.extend(importadas or [])
         if importadas:
             desfecho.fontes_usadas.append("import")
-            desfecho.diagnosticos.append(f"{len(importadas)} URL(s) imported manually")
+            desfecho.diagnosticos.append(f"{len(importadas)} URL(s) importada(s) manualmente")
 
         disponivel: list[Conector] = []
         for con in self.conectores:
@@ -915,10 +894,10 @@ class AgenteDescoberta:
         if not disponivel:
             if not importadas:
                 desfecho.diagnosticos.append(
-                    "NO automatic discovery mechanism is available. Configure Vertex AI "
-                    "(SIMIO_PROJETO_GCP + SIMIO_MODELO_ANALISE) for Google Search Grounding, or an "
-                    "optional connector key (SIMIO_CHAVE_API_BRAVE / SIMIO_CHAVE_API_SERPER / "
-                    "SIMIO_CHAVE_API_URLSCAN), or import URLs with --arquivo-urls / --urls."
+                    "Nenhuma fonte de descoberta automática disponível. Configure o Vertex AI "
+                    "(SIMIO_PROJETO_GCP + SIMIO_MODELO_ANALISE) para o grounding, uma chave de conector "
+                    "(SIMIO_CHAVE_API_BRAVE / SIMIO_CHAVE_API_SERPER / SIMIO_CHAVE_API_URLSCAN) "
+                    "ou importe URLs com --arquivo-urls / --urls."
                 )
             return desfecho
 
@@ -926,45 +905,42 @@ class AgenteDescoberta:
         consultas_planejadas = self.planejar(disponivel)
         desfecho.diagnosticos.extend(self.diagnosticos)
         for planejadas in consultas_planejadas:
-            st = estados[planejadas.conector]
-            if st.desativado:
+            estado = estados[planejadas.conector]
+            if estado.desativado:
                 continue
             try:
-                resultados, registro = await st.conector.executar(planejadas.hipotese, planejadas.consulta)
+                resultados, registro = await estado.conector.executar(planejadas.hipotese, planejadas.consulta)
             except OrcamentoEsgotado as exc:
-                desfecho.diagnosticos.append(f"{planejadas.conector}: stopped, {exc}")
-                st.desativado = "budget"
+                desfecho.diagnosticos.append(f"{planejadas.conector}: interrompido, {exc}")
+                estado.desativado = "orçamento esgotado"
                 continue
-            st.executadas += 1
+            estado.executadas += 1
             desfecho.consultas.append(registro)
             if ao_consultar is not None:
                 ao_consultar(registro, resultados)
             desfecho.resultados.extend(resultados)
             if registro.status == "ERRO":
-                st.erros_seguidos += 1
-                ok, msg = st.conector.disponivel()
-                if not ok or st.erros_seguidos >= MAX_ERROS_CONSECUTIVOS:
-                    st.desativado = registro.erro or msg
+                estado.erros_seguidos += 1
+                ok, msg = estado.conector.disponivel()
+                if not ok or estado.erros_seguidos >= MAX_ERROS_CONSECUTIVOS:
+                    estado.desativado = registro.erro or msg
                     desfecho.diagnosticos.append(
-                        f"{planejadas.conector}: disabled for this run -> fallback to remaining sources "
-                        f"({st.desativado})"
+                        f"{planejadas.conector}: desligado nesta execução, seguindo com as outras fontes "
+                        f"({estado.desativado})"
                     )
             else:
-                st.erros_seguidos = 0
-                st.sucessos += 1
-        for nome, st in estados.items():
-            if st.sucessos:
+                estado.erros_seguidos = 0
+                estado.sucessos += 1
+        for nome, estado in estados.items():
+            if estado.sucessos:
                 desfecho.fontes_usadas.append(nome)
         return desfecho
 
 
-# --------------------------------------------------------------------------------------
-# Deduplication and prioritisation
-# --------------------------------------------------------------------------------------
 @dataclass
 class GrupoCandidatas:
     url_normalizada: str
-    url: str  # representative original URL (first seen)
+    url: str  # primeira URL original vista
     hostname: str
     dominio_registravel: str
     resultados: list[ResultadoDescoberta]
@@ -976,7 +952,6 @@ class GrupoCandidatas:
 def deduplicar(
     resultados: list[ResultadoDescoberta], politica: PoliticaUrl
 ) -> tuple[list[GrupoCandidatas], list[tuple[ResultadoDescoberta, str]]]:
-    """Group hits by normalised URL. Returns (groups, rejected[(hit, reason)])."""
     grupos: OrderedDict[str, GrupoCandidatas] = OrderedDict()
     rejeitados: list[tuple[ResultadoDescoberta, str]] = []
     for resultado in resultados:
@@ -984,7 +959,7 @@ def deduplicar(
             politica.verificar_estatico(resultado.url_original)
             norm = normalizar_url(resultado.url_original)
         except (ViolacaoPolitica, ValueError) as exc:
-            rejeitados.append((resultado, f"invalid/blocked URL: {exc}"))
+            rejeitados.append((resultado, f"URL inválida/bloqueada: {exc}"))
             continue
         host = hostname_de(norm)
         if norm not in grupos:
@@ -994,7 +969,7 @@ def deduplicar(
 
 
 def priorizar(grupos: list[GrupoCandidatas], marca: PerfilMarca, foco: str | None = None) -> list[GrupoCandidatas]:
-    """Deterministic pre-collection score. It only orders the queue; it is not a finding."""
+    # Só ordena a fila de coleta; a pontuação não é achado.
     ameaca = foco == FOCO_AMEACAS
     for g in grupos:
         texto_titulos = " ".join(filter(None, (h.titulo or "" for h in g.resultados)))
@@ -1003,40 +978,40 @@ def priorizar(grupos: list[GrupoCandidatas], marca: PerfilMarca, foco: str | Non
         eh_manual = any(h.fonte.startswith("import") for h in g.resultados)
 
         if marca.eh_oficial(g.hostname):
-            g.motivo_exclusao = "official institutional domain"
+            g.motivo_exclusao = "domínio institucional oficial"
             continue
         if marca.eh_url_oficial(g.url, titulo=texto_titulos, trecho=texto_trechos):
-            g.motivo_exclusao = "official institutional social profile"
+            g.motivo_exclusao = "perfil social oficial da instituição"
             continue
         if not eh_manual and _INDICE_SOCIAL_RE.search(g.url_normalizada):
-            g.motivo_exclusao = "social platform tag/search index page"
+            g.motivo_exclusao = "página de tag/busca de rede social"
             continue
         if not eh_manual and _DOCUMENTO_DIRETO_RE.search(g.url_normalizada):
-            g.motivo_exclusao = "direct binary/PDF document URL"
+            g.motivo_exclusao = "link direto para PDF/arquivo"
             continue
         if not eh_manual and _DIRETORIO_INSTITUICOES_RE.search(g.url_normalizada):
-            g.motivo_exclusao = "public business directory entry for the institution itself"
+            g.motivo_exclusao = "ficha da própria instituição em diretório de empresas"
             continue
         if not eh_manual and not ameaca and dominio_corresponde(g.hostname, _HOSTS_CONSTRUTORES_ABANDONADOS):
-            g.motivo_exclusao = "generic free-builder boleto/phishing page outside correspondent scope"
+            g.motivo_exclusao = "página de boleto/phishing em construtor gratuito, fora do escopo de correspondentes"
             continue
 
         pontuacao, motivos = 0.0, []
         if ameaca and dominio_corresponde(g.hostname, _HOSTS_CONSTRUTORES_ABANDONADOS):
             pontuacao += 2
-            motivos.append("free website builder (common for phishing kits)")
+            motivos.append("construtor de sites gratuito (comum em kits de phishing)")
         if all(h.metadados.get("recuperado_de_redirecionamento_google") for h in g.resultados):
             pontuacao -= 1
-            motivos.append("home page of a host recovered from an opaque Google result (matched page unknown)")
-        if pat := marca.correspondencia_marca_dominio(g.hostname):
+            motivos.append("página inicial recuperada de link opaco do Google (página exata desconhecida)")
+        if padrao := marca.correspondencia_marca_dominio(g.hostname):
             pontuacao += 3
-            motivos.append(f"brand pattern in domain ({pat})")
-        if dominio_corresponde(g.hostname, DOMINIOS_HOSPEDAGEM_EFEMERA) and (pat or marca.mencoes(texto)):
+            motivos.append(f"padrão da marca no domínio ({padrao})")
+        if dominio_corresponde(g.hostname, DOMINIOS_HOSPEDAGEM_EFEMERA) and (padrao or marca.mencoes(texto)):
             pontuacao += 2
-            motivos.append("ephemeral/free-hosting domain")
+            motivos.append("hospedagem gratuita/efêmera")
         if marca.mencoes_fortes(texto):
             pontuacao += 2
-            motivos.append("brand mentioned in title/snippet")
+            motivos.append("marca citada no título/trecho")
         alegacoes = marca.alegacoes_oficiais(texto)
         if alegacoes and (
             marca.mencoes_fortes(texto)
@@ -1044,64 +1019,62 @@ def priorizar(grupos: list[GrupoCandidatas], marca: PerfilMarca, foco: str | Non
             or (bool(_PISTA_BANCARIA_RE.search(texto)) and not marca.tem_contexto_homonimo(texto))
         ):
             pontuacao += 3
-            motivos.append("official-channel language in title/snippet")
+            motivos.append("linguagem de canal oficial no título/trecho")
         if marca.mencoes_servicos_sensiveis(texto):
             pontuacao += 2.5
-            motivos.append("sensitive billing/settlement service in title/snippet")
+            motivos.append("serviço sensível (boleto/quitação) no título/trecho")
         if marca.declaracoes(texto):
             pontuacao -= 1
-            motivos.append("correspondent disclosure in snippet")
-        if len(marca.mencoes_concorrentes(texto)) >= 2 and not pat and not marca.alegacoes_oficiais(texto):
+            motivos.append("declaração de correspondente no trecho")
+        if len(marca.mencoes_concorrentes(texto)) >= 2 and not padrao and not marca.alegacoes_oficiais(texto):
             pontuacao -= 1.5
-            motivos.append("multi-bank partner list in snippet")
+            motivos.append("lista de vários bancos parceiros no trecho")
         if marca.tem_contexto_homonimo(texto) and not marca.mencoes_fortes(texto):
             pontuacao -= 4
-            motivos.append("likely non-bank homonym context in title/snippet")
-        if not pat and not marca.alegacoes_oficiais(texto) and (
+            motivos.append("provável homônimo fora do setor bancário")
+        if not padrao and not marca.alegacoes_oficiais(texto) and (
             _URL_EDITORIAL_RE.search(g.url_normalizada) or _TITULO_EDITORIAL_RE.search(texto_titulos)
         ):
             pontuacao -= 3
-            motivos.append("editorial/blog/help article (de-prioritised)")
+            motivos.append("artigo de blog/notícia/ajuda (rebaixado)")
         semelhante = next((h for h in g.resultados if h.fonte == "typosquat"), None)
         if semelhante is not None:
             pontuacao += 3
             motivos.append(
-                f"lookalike of {semelhante.metadados.get('semelhante_a')} ({semelhante.metadados.get('fuzzer')})"
+                f"domínio parecido com {semelhante.metadados.get('semelhante_a')} ({semelhante.metadados.get('fuzzer')})"
             )
         if any(h.fonte == "lens" for h in g.resultados):
             pontuacao += 2
-            motivos.append("image visually similar to the legacy logo (reverse image search)")
+            motivos.append("imagem parecida com a logo antiga (busca reversa)")
         fontes = {h.fonte for h in g.resultados}
         hips = {h.id_hipotese for h in g.resultados if h.id_hipotese}
         if len(fontes) > 1 or len(hips) > 1:
             pontuacao += min(2, len(fontes) + len(hips) - 2) + 0.5
-            motivos.append(f"seen by {len(fontes)} source(s) / {len(hips)} hypothesis(es)")
+            motivos.append(f"vista por {len(fontes)} fonte(s) / {len(hips)} hipótese(s)")
         if eh_manual:
             pontuacao += 5
-            motivos.append("manually imported by operator")
+            motivos.append("importada manualmente pelo operador")
         if marca.eh_despriorizado(g.hostname):
             pontuacao -= 4
-            motivos.append("news/review/regulator domain (de-prioritised)")
+            motivos.append("domínio de notícia/reclamação/regulador (rebaixado)")
         if _ITEM_MARKETPLACE_RE.search(g.url_normalizada) and not any(
             (h.id_hipotese or "").startswith("H10-fraude") for h in g.resultados
         ):
             pontuacao -= 5
-            motivos.append("individual marketplace vehicle listing (de-prioritised)")
+            motivos.append("anúncio individual de veículo em marketplace (rebaixado)")
         if _CAMINHO_AUXILIAR_RE.search(g.url_normalizada):
             pontuacao -= 2.5
-            motivos.append("ancillary legal/sitemap page (de-prioritised)")
+            motivos.append("página acessória (privacidade/termos/sitemap) (rebaixada)")
         if g.url_normalizada.rstrip("/").count("/") <= 2:
             pontuacao += 0.5
-            motivos.append("home page")
+            motivos.append("página inicial")
         g.pontuacao, g.motivos = pontuacao, motivos
 
     mantidos = [g for g in grupos if g.motivo_exclusao is None]
     mantidos.sort(key=lambda g: (-g.pontuacao, g.url_normalizada))
 
-    # Domain diversity decay: prevent a single multi-page site (e.g. regional SEO pages from the
-    # same domain) from monopolising the --limite queue ahead of uninspected domains. The root/home
-    # page of a domain is never penalised because Res. CMN 4.935 art. 14, III, "a" specifically
-    # references the correspondent's home page.
+    # Penaliza páginas extras do mesmo domínio (ex.: páginas regionais de SEO) para não lotar o --limite.
+    # A página inicial nunca é penalizada: o art. 14, III, "a" da Res. CMN 4.935 fala dela.
     vistos_por_dominio: dict[str, int] = {}
     for g in mantidos:
         eh_manual = any(h.fonte.startswith("import") for h in g.resultados)
@@ -1113,7 +1086,7 @@ def priorizar(grupos: list[GrupoCandidatas], marca: PerfilMarca, foco: str | Non
         if contagem > 2 and not eh_inicial:
             penalidade = 2.5 * (contagem - 2)
             g.pontuacao -= penalidade
-            g.motivos.append(f"additional page on same registrable domain (#{contagem}, -{penalidade:.1f})")
+            g.motivos.append(f"página extra do mesmo domínio (#{contagem}, -{penalidade:.1f})")
 
     mantidos.sort(key=lambda g: (-g.pontuacao, g.url_normalizada))
     return mantidos + [g for g in grupos if g.motivo_exclusao is not None]

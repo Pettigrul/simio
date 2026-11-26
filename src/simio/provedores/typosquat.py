@@ -1,19 +1,3 @@
-"""Lookalike-domain discovery: typosquatting, combosquatting and TLD swaps.
-
-Generates permutations of the institution's official domains (fuzzers modelled on dnstwist:
-omission, repetition, transposition, keyboard replacement/insertion, homoglyphs, vowel swap,
-hyphenation, addition), plus *combosquatting* (brand label + sector keyword, e.g.
-``bancobv-financiamento.com.br``) and TLD swaps. Combosquatting is by far the most abused form in
-practice (Kintis et al., CCS 2017), so it is generated for the short brand labels where pure typos
-would only produce unrelated two-letter domains.
-
-Only names that **resolve in DNS to a public address** become discovery hits; everything else is
-counted in the query record. Nothing is fetched here: resolved domains enter the normal pipeline
-(URL policy, egress proxy, collection, analysis). A resolver that answers for non-existent names
-(ISP NXDOMAIN hijacking) is detected first and disables the connector, since it would turn every
-permutation into a false hit.
-"""
-
 from __future__ import annotations
 
 import asyncio
@@ -41,7 +25,7 @@ TECNICA_PT = {
     "combosquatting": "marca combinada com palavra do setor",
 }
 
-_TECLADO = {  # QWERTY / ABNT2 letter rows
+_TECLADO = {  # QWERTY / ABNT2
     "q": "wa", "w": "qeas", "e": "wrsd", "r": "etdf", "t": "ryfg", "y": "tugh", "u": "yihj", "i": "uojk",
     "o": "ipkl", "p": "ol", "a": "qwsz", "s": "awedxz", "d": "serfcx", "f": "drtgvc", "g": "ftyhbv",
     "h": "gyujnb", "j": "huikmn", "k": "jiolm", "l": "kop", "z": "asx", "x": "zsdc", "c": "xdfv",
@@ -57,7 +41,9 @@ _HOMOGLIFOS = {
 _HOMOGLIFOS_MULTIPLOS = {"rn": "m", "vv": "w", "cl": "d", "nn": "m"}
 _VOGAIS = "aeiou"
 _ALFANUM = "abcdefghijklmnopqrstuvwxyz0123456789"
-MIN_ROTULO_TYPO = 5  # shorter labels (e.g. "bv") only get combosquatting / TLD swaps
+# Erro de digitação em rótulo curto ("bv") só gera domínio de duas letras sem relação; para esses fica
+# o combosquatting, que é de longe o mais usado em golpes (Kintis et al., CCS 2017), e a troca de TLD.
+MIN_ROTULO_TYPO = 5
 
 TLDS_TROCA_PADRAO = (
     "com", "net", "org", "com.br", "net.br", "org.br", "app.br", "tec.br", "app", "online", "site",
@@ -81,7 +67,6 @@ def separar_dominio(dominio: str) -> tuple[str, str]:
 
 
 def variantes_typo(rotulo: str) -> dict[str, str]:
-    """Permutations of a single DNS label -> {variant: fuzzer}."""
     saida: dict[str, str] = {}
 
     def adicionar(v: str, fuzzer: str) -> None:
@@ -124,7 +109,7 @@ def dominios_semelhantes(
     sufixos_combo: Iterable[str] = ("com.br", "com"),
     excluir: Callable[[str], bool] = lambda _d: False,
 ) -> dict[str, tuple[str, str]]:
-    """{candidate domain: (fuzzer, seed)} for every seed domain and combo label."""
+    """{domínio candidato: (fuzzer, semente)}."""
     saida: dict[str, tuple[str, str]] = {}
 
     def adicionar(dominio: str, fuzzer: str, semente: str) -> None:
@@ -142,14 +127,14 @@ def dominios_semelhantes(
         for tld in troca:
             if tld != sufixo:
                 adicionar(f"{rotulo}.{tld}", "tld-swap", semente)
-    kws = [k.lower().strip() for k in palavras_chave if k.strip()]
+    palavras = [p.lower().strip() for p in palavras_chave if p.strip()]
     for rotulo in rotulos_combo:
-        lab = rotulo.lower().strip()
-        for kw in kws:
-            for v in (f"{lab}{kw}", f"{lab}-{kw}", f"{kw}{lab}", f"{kw}-{lab}"):
+        base = rotulo.lower().strip()
+        for p in palavras:
+            for v in (f"{base}{p}", f"{base}-{p}", f"{p}{base}", f"{p}-{base}"):
                 if _rotulo_valido(v):
                     for sufixo in sufixos_combo:
-                        adicionar(f"{v}.{sufixo}", "combosquatting", lab)
+                        adicionar(f"{v}.{sufixo}", "combosquatting", base)
     return saida
 
 
@@ -159,17 +144,17 @@ async def resolvedor_sistema(host: str) -> list[str]:
     return sorted({str(i[4][0]) for i in infos})
 
 
-def _eh_publico(addr: str) -> bool:
+def _eh_publico(endereco: str) -> bool:
     try:
-        ip = ipaddress.ip_address(addr.split("%", 1)[0])
+        ip = ipaddress.ip_address(endereco.split("%", 1)[0])
     except ValueError:
         return False
     return ip.is_global and not ip.is_multicast
 
 
 class ConectorTyposquat:
-    """Discovery connector. Each planned query is one seed domain (``typo:<domain>``) or one combo
-    label (``combo:<label>``); the hypothesis id records which."""
+    # Cada consulta é "typo:<domínio>" ou "combo:<rótulo>". Só vira resultado o nome que resolve para
+    # IP público; nada é baixado aqui, a coleta segue o pipeline normal.
 
     nome = "typosquat"
 
@@ -190,10 +175,10 @@ class ConectorTyposquat:
 
     def disponivel(self) -> tuple[bool, str]:
         if not self.marca.sementes_typosquat and not self.marca.rotulos_combo_typosquat:
-            return False, "typosquat: no typosquat_seeds / typosquat_combo_labels in the brand profile"
+            return False, "typosquat: perfil da marca sem sementes_typosquat / rotulos_combo_typosquat"
         if self.motivo_desativacao:
-            return False, f"typosquat: disabled: {self.motivo_desativacao}"
-        return True, "typosquat: active (DNS permutations of the official domains)"
+            return False, f"typosquat: desligado: {self.motivo_desativacao}"
+        return True, "typosquat: ativo (variações em DNS dos domínios oficiais)"
 
     def consultas(self) -> list[str]:
         return [f"typo:{s}" for s in self.marca.sementes_typosquat] + [
@@ -216,14 +201,16 @@ class ConectorTyposquat:
             return None
 
     async def _verificar_sequestro_nxdomain(self) -> None:
+        # Resolvedor que responde para nome inexistente (sequestro de NXDOMAIN pelo provedor) faria toda
+        # variação parecer registrada.
         if self._sequestro_verificado:
             return
         self._sequestro_verificado = True
         sondar = f"simio-nx-{secrets.token_hex(6)}.com.br"
         if await self._resolver(sondar):
             self.motivo_desativacao = (
-                "the DNS resolver answers for non-existent domains (NXDOMAIN hijacking); "
-                "every permutation would look registered. Use a resolver without redirection."
+                "o resolvedor DNS responde para domínios inexistentes (sequestro de NXDOMAIN); "
+                "toda variação pareceria registrada. Use um resolvedor sem redirecionamento."
             )
 
     async def executar(
@@ -244,10 +231,10 @@ class ConectorTyposquat:
         retornos = await asyncio.gather(*(sondar(d) for d in candidatas))
         resultados: list[ResultadoDescoberta] = []
         nao_publicos: list[str] = []
-        for dominio, addrs in retornos:
-            if not addrs:
+        for dominio, enderecos in retornos:
+            if not enderecos:
                 continue
-            publicos = [a for a in addrs if _eh_publico(a)]
+            publicos = [e for e in enderecos if _eh_publico(e)]
             if not publicos:
                 nao_publicos.append(dominio)
                 continue

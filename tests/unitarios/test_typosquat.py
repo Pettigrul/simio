@@ -1,5 +1,3 @@
-"""Lookalike-domain discovery (typosquatting / combosquatting / TLD swap) — no network."""
-
 from __future__ import annotations
 
 from simio.agentes.descoberta import AgenteDescoberta, deduplicar, priorizar
@@ -28,7 +26,7 @@ def test_variantes_typo_cobrem_fuzzers_estilo_dnstwist() -> None:
 def test_rotulos_curtos_recebem_so_combos_e_trocas_de_tld() -> None:
     d = dominios_semelhantes(["bv.com.br"], ["bv"], ["financiamento"], excluir=BV.eh_oficial)
     fuzzers = {f for f, _ in d.values()}
-    assert fuzzers == {"tld-swap", "combosquatting"}  # no "bb.com.br"-style noise
+    assert fuzzers == {"tld-swap", "combosquatting"}  # sem ruído do tipo "bb.com.br"
     assert "bv-financiamento.com.br" in d and "financiamentobv.com" in d
     assert "bv.com" in d and "bv.com.br" not in d
 
@@ -84,4 +82,4 @@ async def test_descoberta_planeja_consultas_semelhantes_e_prioriza_resultados() 
     assert not rejeitados
     [g] = priorizar(grupos, BV)
     assert g.hostname == "feiraobv.com.br" and g.pontuacao >= 3
-    assert any("lookalike of bv" in r for r in g.motivos)
+    assert any("domínio parecido com bv" in r for r in g.motivos)

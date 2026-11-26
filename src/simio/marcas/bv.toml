@@ -1,17 +1,16 @@
-# Brand profile used by discovery, identity and analysis agents.
-# Values marked VALIDATE must be confirmed by the operator in the corporate environment
-# before production use (e.g. complete list of official domains and institution CNPJs).
+# VALIDAR: confirmar no ambiente corporativo, antes de usar em produção, a lista completa de domínios
+# oficiais e de CNPJs da instituição.
 
 id = "bv"
 nome_exibicao = "Banco BV"
 idioma = "pt-BR"
 
-# Unambiguous brand expressions (case-insensitive, word-boundary matched).
+# Sem ambiguidade; casam sem diferenciar maiúsculas e só como palavra inteira.
 termos_fortes = ["banco bv", "bv financeira", "banco votorantim", "bv financiamentos", "bv financiamento"]
-# Short/ambiguous expressions: only count with word boundaries and never alone for scoring.
+# Curtos/ambíguos: nunca pontuam sozinhos.
 termos_fracos = ["bv"]
 
-# Official institutional domains (VALIDATE: add every official domain / app link).
+# VALIDAR: incluir todo domínio oficial e link de app.
 dominios_oficiais = [
   "bv.com.br",
   "bancobv.com.br",
@@ -24,7 +23,6 @@ dominios_oficiais = [
   "vam.com.br",
 ]
 
-# Official social media profiles / handles of the institution itself.
 perfis_sociais_oficiais = [
   "instagram.com/bancobv",
   "instagram.com/napistabr",
@@ -40,9 +38,7 @@ perfis_sociais_oficiais = [
   "twitter.com/bancobv",
 ]
 
-# Legal names / CNPJs of the institution itself and its official group entities/products.
-# CNPJs and names found on third-party pages that match these are treated as *references to the
-# contracting institution*, never as the third-party page owner.
+# Nome ou CNPJ destes encontrado em página de terceiro é referência à contratante, nunca o dono da página.
 nomes_instituicao = [
   "Banco BV",
   "Banco BV S.A.",
@@ -78,7 +74,7 @@ cnpjs_instituicao = [
   "01.386.256/0001-41",  # Votorantim Finanças S.A. (consta do cadastro interno de COBANs)
 ]
 
-# Regexes applied to the registrable domain / hostname labels.
+# Regex aplicadas ao hostname.
 padroes_dominio = [
   '(^|\.)bv(\.|$)',
   'banco-?bv',
@@ -119,7 +115,7 @@ regioes = [
 
 plataformas = ["site", "WhatsApp", "Instagram", "Facebook", "Google Meu Negócio"]
 
-# Language suggesting the page *is* the institution or its official channel.
+# Frases de quem se apresenta como o próprio banco ou canal oficial.
 frases_oficialidade = [
   "canal oficial", "site oficial", "atendimento oficial", "central oficial", "página oficial",
   "loja oficial", "representante oficial", "somos o banco bv", "aqui é o banco bv",
@@ -136,7 +132,7 @@ frases_oficialidade = [
   "representante autorizado da bv financeira", "representante autorizado banco bv",
 ]
 
-# Language that discloses a correspondent / independent relationship.
+# Frases de quem se declara correspondente ou empresa independente.
 frases_declaracao_correspondente = [
   "correspondente bancário", "correspondente bancario", "correspondente no país",
   "correspondentes no país", "correspondente do banco bv", "correspondente da bv financeira",
@@ -154,8 +150,7 @@ frases_parceria = [
   "parceiros autorizados",
 ]
 
-# Competing financial institutions commonly listed alongside the brand on legitimate multi-bank
-# dealer / broker / solar-integrator pages ("Bancos parceiros: Santander, Itaú, Pan, BV...").
+# Aparecem junto com a marca nas vitrines multibanco legítimas ("Bancos parceiros: Santander, Itaú, Pan, BV...").
 instituicoes_concorrentes = [
   "banco pan", "santander", "itaú", "itau", "bradesco", "banco safra", "safra finance",
   "c6 bank", "banco c6", "daycoval", "solfácil", "solfacil", "btg pactual", "banco btg",
@@ -163,9 +158,8 @@ instituicoes_concorrentes = [
   "paraná banco", "parana banco", "banco mercantil", "omni financeira", "porto seguro financiamento",
 ]
 
-# Post-sale / billing / settlement service expressions that, when combined with third-party
-# WhatsApp/CTA capture and no clear correspondent/collection-agency disclosure, indicate high risk
-# of consumer confusion or boleto/settlement bait.
+# Pós-venda, boleto e quitação: junto com captação por WhatsApp de terceiro e sem declaração de
+# correspondente/assessoria de cobrança, é risco alto de confusão ou golpe do boleto.
 frases_servicos_sensiveis = [
   "2ª via de boleto", "2a via de boleto", "segunda via de boleto", "2ª via do boleto",
   "segunda via do boleto", "2ª via do contrato", "emitir boleto", "atualizar boleto",
@@ -175,8 +169,7 @@ frases_servicos_sensiveis = [
   "baixa de gravame",
 ]
 
-# Non-banking contexts where the bare acronym "BV" refers to a geographic or industry homonym
-# (e.g. Boa Vista/RR, Bela Vista, Boa Viagem, marketing/modeling agencies).
+# Contextos em que "BV" é outra coisa (Boa Vista/RR, Bela Vista, agências de marketing/modelos).
 frases_contexto_homonimo = [
   "boa vista", "roraima", "bela vista", "boa viagem", "agência de marketing",
   "agência de publicidade", "agência de comunicação", "agência de modelos",
@@ -184,14 +177,13 @@ frases_contexto_homonimo = [
   "bioinformatics", "raju institute",
 ]
 
-# Domains of unrelated organisations sharing the "BV" acronym, confirmed by analysis
-# (threat triage never flags them).
+# Organizações sem relação que usam a sigla BV, confirmadas na análise.
 dominios_homonimos = [
   "bv.com",  # Black & Veatch (engenharia, EUA)
 ]
 
-# Domains that rarely host an establishment's own communication (news, reviews, legal
-# databases, job boards, business directories, logo repositories, the regulator).
+# Raramente são comunicação do próprio estabelecimento (notícias, reclamações, processos, vagas,
+# diretórios, repositórios de logo, regulador).
 dominios_despriorizados = [
   "wikipedia.org", "reclameaqui.com.br", "proteste.org.br", "consumidor.gov.br",
   "jusbrasil.com.br", "jus.br", "escavador.com", "consultaprocessobrasil.com.br",
@@ -203,7 +195,7 @@ dominios_despriorizados = [
   "agenciadobanco.com.br", "guiadeagenciasbancarias.com.br", "moovitapp.com", "maptons.com",
   "shopfully.com.br", "safetymails.com", "wanderboat.ai", "brandsoftheworld.com",
   "logospng.org", "brandfetch.com", "behance.net",
-  # image banks / vector stores (frequent reverse-image-search noise)
+  # bancos de imagens/vetores (ruído frequente na busca reversa)
   "shutterstock.com", "dreamstime.com", "istockphoto.com", "stock.adobe.com", "vecteezy.com",
   "vectorstock.com", "pngtree.com", "creativefabrica.com", "magnific.com", "toppng.com", "freepik.com",
   "pinterest.com", "fandom.com", "seeklogo.com", "worldvectorlogo.com", "iconape.com", "commons.wikimedia.org",
@@ -214,8 +206,6 @@ dominios_despriorizados = [
   "mobills.com.br", "idinheiro.com.br", "serasa.com.br", "financera.com.br", "xpi.com.br",
 ]
 
-# ---- Lookalike domains (typosquatting / combosquatting) -------------------------------------
-# Seeds: official domains whose label gets typo permutations (labels < 5 chars only get TLD swaps).
 # Logotipo antigo (B vermelho sobre V azul): uso proibido para terceiros, inclusive correspondentes.
 referencias_logo_antiga = ["assets/bv_logo_antiga.png"]
 # Sites que apenas catalogam ou noticiam a logo (repositórios de logos, bancos de imagens,
@@ -238,8 +228,9 @@ urls_busca_logo_antiga = [
   "https://www.nacionalenergia.solar/assets/logo-bv-BGRv-znK.png",
 ]
 
+# Domínios oficiais que recebem variações de digitação (rótulo com menos de 5 letras só troca o TLD).
 sementes_typosquat = ["bancobv.com.br", "bvfinanceira.com.br", "napista.com.br", "bv.com.br"]
-# Brand labels combined with sector keywords (bv-financiamento, bancobvacordo, feiraobv...).
+# Combinados com palavras do setor (bv-financiamento, bancobvacordo, feiraobv...).
 rotulos_combo_typosquat = ["bv", "bancobv", "bvfinanceira"]
 palavras_chave_typosquat = [
   "financiamento", "financiamentos", "financie", "financeira", "credito", "cred", "emprestimo",

@@ -1,6 +1,3 @@
-"""Operator-free fallback for Serper (Google hides operator results behind opaque links) and the public
-Facebook plugins used to read pages and photos without a login wall."""
-
 from __future__ import annotations
 
 import json
@@ -43,8 +40,8 @@ async def test_serper_reexecuta_versoes_sem_operadores_quando_resultados_sao_opa
         else:
             organicos = [
                 {"title": "Post", "link": f"https://www.instagram.com/p/{q[-3:]}/"},
-                {"title": "Oficial", "link": "https://www.bv.com.br/x"},  # excluded by -site: client-side
-                {"title": "Direto", "link": "https://loja.example/a"},  # duplicate of the first query
+                {"title": "Oficial", "link": "https://www.bv.com.br/x"},  # cai pelo -site: aplicado do nosso lado
+                {"title": "Direto", "link": "https://loja.example/a"},  # repetido da primeira consulta
             ]
         return httpx.Response(200, json={"organic": organicos})
 
@@ -77,7 +74,7 @@ def test_paginas_e_fotos_do_facebook_usam_plugins_publicos() -> None:
     assert "tabs=timeline" in pagina
     assert "profile.php%3Fid%3D615" in _url_incorporavel_social("https://www.facebook.com/profile.php?id=61594249927645")
     assert "/plugins/post.php" in _url_incorporavel_social("https://www.facebook.com/photo.php?fbid=1&set=a.2")
-    # Public group posts render better as they are; reserved paths are left alone.
+    # post de grupo público fica como está; caminhos reservados também
     grupo = "https://www.facebook.com/groups/1/posts/2/"
     assert _url_incorporavel_social(grupo) == grupo
     assert _url_incorporavel_social("https://www.facebook.com/marketplace/") == "https://www.facebook.com/marketplace/"

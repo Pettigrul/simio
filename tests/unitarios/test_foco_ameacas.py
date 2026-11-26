@@ -1,5 +1,3 @@
-"""Threat-intelligence campaign (``simio investigar --foco ameacas``) and credential-harvesting detection."""
-
 from __future__ import annotations
 
 import json
@@ -66,7 +64,7 @@ def test_paginas_de_construtor_gratuito_mantidas_e_reforcadas_so_em_campanhas_de
     [ampla] = priorizar([grupo()], MARCA)
     assert ampla.motivo_exclusao is not None
     [ameaca] = priorizar([grupo()], MARCA, FOCO_AMEACAS)
-    assert ameaca.motivo_exclusao is None and any("free website builder" in r for r in ameaca.motivos)
+    assert ameaca.motivo_exclusao is None and any("construtor de sites gratuito" in r for r in ameaca.motivos)
 
 
 async def test_serper_recupera_host_destino_de_resultados_opacos() -> None:

@@ -1,5 +1,3 @@
-"""Brand profiles (TOML) and text-matching helpers."""
-
 from __future__ import annotations
 
 import re
@@ -16,7 +14,6 @@ DIR_MARCAS = Path(__file__).parent
 
 
 def normalizar_texto(texto: str) -> str:
-    """Lower-case and strip accents for robust phrase matching."""
     nfkd = unicodedata.normalize("NFKD", texto or "")
     return "".join(c for c in nfkd if not unicodedata.combining(c)).lower()
 
@@ -30,8 +27,8 @@ def _normalizar_caractere(c: str) -> str:
 
 
 def normalizar_alinhado(texto: str) -> tuple[str, str]:
-    """(NFC text, folded text) with identical lengths, so spans found in the folded text can be
-    used to quote the *verbatim* original (accents and case preserved)."""
+    # Os dois textos têm o mesmo tamanho: o trecho achado no texto normalizado serve para citar o
+    # original exato, com acento e caixa.
     t = unicodedata.normalize("NFC", texto or "")
     return t, "".join(_normalizar_caractere(c) for c in t)
 
@@ -51,7 +48,7 @@ def _regex_frases(frases: list[str]) -> re.Pattern[str] | None:
     normalizado = sorted({normalizar_texto(p) for p in frases if p.strip()}, key=len, reverse=True)
     if not normalizado:
         return None
-    # Spaces inside a phrase also match "", "-", "_" or "." so "BancoBV" / "Banco-BV" are caught.
+    # Espaço da frase também casa com "", "-", "_" ou ".", para pegar "BancoBV" e "Banco-BV".
     corpo = "|".join(re.escape(p).replace(r"\ ", r"[\s\-_.]*") for p in normalizado)
     return re.compile(rf"(?<![\w]){'(?:' + corpo + ')'}(?![\w])")
 
@@ -80,25 +77,22 @@ class PerfilMarca(BaseModel):
     frases_servicos_sensiveis: list[str] = Field(default_factory=list)
     frases_contexto_homonimo: list[str] = Field(default_factory=list)
     dominios_despriorizados: list[str] = Field(default_factory=list)
-    # Domains of unrelated organisations that share the acronym (threat triage never flags them).
+    # Organizações sem relação que usam a mesma sigla; a triagem de ameaças nunca as aponta.
     dominios_homonimos: list[str] = Field(default_factory=list)
-    # Lookalike-domain discovery (providers/typosquat.py)
+    # provedores/typosquat.py
     sementes_typosquat: list[str] = Field(default_factory=list)
     rotulos_combo_typosquat: list[str] = Field(default_factory=list)
     palavras_chave_typosquat: list[str] = Field(default_factory=list)
-    # Reference images of the discontinued (legacy) logo, relative to the brands directory, compared
-    # deterministically against the screenshots (agents/visual.py).
+    # Imagens da logo antiga (caminho relativo a marcas/), comparadas com as capturas em agentes/visual.py.
     referencias_logo_antiga: list[str] = Field(default_factory=list)
-    # Sites where the legacy logo is merely catalogued or reported (logo repositories, image banks,
-    # encyclopedias, press): the finding is recorded but does not raise the classification.
+    # Sites que só catalogam ou noticiam a logo antiga: o achado fica registrado, mas não sobe a classificação.
     dominios_isentos_logo_antiga: list[str] = Field(default_factory=list)
-    # Public URLs of legacy-logo images used for reverse image search (Google Lens via Serper).
+    # Cópias públicas da logo antiga para a busca reversa (lens).
     urls_busca_logo_antiga: list[str] = Field(default_factory=list)
 
     def caminhos_logo_antiga(self) -> list[Path]:
         return [p if p.is_absolute() else DIR_MARCAS / p for p in map(Path, self.referencias_logo_antiga)]
 
-    # ------------------------------------------------------------------ compiled matchers
     @cached_property
     def _re_forte(self) -> re.Pattern[str] | None:
         return _regex_frases(self.termos_fortes)
@@ -146,8 +140,8 @@ class PerfilMarca(BaseModel):
         return self._encontrar(self._re_forte, texto)
 
     def mencoes_fracas(self, texto: str) -> list[str]:
-        """Weak (short) terms, excluding hostnames/URLs (``bv.com.br``, ``bv.loja``) and foreign
-        company suffixes (``Example Holding BV``, ``B.V.``)."""
+        # Ignora o termo curto dentro de host/URL ("bv.com.br") e como sufixo de empresa estrangeira
+        # ("Example Holding BV").
         rx = self._re_fraco
         if rx is None or not texto:
             return []
@@ -156,7 +150,7 @@ class PerfilMarca(BaseModel):
         for m in rx.finditer(normalizado):
             antes, depois = normalizado[: m.start()], normalizado[m.end() :]
             if re.match(r"\.[a-z0-9]", depois) or re.search(r"[./@:]$", antes):
-                continue  # part of a hostname / URL / e-mail
+                continue  # parte de host, URL ou e-mail
             if _CONTEXTO_SUFIXO_EMPRESA.search(antes[-40:]):
                 continue
             saida.append(orig[m.start() : m.end()])
@@ -175,14 +169,13 @@ class PerfilMarca(BaseModel):
         return self._encontrar(self._re_parceria, texto)
 
     def mencoes_concorrentes(self, texto: str) -> list[str]:
-        """Distinct competitor financial institutions mentioned in ``texto``."""
         encontrados = self._encontrar(self._re_concorrentes, texto)
         saida: list[str] = []
         vistos: set[str] = set()
         for item in encontrados:
-            canon = re.sub(r"^banco\s+", "", normalizar_texto(item)).strip()
-            if canon and canon not in vistos:
-                vistos.add(canon)
+            canonico = re.sub(r"^banco\s+", "", normalizar_texto(item)).strip()
+            if canonico and canonico not in vistos:
+                vistos.add(canonico)
                 saida.append(item)
         return saida
 
@@ -193,20 +186,16 @@ class PerfilMarca(BaseModel):
         return bool(self._encontrar(self._re_homonimo, texto))
 
     def sem_declaracoes(self, texto: str) -> str:
-        """Text minus the sentences that are correspondent/independence disclosures.
-
-        A disclosure such as "X Ltda é correspondente bancário do Banco BV" necessarily names the
-        institution; that mention is transparency, not brand prominence."""
+        # "X Ltda é correspondente bancário do Banco BV" cita a marca por obrigação: é transparência,
+        # não destaque da marca. Por isso as frases de declaração saem do texto.
         return " ".join(s for s in sentencas(texto) if not self.declaracoes(s))
 
     def declaracoes_nomeando_instituicao(self, texto: str) -> list[str]:
-        """Disclosure sentences that also name the institution (Art. 14, III: the contracting
-        institution must be identified by its market name)."""
+        # Art. 14, III: a declaração precisa identificar a contratante pelo nome de mercado.
         return [s for s in sentencas(texto) if self.declaracoes(s) and self.mencoes_fortes(s)]
 
     def eh_nome_instituicao(self, valor: str) -> bool:
-        """True when a value is (essentially) just the institution's own name or one of its official
-        group companies/products (e.g. BV Financeira, BV Investimentos, NaPista)."""
+        """True se o valor é só o nome da instituição ou de empresa/produto do grupo (BV Financeira, NaPista)."""
         v = re.sub(r"[^a-z0-9 ]+", " ", normalizar_texto(valor)).strip()
         v = re.sub(r"\s+", " ", v)
         if not v:
@@ -239,8 +228,6 @@ class PerfilMarca(BaseModel):
         return dominio_corresponde(hostname, self.dominios_oficiais)
 
     def eh_url_oficial(self, url: str, titulo: str | None = None, trecho: str | None = None) -> bool:
-        """True when ``url`` belongs to an official institutional domain or an official social
-        profile/post of the institution."""
         host = hostname_de(url)
         if self.eh_oficial(host):
             return True
@@ -250,11 +237,11 @@ class PerfilMarca(BaseModel):
             norm = normalizar_url(url).lower()
         except Exception:
             norm = url.strip().lower()
-        # Strip scheme and common country/mobile prefixes on social domains (e.g. br.linkedin.com, m.facebook.com)
+        # Tira esquema e prefixos de país/celular (br.linkedin.com, m.facebook.com).
         sem_prefixo = re.sub(r"^https?://(?:(?:www|m|br|pt)\.)?", "", norm).rstrip("/")
         perfis = set()
-        for perf in self.perfis_sociais_oficiais:
-            perfil_limpo = re.sub(r"^https?://(?:(?:www|m|br|pt)\.)?", "", perf.strip().lower()).rstrip("/")
+        for perfil in self.perfis_sociais_oficiais:
+            perfil_limpo = re.sub(r"^https?://(?:(?:www|m|br|pt)\.)?", "", perfil.strip().lower()).rstrip("/")
             if not perfil_limpo:
                 continue
             if (
@@ -266,8 +253,8 @@ class PerfilMarca(BaseModel):
             slug = perfil_limpo.rsplit("/", 1)[-1].lstrip("@")
             if slug:
                 perfis.add(slug)
-        # Direct post/reel URLs on Instagram (e.g. instagram.com/reel/XYZ/) do not include the handle
-        # in the URL path, but search titles/snippets start with "banco BV (@bancobv)" or "banco BV on Instagram:".
+        # Link direto de post/reel (instagram.com/reel/XYZ/) não traz o @ no caminho, mas o título do
+        # buscador começa com "banco BV (@bancobv)" ou "banco BV on Instagram:".
         if perfis and dominio_corresponde(
             host, ("instagram.com", "tiktok.com", "facebook.com", "x.com", "twitter.com")
         ):
@@ -291,7 +278,9 @@ def carregar_marca(marca: str, arquivo_marca: Path | None = None) -> PerfilMarca
     caminho = arquivo_marca or DIR_MARCAS / f"{marca}.toml"
     if not caminho.is_file():
         disponivel = sorted(p.stem for p in DIR_MARCAS.glob("*.toml"))
-        raise FileNotFoundError(f"Brand profile '{marca}' not found ({caminho}). Available: {', '.join(disponivel)}")
-    with caminho.open("rb") as fh:
-        dados = tomllib.load(fh)
+        raise FileNotFoundError(
+            f"Perfil de marca '{marca}' não encontrado ({caminho}). Disponíveis: {', '.join(disponivel)}"
+        )
+    with caminho.open("rb") as arq:
+        dados = tomllib.load(arq)
     return PerfilMarca(**dados)

@@ -1,5 +1,3 @@
-"""Serper pagination/redirect filtering and breadth of the open-web hypothesis set (no network)."""
-
 from __future__ import annotations
 
 import json
@@ -55,7 +53,7 @@ async def test_serper_descarta_redirecionamentos_opacos_do_google_e_informa_erro
 def test_hipoteses_web_aberta_cobrem_tipologias_de_protecao_de_marca_sem_cobans() -> None:
     hs = montar_hipoteses(BV)
     ids = {h.id for h in hs}
-    assert not any(i.startswith("H9") for i in ids)  # registry-independent
+    assert not any(i.startswith("H9") for i in ids)  # não depende do cadastro de COBANs
     for necessario in (
         "H2-produto:bancos-parceiros",
         "H6-plataforma:marketplaces",
@@ -73,5 +71,5 @@ def test_hipoteses_web_aberta_cobrem_tipologias_de_protecao_de_marca_sem_cobans(
     regional = " ".join(q for h in hs if h.id.startswith("H5-estabelecimento:regiao-") for q in h.consultas_palavras_chave)
     assert all(f'"{uf}"' in regional for ufs in REGIOES_BR.values() for uf in ufs)
     assert sum(len(ufs) for ufs in REGIOES_BR.values()) == 27
-    # every dork excludes the official domains
+    # todo dork exclui os domínios oficiais
     assert all("-site:bv.com.br" in q for h in hs for q in h.consultas_palavras_chave)
